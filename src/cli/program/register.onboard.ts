@@ -138,8 +138,8 @@ export function registerOnboardCommand(program: Command) {
     .option("--skip-ui", "Skip Control UI/TUI prompts")
     .option("--skip-bootstrap", "Skip workspace bootstrap (BOOTSTRAP.md)")
     .option("--small", "Use small model: qwen3:8b (8GB RAM)")
-    .option("--medium", "Use medium model: mistral-small:24b (16GB RAM)")
-    .option("--large", "Use large model: qwen3:32b (32GB RAM, default)")
+    .option("--medium", "Use medium model: mistral-small:24b (16GB RAM, default)")
+    .option("--large", "Use large model: qwen3:32b (32GB RAM)")
     .option("--node-manager <name>", "Node manager for skills: npm|pnpm|bun")
     .option("--json", "Output JSON summary", false);
 
