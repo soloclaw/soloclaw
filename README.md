@@ -2,19 +2,30 @@
 
 A personal AI that runs on your computer. One command to install, zero configuration.
 
+Based on [OpenClaw](https://github.com/openclaw/openclaw).
+
 ## Install
 
 ```bash
 npx soloclaw onboard
 ```
 
-That's it. SoloClaw installs a free local AI model, starts the service, and opens the chat UI. No API keys, no accounts, no questions asked.
+That's it. SoloClaw installs a free local AI model (gemma3:12b via Ollama), starts the gateway service, and opens the chat UI. No API keys, no accounts, no questions asked.
 
-## What You Get
+**Requirements:** macOS, Linux, or Windows (WSL2) with 12GB free RAM and [Ollama](https://ollama.com) installed.
 
-- **A local AI assistant** — runs on your machine, no cloud required
-- **Chat UI** — talk to your AI in the browser
-- **Always on** — runs as a background service, ready when you are
+## Quick Start
+
+```bash
+# Talk to your AI in the terminal
+soloclaw tui
+
+# Send a one-off message
+soloclaw agent --message "Hello"
+
+# Check gateway status
+soloclaw gateway status --deep
+```
 
 ## Extend It
 
@@ -26,10 +37,76 @@ SoloClaw starts minimal. Tell your AI what you need and it sets itself up:
 
 No menus, no config files. Just ask.
 
-## Requirements
+## What's Included
 
-- macOS, Linux, or Windows (WSL2)
-- 12GB free RAM (for the default AI model)
+- **Local AI model** — gemma3:12b, free, runs entirely on your machine
+- **Gateway service** — always-on background service (LaunchAgent on macOS, systemd on Linux)
+- **Chat UI** — browser-based TUI to talk to your AI
+- **Multi-channel inbox** — extensible to WhatsApp, Telegram, Slack, Discord, and [25+ channels](https://docs.openclaw.ai/channels)
+- **Tools** — browser, cron, sessions, and more via [skills](https://docs.openclaw.ai/tools/skills)
+- **Companion apps** — optional macOS, [iOS](https://docs.openclaw.ai/platforms/ios), and [Android](https://docs.openclaw.ai/platforms/android) apps
+
+## Using a Different Model
+
+Override the default model during install:
+
+```bash
+npx soloclaw onboard --custom-model-id qwen2.5:14b
+```
+
+Or switch later:
+
+```bash
+soloclaw config set agent.model ollama/qwen2.5:14b
+```
+
+Any model available in [Ollama](https://ollama.com/library) works. You can also use cloud providers (OpenAI, Anthropic, etc.) by running the full interactive setup:
+
+```bash
+soloclaw onboard --non-interactive --accept-risk --auth-choice openai --openai-api-key YOUR_KEY
+```
+
+## Configuration
+
+Config lives at `~/.openclaw/openclaw.json`:
+
+```json5
+{
+  agent: {
+    model: "ollama/gemma3:12b",
+  },
+}
+```
+
+[Full configuration reference.](https://docs.openclaw.ai/gateway/configuration)
+
+## Security
+
+- Default: tools run on the host with full access (single-user mode).
+- For multi-user/channel safety: enable [Docker sandboxing](https://docs.openclaw.ai/install/docker).
+- DM pairing is on by default — unknown senders must be approved before the bot responds.
+- Full guide: [Security](https://docs.openclaw.ai/gateway/security)
+
+## From Source
+
+```bash
+git clone https://github.com/soloclaw/soloclaw.git
+cd soloclaw
+
+pnpm install
+pnpm build
+
+pnpm openclaw onboard
+```
+
+## Docs
+
+- [Getting started](https://docs.openclaw.ai/start/getting-started)
+- [Channels](https://docs.openclaw.ai/channels)
+- [Tools & Skills](https://docs.openclaw.ai/tools)
+- [Configuration](https://docs.openclaw.ai/gateway/configuration)
+- [Architecture](https://docs.openclaw.ai/concepts/architecture)
+- [FAQ](https://docs.openclaw.ai/help/faq)
 
 ## License
 
