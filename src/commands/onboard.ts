@@ -105,7 +105,7 @@ export async function setupWizardCommand(
       acceptRisk: true,
       installDaemon: normalizedOpts.installDaemon ?? true,
       authChoice: normalizedOpts.authChoice ?? "ollama",
-      customModelId: normalizedOpts.customModelId ?? "qwen2.5:14b",
+      customModelId: normalizedOpts.customModelId ?? "qwen2.5:32b",
       skipChannels: true,
       skipSkills: true,
       skipSearch: true,
