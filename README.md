@@ -6,13 +6,16 @@ Based on [OpenClaw](https://github.com/openclaw/openclaw).
 
 ## Install
 
+**Requirements:** macOS with 12GB free RAM and [Ollama](https://ollama.com) installed.
+
 ```bash
-npx openclaw onboard
+git clone https://github.com/soloclaw/soloclaw.git
+cd soloclaw
+pnpm install && pnpm build
+pnpm openclaw onboard
 ```
 
 That's it. SoloClaw installs a free local AI model (gemma3:12b via Ollama), starts the gateway service, and opens the chat UI. No API keys, no accounts, no questions asked.
-
-**Requirements:** macOS with 12GB free RAM and [Ollama](https://ollama.com) installed.
 
 ## Quick Start
 
@@ -51,7 +54,7 @@ No menus, no config files. Just ask.
 Override the default model during install:
 
 ```bash
-npx openclaw onboard --custom-model-id qwen2.5:14b
+pnpm openclaw onboard --custom-model-id qwen2.5:14b
 ```
 
 Or switch later:
@@ -63,7 +66,7 @@ openclaw config set agent.model ollama/qwen2.5:14b
 Any model available in [Ollama](https://ollama.com/library) works. You can also use cloud providers (OpenAI, Anthropic, etc.) by running the full interactive setup:
 
 ```bash
-openclaw onboard --non-interactive --accept-risk --auth-choice openai --openai-api-key YOUR_KEY
+pnpm openclaw onboard --non-interactive --accept-risk --auth-choice openai --openai-api-key YOUR_KEY
 ```
 
 ## Configuration
