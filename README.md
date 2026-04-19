@@ -1,7 +1,10 @@
 # SoloClaw
 
 <p align="center">
-    <img src="docs/assets/soloclaw-logo.png" alt="SoloClaw" width="500">
+    <picture>
+        <source media="(prefers-color-scheme: light)" srcset="docs/assets/openclaw-logo-text-dark.svg">
+        <img src="docs/assets/openclaw-logo-text.svg" alt="SoloClaw" width="500">
+    </picture>
 </p>
 
 A personal AI that runs on your computer. One command to install, zero configuration.
