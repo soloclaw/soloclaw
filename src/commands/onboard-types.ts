@@ -79,6 +79,8 @@ export type OnboardOptions = OnboardDynamicProviderOptions & {
   skipSearch?: boolean;
   skipHealth?: boolean;
   skipUi?: boolean;
+  skipBootstrap?: boolean;
+  modelSize?: "small" | "medium" | "large";
   nodeManager?: NodeManagerChoice;
   remoteUrl?: string;
   remoteToken?: string;

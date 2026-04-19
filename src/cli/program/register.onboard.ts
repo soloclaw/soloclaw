@@ -136,6 +136,10 @@ export function registerOnboardCommand(program: Command) {
     .option("--skip-search", "Skip search provider setup")
     .option("--skip-health", "Skip health check")
     .option("--skip-ui", "Skip Control UI/TUI prompts")
+    .option("--skip-bootstrap", "Skip workspace bootstrap (BOOTSTRAP.md)")
+    .option("--small", "Use small model: qwen3:8b (8GB RAM)")
+    .option("--medium", "Use medium model: mistral-small:24b (16GB RAM)")
+    .option("--large", "Use large model: qwen3:32b (32GB RAM, default)")
     .option("--node-manager <name>", "Node manager for skills: npm|pnpm|bun")
     .option("--json", "Output JSON summary", false);
 
@@ -192,6 +196,14 @@ export function registerOnboardCommand(program: Command) {
           skipSearch: Boolean(opts.skipSearch),
           skipHealth: Boolean(opts.skipHealth),
           skipUi: Boolean(opts.skipUi),
+          skipBootstrap: Boolean(opts.skipBootstrap),
+          modelSize: opts.small
+            ? ("small" as const)
+            : opts.medium
+              ? ("medium" as const)
+              : opts.large
+                ? ("large" as const)
+                : undefined,
           nodeManager: opts.nodeManager as NodeManagerChoice | undefined,
           json: Boolean(opts.json),
         },

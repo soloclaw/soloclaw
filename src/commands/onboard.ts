@@ -17,6 +17,12 @@ import type { OnboardOptions, ResetScope } from "./onboard-types.js";
 
 const VALID_RESET_SCOPES = new Set<ResetScope>(["config", "config+creds+sessions", "full"]);
 
+const MODEL_SIZE_PRESETS: Record<string, string> = {
+  small: "qwen3:8b",
+  medium: "mistral-small:24b",
+  large: "qwen3:32b",
+};
+
 export async function setupWizardCommand(
   opts: OnboardOptions,
   runtime: RuntimeEnv = defaultRuntime,
@@ -98,7 +104,25 @@ export async function setupWizardCommand(
     return;
   }
 
-  await runInteractiveSetup(normalizedOpts, runtime);
+  await runNonInteractiveSetup(
+    {
+      ...normalizedOpts,
+      nonInteractive: true,
+      acceptRisk: true,
+      installDaemon: normalizedOpts.installDaemon ?? true,
+      authChoice: normalizedOpts.authChoice ?? "ollama",
+      customModelId:
+        normalizedOpts.customModelId ??
+        (normalizedOpts.modelSize ? MODEL_SIZE_PRESETS[normalizedOpts.modelSize] : undefined) ??
+        MODEL_SIZE_PRESETS.large,
+      skipChannels: true,
+      skipSkills: true,
+      skipSearch: true,
+      skipBootstrap: normalizedOpts.skipBootstrap ?? false,
+      skipUi: false,
+    },
+    runtime,
+  );
 }
 
 export const onboardCommand = setupWizardCommand;
