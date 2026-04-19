@@ -7,24 +7,24 @@ Based on [OpenClaw](https://github.com/openclaw/openclaw).
 ## Install
 
 ```bash
-npx soloclaw onboard
+npx openclaw onboard
 ```
 
 That's it. SoloClaw installs a free local AI model (gemma3:12b via Ollama), starts the gateway service, and opens the chat UI. No API keys, no accounts, no questions asked.
 
-**Requirements:** macOS, Linux, or Windows (WSL2) with 12GB free RAM and [Ollama](https://ollama.com) installed.
+**Requirements:** macOS with 12GB free RAM and [Ollama](https://ollama.com) installed.
 
 ## Quick Start
 
 ```bash
 # Talk to your AI in the terminal
-soloclaw tui
+openclaw tui
 
 # Send a one-off message
-soloclaw agent --message "Hello"
+openclaw agent --message "Hello"
 
 # Check gateway status
-soloclaw gateway status --deep
+openclaw gateway status --deep
 ```
 
 ## Extend It
@@ -40,7 +40,7 @@ No menus, no config files. Just ask.
 ## What's Included
 
 - **Local AI model** — gemma3:12b, free, runs entirely on your machine
-- **Gateway service** — always-on background service (LaunchAgent on macOS, systemd on Linux)
+- **Gateway service** — always-on background service (LaunchAgent on macOS)
 - **Chat UI** — browser-based TUI to talk to your AI
 - **Multi-channel inbox** — extensible to WhatsApp, Telegram, Slack, Discord, and [25+ channels](https://docs.openclaw.ai/channels)
 - **Tools** — browser, cron, sessions, and more via [skills](https://docs.openclaw.ai/tools/skills)
@@ -51,19 +51,19 @@ No menus, no config files. Just ask.
 Override the default model during install:
 
 ```bash
-npx soloclaw onboard --custom-model-id qwen2.5:14b
+npx openclaw onboard --custom-model-id qwen2.5:14b
 ```
 
 Or switch later:
 
 ```bash
-soloclaw config set agent.model ollama/qwen2.5:14b
+openclaw config set agent.model ollama/qwen2.5:14b
 ```
 
 Any model available in [Ollama](https://ollama.com/library) works. You can also use cloud providers (OpenAI, Anthropic, etc.) by running the full interactive setup:
 
 ```bash
-soloclaw onboard --non-interactive --accept-risk --auth-choice openai --openai-api-key YOUR_KEY
+openclaw onboard --non-interactive --accept-risk --auth-choice openai --openai-api-key YOUR_KEY
 ```
 
 ## Configuration
@@ -105,7 +105,7 @@ pnpm openclaw onboard
 pnpm gateway:watch
 ```
 
-Note: `pnpm openclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` produces `dist/` for running via Node / the packaged `soloclaw` binary.
+Note: `pnpm openclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` produces `dist/` for running via Node / the packaged `openclaw` binary.
 
 ## Docs
 
