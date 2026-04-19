@@ -13,7 +13,7 @@ Based on [OpenClaw](https://github.com/openclaw/openclaw).
 
 ## Install
 
-**Requirements:** macOS with 12GB free RAM and [Ollama](https://ollama.com) installed.
+**Requirements:** macOS with 16GB RAM and [Ollama](https://ollama.com) installed.
 
 ```bash
 git clone https://github.com/soloclaw/soloclaw.git
