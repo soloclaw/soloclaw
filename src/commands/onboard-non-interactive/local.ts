@@ -1,3 +1,5 @@
+import fs from "node:fs/promises";
+import path from "node:path";
 import { formatCliCommand } from "../../cli/command-format.js";
 import { replaceConfigFile, resolveGatewayPort } from "../../config/config.js";
 import { logConfigUpdated } from "../../config/logging.js";
@@ -192,9 +194,12 @@ export async function runNonInteractiveLocalSetup(params: {
   });
   logConfigUpdated(runtime);
 
-  await ensureWorkspaceAndSessions(workspaceDir, runtime, {
-    skipBootstrap: opts.skipBootstrap ?? Boolean(nextConfig.agents?.defaults?.skipBootstrap),
-  });
+  const skipBootstrap = opts.skipBootstrap ?? Boolean(nextConfig.agents?.defaults?.skipBootstrap);
+  await ensureWorkspaceAndSessions(workspaceDir, runtime, { skipBootstrap });
+
+  if (skipBootstrap) {
+    await fs.unlink(path.join(workspaceDir, "BOOTSTRAP.md")).catch(() => {});
+  }
 
   const daemonRuntimeRaw = opts.daemonRuntime ?? DEFAULT_GATEWAY_DAEMON_RUNTIME;
   let daemonInstallStatus:
