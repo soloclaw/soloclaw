@@ -187,6 +187,22 @@ export async function runNonInteractiveLocalSetup(params: {
 
   nextConfig = applyNonInteractiveSkillsConfig({ nextConfig, opts, runtime });
 
+  if (opts.skipSearch && !nextConfig.tools?.web?.search?.provider) {
+    nextConfig = {
+      ...nextConfig,
+      tools: {
+        ...nextConfig.tools,
+        web: {
+          ...nextConfig.tools?.web,
+          search: {
+            ...nextConfig.tools?.web?.search,
+            provider: "duckduckgo",
+          },
+        },
+      },
+    };
+  }
+
   nextConfig = applyWizardMetadata(nextConfig, { command: "onboard", mode });
   await replaceConfigFile({
     nextConfig,
