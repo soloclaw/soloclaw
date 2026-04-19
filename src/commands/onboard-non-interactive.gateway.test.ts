@@ -423,60 +423,13 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
     });
   }, 60_000);
 
-  it("uses longer Windows health timings for daemon install probes", () => {
-    expect(resolveInstallDaemonGatewayHealthTiming("win32")).toEqual({
-      deadlineMs: 90_000,
-      probeTimeoutMs: 15_000,
-      healthCommandTimeoutMs: 90_000,
+  it("returns macOS health timings for daemon install probes", () => {
+    expect(resolveInstallDaemonGatewayHealthTiming()).toEqual({
+      deadlineMs: 45_000,
+      probeTimeoutMs: 10_000,
+      healthCommandTimeoutMs: 10_000,
     });
   });
-
-  it("emits a daemon-install failure when Linux user systemd is unavailable", async () => {
-    await withStateDir("state-local-daemon-install-json-fail-", async (stateDir) => {
-      installGatewayDaemonNonInteractiveMock.mockResolvedValueOnce({
-        installed: false,
-        skippedReason: "systemd-user-unavailable",
-      });
-
-      const { runtimeWithCapture, readCapturedJson } = createJsonCaptureRuntime();
-
-      const originalPlatform = process.platform;
-      Object.defineProperty(process, "platform", {
-        configurable: true,
-        value: "linux",
-      });
-
-      try {
-        await expectLocalJsonSetupFailure(stateDir, runtimeWithCapture);
-      } finally {
-        Object.defineProperty(process, "platform", {
-          configurable: true,
-          value: originalPlatform,
-        });
-      }
-
-      const parsed = JSON.parse(readCapturedJson()) as {
-        ok: boolean;
-        phase: string;
-        daemonInstall?: {
-          requested?: boolean;
-          installed?: boolean;
-          skippedReason?: string;
-        };
-        hints?: string[];
-      };
-      expect(parsed.ok).toBe(false);
-      expect(parsed.phase).toBe("daemon-install");
-      expect(parsed.daemonInstall).toEqual({
-        requested: true,
-        installed: false,
-        skippedReason: "systemd-user-unavailable",
-      });
-      expect(parsed.hints).toContain(
-        "Fix: rerun without `--install-daemon` for one-shot setup, or enable a working user-systemd session and retry.",
-      );
-    });
-  }, 60_000);
 
   it("emits structured JSON diagnostics when daemon health fails", async () => {
     await withStateDir("state-local-daemon-health-json-fail-", async (stateDir) => {

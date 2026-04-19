@@ -59,21 +59,15 @@ describe("setupWizardCommand", () => {
     expect(mocks.runNonInteractiveSetup).not.toHaveBeenCalled();
   });
 
-  it("logs ASCII-safe Windows guidance before setup", async () => {
+  it("exits with error on non-macOS platforms", async () => {
     const runtime = makeRuntime();
     const platformSpy = vi.spyOn(process, "platform", "get").mockReturnValue("win32");
 
     try {
       await setupWizardCommand({}, runtime);
 
-      expect(runtime.log).toHaveBeenCalledWith(
-        [
-          "Windows detected - OpenClaw runs great on WSL2!",
-          "Native Windows might be trickier.",
-          "Quick setup: wsl --install (one command, one reboot)",
-          "Guide: https://docs.openclaw.ai/windows",
-        ].join("\n"),
-      );
+      expect(runtime.error).toHaveBeenCalledWith("SoloClaw currently only supports macOS.");
+      expect(runtime.exit).toHaveBeenCalledWith(1);
     } finally {
       platformSpy.mockRestore();
     }
