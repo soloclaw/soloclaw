@@ -118,7 +118,7 @@ export async function setupWizardCommand(
       skipChannels: true,
       skipSkills: true,
       skipSearch: true,
-      skipBootstrap: true,
+      skipBootstrap: normalizedOpts.skipBootstrap ?? false,
       skipUi: false,
     },
     runtime,

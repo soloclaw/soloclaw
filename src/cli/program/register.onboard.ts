@@ -136,6 +136,7 @@ export function registerOnboardCommand(program: Command) {
     .option("--skip-search", "Skip search provider setup")
     .option("--skip-health", "Skip health check")
     .option("--skip-ui", "Skip Control UI/TUI prompts")
+    .option("--skip-bootstrap", "Skip workspace bootstrap (BOOTSTRAP.md)")
     .option("--small", "Use small model: qwen3:8b (8GB RAM)")
     .option("--medium", "Use medium model: mistral-small:24b (16GB RAM)")
     .option("--large", "Use large model: qwen3:32b (32GB RAM, default)")
@@ -195,6 +196,7 @@ export function registerOnboardCommand(program: Command) {
           skipSearch: Boolean(opts.skipSearch),
           skipHealth: Boolean(opts.skipHealth),
           skipUi: Boolean(opts.skipUi),
+          skipBootstrap: Boolean(opts.skipBootstrap),
           modelSize: opts.small
             ? ("small" as const)
             : opts.medium
