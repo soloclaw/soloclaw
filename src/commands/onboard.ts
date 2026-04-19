@@ -105,7 +105,7 @@ export async function setupWizardCommand(
       acceptRisk: true,
       installDaemon: normalizedOpts.installDaemon ?? true,
       authChoice: normalizedOpts.authChoice ?? "ollama",
-      customModelId: normalizedOpts.customModelId ?? "gemma4:12b",
+      customModelId: normalizedOpts.customModelId ?? "gemma3:12b",
       skipChannels: true,
       skipSkills: true,
       skipSearch: true,
