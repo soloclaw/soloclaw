@@ -98,6 +98,24 @@ export async function setupWizardCommand(
     return;
   }
 
+  if (normalizedOpts.installDaemon && !normalizedOpts.nonInteractive) {
+    await runNonInteractiveSetup(
+      {
+        ...normalizedOpts,
+        nonInteractive: true,
+        acceptRisk: true,
+        authChoice: normalizedOpts.authChoice ?? "ollama",
+        customModelId: normalizedOpts.customModelId ?? "qwen2.5:7b",
+        skipChannels: true,
+        skipSkills: true,
+        skipSearch: true,
+        skipUi: true,
+      },
+      runtime,
+    );
+    return;
+  }
+
   await runInteractiveSetup(normalizedOpts, runtime);
 }
 
