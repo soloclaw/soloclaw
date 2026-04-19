@@ -87,17 +87,25 @@ Config lives at `~/.openclaw/openclaw.json`:
 - DM pairing is on by default — unknown senders must be approved before the bot responds.
 - Full guide: [Security](https://docs.openclaw.ai/gateway/security)
 
-## From Source
+## From Source (Development)
+
+Prefer `pnpm` for builds from source. Bun is optional for running TypeScript directly.
 
 ```bash
 git clone https://github.com/soloclaw/soloclaw.git
 cd soloclaw
 
 pnpm install
+pnpm ui:build   # auto-installs UI deps on first run
 pnpm build
 
 pnpm openclaw onboard
+
+# Dev loop (auto-reload on source/config changes)
+pnpm gateway:watch
 ```
+
+Note: `pnpm openclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` produces `dist/` for running via Node / the packaged `soloclaw` binary.
 
 ## Docs
 
