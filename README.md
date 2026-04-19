@@ -2,8 +2,8 @@
 
 <p align="center">
     <picture>
-        <source media="(prefers-color-scheme: light)" srcset="docs/assets/soloclaw-logo-dark.svg">
-        <img src="docs/assets/soloclaw-logo.svg" alt="SoloClaw" width="500">
+        <source media="(prefers-color-scheme: light)" srcset="docs/assets/openclaw-logo-text-dark.svg">
+        <img src="docs/assets/openclaw-logo-text.svg" alt="SoloClaw" width="500">
     </picture>
 </p>
 
