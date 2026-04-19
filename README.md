@@ -13,7 +13,7 @@ Based on [OpenClaw](https://github.com/openclaw/openclaw).
 
 ## Install
 
-**Requirements:** macOS with 16GB RAM and [Ollama](https://ollama.com) installed.
+**Requirements:** macOS with [Ollama](https://ollama.com) installed.
 
 ```bash
 git clone https://github.com/soloclaw/soloclaw.git
@@ -22,7 +22,21 @@ pnpm install && pnpm build
 pnpm openclaw onboard
 ```
 
-That's it. SoloClaw installs a free local AI model (gemma3:12b via Ollama), starts the gateway service, and opens the chat UI. No API keys, no accounts, no questions asked.
+That's it. SoloClaw installs a free local AI model via Ollama, starts the gateway service, and opens the chat UI. No API keys, no accounts, no questions asked.
+
+### Choose Your Model Size
+
+| Flag | Model | RAM Required |
+|------|-------|-------------|
+| `--small` | qwen3:8b | 8GB |
+| `--medium` | mistral-small:24b | 16GB |
+| `--large` (default) | qwen3:32b | 32GB |
+
+```bash
+pnpm openclaw onboard --small    # Low-end machines
+pnpm openclaw onboard --medium   # Mid-range machines
+pnpm openclaw onboard            # Defaults to large
+```
 
 ## Quick Start
 
@@ -49,7 +63,7 @@ No menus, no config files. Just ask.
 
 ## What's Included
 
-- **Local AI model** — gemma3:12b, free, runs entirely on your machine
+- **Local AI model** — free, runs entirely on your machine (qwen3:32b by default)
 - **Gateway service** — always-on background service (LaunchAgent on macOS)
 - **Chat UI** — browser-based TUI to talk to your AI
 - **Multi-channel inbox** — extensible to WhatsApp, Telegram, Slack, Discord, and [25+ channels](https://docs.openclaw.ai/channels)
@@ -58,19 +72,27 @@ No menus, no config files. Just ask.
 
 ## Using a Different Model
 
-Override the default model during install:
+Use a preset size:
+
+```bash
+pnpm openclaw onboard --small     # qwen3:8b
+pnpm openclaw onboard --medium    # mistral-small:24b
+pnpm openclaw onboard --large     # qwen3:32b (default)
+```
+
+Or specify any Ollama model directly:
 
 ```bash
 pnpm openclaw onboard --custom-model-id qwen2.5:14b
 ```
 
-Or switch later:
+Switch model after install:
 
 ```bash
-openclaw config set agent.model ollama/qwen2.5:14b
+openclaw config set agents.defaults.model.primary ollama/qwen3:8b
 ```
 
-Any model available in [Ollama](https://ollama.com/library) works. You can also use cloud providers (OpenAI, Anthropic, etc.) by running the full interactive setup:
+Any model available in [Ollama](https://ollama.com/library) works. You can also use cloud providers (OpenAI, Anthropic, etc.):
 
 ```bash
 pnpm openclaw onboard --non-interactive --accept-risk --auth-choice openai --openai-api-key YOUR_KEY
@@ -83,7 +105,7 @@ Config lives at `~/.openclaw/openclaw.json`:
 ```json5
 {
   agent: {
-    model: "ollama/gemma3:12b",
+    model: "ollama/qwen3:32b",
   },
 }
 ```
