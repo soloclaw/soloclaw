@@ -98,25 +98,21 @@ export async function setupWizardCommand(
     return;
   }
 
-  if (normalizedOpts.installDaemon && !normalizedOpts.nonInteractive) {
-    await runNonInteractiveSetup(
-      {
-        ...normalizedOpts,
-        nonInteractive: true,
-        acceptRisk: true,
-        authChoice: normalizedOpts.authChoice ?? "ollama",
-        customModelId: normalizedOpts.customModelId ?? "qwen2.5:7b",
-        skipChannels: true,
-        skipSkills: true,
-        skipSearch: true,
-        skipUi: true,
-      },
-      runtime,
-    );
-    return;
-  }
-
-  await runInteractiveSetup(normalizedOpts, runtime);
+  await runNonInteractiveSetup(
+    {
+      ...normalizedOpts,
+      nonInteractive: true,
+      acceptRisk: true,
+      installDaemon: normalizedOpts.installDaemon ?? true,
+      authChoice: normalizedOpts.authChoice ?? "ollama",
+      customModelId: normalizedOpts.customModelId ?? "qwen2.5:7b",
+      skipChannels: true,
+      skipSkills: true,
+      skipSearch: true,
+      skipUi: true,
+    },
+    runtime,
+  );
 }
 
 export const onboardCommand = setupWizardCommand;
