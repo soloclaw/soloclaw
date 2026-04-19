@@ -193,7 +193,7 @@ export async function runNonInteractiveLocalSetup(params: {
   logConfigUpdated(runtime);
 
   await ensureWorkspaceAndSessions(workspaceDir, runtime, {
-    skipBootstrap: Boolean(nextConfig.agents?.defaults?.skipBootstrap),
+    skipBootstrap: opts.skipBootstrap ?? Boolean(nextConfig.agents?.defaults?.skipBootstrap),
   });
 
   const daemonRuntimeRaw = opts.daemonRuntime ?? DEFAULT_GATEWAY_DAEMON_RUNTIME;
