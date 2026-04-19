@@ -109,7 +109,7 @@ export async function setupWizardCommand(
       customModelId:
         normalizedOpts.customModelId ??
         (normalizedOpts.modelSize ? MODEL_SIZE_PRESETS[normalizedOpts.modelSize] : undefined) ??
-        MODEL_SIZE_PRESETS.large,
+        MODEL_SIZE_PRESETS.medium,
       skipChannels: true,
       skipSkills: true,
       skipSearch: true,
