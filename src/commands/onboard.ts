@@ -82,15 +82,10 @@ export async function setupWizardCommand(
     await handleReset(resetScope, resolveUserPath(workspaceDefault), runtime);
   }
 
-  if (process.platform === "win32") {
-    runtime.log(
-      [
-        "Windows detected - OpenClaw runs great on WSL2!",
-        "Native Windows might be trickier.",
-        "Quick setup: wsl --install (one command, one reboot)",
-        "Guide: https://docs.openclaw.ai/windows",
-      ].join("\n"),
-    );
+  if (process.platform !== "darwin") {
+    runtime.error("SoloClaw currently only supports macOS.");
+    runtime.exit(1);
+    return;
   }
 
   if (normalizedOpts.nonInteractive) {
