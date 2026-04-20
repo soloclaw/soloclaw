@@ -373,7 +373,7 @@ def build_summary(all_results):
     best_per_domain = {}
     all_domains = set()
     for domains in all_results.values():
-        all_domains.update(domains.keys())
+        all_domains.update(k for k in domains.keys() if not k.startswith("_"))
     for domain in all_domains:
         best_model = None
         best_acc = -1
