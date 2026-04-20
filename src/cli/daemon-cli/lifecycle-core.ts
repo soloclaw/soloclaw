@@ -6,10 +6,7 @@ import { checkTokenDrift } from "../../daemon/service-audit.js";
 import type { GatewayServiceRestartResult } from "../../daemon/service-types.js";
 import { describeGatewayServiceRestart, startGatewayService } from "../../daemon/service.js";
 import type { GatewayService } from "../../daemon/service.js";
-import { renderSystemdUnavailableHints } from "../../daemon/systemd-hints.js";
-import { isSystemdUserServiceAvailable } from "../../daemon/systemd.js";
 import { isGatewaySecretRefUnavailableError } from "../../gateway/credentials.js";
-import { isWSL } from "../../infra/wsl.js";
 import { defaultRuntime } from "../../runtime.js";
 import { resolveGatewayTokenForDriftCheck } from "./gateway-token-drift.js";
 import {
@@ -44,17 +41,7 @@ type ServiceRecoveryContext = {
 };
 
 async function maybeAugmentSystemdHints(hints: string[]): Promise<string[]> {
-  if (process.platform !== "linux") {
-    return hints;
-  }
-  const systemdAvailable = await isSystemdUserServiceAvailable().catch(() => false);
-  if (systemdAvailable) {
-    return hints;
-  }
-  return [
-    ...hints,
-    ...renderSystemdUnavailableHints({ wsl: await isWSL(), kind: "generic_unavailable" }),
-  ];
+  return hints;
 }
 
 function emitActionMessage(params: {

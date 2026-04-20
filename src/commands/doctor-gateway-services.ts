@@ -19,7 +19,6 @@ import {
   SERVICE_AUDIT_CODES,
 } from "../daemon/service-audit.js";
 import { resolveGatewayService } from "../daemon/service.js";
-import { uninstallLegacySystemdUnits } from "../daemon/systemd.js";
 import type { RuntimeEnv } from "../runtime.js";
 import {
   normalizeLowercaseStringOrEmpty,
@@ -108,11 +107,9 @@ async function cleanupLegacyLaunchdService(params: {
 
 function classifyLegacyServices(legacyServices: ExtraGatewayService[]): {
   darwinUserServices: ExtraGatewayService[];
-  linuxUserServices: ExtraGatewayService[];
   failed: string[];
 } {
   const darwinUserServices: ExtraGatewayService[] = [];
-  const linuxUserServices: ExtraGatewayService[] = [];
   const failed: string[] = [];
 
   for (const svc of legacyServices) {
@@ -125,19 +122,10 @@ function classifyLegacyServices(legacyServices: ExtraGatewayService[]): {
       continue;
     }
 
-    if (svc.platform === "linux") {
-      if (svc.scope === "user") {
-        linuxUserServices.push(svc);
-      } else {
-        failed.push(`${svc.label} (${svc.scope})`);
-      }
-      continue;
-    }
-
     failed.push(`${svc.label} (${svc.platform})`);
   }
 
-  return { darwinUserServices, linuxUserServices, failed };
+  return { darwinUserServices, failed };
 }
 
 async function cleanupLegacyDarwinServices(
@@ -157,39 +145,6 @@ async function cleanupLegacyDarwinServices(
       plistPath,
     });
     removed.push(dest ? `${svc.label} -> ${dest}` : svc.label);
-  }
-
-  return { removed, failed };
-}
-
-async function cleanupLegacyLinuxUserServices(
-  services: ExtraGatewayService[],
-  runtime: RuntimeEnv,
-): Promise<{ removed: string[]; failed: string[] }> {
-  const removed: string[] = [];
-  const failed: string[] = [];
-
-  try {
-    const removedUnits = await uninstallLegacySystemdUnits({
-      env: process.env,
-      stdout: process.stdout,
-    });
-    const removedByLabel: Map<string, (typeof removedUnits)[number]> = new Map(
-      removedUnits.map((unit) => [`${unit.name}.service`, unit] as const),
-    );
-    for (const svc of services) {
-      const removedUnit = removedByLabel.get(svc.label);
-      if (!removedUnit) {
-        failed.push(`${svc.label} (legacy unit name not recognized)`);
-        continue;
-      }
-      removed.push(`${svc.label} -> ${removedUnit.unitPath}`);
-    }
-  } catch (err) {
-    runtime.error(`Legacy Linux gateway cleanup failed: ${String(err)}`);
-    for (const svc of services) {
-      failed.push(`${svc.label} (linux cleanup failed)`);
-    }
   }
 
   return { removed, failed };
@@ -420,17 +375,10 @@ export async function maybeScanExtraGatewayServices(
     });
     if (shouldRemove) {
       const removed: string[] = [];
-      const { darwinUserServices, linuxUserServices, failed } =
-        classifyLegacyServices(legacyServices);
+      const { darwinUserServices, failed } = classifyLegacyServices(legacyServices);
 
       if (darwinUserServices.length > 0) {
         const result = await cleanupLegacyDarwinServices(darwinUserServices);
-        removed.push(...result.removed);
-        failed.push(...result.failed);
-      }
-
-      if (linuxUserServices.length > 0) {
-        const result = await cleanupLegacyLinuxUserServices(linuxUserServices, runtime);
         removed.push(...result.removed);
         failed.push(...result.failed);
       }

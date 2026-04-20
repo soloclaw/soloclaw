@@ -1,88 +1,13 @@
 import { execFile, spawn } from "node:child_process";
-import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { promisify } from "node:util";
 import { danger, shouldLogVerbose } from "../globals.js";
 import { markOpenClawExecEnv } from "../infra/openclaw-exec-env.js";
 import { logDebug, logError } from "../logger.js";
-import { normalizeLowercaseStringOrEmpty } from "../shared/string-coerce.js";
 import { resolveCommandStdio } from "./spawn-utils.js";
-import { resolveWindowsCommandShim } from "./windows-command.js";
 
 const execFileAsync = promisify(execFile);
-
-const WINDOWS_UNSAFE_CMD_CHARS_RE = /[&|<>^%\r\n]/;
-
-function isWindowsBatchCommand(resolvedCommand: string): boolean {
-  if (process.platform !== "win32") {
-    return false;
-  }
-  const ext = normalizeLowercaseStringOrEmpty(path.extname(resolvedCommand));
-  return ext === ".cmd" || ext === ".bat";
-}
-
-function escapeForCmdExe(arg: string): string {
-  // Reject cmd metacharacters to avoid injection when we must pass a single command line.
-  if (WINDOWS_UNSAFE_CMD_CHARS_RE.test(arg)) {
-    throw new Error(
-      `Unsafe Windows cmd.exe argument detected: ${JSON.stringify(arg)}. ` +
-        "Pass an explicit shell-wrapper argv at the call site instead.",
-    );
-  }
-  // Quote when needed; double inner quotes for cmd parsing.
-  if (!arg.includes(" ") && !arg.includes('"')) {
-    return arg;
-  }
-  return `"${arg.replace(/"/g, '""')}"`;
-}
-
-function buildCmdExeCommandLine(resolvedCommand: string, args: string[]): string {
-  return [escapeForCmdExe(resolvedCommand), ...args.map(escapeForCmdExe)].join(" ");
-}
-
-/**
- * On Windows, Node 18.20.2+ (CVE-2024-27980) rejects spawning .cmd/.bat directly
- * without shell, causing EINVAL. Resolve npm/npx to node + cli script so we
- * spawn node.exe instead of npm.cmd.
- */
-function resolveNpmArgvForWindows(argv: string[]): string[] | null {
-  if (process.platform !== "win32" || argv.length === 0) {
-    return null;
-  }
-  const basename = normalizeLowercaseStringOrEmpty(path.basename(argv[0])).replace(
-    /\.(cmd|exe|bat)$/,
-    "",
-  );
-  const cliName = basename === "npx" ? "npx-cli.js" : basename === "npm" ? "npm-cli.js" : null;
-  if (!cliName) {
-    return null;
-  }
-  const nodeDir = path.dirname(process.execPath);
-  const cliPath = path.join(nodeDir, "node_modules", "npm", "bin", cliName);
-  if (!fs.existsSync(cliPath)) {
-    // Bun-based runs don't ship npm-cli.js next to process.execPath.
-    // Fall back to npm.cmd/npx.cmd so we still route through cmd wrapper
-    // (avoids direct .cmd spawn EINVAL on patched Node).
-    const command = argv[0] ?? "";
-    const ext = normalizeLowercaseStringOrEmpty(path.extname(command));
-    const shimmedCommand = ext ? command : `${command}.cmd`;
-    return [shimmedCommand, ...argv.slice(1)];
-  }
-  return [process.execPath, cliPath, ...argv.slice(1)];
-}
-
-/**
- * Resolves a command for Windows compatibility.
- * On Windows, non-.exe commands (like pnpm, yarn) are resolved to .cmd; npm/npx
- * are handled by resolveNpmArgvForWindows to avoid spawn EINVAL (no direct .cmd).
- */
-function resolveCommand(command: string): string {
-  return resolveWindowsCommandShim({
-    command,
-    cmdCommands: ["corepack", "pnpm", "yarn"],
-  });
-}
 
 function resolveChildProcessInvocation(params: {
   argv: string[];
@@ -94,23 +19,13 @@ function resolveChildProcessInvocation(params: {
   windowsHide: true;
   windowsVerbatimArguments?: boolean;
 } {
-  const finalArgv =
-    process.platform === "win32"
-      ? (resolveNpmArgvForWindows(params.argv) ?? params.argv)
-      : params.argv;
-  const resolvedCommand =
-    finalArgv !== params.argv ? (finalArgv[0] ?? "") : resolveCommand(params.argv[0] ?? "");
-  const useCmdWrapper = isWindowsBatchCommand(resolvedCommand);
-
+  const resolvedCommand = params.argv[0] ?? "";
   return {
-    command: useCmdWrapper ? (process.env.ComSpec ?? "cmd.exe") : resolvedCommand,
-    args: useCmdWrapper
-      ? ["/d", "/s", "/c", buildCmdExeCommandLine(resolvedCommand, finalArgv.slice(1))]
-      : finalArgv.slice(1),
-    usesWindowsExitCodeShim:
-      process.platform === "win32" && (useCmdWrapper || finalArgv !== params.argv),
+    command: resolvedCommand,
+    args: params.argv.slice(1),
+    usesWindowsExitCodeShim: false,
     windowsHide: true,
-    windowsVerbatimArguments: useCmdWrapper ? true : params.windowsVerbatimArguments,
+    windowsVerbatimArguments: params.windowsVerbatimArguments,
   };
 }
 
@@ -185,9 +100,6 @@ export type CommandOptions = {
   windowsVerbatimArguments?: boolean;
   noOutputTimeoutMs?: number;
 };
-
-const WINDOWS_CLOSE_STATE_SETTLE_TIMEOUT_MS = 250;
-const WINDOWS_CLOSE_STATE_POLL_MS = 10;
 
 export function resolveProcessExitCode(params: {
   explicitCode: number | null | undefined;
@@ -411,34 +323,7 @@ export async function runCommandWithTimeout(
       });
     };
     child.on("close", (code, signal) => {
-      if (
-        process.platform !== "win32" ||
-        childExitState != null ||
-        code != null ||
-        signal != null ||
-        child.exitCode != null ||
-        child.signalCode != null
-      ) {
-        resolveFromClose(code, signal);
-        return;
-      }
-
-      const startedAt = Date.now();
-      const waitForExitState = () => {
-        if (settled) {
-          return;
-        }
-        if (childExitState != null || child.exitCode != null || child.signalCode != null) {
-          resolveFromClose(code, signal);
-          return;
-        }
-        if (Date.now() - startedAt >= WINDOWS_CLOSE_STATE_SETTLE_TIMEOUT_MS) {
-          resolveFromClose(code, signal);
-          return;
-        }
-        setTimeout(waitForExitState, WINDOWS_CLOSE_STATE_POLL_MS);
-      };
-      waitForExitState();
+      resolveFromClose(code, signal);
     });
   });
 }

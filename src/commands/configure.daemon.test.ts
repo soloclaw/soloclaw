@@ -16,7 +16,6 @@ const serviceRestart = vi.hoisted(() =>
     outcome: "completed",
   })),
 );
-const ensureSystemdUserLingerInteractive = vi.hoisted(() => vi.fn(async () => {}));
 const select = vi.hoisted(() => vi.fn(async () => "node"));
 
 vi.mock("../cli/progress.js", () => ({
@@ -65,10 +64,6 @@ vi.mock("../daemon/service.js", async () => {
 
 vi.mock("./onboard-helpers.js", () => ({
   guardCancel: (value: unknown) => value,
-}));
-
-vi.mock("./systemd-linger.js", () => ({
-  ensureSystemdUserLingerInteractive,
 }));
 
 describe("maybeInstallDaemon", () => {

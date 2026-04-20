@@ -45,12 +45,10 @@ import { noteWorkspaceStatus } from "../commands/doctor-workspace-status.js";
 import { MEMORY_SYSTEM_PROMPT, shouldSuggestMemorySystem } from "../commands/doctor-workspace.js";
 import { noteOpenAIOAuthTlsPrerequisites } from "../commands/oauth-tls-preflight.js";
 import { applyWizardMetadata, randomToken } from "../commands/onboard-helpers.js";
-import { ensureSystemdUserLingerInteractive } from "../commands/systemd-linger.js";
 import { CONFIG_PATH, readConfigFileSnapshot, writeConfigFile } from "../config/config.js";
 import { logConfigUpdated } from "../config/logging.js";
 import type { OpenClawConfig } from "../config/types.openclaw.js";
 import { resolveSecretInputRef } from "../config/types.secrets.js";
-import { resolveGatewayService } from "../daemon/service.js";
 import { hasAmbiguousGatewayAuthModeConfig } from "../gateway/auth-mode-policy.js";
 import { resolveGatewayAuth } from "../gateway/auth.js";
 import { buildGatewayConnectionDetails } from "../gateway/call.js";
@@ -355,36 +353,6 @@ async function runHooksModelHealth(ctx: DoctorHealthFlowContext): Promise<void> 
   }
 }
 
-async function runSystemdLingerHealth(ctx: DoctorHealthFlowContext): Promise<void> {
-  if (
-    ctx.options.nonInteractive === true ||
-    process.platform !== "linux" ||
-    resolveDoctorMode(ctx.cfg) !== "local"
-  ) {
-    return;
-  }
-  const service = resolveGatewayService();
-  let loaded = false;
-  try {
-    loaded = await service.isLoaded({ env: process.env });
-  } catch {
-    loaded = false;
-  }
-  if (!loaded) {
-    return;
-  }
-  await ensureSystemdUserLingerInteractive({
-    runtime: ctx.runtime,
-    prompter: {
-      confirm: async (p) => ctx.prompter.confirm(p),
-      note,
-    },
-    reason:
-      "Gateway runs as a systemd user service. Without lingering, systemd stops the user session on logout/idle and kills the Gateway.",
-    requireConfirm: true,
-  });
-}
-
 async function runWorkspaceStatusHealth(ctx: DoctorHealthFlowContext): Promise<void> {
   noteWorkspaceStatus(ctx.cfg);
 }
@@ -566,11 +534,6 @@ export function resolveDoctorHealthContributions(): DoctorHealthContribution[] {
       id: "doctor:hooks-model",
       label: "Hooks model",
       run: runHooksModelHealth,
-    }),
-    createDoctorHealthContribution({
-      id: "doctor:systemd-linger",
-      label: "systemd linger",
-      run: runSystemdLingerHealth,
     }),
     createDoctorHealthContribution({
       id: "doctor:workspace-status",

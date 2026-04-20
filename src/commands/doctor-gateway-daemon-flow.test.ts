@@ -53,26 +53,9 @@ vi.mock("../daemon/service.js", async () => {
   };
 });
 
-vi.mock("../daemon/systemd-hints.js", () => ({
-  renderSystemdUnavailableHints: vi.fn(() => []),
-}));
-
-vi.mock("../daemon/systemd.js", async () => {
-  const actual =
-    await vi.importActual<typeof import("../daemon/systemd.js")>("../daemon/systemd.js");
-  return {
-    ...actual,
-    isSystemdUserServiceAvailable: vi.fn(async () => true),
-  };
-});
-
 vi.mock("../infra/ports.js", () => ({
   inspectPortUsage,
   formatPortDiagnostics: vi.fn(() => []),
-}));
-
-vi.mock("../infra/wsl.js", () => ({
-  isWSL: vi.fn(async () => false),
 }));
 
 vi.mock("../terminal/note.js", () => ({
@@ -188,7 +171,7 @@ describe("maybeRepairGatewayDaemon", () => {
   }
 
   it("skips restart verification when a running service restart is only scheduled", async () => {
-    setPlatform("linux");
+    setPlatform("darwin");
     service.restart.mockResolvedValueOnce({ outcome: "scheduled" });
 
     await maybeRepairGatewayDaemon({
@@ -210,7 +193,7 @@ describe("maybeRepairGatewayDaemon", () => {
   });
 
   it("skips start verification when a stopped service start is only scheduled", async () => {
-    setPlatform("linux");
+    setPlatform("darwin");
     service.readRuntime.mockResolvedValue({ status: "stopped" });
     service.restart.mockResolvedValueOnce({ outcome: "scheduled" });
 
@@ -233,7 +216,7 @@ describe("maybeRepairGatewayDaemon", () => {
   });
 
   it("skips gateway install during non-interactive update repairs", async () => {
-    setPlatform("linux");
+    setPlatform("darwin");
     service.isLoaded.mockResolvedValue(false);
 
     await runNonInteractiveUpdateRepair();
@@ -243,7 +226,7 @@ describe("maybeRepairGatewayDaemon", () => {
   });
 
   it("skips gateway restart during non-interactive update repairs", async () => {
-    setPlatform("linux");
+    setPlatform("darwin");
 
     await runNonInteractiveUpdateRepair();
 

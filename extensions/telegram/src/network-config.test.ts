@@ -4,16 +4,13 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vite
 vi.mock("openclaw/plugin-sdk/runtime-env", () => ({
   isTruthyEnvValue: (value: string | undefined) =>
     typeof value === "string" && /^(1|true|yes|on)$/i.test(value.trim()),
-  isWSL2Sync: vi.fn(() => false),
 }));
 
-let isWSL2Sync: typeof import("openclaw/plugin-sdk/runtime-env").isWSL2Sync;
 let resetTelegramNetworkConfigStateForTests: typeof import("./network-config.js").resetTelegramNetworkConfigStateForTests;
 let resolveTelegramAutoSelectFamilyDecision: typeof import("./network-config.js").resolveTelegramAutoSelectFamilyDecision;
 let resolveTelegramDnsResultOrderDecision: typeof import("./network-config.js").resolveTelegramDnsResultOrderDecision;
 
 async function loadModule() {
-  ({ isWSL2Sync } = await import("openclaw/plugin-sdk/runtime-env"));
   ({
     resetTelegramNetworkConfigStateForTests,
     resolveTelegramAutoSelectFamilyDecision,
@@ -102,56 +99,6 @@ describe("resolveTelegramAutoSelectFamilyDecision", () => {
   it("returns null when no decision applies", () => {
     const decision = resolveTelegramAutoSelectFamilyDecision({ env: {}, nodeMajor: 20 });
     expect(decision).toEqual({ value: null });
-  });
-
-  describe("WSL2 detection", () => {
-    it.each([
-      {
-        name: "disables autoSelectFamily on WSL2",
-        env: {},
-        expected: { value: false, source: "default-wsl2" },
-      },
-      {
-        name: "respects config override on WSL2",
-        env: {},
-        network: { autoSelectFamily: true },
-        expected: { value: true, source: "config" },
-      },
-      {
-        name: "respects env override on WSL2",
-        env: { OPENCLAW_TELEGRAM_ENABLE_AUTO_SELECT_FAMILY: "1" },
-        expected: {
-          value: true,
-          source: "env:OPENCLAW_TELEGRAM_ENABLE_AUTO_SELECT_FAMILY",
-        },
-      },
-      {
-        name: "uses Node 22 default when not on WSL2",
-        wsl2: false,
-        env: {},
-        expected: { value: true, source: "default-node22" },
-      },
-    ])("$name", ({ env, network, expected, wsl2 = true }) => {
-      if (!isWSL2Sync) {
-        throw new Error("runtime-env mock not loaded");
-      }
-      vi.mocked(isWSL2Sync).mockReturnValue(wsl2);
-      const decision = resolveTelegramAutoSelectFamilyDecision({
-        env,
-        network,
-        nodeMajor: 22,
-      });
-      expect(decision).toEqual(expected);
-    });
-
-    it("memoizes WSL2 detection across repeated defaults", () => {
-      vi.mocked(isWSL2Sync).mockReturnValue(true);
-      vi.mocked(isWSL2Sync).mockClear();
-      vi.mocked(isWSL2Sync).mockReturnValue(false);
-      resolveTelegramAutoSelectFamilyDecision({ env: {}, nodeMajor: 22 });
-      resolveTelegramAutoSelectFamilyDecision({ env: {}, nodeMajor: 22 });
-      expect(isWSL2Sync).toHaveBeenCalledTimes(1);
-    });
   });
 });
 

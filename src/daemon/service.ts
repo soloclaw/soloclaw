@@ -9,16 +9,6 @@ import {
   stopLaunchAgent,
   uninstallLaunchAgent,
 } from "./launchd.js";
-import {
-  installScheduledTask,
-  isScheduledTaskInstalled,
-  readScheduledTaskCommand,
-  readScheduledTaskRuntime,
-  restartScheduledTask,
-  stageScheduledTask,
-  stopScheduledTask,
-  uninstallScheduledTask,
-} from "./schtasks.js";
 import type { GatewayServiceRuntime } from "./service-runtime.js";
 import type {
   GatewayServiceCommandConfig,
@@ -32,16 +22,6 @@ import type {
   GatewayServiceStageArgs,
   GatewayServiceState,
 } from "./service-types.js";
-import {
-  installSystemdService,
-  isSystemdServiceEnabled,
-  readSystemdServiceExecStart,
-  readSystemdServiceRuntime,
-  restartSystemdService,
-  stageSystemdService,
-  stopSystemdService,
-  uninstallSystemdService,
-} from "./systemd.js";
 export type {
   GatewayServiceCommandConfig,
   GatewayServiceControlArgs,
@@ -167,59 +147,23 @@ export function describeGatewayServiceRestart(
   };
 }
 
-type SupportedGatewayServicePlatform = "darwin" | "linux" | "win32";
-
-const GATEWAY_SERVICE_REGISTRY: Record<SupportedGatewayServicePlatform, GatewayService> = {
-  darwin: {
-    label: "LaunchAgent",
-    loadedText: "loaded",
-    notLoadedText: "not loaded",
-    stage: ignoreServiceWriteResult(stageLaunchAgent),
-    install: ignoreServiceWriteResult(installLaunchAgent),
-    uninstall: uninstallLaunchAgent,
-    stop: stopLaunchAgent,
-    restart: restartLaunchAgent,
-    isLoaded: isLaunchAgentLoaded,
-    readCommand: readLaunchAgentProgramArguments,
-    readRuntime: readLaunchAgentRuntime,
-  },
-  linux: {
-    label: "systemd",
-    loadedText: "enabled",
-    notLoadedText: "disabled",
-    stage: ignoreServiceWriteResult(stageSystemdService),
-    install: ignoreServiceWriteResult(installSystemdService),
-    uninstall: uninstallSystemdService,
-    stop: stopSystemdService,
-    restart: restartSystemdService,
-    isLoaded: isSystemdServiceEnabled,
-    readCommand: readSystemdServiceExecStart,
-    readRuntime: readSystemdServiceRuntime,
-  },
-  win32: {
-    label: "Scheduled Task",
-    loadedText: "registered",
-    notLoadedText: "missing",
-    stage: ignoreServiceWriteResult(stageScheduledTask),
-    install: ignoreServiceWriteResult(installScheduledTask),
-    uninstall: uninstallScheduledTask,
-    stop: stopScheduledTask,
-    restart: restartScheduledTask,
-    isLoaded: isScheduledTaskInstalled,
-    readCommand: readScheduledTaskCommand,
-    readRuntime: readScheduledTaskRuntime,
-  },
+const DARWIN_GATEWAY_SERVICE: GatewayService = {
+  label: "LaunchAgent",
+  loadedText: "loaded",
+  notLoadedText: "not loaded",
+  stage: ignoreServiceWriteResult(stageLaunchAgent),
+  install: ignoreServiceWriteResult(installLaunchAgent),
+  uninstall: uninstallLaunchAgent,
+  stop: stopLaunchAgent,
+  restart: restartLaunchAgent,
+  isLoaded: isLaunchAgentLoaded,
+  readCommand: readLaunchAgentProgramArguments,
+  readRuntime: readLaunchAgentRuntime,
 };
 
-function isSupportedGatewayServicePlatform(
-  platform: NodeJS.Platform,
-): platform is SupportedGatewayServicePlatform {
-  return Object.hasOwn(GATEWAY_SERVICE_REGISTRY, platform);
-}
-
 export function resolveGatewayService(): GatewayService {
-  if (isSupportedGatewayServicePlatform(process.platform)) {
-    return GATEWAY_SERVICE_REGISTRY[process.platform];
+  if (process.platform === "darwin") {
+    return DARWIN_GATEWAY_SERVICE;
   }
   throw new Error(`Gateway service install not supported on ${process.platform}`);
 }
