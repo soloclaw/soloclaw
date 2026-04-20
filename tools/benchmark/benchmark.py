@@ -247,6 +247,20 @@ def ensure_model_available(model):
         return False
 
 
+def get_model_memory(model):
+    """Get memory usage of a loaded model from ollama ps."""
+    try:
+        data = _get_json(f"{OLLAMA_API}/api/ps")
+        for m in data.get("models", []):
+            if m.get("name", "").startswith(model.split(":")[0]):
+                size_bytes = m.get("size", 0)
+                size_gb = round(size_bytes / (1024 ** 3), 1)
+                return {"size_bytes": size_bytes, "size_gb": size_gb}
+    except Exception:
+        pass
+    return None
+
+
 def warm_up_model(model):
     """Load the model into memory by sending a trivial prompt."""
     print(f"  Warming up {model}...")
@@ -256,7 +270,11 @@ def warm_up_model(model):
             {"model": model, "prompt": "Hi", "stream": False},
             timeout=600,
         )
-        print(f"  {model} ready.")
+        mem = get_model_memory(model)
+        if mem:
+            print(f"  {model} ready. Memory: {mem['size_gb']} GB")
+        else:
+            print(f"  {model} ready.")
         return True
     except Exception as e:
         print(f"  Failed to warm up {model}: {e}")
@@ -275,6 +293,8 @@ def benchmark_model(model):
     if not warm_up_model(model):
         print(f"  Skipping {model} (failed to load)")
         return {}
+
+    mem = get_model_memory(model)
 
     results = {}
     for domain, questions in QUESTIONS.items():
@@ -306,6 +326,9 @@ def benchmark_model(model):
                 "average_tokens_per_second": round(avg_tps, 1),
             }
 
+    if mem:
+        results["_memory_gb"] = mem["size_gb"]
+
     return results
 
 
@@ -315,18 +338,21 @@ def build_summary(all_results):
     for model, domains in all_results.items():
         if not domains:
             continue
-        accuracies = [d["average_accuracy"] for d in domains.values()]
-        speeds = [d["average_tokens_per_second"] for d in domains.values()]
+        domain_data = {k: v for k, v in domains.items() if not k.startswith("_")}
+        accuracies = [d["average_accuracy"] for d in domain_data.values()]
+        speeds = [d["average_tokens_per_second"] for d in domain_data.values()]
         overall_acc = sum(accuracies) / len(accuracies) if accuracies else 0
         overall_speed = sum(speeds) / len(speeds) if speeds else 0
 
-        domain_accs = {d: info["average_accuracy"] for d, info in domains.items()}
+        domain_accs = {d: info["average_accuracy"] for d, info in domain_data.items()}
         strengths = [d for d, a in domain_accs.items() if a >= overall_acc and a > 0]
         weaknesses = [d for d, a in domain_accs.items() if a < overall_acc]
+        memory_gb = domains.get("_memory_gb")
 
         summary[model] = {
             "overall_accuracy": round(overall_acc, 2),
             "overall_speed_tokens_per_second": round(overall_speed, 1),
+            "memory_gb": memory_gb,
             "strengths": strengths,
             "weaknesses": weaknesses,
         }
@@ -511,18 +537,20 @@ def print_results_table(all_results, analysis):
         print("RANKING")
         print("=" * 80)
 
-        print(f"\n  {'Model':<25} {'Accuracy':>10} {'Speed':>12} {'Score':>8}")
-        print(f"  {'-' * 57}")
+        print(f"\n  {'Model':<25} {'Accuracy':>10} {'Speed':>12} {'Memory':>10} {'Score':>8}")
+        print(f"  {'-' * 67}")
         scored = []
         for model in models:
             s = analysis["summary"].get(model, {})
             acc = s.get("overall_accuracy", 0)
             tps = s.get("overall_speed_tokens_per_second", 0)
+            mem = s.get("memory_gb")
             score = acc * 0.7 + min(tps / 100, 1.0) * 0.3
-            scored.append((model, acc, tps, score))
-        scored.sort(key=lambda x: x[3], reverse=True)
-        for i, (model, acc, tps, score) in enumerate(scored):
-            print(f"  #{i+1} {model:<23} {acc:>9.0%} {tps:>10.1f}/s {score:>7.2f}")
+            scored.append((model, acc, tps, mem, score))
+        scored.sort(key=lambda x: x[4], reverse=True)
+        for i, (model, acc, tps, mem, score) in enumerate(scored):
+            mem_str = f"{mem:.1f} GB" if mem else "n/a"
+            print(f"  #{i+1} {model:<23} {acc:>9.0%} {tps:>10.1f}/s {mem_str:>10} {score:>7.2f}")
 
         print(f"\n  Best accuracy: {analysis['recommendation']['best_overall']}")
         print(f"  Fastest:       {analysis['recommendation']['fastest']}")
