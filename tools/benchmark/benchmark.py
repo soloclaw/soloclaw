@@ -289,10 +289,16 @@ def build_summary(all_results):
             "weaknesses": weaknesses,
         }
 
-    ranked = sorted(summary.items(), key=lambda x: x[1]["overall_accuracy"], reverse=True)
+    ranked_by_accuracy = sorted(summary.items(), key=lambda x: x[1]["overall_accuracy"], reverse=True)
     ranking = [
         {"rank": i + 1, "model": model, "score": info["overall_accuracy"]}
-        for i, (model, info) in enumerate(ranked)
+        for i, (model, info) in enumerate(ranked_by_accuracy)
+    ]
+
+    ranked_by_speed = sorted(summary.items(), key=lambda x: x[1]["overall_speed_tokens_per_second"], reverse=True)
+    speed_ranking = [
+        {"rank": i + 1, "model": model, "tokens_per_second": info["overall_speed_tokens_per_second"]}
+        for i, (model, info) in enumerate(ranked_by_speed)
     ]
 
     best_overall = ranking[0]["model"] if ranking else None
@@ -313,8 +319,10 @@ def build_summary(all_results):
     return {
         "summary": summary,
         "ranking": ranking,
+        "speed_ranking": speed_ranking,
         "recommendation": {
             "best_overall": best_overall,
+            "fastest": speed_ranking[0]["model"] if speed_ranking else None,
             "best_per_domain": best_per_domain,
         },
     }
@@ -455,9 +463,23 @@ def print_results_table(all_results, analysis):
         print(f"\n{'=' * 80}")
         print("RANKING")
         print("=" * 80)
-        for entry in analysis["ranking"]:
-            print(f"  #{entry['rank']} {entry['model']:<25} accuracy: {entry['score']:.0%}")
-        print(f"\n  Best overall: {analysis['recommendation']['best_overall']}")
+
+        print(f"\n  {'Model':<25} {'Accuracy':>10} {'Speed':>12} {'Score':>8}")
+        print(f"  {'-' * 57}")
+        scored = []
+        for model in models:
+            s = analysis["summary"].get(model, {})
+            acc = s.get("overall_accuracy", 0)
+            tps = s.get("overall_speed_tokens_per_second", 0)
+            score = acc * 0.7 + min(tps / 100, 1.0) * 0.3
+            scored.append((model, acc, tps, score))
+        scored.sort(key=lambda x: x[3], reverse=True)
+        for i, (model, acc, tps, score) in enumerate(scored):
+            print(f"  #{i+1} {model:<23} {acc:>9.0%} {tps:>10.1f}/s {score:>7.2f}")
+
+        print(f"\n  Best accuracy: {analysis['recommendation']['best_overall']}")
+        print(f"  Fastest:       {analysis['recommendation']['fastest']}")
+        print(f"  Best combined: {scored[0][0]}")
         if analysis["recommendation"].get("best_per_domain"):
             for d, m in analysis["recommendation"]["best_per_domain"].items():
                 print(f"  Best {d}: {m}")
