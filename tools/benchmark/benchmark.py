@@ -619,7 +619,7 @@ def print_results_table(all_results, analysis):
     # Ranking
     if analysis["ranking"]:
         print(f"\n{'=' * 80}")
-        print("RANKING")
+        print("RANKING (sorted by combined score = 70% accuracy + 30% speed)")
         print("=" * 80)
 
         print(f"\n  {'Model':<25} {'Accuracy':>10} {'Speed':>12} {'Memory':>10} {'Score':>8}")
@@ -637,10 +637,15 @@ def print_results_table(all_results, analysis):
             mem_str = f"{mem:.1f} GB" if mem else "n/a"
             print(f"  #{i+1} {model:<23} {acc:>9.0%} {tps:>10.1f}/s {mem_str:>10} {score:>7.2f}")
 
-        print(f"\n  Best accuracy: {analysis['recommendation']['best_overall']}")
-        print(f"  Fastest:       {analysis['recommendation']['fastest']}")
-        print(f"  Best combined: {scored[0][0]}")
+        # Sort by accuracy only
+        by_accuracy = sorted(scored, key=lambda x: x[1], reverse=True)
+        print(f"\n  By accuracy:  {' > '.join(m for m, *_ in by_accuracy)}")
+        by_speed = sorted(scored, key=lambda x: x[2], reverse=True)
+        print(f"  By speed:     {' > '.join(m for m, *_ in by_speed)}")
+        print(f"  By combined:  {' > '.join(m for m, *_ in scored)}")
+
         if analysis["recommendation"].get("best_per_domain"):
+            print()
             for d, m in analysis["recommendation"]["best_per_domain"].items():
                 print(f"  Best {d}: {m}")
 
