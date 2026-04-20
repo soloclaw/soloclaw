@@ -65,7 +65,6 @@ No menus, no config files. Just ask.
 - **Chat UI** — browser-based TUI to talk to your AI
 - **Multi-channel inbox** — Telegram and Discord built-in, more channels can be enabled via config
 - **Tools** — browser, cron, sessions, and more via [skills](https://docs.openclaw.ai/tools/skills)
-- **Companion apps** — optional macOS, [iOS](https://docs.openclaw.ai/platforms/ios), and [Android](https://docs.openclaw.ai/platforms/android) apps
 
 ## Using a Different Model
 
@@ -135,15 +134,6 @@ pnpm gateway:watch
 ```
 
 Note: `pnpm openclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` produces `dist/` for running via Node / the packaged `openclaw` binary.
-
-## Docs
-
-- [Getting started](https://docs.openclaw.ai/start/getting-started)
-- [Channels](https://docs.openclaw.ai/channels)
-- [Tools & Skills](https://docs.openclaw.ai/tools)
-- [Configuration](https://docs.openclaw.ai/gateway/configuration)
-- [Architecture](https://docs.openclaw.ai/concepts/architecture)
-- [FAQ](https://docs.openclaw.ai/help/faq)
 
 ## License
 
