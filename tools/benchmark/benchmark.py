@@ -5,13 +5,9 @@ import json
 import time
 import sys
 import argparse
+import urllib.request
+import urllib.error
 from pathlib import Path
-
-try:
-    import requests
-except ImportError:
-    print("Error: 'requests' package required. Install with: pip install requests")
-    sys.exit(1)
 
 OLLAMA_API = "http://127.0.0.1:11434"
 
@@ -129,18 +125,31 @@ QUESTIONS = {
 }
 
 
-def query_model(model: str, prompt: str) -> dict:
+def _post_json(url, data, timeout=300):
+    """POST JSON to a URL and return parsed response."""
+    body = json.dumps(data).encode("utf-8")
+    req = urllib.request.Request(
+        url, data=body, headers={"Content-Type": "application/json"}
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return json.loads(resp.read().decode("utf-8"))
+
+
+def _get_json(url, timeout=10):
+    """GET JSON from a URL and return parsed response."""
+    with urllib.request.urlopen(url, timeout=timeout) as resp:
+        return json.loads(resp.read().decode("utf-8"))
+
+
+def query_model(model, prompt):
     """Send a prompt to an Ollama model and return the response with timing."""
     start = time.time()
     try:
-        resp = requests.post(
+        data = _post_json(
             f"{OLLAMA_API}/api/generate",
-            json={"model": model, "prompt": prompt, "stream": False},
-            timeout=300,
+            {"model": model, "prompt": prompt, "stream": False},
         )
-        resp.raise_for_status()
-        data = resp.json()
-    except requests.exceptions.ConnectionError:
+    except urllib.error.URLError:
         print(f"  Error: Cannot connect to Ollama at {OLLAMA_API}")
         return {"response": "", "elapsed": 0, "tokens_per_second": 0, "error": "connection_failed"}
     except Exception as e:
@@ -160,7 +169,7 @@ def query_model(model: str, prompt: str) -> dict:
     }
 
 
-def score_response(response: str, keyword_groups: list[list[str]]) -> float:
+def score_response(response, keyword_groups):
     """Score a response by checking keyword group matches."""
     response_lower = response.lower()
     matched = 0
@@ -170,12 +179,11 @@ def score_response(response: str, keyword_groups: list[list[str]]) -> float:
     return matched / len(keyword_groups) if keyword_groups else 0
 
 
-def ensure_model_available(model: str) -> bool:
+def ensure_model_available(model):
     """Check if a model is available, pull if not."""
     try:
-        resp = requests.get(f"{OLLAMA_API}/api/tags", timeout=10)
-        resp.raise_for_status()
-        available = [m["name"] for m in resp.json().get("models", [])]
+        data = _get_json(f"{OLLAMA_API}/api/tags")
+        available = [m["name"] for m in data.get("models", [])]
         if model in available or any(m.startswith(model.split(":")[0]) for m in available):
             return True
     except Exception:
@@ -184,18 +192,14 @@ def ensure_model_available(model: str) -> bool:
 
     print(f"  Pulling {model}...")
     try:
-        resp = requests.post(
-            f"{OLLAMA_API}/api/pull",
-            json={"name": model, "stream": False},
-            timeout=600,
-        )
-        return resp.status_code == 200
+        _post_json(f"{OLLAMA_API}/api/pull", {"name": model, "stream": False}, timeout=600)
+        return True
     except Exception as e:
         print(f"  Failed to pull {model}: {e}")
         return False
 
 
-def benchmark_model(model: str) -> dict:
+def benchmark_model(model):
     """Run all benchmark questions against a single model."""
     print(f"\nBenchmarking: {model}")
     print("=" * 50)
@@ -237,7 +241,7 @@ def benchmark_model(model: str) -> dict:
     return results
 
 
-def build_summary(all_results: dict) -> dict:
+def build_summary(all_results):
     """Build summary, ranking, and recommendation from results."""
     summary = {}
     for model, domains in all_results.items():
