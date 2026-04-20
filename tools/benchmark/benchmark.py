@@ -170,6 +170,91 @@ QUESTIONS = {
             ],
         },
     ],
+    "reasoning": [
+        {
+            "question": "All roses are flowers. All flowers need water. Do roses need water? Explain your reasoning step by step.",
+            "keywords": [
+                ["yes", "roses need water", "roses do need water"],
+                ["syllogism", "transitive", "deductive", "logic", "follows"],
+                ["roses are flowers", "flowers need water"],
+            ],
+        },
+        {
+            "question": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost? Show your work.",
+            "keywords": [
+                ["$0.05", "0.05", "5 cents", "five cents"],
+                ["x + (x + 1.00) = 1.10", "2x + 1 = 1.1", "2x = 0.10", "equation", "algebra"],
+                ["not $0.10", "not 10 cents", "common mistake", "intuitive", "trick"],
+            ],
+        },
+        {
+            "question": "If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets? Explain your reasoning.",
+            "keywords": [
+                ["5 minutes", "five minutes"],
+                ["each machine", "one widget", "per machine", "one machine makes one widget"],
+                ["rate", "parallel", "simultaneous", "independent"],
+            ],
+        },
+    ],
+    "function_calling": [
+        {
+            "question": "Given a function with signature: get_weather(city: str, units: str = 'celsius') -> dict. A user says 'What is the weather in Paris in Fahrenheit?'. Write the correct JSON function call.",
+            "keywords": [
+                ["get_weather"],
+                ["paris", "Paris"],
+                ["fahrenheit", "Fahrenheit"],
+                ["json", "JSON", "{"],
+            ],
+        },
+        {
+            "question": "You have two functions: search_db(query: str, limit: int) and format_report(data: list, title: str). A user asks: 'Find the top 5 sales records and make a report titled Q4 Results'. Describe the sequence of function calls needed.",
+            "keywords": [
+                ["search_db", "search_db("],
+                ["format_report", "format_report("],
+                ["first", "then", "sequence", "chain", "step 1", "step 2", "output"],
+                ["5", "limit"],
+                ["Q4 Results", "Q4", "title"],
+            ],
+        },
+        {
+            "question": "A function send_email(to: str, subject: str, body: str, cc: list[str] | None = None, priority: str = 'normal') is available. A user says: 'Email john@example.com about the meeting tomorrow, CC alice@example.com, high priority.' Write the function call with all parameters.",
+            "keywords": [
+                ["send_email"],
+                ["john@example.com"],
+                ["alice@example.com"],
+                ["cc", "CC"],
+                ["high", "priority"],
+            ],
+        },
+    ],
+    "agent_skills": [
+        {
+            "question": "You are an AI agent with access to: [web_search, calculator, code_executor, file_reader, calendar]. A user asks: 'What day of the week will January 1, 2030 fall on?' Which tool(s) would you use and why?",
+            "keywords": [
+                ["calendar", "web_search", "calculator", "code_executor"],
+                ["wednesday", "Wednesday"],
+                ["date", "day of the week", "day"],
+            ],
+        },
+        {
+            "question": "You are an AI agent helping a user debug a Python script. The user says 'My script crashes with a KeyError on line 42.' Break this task down into subtasks and describe your approach.",
+            "keywords": [
+                ["read", "open", "view", "examine", "look at", "inspect"],
+                ["line 42", "error line", "traceback"],
+                ["key", "KeyError", "dictionary", "dict", "missing"],
+                ["fix", "solution", "resolve", "handle"],
+            ],
+        },
+        {
+            "question": "You are an AI agent with tools: [search_code, run_tests, edit_file, git_commit]. You just edited a file to fix a bug. The tests now pass but you notice your fix introduced a typo in a variable name that doesn't cause test failures. What should you do?",
+            "keywords": [
+                ["fix", "correct", "rename", "typo"],
+                ["edit_file", "edit"],
+                ["run_tests", "test", "verify"],
+                ["quality", "clean", "maintainab", "best practice"],
+            ],
+        },
+    ],
 }
 
 

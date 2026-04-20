@@ -1,6 +1,6 @@
 # Model Benchmark
 
-Compares Ollama models across mathematics, physics, philosophy, and coding domains.
+Compares Ollama models across 7 domains: mathematics, physics, philosophy, coding, reasoning, function calling, and agent skills.
 
 ## Usage
 
@@ -66,6 +66,18 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 | 2 | qwen3:32b | 97% | 18.2/s | 29.1 GB | 0.73 |
 
 **Winner: qwen2.5:32b** — slightly faster with lower memory. qwen3:32b wins on public benchmarks (MMLU 83.2% vs 80.1%) and is best per-domain in philosophy, physics, mathematics, and coding — so it remains the default large preset.
+
+## Test Domains
+
+| Domain | Questions | What it tests |
+|--------|-----------|---------------|
+| Mathematics | 3 | Derivatives, equations, integrals |
+| Physics | 3 | Newton's laws, photon energy, entropy |
+| Philosophy | 3 | Kant, trolley problem, empiricism vs rationalism |
+| Coding | 3 | LCS, binary search, cycle detection |
+| Reasoning | 3 | Syllogisms, bat-and-ball, rate problems |
+| Function Calling | 3 | JSON schema, parameter extraction, call chaining |
+| Agent Skills | 3 | Tool selection, task decomposition, self-correction |
 
 ## Scoring
 
