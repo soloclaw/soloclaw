@@ -60,8 +60,8 @@ PUBLIC_BENCHMARKS = {
 }
 
 COMPARE_GROUPS = {
-    "small": ["qwen3:8b", "qwen3.5:9b", "qwen2.5:7b", "gemma4:e2b"],
-    "medium": ["mistral-small:24b", "qwen2.5:14b", "gemma3:12b"],
+    "small": ["qwen3:8b", "qwen2.5:7b", "gemma4:e2b"],
+    "medium": ["mistral-small:24b", "qwen3.5:9b", "qwen2.5:14b", "gemma3:12b"],
     "large": ["qwen3:32b", "qwen2.5:32b"],
 }
 
