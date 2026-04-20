@@ -1,9 +1,12 @@
 {
   "id": "whatsapp",
-  "channels": ["whatsapp"],
+  "channels": [
+    "whatsapp"
+  ],
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
     "properties": {}
-  }
+  },
+  "enabledByDefault": false
 }

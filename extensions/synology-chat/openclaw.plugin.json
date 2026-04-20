@@ -1,6 +1,8 @@
 {
   "id": "synology-chat",
-  "channels": ["synology-chat"],
+  "channels": [
+    "synology-chat"
+  ],
   "channelEnvVars": {
     "synology-chat": [
       "SYNOLOGY_CHAT_TOKEN",
@@ -15,5 +17,6 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {}
-  }
+  },
+  "enabledByDefault": false
 }

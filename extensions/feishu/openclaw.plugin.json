@@ -1,6 +1,8 @@
 {
   "id": "feishu",
-  "channels": ["feishu"],
+  "channels": [
+    "feishu"
+  ],
   "channelEnvVars": {
     "feishu": [
       "FEISHU_APP_ID",
@@ -9,10 +11,13 @@
       "FEISHU_ENCRYPT_KEY"
     ]
   },
-  "skills": ["./skills"],
+  "skills": [
+    "./skills"
+  ],
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
     "properties": {}
-  }
+  },
+  "enabledByDefault": false
 }

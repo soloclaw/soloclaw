@@ -177,7 +177,12 @@
       },
       "provider": {
         "type": "string",
-        "enum": ["telnyx", "twilio", "plivo", "mock"]
+        "enum": [
+          "telnyx",
+          "twilio",
+          "plivo",
+          "mock"
+        ]
       },
       "telnyx": {
         "type": "object",
@@ -228,7 +233,12 @@
       },
       "inboundPolicy": {
         "type": "string",
-        "enum": ["disabled", "allowlist", "pairing", "open"]
+        "enum": [
+          "disabled",
+          "allowlist",
+          "pairing",
+          "open"
+        ]
       },
       "allowFrom": {
         "type": "array",
@@ -246,7 +256,10 @@
         "properties": {
           "defaultMode": {
             "type": "string",
-            "enum": ["notify", "conversation"]
+            "enum": [
+              "notify",
+              "conversation"
+            ]
           },
           "notifyHangupDelaySec": {
             "type": "integer",
@@ -300,7 +313,11 @@
         "properties": {
           "mode": {
             "type": "string",
-            "enum": ["off", "serve", "funnel"]
+            "enum": [
+              "off",
+              "serve",
+              "funnel"
+            ]
           },
           "path": {
             "type": "string"
@@ -313,7 +330,12 @@
         "properties": {
           "provider": {
             "type": "string",
-            "enum": ["none", "ngrok", "tailscale-serve", "tailscale-funnel"]
+            "enum": [
+              "none",
+              "ngrok",
+              "tailscale-serve",
+              "tailscale-funnel"
+            ]
           },
           "ngrokAuthToken": {
             "type": "string"
@@ -409,7 +431,9 @@
               "properties": {
                 "type": {
                   "type": "string",
-                  "enum": ["function"]
+                  "enum": [
+                    "function"
+                  ]
                 },
                 "name": {
                   "type": "string"
@@ -423,7 +447,9 @@
                   "properties": {
                     "type": {
                       "type": "string",
-                      "enum": ["object"]
+                      "enum": [
+                        "object"
+                      ]
                     },
                     "properties": {
                       "type": "object",
@@ -436,10 +462,18 @@
                       }
                     }
                   },
-                  "required": ["type", "properties"]
+                  "required": [
+                    "type",
+                    "properties"
+                  ]
                 }
               },
-              "required": ["type", "name", "description", "parameters"]
+              "required": [
+                "type",
+                "name",
+                "description",
+                "parameters"
+              ]
             }
           },
           "providers": {
@@ -463,14 +497,22 @@
         "properties": {
           "auto": {
             "type": "string",
-            "enum": ["off", "always", "inbound", "tagged"]
+            "enum": [
+              "off",
+              "always",
+              "inbound",
+              "tagged"
+            ]
           },
           "enabled": {
             "type": "boolean"
           },
           "mode": {
             "type": "string",
-            "enum": ["final", "all"]
+            "enum": [
+              "final",
+              "all"
+            ]
           },
           "provider": {
             "type": "string"
@@ -560,7 +602,11 @@
                   },
                   "applyTextNormalization": {
                     "type": "string",
-                    "enum": ["auto", "on", "off"]
+                    "enum": [
+                      "auto",
+                      "on",
+                      "off"
+                    ]
                   },
                   "languageCode": {
                     "type": "string"
@@ -713,6 +759,9 @@
     }
   },
   "configContracts": {
-    "compatibilityMigrationPaths": ["plugins.entries.voice-call.config"]
-  }
+    "compatibilityMigrationPaths": [
+      "plugins.entries.voice-call.config"
+    ]
+  },
+  "enabledByDefault": false
 }
