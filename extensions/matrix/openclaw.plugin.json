@@ -1,6 +1,8 @@
 {
   "id": "matrix",
-  "channels": ["matrix"],
+  "channels": [
+    "matrix"
+  ],
   "channelEnvVars": {
     "matrix": [
       "MATRIX_HOMESERVER",
@@ -19,5 +21,6 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {}
-  }
+  },
+  "enabledByDefault": false
 }

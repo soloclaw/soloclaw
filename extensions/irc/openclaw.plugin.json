@@ -1,6 +1,8 @@
 {
   "id": "irc",
-  "channels": ["irc"],
+  "channels": [
+    "irc"
+  ],
   "channelEnvVars": {
     "irc": [
       "IRC_HOST",
@@ -19,5 +21,6 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {}
-  }
+  },
+  "enabledByDefault": false
 }
