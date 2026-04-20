@@ -36,9 +36,11 @@ python3 tools/benchmark/benchmark.py --output my-results.json
 
 ## Test Results
 
-### Small Tier (8 domains, 24 questions)
+**Test Hardware:** MacBook Pro (M4 Max, 64 GB RAM, macOS)
 
-Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
+Score = 70% accuracy + 30% speed (capped at 50 tok/s). Results will vary on different hardware — speed scales with GPU/memory bandwidth, accuracy stays the same.
+
+### Small Tier (8 domains, 24 questions)
 
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
