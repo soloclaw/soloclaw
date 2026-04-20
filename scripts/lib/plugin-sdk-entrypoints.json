@@ -80,7 +80,6 @@
   "hook-runtime",
   "host-runtime",
   "process-runtime",
-  "windows-spawn",
   "acp-runtime",
   "acp-binding-runtime",
   "acp-binding-resolve-runtime",
