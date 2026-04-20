@@ -377,10 +377,6 @@
       "types": "./dist/plugin-sdk/process-runtime.d.ts",
       "default": "./dist/plugin-sdk/process-runtime.js"
     },
-    "./plugin-sdk/windows-spawn": {
-      "types": "./dist/plugin-sdk/windows-spawn.d.ts",
-      "default": "./dist/plugin-sdk/windows-spawn.js"
-    },
     "./plugin-sdk/acp-runtime": {
       "types": "./dist/plugin-sdk/acp-runtime.d.ts",
       "default": "./dist/plugin-sdk/acp-runtime.js"
