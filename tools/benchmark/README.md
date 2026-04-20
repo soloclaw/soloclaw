@@ -60,7 +60,12 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 ### Large Tier
 
-*Pending — run `python3 tools/benchmark/benchmark.py --large` to generate.*
+| # | Model | Accuracy | Speed | Memory | Score |
+|---|-------|----------|-------|--------|-------|
+| 1 | qwen2.5:32b | 97% | 19.8/s | 28.7 GB | 0.74 |
+| 2 | qwen3:32b | 97% | 18.2/s | 29.1 GB | 0.73 |
+
+**Winner: qwen2.5:32b** — slightly faster with lower memory. qwen3:32b wins on public benchmarks (MMLU 83.2% vs 80.1%) and is best per-domain in philosophy, physics, mathematics, and coding — so it remains the default large preset.
 
 ## Scoring
 
