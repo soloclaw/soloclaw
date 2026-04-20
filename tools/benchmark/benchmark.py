@@ -17,6 +17,12 @@ MODEL_PRESETS = {
     "large": "qwen3:32b",
 }
 
+COMPARE_GROUPS = {
+    "small": ["qwen3:8b", "qwen3.5:9b", "qwen2.5:7b", "gemma4:e2b"],
+    "medium": ["mistral-small:24b", "qwen2.5:14b", "gemma3:12b"],
+    "large": ["qwen3:32b", "qwen2.5:32b"],
+}
+
 QUESTIONS = {
     "mathematics": [
         {
@@ -308,6 +314,11 @@ def main():
         help="Use preset model sizes (default: all three)",
     )
     parser.add_argument(
+        "--compare",
+        choices=["small", "medium", "large"],
+        help="Compare similar-size models within a tier",
+    )
+    parser.add_argument(
         "--output",
         default="tools/benchmark/results.json",
         help="Output file path (default: tools/benchmark/results.json)",
@@ -316,6 +327,8 @@ def main():
 
     if args.models:
         models = args.models
+    elif args.compare:
+        models = COMPARE_GROUPS[args.compare]
     elif args.presets:
         models = [MODEL_PRESETS[p] for p in args.presets]
     else:
