@@ -65,7 +65,7 @@ No menus, no config files. Just ask.
 - **Chat UI** — browser-based TUI to talk to your AI
 - **Multi-channel inbox** — Telegram and Discord built-in, more channels can be enabled via config
 - **Tools** — browser, cron, sessions, and more via [skills](https://docs.openclaw.ai/tools/skills)
-
+- **Companion apps** — optional macOS, [iOS](https://docs.openclaw.ai/platforms/ios), and [Android](https://docs.openclaw.ai/platforms/android) apps
 
 ## Using a Different Model
 
