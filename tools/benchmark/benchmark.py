@@ -313,11 +313,9 @@ def main():
         choices=["small", "medium", "large"],
         help="Use preset model sizes (default: all three)",
     )
-    parser.add_argument(
-        "--compare",
-        choices=["small", "medium", "large"],
-        help="Compare similar-size models within a tier",
-    )
+    parser.add_argument("--small", action="store_true", help="Compare small-tier models")
+    parser.add_argument("--medium", action="store_true", help="Compare medium-tier models")
+    parser.add_argument("--large", action="store_true", help="Compare large-tier models")
     parser.add_argument(
         "--output",
         default="tools/benchmark/results.json",
@@ -325,10 +323,14 @@ def main():
     )
     args = parser.parse_args()
 
+    compare_tiers = [t for t in ["small", "medium", "large"] if getattr(args, t)]
+
     if args.models:
         models = args.models
-    elif args.compare:
-        models = COMPARE_GROUPS[args.compare]
+    elif compare_tiers:
+        models = []
+        for tier in compare_tiers:
+            models.extend(COMPARE_GROUPS[tier])
     elif args.presets:
         models = [MODEL_PRESETS[p] for p in args.presets]
     else:
