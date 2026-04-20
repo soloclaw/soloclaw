@@ -36,17 +36,17 @@ python3 tools/benchmark/benchmark.py --output my-results.json
 
 ## Test Results
 
-### Small Tier
+### Small Tier (8 domains, 24 questions)
 
 Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
-| 1 | gemma4:e2b | 97% | 141.4/s | 8.2 GB | 0.98 |
-| 2 | qwen2.5:7b | 97% | 79.7/s | 7.6 GB | 0.92 |
-| 3 | qwen3:8b | 97% | 66.8/s | 10.6 GB | 0.88 |
+| 1 | gemma4:e2b | 96% | 141.3/s | 8.2 GB | 0.97 |
+| 2 | qwen2.5:7b | 94% | 75.9/s | 7.6 GB | 0.89 |
+| 3 | qwen3:8b | 96% | 67.8/s | 10.6 GB | 0.88 |
 
-**Winner: gemma4:e2b** — same accuracy as others, 2x faster, lowest memory.
+**Winner: gemma4:e2b** — highest combined score, fastest, lowest memory. qwen3:8b wins most per-domain categories (philosophy, Chinese, physics, math, function calling, coding, reasoning) but uses more memory.
 
 ### Medium Tier
 
@@ -84,7 +84,7 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 Each question has 2-4 keyword groups. A group matches if any term appears (case-insensitive). Accuracy = matched groups / total groups.
 
-Combined score = 70% accuracy + 30% speed (normalized to 100 tok/s).
+Combined score = 70% accuracy + 30% speed (capped at 50 tok/s — anything faster is imperceptible to users).
 
 ## Validation
 

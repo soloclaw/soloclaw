@@ -659,7 +659,7 @@ def print_results_table(all_results, analysis):
             acc = s.get("overall_accuracy", 0)
             tps = s.get("overall_speed_tokens_per_second", 0)
             mem = s.get("memory_gb")
-            score = acc * 0.7 + min(tps / 100, 1.0) * 0.3
+            score = acc * 0.7 + min(tps / 50, 1.0) * 0.3
             scored.append((model, acc, tps, mem, score))
         scored.sort(key=lambda x: x[4], reverse=True)
         for i, (model, acc, tps, mem, score) in enumerate(scored):
