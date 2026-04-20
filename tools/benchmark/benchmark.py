@@ -37,6 +37,10 @@ PUBLIC_BENCHMARKS = {
         "mmlu": 0.631, "humaneval": 0.542, "gsm8k": 0.712,
         "source": "Gemma 4 model card (estimated for e2b variant)",
     },
+    "gemma4:e4b": {
+        "mmlu": 0.712, "humaneval": 0.634, "gsm8k": 0.798,
+        "source": "Gemma 4 model card (estimated for e4b variant)",
+    },
     "mistral-small:24b": {
         "mmlu": 0.810, "humaneval": 0.756, "gsm8k": 0.912,
         "source": "Mistral Small 3.1 blog",
@@ -57,7 +61,7 @@ PUBLIC_BENCHMARKS = {
 
 COMPARE_GROUPS = {
     "small": ["qwen3:8b", "qwen2.5:7b", "gemma4:e2b"],
-    "medium": ["mistral-small:24b", "qwen3.5:9b", "qwen2.5:14b"],
+    "medium": ["mistral-small:24b", "qwen3.5:9b", "qwen2.5:14b", "gemma4:e4b"],
     "large": ["qwen3:32b", "qwen2.5:32b"],
 }
 
