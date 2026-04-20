@@ -424,71 +424,66 @@ def main():
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(output, indent=2) + "\n")
-    print(f"\nResults saved to {output_path}")
+
+    detail_path = output_path.with_name("results-detail.txt")
+    save_detailed_report(all_results, analysis, detail_path)
+
+    print(f"\nDetailed results: {detail_path}")
+    print(f"Full JSON: {output_path}")
 
     print_results_table(all_results, analysis)
 
 
-def print_results_table(all_results, analysis):
-    """Print a detailed results table to stdout."""
+def save_detailed_report(all_results, analysis, path):
+    """Save per-domain and per-question breakdown to a text file."""
     models = [m for m in all_results if all_results[m]]
-    if not models:
-        print("\nNo results to display.")
-        return
-
     domains = list(QUESTIONS.keys())
+    lines = []
+
+    lines.append("DETAILED BENCHMARK RESULTS")
+    lines.append("=" * 80)
 
     # Per-domain accuracy table
-    print("\n" + "=" * 80)
-    print("DETAILED RESULTS")
-    print("=" * 80)
-
     header = f"{'Model':<25}"
     for d in domains:
-        header += f" {'':>2}{d:>12}"
-    header += f" {'':>2}{'OVERALL':>12}"
-    print(f"\n{header}")
-    print("-" * len(header))
-
+        header += f"  {d:>12}"
+    header += f"  {'OVERALL':>12}"
+    lines.append(f"\nAccuracy:\n{header}")
+    lines.append("-" * len(header))
     for model in models:
         row = f"{model:<25}"
         for d in domains:
             if d in all_results[model]:
                 acc = all_results[model][d]["average_accuracy"]
-                row += f" {'':>2}{acc:>11.0%}"
+                row += f"  {acc:>11.0%}"
             else:
-                row += f" {'':>2}{'n/a':>12}"
+                row += f"  {'n/a':>12}"
         overall = analysis["summary"].get(model, {}).get("overall_accuracy", 0)
-        row += f" {'':>2}{overall:>11.0%}"
-        print(row)
+        row += f"  {overall:>11.0%}"
+        lines.append(row)
 
-    # Speed table
-    print(f"\n{'Model':<25}", end="")
-    for d in domains:
-        print(f" {'':>2}{d:>12}", end="")
-    print(f" {'':>2}{'OVERALL':>12}")
-    print("-" * len(header))
-
+    # Per-domain speed table
+    lines.append(f"\nSpeed (tok/s):\n{header.replace('Accuracy', 'Speed')}")
+    lines.append("-" * len(header))
     for model in models:
         row = f"{model:<25}"
         for d in domains:
             if d in all_results[model]:
                 tps = all_results[model][d]["average_tokens_per_second"]
-                row += f" {'':>2}{tps:>10.1f}/s"
+                row += f"  {tps:>10.1f}/s"
             else:
-                row += f" {'':>2}{'n/a':>12}"
+                row += f"  {'n/a':>12}"
         overall_tps = analysis["summary"].get(model, {}).get("overall_speed_tokens_per_second", 0)
-        row += f" {'':>2}{overall_tps:>10.1f}/s"
-        print(row)
+        row += f"  {overall_tps:>10.1f}/s"
+        lines.append(row)
 
-    # Per-question detail
-    print(f"\n{'=' * 80}")
-    print("PER-QUESTION BREAKDOWN")
-    print("=" * 80)
-
+    # Per-question breakdown
+    lines.append(f"\n{'=' * 80}")
+    lines.append("PER-QUESTION BREAKDOWN")
+    lines.append("=" * 80)
     for model in models:
-        print(f"\n  {model}")
-        print(f"  {'-' * 76}")
+        lines.append(f"\n  {model}")
+        lines.append(f"  {'-' * 76}")
         for d in domains:
             if d not in all_results[model]:
                 continue
@@ -498,7 +493,17 @@ def print_results_table(all_results, analysis):
                 t = q["time_seconds"]
                 tps = q["tokens_per_second"]
                 marker = "+" if acc >= 0.75 else ("~" if acc >= 0.5 else "-")
-                print(f"  {marker} [{d[:4]:>4}] {question:<50} {acc:>4.0%}  {t:>5.1f}s  {tps:>5.1f} tok/s")
+                lines.append(f"  {marker} [{d[:4]:>4}] {question:<50} {acc:>4.0%}  {t:>5.1f}s  {tps:>5.1f} tok/s")
+
+    path.write_text("\n".join(lines) + "\n")
+
+
+def print_results_table(all_results, analysis):
+    """Print a summary results table to stdout."""
+    models = [m for m in all_results if all_results[m]]
+    if not models:
+        print("\nNo results to display.")
+        return
 
     # Ranking
     if analysis["ranking"]:
