@@ -25,7 +25,7 @@ That's it. SoloClaw installs a free local AI model via Ollama, starts the gatewa
 
 | Flag | Model | RAM Required |
 |------|-------|-------------|
-| `--small` | qwen3:8b | 8GB |
+| `--small` | gemma4:e2b | 8GB |
 | `--medium` (default) | mistral-small:24b | 16GB |
 | `--large` | qwen3:32b | 32GB |
 
@@ -71,7 +71,7 @@ No menus, no config files. Just ask.
 Use a preset size:
 
 ```bash
-pnpm openclaw onboard --small     # qwen3:8b
+pnpm openclaw onboard --small     # gemma4:e2b
 pnpm openclaw onboard --medium    # mistral-small:24b
 pnpm openclaw onboard --large     # qwen3:32b
 ```
@@ -85,7 +85,7 @@ pnpm openclaw onboard --custom-model-id qwen2.5:14b
 Switch model after install:
 
 ```bash
-openclaw config set agents.defaults.model.primary ollama/qwen3:8b
+openclaw config set agents.defaults.model.primary ollama/gemma4:e2b
 ```
 
 Any model available in [Ollama](https://ollama.com/library) works. You can also use cloud providers (OpenAI, Anthropic, etc.):
