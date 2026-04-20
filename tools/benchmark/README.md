@@ -32,7 +32,7 @@ python3 tools/benchmark/benchmark.py --output my-results.json
 |--------|-------|-----|
 | small | gemma4:e2b | 8GB |
 | medium | mistral-small:24b | 16GB |
-| large | qwen3:32b | 32GB |
+| large | gemma4:26b | 24GB |
 
 ## Test Results
 
@@ -66,12 +66,13 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 | 2 | qwen2.5:32b | 96% | 19.0/s | 28.7 GB | 0.79 |
 | 3 | qwen3:32b | 96% | 17.6/s | 29.1 GB | 0.78 |
 
-**Default: qwen3:32b** — wins 6/8 per-domain categories and ranks #1 on public benchmarks (MMLU 83.2%).
+**Default: gemma4:26b** — highest accuracy (97%), 5x faster than qwen models, and lowest memory (24 GB).
 
-**Warning:** qwen3:32b uses 29.1 GB memory and runs at only 17.6 tok/s. On machines with limited RAM, Ollama may unload the model during idle periods, causing unresponsive behavior. If you experience timeouts or no response, consider switching to **gemma4:26b** (24 GB, 88 tok/s) which is 5x faster with lower memory:
+**Note on qwen3:32b:** Wins 6/8 per-domain categories and ranks #1 on public benchmarks (MMLU 83.2%), but uses 29.1 GB memory and runs at only 17.6 tok/s. In practice, the model is too slow for interactive use — Ollama unloads it during idle periods, causing unresponsive behavior and timeouts. Not recommended unless you have 64GB+ RAM.
 
 ```bash
-openclaw config set agents.defaults.model.primary ollama/gemma4:26b
+# To try qwen3:32b anyway:
+openclaw config set agents.defaults.model.primary ollama/qwen3:32b
 openclaw gateway restart
 ```
 

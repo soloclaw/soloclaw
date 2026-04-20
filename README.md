@@ -27,7 +27,7 @@ That's it. SoloClaw installs a free local AI model via Ollama, starts the gatewa
 |------|-------|-------------|
 | `--small` | gemma4:e2b | 8GB |
 | `--medium` (default) | mistral-small:24b | 16GB |
-| `--large` | qwen3:32b | 32GB |
+| `--large` | gemma4:26b | 24GB |
 
 ```bash
 pnpm openclaw onboard --small    # Low-end machines
@@ -73,7 +73,7 @@ Use a preset size:
 ```bash
 pnpm openclaw onboard --small     # gemma4:e2b
 pnpm openclaw onboard --medium    # mistral-small:24b
-pnpm openclaw onboard --large     # qwen3:32b
+pnpm openclaw onboard --large     # gemma4:26b
 ```
 
 Or specify any Ollama model directly:

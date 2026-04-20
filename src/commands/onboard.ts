@@ -20,7 +20,7 @@ const VALID_RESET_SCOPES = new Set<ResetScope>(["config", "config+creds+sessions
 const MODEL_SIZE_PRESETS: Record<string, string> = {
   small: "gemma4:e2b",
   medium: "mistral-small:24b",
-  large: "qwen3:32b",
+  large: "gemma4:26b",
 };
 
 export async function setupWizardCommand(
