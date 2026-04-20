@@ -170,6 +170,120 @@ QUESTIONS = {
             ],
         },
     ],
+    "reasoning": [
+        {
+            "question": "All roses are flowers. All flowers need water. Do roses need water? Explain your reasoning step by step.",
+            "keywords": [
+                ["yes", "roses need water", "roses do need water"],
+                ["syllogism", "transitive", "deductive", "logic", "follows"],
+                ["roses are flowers", "flowers need water"],
+            ],
+        },
+        {
+            "question": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost? Show your work.",
+            "keywords": [
+                ["$0.05", "0.05", "5 cents", "five cents"],
+                ["x + (x + 1.00) = 1.10", "2x + 1 = 1.1", "2x = 0.10", "equation", "algebra"],
+                ["not $0.10", "not 10 cents", "common mistake", "intuitive", "trick"],
+            ],
+        },
+        {
+            "question": "If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets? Explain your reasoning.",
+            "keywords": [
+                ["5 minutes", "five minutes"],
+                ["each machine", "one widget", "per machine", "one machine makes one widget"],
+                ["rate", "parallel", "simultaneous", "independent"],
+            ],
+        },
+    ],
+    "function_calling": [
+        {
+            "question": "Given a function with signature: get_weather(city: str, units: str = 'celsius') -> dict. A user says 'What is the weather in Paris in Fahrenheit?'. Write the correct JSON function call.",
+            "keywords": [
+                ["get_weather"],
+                ["paris", "Paris"],
+                ["fahrenheit", "Fahrenheit"],
+                ["json", "JSON", "{"],
+            ],
+        },
+        {
+            "question": "You have two functions: search_db(query: str, limit: int) and format_report(data: list, title: str). A user asks: 'Find the top 5 sales records and make a report titled Q4 Results'. Describe the sequence of function calls needed.",
+            "keywords": [
+                ["search_db", "search_db("],
+                ["format_report", "format_report("],
+                ["first", "then", "sequence", "chain", "step 1", "step 2", "output"],
+                ["5", "limit"],
+                ["Q4 Results", "Q4", "title"],
+            ],
+        },
+        {
+            "question": "A function send_email(to: str, subject: str, body: str, cc: list[str] | None = None, priority: str = 'normal') is available. A user says: 'Email john@example.com about the meeting tomorrow, CC alice@example.com, high priority.' Write the function call with all parameters.",
+            "keywords": [
+                ["send_email"],
+                ["john@example.com"],
+                ["alice@example.com"],
+                ["cc", "CC"],
+                ["high", "priority"],
+            ],
+        },
+    ],
+    "agent_skills": [
+        {
+            "question": "You are an AI agent with access to: [web_search, calculator, code_executor, file_reader, calendar]. A user asks: 'What day of the week will January 1, 2030 fall on?' Which tool(s) would you use and why?",
+            "keywords": [
+                ["calendar", "web_search", "calculator", "code_executor"],
+                ["wednesday", "Wednesday"],
+                ["date", "day of the week", "day"],
+            ],
+        },
+        {
+            "question": "You are an AI agent helping a user debug a Python script. The user says 'My script crashes with a KeyError on line 42.' Break this task down into subtasks and describe your approach.",
+            "keywords": [
+                ["read", "open", "view", "examine", "look at", "inspect"],
+                ["line 42", "error line", "traceback"],
+                ["key", "KeyError", "dictionary", "dict", "missing"],
+                ["fix", "solution", "resolve", "handle"],
+            ],
+        },
+        {
+            "question": "You are an AI agent with tools: [search_code, run_tests, edit_file, git_commit]. You just edited a file to fix a bug. The tests now pass but you notice your fix introduced a typo in a variable name that doesn't cause test failures. What should you do?",
+            "keywords": [
+                ["fix", "correct", "rename", "typo"],
+                ["edit_file", "edit"],
+                ["run_tests", "test", "verify"],
+                ["quality", "clean", "maintainab", "best practice"],
+            ],
+        },
+    ],
+    "chinese": [
+        {
+            "question": "请解释什么是量子纠缠，并举一个简单的例子。",
+            "keywords": [
+                ["纠缠", "entangle", "量子"],
+                ["粒子", "光子", "电子", "particle"],
+                ["测量", "观测", "坍缩", "关联"],
+                ["超距", "非局域", "瞬时", "爱因斯坦", "EPR"],
+            ],
+        },
+        {
+            "question": "用中文写一个Python函数，实现冒泡排序算法，并解释时间复杂度。",
+            "keywords": [
+                ["def ", "函数"],
+                ["冒泡", "bubble", "相邻", "交换"],
+                ["O(n²)", "O(n^2)", "n平方", "二次"],
+                ["for", "while", "循环"],
+            ],
+        },
+        {
+            "question": "请用中文解释'己所不欲，勿施于人'这句话的含义，并与西方伦理学做对比。",
+            "keywords": [
+                ["孔子", "儒家", "论语", "Confucius"],
+                ["黄金法则", "golden rule", "康德", "Kant"],
+                ["道德", "伦理", "moral"],
+                ["换位思考", "同理心", "empathy", "推己及人"],
+            ],
+        },
+    ],
 }
 
 
@@ -534,7 +648,7 @@ def print_results_table(all_results, analysis):
     # Ranking
     if analysis["ranking"]:
         print(f"\n{'=' * 80}")
-        print("RANKING")
+        print("RANKING (sorted by combined score = 70% accuracy + 30% speed)")
         print("=" * 80)
 
         print(f"\n  {'Model':<25} {'Accuracy':>10} {'Speed':>12} {'Memory':>10} {'Score':>8}")
@@ -545,17 +659,22 @@ def print_results_table(all_results, analysis):
             acc = s.get("overall_accuracy", 0)
             tps = s.get("overall_speed_tokens_per_second", 0)
             mem = s.get("memory_gb")
-            score = acc * 0.7 + min(tps / 100, 1.0) * 0.3
+            score = acc * 0.7 + min(tps / 50, 1.0) * 0.3
             scored.append((model, acc, tps, mem, score))
         scored.sort(key=lambda x: x[4], reverse=True)
         for i, (model, acc, tps, mem, score) in enumerate(scored):
             mem_str = f"{mem:.1f} GB" if mem else "n/a"
             print(f"  #{i+1} {model:<23} {acc:>9.0%} {tps:>10.1f}/s {mem_str:>10} {score:>7.2f}")
 
-        print(f"\n  Best accuracy: {analysis['recommendation']['best_overall']}")
-        print(f"  Fastest:       {analysis['recommendation']['fastest']}")
-        print(f"  Best combined: {scored[0][0]}")
+        # Sort by accuracy only
+        by_accuracy = sorted(scored, key=lambda x: x[1], reverse=True)
+        print(f"\n  By accuracy:  {' > '.join(m for m, *_ in by_accuracy)}")
+        by_speed = sorted(scored, key=lambda x: x[2], reverse=True)
+        print(f"  By speed:     {' > '.join(m for m, *_ in by_speed)}")
+        print(f"  By combined:  {' > '.join(m for m, *_ in scored)}")
+
         if analysis["recommendation"].get("best_per_domain"):
+            print()
             for d, m in analysis["recommendation"]["best_per_domain"].items():
                 print(f"  Best {d}: {m}")
 
