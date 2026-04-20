@@ -50,13 +50,7 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 ### Medium Tier
 
-| # | Model | Accuracy | Speed | Memory | Score |
-|---|-------|----------|-------|--------|-------|
-| 1 | gemma3:12b | 100% | 44.6/s | 17.2 GB | 0.83 |
-| 2 | qwen2.5:14b | 97% | 41.2/s | 16.5 GB | 0.80 |
-| 3 | mistral-small:24b | 100% | 30.7/s | 20.1 GB | 0.79 |
-
-**Winner: gemma3:12b** — 100% accuracy, fastest in tier, lowest memory. Note: gemma3:12b does not support tool use, so mistral-small:24b remains the default medium preset for SoloClaw's agent workflow.
+*Pending — run `python3 tools/benchmark/benchmark.py --medium` to regenerate without gemma3:12b (removed: no tool use support).*
 
 ### Large Tier
 
