@@ -52,11 +52,11 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
-| 1 | qwen3.5:9b | 97% | 44.8/s | 18.7 GB | 0.81 |
-| 2 | qwen2.5:14b | 95% | 36.7/s | 16.5 GB | 0.78 |
-| 3 | mistral-small:24b | 95% | 26.6/s | 20.1 GB | 0.74 |
+| 1 | qwen3.5:9b | 97% | 45.0/s | 18.7 GB | 0.95 |
+| 2 | qwen2.5:14b | 94% | 41.6/s | 16.5 GB | 0.91 |
+| 3 | mistral-small:24b | 94% | 26.1/s | 20.1 GB | 0.81 |
 
-**Default: mistral-small:24b** — despite lower combined score, it wins 6/8 per-domain categories including function calling and agent skills, which are critical for SoloClaw's agent workflow. qwen3.5:9b is faster but uses 18.7GB memory.
+**Default: mistral-small:24b** — despite lower combined score, it wins 4/8 per-domain categories (physics, function calling, philosophy, mathematics) which are critical for SoloClaw's agent workflow. Our ranking diverges from public benchmarks (MMLU ranks mistral-small #1), suggesting our keyword scoring favors qwen3.5's newer architecture on reasoning and Chinese tasks.
 
 ### Large Tier
 
