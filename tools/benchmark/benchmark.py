@@ -12,7 +12,7 @@ from pathlib import Path
 OLLAMA_API = "http://127.0.0.1:11434"
 
 MODEL_PRESETS = {
-    "small": "qwen3:8b",
+    "small": "gemma4:e2b",
     "medium": "mistral-small:24b",
     "large": "qwen3:32b",
 }
