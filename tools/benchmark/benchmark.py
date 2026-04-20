@@ -57,12 +57,16 @@ PUBLIC_BENCHMARKS = {
         "mmlu": 0.801, "humaneval": 0.751, "gsm8k": 0.901,
         "source": "Qwen2.5 technical report",
     },
+    "gemma4:26b": {
+        "mmlu": 0.785, "humaneval": 0.731, "gsm8k": 0.872,
+        "source": "Gemma 4 model card (estimated for 26b variant)",
+    },
 }
 
 COMPARE_GROUPS = {
     "small": ["qwen3:8b", "qwen2.5:7b", "gemma4:e2b"],
     "medium": ["mistral-small:24b", "qwen3.5:9b", "qwen2.5:14b", "gemma4:e4b"],
-    "large": ["qwen3:32b", "qwen2.5:32b"],
+    "large": ["qwen3:32b", "qwen2.5:32b", "gemma4:26b"],
 }
 
 QUESTIONS = {
