@@ -62,10 +62,11 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
-| 1 | qwen2.5:32b | 97% | 19.8/s | 28.7 GB | 0.74 |
-| 2 | qwen3:32b | 97% | 18.2/s | 29.1 GB | 0.73 |
+| 1 | gemma4:26b | 97% | 88.1/s | 24.0 GB | 0.98 |
+| 2 | qwen2.5:32b | 96% | 19.0/s | 28.7 GB | 0.79 |
+| 3 | qwen3:32b | 96% | 17.6/s | 29.1 GB | 0.78 |
 
-**Winner: qwen2.5:32b** — slightly faster with lower memory. qwen3:32b wins on public benchmarks (MMLU 83.2% vs 80.1%) and is best per-domain in philosophy, physics, mathematics, and coding — so it remains the default large preset.
+**Default: qwen3:32b** — despite gemma4:26b's highest combined score (driven by 5x speed advantage), qwen3:32b wins 6/8 per-domain categories (coding, Chinese, philosophy, physics, function calling, agent skills) and ranks #1 on public benchmarks (MMLU 83.2%). Our ranking diverges significantly from MMLU (33% agreement), suggesting the speed-weighted score overvalues gemma4:26b. For agent workloads, qwen3:32b's per-domain strength matters more than raw speed.
 
 ## Test Domains
 
