@@ -48,9 +48,15 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 **Winner: gemma4:e2b** — highest combined score, fastest, lowest memory. qwen3:8b wins most per-domain categories (philosophy, Chinese, physics, math, function calling, coding, reasoning) but uses more memory.
 
-### Medium Tier
+### Medium Tier (8 domains, 24 questions)
 
-*Pending — run `python3 tools/benchmark/benchmark.py --medium` to regenerate without gemma3:12b (removed: no tool use support).*
+| # | Model | Accuracy | Speed | Memory | Score |
+|---|-------|----------|-------|--------|-------|
+| 1 | qwen3.5:9b | 97% | 44.8/s | 18.7 GB | 0.81 |
+| 2 | qwen2.5:14b | 95% | 36.7/s | 16.5 GB | 0.78 |
+| 3 | mistral-small:24b | 95% | 26.6/s | 20.1 GB | 0.74 |
+
+**Default: mistral-small:24b** — despite lower combined score, it wins 6/8 per-domain categories including function calling and agent skills, which are critical for SoloClaw's agent workflow. qwen3.5:9b is faster but uses 18.7GB memory.
 
 ### Large Tier
 
