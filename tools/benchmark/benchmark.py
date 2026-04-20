@@ -341,11 +341,91 @@ def main():
     output_path.write_text(json.dumps(output, indent=2) + "\n")
     print(f"\nResults saved to {output_path}")
 
+    print_results_table(all_results, analysis)
+
+
+def print_results_table(all_results, analysis):
+    """Print a detailed results table to stdout."""
+    models = [m for m in all_results if all_results[m]]
+    if not models:
+        print("\nNo results to display.")
+        return
+
+    domains = list(QUESTIONS.keys())
+
+    # Per-domain accuracy table
+    print("\n" + "=" * 80)
+    print("DETAILED RESULTS")
+    print("=" * 80)
+
+    header = f"{'Model':<25}"
+    for d in domains:
+        header += f" {'':>2}{d:>12}"
+    header += f" {'':>2}{'OVERALL':>12}"
+    print(f"\n{header}")
+    print("-" * len(header))
+
+    for model in models:
+        row = f"{model:<25}"
+        for d in domains:
+            if d in all_results[model]:
+                acc = all_results[model][d]["average_accuracy"]
+                row += f" {'':>2}{acc:>11.0%}"
+            else:
+                row += f" {'':>2}{'n/a':>12}"
+        overall = analysis["summary"].get(model, {}).get("overall_accuracy", 0)
+        row += f" {'':>2}{overall:>11.0%}"
+        print(row)
+
+    # Speed table
+    print(f"\n{'Model':<25}", end="")
+    for d in domains:
+        print(f" {'':>2}{d:>12}", end="")
+    print(f" {'':>2}{'OVERALL':>12}")
+    print("-" * len(header))
+
+    for model in models:
+        row = f"{model:<25}"
+        for d in domains:
+            if d in all_results[model]:
+                tps = all_results[model][d]["average_tokens_per_second"]
+                row += f" {'':>2}{tps:>10.1f}/s"
+            else:
+                row += f" {'':>2}{'n/a':>12}"
+        overall_tps = analysis["summary"].get(model, {}).get("overall_speed_tokens_per_second", 0)
+        row += f" {'':>2}{overall_tps:>10.1f}/s"
+        print(row)
+
+    # Per-question detail
+    print(f"\n{'=' * 80}")
+    print("PER-QUESTION BREAKDOWN")
+    print("=" * 80)
+
+    for model in models:
+        print(f"\n  {model}")
+        print(f"  {'-' * 76}")
+        for d in domains:
+            if d not in all_results[model]:
+                continue
+            for q in all_results[model][d]["questions"]:
+                question = q["question"][:50]
+                acc = q["accuracy"]
+                t = q["time_seconds"]
+                tps = q["tokens_per_second"]
+                marker = "+" if acc >= 0.75 else ("~" if acc >= 0.5 else "-")
+                print(f"  {marker} [{d[:4]:>4}] {question:<50} {acc:>4.0%}  {t:>5.1f}s  {tps:>5.1f} tok/s")
+
+    # Ranking
     if analysis["ranking"]:
-        print("\nRanking:")
+        print(f"\n{'=' * 80}")
+        print("RANKING")
+        print("=" * 80)
         for entry in analysis["ranking"]:
-            print(f"  #{entry['rank']} {entry['model']} — accuracy: {entry['score']:.0%}")
-        print(f"\nBest overall: {analysis['recommendation']['best_overall']}")
+            print(f"  #{entry['rank']} {entry['model']:<25} accuracy: {entry['score']:.0%}")
+        print(f"\n  Best overall: {analysis['recommendation']['best_overall']}")
+        if analysis["recommendation"].get("best_per_domain"):
+            for d, m in analysis["recommendation"]["best_per_domain"].items():
+                print(f"  Best {d}: {m}")
 
 
 if __name__ == "__main__":
