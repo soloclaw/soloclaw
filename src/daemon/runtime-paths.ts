@@ -4,7 +4,6 @@ import path from "node:path";
 import { promisify } from "node:util";
 import { isSupportedNodeVersion } from "../infra/runtime-guard.js";
 import { resolveStableNodePath } from "../infra/stable-node-path.js";
-import { getWindowsProgramFilesRoots } from "../infra/windows-install-roots.js";
 import { normalizeLowercaseStringOrEmpty } from "../shared/string-coerce.js";
 
 const VERSION_MANAGER_MARKERS = [
@@ -18,27 +17,17 @@ const VERSION_MANAGER_MARKERS = [
   "/nvs/",
 ];
 
-function getPathModule(platform: NodeJS.Platform) {
-  return platform === "win32" ? path.win32 : path.posix;
+function isNodeExecPath(execPath: string, _platform: NodeJS.Platform): boolean {
+  const base = normalizeLowercaseStringOrEmpty(path.posix.basename(execPath));
+  return base === "node";
 }
 
-function isNodeExecPath(execPath: string, platform: NodeJS.Platform): boolean {
-  const pathModule = getPathModule(platform);
-  const base = normalizeLowercaseStringOrEmpty(pathModule.basename(execPath));
-  return base === "node" || base === "node.exe";
-}
-
-function normalizeForCompare(input: string, platform: NodeJS.Platform): string {
-  const pathModule = getPathModule(platform);
-  const normalized = pathModule.normalize(input).replaceAll("\\", "/");
-  if (platform === "win32") {
-    return normalizeLowercaseStringOrEmpty(normalized);
-  }
-  return normalized;
+function normalizeForCompare(input: string, _platform: NodeJS.Platform): string {
+  return path.posix.normalize(input).replaceAll("\\", "/");
 }
 
 function buildSystemNodeCandidates(
-  env: Record<string, string | undefined>,
+  _env: Record<string, string | undefined>,
   platform: NodeJS.Platform,
 ): string[] {
   if (platform === "darwin") {
@@ -46,12 +35,6 @@ function buildSystemNodeCandidates(
   }
   if (platform === "linux") {
     return ["/usr/local/bin/node", "/usr/bin/node"];
-  }
-  if (platform === "win32") {
-    const pathModule = getPathModule(platform);
-    return getWindowsProgramFilesRoots(env).map((root) =>
-      pathModule.join(root, "nodejs", "node.exe"),
-    );
   }
   return [];
 }

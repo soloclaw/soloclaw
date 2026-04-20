@@ -1,11 +1,10 @@
 import { withProgress } from "../cli/progress.js";
 import { loadConfig } from "../config/config.js";
 import { describeGatewayServiceRestart, resolveGatewayService } from "../daemon/service.js";
-import { isNonFatalSystemdInstallProbeError } from "../daemon/systemd.js";
 import { formatErrorMessage } from "../infra/errors.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { note } from "../terminal/note.js";
-import { confirm, select } from "./configure.shared.js";
+import { select } from "./configure.shared.js";
 import { buildGatewayInstallPlan, gatewayInstallErrorHint } from "./daemon-install-helpers.js";
 import {
   DEFAULT_GATEWAY_DAEMON_RUNTIME,
@@ -14,7 +13,6 @@ import {
 } from "./daemon-runtime.js";
 import { resolveGatewayInstallToken } from "./gateway-install-token.js";
 import { guardCancel } from "./onboard-helpers.js";
-import { ensureSystemdUserLingerInteractive } from "./systemd-linger.js";
 
 export async function maybeInstallDaemon(params: {
   runtime: RuntimeEnv;
@@ -25,13 +23,9 @@ export async function maybeInstallDaemon(params: {
   let loaded = false;
   try {
     loaded = await service.isLoaded({ env: process.env });
-  } catch (error) {
-    if (!isNonFatalSystemdInstallProbeError(error)) {
-      throw error;
-    }
+  } catch {
     loaded = false;
   }
-  let shouldCheckLinger = false;
   let shouldInstall = true;
   let daemonRuntime = params.daemonRuntime ?? DEFAULT_GATEWAY_DAEMON_RUNTIME;
   if (loaded) {
@@ -60,7 +54,6 @@ export async function maybeInstallDaemon(params: {
           );
         },
       );
-      shouldCheckLinger = true;
       shouldInstall = false;
     }
     if (action === "skip") {
@@ -145,19 +138,5 @@ export async function maybeInstallDaemon(params: {
       note(gatewayInstallErrorHint(), "Gateway");
       return;
     }
-    shouldCheckLinger = true;
-  }
-
-  if (shouldCheckLinger) {
-    await ensureSystemdUserLingerInteractive({
-      runtime: params.runtime,
-      prompter: {
-        confirm: async (p) => guardCancel(await confirm(p), params.runtime),
-        note,
-      },
-      reason:
-        "Linux installs use a systemd user service. Without lingering, systemd stops the user session on logout/idle and kills the Gateway.",
-      requireConfirm: true,
-    });
   }
 }

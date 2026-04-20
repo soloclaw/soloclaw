@@ -1,10 +1,4 @@
 import fs from "node:fs/promises";
-import {
-  formatIcaclsResetCommand,
-  formatWindowsAclSummary,
-  inspectWindowsAcl,
-  type ExecFn,
-} from "./windows-acl.js";
 
 export type PermissionCheck = {
   ok: boolean;
@@ -12,7 +6,7 @@ export type PermissionCheck = {
   isDir: boolean;
   mode: number | null;
   bits: number | null;
-  source: "posix" | "windows-acl" | "unknown";
+  source: "posix" | "unknown";
   worldWritable: boolean;
   groupWritable: boolean;
   worldReadable: boolean;
@@ -24,7 +18,6 @@ export type PermissionCheck = {
 export type PermissionCheckOptions = {
   platform?: NodeJS.Platform;
   env?: NodeJS.ProcessEnv;
-  exec?: ExecFn;
 };
 
 export async function safeStat(targetPath: string): Promise<{
@@ -93,39 +86,6 @@ export async function inspectPathPermissions(
   }
 
   const bits = modeBits(effectiveMode);
-  const platform = opts?.platform ?? process.platform;
-
-  if (platform === "win32") {
-    const acl = await inspectWindowsAcl(targetPath, { env: opts?.env, exec: opts?.exec });
-    if (!acl.ok) {
-      return {
-        ok: true,
-        isSymlink: st.isSymlink,
-        isDir: effectiveIsDir,
-        mode: effectiveMode,
-        bits,
-        source: "unknown",
-        worldWritable: false,
-        groupWritable: false,
-        worldReadable: false,
-        groupReadable: false,
-        error: acl.error,
-      };
-    }
-    return {
-      ok: true,
-      isSymlink: st.isSymlink,
-      isDir: effectiveIsDir,
-      mode: effectiveMode,
-      bits,
-      source: "windows-acl",
-      worldWritable: acl.untrustedWorld.some((entry) => entry.canWrite),
-      groupWritable: acl.untrustedGroup.some((entry) => entry.canWrite),
-      worldReadable: acl.untrustedWorld.some((entry) => entry.canRead),
-      groupReadable: acl.untrustedGroup.some((entry) => entry.canRead),
-      aclSummary: formatWindowsAclSummary(acl),
-    };
-  }
 
   return {
     ok: true,
@@ -142,10 +102,6 @@ export async function inspectPathPermissions(
 }
 
 export function formatPermissionDetail(targetPath: string, perms: PermissionCheck): string {
-  if (perms.source === "windows-acl") {
-    const summary = perms.aclSummary ?? "unknown";
-    return `${targetPath} acl=${summary}`;
-  }
   return `${targetPath} mode=${formatOctal(perms.bits)}`;
 }
 
@@ -156,9 +112,6 @@ export function formatPermissionRemediation(params: {
   posixMode: number;
   env?: NodeJS.ProcessEnv;
 }): string {
-  if (params.perms.source === "windows-acl") {
-    return formatIcaclsResetCommand(params.targetPath, { isDir: params.isDir, env: params.env });
-  }
   const mode = params.posixMode.toString(8).padStart(3, "0");
   return `chmod ${mode} ${params.targetPath}`;
 }

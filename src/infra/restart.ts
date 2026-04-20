@@ -2,14 +2,10 @@ import { spawnSync } from "node:child_process";
 import os from "node:os";
 import path from "node:path";
 import { getRuntimeConfig } from "../config/config.js";
-import {
-  resolveGatewayLaunchAgentLabel,
-  resolveGatewaySystemdServiceName,
-} from "../daemon/constants.js";
+import { resolveGatewayLaunchAgentLabel } from "../daemon/constants.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import { cleanStaleGatewayProcessesSync, findGatewayPidsOnPortSync } from "./restart-stale-pids.js";
 import type { RestartAttempt } from "./restart.types.js";
-import { relaunchGatewayScheduledTask } from "./windows-task-restart.js";
 
 export type { RestartAttempt } from "./restart.types.js";
 
@@ -294,14 +290,6 @@ function formatSpawnDetail(result: {
   return "unknown error";
 }
 
-function normalizeSystemdUnit(raw?: string, profile?: string): string {
-  const unit = raw?.trim();
-  if (!unit) {
-    return `${resolveGatewaySystemdServiceName(profile)}.service`;
-  }
-  return unit.endsWith(".service") ? unit : `${unit}.service`;
-}
-
 export function triggerOpenClawRestart(): RestartAttempt {
   if (process.env.VITEST || process.env.NODE_ENV === "test") {
     return { ok: true, method: "supervisor", detail: "test mode" };
@@ -310,47 +298,6 @@ export function triggerOpenClawRestart(): RestartAttempt {
   cleanStaleGatewayProcessesSync();
 
   const tried: string[] = [];
-  if (process.platform === "linux") {
-    const unit = normalizeSystemdUnit(
-      process.env.OPENCLAW_SYSTEMD_UNIT,
-      process.env.OPENCLAW_PROFILE,
-    );
-    const userArgs = ["--user", "restart", unit];
-    tried.push(`systemctl ${userArgs.join(" ")}`);
-    const userRestart = spawnSync("systemctl", userArgs, {
-      encoding: "utf8",
-      timeout: SPAWN_TIMEOUT_MS,
-    });
-    if (!userRestart.error && userRestart.status === 0) {
-      return { ok: true, method: "systemd", tried };
-    }
-    const systemArgs = ["restart", unit];
-    tried.push(`systemctl ${systemArgs.join(" ")}`);
-    const systemRestart = spawnSync("systemctl", systemArgs, {
-      encoding: "utf8",
-      timeout: SPAWN_TIMEOUT_MS,
-    });
-    if (!systemRestart.error && systemRestart.status === 0) {
-      return { ok: true, method: "systemd", tried };
-    }
-    const detail = [
-      `user: ${formatSpawnDetail(userRestart)}`,
-      `system: ${formatSpawnDetail(systemRestart)}`,
-    ].join("; ");
-    return { ok: false, method: "systemd", detail, tried };
-  }
-
-  if (process.platform === "win32") {
-    return relaunchGatewayScheduledTask(process.env);
-  }
-
-  if (process.platform !== "darwin") {
-    return {
-      ok: false,
-      method: "supervisor",
-      detail: "unsupported platform restart",
-    };
-  }
 
   const label =
     process.env.OPENCLAW_LAUNCHD_LABEL ||

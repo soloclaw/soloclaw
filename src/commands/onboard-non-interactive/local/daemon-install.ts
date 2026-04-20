@@ -1,12 +1,10 @@
 import type { OpenClawConfig } from "../../../config/types.openclaw.js";
 import { resolveGatewayService } from "../../../daemon/service.js";
-import { isSystemdUserServiceAvailable } from "../../../daemon/systemd.js";
 import type { RuntimeEnv } from "../../../runtime.js";
 import { buildGatewayInstallPlan, gatewayInstallErrorHint } from "../../daemon-install-helpers.js";
 import { DEFAULT_GATEWAY_DAEMON_RUNTIME, isGatewayDaemonRuntime } from "../../daemon-runtime.js";
 import { resolveGatewayInstallToken } from "../../gateway-install-token.js";
 import type { OnboardOptions } from "../../onboard-types.js";
-import { ensureSystemdUserLingerNonInteractive } from "../../systemd-linger.js";
 
 export async function installGatewayDaemonNonInteractive(params: {
   nextConfig: OpenClawConfig;
@@ -19,7 +17,6 @@ export async function installGatewayDaemonNonInteractive(params: {
     }
   | {
       installed: false;
-      skippedReason?: "systemd-user-unavailable";
     }
 > {
   const { opts, runtime, port } = params;
@@ -28,14 +25,6 @@ export async function installGatewayDaemonNonInteractive(params: {
   }
 
   const daemonRuntimeRaw = opts.daemonRuntime ?? DEFAULT_GATEWAY_DAEMON_RUNTIME;
-  const systemdAvailable =
-    process.platform === "linux" ? await isSystemdUserServiceAvailable() : true;
-  if (process.platform === "linux" && !systemdAvailable) {
-    runtime.log(
-      "Systemd user services are unavailable; skipping service install. Use a direct shell run (`openclaw gateway run`) or rerun without --install-daemon on this session.",
-    );
-    return { installed: false, skippedReason: "systemd-user-unavailable" };
-  }
 
   if (!isGatewayDaemonRuntime(daemonRuntimeRaw)) {
     runtime.error("Invalid --daemon-runtime (use node or bun)");
@@ -82,6 +71,5 @@ export async function installGatewayDaemonNonInteractive(params: {
     runtime.log(gatewayInstallErrorHint());
     return { installed: false };
   }
-  await ensureSystemdUserLingerNonInteractive({ runtime });
   return { installed: true };
 }

@@ -35,7 +35,6 @@ const mocks = vi.hoisted(() => ({
   resolveIsNixMode: vi.fn(() => false),
   findExtraGatewayServices: vi.fn().mockResolvedValue([]),
   renderGatewayServiceCleanupHints: vi.fn().mockReturnValue([]),
-  uninstallLegacySystemdUnits: vi.fn().mockResolvedValue([]),
   note: vi.fn(),
 }));
 
@@ -77,10 +76,6 @@ vi.mock("../daemon/service.js", () => ({
     stage: mocks.stage,
     install: mocks.install,
   }),
-}));
-
-vi.mock("../daemon/systemd.js", () => ({
-  uninstallLegacySystemdUnits: mocks.uninstallLegacySystemdUnits,
 }));
 
 vi.mock("../terminal/note.js", () => ({
@@ -600,59 +595,5 @@ describe("maybeScanExtraGatewayServices", () => {
     vi.clearAllMocks();
     mocks.findExtraGatewayServices.mockResolvedValue([]);
     mocks.renderGatewayServiceCleanupHints.mockReturnValue([]);
-    mocks.uninstallLegacySystemdUnits.mockResolvedValue([]);
-  });
-
-  it("removes legacy Linux user systemd services", async () => {
-    mocks.findExtraGatewayServices.mockResolvedValue([
-      {
-        platform: "linux",
-        label: "clawdbot-gateway.service",
-        detail: "unit: /home/test/.config/systemd/user/clawdbot-gateway.service",
-        scope: "user",
-        legacy: true,
-      },
-    ]);
-    mocks.uninstallLegacySystemdUnits.mockResolvedValue([
-      {
-        name: "clawdbot-gateway",
-        unitPath: "/home/test/.config/systemd/user/clawdbot-gateway.service",
-        enabled: true,
-        exists: true,
-      },
-    ]);
-
-    const runtime = { log: vi.fn(), error: vi.fn(), exit: vi.fn() };
-    const prompter = {
-      confirm: vi.fn(),
-      confirmAutoFix: vi.fn(),
-      confirmAggressiveAutoFix: vi.fn(),
-      confirmRuntimeRepair: vi.fn().mockResolvedValue(true),
-      select: vi.fn(),
-      shouldRepair: false,
-      shouldForce: false,
-      repairMode: {
-        shouldRepair: false,
-        shouldForce: false,
-        nonInteractive: false,
-        canPrompt: true,
-        updateInProgress: false,
-      },
-    };
-
-    await maybeScanExtraGatewayServices({ deep: false }, runtime, prompter);
-
-    expect(mocks.uninstallLegacySystemdUnits).toHaveBeenCalledTimes(1);
-    expect(mocks.uninstallLegacySystemdUnits).toHaveBeenCalledWith({
-      env: process.env,
-      stdout: process.stdout,
-    });
-    expect(mocks.note).toHaveBeenCalledWith(
-      expect.stringContaining("clawdbot-gateway.service"),
-      "Legacy gateway removed",
-    );
-    expect(runtime.log).toHaveBeenCalledWith(
-      "Legacy gateway services removed. Installing OpenClaw gateway next.",
-    );
   });
 });

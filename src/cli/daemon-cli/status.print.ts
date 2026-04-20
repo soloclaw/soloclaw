@@ -5,13 +5,7 @@ import {
 } from "../../daemon/constants.js";
 import { renderGatewayServiceCleanupHints } from "../../daemon/inspect.js";
 import { resolveGatewayLogPaths } from "../../daemon/launchd.js";
-import {
-  isSystemdUnavailableDetail,
-  renderSystemdUnavailableHints,
-} from "../../daemon/systemd-hints.js";
-import { classifySystemdUnavailableDetail } from "../../daemon/systemd-unavailable.js";
 import { resolveControlUiLinks } from "../../gateway/control-ui-links.js";
-import { isWSLEnv } from "../../infra/wsl.js";
 import { defaultRuntime } from "../../runtime.js";
 import { colorize } from "../../terminal/theme.js";
 import { shortenHomePath } from "../../utils.js";
@@ -209,23 +203,6 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
         `Fix: run ${formatCliCommand("openclaw gateway restart")} and re-check with ${formatCliCommand("openclaw gateway status --deep")}.`,
       ),
     );
-    spacer();
-  }
-
-  const systemdUnavailable =
-    process.platform === "linux" && isSystemdUnavailableDetail(service.runtime?.detail);
-  if (systemdUnavailable) {
-    const container = Boolean(
-      resolveDaemonContainerContext(service.command?.environment ?? process.env),
-    );
-    defaultRuntime.error(errorText("systemd user services unavailable."));
-    for (const hint of renderSystemdUnavailableHints({
-      wsl: isWSLEnv(),
-      kind: classifySystemdUnavailableDetail(service.runtime?.detail),
-      container,
-    })) {
-      defaultRuntime.error(errorText(hint));
-    }
     spacer();
   }
 

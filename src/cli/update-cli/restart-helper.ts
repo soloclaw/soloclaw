@@ -2,28 +2,18 @@ import { spawn } from "node:child_process";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { DEFAULT_GATEWAY_PORT } from "../../config/paths.js";
-import { quoteCmdScriptArg } from "../../daemon/cmd-argv.js";
 import {
   resolveGatewayLaunchAgentLabel,
   resolveGatewaySystemdServiceName,
-  resolveGatewayWindowsTaskName,
 } from "../../daemon/constants.js";
 import { normalizeOptionalString } from "../../shared/string-coerce.js";
 
 /**
  * Shell-escape a string for embedding in single-quoted shell arguments.
  * Replaces every `'` with `'\''` (end quote, escaped quote, resume quote).
- * For batch scripts, validates against special characters instead.
  */
 function shellEscape(value: string): string {
   return value.replace(/'/g, "'\\''");
-}
-
-/** Validates a string is safe for embedding in a batch (cmd.exe) script. */
-function isBatchSafe(value: string): boolean {
-  // Reject characters that have special meaning in batch: & | < > ^ % " ` $
-  return /^[A-Za-z0-9 _\-().]+$/.test(value);
 }
 
 function resolveSystemdUnit(env: NodeJS.ProcessEnv): string {
@@ -42,14 +32,6 @@ function resolveLaunchdLabel(env: NodeJS.ProcessEnv): string {
   return resolveGatewayLaunchAgentLabel(env.OPENCLAW_PROFILE);
 }
 
-function resolveWindowsTaskName(env: NodeJS.ProcessEnv): string {
-  const override = env.OPENCLAW_WINDOWS_TASK_NAME?.trim();
-  if (override) {
-    return override;
-  }
-  return resolveGatewayWindowsTaskName(env.OPENCLAW_PROFILE);
-}
-
 /**
  * Prepares a standalone script to restart the gateway service.
  * This script is written to a temporary directory and does not depend on
@@ -58,7 +40,7 @@ function resolveWindowsTaskName(env: NodeJS.ProcessEnv): string {
  */
 export async function prepareRestartScript(
   env: NodeJS.ProcessEnv = process.env,
-  gatewayPort: number = DEFAULT_GATEWAY_PORT,
+  _gatewayPort?: number,
 ): Promise<string | null> {
   const tmpDir = os.tmpdir();
   const timestamp = Date.now();
@@ -106,38 +88,6 @@ fi
 # Self-cleanup
 rm -f "$0"
 `;
-    } else if (platform === "win32") {
-      const taskName = resolveWindowsTaskName(env);
-      if (!isBatchSafe(taskName)) {
-        return null;
-      }
-      const port =
-        Number.isFinite(gatewayPort) && gatewayPort > 0 ? gatewayPort : DEFAULT_GATEWAY_PORT;
-      filename = `openclaw-restart-${timestamp}.bat`;
-      scriptContent = `@echo off
-REM Standalone restart script — survives parent process termination.
-REM Wait briefly to ensure file locks are released after update.
-timeout /t 2 /nobreak >nul
-schtasks /End /TN "${taskName}"
-REM Poll for gateway port release before rerun; force-kill listener if stuck.
-set /a attempts=0
-:wait_for_port_release
-set /a attempts+=1
-netstat -ano | findstr /R /C:":${port} .*LISTENING" >nul
-if errorlevel 1 goto port_released
-if %attempts% GEQ 10 goto force_kill_listener
-timeout /t 1 /nobreak >nul
-goto wait_for_port_release
-:force_kill_listener
-for /f "tokens=5" %%P in ('netstat -ano ^| findstr /R /C:":${port} .*LISTENING"') do (
-  taskkill /F /PID %%P >nul 2>&1
-  goto port_released
-)
-:port_released
-schtasks /Run /TN "${taskName}"
-REM Self-cleanup
-del "%~f0"
-`;
     } else {
       return null;
     }
@@ -163,14 +113,9 @@ del "%~f0"
  * Resolves immediately after spawning; the script runs independently.
  */
 export async function runRestartScript(scriptPath: string): Promise<void> {
-  const isWindows = process.platform === "win32";
-  const file = isWindows ? "cmd.exe" : "/bin/sh";
-  const args = isWindows ? ["/d", "/s", "/c", quoteCmdScriptArg(scriptPath)] : [scriptPath];
-
-  const child = spawn(file, args, {
+  const child = spawn("/bin/sh", [scriptPath], {
     detached: true,
     stdio: "ignore",
-    windowsHide: true,
   });
   child.unref();
 }

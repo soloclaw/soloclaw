@@ -25,7 +25,6 @@ import {
 import type { OnboardOptions } from "../commands/onboard-types.js";
 import type { OpenClawConfig } from "../config/types.openclaw.js";
 import { describeGatewayServiceRestart, resolveGatewayService } from "../daemon/service.js";
-import { isSystemdUserServiceAvailable } from "../daemon/systemd.js";
 import { ensureControlUiAssetsBuilt } from "../infra/control-ui-assets.js";
 import { formatErrorMessage } from "../infra/errors.js";
 import type { RuntimeEnv } from "../runtime.js";
@@ -70,36 +69,11 @@ export async function finalizeSetupWizard(
     }
   };
 
-  const systemdAvailable =
-    process.platform === "linux" ? await isSystemdUserServiceAvailable() : true;
-  if (process.platform === "linux" && !systemdAvailable) {
-    await prompter.note(
-      "Systemd user services are unavailable. Skipping lingering checks and service install.",
-      "Systemd",
-    );
-  }
-
-  if (process.platform === "linux" && systemdAvailable) {
-    const { ensureSystemdUserLingerInteractive } = await import("../commands/systemd-linger.js");
-    await ensureSystemdUserLingerInteractive({
-      runtime,
-      prompter: {
-        confirm: prompter.confirm,
-        note: prompter.note,
-      },
-      reason:
-        "Linux installs use a systemd user service by default. Without lingering, systemd stops the user session on logout/idle and kills the Gateway.",
-      requireConfirm: false,
-    });
-  }
-
   const explicitInstallDaemon =
     typeof opts.installDaemon === "boolean" ? opts.installDaemon : undefined;
   let installDaemon: boolean;
   if (explicitInstallDaemon !== undefined) {
     installDaemon = explicitInstallDaemon;
-  } else if (process.platform === "linux" && !systemdAvailable) {
-    installDaemon = false;
   } else if (flow === "quickstart") {
     installDaemon = true;
   } else {
@@ -107,14 +81,6 @@ export async function finalizeSetupWizard(
       message: "Install Gateway service (recommended)",
       initialValue: true,
     });
-  }
-
-  if (process.platform === "linux" && !systemdAvailable && installDaemon) {
-    await prompter.note(
-      "Systemd user services are unavailable; skipping service install. Use your container supervisor or `docker compose up -d`.",
-      "Gateway service",
-    );
-    installDaemon = false;
   }
 
   if (installDaemon) {

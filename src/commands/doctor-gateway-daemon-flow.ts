@@ -13,10 +13,7 @@ import {
   repairLaunchAgentBootstrap,
 } from "../daemon/launchd.js";
 import { describeGatewayServiceRestart, resolveGatewayService } from "../daemon/service.js";
-import { renderSystemdUnavailableHints } from "../daemon/systemd-hints.js";
-import { isSystemdUserServiceAvailable } from "../daemon/systemd.js";
 import { formatPortDiagnostics, inspectPortUsage } from "../infra/ports.js";
-import { isWSL } from "../infra/wsl.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { note } from "../terminal/note.js";
 import { sleep } from "../utils.js";
@@ -99,7 +96,6 @@ export async function maybeRepairGatewayDaemon(params: {
   }
 
   const service = resolveGatewayService();
-  // systemd can throw in containers/WSL; treat as "not loaded" and fall back to hints.
   let loaded = false;
   try {
     loaded = await service.isLoaded({ env: process.env });
@@ -149,17 +145,6 @@ export async function maybeRepairGatewayDaemon(params: {
   }
 
   if (!loaded) {
-    if (process.platform === "linux") {
-      const systemdAvailable = await isSystemdUserServiceAvailable().catch(() => false);
-      if (!systemdAvailable) {
-        const wsl = await isWSL();
-        note(
-          renderSystemdUnavailableHints({ wsl, kind: "generic_unavailable" }).join("\n"),
-          "Gateway",
-        );
-        return;
-      }
-    }
     note("Gateway service not installed.", "Gateway");
     if (params.cfg.gateway?.mode !== "remote") {
       const install = await params.prompter.confirmRuntimeRepair({

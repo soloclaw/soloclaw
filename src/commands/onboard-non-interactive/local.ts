@@ -210,7 +210,6 @@ export async function runNonInteractiveLocalSetup(params: {
     | {
         requested: boolean;
         installed: boolean;
-        skippedReason?: "systemd-user-unavailable";
       }
     | undefined;
   if (opts.installDaemon) {
@@ -229,7 +228,6 @@ export async function runNonInteractiveLocalSetup(params: {
       : {
           requested: true,
           installed: false,
-          skippedReason: daemonInstall.skippedReason,
         };
     if (!daemonInstall.installed && !opts.skipHealth) {
       logNonInteractiveOnboardingFailure({
@@ -242,7 +240,6 @@ export async function runNonInteractiveLocalSetup(params: {
         daemonInstall: {
           requested: true,
           installed: false,
-          skippedReason: daemonInstall.skippedReason,
         },
         daemonRuntime: daemonRuntimeRaw,
         hints: [`Run \`${formatCliCommand("openclaw gateway status --deep")}\` for more detail.`],

@@ -115,7 +115,6 @@ const readConfigFileSnapshot = vi.hoisted(() =>
     legacyIssues: [] as Array<{ path: string; message: string }>,
   })),
 );
-const ensureSystemdUserLingerInteractive = vi.hoisted(() => vi.fn(async () => {}));
 const isSystemdUserServiceAvailable = vi.hoisted(() => vi.fn(async () => true));
 const ensureControlUiAssetsBuilt = vi.hoisted(() => vi.fn(async () => ({ ok: true })));
 const runTui = vi.hoisted(() => vi.fn(async (_options: unknown) => {}));
@@ -210,10 +209,6 @@ vi.mock("../commands/onboard-helpers.js", () => ({
     httpUrl: "http://127.0.0.1:18789",
     wsUrl: "ws://127.0.0.1:18789",
   })),
-}));
-
-vi.mock("../commands/systemd-linger.js", () => ({
-  ensureSystemdUserLingerInteractive,
 }));
 
 vi.mock("../daemon/systemd.js", () => ({
