@@ -14,7 +14,7 @@ OLLAMA_API = "http://127.0.0.1:11434"
 MODEL_PRESETS = {
     "small": "gemma4:e2b",
     "medium": "mistral-small:24b",
-    "large": "qwen3:32b",
+    "large": "gemma4:26b",
 }
 
 # Published benchmark scores from model cards / official releases.
@@ -70,7 +70,9 @@ PUBLIC_BENCHMARKS = {
 COMPARE_GROUPS = {
     "small": ["qwen3:8b", "qwen2.5:7b", "gemma4:e2b"],
     "medium": ["mistral-small:24b", "qwen3.5:9b", "qwen2.5:14b", "gemma4:e4b"],
-    "large": ["qwen3:32b", "qwen2.5:32b", "gemma4:26b", "gemma4:31b"],
+    # qwen3:32b excluded: 29GB memory, 18 tok/s, causes Ollama idle timeouts
+    # gemma4:31b included but uses 43.9GB memory due to large KV cache
+    "large": ["gemma4:26b", "gemma4:31b", "qwen2.5:32b"],
 }
 
 QUESTIONS = {

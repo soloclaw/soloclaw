@@ -32,7 +32,7 @@ python3 tools/benchmark/benchmark.py --output my-results.json
 |--------|-------|-----|
 | small | gemma4:e2b | 8GB |
 | medium | mistral-small:24b | 16GB |
-| large | qwen3:32b | 32GB |
+| large | gemma4:26b | 24GB |
 
 ## Test Results
 
@@ -62,11 +62,21 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
-| 1 | gemma4:26b | 97% | 88.1/s | 24.0 GB | 0.98 |
-| 2 | qwen2.5:32b | 96% | 19.0/s | 28.7 GB | 0.79 |
-| 3 | qwen3:32b | 96% | 17.6/s | 29.1 GB | 0.78 |
+| 1 | gemma4:26b | 96% | 80.9/s | 24.0 GB | 0.97 |
+| 2 | qwen2.5:32b | 96% | 18.6/s | 28.7 GB | 0.78 |
+| 3 | gemma4:31b | 96% | 15.7/s | 43.9 GB | 0.77 |
 
-**Default: qwen3:32b** — despite gemma4:26b's highest combined score (driven by 5x speed advantage), qwen3:32b wins 6/8 per-domain categories (coding, Chinese, philosophy, physics, function calling, agent skills) and ranks #1 on public benchmarks (MMLU 83.2%). Our ranking diverges significantly from MMLU (33% agreement), suggesting the speed-weighted score overvalues gemma4:26b. For agent workloads, qwen3:32b's per-domain strength matters more than raw speed.
+**Default: gemma4:26b** — wins 7/8 per-domain categories, 4x faster than alternatives, and lowest memory (24 GB).
+
+**Note on gemma4:31b:** Uses 43.9 GB memory due to large KV cache despite being only 31B params. Not practical unless you have 64GB+ RAM.
+
+**Note on qwen3:32b (excluded):** Uses 29.1 GB memory and runs at only 17.6 tok/s. Causes Ollama idle timeouts and unresponsive behavior in practice. Ranks #1 on public benchmarks (MMLU 83.2%) but unusable for interactive use.
+
+```bash
+# To try other large models:
+openclaw config set agents.defaults.model.primary ollama/qwen2.5:32b
+openclaw gateway restart
+```
 
 ## Test Domains
 
