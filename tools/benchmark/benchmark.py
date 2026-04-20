@@ -205,6 +205,22 @@ def ensure_model_available(model):
         return False
 
 
+def warm_up_model(model):
+    """Load the model into memory by sending a trivial prompt."""
+    print(f"  Warming up {model}...")
+    try:
+        _post_json(
+            f"{OLLAMA_API}/api/generate",
+            {"model": model, "prompt": "Hi", "stream": False},
+            timeout=600,
+        )
+        print(f"  {model} ready.")
+        return True
+    except Exception as e:
+        print(f"  Failed to warm up {model}: {e}")
+        return False
+
+
 def benchmark_model(model):
     """Run all benchmark questions against a single model."""
     print(f"\nBenchmarking: {model}")
@@ -212,6 +228,10 @@ def benchmark_model(model):
 
     if not ensure_model_available(model):
         print(f"  Skipping {model} (not available)")
+        return {}
+
+    if not warm_up_model(model):
+        print(f"  Skipping {model} (failed to load)")
         return {}
 
     results = {}
