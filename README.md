@@ -135,15 +135,6 @@ pnpm gateway:watch
 
 Note: `pnpm openclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` produces `dist/` for running via Node / the packaged `openclaw` binary.
 
-## Docs
-
-- [Getting started](https://docs.openclaw.ai/start/getting-started)
-- [Channels](https://docs.openclaw.ai/channels)
-- [Tools & Skills](https://docs.openclaw.ai/tools)
-- [Configuration](https://docs.openclaw.ai/gateway/configuration)
-- [Architecture](https://docs.openclaw.ai/concepts/architecture)
-- [FAQ](https://docs.openclaw.ai/help/faq)
-
 ## License
 
 MIT
