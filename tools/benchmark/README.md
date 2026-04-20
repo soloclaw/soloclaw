@@ -62,17 +62,19 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
-| 1 | gemma4:26b | 97% | 88.1/s | 24.0 GB | 0.98 |
-| 2 | qwen2.5:32b | 96% | 19.0/s | 28.7 GB | 0.79 |
-| 3 | qwen3:32b | 96% | 17.6/s | 29.1 GB | 0.78 |
+| 1 | gemma4:26b | 96% | 80.9/s | 24.0 GB | 0.97 |
+| 2 | qwen2.5:32b | 96% | 18.6/s | 28.7 GB | 0.78 |
+| 3 | gemma4:31b | 96% | 15.7/s | 43.9 GB | 0.77 |
 
-**Default: gemma4:26b** — highest accuracy (97%), 5x faster than qwen models, and lowest memory (24 GB).
+**Default: gemma4:26b** — wins 7/8 per-domain categories, 4x faster than alternatives, and lowest memory (24 GB).
 
-**Note on qwen3:32b:** Wins 6/8 per-domain categories and ranks #1 on public benchmarks (MMLU 83.2%), but uses 29.1 GB memory and runs at only 17.6 tok/s. In practice, the model is too slow for interactive use — Ollama unloads it during idle periods, causing unresponsive behavior and timeouts. Not recommended unless you have 64GB+ RAM.
+**Note on gemma4:31b:** Uses 43.9 GB memory due to large KV cache despite being only 31B params. Not practical unless you have 64GB+ RAM.
+
+**Note on qwen3:32b (excluded):** Uses 29.1 GB memory and runs at only 17.6 tok/s. Causes Ollama idle timeouts and unresponsive behavior in practice. Ranks #1 on public benchmarks (MMLU 83.2%) but unusable for interactive use.
 
 ```bash
-# To try qwen3:32b anyway:
-openclaw config set agents.defaults.model.primary ollama/qwen3:32b
+# To try other large models:
+openclaw config set agents.defaults.model.primary ollama/qwen2.5:32b
 openclaw gateway restart
 ```
 
