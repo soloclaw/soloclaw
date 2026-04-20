@@ -1,6 +1,6 @@
 # Model Benchmark
 
-Compares Ollama models across 7 domains: mathematics, physics, philosophy, coding, reasoning, function calling, and agent skills.
+Compares Ollama models across 8 domains: mathematics, physics, philosophy, coding, reasoning, function calling, agent skills, and Chinese.
 
 ## Usage
 
@@ -78,6 +78,7 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 | Reasoning | 3 | Syllogisms, bat-and-ball, rate problems |
 | Function Calling | 3 | JSON schema, parameter extraction, call chaining |
 | Agent Skills | 3 | Tool selection, task decomposition, self-correction |
+| Chinese | 3 | Quantum physics, coding, philosophy — all in Chinese |
 
 ## Scoring
 
