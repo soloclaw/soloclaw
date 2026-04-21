@@ -191,6 +191,22 @@ export async function runNonInteractiveLocalSetup(params: {
     };
   }
 
+  if (!nextConfig.agents?.defaults?.llm?.idleTimeoutSeconds) {
+    nextConfig = {
+      ...nextConfig,
+      agents: {
+        ...nextConfig.agents,
+        defaults: {
+          ...nextConfig.agents?.defaults,
+          llm: {
+            ...nextConfig.agents?.defaults?.llm,
+            idleTimeoutSeconds: 120,
+          },
+        },
+      },
+    };
+  }
+
   nextConfig = applyWizardMetadata(nextConfig, { command: "onboard", mode });
   await replaceConfigFile({
     nextConfig,
