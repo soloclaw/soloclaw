@@ -62,9 +62,11 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
-| 1 | gemma4:26b | 96% | 80.9/s | 24.0 GB | 0.97 |
+| 1 | gemma4:26b | 96% | 85.0/s | 24.0 GB | 0.97 |
 
-**Default: gemma4:26b** — wins 7/8 per-domain categories, fastest in tier, lowest memory.
+**Default: gemma4:26b** — wins 6/8 per-domain categories, 5x faster than alternatives, lowest memory.
+
+*Pending: qwen3:14b — run `python3 tools/benchmark/benchmark.py --large` to test.*
 
 **Known issue with gemma4:26b:** The model's "thinking" mode occasionally consumes all tokens on internal reasoning and produces no visible output, resulting in "Agent couldn't generate a response" errors. This happens intermittently — retrying usually works.
 
@@ -72,8 +74,8 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 | # | Model | Accuracy | Speed | Memory | Score | Issue |
 |---|-------|----------|-------|--------|-------|-------|
-| 1 | qwen2.5:32b | 96% | 18.6/s | 28.7 GB | 0.78 | Slow but reliable |
-| 2 | qwen3.5:27b | — | — | 39.3 GB | — | High memory despite 27B params |
+| 1 | qwen3.5:27b | 99% | 15.7/s | 39.3 GB | 0.79 | High memory despite 27B params |
+| 2 | qwen2.5:32b | 96% | 18.6/s | 28.7 GB | 0.78 | Slow but reliable |
 | 3 | gemma4:31b | 96% | 15.7/s | 43.9 GB | 0.77 | Thinking mode timeouts |
 
 **Not recommended for most users.** These models require 32-64GB RAM and have responsiveness issues.
