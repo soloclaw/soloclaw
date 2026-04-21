@@ -53,10 +53,11 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
 | 1 | qwen3.5:9b | 97% | 45.0/s | 18.7 GB | 0.95 |
-| 2 | qwen2.5:14b | 94% | 41.6/s | 16.5 GB | 0.91 |
-| 3 | mistral-small:24b | 94% | 26.1/s | 20.1 GB | 0.81 |
+| 2 | qwen3:14b | 95% | 39.4/s | 15.1 GB | 0.90 |
+| 3 | qwen2.5:14b | 94% | 41.6/s | 16.5 GB | 0.91 |
+| 4 | mistral-small:24b | 94% | 26.1/s | 20.1 GB | 0.81 |
 
-**Default: mistral-small:24b** — despite lower combined score, it wins 4/8 per-domain categories (physics, function calling, philosophy, mathematics) which are critical for SoloClaw's agent workflow. Our ranking diverges from public benchmarks (MMLU ranks mistral-small #1), suggesting our keyword scoring favors qwen3.5's newer architecture on reasoning and Chinese tasks.
+**Default: mistral-small:24b** — despite lower combined score, it wins 4/8 per-domain categories (physics, function calling, philosophy, mathematics) which are critical for SoloClaw's agent workflow. qwen3:14b is a strong alternative at only 15.1 GB memory.
 
 ### Large Tier (24GB class)
 
@@ -64,9 +65,7 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 |---|-------|----------|-------|--------|-------|
 | 1 | gemma4:26b | 96% | 85.0/s | 24.0 GB | 0.97 |
 
-**Default: gemma4:26b** — wins 6/8 per-domain categories, 5x faster than alternatives, lowest memory.
-
-*Pending: qwen3:14b — run `python3 tools/benchmark/benchmark.py --large` to test.*
+**Default: gemma4:26b** — wins 7/8 per-domain categories vs qwen3:14b, 2x faster.
 
 **Known issue with gemma4:26b:** The model's "thinking" mode occasionally consumes all tokens on internal reasoning and produces no visible output, resulting in "Agent couldn't generate a response" errors. This happens intermittently — retrying usually works.
 
