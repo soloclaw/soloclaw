@@ -104,6 +104,10 @@ No menus, no config files. Just ask.
 - Install by asking: *"install the weather skill"*
 - Create your own: the `skill-creator` skill lets the AI build new skills
 
+**CLIs** — external command-line tools that skills depend on. Installed via Homebrew or npm when needed.
+- Skills will tell you which CLIs to install (e.g., `brew install gh` for GitHub, `brew install himalaya` for email)
+- Not bundled with SoloClaw — managed by your system package manager
+
 **Interface**
 - Browser-based TUI
 
