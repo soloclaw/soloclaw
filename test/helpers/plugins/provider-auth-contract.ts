@@ -13,8 +13,6 @@ import { registerProviders, requireProvider } from "./contracts-testkit.js";
 
 type LoginOpenAICodexOAuth =
   (typeof import("openclaw/plugin-sdk/provider-auth-login"))["loginOpenAICodexOAuth"];
-type GithubCopilotLoginCommand =
-  (typeof import("openclaw/plugin-sdk/provider-auth-login"))["githubCopilotLoginCommand"];
 type CreateVpsAwareHandlers =
   (typeof import("../../../src/plugins/provider-oauth-flow.js"))["createVpsAwareOAuthHandlers"];
 type EnsureAuthProfileStore =
@@ -23,15 +21,9 @@ type ListProfilesForProvider =
   typeof import("openclaw/plugin-sdk/provider-auth").listProfilesForProvider;
 
 const loginOpenAICodexOAuthMock = vi.hoisted(() => vi.fn<LoginOpenAICodexOAuth>());
-const githubCopilotLoginCommandMock = vi.hoisted(() => vi.fn<GithubCopilotLoginCommand>());
 const ensureAuthProfileStoreMock = vi.hoisted(() => vi.fn<EnsureAuthProfileStore>());
 const listProfilesForProviderMock = vi.hoisted(() => vi.fn<ListProfilesForProvider>());
 const providerAuthContractModules = {
-  githubCopilotIndexModuleUrl: resolveRelativeBundledPluginPublicModuleId({
-    fromModuleUrl: import.meta.url,
-    pluginId: "github-copilot",
-    artifactBasename: "index.js",
-  }),
   openAIIndexModuleUrl: resolveRelativeBundledPluginPublicModuleId({
     fromModuleUrl: import.meta.url,
     pluginId: "openai",
@@ -46,7 +38,6 @@ vi.mock("openclaw/plugin-sdk/provider-auth-login", async () => {
   return {
     ...actual,
     loginOpenAICodexOAuth: loginOpenAICodexOAuthMock,
-    githubCopilotLoginCommand: githubCopilotLoginCommandMock,
   };
 });
 
@@ -157,7 +148,6 @@ function installSharedAuthProfileStoreHooks(state: { authStore: AuthProfileStore
 
   afterEach(() => {
     loginOpenAICodexOAuthMock.mockReset();
-    githubCopilotLoginCommandMock.mockReset();
     ensureAuthProfileStoreMock.mockReset();
     listProfilesForProviderMock.mockReset();
     clearRuntimeAuthProfileStoreSnapshots();
@@ -317,89 +307,3 @@ export function describeOpenAICodexProviderAuthContract() {
   });
 }
 
-export function describeGithubCopilotProviderAuthContract() {
-  const state = {
-    authStore: { version: 1, profiles: {} } as AuthProfileStore,
-  };
-
-  describe("github-copilot provider auth contract", () => {
-    installSharedAuthProfileStoreHooks(state);
-
-    async function getProvider() {
-      const { default: githubCopilotPlugin } = await importBundledProviderPlugin<{
-        default: Parameters<typeof registerProviders>[0];
-      }>(providerAuthContractModules.githubCopilotIndexModuleUrl);
-      return requireProvider(await registerProviders(githubCopilotPlugin), "github-copilot");
-    }
-
-    it("keeps device auth results provider-owned", async () => {
-      const provider = await getProvider();
-      state.authStore.profiles["github-copilot:github"] = {
-        type: "token",
-        provider: "github-copilot",
-        token: "github-device-token",
-      };
-
-      const stdin = process.stdin as NodeJS.ReadStream & { isTTY?: boolean };
-      const hadOwnIsTTY = Object.prototype.hasOwnProperty.call(stdin, "isTTY");
-      const previousIsTTYDescriptor = Object.getOwnPropertyDescriptor(stdin, "isTTY");
-      Object.defineProperty(stdin, "isTTY", {
-        configurable: true,
-        enumerable: true,
-        get: () => true,
-      });
-
-      try {
-        const result = await provider.auth[0]?.run(buildAuthContext() as never);
-        expect(githubCopilotLoginCommandMock).toHaveBeenCalledWith(
-          { yes: true, profileId: "github-copilot:github" },
-          expect.any(Object),
-        );
-        expect(result).toEqual({
-          profiles: [
-            {
-              profileId: "github-copilot:github",
-              credential: {
-                type: "token",
-                provider: "github-copilot",
-                token: "github-device-token",
-              },
-            },
-          ],
-          defaultModel: "github-copilot/gpt-4o",
-        });
-      } finally {
-        if (previousIsTTYDescriptor) {
-          Object.defineProperty(stdin, "isTTY", previousIsTTYDescriptor);
-        } else if (!hadOwnIsTTY) {
-          delete (stdin as { isTTY?: boolean }).isTTY;
-        }
-      }
-    });
-
-    it("keeps auth gated on interactive TTYs", async () => {
-      const provider = await getProvider();
-      const stdin = process.stdin as NodeJS.ReadStream & { isTTY?: boolean };
-      const hadOwnIsTTY = Object.prototype.hasOwnProperty.call(stdin, "isTTY");
-      const previousIsTTYDescriptor = Object.getOwnPropertyDescriptor(stdin, "isTTY");
-      Object.defineProperty(stdin, "isTTY", {
-        configurable: true,
-        enumerable: true,
-        get: () => false,
-      });
-
-      try {
-        await expect(provider.auth[0]?.run(buildAuthContext() as never)).resolves.toEqual({
-          profiles: [],
-        });
-        expect(githubCopilotLoginCommandMock).not.toHaveBeenCalled();
-      } finally {
-        if (previousIsTTYDescriptor) {
-          Object.defineProperty(stdin, "isTTY", previousIsTTYDescriptor);
-        } else if (!hadOwnIsTTY) {
-          delete (stdin as { isTTY?: boolean }).isTTY;
-        }
-      }
-    });
-  });
-}

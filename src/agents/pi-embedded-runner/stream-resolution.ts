@@ -1,6 +1,5 @@
 import type { StreamFn } from "@mariozechner/pi-agent-core";
 import { streamSimple } from "@mariozechner/pi-ai";
-import { createAnthropicVertexStreamFnForModel } from "../anthropic-vertex-stream.js";
 import { createOpenAIWebSocketStreamFn } from "../openai-ws-stream.js";
 import { getModelProviderRequestTransport } from "../provider-request-config.js";
 import { createBoundaryAwareStreamFnForModel } from "../provider-transport-stream.js";
@@ -37,9 +36,6 @@ export function describeEmbeddedAgentStreamStrategy(params: {
   }
   if (params.shouldUseWebSocketTransport) {
     return params.wsApiKey ? "openai-websocket" : "session-http-fallback";
-  }
-  if (params.model.provider === "anthropic-vertex") {
-    return "anthropic-vertex";
   }
   if (params.currentStreamFn === undefined || params.currentStreamFn === streamSimple) {
     return createBoundaryAwareStreamFnForModel(params.model)
@@ -111,10 +107,6 @@ export function resolveEmbeddedAgentStreamFn(params: {
           },
         })
       : currentStreamFn;
-  }
-
-  if (params.model.provider === "anthropic-vertex") {
-    return createAnthropicVertexStreamFnForModel(params.model);
   }
 
   if (params.currentStreamFn === undefined || params.currentStreamFn === streamSimple) {
