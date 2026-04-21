@@ -87,15 +87,22 @@ No menus, no config files. Just ask.
 **LLM**
 - qwen3.5:9b (medium), free local model via Ollama
 
-**Skills/Tools**
+**Plugins** (system-level, integrated with the gateway)
 - Web search — SearXNG (self-hosted, Docker)
 - Browser — agent-controlled Chromium for reading web pages
+- Channels — Telegram, Discord built-in
+- Model providers — Ollama, OpenAI, Anthropic, and more
+
+**Tools** (core capabilities the model can use)
 - bash — run shell commands
 - read / write / edit — file operations
-- Extensible — add more via workspace skills
+- web_search — search the web
+- browser — open and read web pages
 
-**Channels**
-- Telegram, Discord built-in
+**Skills** (user-level, on-demand add-ons)
+- 53 bundled skill templates (weather, github, spotify, apple-notes, etc.)
+- Install by asking: *"install the weather skill"*
+- Create your own: the `skill-creator` skill lets the AI build new skills
 
 **Interface**
 - Browser-based TUI
