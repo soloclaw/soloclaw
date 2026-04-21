@@ -85,7 +85,8 @@ COMPARE_GROUPS = {
     # mistral-small:24b excluded: 32K context window causes session resets on long conversations
     "large": ["gemma4:26b"],
     # xlarge: models requiring 32GB+ memory, known responsiveness issues
-    "xlarge": ["mistral-small:22b", "qwen3.5:27b", "qwen2.5:32b", "gemma4:31b"],
+    # mistral-small:22b excluded: 54GB memory, outputs raw JSON instead of executing tool calls
+    "xlarge": ["qwen3.5:27b", "qwen2.5:32b", "gemma4:31b"],
 }
 
 QUESTIONS = {

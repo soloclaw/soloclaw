@@ -86,6 +86,8 @@ Score = 70% accuracy + 30% speed (capped at 50 tok/s). Results will vary on diff
 
 **Note on qwen3:32b (excluded):** 29.1 GB memory, 17.6 tok/s. Causes Ollama idle timeouts. Ranks #1 on MMLU (83.2%) but unusable for interactive use.
 
+**Note on mistral-small:22b (excluded):** 54 GB memory (for a 22B model) and outputs raw JSON tool calls as text instead of executing them — broken tool use protocol.
+
 ```bash
 # To try xlarge models:
 openclaw config set agents.defaults.model.primary ollama/qwen2.5:32b
