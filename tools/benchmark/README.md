@@ -68,14 +68,13 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 **Known issue with gemma4:26b:** The model's "thinking" mode occasionally consumes all tokens on internal reasoning and produces no visible output, resulting in "Agent couldn't generate a response" errors. This happens intermittently — retrying usually works.
 
-*Pending: qwen3.5:27b — run `python3 tools/benchmark/benchmark.py --large` to test.*
-
-### XLarge Tier (32B+, high memory, known issues)
+### XLarge Tier (32GB+ memory, known issues)
 
 | # | Model | Accuracy | Speed | Memory | Score | Issue |
 |---|-------|----------|-------|--------|-------|-------|
 | 1 | qwen2.5:32b | 96% | 18.6/s | 28.7 GB | 0.78 | Slow but reliable |
-| 2 | gemma4:31b | 96% | 15.7/s | 43.9 GB | 0.77 | Thinking mode timeouts |
+| 2 | qwen3.5:27b | — | — | 39.3 GB | — | High memory despite 27B params |
+| 3 | gemma4:31b | 96% | 15.7/s | 43.9 GB | 0.77 | Thinking mode timeouts |
 
 **Not recommended for most users.** These models require 32-64GB RAM and have responsiveness issues.
 
