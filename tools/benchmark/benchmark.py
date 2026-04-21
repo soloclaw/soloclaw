@@ -77,7 +77,7 @@ PUBLIC_BENCHMARKS = {
 
 COMPARE_GROUPS = {
     "small": ["qwen3:8b", "qwen2.5:7b", "gemma4:e2b"],
-    "medium": ["qwen3.5:9b", "qwen2.5:14b", "qwen3:14b", "gemma4:e4b"],
+    "medium": ["qwen3.5:9b", "qwen3:14b", "gemma4:e4b"],
     "large": ["gemma4:26b", "mistral-small:24b"],
     # xlarge: models requiring 32GB+ memory, known responsiveness issues
     "xlarge": ["qwen3.5:27b", "qwen2.5:32b", "gemma4:31b"],
