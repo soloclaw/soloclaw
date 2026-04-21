@@ -254,8 +254,8 @@
 
 ## Security & Configuration Tips
 
-- Channel/provider state lives under `~/.openclaw/credentials/`; rerun `openclaw channels login` if logged out. Model auth profiles live under `~/.openclaw/agents/<agentId>/agent/auth-profiles.json`; legacy OAuth import still reads `~/.openclaw/credentials/oauth.json`.
-- Pi sessions live under `~/.openclaw/agents/<agentId>/sessions/` by default; `session.store` can override the session store path.
+- Channel/provider state lives under `~/.soloclaw/credentials/`; rerun `openclaw channels login` if logged out. Model auth profiles live under `~/.soloclaw/agents/<agentId>/agent/auth-profiles.json`; legacy OAuth import still reads `~/.soloclaw/credentials/oauth.json`.
+- Pi sessions live under `~/.soloclaw/agents/<agentId>/sessions/` by default; `session.store` can override the session store path.
 - Environment variables: see `~/.profile`.
 - Never commit or publish real phone numbers, videos, or live configuration values. Use obviously fake placeholders in docs, tests, and examples.
 - Release flow: use the private [maintainer release docs](https://github.com/openclaw/maintainers/blob/main/release/README.md) for the actual runbook, `docs/reference/RELEASING.md` for the public release policy, and `$openclaw-release-maintainer` for the maintainership workflow.
@@ -272,7 +272,7 @@
 - Signal: "update fly" => `fly ssh console -a flawd-bot -C "bash -lc 'cd /data/clawd/openclaw && git pull --rebase origin main'"` then `fly machines restart e825232f34d058 -a flawd-bot`.
 - CLI progress: use `src/cli/progress.ts` (`osc-progress` + `@clack/prompts` spinner); don’t hand-roll spinners/bars.
 - Status output: keep tables + ANSI-safe wrapping (`src/terminal/table.ts`); `status --all` = read-only/pasteable, `status --deep` = probes.
-- Gateway may run as an app-managed launchd job. Restart the gateway via the app or `openclaw gateway restart`; inspect with `openclaw gateway status --deep` or, for the default profile, `launchctl print gui/$UID/ai.openclaw.gateway`. Use `scripts/restart-mac.sh` when you need to rebuild/relaunch the local macOS app itself. The app LaunchAgent uses `ai.openclaw.mac`. **When debugging on macOS, start/stop the gateway via the app or gateway CLI, not ad-hoc tmux sessions; kill any temporary tunnels before handoff.**
+- Gateway may run as an app-managed launchd job. Restart the gateway via the app or `openclaw gateway restart`; inspect with `openclaw gateway status --deep` or, for the default profile, `launchctl print gui/$UID/ai.soloclaw.gateway`. Use `scripts/restart-mac.sh` when you need to rebuild/relaunch the local macOS app itself. The app LaunchAgent uses `ai.soloclaw.mac`. **When debugging on macOS, start/stop the gateway via the app or gateway CLI, not ad-hoc tmux sessions; kill any temporary tunnels before handoff.**
 - macOS logs: use `./scripts/clawlog.sh` to query unified logs for the OpenClaw subsystem; it supports follow/tail/category filters and expects passwordless sudo for `/usr/bin/log`.
 - If shared guardrails are available locally, review them; otherwise follow this repo's guidance.
 - SwiftUI state management (iOS/macOS): prefer the `Observation` framework (`@Observable`, `@Bindable`) over `ObservableObject`/`@StateObject`; don’t introduce new `ObservableObject` unless required for compatibility, and migrate existing usages when touching related code.
@@ -287,7 +287,7 @@
 - A2UI bundle hash: `src/canvas-host/a2ui/.bundle.hash` is auto-generated; ignore unexpected changes, and only regenerate via `pnpm canvas:a2ui:bundle` (or `scripts/bundle-a2ui.sh`) when needed. Commit the hash as a separate commit.
 - Release signing/notary credentials are managed outside the repo; maintainers keep that setup in the private [maintainer release docs](https://github.com/openclaw/maintainers/tree/main/release).
 - Lobster palette: use the shared CLI palette in `src/terminal/palette.ts` (no hardcoded colors); apply palette to onboarding/config prompts and other TTY UI output as needed.
-- When asked to open a “session” file, open the Pi session logs under `~/.openclaw/agents/<agentId>/sessions/*.jsonl` (use the `agent=<id>` value in the Runtime line of the system prompt; newest unless a specific ID is given), not the default `sessions.json`. If logs are needed from another machine, SSH via Tailscale and read the same path there.
+- When asked to open a “session” file, open the Pi session logs under `~/.soloclaw/agents/<agentId>/sessions/*.jsonl` (use the `agent=<id>` value in the Runtime line of the system prompt; newest unless a specific ID is given), not the default `sessions.json`. If logs are needed from another machine, SSH via Tailscale and read the same path there.
 - Do not rebuild the macOS app over SSH; rebuilds must be run directly on the Mac.
 - Voice wake forwarding tips:
   - Command template should stay `openclaw-mac agent --message "${text}" --thinking low`; `VoiceWakeForwarder` already shell-escapes `${text}`. Don’t add extra quotes.

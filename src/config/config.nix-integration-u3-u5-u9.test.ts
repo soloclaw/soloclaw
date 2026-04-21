@@ -40,8 +40,8 @@ describe("Nix integration (U3, U5, U9)", () => {
   });
 
   describe("U5: CONFIG_PATH and STATE_DIR env var overrides", () => {
-    it("STATE_DIR defaults to ~/.openclaw when env not set", () => {
-      expect(resolveStateDir(envWith({ OPENCLAW_STATE_DIR: undefined }))).toMatch(/\.openclaw$/);
+    it("STATE_DIR defaults to ~/.soloclaw when env not set", () => {
+      expect(resolveStateDir(envWith({ OPENCLAW_STATE_DIR: undefined }))).toMatch(/\.soloclaw$/);
     });
 
     it("STATE_DIR respects OPENCLAW_STATE_DIR override", () => {
@@ -54,10 +54,10 @@ describe("Nix integration (U3, U5, U9)", () => {
       const customHome = path.join(path.sep, "custom", "home");
       expect(
         resolveStateDir(envWith({ OPENCLAW_HOME: customHome, OPENCLAW_STATE_DIR: undefined })),
-      ).toBe(path.join(path.resolve(customHome), ".openclaw"));
+      ).toBe(path.join(path.resolve(customHome), ".soloclaw"));
     });
 
-    it("CONFIG_PATH defaults to OPENCLAW_HOME/.openclaw/openclaw.json", () => {
+    it("CONFIG_PATH defaults to OPENCLAW_HOME/.soloclaw/openclaw.json", () => {
       const customHome = path.join(path.sep, "custom", "home");
       expect(
         resolveConfigPathCandidate(
@@ -67,15 +67,15 @@ describe("Nix integration (U3, U5, U9)", () => {
             OPENCLAW_STATE_DIR: undefined,
           }),
         ),
-      ).toBe(path.join(path.resolve(customHome), ".openclaw", "openclaw.json"));
+      ).toBe(path.join(path.resolve(customHome), ".soloclaw", "openclaw.json"));
     });
 
-    it("CONFIG_PATH defaults to ~/.openclaw/openclaw.json when env not set", () => {
+    it("CONFIG_PATH defaults to ~/.soloclaw/openclaw.json when env not set", () => {
       expect(
         resolveConfigPathCandidate(
           envWith({ OPENCLAW_CONFIG_PATH: undefined, OPENCLAW_STATE_DIR: undefined }),
         ),
-      ).toMatch(/\.openclaw[\\/]openclaw\.json$/);
+      ).toMatch(/\.soloclaw[\\/]openclaw\.json$/);
     });
 
     it("CONFIG_PATH respects OPENCLAW_CONFIG_PATH override", () => {
@@ -90,10 +90,10 @@ describe("Nix integration (U3, U5, U9)", () => {
       await withTempHome(async (home) => {
         expect(
           resolveConfigPathCandidate(
-            envWith({ OPENCLAW_HOME: home, OPENCLAW_CONFIG_PATH: "~/.openclaw/custom.json" }),
+            envWith({ OPENCLAW_HOME: home, OPENCLAW_CONFIG_PATH: "~/.soloclaw/custom.json" }),
             () => home,
           ),
-        ).toBe(path.join(home, ".openclaw", "custom.json"));
+        ).toBe(path.join(home, ".soloclaw", "custom.json"));
       });
     });
 

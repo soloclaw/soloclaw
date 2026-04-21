@@ -62,9 +62,9 @@ describe("noteSecurityWarnings gateway exposure", () => {
   ): Promise<void> {
     const home = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-doctor-security-"));
     process.env.HOME = home;
-    await fs.mkdir(path.join(home, ".openclaw"), { recursive: true });
+    await fs.mkdir(path.join(home, ".soloclaw"), { recursive: true });
     await fs.writeFile(
-      path.join(home, ".openclaw", "exec-approvals.json"),
+      path.join(home, ".soloclaw", "exec-approvals.json"),
       JSON.stringify(file, null, 2),
     );
     await run();

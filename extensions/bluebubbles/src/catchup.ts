@@ -98,7 +98,7 @@ function resolveStateDirFromEnv(env: NodeJS.ProcessEnv = process.env): string {
   if (env.OPENCLAW_STATE_DIR?.trim()) {
     return resolveStateDir(env);
   }
-  // Default test isolation: per-pid tmpdir, no bleed into real ~/.openclaw.
+  // Default test isolation: per-pid tmpdir, no bleed into real ~/.soloclaw.
   // Use resolvePreferredOpenClawTmpDir + string concat (mirrors
   // inbound-dedupe) so this doesn't trip the tmpdir-path-guard test that
   // flags dynamic template-literal suffixes on os.tmpdir() paths.

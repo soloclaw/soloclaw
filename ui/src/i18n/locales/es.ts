@@ -178,7 +178,7 @@ export const es: TranslationMap = {
     skills: "Gestionar disponibilidad de habilidades e inyección de claves API.",
     nodes: "Dispositivos emparejados, capacidades y exposición de comandos.",
     chat: "Sesión de chat directa con la puerta de enlace para intervenciones rápidas.",
-    config: "Editar ~/.openclaw/openclaw.json de forma segura.",
+    config: "Editar ~/.soloclaw/openclaw.json de forma segura.",
     communications: "Canales, mensajes y configuración de audio.",
     appearance: "Configuración del tema, la UI y el asistente de configuración.",
     automation: "Comandos, hooks, cron y plugins.",

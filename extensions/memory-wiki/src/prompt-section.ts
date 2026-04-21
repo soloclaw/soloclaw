@@ -3,7 +3,7 @@ import path from "node:path";
 import type { MemoryPromptSectionBuilder } from "openclaw/plugin-sdk/memory-host-core";
 import { resolveMemoryWikiConfig, type ResolvedMemoryWikiConfig } from "./config.js";
 
-const AGENT_DIGEST_PATH = ".openclaw-wiki/cache/agent-digest.json";
+const AGENT_DIGEST_PATH = ".soloclaw-wiki/cache/agent-digest.json";
 const DIGEST_MAX_PAGES = 4;
 const DIGEST_MAX_CLAIMS_PER_PAGE = 2;
 

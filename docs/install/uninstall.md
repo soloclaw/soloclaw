@@ -45,7 +45,7 @@ openclaw gateway uninstall
 3. Delete state + config:
 
 ```bash
-rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
+rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.soloclaw}"
 ```
 
 If you set `OPENCLAW_CONFIG_PATH` to a custom location outside the state dir, delete that file too.
@@ -53,7 +53,7 @@ If you set `OPENCLAW_CONFIG_PATH` to a custom location outside the state dir, de
 4. Delete your workspace (optional, removes agent files):
 
 ```bash
-rm -rf ~/.openclaw/workspace
+rm -rf ~/.soloclaw/workspace
 ```
 
 5. Remove the CLI install (pick the one you used):
@@ -72,7 +72,7 @@ rm -rf /Applications/OpenClaw.app
 
 Notes:
 
-- If you used profiles (`--profile` / `OPENCLAW_PROFILE`), repeat step 3 for each state dir (defaults are `~/.openclaw-<profile>`).
+- If you used profiles (`--profile` / `OPENCLAW_PROFILE`), repeat step 3 for each state dir (defaults are `~/.soloclaw-<profile>`).
 - In remote mode, the state dir lives on the **gateway host**, so run steps 1-4 there too.
 
 ## Manual service removal (CLI not installed)
@@ -81,14 +81,14 @@ Use this if the gateway service keeps running but `openclaw` is missing.
 
 ### macOS (launchd)
 
-Default label is `ai.openclaw.gateway` (or `ai.openclaw.<profile>`; legacy `com.openclaw.*` may still exist):
+Default label is `ai.soloclaw.gateway` (or `ai.soloclaw.<profile>`; legacy `com.soloclaw.*` may still exist):
 
 ```bash
-launchctl bootout gui/$UID/ai.openclaw.gateway
-rm -f ~/Library/LaunchAgents/ai.openclaw.gateway.plist
+launchctl bootout gui/$UID/ai.soloclaw.gateway
+rm -f ~/Library/LaunchAgents/ai.soloclaw.gateway.plist
 ```
 
-If you used a profile, replace the label and plist name with `ai.openclaw.<profile>`. Remove any legacy `com.openclaw.*` plists if present.
+If you used a profile, replace the label and plist name with `ai.soloclaw.<profile>`. Remove any legacy `com.soloclaw.*` plists if present.
 
 ### Linux (systemd user unit)
 
@@ -107,10 +107,10 @@ The task script lives under your state dir.
 
 ```powershell
 schtasks /Delete /F /TN "OpenClaw Gateway"
-Remove-Item -Force "$env:USERPROFILE\.openclaw\gateway.cmd"
+Remove-Item -Force "$env:USERPROFILE\.soloclaw\gateway.cmd"
 ```
 
-If you used a profile, delete the matching task name and `~\.openclaw-<profile>\gateway.cmd`.
+If you used a profile, delete the matching task name and `~\.soloclaw-<profile>\gateway.cmd`.
 
 ## Normal install vs source checkout
 

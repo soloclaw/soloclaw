@@ -25,7 +25,7 @@ describe("backup commands", () => {
 
   async function resetTempHome() {
     await fs.rm(tempHome.home, { recursive: true, force: true });
-    await fs.mkdir(path.join(tempHome.home, ".openclaw"), { recursive: true });
+    await fs.mkdir(path.join(tempHome.home, ".soloclaw"), { recursive: true });
     delete process.env.OPENCLAW_CONFIG_PATH;
   }
 
@@ -60,7 +60,7 @@ describe("backup commands", () => {
   });
 
   async function withInvalidWorkspaceBackupConfig<T>(fn: (runtime: RuntimeEnv) => Promise<T>) {
-    const stateDir = path.join(tempHome.home, ".openclaw");
+    const stateDir = path.join(tempHome.home, ".soloclaw");
     const configPath = path.join(tempHome.home, "custom-config.json");
     process.env.OPENCLAW_CONFIG_PATH = configPath;
     await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
@@ -85,7 +85,7 @@ describe("backup commands", () => {
   }
 
   it("collapses default config, credentials, and workspace into the state backup root", async () => {
-    const stateDir = path.join(tempHome.home, ".openclaw");
+    const stateDir = path.join(tempHome.home, ".soloclaw");
     const configPath = path.join(stateDir, "openclaw.json");
     const oauthDir = path.join(stateDir, "credentials");
     const workspaceDir = path.join(stateDir, "workspace");
@@ -113,7 +113,7 @@ describe("backup commands", () => {
       return;
     }
 
-    const stateDir = path.join(tempHome.home, ".openclaw");
+    const stateDir = path.join(tempHome.home, ".soloclaw");
     const workspaceDir = path.join(stateDir, "workspace");
     const symlinkDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-workspace-link-"));
     const workspaceLink = path.join(symlinkDir, "ws-link");
@@ -138,7 +138,7 @@ describe("backup commands", () => {
   });
 
   it("creates an archive with a manifest and external workspace payload", async () => {
-    const stateDir = path.join(tempHome.home, ".openclaw");
+    const stateDir = path.join(tempHome.home, ".soloclaw");
     const externalWorkspace = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-workspace-"));
     const configPath = path.join(tempHome.home, "custom-config.json");
     const backupDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-backups-"));
@@ -254,7 +254,7 @@ describe("backup commands", () => {
   });
 
   it("rejects output paths that would be created inside a backed-up directory", async () => {
-    const stateDir = path.join(tempHome.home, ".openclaw");
+    const stateDir = path.join(tempHome.home, ".soloclaw");
     await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
 
     const runtime = createBackupTestRuntime();
@@ -272,7 +272,7 @@ describe("backup commands", () => {
       return;
     }
 
-    const stateDir = path.join(tempHome.home, ".openclaw");
+    const stateDir = path.join(tempHome.home, ".soloclaw");
     const symlinkDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-backup-link-"));
     const symlinkPath = path.join(symlinkDir, "linked-state");
     try {
@@ -293,7 +293,7 @@ describe("backup commands", () => {
   });
 
   it("falls back to the home directory when cwd is inside a backed-up source tree", async () => {
-    const stateDir = path.join(tempHome.home, ".openclaw");
+    const stateDir = path.join(tempHome.home, ".soloclaw");
     const workspaceDir = path.join(stateDir, "workspace");
     await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
     await fs.mkdir(workspaceDir, { recursive: true });
@@ -356,7 +356,7 @@ describe("backup commands", () => {
   });
 
   it("allows dry-run preview even when the target archive already exists", async () => {
-    const stateDir = path.join(tempHome.home, ".openclaw");
+    const stateDir = path.join(tempHome.home, ".soloclaw");
     const existingArchive = path.join(tempHome.home, "existing-backup.tar.gz");
     await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
     await fs.writeFile(existingArchive, "already here", "utf8");
@@ -409,7 +409,7 @@ describe("backup commands", () => {
   });
 
   it("backs up only the active config file when --only-config is requested", async () => {
-    const stateDir = path.join(tempHome.home, ".openclaw");
+    const stateDir = path.join(tempHome.home, ".soloclaw");
     const configPath = path.join(stateDir, "openclaw.json");
     await fs.mkdir(path.join(stateDir, "credentials"), { recursive: true });
     await fs.writeFile(configPath, JSON.stringify({ theme: "config-only" }), "utf8");

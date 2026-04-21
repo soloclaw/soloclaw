@@ -28,7 +28,7 @@ export function createFirecrawlWebSearchProvider(): WebSearchProviderPlugin {
     envVars: ["FIRECRAWL_API_KEY"],
     placeholder: "fc-...",
     signupUrl: "https://www.firecrawl.dev/",
-    docsUrl: "https://docs.openclaw.ai/tools/firecrawl",
+    docsUrl: "https://docs.soloclaw.ai/tools/firecrawl",
     autoDetectOrder: 60,
     credentialPath: FIRECRAWL_CREDENTIAL_PATH,
     ...createWebSearchProviderContractFields({

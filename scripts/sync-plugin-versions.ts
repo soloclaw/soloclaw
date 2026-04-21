@@ -25,7 +25,7 @@ function syncOpenClawDependencyRange(
   deps: Record<string, string> | undefined,
   targetVersion: string,
 ): boolean {
-  const current = deps?.openclaw;
+  const current = deps?.soloclaw;
   if (!current || current === "workspace:*" || !OPENCLAW_VERSION_RANGE_RE.test(current)) {
     return false;
   }
@@ -33,7 +33,7 @@ function syncOpenClawDependencyRange(
   if (current === next) {
     return false;
   }
-  deps.openclaw = next;
+  deps.soloclaw = next;
   return true;
 }
 

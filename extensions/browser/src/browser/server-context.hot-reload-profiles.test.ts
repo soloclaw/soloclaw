@@ -155,7 +155,7 @@ describe("server-context hot-reload profiles", () => {
       profiles: new Map(),
     };
 
-    mockState.cfgProfiles.openclaw = { cdpPort: 19999, color: "#FF4500" };
+    mockState.cfgProfiles.soloclaw = { cdpPort: 19999, color: "#FF4500" };
     mockState.cachedConfig = null;
 
     const after = resolveBrowserProfileWithHotReload({
@@ -164,7 +164,7 @@ describe("server-context hot-reload profiles", () => {
       name: "openclaw",
     });
     expect(after?.cdpPort).toBe(19999);
-    expect(state.resolved.profiles.openclaw?.cdpPort).toBe(19999);
+    expect(state.resolved.profiles.soloclaw?.cdpPort).toBe(19999);
   });
 
   it("listProfiles refreshes config before enumerating profiles", async () => {
@@ -210,7 +210,7 @@ describe("server-context hot-reload profiles", () => {
       ]),
     };
 
-    mockState.cfgProfiles.openclaw = { cdpPort: 19999, color: "#FF4500" };
+    mockState.cfgProfiles.soloclaw = { cdpPort: 19999, color: "#FF4500" };
     mockState.cachedConfig = null;
 
     refreshResolvedBrowserConfigFromDisk({

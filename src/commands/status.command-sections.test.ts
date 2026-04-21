@@ -147,8 +147,8 @@ describe("status.command-sections", () => {
         gatewayReachable: false,
       }),
     ).toEqual([
-      "FAQ: https://docs.openclaw.ai/faq",
-      "Troubleshooting: https://docs.openclaw.ai/troubleshooting",
+      "FAQ: https://docs.soloclaw.ai/faq",
+      "Troubleshooting: https://docs.soloclaw.ai/troubleshooting",
       "",
       "warn(upgrade ready)",
       "Next steps:",

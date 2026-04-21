@@ -1,6 +1,6 @@
 # Changelog
 
-Docs: https://docs.openclaw.ai
+Docs: https://docs.soloclaw.ai
 
 ## Unreleased
 
@@ -242,7 +242,7 @@ Docs: https://docs.openclaw.ai
 ### Changes
 
 - QA/lab: add Convex-backed pooled Telegram credential leasing plus `openclaw qa credentials` admin commands and broker setup docs. (#65596) Thanks @joshavant.
-- Memory/Active Memory: add a new optional Active Memory plugin that gives OpenClaw a dedicated memory sub-agent right before the main reply, so ongoing chats can automatically pull in relevant preferences, context, and past details without making users remember to manually say "remember this" or "search memory" first. Includes configurable message/recent/full context modes, live `/verbose` inspection, advanced prompt/thinking overrides for tuning, and opt-in transcript persistence for debugging. Docs: https://docs.openclaw.ai/concepts/active-memory. (#63286) Thanks @Takhoffman.
+- Memory/Active Memory: add a new optional Active Memory plugin that gives OpenClaw a dedicated memory sub-agent right before the main reply, so ongoing chats can automatically pull in relevant preferences, context, and past details without making users remember to manually say "remember this" or "search memory" first. Includes configurable message/recent/full context modes, live `/verbose` inspection, advanced prompt/thinking overrides for tuning, and opt-in transcript persistence for debugging. Docs: https://docs.soloclaw.ai/concepts/active-memory. (#63286) Thanks @Takhoffman.
 - macOS/Talk: add an experimental local MLX speech provider for Talk Mode, with explicit provider selection, local utterance playback, interruption handling, and system-voice fallback. (#63539) Thanks @ImLukeF.
 - CLI/exec policy: add a local `openclaw exec-policy` command with `show`, `preset`, and `set` subcommands for synchronizing requested `tools.exec.*` config with the local exec approvals file, plus follow-up hardening for node-host rejection, rollback safety, and sync conflict detection. (#64050)
 - Gateway: add a `commands.list` RPC so remote gateway clients can discover runtime-native, text, skill, and plugin commands with surface-aware naming and serialized argument metadata. (#62656) Thanks @samzong.
@@ -282,7 +282,7 @@ Docs: https://docs.openclaw.ai
 - Agents/queueing: carry orphaned active-turn user text into the next prompt before repairing transcript ordering, so follow-up messages that arrive mid-run are no longer silently dropped. (#65388) Thanks @adminfedres and @vincentkoc.
 - Gateway/keepalive: stop marking WebSocket tick broadcasts as droppable so slow or backpressured clients do not self-disconnect with `tick timeout` while long-running work is still alive. (#65256) Thanks @100yenadmin and @vincentkoc.
 - Matrix/mentions: keep room mention gating strict while accepting visible `@displayName` Matrix URI labels, so `requireMention` works for non-OpenClaw Matrix clients again. (#64796) Thanks @hclsys.
-- Doctor: warn when on-disk agent directories still exist under `~/.openclaw/agents/<id>/agent` but the matching `agents.list[]` entries are missing from config. (#65113) Thanks @neeravmakwana.
+- Doctor: warn when on-disk agent directories still exist under `~/.soloclaw/agents/<id>/agent` but the matching `agents.list[]` entries are missing from config. (#65113) Thanks @neeravmakwana.
 - Telegram: route approval button callback queries onto a separate sequentializer lane so plugin approval clicks can resolve immediately instead of deadlocking behind the blocked agent turn. (#64979) Thanks @nk3750.
 - Telegram/direct sessions: keep commentary-only assistant fallback payloads out of visible direct delivery, so Codex planning chatter cannot leak into Telegram DMs when a run has no `final_answer` text.
 - Gateway/keepalive: stop marking WebSocket tick broadcasts as droppable so slow or backpressured clients do not self-disconnect with `tick timeout` while long-running work is still alive. (#65436)
@@ -290,7 +290,7 @@ Docs: https://docs.openclaw.ai
 - Gateway/auth: blank the shipped example gateway credential in `.env.example` and fail startup when a copied placeholder token or password is still configured, so operators cannot accidentally launch with a publicly known secret. (#64586) Thanks @navarrotech.
 - Plugins/memory-core dreaming: keep bundled `memory-core` loaded alongside an explicit external memory slot owner only when that owner enables dreaming, while preserving `plugins.slots.memory = "none"` disable semantics. (#65411) Thanks @pradeep7127.
 - Doctor/Discord: stop `openclaw doctor --fix` from rewriting legacy Discord preview-streaming config into the nested modern shape, so downgrades can still recover without hand-editing `channels.discord.streaming`.
-- Doctor: warn when on-disk agent directories still exist under `~/.openclaw/agents/<id>/agent` but the matching `agents.list[]` entries are missing from config. (#65113) Thanks @neeravmakwana.
+- Doctor: warn when on-disk agent directories still exist under `~/.soloclaw/agents/<id>/agent` but the matching `agents.list[]` entries are missing from config. (#65113) Thanks @neeravmakwana.
 - CLI/plugins: honor `memory-wiki` when `plugins.allow` is set for `openclaw wiki`, and pass the active app config into the metadata registrar so plugin-owned wiki commands resolve the live plugin config instead of falling back to defaults. (#64779, #65012)
 - QA/packaging: stop packaged QA helpers from crashing when optional scenario execution config is unavailable, so npm distributions can skip the repo-only scenario pack without breaking completion-cache and startup paths. (#65118) Thanks @EdderTalmor.
 - Media/audio transcription: surface the real provider failure when every audio transcription attempt fails, so status output and the CLI stop collapsing those errors into generic skips. (#65096) Thanks @l0cka.
@@ -362,7 +362,7 @@ Docs: https://docs.openclaw.ai
 ### Changes
 
 - Models/Codex: add the bundled Codex provider and plugin-owned app-server harness so `codex/gpt-*` models use Codex-managed auth, native threads, model discovery, and compaction while `openai/gpt-*` stays on the normal OpenAI provider path. (#64298)
-- Memory/Active Memory: add a new optional Active Memory plugin that gives OpenClaw a dedicated memory sub-agent right before the main reply, so ongoing chats can automatically pull in relevant preferences, context, and past details without making users remember to manually say "remember this" or "search memory" first. Includes configurable message/recent/full context modes, live `/verbose` inspection, advanced prompt/thinking overrides for tuning, and opt-in transcript persistence for debugging. Docs: https://docs.openclaw.ai/concepts/active-memory. (#63286) Thanks @Takhoffman.
+- Memory/Active Memory: add a new optional Active Memory plugin that gives OpenClaw a dedicated memory sub-agent right before the main reply, so ongoing chats can automatically pull in relevant preferences, context, and past details without making users remember to manually say "remember this" or "search memory" first. Includes configurable message/recent/full context modes, live `/verbose` inspection, advanced prompt/thinking overrides for tuning, and opt-in transcript persistence for debugging. Docs: https://docs.soloclaw.ai/concepts/active-memory. (#63286) Thanks @Takhoffman.
 - macOS/Talk: add an experimental local MLX speech provider for Talk Mode, with explicit provider selection, local utterance playback, interruption handling, and system-voice fallback. (#63539) Thanks @ImLukeF.
 - Tools/video generation: add Seedance 2.0 model refs to the bundled fal provider and submit the provider-specific duration, resolution, audio, and seed metadata fields needed for live Seedance 2.0 runs.
 - Microsoft Teams: add message actions for pin, unpin, read, react, and listing reactions. (#53432) Thanks @sudie-codes.
@@ -930,7 +930,7 @@ Docs: https://docs.openclaw.ai
 - Matrix: pass configured `deviceId` through health probes and keep probe-only client setup out of durable Matrix storage, so health checks preserve the correct device identity without rewriting `storage-meta.json` or related probe state on disk. (#61581) Thanks @MoerAI.
 - Image generation/build: write stable runtime alias files into `dist/` and route provider-auth runtime lookups through those aliases so image-generation providers keep resolving auth/runtime modules after rebuilds instead of crashing on missing hashed chunk files.
 - Config/runtime: pin the first successful config load in memory for the running process and refresh that snapshot on successful writes/reloads, so hot paths stop reparsing `openclaw.json` between watcher-driven swaps.
-- Config/legacy cleanup: stop probing obsolete alternate legacy config names and service labels during local config/service detection, while keeping the active `~/.openclaw/openclaw.json` path canonical.
+- Config/legacy cleanup: stop probing obsolete alternate legacy config names and service labels during local config/service detection, while keeping the active `~/.soloclaw/openclaw.json` path canonical.
 - ACP/sessions_spawn: register ACP child runs for completion tracking and lifecycle cleanup, and make registration-failure cleanup explicitly best-effort so callers do not assume an already-started ACP turn was fully aborted. (#40885) Thanks @xaeon2026 and @vincentkoc.
 - ACP/tasks: mark cleanly exited ACP runs as blocked when they end on deterministic write or authorization blockers, and wake the parent session with a follow-up instead of falsely reporting success.
 - ACPX/runtime: derive the bundled ACPX expected version from the extension package metadata instead of hardcoding a separate literal, so plugin-local ACPX installs stop drifting out of health-check parity after version bumps. (#49089) Thanks @jiejiesks and @vincentkoc.
@@ -1071,7 +1071,7 @@ Docs: https://docs.openclaw.ai
 - Providers/Anthropic routing: centralize native-vs-proxy endpoint classification for direct Anthropic `service_tier` handling so spoofed or proxied hosts do not inherit native Anthropic defaults. (#59608) Thanks @vincentkoc.
 - Gateway/exec loopback: restore legacy-role fallback for empty paired-device token maps and allow silent local role upgrades so local exec and node clients stop failing with pairing-required errors after `2026.3.31`. (#59092) Thanks @openperf.
 - Agents/subagents: pin admin-only subagent gateway calls to `operator.admin` while keeping `agent` at least privilege, so `sessions_spawn` no longer dies on loopback scope-upgrade pairing with `close(1008) "pairing required"`. (#59555) Thanks @openperf.
-- Exec approvals/config: strip invalid `security`, `ask`, and `askFallback` values from `~/.openclaw/exec-approvals.json` during normalization so malformed policy enums fall back cleanly to the documented defaults instead of corrupting runtime policy resolution. (#59112) Thanks @openperf.
+- Exec approvals/config: strip invalid `security`, `ask`, and `askFallback` values from `~/.soloclaw/exec-approvals.json` during normalization so malformed policy enums fall back cleanly to the documented defaults instead of corrupting runtime policy resolution. (#59112) Thanks @openperf.
 - Exec approvals/doctor: report host policy sources from the real approvals file path and ignore malformed host override values when attributing effective policy conflicts. (#59367) Thanks @gumadeiras.
 - Exec/runtime: treat `tools.exec.host=auto` as routing-only, keep implicit no-config exec on sandbox when available or gateway otherwise, and reject per-call host overrides that would bypass the configured sandbox or host target. (#58897) Thanks @vincentkoc.
 - Slack/mrkdwn formatting: add built-in Slack mrkdwn guidance in inbound context so Slack replies stop falling back to generic Markdown patterns that render poorly in Slack. (#59100) Thanks @jadewon.
@@ -1295,7 +1295,7 @@ Docs: https://docs.openclaw.ai
 - Browser/plugins: auto-enable the bundled browser plugin when browser config or browser tool policy already references it, and show a clearer CLI error when `plugins.allow` excludes `browser`.
 - CI/dev checks: default local `pnpm check` to a lower-memory typecheck/lint path while keeping CI on the normal parallel path, and harden Telegram test typing/literals around native TypeScript-Go tooling crashes.
 - Tasks: add a small task-flow runtime substrate for authoring layers with persisted wait targets and output bags, plus bundled skills/Lobster examples and richer `flows show` / `doctor` recovery hints for multi-task flow state. (#58336) Thanks @mbelinky and @vincentkoc.
-- Config/legacy cleanup: stop probing obsolete alternate legacy config names and service labels during local config/service detection, while keeping the active `~/.openclaw/openclaw.json` path canonical.
+- Config/legacy cleanup: stop probing obsolete alternate legacy config names and service labels during local config/service detection, while keeping the active `~/.soloclaw/openclaw.json` path canonical.
 - Config/runtime: pin the first successful config load in memory for the running process and refresh that snapshot on successful writes/reloads, so hot paths stop reparsing `openclaw.json` between watcher-driven swaps.
 - LINE/status: stop `openclaw status` from warning about missing credentials when sanitized LINE snapshots are already configured, while still surfacing whether the missing field is the token or secret. (#45701) Thanks @tamaosamu.
 - macOS/local gateway: stop OpenClaw.app from killing healthy local gateway listeners after startup by recognizing the current `openclaw-gateway` process title and using the current `openclaw gateway` launch shape.
@@ -1704,15 +1704,15 @@ Docs: https://docs.openclaw.ai
 
 ### Breaking
 
-- Plugins/install: bare `openclaw plugins install <package>` now prefers ClawHub before npm for npm-safe names, and only falls back to npm when ClawHub does not have that package or version. Docs: https://docs.openclaw.ai/tools/clawhub
-- Browser/Chrome MCP: remove the legacy Chrome extension relay path, bundled extension assets, `driver: "extension"`, and `browser.relayBindHost`. Run `openclaw doctor --fix` to migrate host-local browser config to `existing-session` / `user`; Docker, headless, sandbox, and remote browser flows still use raw CDP. Docs: https://docs.openclaw.ai/gateway/doctor and https://docs.openclaw.ai/tools/browser (#47893) Thanks @vincentkoc.
+- Plugins/install: bare `openclaw plugins install <package>` now prefers ClawHub before npm for npm-safe names, and only falls back to npm when ClawHub does not have that package or version. Docs: https://docs.soloclaw.ai/tools/clawhub
+- Browser/Chrome MCP: remove the legacy Chrome extension relay path, bundled extension assets, `driver: "extension"`, and `browser.relayBindHost`. Run `openclaw doctor --fix` to migrate host-local browser config to `existing-session` / `user`; Docker, headless, sandbox, and remote browser flows still use raw CDP. Docs: https://docs.soloclaw.ai/gateway/doctor and https://docs.soloclaw.ai/tools/browser (#47893) Thanks @vincentkoc.
 - Tools/image generation: standardize the stock image create/edit path on the core `image_generate` tool. The old `nano-banana-pro` docs/examples are gone; if you previously copied that sample-skill config, switch to `agents.defaults.imageGenerationModel` for built-in image generation or install a separate third-party skill explicitly.
 - Skills/image generation: remove the bundled `nano-banana-pro` skill wrapper. Use `agents.defaults.imageGenerationModel.primary: "google/gemini-3-pro-image-preview"` for the native Nano Banana-style path instead.
-- Plugins/SDK: the new public plugin SDK surface is `openclaw/plugin-sdk/*`; `openclaw/extension-api` is removed with no compatibility shim. Bundled plugins must use injected runtime for host-side operations (for example `api.runtime.agent.runEmbeddedPiAgent`) and any remaining direct imports must come from narrow `openclaw/plugin-sdk/*` subpaths instead of the monolithic SDK root. Docs: https://docs.openclaw.ai/plugins/sdk-migration and https://docs.openclaw.ai/plugins/sdk-overview
+- Plugins/SDK: the new public plugin SDK surface is `openclaw/plugin-sdk/*`; `openclaw/extension-api` is removed with no compatibility shim. Bundled plugins must use injected runtime for host-side operations (for example `api.runtime.agent.runEmbeddedPiAgent`) and any remaining direct imports must come from narrow `openclaw/plugin-sdk/*` subpaths instead of the monolithic SDK root. Docs: https://docs.soloclaw.ai/plugins/sdk-migration and https://docs.soloclaw.ai/plugins/sdk-overview
 - Plugins/message discovery: require `ChannelMessageActionAdapter.describeMessageTool(...)` for shared `message` tool discovery. The legacy `listActions`, `getCapabilities`, and `getToolSchema` adapter methods are removed. Plugin authors should migrate message discovery to `describeMessageTool(...)` and keep channel-specific action runtime code inside the owning plugin package. Thanks @gumadeiras.
-- Plugins/Matrix: add a new Matrix plugin backed by the official `matrix-js-sdk`. If you are upgrading from the previous public Matrix plugin, follow the migration guide: https://docs.openclaw.ai/install/migrating-matrix Thanks @gumadeiras.
+- Plugins/Matrix: add a new Matrix plugin backed by the official `matrix-js-sdk`. If you are upgrading from the previous public Matrix plugin, follow the migration guide: https://docs.soloclaw.ai/install/migrating-matrix Thanks @gumadeiras.
 - Config/env: remove legacy `CLAWDBOT_*` and `MOLTBOT_*` compatibility env names across runtime, installers, and test tooling. Use the matching `OPENCLAW_*` env names instead.
-- Config/state: remove legacy `.moltbot` state-dir and `moltbot.json` auto-detection/migration fallback. If you still keep state under `~/.moltbot`, move it to `~/.openclaw` or set `OPENCLAW_STATE_DIR` / `OPENCLAW_CONFIG_PATH` explicitly. Docs: https://docs.openclaw.ai/install/migrating and https://docs.openclaw.ai/start/getting-started
+- Config/state: remove legacy `.moltbot` state-dir and `moltbot.json` auto-detection/migration fallback. If you still keep state under `~/.moltbot`, move it to `~/.soloclaw` or set `OPENCLAW_STATE_DIR` / `OPENCLAW_CONFIG_PATH` explicitly. Docs: https://docs.soloclaw.ai/install/migrating and https://docs.soloclaw.ai/start/getting-started
 - Exec/env sandbox: block build-tool JVM injection (`MAVEN_OPTS`, `SBT_OPTS`, `GRADLE_OPTS`, `ANT_OPTS`), glibc tunable exploitation (`GLIBC_TUNABLES`), and .NET dependency resolution hijack (`DOTNET_ADDITIONAL_DEPS`) from the host exec environment, and restrict Gradle init script redirect (`GRADLE_USER_HOME`) as an override-only block so user-configured Gradle homes still propagate. (#49702)
 - Discord/commands: switch native command deployment to Carbon reconcile by default so Discord restarts stop churning slash commands through OpenClaw's local deploy path. (#46597) Thanks @huntharo and @thewilloftheshadow.
 - Security/exec approvals: treat `time` as a transparent dispatch wrapper during allowlist evaluation and allow-always persistence so approved `time ...` commands bind the inner executable instead of the wrapper path. Thanks @YLChen-007 for reporting.
@@ -1989,7 +1989,7 @@ Docs: https://docs.openclaw.ai
 - Plugins/context engines: enforce owner-aware context-engine registration on both loader and public SDK paths so plugins cannot spoof privileged ownership, claim the core `legacy` engine id, or overwrite an existing engine id through direct SDK imports. (#47595) Thanks @vincentkoc.
 - Plugins/bundler TDZ: fix `RESERVED_COMMANDS` temporal dead zone error that prevented device-pair, phone-control, and talk-voice plugins from registering when the bundler placed the commands module after call sites in the same output chunk. Thanks @BunsDev.
 - Plugins/imports: fix stale googlechat runtime-api import paths and signal SDK circular re-exports broken by recent plugin-sdk refactors. Thanks @BunsDev.
-- Plugins/install precedence: keep bundled plugins ahead of auto-discovered globals by default, but let an explicitly installed plugin record win its own duplicate-id tie so installed channel plugins load from `~/.openclaw/extensions` after `openclaw plugins install`. (#46722) Thanks @Takhoffman.
+- Plugins/install precedence: keep bundled plugins ahead of auto-discovered globals by default, but let an explicitly installed plugin record win its own duplicate-id tie so installed channel plugins load from `~/.soloclaw/extensions` after `openclaw plugins install`. (#46722) Thanks @Takhoffman.
 - Plugins/scoped ids: preserve scoped plugin ids during install and config keying, and keep bundled plugins ahead of discovered duplicate ids by default so `@scope/name` plugins no longer collide with unscoped installs. (#47413) Thanks @vincentkoc.
 - Docs/Mintlify: fix MDX marker syntax on Perplexity, Model Providers, Moonshot, and exec approvals pages so local docs preview no longer breaks rendering or leaves stale pages unpublished. (#46695) Thanks @velvet-shark.
 - Plugins/runtime barrels: route bundled extension runtime imports through public `openclaw/plugin-sdk/*` subpaths and block relative cross-package escapes so packaged extensions stop depending on monorepo-only relative paths. (#51939) Thanks @vincentkoc.
@@ -2437,7 +2437,7 @@ Docs: https://docs.openclaw.ai
 - Tools/Diffs guidance loading: move diffs usage guidance from unconditional prompt-hook injection to the plugin companion skill path, reducing unrelated-turn prompt noise while keeping diffs tool behavior unchanged. (#32630) thanks @sircrumpet.
 - Docs/Web search: remove outdated Brave free-tier wording and replace prescriptive AI ToS guidance with neutral compliance language in Brave setup docs. (#26860) Thanks @HenryLoenwind.
 - Config/Compaction safeguard tuning: expose `agents.defaults.compaction.recentTurnsPreserve` and quality-guard retry knobs through the validated config surface and embedded-runner wiring, with regression coverage for real config loading and schema metadata. (#25557) thanks @rodrigouroz.
-- iOS/App Store Connect release prep: align iOS bundle identifiers under `ai.openclaw.client`, refresh Watch app icons, add Fastlane metadata/screenshot automation, and support Keychain-backed ASC auth for uploads. (#38936) Thanks @ngutman.
+- iOS/App Store Connect release prep: align iOS bundle identifiers under `ai.soloclaw.client`, refresh Watch app icons, add Fastlane metadata/screenshot automation, and support Keychain-backed ASC auth for uploads. (#38936) Thanks @ngutman.
 - Mattermost/model picker: add Telegram-style interactive provider/model browsing for `/oc_model` and `/oc_models`, fix picker callback updates, and emit a normal confirmation reply when a model is selected. (#38767) thanks @mukhtharcm.
 - Docker/multi-stage build: restructure Dockerfile as a multi-stage build to produce a minimal runtime image without build tools, source code, or Bun; add `OPENCLAW_VARIANT=slim` build arg for a bookworm-slim variant. (#38479) Thanks @sallyom.
 - Google/Gemini 3.1 Flash-Lite: add first-class `google/gemini-3.1-flash-lite-preview` support across model-id normalization, default aliases, media-understanding image lookups, Google Gemini CLI forward-compat fallback, and docs.
@@ -2989,7 +2989,7 @@ Docs: https://docs.openclaw.ai
 ### Breaking
 
 - **BREAKING:** Onboarding now defaults `tools.profile` to `messaging` for new local installs (interactive + non-interactive). New setups no longer start with broad coding/system tools unless explicitly configured.
-- **BREAKING:** ACP dispatch now defaults to enabled unless explicitly disabled (`acp.dispatch.enabled=false`). If you need to pause ACP turn routing while keeping `/acp` controls, set `acp.dispatch.enabled=false`. Docs: https://docs.openclaw.ai/tools/acp-agents
+- **BREAKING:** ACP dispatch now defaults to enabled unless explicitly disabled (`acp.dispatch.enabled=false`). If you need to pause ACP turn routing while keeping `/acp` controls, set `acp.dispatch.enabled=false`. Docs: https://docs.soloclaw.ai/tools/acp-agents
 - **BREAKING:** Plugin SDK removed `api.registerHttpHandler(...)`. Plugins must register explicit HTTP routes via `api.registerHttpRoute({ path, auth, match, handler })`, and dynamic webhook lifecycles should use `registerPluginHttpRoute(...)`.
 - **BREAKING:** Zalo Personal plugin (`@openclaw/zalouser`) no longer depends on external `zca`-compatible CLI binaries (`openzca`, `zca-cli`) for runtime send/listen/login; operators should use `openclaw channels login --channel zalouser` after upgrade to refresh sessions in the new JS-native path.
 
@@ -3124,7 +3124,7 @@ Docs: https://docs.openclaw.ai
 ### Changes
 
 - Models/OpenAI forward compat: add support for `openai/gpt-5.4`, `openai/gpt-5.4-pro`, and `openai-codex/gpt-5.4`, including direct OpenAI Responses `serviceTier` passthrough safeguards for valid values. (#36590) Thanks @dorukardahan.
-- Android/Play package ID: rename the Android app package to `ai.openclaw.app`, including matching benchmark and Android tooling references for Play publishing. (#38712) Thanks @obviyus.
+- Android/Play package ID: rename the Android app package to `ai.soloclaw.app`, including matching benchmark and Android tooling references for Play publishing. (#38712) Thanks @obviyus.
 
 ### Fixes
 
@@ -3391,7 +3391,7 @@ Docs: https://docs.openclaw.ai
 - UI/Chat compose: add mobile stacked layout for compose action buttons on small screens to improve send/session controls usability. (#11167) Thanks @junyiz.
 - Heartbeat/Config: replace heartbeat DM toggle with `agents.defaults.heartbeat.directPolicy` (`allow` | `block`; also supported per-agent via `agents.list[].heartbeat.directPolicy`) for clearer delivery semantics.
 - Onboarding/Security: clarify onboarding security notices that OpenClaw is personal-by-default (single trusted operator boundary) and shared/multi-user setups require explicit lock-down/hardening.
-- Branding/Docs + Apple surfaces: replace remaining `bot.molt` launchd label, bundle-id, logging subsystem, and command examples with `ai.openclaw` across docs, iOS app surfaces, helper scripts, and CLI test fixtures.
+- Branding/Docs + Apple surfaces: replace remaining `bot.molt` launchd label, bundle-id, logging subsystem, and command examples with `ai.soloclaw` across docs, iOS app surfaces, helper scripts, and CLI test fixtures.
 - Agents/Config: remind agents to call `config.schema` before config edits or config-field questions to avoid guessing. Thanks @thewilloftheshadow.
 - Dependencies: update workspace dependency pins and lockfile (Bedrock SDK `3.998.0`, `@mariozechner/pi-*` `0.55.1`, TypeScript native preview `7.0.0-dev.20260225.1`) while keeping `@buape/carbon` pinned.
 
@@ -3654,7 +3654,7 @@ Docs: https://docs.openclaw.ai
 - Providers/Moonshot: mark Kimi K2.5 as image-capable in implicit + onboarding model definitions, and refresh stale explicit provider capability fields (`input`/`reasoning`/context limits) from implicit catalogs so existing configs pick up Moonshot vision support without manual model rewrites. (#13135, #4459) Thanks @manikv12.
 - Agents/Transcript: enable consecutive-user turn merging for strict non-OpenAI `openai-completions` providers (for example Moonshot/Kimi), reducing `roles must alternate` ordering failures on OpenAI-compatible endpoints while preserving current OpenRouter/Opencode behavior. (#7693)
 - Install/Discord Voice: make the native Opus decoder optional so `openclaw` install/update no longer hard-fails when native builds fail, while keeping `opusscript` as the runtime fallback decoder for Discord voice flows. (#23737, #23733, #23703) Thanks @jeadland, @Sheetaa, and @Breakyman.
-- Docker/Setup: precreate `$OPENCLAW_CONFIG_DIR/identity` during `docker-setup.sh` so CLI commands that need device identity (for example `devices list`) avoid `EACCES ... /home/node/.openclaw/identity` failures on restrictive bind mounts. (#23948) Thanks @ackson-beep.
+- Docker/Setup: precreate `$OPENCLAW_CONFIG_DIR/identity` during `docker-setup.sh` so CLI commands that need device identity (for example `devices list`) avoid `EACCES ... /home/node/.soloclaw/identity` failures on restrictive bind mounts. (#23948) Thanks @ackson-beep.
 - Exec/Background: stop applying the default exec timeout to background sessions (`background: true` or explicit `yieldMs`) when no explicit timeout is set, so long-running background jobs are no longer terminated at the default timeout boundary. (#23303)
 - Slack/Threading: sessions: keep parent-session forking and thread-history context active beyond first turn by removing first-turn-only gates in session init, thread-history fetch, and reply prompt context injection. (#23843, #23090) Thanks @vincentkoc and @Taskle.
 - Slack/Threading: respect `replyToMode` when Slack auto-populates top-level `thread_ts`, and ignore inline `replyToId` directive tags when `replyToMode` is `off` so thread forcing stays disabled unless explicitly configured. (#23839, #23320, #23513) Thanks @vincentkoc and @dorukardahan.
@@ -3703,7 +3703,7 @@ Docs: https://docs.openclaw.ai
 - Feishu/Plugins: restore bundled Feishu SDK availability for global installs and strip `openclaw: workspace:*` from plugin `devDependencies` during plugin-version sync so npm-installed Feishu plugins do not fail dependency install. (#23611, #23645, #23603)
 - Config/Channels: auto-enable built-in channels by writing `channels.<id>.enabled=true` (not `plugins.entries.<id>`), and stop adding built-ins to `plugins.allow`, preventing `plugins.entries.telegram: plugin not found` validation failures.
 - Config/Channels: when `plugins.allow` is active, auto-enable/enable flows now also allowlist configured built-in channels so `channels.<id>.enabled=true` cannot remain blocked by restrictive plugin allowlists.
-- Plugins/Discovery: ignore scanned extension backup/disabled directory patterns (for example `.backup-*`, `.bak`, `.disabled*`) and move updater backup directories under `.openclaw-install-backups`, preventing duplicate plugin-id collisions from archived copies.
+- Plugins/Discovery: ignore scanned extension backup/disabled directory patterns (for example `.backup-*`, `.bak`, `.disabled*`) and move updater backup directories under `.soloclaw-install-backups`, preventing duplicate plugin-id collisions from archived copies.
 - Plugins/CLI: make `openclaw plugins enable` and plugin install/link flows update allowlists via shared plugin-enable policy so enabled plugins are not left disabled by allowlist mismatch. (#23190) Thanks @downwind7clawd-ctrl.
 - Security/Voice Call: harden media stream WebSocket handling against pre-auth idle-connection DoS by adding strict pre-start timeouts, pending/per-IP connection limits, and total connection caps for streaming endpoints. Thanks @jiseoung for reporting.
 - Security/Sessions: redact sensitive token patterns from `sessions_history` tool output and surface `contentRedacted` metadata when masking occurs. (#16928) Thanks @aether-ai-agent.
@@ -3986,7 +3986,7 @@ Docs: https://docs.openclaw.ai
 - Docker: run build steps as the `node` user and use `COPY --chown` to avoid recursive ownership changes, trimming image size and layer churn. Thanks @huntharo.
 - Config/Memory: restore schema help/label metadata for hybrid `mmr` and `temporalDecay` settings so configuration surfaces show correct names and guidance. (#18786) Thanks @rodrigouroz.
 - Skills/SonosCLI: add troubleshooting guidance for `sonos discover` failures on macOS direct mode (`sendto: no route to host`) and sandbox network restrictions (`bind: operation not permitted`). (#21316) Thanks @huntharo.
-- macOS/Build: default release packaging to `BUNDLE_ID=ai.openclaw.mac` in `scripts/package-mac-dist.sh`, so Sparkle feed URL is retained and auto-update no longer fails with an empty appcast feed. (#19750) thanks @loganprit.
+- macOS/Build: default release packaging to `BUNDLE_ID=ai.soloclaw.mac` in `scripts/package-mac-dist.sh`, so Sparkle feed URL is retained and auto-update no longer fails with an empty appcast feed. (#19750) thanks @loganprit.
 - Signal/Outbound: preserve case for Base64 group IDs during outbound target normalization so cross-context routing and policy checks no longer break when group IDs include uppercase characters. (#5578) Thanks @heyhudson.
 - Anthropic/Agents: preserve required pi-ai default OAuth beta headers when `context1m` injects `anthropic-beta`, preventing 401 auth failures for `sk-ant-oat-*` tokens. (#19789, fixes #19769) Thanks @minupla.
 - Security/Exec: block unquoted heredoc body expansion tokens in shell allowlist analysis, reject unterminated heredocs, and require explicit approval for allowlisted heredoc execution on gateway hosts to prevent heredoc substitution allowlist bypass. Thanks @torturado for reporting.
@@ -4474,7 +4474,7 @@ Docs: https://docs.openclaw.ai
 - Security/Zalo: reject ambiguous shared-path webhook routing when multiple webhook targets match the same secret.
 - Security/Nostr: require loopback source and block cross-origin profile mutation/import attempts. Thanks @vincentkoc.
 - Security/Signal: harden signal-cli archive extraction during install to prevent path traversal outside the install root.
-- Security/Hooks: restrict hook transform modules to `~/.openclaw/hooks/transforms` (prevents path traversal/escape module loads via config). Config note: `hooks.transformsDir` must now be within that directory. Thanks @akhmittra.
+- Security/Hooks: restrict hook transform modules to `~/.soloclaw/hooks/transforms` (prevents path traversal/escape module loads via config). Config note: `hooks.transformsDir` must now be within that directory. Thanks @akhmittra.
 - Security/Hooks: ignore hook package manifest entries that point outside the package directory (prevents out-of-tree handler loads during hook discovery).
 - Security/Archive: enforce archive extraction entry/size limits to prevent resource exhaustion from high-expansion ZIP/TAR archives. Thanks @vincentkoc.
 - Security/Media: reject oversized base64-backed input media before decoding to avoid large allocations. Thanks @vincentkoc.
@@ -4630,7 +4630,7 @@ Docs: https://docs.openclaw.ai
 
 ### Breaking
 
-- Config/State: removed legacy `.moltbot` auto-detection/migration and `moltbot.json` config candidates. If you still have state/config under `~/.moltbot`, move it to `~/.openclaw` (recommended) or set `OPENCLAW_STATE_DIR` / `OPENCLAW_CONFIG_PATH` explicitly.
+- Config/State: removed legacy `.moltbot` auto-detection/migration and `moltbot.json` config candidates. If you still have state/config under `~/.moltbot`, move it to `~/.soloclaw` (recommended) or set `OPENCLAW_STATE_DIR` / `OPENCLAW_CONFIG_PATH` explicitly.
 
 ## 2026.2.12
 
@@ -4813,7 +4813,7 @@ Docs: https://docs.openclaw.ai
 - State dir: honor `OPENCLAW_STATE_DIR` for default device identity and canvas storage paths. (#4824) Thanks @kossoy.
 - Doctor/State dir: suppress repeated legacy migration warnings only for valid symlink mirrors, while keeping warnings for empty or invalid legacy trees. (#11709) Thanks @gumadeiras.
 - Tests: harden flaky hotspots by removing timer sleeps, consolidating onboarding provider-auth coverage, and improving memory test realism. (#11598) Thanks @gumadeiras.
-- macOS: honor Nix-managed defaults suite (`ai.openclaw.mac`) for nixMode to prevent onboarding from reappearing after bundle-id churn. (#12205) Thanks @joshp123.
+- macOS: honor Nix-managed defaults suite (`ai.soloclaw.mac`) for nixMode to prevent onboarding from reappearing after bundle-id churn. (#12205) Thanks @joshp123.
 - Matrix: add multi-account support via `channels.matrix.accounts`; use per-account config for dm policy, allowFrom, groups, and other settings; serialize account startup to avoid race condition. (#7286, #3165, #3085) Thanks @emonty.
 
 ## 2026.2.6
@@ -4999,7 +4999,7 @@ Docs: https://docs.openclaw.ai
 - Auto-reply: avoid referencing workspace files in /new greeting prompt. (#5706) Thanks @bravostation.
 - Tools: align tool execute adapters/signatures (legacy + parameter order + arg normalization).
 - Tools: treat "\*" tool allowlist entries as valid to avoid spurious unknown-entry warnings.
-- Skills: update session-logs paths from .clawdbot to .openclaw. (#4502)
+- Skills: update session-logs paths from .clawdbot to .soloclaw. (#4502)
 - Slack: harden media fetch limits and Slack file URL validation. (#6639) Thanks @davidiach.
 - Lint: satisfy curly rule after import sorting. (#6310)
 - Process: resolve Windows `spawn()` failures for npm-family CLIs by appending `.cmd` when needed. (#5815) Thanks @thejhinvirtuoso.
@@ -5139,7 +5139,7 @@ Docs: https://docs.openclaw.ai
 
 ### Fixes
 
-- Skills: update session-logs paths to use ~/.openclaw. (#4502) Thanks @bonald.
+- Skills: update session-logs paths to use ~/.soloclaw. (#4502) Thanks @bonald.
 - Telegram: avoid silent empty replies by tracking normalization skips before fallback. (#3796)
 - Mentions: honor mentionPatterns even when explicit mentions are present. (#3303) Thanks @HirokiKobayashi-R.
 - Discord: restore username directory lookup in target resolution. (#3131) Thanks @bonald.
@@ -5218,28 +5218,28 @@ Docs: https://docs.openclaw.ai
 
 ### Highlights
 
-- Providers: Ollama discovery + docs; Venice guide upgrades + cross-links. (#1606) Thanks @abhaymundhara. https://docs.openclaw.ai/providers/ollama https://docs.openclaw.ai/providers/venice
+- Providers: Ollama discovery + docs; Venice guide upgrades + cross-links. (#1606) Thanks @abhaymundhara. https://docs.soloclaw.ai/providers/ollama https://docs.soloclaw.ai/providers/venice
 - Channels: LINE plugin (Messaging API) with rich replies + quick replies. (#1630) Thanks @plum-dawg.
-- TTS: Edge fallback (keyless) + `/tts` auto modes. (#1668, #1667) Thanks @sebslight. https://docs.openclaw.ai/tts
-- Exec approvals: approve in-chat via `/approve` across all channels (including plugins). (#1621) Thanks @czekaj. https://docs.openclaw.ai/tools/exec-approvals https://docs.openclaw.ai/tools/slash-commands
-- Telegram: DM topics as separate sessions + outbound link preview toggle. (#1597, #1700) Thanks @rohannagpal, @zerone0x. https://docs.openclaw.ai/channels/telegram
+- TTS: Edge fallback (keyless) + `/tts` auto modes. (#1668, #1667) Thanks @sebslight. https://docs.soloclaw.ai/tts
+- Exec approvals: approve in-chat via `/approve` across all channels (including plugins). (#1621) Thanks @czekaj. https://docs.soloclaw.ai/tools/exec-approvals https://docs.soloclaw.ai/tools/slash-commands
+- Telegram: DM topics as separate sessions + outbound link preview toggle. (#1597, #1700) Thanks @rohannagpal, @zerone0x. https://docs.soloclaw.ai/channels/telegram
 
 ### Changes
 
 - Channels: add LINE plugin (Messaging API) with rich replies, quick replies, and plugin HTTP registry. (#1630) Thanks @plum-dawg.
-- TTS: add Edge TTS provider fallback, defaulting to keyless Edge with MP3 retry on format failures. (#1668) https://docs.openclaw.ai/tts
-- TTS: add auto mode enum (off/always/inbound/tagged) with per-session `/tts` override. (#1667) Thanks @sebslight. https://docs.openclaw.ai/tts
+- TTS: add Edge TTS provider fallback, defaulting to keyless Edge with MP3 retry on format failures. (#1668) https://docs.soloclaw.ai/tts
+- TTS: add auto mode enum (off/always/inbound/tagged) with per-session `/tts` override. (#1667) Thanks @sebslight. https://docs.soloclaw.ai/tts
 - Telegram: treat DM topics as separate sessions and keep DM history limits stable with thread suffixes. (#1597) Thanks @rohannagpal.
-- Telegram: add `channels.telegram.linkPreview` to toggle outbound link previews. (#1700) Thanks @zerone0x. https://docs.openclaw.ai/channels/telegram
-- Web search: add Brave freshness filter parameter for time-scoped results. (#1688) Thanks @JonUleis. https://docs.openclaw.ai/tools/web
+- Telegram: add `channels.telegram.linkPreview` to toggle outbound link previews. (#1700) Thanks @zerone0x. https://docs.soloclaw.ai/channels/telegram
+- Web search: add Brave freshness filter parameter for time-scoped results. (#1688) Thanks @JonUleis. https://docs.soloclaw.ai/tools/web
 - UI: refresh Control UI dashboard design system (colors, icons, typography). (#1745, #1786) Thanks @EnzeD, @mousberg.
-- Exec approvals: forward approval prompts to chat with `/approve` for all channels (including plugins). (#1621) Thanks @czekaj. https://docs.openclaw.ai/tools/exec-approvals https://docs.openclaw.ai/tools/slash-commands
+- Exec approvals: forward approval prompts to chat with `/approve` for all channels (including plugins). (#1621) Thanks @czekaj. https://docs.soloclaw.ai/tools/exec-approvals https://docs.soloclaw.ai/tools/slash-commands
 - Gateway: expose config.patch in the gateway tool with safe partial updates + restart sentinel. (#1653)
-- Diagnostics: add diagnostic flags for targeted debug logs (config + env override). https://docs.openclaw.ai/diagnostics/flags
+- Diagnostics: add diagnostic flags for targeted debug logs (config + env override). https://docs.soloclaw.ai/diagnostics/flags
 - Docs: expand FAQ (migration, scheduling, concurrency, model recommendations, OpenAI subscription auth, Pi sizing, hackable install, docs SSL workaround).
 - Docs: add verbose installer troubleshooting guidance.
 - Docs: add macOS VM guide with local/hosted options + VPS/nodes guidance. (#1693) Thanks @f-trycua.
-- Docs: add Bedrock EC2 instance role setup + IAM steps. (#1625) Thanks @sergical. https://docs.openclaw.ai/bedrock
+- Docs: add Bedrock EC2 instance role setup + IAM steps. (#1625) Thanks @sergical. https://docs.soloclaw.ai/bedrock
 - Docs: update Fly.io guide notes.
 - Dev: add prek pre-commit hooks + dependabot config for weekly updates. (#1720) Thanks @dguido.
 
@@ -5251,11 +5251,11 @@ Docs: https://docs.openclaw.ai
 - Web UI: hide internal `message_id` hints in chat bubbles.
 - Gateway: allow Control UI token-only auth to skip device pairing even when device identity is present (`gateway.controlUi.allowInsecureAuth`). (#1679)
 - Matrix: decrypt E2EE media attachments with preflight size guard. (#1744) Thanks @araa47.
-- BlueBubbles: route phone-number targets to DMs, avoid leaking routing IDs, and auto-create missing DMs (Private API required). (#1751) Thanks @tyler6204. https://docs.openclaw.ai/channels/bluebubbles
+- BlueBubbles: route phone-number targets to DMs, avoid leaking routing IDs, and auto-create missing DMs (Private API required). (#1751) Thanks @tyler6204. https://docs.soloclaw.ai/channels/bluebubbles
 - BlueBubbles: keep part-index GUIDs in reply tags when short IDs are missing.
 - iMessage: normalize chat_id/chat_guid/chat_identifier prefixes case-insensitively and keep service-prefixed handles stable. (#1708) Thanks @aaronn.
 - Signal: repair reaction sends (group/UUID targets + CLI author flags). (#1651) Thanks @vilkasdev.
-- Signal: add configurable signal-cli startup timeout + external daemon mode docs. (#1677) https://docs.openclaw.ai/channels/signal
+- Signal: add configurable signal-cli startup timeout + external daemon mode docs. (#1677) https://docs.soloclaw.ai/channels/signal
 - Telegram: set fetch duplex="half" for uploads on Node 22 to avoid sendPhoto failures. (#1684) Thanks @commdata2338.
 - Telegram: use wrapped fetch for long-polling on Node to normalize AbortSignal handling. (#1639)
 - Telegram: honor per-account proxy for outbound API calls. (#1774) Thanks @radek-paclt.
@@ -5295,26 +5295,26 @@ Docs: https://docs.openclaw.ai
 
 ### Highlights
 
-- TTS: move Telegram TTS into core + enable model-driven TTS tags by default for expressive audio replies. (#1559) Thanks @Glucksberg. https://docs.openclaw.ai/tts
-- Gateway: add `/tools/invoke` HTTP endpoint for direct tool calls (auth + tool policy enforced). (#1575) Thanks @vignesh07. https://docs.openclaw.ai/gateway/tools-invoke-http-api
-- Heartbeat: per-channel visibility controls (OK/alerts/indicator). (#1452) Thanks @dlauer. https://docs.openclaw.ai/gateway/heartbeat
-- Deploy: add Fly.io deployment support + guide. (#1570) https://docs.openclaw.ai/platforms/fly
-- Channels: add Tlon/Urbit channel plugin (DMs, group mentions, thread replies). (#1544) Thanks @wca4a. https://docs.openclaw.ai/channels/tlon
+- TTS: move Telegram TTS into core + enable model-driven TTS tags by default for expressive audio replies. (#1559) Thanks @Glucksberg. https://docs.soloclaw.ai/tts
+- Gateway: add `/tools/invoke` HTTP endpoint for direct tool calls (auth + tool policy enforced). (#1575) Thanks @vignesh07. https://docs.soloclaw.ai/gateway/tools-invoke-http-api
+- Heartbeat: per-channel visibility controls (OK/alerts/indicator). (#1452) Thanks @dlauer. https://docs.soloclaw.ai/gateway/heartbeat
+- Deploy: add Fly.io deployment support + guide. (#1570) https://docs.soloclaw.ai/platforms/fly
+- Channels: add Tlon/Urbit channel plugin (DMs, group mentions, thread replies). (#1544) Thanks @wca4a. https://docs.soloclaw.ai/channels/tlon
 
 ### Changes
 
-- Channels: allow per-group tool allow/deny policies across built-in + plugin channels. (#1546) Thanks @adam91holt. https://docs.openclaw.ai/multi-agent-sandbox-tools
-- Agents: add Bedrock auto-discovery defaults + config overrides. (#1553) Thanks @fal3. https://docs.openclaw.ai/bedrock
-- CLI: add `openclaw system` for system events + heartbeat controls; remove standalone `wake`. (commit 71203829d) https://docs.openclaw.ai/cli/system
-- CLI: add live auth probes to `openclaw models status` for per-profile verification. (commit 40181afde) https://docs.openclaw.ai/cli/models
+- Channels: allow per-group tool allow/deny policies across built-in + plugin channels. (#1546) Thanks @adam91holt. https://docs.soloclaw.ai/multi-agent-sandbox-tools
+- Agents: add Bedrock auto-discovery defaults + config overrides. (#1553) Thanks @fal3. https://docs.soloclaw.ai/bedrock
+- CLI: add `openclaw system` for system events + heartbeat controls; remove standalone `wake`. (commit 71203829d) https://docs.soloclaw.ai/cli/system
+- CLI: add live auth probes to `openclaw models status` for per-profile verification. (commit 40181afde) https://docs.soloclaw.ai/cli/models
 - CLI: restart the gateway by default after `openclaw update`; add `--no-restart` to skip it. (commit 2c85b1b40)
 - Browser: add node-host proxy auto-routing for remote gateways (configurable per gateway/node). (commit c3cb26f7c)
-- Plugins: add optional `llm-task` JSON-only tool for workflows. (#1498) Thanks @vignesh07. https://docs.openclaw.ai/tools/llm-task
+- Plugins: add optional `llm-task` JSON-only tool for workflows. (#1498) Thanks @vignesh07. https://docs.soloclaw.ai/tools/llm-task
 - Markdown: add per-channel table conversion (bullets for Signal/WhatsApp, code blocks elsewhere). (#1495) Thanks @odysseus0.
 - Agents: keep system prompt time zone-only and move current time to `session_status` for better cache hits. (commit 66eec295b)
 - Agents: remove redundant bash tool alias from tool registration/display. (#1571) Thanks @Takhoffman.
-- Docs: add cron vs heartbeat decision guide (with Lobster workflow notes). (#1533) Thanks @JustYannicc. https://docs.openclaw.ai/automation/cron-vs-heartbeat
-- Docs: clarify HEARTBEAT.md empty file skips heartbeats, missing file still runs. (#1535) Thanks @JustYannicc. https://docs.openclaw.ai/gateway/heartbeat
+- Docs: add cron vs heartbeat decision guide (with Lobster workflow notes). (#1533) Thanks @JustYannicc. https://docs.soloclaw.ai/automation/cron-vs-heartbeat
+- Docs: clarify HEARTBEAT.md empty file skips heartbeats, missing file still runs. (#1535) Thanks @JustYannicc. https://docs.soloclaw.ai/gateway/heartbeat
 
 ### Fixes
 
@@ -5396,15 +5396,15 @@ Docs: https://docs.openclaw.ai
 
 ### Fixes
 
-- Control UI: ignore bootstrap identity placeholder text for avatar values and fall back to the default avatar. https://docs.openclaw.ai/cli/agents https://docs.openclaw.ai/web/control-ui
+- Control UI: ignore bootstrap identity placeholder text for avatar values and fall back to the default avatar. https://docs.soloclaw.ai/cli/agents https://docs.soloclaw.ai/web/control-ui
 - Slack: remove deprecated `filetype` field from `files.uploadV2` to eliminate API warnings. (#1447)
 
 ## 2026.1.21
 
 ### Changes
 
-- Highlight: Lobster optional plugin tool for typed workflows + approval gates. https://docs.openclaw.ai/tools/lobster
-- Lobster: allow workflow file args via `argsJson` in the plugin tool. https://docs.openclaw.ai/tools/lobster
+- Highlight: Lobster optional plugin tool for typed workflows + approval gates. https://docs.soloclaw.ai/tools/lobster
+- Lobster: allow workflow file args via `argsJson` in the plugin tool. https://docs.soloclaw.ai/tools/lobster
 - Heartbeat: allow running heartbeats in an explicit session key. (#1256) Thanks @zknicker.
 - CLI: default exec approvals to the local host, add gateway/node targeting flags, and show target details in allowlist output.
 - CLI: exec approvals mutations render tables instead of raw JSON.
@@ -5416,11 +5416,11 @@ Docs: https://docs.openclaw.ai
 - Sessions: add per-channel reset overrides via `session.resetByChannel`. (#1353) Thanks @cash-echo-bot.
 - Agents: add identity avatar config support and Control UI avatar rendering. (#1329, #1424) Thanks @dlauer.
 - UI: show per-session assistant identity in the Control UI. (#1420) Thanks @robbyczgw-cla.
-- CLI: add `openclaw update wizard` for interactive channel selection and restart prompts. https://docs.openclaw.ai/cli/update
+- CLI: add `openclaw update wizard` for interactive channel selection and restart prompts. https://docs.soloclaw.ai/cli/update
 - Signal: add typing indicators and DM read receipts via signal-cli.
 - MSTeams: add file uploads, adaptive cards, and attachment handling improvements. (#1410) Thanks @Evizero.
 - Onboarding: remove the run setup-token auth option (paste setup-token or reuse CLI creds instead).
-- Docs: add troubleshooting entry for gateway.mode blocking gateway start. https://docs.openclaw.ai/gateway/troubleshooting
+- Docs: add troubleshooting entry for gateway.mode blocking gateway start. https://docs.soloclaw.ai/gateway/troubleshooting
 - Docs: add /model allowlist troubleshooting note. (#1405)
 - Docs: add per-message Gmail search example for gog. (#1220) Thanks @mbelinky.
 
@@ -5448,75 +5448,75 @@ Docs: https://docs.openclaw.ai
 
 ### Breaking
 
-- **BREAKING:** Control UI now rejects insecure HTTP without device identity by default. Use HTTPS (Tailscale Serve) or set `gateway.controlUi.allowInsecureAuth: true` to allow token-only auth. https://docs.openclaw.ai/web/control-ui#insecure-http
+- **BREAKING:** Control UI now rejects insecure HTTP without device identity by default. Use HTTPS (Tailscale Serve) or set `gateway.controlUi.allowInsecureAuth: true` to allow token-only auth. https://docs.soloclaw.ai/web/control-ui#insecure-http
 - **BREAKING:** Envelope and system event timestamps now default to host-local time (was UTC) so agents don't have to constantly convert.
 
 ## 2026.1.20
 
 ### Changes
 
-- Control UI: add copy-as-markdown with error feedback. (#1345) https://docs.openclaw.ai/web/control-ui
-- Control UI: drop the legacy list view. (#1345) https://docs.openclaw.ai/web/control-ui
-- TUI: add syntax highlighting for code blocks. (#1200) https://docs.openclaw.ai/tui
-- TUI: session picker shows derived titles, fuzzy search, relative times, and last message preview. (#1271) https://docs.openclaw.ai/tui
-- TUI: add a searchable model picker for quicker model selection. (#1198) https://docs.openclaw.ai/tui
-- TUI: add input history (up/down) for submitted messages. (#1348) https://docs.openclaw.ai/tui
-- ACP: add `openclaw acp` for IDE integrations. https://docs.openclaw.ai/cli/acp
-- ACP: add `openclaw acp client` interactive harness for debugging. https://docs.openclaw.ai/cli/acp
-- Skills: add download installs with OS-filtered options. https://docs.openclaw.ai/tools/skills
-- Skills: add the local sherpa-onnx-tts skill. https://docs.openclaw.ai/tools/skills
-- Memory: add hybrid BM25 + vector search (FTS5) with weighted merging and fallback. https://docs.openclaw.ai/concepts/memory
-- Memory: add SQLite embedding cache to speed up reindexing and frequent updates. https://docs.openclaw.ai/concepts/memory
-- Memory: add OpenAI batch indexing for embeddings when configured. https://docs.openclaw.ai/concepts/memory
-- Memory: enable OpenAI batch indexing by default for OpenAI embeddings. https://docs.openclaw.ai/concepts/memory
-- Memory: allow parallel OpenAI batch indexing jobs (default concurrency: 2). https://docs.openclaw.ai/concepts/memory
-- Memory: render progress immediately, color batch statuses in verbose logs, and poll OpenAI batch status every 2s by default. https://docs.openclaw.ai/concepts/memory
-- Memory: add `--verbose` logging for memory status + batch indexing details. https://docs.openclaw.ai/concepts/memory
-- Memory: add native Gemini embeddings provider for memory search. (#1151) https://docs.openclaw.ai/concepts/memory
-- Browser: allow config defaults for efficient snapshots in the tool/CLI. (#1336) https://docs.openclaw.ai/tools/browser
-- Nostr: add the Nostr channel plugin with profile management + onboarding defaults. (#1323) https://docs.openclaw.ai/channels/nostr
-- Matrix: migrate to matrix-bot-sdk with E2EE support, location handling, and group allowlist upgrades. (#1298) https://docs.openclaw.ai/channels/matrix
-- Slack: add HTTP webhook mode via Bolt HTTP receiver. (#1143) https://docs.openclaw.ai/channels/slack
-- Telegram: enrich forwarded-message context with normalized origin details + legacy fallback. (#1090) https://docs.openclaw.ai/channels/telegram
+- Control UI: add copy-as-markdown with error feedback. (#1345) https://docs.soloclaw.ai/web/control-ui
+- Control UI: drop the legacy list view. (#1345) https://docs.soloclaw.ai/web/control-ui
+- TUI: add syntax highlighting for code blocks. (#1200) https://docs.soloclaw.ai/tui
+- TUI: session picker shows derived titles, fuzzy search, relative times, and last message preview. (#1271) https://docs.soloclaw.ai/tui
+- TUI: add a searchable model picker for quicker model selection. (#1198) https://docs.soloclaw.ai/tui
+- TUI: add input history (up/down) for submitted messages. (#1348) https://docs.soloclaw.ai/tui
+- ACP: add `openclaw acp` for IDE integrations. https://docs.soloclaw.ai/cli/acp
+- ACP: add `openclaw acp client` interactive harness for debugging. https://docs.soloclaw.ai/cli/acp
+- Skills: add download installs with OS-filtered options. https://docs.soloclaw.ai/tools/skills
+- Skills: add the local sherpa-onnx-tts skill. https://docs.soloclaw.ai/tools/skills
+- Memory: add hybrid BM25 + vector search (FTS5) with weighted merging and fallback. https://docs.soloclaw.ai/concepts/memory
+- Memory: add SQLite embedding cache to speed up reindexing and frequent updates. https://docs.soloclaw.ai/concepts/memory
+- Memory: add OpenAI batch indexing for embeddings when configured. https://docs.soloclaw.ai/concepts/memory
+- Memory: enable OpenAI batch indexing by default for OpenAI embeddings. https://docs.soloclaw.ai/concepts/memory
+- Memory: allow parallel OpenAI batch indexing jobs (default concurrency: 2). https://docs.soloclaw.ai/concepts/memory
+- Memory: render progress immediately, color batch statuses in verbose logs, and poll OpenAI batch status every 2s by default. https://docs.soloclaw.ai/concepts/memory
+- Memory: add `--verbose` logging for memory status + batch indexing details. https://docs.soloclaw.ai/concepts/memory
+- Memory: add native Gemini embeddings provider for memory search. (#1151) https://docs.soloclaw.ai/concepts/memory
+- Browser: allow config defaults for efficient snapshots in the tool/CLI. (#1336) https://docs.soloclaw.ai/tools/browser
+- Nostr: add the Nostr channel plugin with profile management + onboarding defaults. (#1323) https://docs.soloclaw.ai/channels/nostr
+- Matrix: migrate to matrix-bot-sdk with E2EE support, location handling, and group allowlist upgrades. (#1298) https://docs.soloclaw.ai/channels/matrix
+- Slack: add HTTP webhook mode via Bolt HTTP receiver. (#1143) https://docs.soloclaw.ai/channels/slack
+- Telegram: enrich forwarded-message context with normalized origin details + legacy fallback. (#1090) https://docs.soloclaw.ai/channels/telegram
 - Discord: fall back to `/skill` when native command limits are exceeded. (#1287)
 - Discord: expose `/skill` globally. (#1287)
-- Zalouser: add channel dock metadata, config schema, setup wiring, probe, and status issues. (#1219) https://docs.openclaw.ai/plugins/zalouser
-- Plugins: require manifest-embedded config schemas with preflight validation warnings. (#1272) https://docs.openclaw.ai/plugins/manifest
-- Plugins: move channel catalog metadata into plugin manifests. (#1290) https://docs.openclaw.ai/plugins/manifest
-- Plugins: align Nextcloud Talk policy helpers with core patterns. (#1290) https://docs.openclaw.ai/plugins/manifest
-- Plugins/UI: let channel plugin metadata drive UI labels/icons and cron channel options. (#1306) https://docs.openclaw.ai/web/control-ui
-- Agents/UI: add agent avatar support in identity config, IDENTITY.md, and the Control UI. (#1329) https://docs.openclaw.ai/gateway/configuration
-- Plugins: add plugin slots with a dedicated memory slot selector. https://docs.openclaw.ai/plugins/agent-tools
-- Plugins: ship the bundled BlueBubbles channel plugin (disabled by default). https://docs.openclaw.ai/channels/bluebubbles
+- Zalouser: add channel dock metadata, config schema, setup wiring, probe, and status issues. (#1219) https://docs.soloclaw.ai/plugins/zalouser
+- Plugins: require manifest-embedded config schemas with preflight validation warnings. (#1272) https://docs.soloclaw.ai/plugins/manifest
+- Plugins: move channel catalog metadata into plugin manifests. (#1290) https://docs.soloclaw.ai/plugins/manifest
+- Plugins: align Nextcloud Talk policy helpers with core patterns. (#1290) https://docs.soloclaw.ai/plugins/manifest
+- Plugins/UI: let channel plugin metadata drive UI labels/icons and cron channel options. (#1306) https://docs.soloclaw.ai/web/control-ui
+- Agents/UI: add agent avatar support in identity config, IDENTITY.md, and the Control UI. (#1329) https://docs.soloclaw.ai/gateway/configuration
+- Plugins: add plugin slots with a dedicated memory slot selector. https://docs.soloclaw.ai/plugins/agent-tools
+- Plugins: ship the bundled BlueBubbles channel plugin (disabled by default). https://docs.soloclaw.ai/channels/bluebubbles
 - Plugins: migrate bundled messaging extensions to the plugin SDK and resolve plugin-sdk imports in the loader.
-- Plugins: migrate the Zalo plugin to the shared plugin SDK runtime. https://docs.openclaw.ai/channels/zalo
-- Plugins: migrate the Zalo Personal plugin to the shared plugin SDK runtime. https://docs.openclaw.ai/plugins/zalouser
-- Plugins: allow optional agent tools with explicit allowlists and add the plugin tool authoring guide. https://docs.openclaw.ai/plugins/agent-tools
+- Plugins: migrate the Zalo plugin to the shared plugin SDK runtime. https://docs.soloclaw.ai/channels/zalo
+- Plugins: migrate the Zalo Personal plugin to the shared plugin SDK runtime. https://docs.soloclaw.ai/plugins/zalouser
+- Plugins: allow optional agent tools with explicit allowlists and add the plugin tool authoring guide. https://docs.soloclaw.ai/plugins/agent-tools
 - Plugins: auto-enable bundled channel/provider plugins when configuration is present.
 - Plugins: sync plugin sources on channel switches and update npm-installed plugins during `openclaw update`.
 - Plugins: share npm plugin update logic between `openclaw update` and `openclaw plugins update`.
 
 - Gateway/API: add `/v1/responses` (OpenResponses) with item-based input + semantic streaming events. (#1229)
 - Gateway/API: expand `/v1/responses` to support file/image inputs, tool_choice, usage, and output limits. (#1229)
-- Usage: add `/usage cost` summaries and macOS menu cost charts. https://docs.openclaw.ai/reference/api-usage-costs
-- Security: warn when <=300B models run without sandboxing while web tools are enabled. https://docs.openclaw.ai/cli/security
-- Exec: add host/security/ask routing for gateway + node exec. https://docs.openclaw.ai/tools/exec
-- Exec: add `/exec` directive for per-session exec defaults (host/security/ask/node). https://docs.openclaw.ai/tools/exec
-- Exec approvals: migrate approvals to `~/.openclaw/exec-approvals.json` with per-agent allowlists + skill auto-allow toggle, and add approvals UI + node exec lifecycle events. https://docs.openclaw.ai/tools/exec-approvals
-- Nodes: add headless node host (`openclaw node start`) for `system.run`/`system.which`. https://docs.openclaw.ai/cli/node
-- Nodes: add node daemon service install/status/start/stop/restart. https://docs.openclaw.ai/cli/node
+- Usage: add `/usage cost` summaries and macOS menu cost charts. https://docs.soloclaw.ai/reference/api-usage-costs
+- Security: warn when <=300B models run without sandboxing while web tools are enabled. https://docs.soloclaw.ai/cli/security
+- Exec: add host/security/ask routing for gateway + node exec. https://docs.soloclaw.ai/tools/exec
+- Exec: add `/exec` directive for per-session exec defaults (host/security/ask/node). https://docs.soloclaw.ai/tools/exec
+- Exec approvals: migrate approvals to `~/.soloclaw/exec-approvals.json` with per-agent allowlists + skill auto-allow toggle, and add approvals UI + node exec lifecycle events. https://docs.soloclaw.ai/tools/exec-approvals
+- Nodes: add headless node host (`openclaw node start`) for `system.run`/`system.which`. https://docs.soloclaw.ai/cli/node
+- Nodes: add node daemon service install/status/start/stop/restart. https://docs.soloclaw.ai/cli/node
 - Bridge: add `skills.bins` RPC to support node host auto-allow skill bins.
-- Sessions: add daily reset policy with per-type overrides and idle windows (default 4am local), preserving legacy idle-only configs. (#1146) https://docs.openclaw.ai/concepts/session
-- Sessions: allow `sessions_spawn` to override thinking level for sub-agent runs. https://docs.openclaw.ai/tools/subagents
-- Channels: unify thread/topic allowlist matching + command/mention gating helpers across core providers. https://docs.openclaw.ai/concepts/groups
-- Models: add Qwen Portal OAuth provider support. (#1120) https://docs.openclaw.ai/providers/qwen
-- Onboarding: add allowlist prompts and username-to-id resolution across core and extension channels. https://docs.openclaw.ai/start/onboarding
-- Docs: clarify allowlist input types and onboarding behavior for messaging channels. https://docs.openclaw.ai/start/onboarding
-- Docs: refresh Android node discovery docs for the Gateway WS service type. https://docs.openclaw.ai/platforms/android
-- Docs: surface Amazon Bedrock in provider lists and clarify Bedrock auth env vars. (#1289) https://docs.openclaw.ai/bedrock
-- Docs: clarify WhatsApp voice notes. https://docs.openclaw.ai/channels/whatsapp
-- Docs: clarify Windows WSL portproxy LAN access notes. https://docs.openclaw.ai/platforms/windows
-- Docs: refresh bird skill install metadata and usage notes. (#1302) https://docs.openclaw.ai/tools/browser-login
+- Sessions: add daily reset policy with per-type overrides and idle windows (default 4am local), preserving legacy idle-only configs. (#1146) https://docs.soloclaw.ai/concepts/session
+- Sessions: allow `sessions_spawn` to override thinking level for sub-agent runs. https://docs.soloclaw.ai/tools/subagents
+- Channels: unify thread/topic allowlist matching + command/mention gating helpers across core providers. https://docs.soloclaw.ai/concepts/groups
+- Models: add Qwen Portal OAuth provider support. (#1120) https://docs.soloclaw.ai/providers/qwen
+- Onboarding: add allowlist prompts and username-to-id resolution across core and extension channels. https://docs.soloclaw.ai/start/onboarding
+- Docs: clarify allowlist input types and onboarding behavior for messaging channels. https://docs.soloclaw.ai/start/onboarding
+- Docs: refresh Android node discovery docs for the Gateway WS service type. https://docs.soloclaw.ai/platforms/android
+- Docs: surface Amazon Bedrock in provider lists and clarify Bedrock auth env vars. (#1289) https://docs.soloclaw.ai/bedrock
+- Docs: clarify WhatsApp voice notes. https://docs.soloclaw.ai/channels/whatsapp
+- Docs: clarify Windows WSL portproxy LAN access notes. https://docs.soloclaw.ai/platforms/windows
+- Docs: refresh bird skill install metadata and usage notes. (#1302) https://docs.soloclaw.ai/tools/browser-login
 - Agents: add local docs path resolution and include docs/mirror/source/community pointers in the system prompt.
 - Agents: clarify node_modules read-only guidance in agent instructions.
 - Config: stamp last-touched metadata on write and warn if the config is newer than the running build.
@@ -5645,12 +5645,12 @@ Thanks @AlexMikhalev, @CoreyH, @John-Rood, @KrauseFx, @MaudeBot, @Nachx639, @Nic
 
 ### Highlights
 
-- Hooks: add hooks system with bundled hooks, CLI tooling, and docs. (#1028) - thanks @ThomsenDrake. https://docs.openclaw.ai/hooks
-- Media: add inbound media understanding (image/audio/video) with provider + CLI fallbacks. https://docs.openclaw.ai/nodes/media-understanding
-- Plugins: add Zalo Personal plugin (`@openclaw/zalouser`) and unify channel directory for plugins. (#1032) - thanks @suminhthanh. https://docs.openclaw.ai/plugins/zalouser
-- Models: add Vercel AI Gateway auth choice + onboarding updates. (#1016) - thanks @timolins. https://docs.openclaw.ai/providers/vercel-ai-gateway
-- Sessions: add `session.identityLinks` for cross-platform DM session li nking. (#1033) - thanks @thewilloftheshadow. https://docs.openclaw.ai/concepts/session
-- Web search: add `country`/`language` parameters (schema + Brave API) and docs. (#1046) - thanks @YuriNachos. https://docs.openclaw.ai/tools/web
+- Hooks: add hooks system with bundled hooks, CLI tooling, and docs. (#1028) - thanks @ThomsenDrake. https://docs.soloclaw.ai/hooks
+- Media: add inbound media understanding (image/audio/video) with provider + CLI fallbacks. https://docs.soloclaw.ai/nodes/media-understanding
+- Plugins: add Zalo Personal plugin (`@openclaw/zalouser`) and unify channel directory for plugins. (#1032) - thanks @suminhthanh. https://docs.soloclaw.ai/plugins/zalouser
+- Models: add Vercel AI Gateway auth choice + onboarding updates. (#1016) - thanks @timolins. https://docs.soloclaw.ai/providers/vercel-ai-gateway
+- Sessions: add `session.identityLinks` for cross-platform DM session li nking. (#1033) - thanks @thewilloftheshadow. https://docs.soloclaw.ai/concepts/session
+- Web search: add `country`/`language` parameters (schema + Brave API) and docs. (#1046) - thanks @YuriNachos. https://docs.soloclaw.ai/tools/web
 
 ### Changes
 
@@ -5661,7 +5661,7 @@ Thanks @AlexMikhalev, @CoreyH, @John-Rood, @KrauseFx, @MaudeBot, @Nachx639, @Nic
 - Tools: send Chrome-like headers by default for `web_fetch` to improve extraction on bot-sensitive sites.
 - Tools: Firecrawl fallback now uses bot-circumvention + cache by default; remove basic HTML fallback when extraction fails.
 - Tools: default `exec` exit notifications and auto-migrate legacy `tools.bash` to `tools.exec`.
-- Tools: add `exec` PTY support for interactive sessions. https://docs.openclaw.ai/tools/exec
+- Tools: add `exec` PTY support for interactive sessions. https://docs.soloclaw.ai/tools/exec
 - Tools: add tmux-style `process send-keys` and bracketed paste helpers for PTY sessions.
 - Tools: add `process submit` helper to send CR for PTY sessions.
 - Tools: respond to PTY cursor position queries to unblock interactive TUIs.
@@ -5717,7 +5717,7 @@ Thanks @AlexMikhalev, @CoreyH, @John-Rood, @KrauseFx, @MaudeBot, @Nachx639, @Nic
 - Sessions: hard-stop `sessions.delete` cleanup.
 - Channels: treat replies to the bot as implicit mentions across supported channels.
 - Channels: normalize object-format capabilities in channel capability parsing.
-- Security: default-deny slash/control commands unless a channel computed `CommandAuthorized` (fixes accidental "open" behavior), and ensure WhatsApp + Zalo plugin channels gate inline `/...` tokens correctly. https://docs.openclaw.ai/gateway/security
+- Security: default-deny slash/control commands unless a channel computed `CommandAuthorized` (fixes accidental "open" behavior), and ensure WhatsApp + Zalo plugin channels gate inline `/...` tokens correctly. https://docs.soloclaw.ai/gateway/security
 - Security: redact sensitive text in gateway WS logs.
 - Tools: cap pending `exec` process output to avoid unbounded buffers.
 - CLI: speed up `openclaw sandbox-explain` by avoiding heavy plugin imports when normalizing channel ids.
@@ -5749,8 +5749,8 @@ Thanks @AlexMikhalev, @CoreyH, @John-Rood, @KrauseFx, @MaudeBot, @Nachx639, @Nic
 - **BREAKING:** Channel auth now prefers config over env for Discord/Telegram/Matrix (env is fallback only). (#1040) - thanks @thewilloftheshadow.
 - **BREAKING:** Drop legacy `chatType: "room"` support; use `chatType: "channel"`.
 - **BREAKING:** remove legacy provider-specific target resolution fallbacks; target resolution is centralized with plugin hints + directory lookups.
-- **BREAKING:** `openclaw hooks` is now `openclaw webhooks`; hooks live under `openclaw hooks`. https://docs.openclaw.ai/cli/webhooks
-- **BREAKING:** `openclaw plugins install <path>` now copies into `~/.openclaw/extensions` (use `--link` to keep path-based loading).
+- **BREAKING:** `openclaw hooks` is now `openclaw webhooks`; hooks live under `openclaw hooks`. https://docs.soloclaw.ai/cli/webhooks
+- **BREAKING:** `openclaw plugins install <path>` now copies into `~/.soloclaw/extensions` (use `--link` to keep path-based loading).
 
 ## 2026.1.15
 
@@ -5901,7 +5901,7 @@ Thanks @AlexMikhalev, @CoreyH, @John-Rood, @KrauseFx, @MaudeBot, @Nachx639, @Nic
 - TUI: render picker overlays via the overlay stack so /models and /settings display. (#921) - thanks @grizzdank.
 - TUI: add a bright spinner + elapsed time in the status line for send/stream/run states.
 - TUI: show LLM error messages (rate limits, auth, etc.) instead of `(no output)`.
-- Gateway/Dev: ensure `pnpm gateway:dev` always uses the dev profile config + state (`~/.openclaw-dev`).
+- Gateway/Dev: ensure `pnpm gateway:dev` always uses the dev profile config + state (`~/.soloclaw-dev`).
 
 #### Agents / Auth / Tools / Sandbox
 
@@ -5963,7 +5963,7 @@ Thanks @AlexMikhalev, @CoreyH, @John-Rood, @KrauseFx, @MaudeBot, @Nachx639, @Nic
 ### New & Improved
 
 - Memory: add custom OpenAI-compatible embedding endpoints; support OpenAI/local `node-llama-cpp` embeddings with per-agent overrides and provider metadata in tools/CLI. (#819) - thanks @mukhtharcm.
-- Memory: new `openclaw memory` CLI plus `memory_search`/`memory_get` tools with snippets + line ranges; index stored under `~/.openclaw/memory/{agentId}.sqlite` with watch-on-by-default.
+- Memory: new `openclaw memory` CLI plus `memory_search`/`memory_get` tools with snippets + line ranges; index stored under `~/.soloclaw/memory/{agentId}.sqlite` with watch-on-by-default.
 - Agents: strengthen memory recall guidance; make workspace bootstrap truncation configurable (default 20k) with warnings; add default sub-agent model config.
 - Tools/Sandbox: add tool profiles + group shorthands; support tool-policy groups in `tools.sandbox.tools`; drop legacy `memory` shorthand; allow Docker bind mounts via `docker.binds`. (#790) - thanks @akonyer.
 - Tools: add provider/model-specific tool policy overrides (`tools.byProvider`) to trim tool exposure per provider.
@@ -6221,7 +6221,7 @@ Thanks @AlexMikhalev, @CoreyH, @John-Rood, @KrauseFx, @MaudeBot, @Nachx639, @Nic
 - CLI UX: logs output modes (pretty/plain/JSONL) + colorized health/daemon output; global `--no-color`; lobster palette in onboarding/config.
 - Dev ergonomics: gateway `--dev/--reset` + dev profile auto-config; C-3PO dev templates; dev gateway/TUI helper scripts.
 - Sandbox/Workspace: sandbox list/recreate commands; sync skills into sandbox workspace; sandbox browser auto-start.
-- Config/Onboarding: inline env vars; OpenAI API key flow to shared `~/.openclaw/.env`; Opus 4.5 default prompt for Anthropic auth; QuickStart auto-install gateway (Node-only) + provider picker tweaks + skip-systemd flags; TUI bootstrap prompt (`tui --message`); remove Bun runtime choice.
+- Config/Onboarding: inline env vars; OpenAI API key flow to shared `~/.soloclaw/.env`; Opus 4.5 default prompt for Anthropic auth; QuickStart auto-install gateway (Node-only) + provider picker tweaks + skip-systemd flags; TUI bootstrap prompt (`tui --message`); remove Bun runtime choice.
 - Providers: Microsoft Teams provider (polling, attachments, outbound sends, requireMention, config reload/DM policy). (#404) - thanks @onutc
 - Providers: WhatsApp broadcast groups for multi-agent replies (#547) - thanks @pasogott; inbound media size cap configurable (#505) - thanks @koala73; identity-based message prefixes (#578) - thanks @p6l-richard.
 - Providers: Telegram inline keyboard buttons + callback payload routing (#491) - thanks @azade-c; cron topic delivery targets (#474/#478) - thanks @mitschabaude-bot, @nachoiacovino; `[[audio_as_voice]]` tag support (#490) - thanks @jarvis-medmatic.
@@ -6333,7 +6333,7 @@ Thanks @AlexMikhalev, @CoreyH, @John-Rood, @KrauseFx, @MaudeBot, @Nachx639, @Nic
 - WhatsApp: mark offline history sync messages as read without auto-reply. (#193) - thanks @mcinteerj
 - Discord: avoid duplicate replies when a provider emits late streaming `text_end` events (OpenAI/GPT).
 - CLI: use tailnet IP for local gateway calls when bind is tailnet/auto (fixes #176).
-- Env: load global `$OPENCLAW_STATE_DIR/.env` (`~/.openclaw/.env`) as a fallback after CWD `.env`.
+- Env: load global `$OPENCLAW_STATE_DIR/.env` (`~/.soloclaw/.env`) as a fallback after CWD `.env`.
 - Env: optional login-shell env fallback (opt-in; imports expected keys without overriding existing env).
 - Agent tools: OpenAI-compatible tool JSON Schemas (fix `browser`, normalize union schemas).
 - Onboarding: when running from source, auto-build missing Control UI assets (`bun run ui:build`).

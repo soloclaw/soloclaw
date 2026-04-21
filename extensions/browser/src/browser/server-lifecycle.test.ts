@@ -60,7 +60,7 @@ describe("stopKnownBrowserProfiles", () => {
       onWarn,
     });
 
-    expect(stopMap.openclaw).toHaveBeenCalledTimes(1);
+    expect(stopMap.soloclaw).toHaveBeenCalledTimes(1);
     expect(stopMap.user).toHaveBeenCalledTimes(1);
     expect(onWarn).not.toHaveBeenCalled();
   });

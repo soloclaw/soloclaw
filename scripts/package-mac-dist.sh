@@ -20,7 +20,7 @@ export BUILD_CONFIG
 
 # Use release bundle ID (not .debug) so Sparkle auto-update works.
 # The .debug suffix in package-mac-app.sh blanks SUFeedURL intentionally for dev builds.
-export BUNDLE_ID="${BUNDLE_ID:-ai.openclaw.mac}"
+export BUNDLE_ID="${BUNDLE_ID:-ai.soloclaw.mac}"
 
 canonical_sparkle_build() {
   node --import tsx "$ROOT_DIR/scripts/sparkle-build.ts" canonical-build "$1"

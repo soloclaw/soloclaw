@@ -126,7 +126,7 @@ export function readBundledChannelCatalogIds(
 function createIsolatedRootHelpRenderContext(
   bundledPluginsDir: string = extensionsDir,
 ): RootHelpRenderContext {
-  const stateDir = path.join(rootDir, ".openclaw-build-root-help");
+  const stateDir = path.join(rootDir, ".soloclaw-build-root-help");
   const workspaceDir = path.join(stateDir, "workspace");
   const homeDir = path.join(stateDir, "home");
   const env: NodeJS.ProcessEnv = {

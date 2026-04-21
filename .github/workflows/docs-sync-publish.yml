@@ -47,14 +47,14 @@ jobs:
         working-directory: publish
         run: |
           set -euo pipefail
-          if git diff --quiet -- docs .openclaw-sync; then
+          if git diff --quiet -- docs .soloclaw-sync; then
             echo "No publish-repo changes."
             exit 0
           fi
 
           git config user.name "openclaw-docs-sync[bot]"
           git config user.email "openclaw-docs-sync[bot]@users.noreply.github.com"
-          git add docs .openclaw-sync
+          git add docs .soloclaw-sync
           git commit -m "chore(sync): mirror docs from $GITHUB_REPOSITORY@$GITHUB_SHA"
           for attempt in 1 2 3 4 5; do
             git fetch origin main

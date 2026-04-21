@@ -197,7 +197,7 @@ openclaw gateway restart
 openclaw gateway stop
 ```
 
-LaunchAgent labels are `ai.openclaw.gateway` (default) or `ai.openclaw.<profile>` (named profile). `openclaw doctor` audits and repairs service config drift.
+LaunchAgent labels are `ai.soloclaw.gateway` (default) or `ai.soloclaw.<profile>` (named profile). `openclaw doctor` audits and repairs service config drift.
 
   </Tab>
 
@@ -285,8 +285,8 @@ Checklist per instance:
 Example:
 
 ```bash
-OPENCLAW_CONFIG_PATH=~/.openclaw/a.json OPENCLAW_STATE_DIR=~/.openclaw-a openclaw gateway --port 19001
-OPENCLAW_CONFIG_PATH=~/.openclaw/b.json OPENCLAW_STATE_DIR=~/.openclaw-b openclaw gateway --port 19002
+OPENCLAW_CONFIG_PATH=~/.soloclaw/a.json OPENCLAW_STATE_DIR=~/.soloclaw-a openclaw gateway --port 19001
+OPENCLAW_CONFIG_PATH=~/.soloclaw/b.json OPENCLAW_STATE_DIR=~/.soloclaw-b openclaw gateway --port 19002
 ```
 
 See: [Multiple gateways](/gateway/multiple-gateways).

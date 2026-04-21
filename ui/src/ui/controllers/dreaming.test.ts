@@ -771,7 +771,7 @@ describe("dreaming controller", () => {
         return {
           action: "repairDreamingArtifacts",
           changed: true,
-          archiveDir: "/tmp/openclaw/.openclaw-repair/dreaming/2026-04-11T22-10-00-000Z",
+          archiveDir: "/tmp/openclaw/.soloclaw-repair/dreaming/2026-04-11T22-10-00-000Z",
           archivedSessionCorpus: true,
           archivedSessionIngestion: true,
         };
@@ -792,10 +792,10 @@ describe("dreaming controller", () => {
     expect(state.dreamDiaryContent).toBe("keep existing diary");
     expect(state.dreamDiaryActionMessage).toEqual({
       kind: "success",
-      text: "Dream cache repair complete: archived session corpus, archived ingestion state. Archive: /tmp/openclaw/.openclaw-repair/dreaming/2026-04-11T22-10-00-000Z",
+      text: "Dream cache repair complete: archived session corpus, archived ingestion state. Archive: /tmp/openclaw/.soloclaw-repair/dreaming/2026-04-11T22-10-00-000Z",
     });
     expect(state.dreamDiaryActionArchivePath).toBe(
-      "/tmp/openclaw/.openclaw-repair/dreaming/2026-04-11T22-10-00-000Z",
+      "/tmp/openclaw/.soloclaw-repair/dreaming/2026-04-11T22-10-00-000Z",
     );
     expect(state.dreamDiaryActionLoading).toBe(false);
   });
@@ -839,7 +839,7 @@ describe("dreaming controller", () => {
   it("copies the dreaming repair archive path", async () => {
     const { state } = createState();
     state.dreamDiaryActionArchivePath =
-      "/tmp/openclaw/.openclaw-repair/dreaming/2026-04-11T22-10-00-000Z";
+      "/tmp/openclaw/.soloclaw-repair/dreaming/2026-04-11T22-10-00-000Z";
     const writeText = vi.fn().mockResolvedValue(undefined);
     vi.stubGlobal("navigator", { clipboard: { writeText } } as unknown as Navigator);
 
@@ -847,7 +847,7 @@ describe("dreaming controller", () => {
 
     expect(ok).toBe(true);
     expect(writeText).toHaveBeenCalledWith(
-      "/tmp/openclaw/.openclaw-repair/dreaming/2026-04-11T22-10-00-000Z",
+      "/tmp/openclaw/.soloclaw-repair/dreaming/2026-04-11T22-10-00-000Z",
     );
     expect(state.dreamDiaryActionMessage).toEqual({
       kind: "success",

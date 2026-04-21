@@ -95,7 +95,7 @@ export function runInstalledWorkspaceBootstrapSmoke(params) {
       );
     }
 
-    const workspaceDir = join(homeDir, ".openclaw", "workspace");
+    const workspaceDir = join(homeDir, ".soloclaw", "workspace");
     const missingFiles = collectMissingBootstrapWorkspaceFiles(workspaceDir);
     if (missingFiles.length > 0) {
       throw new Error(

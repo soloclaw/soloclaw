@@ -193,7 +193,7 @@ function writePluginEntry(root: string, relativePath: string) {
 function createUserInstalledPluginSdkAliasFixture() {
   const { fixture, sourceRootAlias, sourceChannelRuntimePath } =
     createPluginSdkAliasTargetFixture();
-  const externalPluginRoot = path.join(makeTempDir(), ".openclaw", "extensions", "demo");
+  const externalPluginRoot = path.join(makeTempDir(), ".soloclaw", "extensions", "demo");
   const externalPluginEntry = path.join(externalPluginRoot, "index.ts");
   mkdirSafeDir(externalPluginRoot);
   fs.writeFileSync(externalPluginEntry, 'export const plugin = "demo";\n', "utf-8");

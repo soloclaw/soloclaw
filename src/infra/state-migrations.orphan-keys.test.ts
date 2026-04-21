@@ -18,7 +18,7 @@ async function withStateFixture(
   run: (params: { tmpDir: string; stateDir: string }) => Promise<void>,
 ): Promise<void> {
   await withTempDir({ prefix: "orphan-keys-test-" }, async (tmpDir) => {
-    const stateDir = path.join(tmpDir, ".openclaw");
+    const stateDir = path.join(tmpDir, ".soloclaw");
     fs.mkdirSync(stateDir, { recursive: true });
     await run({ tmpDir, stateDir });
   });

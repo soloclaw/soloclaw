@@ -40,7 +40,7 @@ function createDefaultMatrixConfig(): OpenClawConfig {
 }
 
 function writeDefaultLegacyCryptoFixture(home: string) {
-  const stateDir = path.join(home, ".openclaw");
+  const stateDir = path.join(home, ".soloclaw");
   const cfg = createDefaultMatrixConfig();
   const { rootDir } = resolveMatrixAccountStorageRoot({
     stateDir,
@@ -60,7 +60,7 @@ function createOpsLegacyCryptoFixture(params: {
   accessToken?: string;
   includeStoredCredentials?: boolean;
 }) {
-  const stateDir = path.join(params.home, ".openclaw");
+  const stateDir = path.join(params.home, ".soloclaw");
   writeFile(
     path.join(stateDir, "matrix", "crypto", "bot-sdk.json"),
     JSON.stringify({ deviceId: MATRIX_OPS_DEVICE_ID }),

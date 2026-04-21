@@ -44,7 +44,7 @@ function createSyncResponse(nextBatch: string): ISyncResponse {
       events: [
         {
           content: { theme: "dark" },
-          type: "com.openclaw.test",
+          type: "com.soloclaw.test",
         },
       ],
     },
@@ -93,7 +93,7 @@ describe("FileBackedMatrixSyncStore", () => {
     expect(savedSync?.accountData).toEqual([
       {
         content: { theme: "dark" },
-        type: "com.openclaw.test",
+        type: "com.soloclaw.test",
       },
     ]);
     expect(savedSync?.roomsData.join?.["!room:example.org"]).toBeTruthy();

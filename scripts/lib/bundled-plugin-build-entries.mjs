@@ -31,15 +31,15 @@ function isManifestlessBundledRuntimeSupportPackage(params) {
 }
 
 function collectPluginSourceEntries(packageJson) {
-  let packageEntries = Array.isArray(packageJson?.openclaw?.extensions)
-    ? packageJson.openclaw.extensions.filter(
+  let packageEntries = Array.isArray(packageJson?.soloclaw?.extensions)
+    ? packageJson.soloclaw.extensions.filter(
         (entry) => typeof entry === "string" && entry.trim().length > 0,
       )
     : [];
   const setupEntry =
-    typeof packageJson?.openclaw?.setupEntry === "string" &&
-    packageJson.openclaw.setupEntry.trim().length > 0
-      ? packageJson.openclaw.setupEntry
+    typeof packageJson?.soloclaw?.setupEntry === "string" &&
+    packageJson.soloclaw.setupEntry.trim().length > 0
+      ? packageJson.soloclaw.setupEntry
       : undefined;
   if (setupEntry) {
     packageEntries = Array.from(new Set([...packageEntries, setupEntry]));
@@ -48,7 +48,7 @@ function collectPluginSourceEntries(packageJson) {
 }
 
 function shouldStageBundledPluginRuntimeDependencies(packageJson) {
-  return packageJson?.openclaw?.bundle?.stageRuntimeDependencies === true;
+  return packageJson?.soloclaw?.bundle?.stageRuntimeDependencies === true;
 }
 
 function collectTopLevelPublicSurfaceEntries(pluginDir) {

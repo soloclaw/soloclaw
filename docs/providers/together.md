@@ -106,11 +106,11 @@ provider selection, and failover behavior.
   <Accordion title="Environment note">
     If the Gateway runs as a daemon (launchd/systemd), make sure
     `TOGETHER_API_KEY` is available to that process (for example, in
-    `~/.openclaw/.env` or via `env.shellEnv`).
+    `~/.soloclaw/.env` or via `env.shellEnv`).
 
     <Warning>
     Keys set only in your interactive shell are not visible to daemon-managed
-    gateway processes. Use `~/.openclaw/.env` or `env.shellEnv` config for
+    gateway processes. Use `~/.soloclaw/.env` or `env.shellEnv` config for
     persistent availability.
     </Warning>
 

@@ -576,7 +576,7 @@ function maybeLogOpenAICodexNativeSearchTip(runtime: RuntimeEnv, providerId: str
     return;
   }
   runtime.log(
-    "Tip: Codex-capable models can use native Codex web search. Enable it with openclaw configure --section web (recommended mode: cached). Docs: https://docs.openclaw.ai/tools/web",
+    "Tip: Codex-capable models can use native Codex web search. Enable it with openclaw configure --section web (recommended mode: cached). Docs: https://docs.soloclaw.ai/tools/web",
   );
 }
 export async function modelsAuthLoginCommand(opts: LoginOptions, runtime: RuntimeEnv) {

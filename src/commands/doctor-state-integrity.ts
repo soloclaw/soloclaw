@@ -222,7 +222,7 @@ function findOtherStateDirs(stateDir: string): string[] {
       if (entry.name.startsWith(".")) {
         continue;
       }
-      const candidates = [".openclaw"].map((dir) => path.resolve(root, entry.name, dir));
+      const candidates = [".soloclaw"].map((dir) => path.resolve(root, entry.name, dir));
       for (const candidate of candidates) {
         if (candidate === resolvedState) {
           continue;
@@ -582,7 +582,7 @@ export async function noteStateIntegrity(
   const env = process.env;
   const homedir = () => resolveRequiredHomeDir(env, os.homedir);
   const stateDir = resolveStateDir(env, homedir);
-  const defaultStateDir = path.join(homedir(), ".openclaw");
+  const defaultStateDir = path.join(homedir(), ".soloclaw");
   const oauthDir = resolveOAuthDir(env, stateDir);
   const agentId = resolveDefaultAgentId(cfg);
   const sessionsDir = resolveSessionTranscriptsDirForAgent(agentId, env, homedir);
@@ -604,8 +604,8 @@ export async function noteStateIntegrity(
       [
         `- State directory is under macOS cloud-synced storage (${displayStateDir}; ${cloudSyncedStateDir.storage}).`,
         "- This can cause slow I/O and sync/lock races for sessions and credentials.",
-        "- Prefer a local non-synced state dir (for example: ~/.openclaw).",
-        `  Set locally: OPENCLAW_STATE_DIR=~/.openclaw ${formatCliCommand("openclaw doctor")}`,
+        "- Prefer a local non-synced state dir (for example: ~/.soloclaw).",
+        `  Set locally: OPENCLAW_STATE_DIR=~/.soloclaw ${formatCliCommand("openclaw doctor")}`,
       ].join("\n"),
     );
   }
@@ -944,7 +944,7 @@ export function noteWorkspaceBackupTip(workspaceDir: string) {
   note(
     [
       "- Tip: back up the workspace in a private git repo (GitHub or GitLab).",
-      "- Keep ~/.openclaw out of git; it contains credentials and session history.",
+      "- Keep ~/.soloclaw out of git; it contains credentials and session history.",
       "- Details: /concepts/agent-workspace#git-backup-recommended",
     ].join("\n"),
     "Workspace",

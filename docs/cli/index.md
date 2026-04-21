@@ -66,8 +66,8 @@ This page describes the current CLI behavior. If commands change, update this do
 
 ## Global flags
 
-- `--dev`: isolate state under `~/.openclaw-dev` and shift default ports.
-- `--profile <name>`: isolate state under `~/.openclaw-<name>`.
+- `--dev`: isolate state under `~/.soloclaw-dev` and shift default ports.
+- `--profile <name>`: isolate state under `~/.soloclaw-<name>`.
 - `--container <name>`: target a named container for execution.
 - `--no-color`: disable ANSI colors.
 - `--update`: shorthand for `openclaw update` (source installs only).
@@ -501,7 +501,7 @@ Initialize config + workspace.
 
 Options:
 
-- `--workspace <dir>`: agent workspace path (default `~/.openclaw/workspace`).
+- `--workspace <dir>`: agent workspace path (default `~/.soloclaw/workspace`).
 - `--wizard`: run onboarding.
 - `--non-interactive`: run onboarding without prompts.
 - `--mode <local|remote>`: onboard mode.

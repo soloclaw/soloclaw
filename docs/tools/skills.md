@@ -16,14 +16,14 @@ OpenClaw loads skills from these sources:
 
 1. **Extra skill folders**: configured with `skills.load.extraDirs`
 2. **Bundled skills**: shipped with the install (npm package or OpenClaw.app)
-3. **Managed/local skills**: `~/.openclaw/skills`
+3. **Managed/local skills**: `~/.soloclaw/skills`
 4. **Personal agent skills**: `~/.agents/skills`
 5. **Project agent skills**: `<workspace>/.agents/skills`
 6. **Workspace skills**: `<workspace>/skills`
 
 If a skill name conflicts, precedence is:
 
-`<workspace>/skills` (highest) → `<workspace>/.agents/skills` → `~/.agents/skills` → `~/.openclaw/skills` → bundled skills → `skills.load.extraDirs` (lowest)
+`<workspace>/skills` (highest) → `<workspace>/.agents/skills` → `~/.agents/skills` → `~/.soloclaw/skills` → bundled skills → `skills.load.extraDirs` (lowest)
 
 ## Per-agent vs shared skills
 
@@ -34,7 +34,7 @@ In **multi-agent** setups, each agent has its own workspace. That means:
   that workspace before the normal workspace `skills/` folder.
 - **Personal agent skills** live in `~/.agents/skills` and apply across
   workspaces on that machine.
-- **Shared skills** live in `~/.openclaw/skills` (managed/local) and are visible
+- **Shared skills** live in `~/.soloclaw/skills` (managed/local) and are visible
   to **all agents** on the same machine.
 - **Shared folders** can also be added via `skills.load.extraDirs` (lowest
   precedence) if you want a common skills pack used by multiple agents.
@@ -86,7 +86,7 @@ Plugins can ship their own skills by listing `skills` directories in
 when the plugin is enabled. Today those directories are merged into the same
 low-precedence path as `skills.load.extraDirs`, so a same-named bundled,
 managed, agent, or workspace skill overrides them.
-You can gate them via `metadata.openclaw.requires.config` on the plugin’s config
+You can gate them via `metadata.soloclaw.requires.config` on the plugin’s config
 entry. See [Plugins](/tools/plugin) for discovery/config and [Tools](/tools) for the
 tool surface those skills teach.
 
@@ -141,7 +141,7 @@ Notes:
 - `metadata` should be a **single-line JSON object**.
 - Use `{baseDir}` in instructions to reference the skill folder path.
 - Optional frontmatter keys:
-  - `homepage` — URL surfaced as “Website” in the macOS Skills UI (also supported via `metadata.openclaw.homepage`).
+  - `homepage` — URL surfaced as “Website” in the macOS Skills UI (also supported via `metadata.soloclaw.homepage`).
   - `user-invocable` — `true|false` (default: `true`). When `true`, the skill is exposed as a user slash command.
   - `disable-model-invocation` — `true|false` (default: `false`). When `true`, the skill is excluded from the model prompt (still available via user invocation).
   - `command-dispatch` — `tool` (optional). When set to `tool`, the slash command bypasses the model and dispatches directly to a tool.
@@ -170,7 +170,7 @@ metadata:
 ---
 ```
 
-Fields under `metadata.openclaw`:
+Fields under `metadata.soloclaw`:
 
 - `always: true` — always include the skill (skip other gates).
 - `emoji` — optional emoji used by the macOS Skills UI.
@@ -235,12 +235,12 @@ Notes:
 - If every install spec is `download`, OpenClaw surfaces all download options
   instead of collapsing to one preferred installer.
 - Go installs: if `go` is missing and `brew` is available, the gateway installs Go via Homebrew first and sets `GOBIN` to Homebrew’s `bin` when possible.
-- Download installs: `url` (required), `archive` (`tar.gz` | `tar.bz2` | `zip`), `extract` (default: auto when archive detected), `stripComponents`, `targetDir` (default: `~/.openclaw/tools/<skillKey>`).
+- Download installs: `url` (required), `archive` (`tar.gz` | `tar.bz2` | `zip`), `extract` (default: auto when archive detected), `stripComponents`, `targetDir` (default: `~/.soloclaw/tools/<skillKey>`).
 
-If no `metadata.openclaw` is present, the skill is always eligible (unless
+If no `metadata.soloclaw` is present, the skill is always eligible (unless
 disabled in config or blocked by `skills.allowBundled` for bundled skills).
 
-## Config overrides (`~/.openclaw/openclaw.json`)
+## Config overrides (`~/.soloclaw/openclaw.json`)
 
 Bundled/managed skills can be toggled and supplied with env values:
 
@@ -279,13 +279,13 @@ For native image generation/editing, use `image_generate` with
 key too.
 
 Config keys match the **skill name** by default. If a skill defines
-`metadata.openclaw.skillKey`, use that key under `skills.entries`.
+`metadata.soloclaw.skillKey`, use that key under `skills.entries`.
 
 Rules:
 
 - `enabled: false` disables the skill even if it’s bundled/installed.
 - `env`: injected **only if** the variable isn’t already set in the process.
-- `apiKey`: convenience for skills that declare `metadata.openclaw.primaryEnv`.
+- `apiKey`: convenience for skills that declare `metadata.soloclaw.primaryEnv`.
   Supports plaintext string or SecretRef object (`{ source, provider, id }`).
 - `config`: optional bag for custom per-skill fields; custom keys must live here.
 - `allowBundled`: optional allowlist for **bundled** skills only. If set, only
@@ -362,7 +362,7 @@ Notes:
 ## Managed skills lifecycle
 
 OpenClaw ships a baseline set of skills as **bundled skills** as part of the
-install (npm package or OpenClaw.app). `~/.openclaw/skills` exists for local
+install (npm package or OpenClaw.app). `~/.soloclaw/skills` exists for local
 overrides (for example, pinning/patching a skill without changing the bundled
 copy). Workspace skills are user-owned and override both on name conflicts.
 

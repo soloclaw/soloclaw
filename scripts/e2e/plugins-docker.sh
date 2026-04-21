@@ -53,7 +53,7 @@ fi
 home_dir=$(mktemp -d "/tmp/openclaw-plugins-e2e.XXXXXX")
 export HOME="$home_dir"
 BUNDLED_PLUGIN_ROOT_DIR="extensions"
-OPENCLAW_PLUGIN_HOME="$HOME/.openclaw/$BUNDLED_PLUGIN_ROOT_DIR"
+OPENCLAW_PLUGIN_HOME="$HOME/.soloclaw/$BUNDLED_PLUGIN_ROOT_DIR"
 
 gateway_pid=""
 
@@ -68,7 +68,7 @@ const path = require("node:path");
 const pluginId = process.argv[2];
 const pluginRoot = process.argv[3];
 const enabled = process.argv[4] === "1";
-const configPath = path.join(process.env.HOME, ".openclaw", "openclaw.json");
+const configPath = path.join(process.env.HOME, ".soloclaw", "openclaw.json");
 const config = fs.existsSync(configPath)
   ? JSON.parse(fs.readFileSync(configPath, "utf8"))
   : {};
@@ -107,7 +107,7 @@ const path = require("node:path");
 
 const openaiApiKey = process.argv[2];
 const openaiBaseUrl = process.argv[3];
-const configPath = path.join(process.env.HOME, ".openclaw", "openclaw.json");
+const configPath = path.join(process.env.HOME, ".soloclaw", "openclaw.json");
 const config = fs.existsSync(configPath)
   ? JSON.parse(fs.readFileSync(configPath, "utf8"))
   : {};
@@ -648,7 +648,7 @@ node - <<'NODE'
 const fs = require("node:fs");
 const path = require("node:path");
 
-const configPath = path.join(process.env.HOME, ".openclaw", "openclaw.json");
+const configPath = path.join(process.env.HOME, ".soloclaw", "openclaw.json");
 const config = fs.existsSync(configPath)
   ? JSON.parse(fs.readFileSync(configPath, "utf8"))
   : {};
@@ -935,7 +935,7 @@ node - <<'NODE'
 const fs = require("node:fs");
 const path = require("node:path");
 
-const configPath = path.join(process.env.HOME, ".openclaw", "openclaw.json");
+const configPath = path.join(process.env.HOME, ".soloclaw", "openclaw.json");
 const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 for (const id of ["marketplace-shortcut", "marketplace-direct"]) {
   const record = config.plugins?.installs?.[id];

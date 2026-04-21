@@ -15,7 +15,7 @@ commands are allowed only when policy + allowlist + (optional) user approval all
 Exec approvals are **in addition** to tool policy and elevated gating (unless elevated is set to `full`, which skips approvals).
 Effective policy is the **stricter** of `tools.exec.*` and approvals defaults; if an approvals field is omitted, the `tools.exec` value is used.
 Host exec also uses the local approvals state on that machine. A host-local
-`ask: "always"` in `~/.openclaw/exec-approvals.json` keeps prompting even if
+`ask: "always"` in `~/.soloclaw/exec-approvals.json` keeps prompting even if
 session or config defaults request `ask: "on-miss"`.
 Use `openclaw approvals get`, `openclaw approvals get --gateway`, or
 `openclaw approvals get --node <id|name|ip>` to inspect the requested policy,
@@ -64,7 +64,7 @@ macOS split:
 
 Approvals live in a local JSON file on the execution host:
 
-`~/.openclaw/exec-approvals.json`
+`~/.soloclaw/exec-approvals.json`
 
 Example schema:
 
@@ -72,7 +72,7 @@ Example schema:
 {
   "version": 1,
   "socket": {
-    "path": "~/.openclaw/exec-approvals.sock",
+    "path": "~/.soloclaw/exec-approvals.sock",
     "token": "base64url-token"
   },
   "defaults": {
@@ -106,7 +106,7 @@ Example schema:
 If you want host exec to run without approval prompts, you must open **both** policy layers:
 
 - requested exec policy in OpenClaw config (`tools.exec.*`)
-- host-local approvals policy in `~/.openclaw/exec-approvals.json`
+- host-local approvals policy in `~/.soloclaw/exec-approvals.json`
 
 This is now the default host behavior unless you tighten it explicitly:
 
@@ -157,7 +157,7 @@ openclaw exec-policy preset yolo
 That local shortcut updates both:
 
 - local `tools.exec.host/security/ask`
-- local `~/.openclaw/exec-approvals.json` defaults
+- local `~/.soloclaw/exec-approvals.json` defaults
 
 It is intentionally local-only. If you need to change gateway-host or node-host approvals
 remotely, continue using `openclaw approvals set --gateway` or
@@ -351,7 +351,7 @@ Configuration location:
 - `safeBins` comes from config (`tools.exec.safeBins` or per-agent `agents.list[].tools.exec.safeBins`).
 - `safeBinTrustedDirs` comes from config (`tools.exec.safeBinTrustedDirs` or per-agent `agents.list[].tools.exec.safeBinTrustedDirs`).
 - `safeBinProfiles` comes from config (`tools.exec.safeBinProfiles` or per-agent `agents.list[].tools.exec.safeBinProfiles`). Per-agent profile keys override global keys.
-- allowlist entries live in host-local `~/.openclaw/exec-approvals.json` under `agents.<id>.allowlist` (or via Control UI / `openclaw approvals allowlist ...`).
+- allowlist entries live in host-local `~/.soloclaw/exec-approvals.json` under `agents.<id>.allowlist` (or via Control UI / `openclaw approvals allowlist ...`).
 - `openclaw security audit` warns with `tools.exec.safe_bins_interpreter_unprofiled` when interpreter/runtime bins appear in `safeBins` without explicit profiles.
 - `openclaw doctor --fix` can scaffold missing custom `safeBinProfiles.<bin>` entries as `{}` (review and tighten afterward). Interpreter/runtime bins are not auto-scaffolded.
 
@@ -389,7 +389,7 @@ per pattern so you can keep the list tidy.
 The target selector chooses **Gateway** (local approvals) or a **Node**. Nodes
 must advertise `system.execApprovals.get/set` (macOS app or headless node host).
 If a node does not advertise exec approvals yet, edit its local
-`~/.openclaw/exec-approvals.json` directly.
+`~/.soloclaw/exec-approvals.json` directly.
 
 CLI: `openclaw approvals` supports gateway or node editing (see [Approvals CLI](/cli/approvals)).
 

@@ -59,8 +59,8 @@ OpenClaw persists sessions in two layers:
 
 Per agent, on the Gateway host:
 
-- Store: `~/.openclaw/agents/<agentId>/sessions/sessions.json`
-- Transcripts: `~/.openclaw/agents/<agentId>/sessions/<sessionId>.jsonl`
+- Store: `~/.soloclaw/agents/<agentId>/sessions/sessions.json`
+- Transcripts: `~/.soloclaw/agents/<agentId>/sessions/<sessionId>.jsonl`
   - Telegram topic sessions: `.../<sessionId>-topic-<threadId>.jsonl`
 
 OpenClaw resolves these via `src/config/sessions.ts`.
@@ -101,7 +101,7 @@ openclaw sessions cleanup --enforce
 Isolated cron runs also create session entries/transcripts, and they have dedicated retention controls:
 
 - `cron.sessionRetention` (default `24h`) prunes old isolated cron run sessions from the session store (`false` disables).
-- `cron.runLog.maxBytes` + `cron.runLog.keepLines` prune `~/.openclaw/cron/runs/<jobId>.jsonl` files (defaults: `2_000_000` bytes and `2000` lines).
+- `cron.runLog.maxBytes` + `cron.runLog.keepLines` prune `~/.soloclaw/cron/runs/<jobId>.jsonl` files (defaults: `2_000_000` bytes and `2000` lines).
 
 ---
 

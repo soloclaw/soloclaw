@@ -33,7 +33,7 @@ openclaw cron runs --id <job-id>
 ## How cron works
 
 - Cron runs **inside the Gateway** process (not inside the model).
-- Jobs persist at `~/.openclaw/cron/jobs.json` so restarts do not lose schedules.
+- Jobs persist at `~/.soloclaw/cron/jobs.json` so restarts do not lose schedules.
 - All cron executions create [background task](/automation/tasks) records.
 - One-shot jobs (`--at`) auto-delete after success by default.
 - Isolated cron runs best-effort close tracked browser tabs/processes for their `cron:<jobId>` session when the run completes, so detached browser automation does not leave orphaned processes behind.
@@ -354,7 +354,7 @@ Model override note:
 {
   cron: {
     enabled: true,
-    store: "~/.openclaw/cron/jobs.json",
+    store: "~/.soloclaw/cron/jobs.json",
     maxConcurrentRuns: 1,
     retry: {
       maxAttempts: 3,

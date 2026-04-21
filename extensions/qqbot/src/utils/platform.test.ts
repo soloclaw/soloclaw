@@ -13,7 +13,7 @@ describe("qqbot local media path remapping", () => {
 
   function createOpenClawTestRoot() {
     const actualHome = getHomeDir();
-    const openclawDir = path.join(actualHome, ".openclaw");
+    const openclawDir = path.join(actualHome, ".soloclaw");
     fs.mkdirSync(openclawDir, { recursive: true });
     const testRoot = fs.mkdtempSync(path.join(openclawDir, "qqbot-platform-test-"));
     createdPaths.push(testRoot);
@@ -24,7 +24,7 @@ describe("qqbot local media path remapping", () => {
     const { actualHome, testRootName } = createOpenClawTestRoot();
     const mediaFile = path.join(
       actualHome,
-      ".openclaw",
+      ".soloclaw",
       "media",
       "qqbot",
       "downloads",
@@ -49,7 +49,7 @@ describe("qqbot local media path remapping", () => {
 
     const missingWorkspacePath = path.join(
       actualHome,
-      ".openclaw",
+      ".soloclaw",
       "workspace",
       "qqbot",
       "downloads",
@@ -79,7 +79,7 @@ describe("qqbot local media path remapping", () => {
   it("blocks structured payload paths that escape QQ Bot media via '..'", () => {
     const escapedPath = path.join(
       getHomeDir(),
-      ".openclaw",
+      ".soloclaw",
       "media",
       "qqbot",
       "..",
@@ -101,7 +101,7 @@ describe("qqbot local media path remapping", () => {
 
     const dataFile = path.join(
       actualHome,
-      ".openclaw",
+      ".soloclaw",
       "qqbot",
       "sessions",
       testRootName,
@@ -119,7 +119,7 @@ describe("qqbot local media path remapping", () => {
 
     const missingWorkspacePath = path.join(
       actualHome,
-      ".openclaw",
+      ".soloclaw",
       "workspace",
       "qqbot",
       "downloads",

@@ -371,7 +371,7 @@ similarity automatically.
 
 | Key                   | Type     | Default                               | Description                                 |
 | --------------------- | -------- | ------------------------------------- | ------------------------------------------- |
-| `store.path`          | `string` | `~/.openclaw/memory/{agentId}.sqlite` | Index location (supports `{agentId}` token) |
+| `store.path`          | `string` | `~/.soloclaw/memory/{agentId}.sqlite` | Index location (supports `{agentId}` token) |
 | `store.fts.tokenizer` | `string` | `unicode61`                           | FTS5 tokenizer (`unicode61` or `trigram`)   |
 
 ---

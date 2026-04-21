@@ -42,8 +42,8 @@ const COMPILE_PAGE_GROUPS: Array<{ kind: WikiPageKind; dir: string; heading: str
   { kind: "synthesis", dir: "syntheses", heading: "Syntheses" },
   { kind: "report", dir: "reports", heading: "Reports" },
 ];
-const AGENT_DIGEST_PATH = ".openclaw-wiki/cache/agent-digest.json";
-const CLAIMS_DIGEST_PATH = ".openclaw-wiki/cache/claims.jsonl";
+const AGENT_DIGEST_PATH = ".soloclaw-wiki/cache/agent-digest.json";
+const CLAIMS_DIGEST_PATH = ".soloclaw-wiki/cache/claims.jsonl";
 
 type DashboardPageDefinition = {
   id: string;

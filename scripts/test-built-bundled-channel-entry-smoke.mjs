@@ -97,13 +97,13 @@ function collectBundledChannelEntryFiles() {
       continue;
     }
     const packageJson = readJson(packageJsonPath);
-    if (!packageJson.openclaw?.channel) {
+    if (!packageJson.soloclaw?.channel) {
       continue;
     }
 
     const extensionEntries =
-      Array.isArray(packageJson.openclaw.extensions) && packageJson.openclaw.extensions.length > 0
-        ? packageJson.openclaw.extensions
+      Array.isArray(packageJson.soloclaw.extensions) && packageJson.soloclaw.extensions.length > 0
+        ? packageJson.soloclaw.extensions
         : ["./index.ts"];
     for (const entry of extensionEntries) {
       if (typeof entry !== "string" || entry.trim().length === 0) {
@@ -116,7 +116,7 @@ function collectBundledChannelEntryFiles() {
       });
     }
 
-    const setupEntry = packageJson.openclaw.setupEntry;
+    const setupEntry = packageJson.soloclaw.setupEntry;
     if (typeof setupEntry === "string" && setupEntry.trim().length > 0) {
       files.push({
         id: dirent.name,

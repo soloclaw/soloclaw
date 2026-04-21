@@ -12,7 +12,7 @@ This guide moves an OpenClaw gateway to a new machine without redoing onboarding
 
 ## What Gets Migrated
 
-When you copy the **state directory** (`~/.openclaw/` by default) and your **workspace**, you preserve:
+When you copy the **state directory** (`~/.soloclaw/` by default) and your **workspace**, you preserve:
 
 - **Config** -- `openclaw.json` and all gateway settings
 - **Auth** -- per-agent `auth-profiles.json` (API keys + OAuth), plus any channel/provider state under `credentials/`
@@ -22,7 +22,7 @@ When you copy the **state directory** (`~/.openclaw/` by default) and your **wor
 
 <Tip>
 Run `openclaw status` on the old machine to confirm your state directory path.
-Custom profiles use `~/.openclaw-<profile>/` or a path set via `OPENCLAW_STATE_DIR`.
+Custom profiles use `~/.soloclaw-<profile>/` or a path set via `OPENCLAW_STATE_DIR`.
 </Tip>
 
 ## Migration Steps
@@ -34,16 +34,16 @@ Custom profiles use `~/.openclaw-<profile>/` or a path set via `OPENCLAW_STATE_D
     ```bash
     openclaw gateway stop
     cd ~
-    tar -czf openclaw-state.tgz .openclaw
+    tar -czf openclaw-state.tgz .soloclaw
     ```
 
-    If you use multiple profiles (e.g. `~/.openclaw-work`), archive each separately.
+    If you use multiple profiles (e.g. `~/.soloclaw-work`), archive each separately.
 
   </Step>
 
   <Step title="Install OpenClaw on the new machine">
     [Install](/install) the CLI (and Node if needed) on the new machine.
-    It is fine if onboarding creates a fresh `~/.openclaw/` -- you will overwrite it next.
+    It is fine if onboarding creates a fresh `~/.soloclaw/` -- you will overwrite it next.
   </Step>
 
   <Step title="Copy state directory and workspace">

@@ -37,7 +37,7 @@ function resolveMode(input: string): "off" | "serve" | "funnel" {
 }
 
 function resolveDefaultStorePath(config: VoiceCallConfig): string {
-  const preferred = path.join(os.homedir(), ".openclaw", "voice-calls");
+  const preferred = path.join(os.homedir(), ".soloclaw", "voice-calls");
   const resolvedPreferred = resolveUserPath(preferred);
   const existing =
     [resolvedPreferred].find((dir) => {
@@ -121,7 +121,7 @@ export function registerVoiceCallCli(params: {
   const root = program
     .command("voicecall")
     .description("Voice call utilities")
-    .addHelpText("after", () => `\nDocs: https://docs.openclaw.ai/cli/voicecall\n`);
+    .addHelpText("after", () => `\nDocs: https://docs.soloclaw.ai/cli/voicecall\n`);
 
   root
     .command("call")

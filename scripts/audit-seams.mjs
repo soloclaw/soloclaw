@@ -523,7 +523,7 @@ async function buildMissingPackages(params = {}) {
       decisionReason: classification.reason,
       packageName: pkg.name ?? meta.packageName,
       packagePath: relativePackagePath,
-      npmSpec: redactNpmSpec(pkg.openclaw?.install?.npmSpec),
+      npmSpec: redactNpmSpec(pkg.soloclaw?.install?.npmSpec),
       private: pkg.private === true,
       pluginSdkReachability:
         pluginSdkEntries.length > 0 ? { staticEntryPoints: pluginSdkEntries } : undefined,

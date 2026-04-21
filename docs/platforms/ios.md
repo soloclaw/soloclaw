@@ -168,11 +168,11 @@ direct APNs delivery for local iOS builds.
 Recommended gateway-host storage:
 
 ```bash
-mkdir -p ~/.openclaw/credentials/apns
-chmod 700 ~/.openclaw/credentials/apns
-mv /path/to/AuthKey_KEYID.p8 ~/.openclaw/credentials/apns/AuthKey_KEYID.p8
-chmod 600 ~/.openclaw/credentials/apns/AuthKey_KEYID.p8
-export OPENCLAW_APNS_PRIVATE_KEY_PATH="$HOME/.openclaw/credentials/apns/AuthKey_KEYID.p8"
+mkdir -p ~/.soloclaw/credentials/apns
+chmod 700 ~/.soloclaw/credentials/apns
+mv /path/to/AuthKey_KEYID.p8 ~/.soloclaw/credentials/apns/AuthKey_KEYID.p8
+chmod 600 ~/.soloclaw/credentials/apns/AuthKey_KEYID.p8
+export OPENCLAW_APNS_PRIVATE_KEY_PATH="$HOME/.soloclaw/credentials/apns/AuthKey_KEYID.p8"
 ```
 
 Do not commit the `.p8` file or place it under the repo checkout.

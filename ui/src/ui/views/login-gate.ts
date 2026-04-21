@@ -117,7 +117,7 @@ export function renderLoginGate(state: AppViewState) {
           <div class="login-gate__docs">
             <a
               class="session-link"
-              href="https://docs.openclaw.ai/web/dashboard"
+              href="https://docs.soloclaw.ai/web/dashboard"
               target="_blank"
               rel="noreferrer"
               >${t("overview.connection.docsLink")}</a

@@ -163,11 +163,11 @@ OpenClaw scans for plugins in this order (first match wins):
   </Step>
 
   <Step title="Workspace extensions">
-    `\<workspace\>/.openclaw/<plugin-root>/*.ts` and `\<workspace\>/.openclaw/<plugin-root>/*/index.ts`.
+    `\<workspace\>/.soloclaw/<plugin-root>/*.ts` and `\<workspace\>/.soloclaw/<plugin-root>/*/index.ts`.
   </Step>
 
   <Step title="Global extensions">
-    `~/.openclaw/<plugin-root>/*.ts` and `~/.openclaw/<plugin-root>/*/index.ts`.
+    `~/.soloclaw/<plugin-root>/*.ts` and `~/.soloclaw/<plugin-root>/*/index.ts`.
   </Step>
 
   <Step title="Bundled plugins">

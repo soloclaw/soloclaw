@@ -85,8 +85,8 @@ export function injectCanvasLiveReload(html: string): string {
 (() => {
   // Cross-platform action bridge helper.
   // Works on:
-  // - iOS: window.webkit.messageHandlers.openclawCanvasA2UIAction.postMessage(...)
-  // - Android: window.openclawCanvasA2UIAction.postMessage(...)
+  // - iOS: window.webkit.messageHandlers.soloclawCanvasA2UIAction.postMessage(...)
+  // - Android: window.soloclawCanvasA2UIAction.postMessage(...)
   const handlerNames = ["openclawCanvasA2UIAction"];
   function postToNode(payload) {
     try {
@@ -117,8 +117,8 @@ export function injectCanvasLiveReload(html: string): string {
   globalThis.OpenClaw = globalThis.OpenClaw ?? {};
   globalThis.OpenClaw.postMessage = postToNode;
   globalThis.OpenClaw.sendUserAction = sendUserAction;
-  globalThis.openclawPostMessage = postToNode;
-  globalThis.openclawSendUserAction = sendUserAction;
+  globalThis.soloclawPostMessage = postToNode;
+  globalThis.soloclawSendUserAction = sendUserAction;
 
   try {
     const cap = new URLSearchParams(location.search).get("oc_cap");

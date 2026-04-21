@@ -99,7 +99,7 @@ No menus, no config files. Just ask.
 - web_search — search the web via the configured plugin
 - browser — open and read web pages
 
-**Skills** (`skills/`) — lightweight instruction files that teach the model how to use CLI tools for specific tasks. Installed on demand to `~/.openclaw/workspace/skills/`.
+**Skills** (`skills/`) — lightweight instruction files that teach the model how to use CLI tools for specific tasks. Installed on demand to `~/.soloclaw/workspace/skills/`.
 - 53 bundled templates (weather, github, spotify, apple-notes, etc.)
 - Install by asking: *"install the weather skill"*
 - Create your own: the `skill-creator` skill lets the AI build new skills
@@ -144,7 +144,7 @@ pnpm openclaw onboard --non-interactive --accept-risk --auth-choice openai --ope
 
 ## Configuration
 
-Config lives at `~/.openclaw/openclaw.json`:
+Config lives at `~/.soloclaw/openclaw.json`:
 
 ```json5
 {
@@ -154,14 +154,14 @@ Config lives at `~/.openclaw/openclaw.json`:
 }
 ```
 
-[Full configuration reference.](https://docs.openclaw.ai/gateway/configuration)
+[Full configuration reference.](https://docs.soloclaw.ai/gateway/configuration)
 
 ## Security
 
 - Default: tools run on the host with full access (single-user mode).
-- For multi-user/channel safety: enable [Docker sandboxing](https://docs.openclaw.ai/install/docker).
+- For multi-user/channel safety: enable [Docker sandboxing](https://docs.soloclaw.ai/install/docker).
 - DM pairing is on by default — unknown senders must be approved before the bot responds.
-- Full guide: [Security](https://docs.openclaw.ai/gateway/security)
+- Full guide: [Security](https://docs.soloclaw.ai/gateway/security)
 
 ## From Source (Development)
 

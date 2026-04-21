@@ -198,8 +198,8 @@ htop
 
 All state lives in:
 
-- `~/.openclaw/` — `openclaw.json`, per-agent `auth-profiles.json`, channel/provider state, and session data
-- `~/.openclaw/workspace/` — workspace (SOUL.md, memory, etc.)
+- `~/.soloclaw/` — `openclaw.json`, per-agent `auth-profiles.json`, channel/provider state, and session data
+- `~/.soloclaw/workspace/` — workspace (SOUL.md, memory, etc.)
 
 These survive reboots. Back them up periodically:
 

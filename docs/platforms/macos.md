@@ -36,15 +36,15 @@ capabilities to the agent as a node.
 
 ## Launchd control
 
-The app manages a per‑user LaunchAgent labeled `ai.openclaw.gateway`
-(or `ai.openclaw.<profile>` when using `--profile`/`OPENCLAW_PROFILE`; legacy `com.openclaw.*` still unloads).
+The app manages a per‑user LaunchAgent labeled `ai.soloclaw.gateway`
+(or `ai.soloclaw.<profile>` when using `--profile`/`OPENCLAW_PROFILE`; legacy `com.soloclaw.*` still unloads).
 
 ```bash
-launchctl kickstart -k gui/$UID/ai.openclaw.gateway
-launchctl bootout gui/$UID/ai.openclaw.gateway
+launchctl kickstart -k gui/$UID/ai.soloclaw.gateway
+launchctl bootout gui/$UID/ai.soloclaw.gateway
 ```
 
-Replace the label with `ai.openclaw.<profile>` when running a named profile.
+Replace the label with `ai.soloclaw.<profile>` when running a named profile.
 
 If the LaunchAgent isn’t installed, enable it from the app or run
 `openclaw gateway install`.
@@ -80,7 +80,7 @@ Gateway -> Node Service (WS)
 Security + ask + allowlist are stored locally on the Mac in:
 
 ```
-~/.openclaw/exec-approvals.json
+~/.soloclaw/exec-approvals.json
 ```
 
 Example:
@@ -154,7 +154,7 @@ sessions and credentials.
 Prefer a local non-synced state path such as:
 
 ```bash
-OPENCLAW_STATE_DIR=~/.openclaw
+OPENCLAW_STATE_DIR=~/.soloclaw
 ```
 
 If `openclaw doctor` detects state under:

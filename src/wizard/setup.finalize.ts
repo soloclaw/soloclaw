@@ -214,8 +214,8 @@ export async function finalizeSetupWizard(
         await prompter.note(
           [
             "Docs:",
-            "https://docs.openclaw.ai/gateway/health",
-            "https://docs.openclaw.ai/gateway/troubleshooting",
+            "https://docs.soloclaw.ai/gateway/health",
+            "https://docs.soloclaw.ai/gateway/troubleshooting",
           ].join("\n"),
           "Health check help",
         );
@@ -231,8 +231,8 @@ export async function finalizeSetupWizard(
       await prompter.note(
         [
           "Docs:",
-          "https://docs.openclaw.ai/gateway/health",
-          "https://docs.openclaw.ai/gateway/troubleshooting",
+          "https://docs.soloclaw.ai/gateway/health",
+          "https://docs.soloclaw.ai/gateway/troubleshooting",
         ].join("\n"),
         "Health check help",
       );
@@ -329,7 +329,7 @@ export async function finalizeSetupWizard(
         : undefined,
       `Gateway WS: ${links.wsUrl}`,
       gatewayStatusLine,
-      "Docs: https://docs.openclaw.ai/web/control-ui",
+      "Docs: https://docs.soloclaw.ai/web/control-ui",
     ]
       .filter(Boolean)
       .join("\n"),
@@ -358,7 +358,7 @@ export async function finalizeSetupWizard(
     await prompter.note(
       [
         "Gateway token: shared auth for the Gateway + Control UI.",
-        "Stored in: $OPENCLAW_CONFIG_PATH (default: ~/.openclaw/openclaw.json) under gateway.auth.token, or in OPENCLAW_GATEWAY_TOKEN.",
+        "Stored in: $OPENCLAW_CONFIG_PATH (default: ~/.soloclaw/openclaw.json) under gateway.auth.token, or in OPENCLAW_GATEWAY_TOKEN.",
         `View token: ${formatCliCommand("openclaw config get gateway.auth.token")}`,
         `Generate token: ${formatCliCommand("openclaw doctor --generate-gateway-token")}`,
         "Web UI keeps dashboard URL tokens in memory for the current tab and strips them from the URL after load.",
@@ -432,13 +432,13 @@ export async function finalizeSetupWizard(
   await prompter.note(
     [
       "Back up your agent workspace.",
-      "Docs: https://docs.openclaw.ai/concepts/agent-workspace",
+      "Docs: https://docs.soloclaw.ai/concepts/agent-workspace",
     ].join("\n"),
     "Workspace backup",
   );
 
   await prompter.note(
-    "Running agents on your computer is risky — harden your setup: https://docs.openclaw.ai/security",
+    "Running agents on your computer is risky — harden your setup: https://docs.soloclaw.ai/security",
     "Security",
   );
 
@@ -510,7 +510,7 @@ export async function finalizeSetupWizard(
           "web_search will not work until the provider is re-enabled or a different provider is selected.",
           `  ${formatCliCommand("openclaw configure --section web")}`,
           "",
-          "Docs: https://docs.openclaw.ai/tools/web",
+          "Docs: https://docs.soloclaw.ai/tools/web",
         ].join("\n"),
         "Web search",
       );
@@ -521,7 +521,7 @@ export async function finalizeSetupWizard(
           "",
           `Provider: ${label}`,
           ...(keySource ? [keySource] : []),
-          "Docs: https://docs.openclaw.ai/tools/web",
+          "Docs: https://docs.soloclaw.ai/tools/web",
         ].join("\n"),
         "Web search",
       );
@@ -532,8 +532,8 @@ export async function finalizeSetupWizard(
           "web_search will not work until a key is added.",
           `  ${formatCliCommand("openclaw configure --section web")}`,
           "",
-          `Get your key at: ${entry?.signupUrl ?? "https://docs.openclaw.ai/tools/web"}`,
-          "Docs: https://docs.openclaw.ai/tools/web",
+          `Get your key at: ${entry?.signupUrl ?? "https://docs.soloclaw.ai/tools/web"}`,
+          "Docs: https://docs.soloclaw.ai/tools/web",
         ].join("\n"),
         "Web search",
       );
@@ -543,7 +543,7 @@ export async function finalizeSetupWizard(
           `Web search (${label}) is configured but disabled.`,
           `Re-enable: ${formatCliCommand("openclaw configure --section web")}`,
           "",
-          "Docs: https://docs.openclaw.ai/tools/web",
+          "Docs: https://docs.soloclaw.ai/tools/web",
         ].join("\n"),
         "Web search",
       );
@@ -559,7 +559,7 @@ export async function finalizeSetupWizard(
       await prompter.note(
         [
           `Web search is available via ${legacyDetected.label} (auto-detected).`,
-          "Docs: https://docs.openclaw.ai/tools/web",
+          "Docs: https://docs.soloclaw.ai/tools/web",
         ].join("\n"),
         "Web search",
       );
@@ -568,7 +568,7 @@ export async function finalizeSetupWizard(
         [
           "Managed web search provider was skipped.",
           codexNativeSummary,
-          "Docs: https://docs.openclaw.ai/tools/web",
+          "Docs: https://docs.soloclaw.ai/tools/web",
         ].join("\n"),
         "Web search",
       );
@@ -578,7 +578,7 @@ export async function finalizeSetupWizard(
           "Web search was skipped. You can enable it later:",
           `  ${formatCliCommand("openclaw configure --section web")}`,
           "",
-          "Docs: https://docs.openclaw.ai/tools/web",
+          "Docs: https://docs.soloclaw.ai/tools/web",
         ].join("\n"),
         "Web search",
       );
@@ -590,7 +590,7 @@ export async function finalizeSetupWizard(
       [
         codexNativeSummary,
         "Used only for Codex-capable models.",
-        "Docs: https://docs.openclaw.ai/tools/web",
+        "Docs: https://docs.soloclaw.ai/tools/web",
       ].join("\n"),
       "Codex native search",
     );

@@ -94,7 +94,7 @@ Need to install Node? See [Node setup](/install/node).
   assets and `index.html`.
 
 ```bash
-mkdir -p "$HOME/.openclaw/control-ui-custom"
+mkdir -p "$HOME/.soloclaw/control-ui-custom"
 # Copy your built static files into that directory.
 ```
 
@@ -105,7 +105,7 @@ Then set:
   "gateway": {
     "controlUi": {
       "enabled": true,
-      "root": "$HOME/.openclaw/control-ui-custom"
+      "root": "$HOME/.soloclaw/control-ui-custom"
     }
   }
 }

@@ -17,7 +17,7 @@ describe("SUPERVISOR_HINT_ENV_VARS", () => {
 
 describe("detectRespawnSupervisor", () => {
   it("detects launchd and systemd only from non-blank platform-specific hints", () => {
-    expect(detectRespawnSupervisor({ LAUNCH_JOB_LABEL: " ai.openclaw.gateway " }, "darwin")).toBe(
+    expect(detectRespawnSupervisor({ LAUNCH_JOB_LABEL: " ai.soloclaw.gateway " }, "darwin")).toBe(
       "launchd",
     );
     expect(detectRespawnSupervisor({ LAUNCH_JOB_LABEL: "   " }, "darwin")).toBeNull();
@@ -61,7 +61,7 @@ describe("detectRespawnSupervisor", () => {
       ),
     ).toBeNull();
     expect(
-      detectRespawnSupervisor({ LAUNCH_JOB_LABEL: "ai.openclaw.gateway" }, "freebsd"),
+      detectRespawnSupervisor({ LAUNCH_JOB_LABEL: "ai.soloclaw.gateway" }, "freebsd"),
     ).toBeNull();
   });
 });

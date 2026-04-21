@@ -16,8 +16,8 @@ import {
 import { initializeMemoryWikiVault } from "./vault.js";
 
 const QUERY_DIRS = ["entities", "concepts", "sources", "syntheses", "reports"] as const;
-const AGENT_DIGEST_PATH = ".openclaw-wiki/cache/agent-digest.json";
-const CLAIMS_DIGEST_PATH = ".openclaw-wiki/cache/claims.jsonl";
+const AGENT_DIGEST_PATH = ".soloclaw-wiki/cache/agent-digest.json";
+const CLAIMS_DIGEST_PATH = ".soloclaw-wiki/cache/claims.jsonl";
 
 type QueryDigestPage = {
   id?: string;

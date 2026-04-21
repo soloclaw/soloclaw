@@ -567,7 +567,7 @@ try {
   Set-Item -Path ('Env:' + $ProviderKeyEnv) -Value $ProviderKey
   $openclaw = Join-Path $env:APPDATA 'npm\openclaw.cmd'
   Stop-OpenClawGatewayProcesses
-  Write-ProgressLog 'update.openclaw-update'
+  Write-ProgressLog 'update.soloclaw-update'
   Invoke-Logged 'openclaw update' { & $openclaw update --tag $UpdateTarget --yes --json }
   Write-ProgressLog 'update.verify-version'
   $version = Invoke-CaptureLogged 'openclaw --version' { & $openclaw --version }

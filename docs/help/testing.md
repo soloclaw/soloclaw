@@ -358,7 +358,7 @@ Think of the suites as “increasing realism” (and increasing flakiness/cost):
   - Costs money / uses rate limits
   - Prefer running narrowed subsets instead of “everything”
 - Live runs source `~/.profile` to pick up missing API keys.
-- By default, live runs still isolate `HOME` and copy config/auth material into a temp test home so unit fixtures cannot mutate your real `~/.openclaw`.
+- By default, live runs still isolate `HOME` and copy config/auth material into a temp test home so unit fixtures cannot mutate your real `~/.soloclaw`.
 - Set `OPENCLAW_LIVE_USE_REAL_HOME=1` only when you intentionally need live tests to use your real home directory.
 - `pnpm test:live` now defaults to a quieter mode: it keeps `[live] ...` progress output, but suppresses the extra `~/.profile` notice and mutes gateway bootstrap logs/Bonjour chatter. Set `OPENCLAW_LIVE_TEST_QUIET=0` if you want the full startup logs back.
 - API key rotation (provider-specific): set `*_API_KEYS` with comma/semicolon format or `*_API_KEY_1`, `*_API_KEY_2` (for example `OPENAI_API_KEYS`, `ANTHROPIC_API_KEYS`, `GEMINI_API_KEYS`) or per-live override via `OPENCLAW_LIVE_*_KEY`; tests retry on rate limit responses.
@@ -714,9 +714,9 @@ Live tests discover credentials the same way the CLI does. Practical implication
 - If the CLI works, live tests should find the same keys.
 - If a live test says “no creds”, debug the same way you’d debug `openclaw models list` / model selection.
 
-- Per-agent auth profiles: `~/.openclaw/agents/<agentId>/agent/auth-profiles.json` (this is what “profile keys” means in the live tests)
-- Config: `~/.openclaw/openclaw.json` (or `OPENCLAW_CONFIG_PATH`)
-- Legacy state dir: `~/.openclaw/credentials/` (copied into the staged live home when present, but not the main profile-key store)
+- Per-agent auth profiles: `~/.soloclaw/agents/<agentId>/agent/auth-profiles.json` (this is what “profile keys” means in the live tests)
+- Config: `~/.soloclaw/openclaw.json` (or `OPENCLAW_CONFIG_PATH`)
+- Legacy state dir: `~/.soloclaw/credentials/` (copied into the staged live home when present, but not the main profile-key store)
 - Live local runs copy the active config, per-agent `auth-profiles.json` files, legacy `credentials/`, and supported external CLI auth dirs into a temp test home by default; staged live homes skip `workspace/` and `sandboxes/`, and `agents.*.workspace` / `agentDir` path overrides are stripped so probes stay off your real host workspace.
 
 If you want to rely on env keys (e.g. exported in your `~/.profile`), run local tests after `source ~/.profile`, or use the Docker runners below (they can mount `~/.profile` into the container).
@@ -906,8 +906,8 @@ Manual ACP plain-language thread smoke (not CI):
 
 Useful env vars:
 
-- `OPENCLAW_CONFIG_DIR=...` (default: `~/.openclaw`) mounted to `/home/node/.openclaw`
-- `OPENCLAW_WORKSPACE_DIR=...` (default: `~/.openclaw/workspace`) mounted to `/home/node/.openclaw/workspace`
+- `OPENCLAW_CONFIG_DIR=...` (default: `~/.soloclaw`) mounted to `/home/node/.soloclaw`
+- `OPENCLAW_WORKSPACE_DIR=...` (default: `~/.soloclaw/workspace`) mounted to `/home/node/.soloclaw/workspace`
 - `OPENCLAW_PROFILE_FILE=...` (default: `~/.profile`) mounted to `/home/node/.profile` and sourced before running tests
 - `OPENCLAW_DOCKER_PROFILE_ENV_ONLY=1` to verify only env vars sourced from `OPENCLAW_PROFILE_FILE`, using temporary config/workspace dirs and no external CLI auth mounts
 - `OPENCLAW_DOCKER_CLI_TOOLS_DIR=...` (default: `~/.cache/openclaw/docker-cli-tools`) mounted to `/home/node/.npm-global` for cached CLI installs inside Docker

@@ -132,7 +132,7 @@ Define providers under `secrets.providers`:
       default: { source: "env" },
       filemain: {
         source: "file",
-        path: "~/.openclaw/secrets.json",
+        path: "~/.soloclaw/secrets.json",
         mode: "json", // or "singleValue"
       },
       vault: {

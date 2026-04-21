@@ -57,7 +57,7 @@ function expectLaunchdSupervisedWithoutKickstart(params?: { launchJobLabel?: str
   if (params?.launchJobLabel) {
     process.env.LAUNCH_JOB_LABEL = params.launchJobLabel;
   }
-  process.env.OPENCLAW_LAUNCHD_LABEL = "ai.openclaw.gateway";
+  process.env.OPENCLAW_LAUNCHD_LABEL = "ai.soloclaw.gateway";
   const result = restartGatewayProcessWithFreshPid();
   expect(result).toEqual({ mode: "supervised" });
   expect(triggerOpenClawRestartMock).not.toHaveBeenCalled();
@@ -76,7 +76,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
     clearSupervisorHints();
     setPlatform("darwin");
     process.env.OPENCLAW_NO_RESPAWN = "1";
-    process.env.LAUNCH_JOB_LABEL = "ai.openclaw.gateway";
+    process.env.LAUNCH_JOB_LABEL = "ai.soloclaw.gateway";
 
     const result = restartGatewayProcessWithFreshPid();
 
@@ -87,17 +87,17 @@ describe("restartGatewayProcessWithFreshPid", () => {
 
   it("returns supervised when launchd hints are present on macOS (no kickstart)", () => {
     clearSupervisorHints();
-    expectLaunchdSupervisedWithoutKickstart({ launchJobLabel: "ai.openclaw.gateway" });
+    expectLaunchdSupervisedWithoutKickstart({ launchJobLabel: "ai.soloclaw.gateway" });
   });
 
   it("returns supervised on macOS when launchd label is set (no kickstart)", () => {
-    expectLaunchdSupervisedWithoutKickstart({ launchJobLabel: "ai.openclaw.gateway" });
+    expectLaunchdSupervisedWithoutKickstart({ launchJobLabel: "ai.soloclaw.gateway" });
   });
 
   it("launchd supervisor never returns failed regardless of triggerOpenClawRestart outcome", () => {
     clearSupervisorHints();
     setPlatform("darwin");
-    process.env.OPENCLAW_LAUNCHD_LABEL = "ai.openclaw.gateway";
+    process.env.OPENCLAW_LAUNCHD_LABEL = "ai.soloclaw.gateway";
     // Even if triggerOpenClawRestart *would* fail, launchd path must not call it.
     triggerOpenClawRestartMock.mockReturnValue({
       ok: false,
@@ -113,7 +113,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
   it("does not schedule kickstart on non-darwin platforms", () => {
     setPlatform("linux");
     process.env.INVOCATION_ID = "abc123";
-    process.env.OPENCLAW_LAUNCHD_LABEL = "ai.openclaw.gateway";
+    process.env.OPENCLAW_LAUNCHD_LABEL = "ai.soloclaw.gateway";
 
     const result = restartGatewayProcessWithFreshPid();
 
@@ -125,7 +125,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
   it("returns supervised when XPC_SERVICE_NAME is set by launchd", () => {
     clearSupervisorHints();
     setPlatform("darwin");
-    process.env.XPC_SERVICE_NAME = "ai.openclaw.gateway";
+    process.env.XPC_SERVICE_NAME = "ai.soloclaw.gateway";
     const result = restartGatewayProcessWithFreshPid();
     expect(result.mode).toBe("supervised");
     expect(triggerOpenClawRestartMock).not.toHaveBeenCalled();

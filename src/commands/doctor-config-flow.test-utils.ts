@@ -142,7 +142,7 @@ export async function runDoctorConfigWithInput<T>(params: {
   setDoctorConfigInputForTest({
     config: structuredClone(params.config),
     exists: true,
-    path: "/virtual/.openclaw/openclaw.json",
+    path: "/virtual/.soloclaw/openclaw.json",
     preflightMode: params.preflightMode ?? inferredPreflightMode,
   });
   try {

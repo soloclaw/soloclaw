@@ -210,7 +210,7 @@ function resolveCliImagePath(image: ImageContent): string {
 
 function resolveCliImageRoot(params: { backend: CliBackendConfig; workspaceDir: string }): string {
   if (params.backend.imagePathScope === "workspace") {
-    return path.join(params.workspaceDir, ".openclaw-cli-images");
+    return path.join(params.workspaceDir, ".soloclaw-cli-images");
   }
   return path.join(resolvePreferredOpenClawTmpDir(), "openclaw-cli-images");
 }

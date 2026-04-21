@@ -27,7 +27,7 @@ export const EXTERNAL_CODE_PLUGIN_REQUIRED_FIELD_PATHS = [
 
 function readOpenClawBlock(packageJson: unknown) {
   const root = isRecord(packageJson) ? packageJson : undefined;
-  const openclaw = isRecord(root?.openclaw) ? root.openclaw : undefined;
+  const openclaw = isRecord(root?.soloclaw) ? root.soloclaw : undefined;
   const compat = isRecord(openclaw?.compat) ? openclaw.compat : undefined;
   const build = isRecord(openclaw?.build) ? openclaw.build : undefined;
   const install = isRecord(openclaw?.install) ? openclaw.install : undefined;

@@ -125,7 +125,7 @@ function writeWorkspacePlugin(params: {
   workspaceDir?: string;
 }) {
   const workspaceDir = params.workspaceDir ?? makeTempDir();
-  const workspacePluginDir = path.join(workspaceDir, ".openclaw", "extensions", params.id);
+  const workspacePluginDir = path.join(workspaceDir, ".soloclaw", "extensions", params.id);
   mkdirSafe(workspacePluginDir);
   const plugin = writePlugin({
     id: params.id,

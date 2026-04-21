@@ -169,7 +169,7 @@ describe("pw-tools-core", () => {
       fs.realpath(params.tempDir).catch(() => params.tempDir),
     ]);
     expect(savedDirReal).toBe(tempDirReal);
-    expect(path.basename(String(savedPath))).toContain(".openclaw-output-");
+    expect(path.basename(String(savedPath))).toContain(".soloclaw-output-");
     expect(path.basename(String(savedPath))).toContain(".part");
     expect(await fs.readFile(params.targetPath, "utf8")).toBe(params.content);
   }

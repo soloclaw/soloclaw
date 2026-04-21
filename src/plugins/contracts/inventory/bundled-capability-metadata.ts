@@ -62,7 +62,7 @@ function readJsonRecord(filePath: string): Record<string, unknown> | undefined {
 function readBundledCapabilityManifest(pluginDir: string): BundledCapabilityManifest | undefined {
   const packageJson = readJsonRecord(path.join(pluginDir, "package.json"));
   const extensions = normalizeBundledPluginStringList(
-    packageJson?.openclaw && typeof packageJson.openclaw === "object"
+    packageJson?.soloclaw && typeof packageJson.openclaw === "object"
       ? (packageJson.openclaw as { extensions?: unknown }).extensions
       : undefined,
   );

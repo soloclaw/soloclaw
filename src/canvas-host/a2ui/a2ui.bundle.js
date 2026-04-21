@@ -14713,7 +14713,7 @@ var OpenClawA2UIHost = class extends i$6 {
   `;
 	connectedCallback() {
 		super.connectedCallback();
-		globalThis.openclawA2UI = {
+		globalThis.soloclawA2UI = {
 			applyMessages: (messages) => this.applyMessages(messages),
 			reset: () => this.reset(),
 			getSurfaces: () => Array.from(this.#processor.getSurfaces().keys())
@@ -14826,9 +14826,9 @@ var OpenClawA2UIHost = class extends i$6 {
 			...Object.keys(context).length ? { context } : {}
 		};
 		globalThis.__openclawLastA2UIAction = userAction;
-		const handler = globalThis.webkit?.messageHandlers?.openclawCanvasA2UIAction ?? globalThis.openclawCanvasA2UIAction;
+		const handler = globalThis.webkit?.messageHandlers?.soloclawCanvasA2UIAction ?? globalThis.soloclawCanvasA2UIAction;
 		if (handler?.postMessage) try {
-			if (handler === globalThis.openclawCanvasA2UIAction) handler.postMessage(JSON.stringify({ userAction }));
+			if (handler === globalThis.soloclawCanvasA2UIAction) handler.postMessage(JSON.stringify({ userAction }));
 			else handler.postMessage({ userAction });
 		} catch (e) {
 			const msg = String(e?.message ?? e);

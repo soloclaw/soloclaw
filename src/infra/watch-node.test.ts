@@ -222,7 +222,7 @@ describe("watch-node script", () => {
       args: ["gateway", "--force"],
       createWatcher,
       env: {
-        LAUNCH_JOB_LABEL: "ai.openclaw.gateway",
+        LAUNCH_JOB_LABEL: "ai.soloclaw.gateway",
         PATH: "/usr/bin",
       },
       lockDisabled: true,
@@ -235,7 +235,7 @@ describe("watch-node script", () => {
       ["scripts/run-node.mjs", "gateway", "--force"],
       expect.objectContaining({
         env: expect.objectContaining({
-          LAUNCH_JOB_LABEL: "ai.openclaw.gateway",
+          LAUNCH_JOB_LABEL: "ai.soloclaw.gateway",
           OPENCLAW_NO_RESPAWN: "1",
         }),
       }),

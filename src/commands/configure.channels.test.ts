@@ -82,7 +82,7 @@ describe("removeChannelConfigWizard", () => {
 
     expect(confirm).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: "Delete Telegram configuration from ~/.openclaw/openclaw.json?",
+        message: "Delete Telegram configuration from ~/.soloclaw/openclaw.json?",
       }),
     );
     expect(next.channels).toEqual({ twitch: { token: "secret" } });
@@ -107,7 +107,7 @@ describe("removeChannelConfigWizard", () => {
 
     expect(confirm).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: "Delete done configuration from ~/.openclaw/openclaw.json?",
+        message: "Delete done configuration from ~/.soloclaw/openclaw.json?",
       }),
     );
     expect(next.channels).toEqual({ telegram: { token: "secret" } });
@@ -187,7 +187,7 @@ describe("removeChannelConfigWizard", () => {
     );
     expect(confirm).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: "Delete Telegram\\nBot configuration from ~/.openclaw/openclaw.json?",
+        message: "Delete Telegram\\nBot configuration from ~/.soloclaw/openclaw.json?",
       }),
     );
     expect(note).toHaveBeenCalledWith(
@@ -219,7 +219,7 @@ describe("removeChannelConfigWizard", () => {
     );
     expect(confirm).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: "Delete bad\\nkey configuration from ~/.openclaw/openclaw.json?",
+        message: "Delete bad\\nkey configuration from ~/.soloclaw/openclaw.json?",
       }),
     );
     expect(next.channels).toEqual({ telegram: { token: "secret" } });
@@ -255,7 +255,7 @@ describe("removeChannelConfigWizard", () => {
     );
     expect(confirm).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: "Delete <invalid channel key> configuration from ~/.openclaw/openclaw.json?",
+        message: "Delete <invalid channel key> configuration from ~/.soloclaw/openclaw.json?",
       }),
     );
     expect(next.channels).toEqual({ telegram: { token: "secret" } });

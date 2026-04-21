@@ -8,7 +8,7 @@ import { resolveStatusTtsSnapshot } from "./status-config.js";
 describe("resolveStatusTtsSnapshot", () => {
   it("uses prefs overrides without loading speech providers", async () => {
     await withTempHome(async (home) => {
-      const prefsPath = path.join(home, ".openclaw", "settings", "tts.json");
+      const prefsPath = path.join(home, ".soloclaw", "settings", "tts.json");
       fs.mkdirSync(path.dirname(prefsPath), { recursive: true });
       fs.writeFileSync(
         prefsPath,
@@ -65,7 +65,7 @@ describe("resolveStatusTtsSnapshot", () => {
   it("derives the default prefs path from OPENCLAW_CONFIG_PATH when set", async () => {
     await withTempHome(
       async (home) => {
-        const stateDir = path.join(home, ".openclaw-dev");
+        const stateDir = path.join(home, ".soloclaw-dev");
         const prefsPath = path.join(stateDir, "settings", "tts.json");
         fs.mkdirSync(path.dirname(prefsPath), { recursive: true });
         fs.writeFileSync(

@@ -110,7 +110,7 @@ beforeAll(async () => {
   await fixtureSuite.setup();
   tempHome = await createTempHomeEnv("openclaw-skills-home-");
   skillsHomeEnv = setMockSkillsHomeEnv(tempHome.home);
-  await fs.mkdir(path.join(tempHome.home, ".openclaw", "agents", "main", "sessions"), {
+  await fs.mkdir(path.join(tempHome.home, ".soloclaw", "agents", "main", "sessions"), {
     recursive: true,
   });
 });
@@ -261,7 +261,7 @@ describe("buildWorkspaceSkillCommandSpecs", () => {
       config,
     });
 
-    const pluginRoot = path.join(workspaceDir, ".openclaw", "extensions", "compound-bundle");
+    const pluginRoot = path.join(workspaceDir, ".soloclaw", "extensions", "compound-bundle");
     await fs.mkdir(path.join(pluginRoot, ".claude-plugin"), { recursive: true });
     await fs.mkdir(path.join(pluginRoot, "commands"), { recursive: true });
     await fs.writeFile(

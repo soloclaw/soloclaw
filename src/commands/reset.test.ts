@@ -32,15 +32,15 @@ describe("resetCommand", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     resolveCleanupPlanFromDisk.mockReturnValue({
-      stateDir: "/tmp/.openclaw",
-      configPath: "/tmp/.openclaw/openclaw.json",
-      oauthDir: "/tmp/.openclaw/credentials",
+      stateDir: "/tmp/.soloclaw",
+      configPath: "/tmp/.soloclaw/openclaw.json",
+      oauthDir: "/tmp/.soloclaw/credentials",
       configInsideState: true,
       oauthInsideState: true,
-      workspaceDirs: ["/tmp/.openclaw/workspace"],
+      workspaceDirs: ["/tmp/.soloclaw/workspace"],
     });
     removePath.mockResolvedValue({ ok: true });
-    listAgentSessionDirs.mockResolvedValue(["/tmp/.openclaw/agents/main/sessions"]);
+    listAgentSessionDirs.mockResolvedValue(["/tmp/.soloclaw/agents/main/sessions"]);
     removeStateAndLinkedPaths.mockResolvedValue(undefined);
     removeWorkspaceDirs.mockResolvedValue(undefined);
     vi.spyOn(runtime, "log").mockImplementation(() => {});

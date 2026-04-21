@@ -181,7 +181,7 @@ export const de: TranslationMap = {
     skills: "Skill-Verfügbarkeit und API-Schlüsselinjektion verwalten.",
     nodes: "Gekoppelte Geräte, Fähigkeiten und Befehlsfreigabe.",
     chat: "Direkte Gateway-Chat-Sitzung für schnelle Eingriffe.",
-    config: "~/.openclaw/openclaw.json sicher bearbeiten.",
+    config: "~/.soloclaw/openclaw.json sicher bearbeiten.",
     communications: "Kanäle, Nachrichten und Audioeinstellungen.",
     appearance: "Design-, UI- und Einrichtungsassistent-Einstellungen.",
     automation: "Befehle, Hooks, Cron und Plugins.",

@@ -25,7 +25,7 @@ function createBackupManifest(assetArchivePath: string, archiveRoot = TEST_ARCHI
     assets: [
       {
         kind: "state",
-        sourcePath: "/tmp/.openclaw",
+        sourcePath: "/tmp/.soloclaw",
         archivePath: assetArchivePath,
       },
     ],
@@ -106,7 +106,7 @@ describe("backupVerifyCommand", () => {
       const archivePath = path.join(archiveDir, "backup.tar.gz");
       const manifestPath = path.join(archiveDir, "manifest.json");
       const payloadPath = path.join(archiveDir, "state.txt");
-      const payloadArchivePath = `${archiveRoot}/payload/posix/tmp/.openclaw/state.txt`;
+      const payloadArchivePath = `${archiveRoot}/payload/posix/tmp/.soloclaw/state.txt`;
       await fs.writeFile(
         manifestPath,
         `${JSON.stringify(createBackupManifest(payloadArchivePath, archiveRoot), null, 2)}\n`,
@@ -176,8 +176,8 @@ describe("backupVerifyCommand", () => {
         assets: [
           {
             kind: "state",
-            sourcePath: "/tmp/.openclaw",
-            archivePath: `${rootName}/payload/posix/tmp/.openclaw`,
+            sourcePath: "/tmp/.soloclaw",
+            archivePath: `${rootName}/payload/posix/tmp/.soloclaw`,
           },
         ],
       };
@@ -235,7 +235,7 @@ describe("backupVerifyCommand", () => {
       const manifestPath = path.join(archiveDir, "manifest.json");
       const statePayloadPath = path.join(archiveDir, "state.txt");
       const workspaceManifestPayloadPath = path.join(archiveDir, "workspace-manifest.json");
-      const stateArchivePath = `${archiveRoot}/payload/posix/tmp/.openclaw/state.txt`;
+      const stateArchivePath = `${archiveRoot}/payload/posix/tmp/.soloclaw/state.txt`;
       const workspaceArchivePath = `${archiveRoot}/payload/posix/tmp/workspace/manifest.json`;
       await fs.writeFile(
         manifestPath,
@@ -245,7 +245,7 @@ describe("backupVerifyCommand", () => {
             assets: [
               {
                 kind: "state",
-                sourcePath: "/tmp/.openclaw",
+                sourcePath: "/tmp/.soloclaw",
                 archivePath: stateArchivePath,
               },
               {
@@ -298,7 +298,7 @@ describe("backupVerifyCommand", () => {
   });
 
   it("rejects duplicate manifest and payload entries", async () => {
-    const payloadArchivePath = `${TEST_ARCHIVE_ROOT}/payload/posix/tmp/.openclaw/payload.txt`;
+    const payloadArchivePath = `${TEST_ARCHIVE_ROOT}/payload/posix/tmp/.soloclaw/payload.txt`;
     for (const options of [
       {
         tempPrefix: "openclaw-backup-duplicate-manifest-",

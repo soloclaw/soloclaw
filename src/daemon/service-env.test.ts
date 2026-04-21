@@ -293,7 +293,7 @@ describe("buildServiceEnvironment", () => {
     expect(env.OPENCLAW_SYSTEMD_UNIT).toBe("openclaw-gateway.service");
     expect(env.OPENCLAW_WINDOWS_TASK_NAME).toBe("OpenClaw Gateway");
     if (process.platform === "darwin") {
-      expect(env.OPENCLAW_LAUNCHD_LABEL).toBe("ai.openclaw.gateway");
+      expect(env.OPENCLAW_LAUNCHD_LABEL).toBe("ai.soloclaw.gateway");
     }
   });
 
@@ -321,7 +321,7 @@ describe("buildServiceEnvironment", () => {
     expect(env.OPENCLAW_SYSTEMD_UNIT).toBe("openclaw-gateway-work.service");
     expect(env.OPENCLAW_WINDOWS_TASK_NAME).toBe("OpenClaw Gateway (work)");
     if (process.platform === "darwin") {
-      expect(env.OPENCLAW_LAUNCHD_LABEL).toBe("ai.openclaw.work");
+      expect(env.OPENCLAW_LAUNCHD_LABEL).toBe("ai.soloclaw.work");
     }
   });
 
@@ -486,17 +486,17 @@ describe("shared Node TLS env defaults", () => {
 describe("resolveGatewayStateDir", () => {
   it("uses the default state dir when no overrides are set", () => {
     const env = { HOME: "/Users/test" };
-    expect(resolveGatewayStateDir(env)).toBe(path.join("/Users/test", ".openclaw"));
+    expect(resolveGatewayStateDir(env)).toBe(path.join("/Users/test", ".soloclaw"));
   });
 
   it("appends the profile suffix when set", () => {
     const env = { HOME: "/Users/test", OPENCLAW_PROFILE: "rescue" };
-    expect(resolveGatewayStateDir(env)).toBe(path.join("/Users/test", ".openclaw-rescue"));
+    expect(resolveGatewayStateDir(env)).toBe(path.join("/Users/test", ".soloclaw-rescue"));
   });
 
   it("treats default profiles as the base state dir", () => {
     const env = { HOME: "/Users/test", OPENCLAW_PROFILE: "Default" };
-    expect(resolveGatewayStateDir(env)).toBe(path.join("/Users/test", ".openclaw"));
+    expect(resolveGatewayStateDir(env)).toBe(path.join("/Users/test", ".soloclaw"));
   });
 
   it("uses OPENCLAW_STATE_DIR when provided", () => {

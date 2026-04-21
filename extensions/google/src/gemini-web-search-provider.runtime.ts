@@ -149,7 +149,7 @@ export async function executeGeminiSearch(
       error: "missing_gemini_api_key",
       message:
         "web_search (gemini) needs an API key. Set GEMINI_API_KEY in the Gateway environment, or configure tools.web.search.gemini.apiKey.",
-      docs: "https://docs.openclaw.ai/tools/web",
+      docs: "https://docs.soloclaw.ai/tools/web",
     };
   }
 

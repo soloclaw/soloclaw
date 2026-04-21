@@ -69,7 +69,7 @@ If you previously installed ClawDock from `scripts/shell-helpers/clawdock-helper
 | `clawdock-health`      | Run a gateway health check              |
 | `clawdock-token`       | Print the gateway token                 |
 | `clawdock-cd`          | Jump to the OpenClaw project directory  |
-| `clawdock-config`      | Open `~/.openclaw`                      |
+| `clawdock-config`      | Open `~/.soloclaw`                      |
 | `clawdock-show-config` | Print config files with redacted values |
 | `clawdock-workspace`   | Open the workspace directory            |
 
@@ -93,9 +93,9 @@ clawdock-approve <request-id>
 ClawDock works with the same Docker config split described in [Docker](/install/docker):
 
 - `<project>/.env` for Docker-specific values like image name, ports, and the gateway token
-- `~/.openclaw/.env` for env-backed provider keys and bot tokens
-- `~/.openclaw/agents/<agentId>/agent/auth-profiles.json` for stored provider OAuth/API-key auth
-- `~/.openclaw/openclaw.json` for behavior config
+- `~/.soloclaw/.env` for env-backed provider keys and bot tokens
+- `~/.soloclaw/agents/<agentId>/agent/auth-profiles.json` for stored provider OAuth/API-key auth
+- `~/.soloclaw/openclaw.json` for behavior config
 
 Use `clawdock-show-config` when you want to inspect the `.env` files and `openclaw.json` quickly. It redacts `.env` values in its printed output.
 

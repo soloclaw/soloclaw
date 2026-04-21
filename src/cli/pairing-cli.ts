@@ -50,7 +50,7 @@ export function registerPairingCli(program: Command) {
     .addHelpText(
       "after",
       () =>
-        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/pairing", "docs.openclaw.ai/cli/pairing")}\n`,
+        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/pairing", "docs.soloclaw.ai/cli/pairing")}\n`,
     );
 
   pairing

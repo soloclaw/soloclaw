@@ -354,9 +354,9 @@ describe("update global helpers", () => {
 
   it("cleans only renamed package directories", async () => {
     await withTempDir({ prefix: "openclaw-update-cleanup-" }, async (root) => {
-      await fs.mkdir(path.join(root, ".openclaw-123"), { recursive: true });
-      await fs.mkdir(path.join(root, ".openclaw-456"), { recursive: true });
-      await fs.writeFile(path.join(root, ".openclaw-file"), "nope", "utf8");
+      await fs.mkdir(path.join(root, ".soloclaw-123"), { recursive: true });
+      await fs.mkdir(path.join(root, ".soloclaw-456"), { recursive: true });
+      await fs.writeFile(path.join(root, ".soloclaw-file"), "nope", "utf8");
       await fs.mkdir(path.join(root, "openclaw"), { recursive: true });
 
       await expect(
@@ -365,10 +365,10 @@ describe("update global helpers", () => {
           packageName: "openclaw",
         }),
       ).resolves.toEqual({
-        removed: [".openclaw-123", ".openclaw-456"],
+        removed: [".soloclaw-123", ".soloclaw-456"],
       });
       await expect(fs.stat(path.join(root, "openclaw"))).resolves.toBeDefined();
-      await expect(fs.stat(path.join(root, ".openclaw-file"))).resolves.toBeDefined();
+      await expect(fs.stat(path.join(root, ".soloclaw-file"))).resolves.toBeDefined();
     });
   });
 

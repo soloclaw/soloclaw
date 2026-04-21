@@ -198,12 +198,12 @@ clawdock-cd() {
 }
 
 clawdock-config() {
-  cd ~/.openclaw
+  cd ~/.soloclaw
 }
 
 clawdock-show-config() {
   _clawdock_ensure_dir >/dev/null 2>&1 || true
-  local config_dir="${HOME}/.openclaw"
+  local config_dir="${HOME}/.soloclaw"
   echo -e "${_CLR_BOLD}Config directory:${_CLR_RESET} ${_CLR_CYAN}${config_dir}${_CLR_RESET}"
   echo ""
 
@@ -254,7 +254,7 @@ clawdock-show-config() {
 }
 
 clawdock-workspace() {
-  cd ~/.openclaw/workspace
+  cd ~/.soloclaw/workspace
 }
 
 # Container Access
@@ -483,7 +483,7 @@ clawdock-help() {
   echo -e "  $(_cmd clawdock-health)      ${_CLR_DIM}Run health check${_CLR_RESET}"
   echo -e "  $(_cmd clawdock-token)       ${_CLR_DIM}Show gateway auth token${_CLR_RESET}"
   echo -e "  $(_cmd clawdock-cd)          ${_CLR_DIM}Jump to openclaw project directory${_CLR_RESET}"
-  echo -e "  $(_cmd clawdock-config)      ${_CLR_DIM}Open config directory (~/.openclaw)${_CLR_RESET}"
+  echo -e "  $(_cmd clawdock-config)      ${_CLR_DIM}Open config directory (~/.soloclaw)${_CLR_RESET}"
   echo -e "  $(_cmd clawdock-show-config) ${_CLR_DIM}Print config files with redacted values${_CLR_RESET}"
   echo -e "  $(_cmd clawdock-workspace)   ${_CLR_DIM}Open workspace directory${_CLR_RESET}"
   echo ""
@@ -507,6 +507,6 @@ clawdock-help() {
   echo ""
 
   echo -e "${_CLR_CYAN}💡 All commands guide you through next steps!${_CLR_RESET}"
-  echo -e "${_CLR_BLUE}📚 Docs: ${_CLR_RESET}${_CLR_CYAN}https://docs.openclaw.ai${_CLR_RESET}"
+  echo -e "${_CLR_BLUE}📚 Docs: ${_CLR_RESET}${_CLR_CYAN}https://docs.soloclaw.ai${_CLR_RESET}"
   echo ""
 }

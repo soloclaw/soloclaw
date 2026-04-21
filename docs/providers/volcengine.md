@@ -116,7 +116,7 @@ Both providers are configured from a single API key. Setup registers both automa
   <Accordion title="Environment variables for daemon processes">
     If the Gateway runs as a daemon (launchd/systemd), make sure
     `VOLCANO_ENGINE_API_KEY` is available to that process (for example, in
-    `~/.openclaw/.env` or via `env.shellEnv`).
+    `~/.soloclaw/.env` or via `env.shellEnv`).
   </Accordion>
 </AccordionGroup>
 

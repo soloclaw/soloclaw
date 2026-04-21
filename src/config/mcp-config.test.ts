@@ -60,7 +60,7 @@ async function withMcpConfigHome<T>(
 ) {
   return await withTempHome(
     async (home) => {
-      const configPath = path.join(home, ".openclaw", "openclaw.json");
+      const configPath = path.join(home, ".soloclaw", "openclaw.json");
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(configPath, JSON.stringify(config, null, 2), "utf-8");
       return await fn({ configPath });

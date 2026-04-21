@@ -40,11 +40,11 @@ describe("gateway cli backend connect", () => {
       ]);
 
       const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-gateway-connect-home-"));
-      const configPath = path.join(tempHome, ".openclaw", "openclaw.json");
+      const configPath = path.join(tempHome, ".soloclaw", "openclaw.json");
       const bundledPluginsDir = path.join(tempHome, "openclaw-test-no-bundled-extensions");
       const token = `test-${Date.now()}`;
       process.env.HOME = tempHome;
-      process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".openclaw");
+      process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".soloclaw");
       process.env.OPENCLAW_CONFIG_PATH = configPath;
       process.env.OPENCLAW_GATEWAY_TOKEN = token;
       process.env.OPENCLAW_SKIP_CHANNELS = "1";

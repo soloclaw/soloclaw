@@ -775,7 +775,7 @@ describe("doctor.memory dream actions", () => {
     resolveAgentWorkspaceDir.mockReturnValue("/tmp/openclaw");
     repairDreamingArtifacts.mockResolvedValue({
       changed: true,
-      archiveDir: "/tmp/openclaw/.openclaw-repair/dreaming/2026-04-11T22-00-00-000Z",
+      archiveDir: "/tmp/openclaw/.soloclaw-repair/dreaming/2026-04-11T22-00-00-000Z",
       archivedDreamsDiary: false,
       archivedSessionCorpus: true,
       archivedSessionIngestion: true,
@@ -795,7 +795,7 @@ describe("doctor.memory dream actions", () => {
         agentId: "main",
         action: "repairDreamingArtifacts",
         changed: true,
-        archiveDir: "/tmp/openclaw/.openclaw-repair/dreaming/2026-04-11T22-00-00-000Z",
+        archiveDir: "/tmp/openclaw/.soloclaw-repair/dreaming/2026-04-11T22-00-00-000Z",
         archivedDreamsDiary: false,
         archivedSessionCorpus: true,
         archivedSessionIngestion: true,

@@ -51,7 +51,7 @@ export function createGeminiWebSearchProvider(): WebSearchProviderPlugin {
     envVars: ["GEMINI_API_KEY"],
     placeholder: "AIza...",
     signupUrl: "https://aistudio.google.com/apikey",
-    docsUrl: "https://docs.openclaw.ai/tools/web",
+    docsUrl: "https://docs.soloclaw.ai/tools/web",
     autoDetectOrder: 20,
     credentialPath: GEMINI_CREDENTIAL_PATH,
     ...createWebSearchProviderContractFields({

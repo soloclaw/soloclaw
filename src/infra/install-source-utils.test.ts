@@ -258,7 +258,7 @@ describe("packNpmSpecToArchive", () => {
     expectPackError(result, [
       "Package not found on npm",
       "@openclaw/whatsapp",
-      "docs.openclaw.ai/tools/plugin",
+      "docs.soloclaw.ai/tools/plugin",
     ]);
   });
 
