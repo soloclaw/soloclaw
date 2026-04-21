@@ -77,20 +77,24 @@ No menus, no config files. Just ask.
 
 ## What's Included
 
-| Category | Default |
-|----------|---------|
-| **LLM** | qwen3.5:9b (medium), free local model via Ollama |
-| **Skills/Tools** | See below |
-| **Channels** | Telegram, Discord built-in |
-| **Interface** | Browser-based TUI |
-| **Infrastructure** | Always-on LaunchAgent gateway (macOS) |
+**LLM**
+- qwen3.5:9b (medium), free local model via Ollama
 
-**Skills/Tools:**
+**Skills/Tools**
 - Web search — SearXNG (self-hosted, Docker)
 - Browser — agent-controlled Chromium for reading web pages
 - bash — run shell commands
 - read / write / edit — file operations
 - Extensible — add more via workspace skills
+
+**Channels**
+- Telegram, Discord built-in
+
+**Interface**
+- Browser-based TUI
+
+**Infrastructure**
+- Always-on LaunchAgent gateway (macOS)
 
 ## Using a Different Model
 
