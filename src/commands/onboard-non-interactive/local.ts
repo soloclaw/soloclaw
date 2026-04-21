@@ -184,7 +184,22 @@ export async function runNonInteractiveLocalSetup(params: {
           ...nextConfig.tools?.web,
           search: {
             ...nextConfig.tools?.web?.search,
-            provider: "duckduckgo",
+            provider: "searxng",
+          },
+        },
+      },
+      plugins: {
+        ...nextConfig.plugins,
+        entries: {
+          ...nextConfig.plugins?.entries,
+          searxng: {
+            ...((nextConfig.plugins?.entries as Record<string, unknown>)?.searxng as Record<string, unknown> | undefined),
+            enabled: true,
+            config: {
+              webSearch: {
+                baseUrl: "http://localhost:8080",
+              },
+            },
           },
         },
       },
