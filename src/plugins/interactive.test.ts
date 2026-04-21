@@ -4,10 +4,6 @@ import type {
   DiscordInteractiveHandlerRegistration,
 } from "../../test/helpers/channels/interactive-contract.js";
 import type {
-  SlackInteractiveHandlerContext,
-  SlackInteractiveHandlerRegistration,
-} from "../../test/helpers/channels/interactive-contract.js";
-import type {
   TelegramInteractiveHandlerContext,
   TelegramInteractiveHandlerRegistration,
 } from "../../test/helpers/channels/interactive-contract.js";
@@ -72,27 +68,6 @@ type InteractiveDispatchParams =
         >;
       };
       respond: DiscordInteractiveHandlerContext["respond"];
-    }
-  | {
-      channel: "slack";
-      data: string;
-      dedupeId: string;
-      onMatched?: () => Promise<void> | void;
-      ctx: Omit<
-        SlackInteractiveHandlerContext,
-        | "interaction"
-        | "respond"
-        | "channel"
-        | "requestConversationBinding"
-        | "detachConversationBinding"
-        | "getCurrentConversationBinding"
-      > & {
-        interaction: Omit<
-          SlackInteractiveHandlerContext["interaction"],
-          "data" | "namespace" | "payload"
-        >;
-      };
-      respond: SlackInteractiveHandlerContext["respond"];
     };
 
 type InteractiveModule = typeof import("./interactive.js");
@@ -171,49 +146,6 @@ function createDiscordDispatchParams(params: {
       followUp: vi.fn(async () => {}),
       editMessage: vi.fn(async () => {}),
       clearComponents: vi.fn(async () => {}),
-    },
-  };
-}
-
-function createSlackDispatchParams(params: {
-  data: string;
-  interactionId: string;
-  interaction?: Partial<
-    Extract<InteractiveDispatchParams, { channel: "slack" }>["ctx"]["interaction"]
-  >;
-}): Extract<InteractiveDispatchParams, { channel: "slack" }> {
-  return {
-    channel: "slack",
-    data: params.data,
-    dedupeId: params.interactionId,
-    ctx: {
-      accountId: "default",
-      interactionId: params.interactionId,
-      conversationId: "C123",
-      parentConversationId: "C123",
-      threadId: "1710000000.000100",
-      senderId: "user-1",
-      senderUsername: "ada",
-      auth: { isAuthorizedSender: true },
-      interaction: {
-        kind: "button",
-        actionId: "codex",
-        blockId: "codex_actions",
-        messageTs: "1710000000.000200",
-        threadTs: "1710000000.000100",
-        value: "approve:thread-1",
-        selectedValues: ["approve:thread-1"],
-        selectedLabels: ["Approve"],
-        triggerId: "trigger-1",
-        responseUrl: "https://hooks.slack.test/response",
-        ...params.interaction,
-      },
-    },
-    respond: {
-      acknowledge: vi.fn(async () => {}),
-      reply: vi.fn(async () => {}),
-      followUp: vi.fn(async () => {}),
-      editMessage: vi.fn(async () => {}),
     },
   };
 }
@@ -309,41 +241,12 @@ async function dispatchInteractiveWith(
       },
     );
   }
-  return await interactiveModule.dispatchPluginInteractiveHandler<SlackInteractiveHandlerRegistration>(
-    {
-      channel: "slack",
-      data: params.data,
-      dedupeId: params.dedupeId,
-      onMatched: params.onMatched,
-      invoke: ({ registration, namespace, payload }) =>
-        registration.handler({
-          ...params.ctx,
-          channel: "slack",
-          interaction: {
-            ...params.ctx.interaction,
-            data: params.data,
-            namespace,
-            payload,
-          },
-          respond: params.respond,
-          ...createInteractiveConversationBindingHelpers({
-            registration,
-            senderId: params.ctx.senderId,
-            conversation: {
-              channel: "slack",
-              accountId: params.ctx.accountId,
-              conversationId: params.ctx.conversationId,
-              parentConversationId: params.ctx.parentConversationId,
-              threadId: params.ctx.threadId,
-            },
-          }),
-        }),
-    },
-  );
+  params satisfies never;
+  throw new Error("unsupported interactive channel");
 }
 
 function registerInteractiveHandler(params: {
-  channel: "telegram" | "discord" | "slack";
+  channel: "telegram" | "discord";
   namespace: string;
   handler: ReturnType<typeof vi.fn>;
 }) {
@@ -356,7 +259,7 @@ function registerInteractiveHandler(params: {
 
 type BindingHelperCase = {
   name: string;
-  registerParams: { channel: "telegram" | "discord" | "slack"; namespace: string };
+  registerParams: { channel: "telegram" | "discord"; namespace: string };
   dispatchParams: InteractiveDispatchParams;
   requestResult: {
     status: "bound";
@@ -515,26 +418,6 @@ describe("plugin interactive handlers", () => {
           payload: "approve:thread-1",
           messageId: "message-1",
           values: ["allow"],
-        }),
-      },
-    },
-    {
-      name: "routes Slack interactions by namespace and dedupes interaction ids",
-      channel: "slack" as const,
-      baseParams: createSlackDispatchParams({
-        data: "codex:approve:thread-1",
-        interactionId: "slack-ix-1",
-        interaction: { kind: "button" },
-      }),
-      expectedCall: {
-        channel: "slack",
-        conversationId: "C123",
-        threadId: "1710000000.000100",
-        interaction: expect.objectContaining({
-          namespace: "codex",
-          payload: "approve:thread-1",
-          actionId: "codex",
-          messageTs: "1710000000.000200",
         }),
       },
     },
@@ -711,43 +594,6 @@ describe("plugin interactive handlers", () => {
         accountId: "default",
         conversationId: "channel-1",
         parentConversationId: "parent-1",
-      },
-    },
-    {
-      name: "wires Slack conversation binding helpers with thread context",
-      registerParams: { channel: "slack", namespace: "codex" },
-      dispatchParams: createSlackDispatchParams({
-        data: "codex:bind",
-        interactionId: "slack-bind",
-        interaction: {
-          kind: "button",
-          value: "bind",
-          selectedValues: ["bind"],
-          selectedLabels: ["Bind"],
-        },
-      }),
-      requestResult: {
-        status: "bound" as const,
-        binding: {
-          bindingId: "binding-slack",
-          pluginId: "codex-plugin",
-          pluginName: "Codex",
-          pluginRoot: "/plugins/codex",
-          channel: "slack",
-          accountId: "default",
-          conversationId: "C123",
-          parentConversationId: "C123",
-          threadId: "1710000000.000100",
-          boundAt: 1,
-        },
-      },
-      requestSummary: "Bind Slack",
-      expectedConversation: {
-        channel: "slack",
-        accountId: "default",
-        conversationId: "C123",
-        parentConversationId: "C123",
-        threadId: "1710000000.000100",
       },
     },
   ] as const)("$name", async (testCase) => {

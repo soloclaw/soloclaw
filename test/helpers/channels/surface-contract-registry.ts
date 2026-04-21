@@ -5,11 +5,6 @@ import {
 } from "../../../src/channels/plugins/bundled.js";
 import type { ChannelPlugin } from "../../../src/channels/plugins/types.js";
 import type { OpenClawConfig } from "../../../src/config/config.js";
-import {
-  listLineAccountIds,
-  resolveDefaultLineAccountId,
-  resolveLineAccount,
-} from "../../../src/plugin-sdk/line.js";
 import { channelPluginSurfaceKeys, type ChannelPluginSurface } from "./manifest.js";
 
 function buildBundledPluginModuleId(pluginId: string, artifactBasename: string): string {
@@ -46,32 +41,6 @@ type DirectoryContractEntry = {
   accountId?: string;
 };
 
-const sendMessageMatrixMock = vi.hoisted(() =>
-  vi.fn(async (to: string, _message: string, opts?: { threadId?: string }) => ({
-    messageId: opts?.threadId ? "$matrix-thread" : "$matrix-root",
-    roomId: to.replace(/^room:/, ""),
-  })),
-);
-
-setBundledChannelRuntime("line", {
-  channel: {
-    line: {
-      listLineAccountIds,
-      resolveDefaultLineAccountId,
-      resolveLineAccount: ({ cfg, accountId }: { cfg: OpenClawConfig; accountId?: string }) =>
-        resolveLineAccount({ cfg, accountId }),
-    },
-  },
-} as never);
-
-vi.mock(buildBundledPluginModuleId("matrix", "runtime-api.js"), async () => {
-  const matrixRuntimeApiModuleId = buildBundledPluginModuleId("matrix", "runtime-api.js");
-  const actual = await vi.importActual(matrixRuntimeApiModuleId);
-  return {
-    ...actual,
-    sendMessageMatrix: sendMessageMatrixMock,
-  };
-});
 
 let surfaceContractRegistryCache: SurfaceContractEntry[] | undefined;
 let threadingContractRegistryCache: ThreadingContractEntry[] | undefined;
@@ -96,7 +65,7 @@ export function getThreadingContractRegistry(): ThreadingContractEntry[] {
   return threadingContractRegistryCache;
 }
 
-const directoryPresenceOnlyIds = new Set(["whatsapp", "zalouser"]);
+const directoryPresenceOnlyIds = new Set<string>();
 
 export function getDirectoryContractRegistry(): DirectoryContractEntry[] {
   directoryContractRegistryCache ??= getSurfaceContractRegistry()

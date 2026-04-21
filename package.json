@@ -441,14 +441,6 @@
       "types": "./dist/plugin-sdk/allowlist-config-edit.d.ts",
       "default": "./dist/plugin-sdk/allowlist-config-edit.js"
     },
-    "./plugin-sdk/bluebubbles": {
-      "types": "./dist/plugin-sdk/bluebubbles.d.ts",
-      "default": "./dist/plugin-sdk/bluebubbles.js"
-    },
-    "./plugin-sdk/bluebubbles-policy": {
-      "types": "./dist/plugin-sdk/bluebubbles-policy.d.ts",
-      "default": "./dist/plugin-sdk/bluebubbles-policy.js"
-    },
     "./plugin-sdk/browser-cdp": {
       "types": "./dist/plugin-sdk/browser-cdp.d.ts",
       "default": "./dist/plugin-sdk/browser-cdp.js"
@@ -657,18 +649,6 @@
       "types": "./dist/plugin-sdk/context-visibility-runtime.d.ts",
       "default": "./dist/plugin-sdk/context-visibility-runtime.js"
     },
-    "./plugin-sdk/feishu": {
-      "types": "./dist/plugin-sdk/feishu.d.ts",
-      "default": "./dist/plugin-sdk/feishu.js"
-    },
-    "./plugin-sdk/feishu-conversation": {
-      "types": "./dist/plugin-sdk/feishu-conversation.d.ts",
-      "default": "./dist/plugin-sdk/feishu-conversation.js"
-    },
-    "./plugin-sdk/feishu-setup": {
-      "types": "./dist/plugin-sdk/feishu-setup.d.ts",
-      "default": "./dist/plugin-sdk/feishu-setup.js"
-    },
     "./plugin-sdk/file-lock": {
       "types": "./dist/plugin-sdk/file-lock.d.ts",
       "default": "./dist/plugin-sdk/file-lock.js"
@@ -765,14 +745,6 @@
       "types": "./dist/plugin-sdk/video-generation-core.d.ts",
       "default": "./dist/plugin-sdk/video-generation-core.js"
     },
-    "./plugin-sdk/irc": {
-      "types": "./dist/plugin-sdk/irc.d.ts",
-      "default": "./dist/plugin-sdk/irc.js"
-    },
-    "./plugin-sdk/irc-surface": {
-      "types": "./dist/plugin-sdk/irc-surface.d.ts",
-      "default": "./dist/plugin-sdk/irc-surface.js"
-    },
     "./plugin-sdk/reply-history": {
       "types": "./dist/plugin-sdk/reply-history.d.ts",
       "default": "./dist/plugin-sdk/reply-history.js"
@@ -817,45 +789,9 @@
       "types": "./dist/plugin-sdk/keyed-async-queue.d.ts",
       "default": "./dist/plugin-sdk/keyed-async-queue.js"
     },
-    "./plugin-sdk/line": {
-      "types": "./dist/plugin-sdk/line.d.ts",
-      "default": "./dist/plugin-sdk/line.js"
-    },
-    "./plugin-sdk/line-core": {
-      "types": "./dist/plugin-sdk/line-core.d.ts",
-      "default": "./dist/plugin-sdk/line-core.js"
-    },
-    "./plugin-sdk/line-runtime": {
-      "types": "./dist/plugin-sdk/line-runtime.d.ts",
-      "default": "./dist/plugin-sdk/line-runtime.js"
-    },
-    "./plugin-sdk/line-surface": {
-      "types": "./dist/plugin-sdk/line-surface.d.ts",
-      "default": "./dist/plugin-sdk/line-surface.js"
-    },
     "./plugin-sdk/llm-task": {
       "types": "./dist/plugin-sdk/llm-task.d.ts",
       "default": "./dist/plugin-sdk/llm-task.js"
-    },
-    "./plugin-sdk/matrix": {
-      "types": "./dist/plugin-sdk/matrix.d.ts",
-      "default": "./dist/plugin-sdk/matrix.js"
-    },
-    "./plugin-sdk/matrix-helper": {
-      "types": "./dist/plugin-sdk/matrix-helper.d.ts",
-      "default": "./dist/plugin-sdk/matrix-helper.js"
-    },
-    "./plugin-sdk/matrix-runtime-surface": {
-      "types": "./dist/plugin-sdk/matrix-runtime-surface.d.ts",
-      "default": "./dist/plugin-sdk/matrix-runtime-surface.js"
-    },
-    "./plugin-sdk/matrix-surface": {
-      "types": "./dist/plugin-sdk/matrix-surface.d.ts",
-      "default": "./dist/plugin-sdk/matrix-surface.js"
-    },
-    "./plugin-sdk/matrix-thread-bindings": {
-      "types": "./dist/plugin-sdk/matrix-thread-bindings.d.ts",
-      "default": "./dist/plugin-sdk/matrix-thread-bindings.js"
     },
     "./plugin-sdk/qa-runner-runtime": {
       "types": "./dist/plugin-sdk/qa-runner-runtime.d.ts",
@@ -1184,18 +1120,6 @@
     "./plugin-sdk/voice-call": {
       "types": "./dist/plugin-sdk/voice-call.d.ts",
       "default": "./dist/plugin-sdk/voice-call.js"
-    },
-    "./plugin-sdk/zalo": {
-      "types": "./dist/plugin-sdk/zalo.d.ts",
-      "default": "./dist/plugin-sdk/zalo.js"
-    },
-    "./plugin-sdk/zalo-setup": {
-      "types": "./dist/plugin-sdk/zalo-setup.d.ts",
-      "default": "./dist/plugin-sdk/zalo-setup.js"
-    },
-    "./plugin-sdk/zalouser": {
-      "types": "./dist/plugin-sdk/zalouser.d.ts",
-      "default": "./dist/plugin-sdk/zalouser.js"
     },
     "./plugin-sdk/zod": {
       "types": "./dist/plugin-sdk/zod.d.ts",

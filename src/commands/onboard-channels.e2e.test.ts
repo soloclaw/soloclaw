@@ -1,8 +1,4 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import {
-  matrixSetupAdapter,
-  matrixSetupWizard,
-} from "../../test/helpers/channels/matrix-setup-contract.js";
 import type { ChannelPluginCatalogEntry } from "../channels/plugins/catalog.js";
 import {
   ensureChannelSetupPluginInstalled,
@@ -118,117 +114,6 @@ function createMSTeamsCatalogEntry(): ChannelPluginCatalogEntry {
   };
 }
 
-async function setMatrixOnboardingRegistryForTests(): Promise<void> {
-  setActivePluginRegistry(
-    createTestRegistry([
-      {
-        pluginId: "matrix",
-        source: "test",
-        plugin: {
-          ...createChannelTestPluginBase({
-            id: "matrix",
-            label: "Matrix",
-            capabilities: { chatTypes: ["direct", "group", "thread"] },
-          }),
-          meta: {
-            id: "matrix",
-            label: "Matrix",
-            selectionLabel: "Matrix (plugin)",
-            docsPath: "/channels/matrix",
-            blurb: "open protocol; configure a homeserver + access token.",
-          },
-          setup: matrixSetupAdapter,
-          setupWizard: matrixSetupWizard,
-        },
-      },
-    ]),
-  );
-}
-
-async function withClearedMatrixSetupEnv<T>(run: () => Promise<T>): Promise<T> {
-  const previousEnv = {
-    MATRIX_HOMESERVER: process.env.MATRIX_HOMESERVER,
-    MATRIX_USER_ID: process.env.MATRIX_USER_ID,
-    MATRIX_ACCESS_TOKEN: process.env.MATRIX_ACCESS_TOKEN,
-    MATRIX_PASSWORD: process.env.MATRIX_PASSWORD,
-    MATRIX_DEVICE_ID: process.env.MATRIX_DEVICE_ID,
-    MATRIX_DEVICE_NAME: process.env.MATRIX_DEVICE_NAME,
-  };
-  delete process.env.MATRIX_HOMESERVER;
-  delete process.env.MATRIX_USER_ID;
-  delete process.env.MATRIX_ACCESS_TOKEN;
-  delete process.env.MATRIX_PASSWORD;
-  delete process.env.MATRIX_DEVICE_ID;
-  delete process.env.MATRIX_DEVICE_NAME;
-
-  try {
-    return await run();
-  } finally {
-    for (const [key, value] of Object.entries(previousEnv)) {
-      if (value === undefined) {
-        delete process.env[key];
-      } else {
-        process.env[key] = value;
-      }
-    }
-  }
-}
-
-function createMatrixQuickstartPrompter(notes: string[]): WizardPrompter {
-  const select = vi.fn(async ({ message }: { message: string }) => {
-    if (message === "Select channel (QuickStart)") {
-      return "matrix";
-    }
-    if (message === "Matrix auth method") {
-      return "token";
-    }
-    throw new Error(`unexpected select prompt: ${message}`);
-  });
-  const multiselect = vi.fn(async () => {
-    throw new Error("unexpected multiselect");
-  });
-  const text = vi.fn(async ({ message }: { message: string }) => {
-    if (message === "Matrix homeserver URL") {
-      return "https://matrix.example.org";
-    }
-    if (message === "Matrix access token") {
-      return "matrix-token";
-    }
-    if (message === "Matrix device name (optional)") {
-      return "OpenClaw Gateway";
-    }
-    throw new Error(`unexpected text prompt: ${message}`);
-  });
-  const confirm = vi.fn(async ({ message }: { message: string }) => {
-    if (message === "Enable end-to-end encryption (E2EE)?") {
-      return false;
-    }
-    if (message === "Configure Matrix rooms access?") {
-      return false;
-    }
-    if (message === "Configure DM access policies now? (default: pairing)") {
-      return false;
-    }
-    if (message === "Configure Matrix invite auto-join?") {
-      return false;
-    }
-    if (message.startsWith("Matrix env vars detected")) {
-      return false;
-    }
-    throw new Error(`unexpected confirm prompt: ${message}`);
-  });
-
-  return createPrompter({
-    select: select as unknown as WizardPrompter["select"],
-    multiselect,
-    text: text as unknown as WizardPrompter["text"],
-    confirm: confirm as unknown as WizardPrompter["confirm"],
-    note: vi.fn(async (message: unknown) => {
-      notes.push(String(message));
-    }),
-  });
-}
-
 function setMinimalOnboardingRegistryForTests(): void {
   setActivePluginRegistry(
     createTestRegistry([
@@ -280,70 +165,6 @@ function setMinimalOnboardingRegistryForTests(): void {
                   accountConfigured: Boolean(cfg.channels?.telegram?.botToken),
                   hasConfiguredValue: Boolean(cfg.channels?.telegram?.botToken),
                 }),
-              },
-            ],
-          },
-        },
-      },
-      {
-        pluginId: "whatsapp",
-        source: "test",
-        plugin: {
-          ...createChannelTestPluginBase({
-            id: "whatsapp",
-            label: "WhatsApp",
-            capabilities: { chatTypes: ["direct", "group"] },
-          }),
-          setup: {
-            applyAccountConfig: ({
-              cfg,
-              input,
-            }: {
-              cfg: OpenClawConfig;
-              input: { account?: string; name?: string };
-            }) =>
-              ({
-                ...cfg,
-                channels: {
-                  ...cfg.channels,
-                  whatsapp: {
-                    ...(cfg.channels?.whatsapp as Record<string, unknown> | undefined),
-                    ...(input.account ? { account: input.account } : {}),
-                    ...(input.name ? { name: input.name } : {}),
-                    linked: false,
-                  },
-                },
-              }) as OpenClawConfig,
-          },
-          setupWizard: {
-            channel: "whatsapp",
-            status: {
-              configuredLabel: "configured",
-              unconfiguredLabel: "not linked",
-              resolveConfigured: ({ cfg }: { cfg: OpenClawConfig }) =>
-                Boolean((cfg.channels?.whatsapp as { account?: string } | undefined)?.account),
-              resolveSelectionHint: async ({ cfg }: { cfg: OpenClawConfig }) =>
-                (cfg.channels?.whatsapp as { account?: string } | undefined)?.account
-                  ? "configured"
-                  : "not linked",
-            },
-            credentials: [],
-            textInputs: [
-              {
-                inputKey: "account",
-                message: "Your personal WhatsApp number",
-                required: true,
-                applySet: ({ cfg, value }: { cfg: OpenClawConfig; value: string }) =>
-                  ({
-                    ...cfg,
-                    channels: {
-                      ...cfg.channels,
-                      whatsapp: {
-                        ...(cfg.channels?.whatsapp as Record<string, unknown> | undefined),
-                        account: value,
-                      },
-                    },
-                  }) as OpenClawConfig,
               },
             ],
           },
@@ -609,11 +430,6 @@ vi.mock("../plugins/manifest-registry.js", async () => {
   };
 });
 
-vi.mock("../plugin-sdk/matrix-deps.js", () => ({
-  ensureMatrixSdkInstalled: vi.fn(async () => {}),
-  isMatrixSdkAvailable: vi.fn(() => true),
-}));
-
 vi.mock("./onboard-helpers.js", () => ({
   detectBinary: vi.fn(async () => false),
 }));
@@ -650,67 +466,6 @@ describe("setupChannels", () => {
     vi.mocked(loadChannelSetupPluginRegistrySnapshotForChannel).mockClear();
     vi.mocked(reloadChannelSetupPluginRegistry).mockClear();
   });
-  it("QuickStart uses single-select (no multiselect) and doesn't prompt for Telegram token when WhatsApp is chosen", async () => {
-    const select = vi.fn(async () => "whatsapp");
-    const multiselect = vi.fn(async () => {
-      throw new Error("unexpected multiselect");
-    });
-    const text = vi.fn(async ({ message }: { message: string }) => {
-      if (message.includes("Enter Telegram bot token")) {
-        throw new Error("unexpected Telegram token prompt");
-      }
-      if (message.includes("Your personal WhatsApp number")) {
-        return "+15555550123";
-      }
-      throw new Error(`unexpected text prompt: ${message}`);
-    });
-
-    const prompter = createPrompter({
-      select: select as unknown as WizardPrompter["select"],
-      multiselect,
-      text: text as unknown as WizardPrompter["text"],
-    });
-
-    await runSetupChannels({} as OpenClawConfig, prompter, {
-      quickstartDefaults: true,
-      forceAllowFromChannels: ["whatsapp"],
-    });
-
-    expect(select).toHaveBeenCalledWith(
-      expect.objectContaining({ message: "Select channel (QuickStart)" }),
-    );
-    expect(multiselect).not.toHaveBeenCalled();
-  });
-
-  it("renders the QuickStart channel picker without requiring the LINE runtime", async () => {
-    await expectQuickstartPickerSkipsWithoutRuntime();
-  });
-
-  it("runs Matrix guided setup through setupChannels without falling back", async () => {
-    await withClearedMatrixSetupEnv(async () => {
-      await setMatrixOnboardingRegistryForTests();
-
-      const notes: string[] = [];
-      const prompter = createMatrixQuickstartPrompter(notes);
-      const cfg = await runSetupChannels({} as OpenClawConfig, prompter, {
-        quickstartDefaults: true,
-      });
-
-      expect(cfg.channels?.matrix).toMatchObject({
-        enabled: true,
-        homeserver: "https://matrix.example.org",
-        accessToken: "matrix-token",
-        deviceName: "OpenClaw Gateway",
-        encryption: false,
-      });
-      expect(notes.join("\n")).not.toContain("matrix does not support guided setup yet.");
-    });
-  });
-
-  it("renders the QuickStart channel picker without requiring the Matrix runtime", async () => {
-    await expectQuickstartPickerSkipsWithoutRuntime();
-  });
-
   it("continues Telegram setup when the plugin registry is empty", async () => {
     // Simulate missing registry entries (the scenario reported in #25545).
     setActivePluginRegistry(createEmptyPluginRegistry());
