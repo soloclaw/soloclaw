@@ -31,14 +31,16 @@ python3 tools/benchmark/benchmark.py --output my-results.json
 | Preset | Model | RAM |
 |--------|-------|-----|
 | small | gemma4:e2b | 8GB |
-| medium | mistral-small:24b | 16GB |
+| medium | qwen3.5:9b | 19GB |
 | large | gemma4:26b | 24GB |
 
 ## Test Results
 
-### Small Tier (8 domains, 24 questions)
+**Test Hardware:** MacBook Pro (M4 Max, 64 GB RAM, macOS)
 
-Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
+Score = 70% accuracy + 30% speed (capped at 50 tok/s). Results will vary on different hardware — speed scales with GPU/memory bandwidth, accuracy stays the same.
+
+### Small Tier (8 domains, 24 questions)
 
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
@@ -55,17 +57,17 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 | 1 | qwen3.5:9b | 97% | 45.0/s | 18.7 GB | 0.95 |
 | 2 | qwen3:14b | 95% | 39.4/s | 15.1 GB | 0.90 |
 | 3 | qwen2.5:14b | 94% | 41.6/s | 16.5 GB | 0.91 |
-| 4 | mistral-small:24b | 94% | 26.1/s | 20.1 GB | 0.81 |
 
-**Default: mistral-small:24b** — despite lower combined score, it wins 4/8 per-domain categories (physics, function calling, philosophy, mathematics) which are critical for SoloClaw's agent workflow. qwen3:14b is a strong alternative at only 15.1 GB memory.
+**Default: qwen3.5:9b** — highest accuracy (97%) and fastest in tier.
 
-### Large Tier (24GB class)
+### Large Tier (20-24GB class)
 
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
 | 1 | gemma4:26b | 96% | 85.0/s | 24.0 GB | 0.97 |
+| 2 | mistral-small:24b | 94% | 26.1/s | 20.1 GB | 0.81 |
 
-**Default: gemma4:26b** — wins 7/8 per-domain categories vs qwen3:14b, 2x faster.
+**Default: gemma4:26b** — faster and more accurate. mistral-small:24b is a reliable alternative with lower memory.
 
 **Known issue with gemma4:26b:** The model's "thinking" mode occasionally consumes all tokens on internal reasoning and produces no visible output, resulting in "Agent couldn't generate a response" errors. This happens intermittently — retrying usually works.
 

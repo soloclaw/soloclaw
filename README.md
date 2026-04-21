@@ -26,7 +26,7 @@ That's it. SoloClaw installs a free local AI model via Ollama, starts the gatewa
 | Flag | Model | RAM Required |
 |------|-------|-------------|
 | `--small` | gemma4:e2b | 8GB |
-| `--medium` (default) | mistral-small:24b | 16GB |
+| `--medium` (default) | qwen3.5:9b | 19GB |
 | `--large` | gemma4:26b | 24GB |
 
 ```bash
@@ -60,7 +60,7 @@ No menus, no config files. Just ask.
 
 ## What's Included
 
-- **Local AI model** — free, runs entirely on your machine (mistral-small:24b by default)
+- **Local AI model** — free, runs entirely on your machine (qwen3.5:9b by default)
 - **Gateway service** — always-on background service (LaunchAgent on macOS)
 - **Chat UI** — browser-based TUI to talk to your AI
 - **Multi-channel inbox** — Telegram and Discord built-in, more channels can be enabled via config
@@ -72,7 +72,7 @@ Use a preset size:
 
 ```bash
 pnpm openclaw onboard --small     # gemma4:e2b
-pnpm openclaw onboard --medium    # mistral-small:24b
+pnpm openclaw onboard --medium    # qwen3.5:9b
 pnpm openclaw onboard --large     # gemma4:26b
 ```
 
@@ -101,7 +101,7 @@ Config lives at `~/.openclaw/openclaw.json`:
 ```json5
 {
   agent: {
-    model: "ollama/mistral-small:24b",
+    model: "ollama/qwen3.5:9b",
   },
 }
 ```
