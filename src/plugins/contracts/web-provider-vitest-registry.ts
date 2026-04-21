@@ -9,20 +9,20 @@ export type WebSearchProviderContractEntry = {
 
 let webSearchProviderContractRegistryCache: WebSearchProviderContractEntry[] | null = null;
 
-type GoogleWebSearchContractApiSurface =
-  typeof import("../../../extensions/google/web-search-contract-api.js");
+type OllamaWebSearchContractApiSurface =
+  typeof import("../../../extensions/ollama/web-search-contract-api.js");
 
 export function loadVitestWebSearchProviderContractRegistry(): WebSearchProviderContractEntry[] {
-  const googleWebSearchContractApi =
-    loadBundledPluginPublicSurfaceSync<GoogleWebSearchContractApiSurface>({
-      pluginId: "google",
+  const ollamaWebSearchContractApi =
+    loadBundledPluginPublicSurfaceSync<OllamaWebSearchContractApiSurface>({
+      pluginId: "ollama",
       artifactBasename: "web-search-contract-api.js",
     });
   webSearchProviderContractRegistryCache ??= [
     {
-      pluginId: "google",
-      provider: googleWebSearchContractApi.createGeminiWebSearchProvider(),
-      credentialValue: "AIzaSyDUMMY",
+      pluginId: "ollama",
+      provider: ollamaWebSearchContractApi.createOllamaWebSearchProvider(),
+      credentialValue: undefined,
     },
   ];
   return webSearchProviderContractRegistryCache;
