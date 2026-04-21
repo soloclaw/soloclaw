@@ -67,13 +67,12 @@ Score = 70% accuracy + 30% speed (capped at 50 tok/s). Results will vary on diff
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
 | 1 | gemma4:26b | 96% | 85.0/s | 24.0 GB | 0.97 |
-| 2 | mistral-small:24b | 94% | 26.1/s | 20.1 GB | 0.81 |
 
-**Default: gemma4:26b** — faster and more accurate. mistral-small:24b is a reliable non-thinking alternative with lower memory.
+**Default: gemma4:26b** — fastest and most accurate in tier.
 
 **Known issue with gemma4:26b:** The model's "thinking" mode occasionally consumes all tokens on internal reasoning and produces no visible output, resulting in "Agent couldn't generate a response" errors. This happens intermittently — retrying usually works.
 
-**Note on mistral-small:24b:** Non-thinking model — always responds reliably. However, has a smaller context window and can hit "Context limit exceeded" on long conversations, which resets the session and loses conversation history. Set `agents.defaults.compaction.reserveTokensFloor` to 20000 or higher to mitigate.
+**Note on mistral-small:24b (excluded):** Non-thinking and always responds reliably, but only has a 32K context window — causes "Context limit exceeded" errors on long conversations, resetting the session and losing history.
 
 ### XLarge Tier (32GB+ memory, known issues)
 
