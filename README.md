@@ -77,15 +77,16 @@ No menus, no config files. Just ask.
 
 ## What's Included
 
-| Feature | Default | Description |
-|---------|---------|-------------|
-| **LLM Model** | qwen3.5:9b (medium) | Free local model via Ollama, no API key needed |
-| **Web Search** | SearXNG | Self-hosted search engine, richer results than DuckDuckGo |
-| **Chat UI** | TUI | Browser-based terminal UI to talk to your AI |
-| **Gateway** | LaunchAgent | Always-on background service on macOS |
-| **Channels** | Telegram, Discord | Messaging channels built-in, more can be enabled |
-| **Browser** | Chromium | Agent-controlled browser for reading web pages |
-| **Tools** | bash, read, write, edit | Core tools plus extensible via skills |
+| Category | Feature | Default |
+|----------|---------|---------|
+| **LLM** | Local AI model | qwen3.5:9b (medium), via Ollama |
+| **Skills/Tools** | Web search | SearXNG (self-hosted, Docker) |
+| **Skills/Tools** | Browser | Chromium (agent-controlled, reads web pages) |
+| **Skills/Tools** | Core tools | bash, read, write, edit |
+| **Skills/Tools** | Extensible | Add more via workspace skills |
+| **Channels** | Messaging | Telegram, Discord built-in |
+| **Interface** | Chat UI | Browser-based TUI |
+| **Infrastructure** | Gateway | Always-on LaunchAgent (macOS) |
 
 ## Using a Different Model
 
