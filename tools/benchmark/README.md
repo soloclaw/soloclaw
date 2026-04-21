@@ -68,7 +68,9 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 
 **Default: gemma4:26b** — wins 7/8 per-domain categories, 4x faster than alternatives, and lowest memory (24 GB).
 
-**Note on gemma4:31b:** Uses 43.9 GB memory due to large KV cache despite being only 31B params. Not practical unless you have 64GB+ RAM.
+**Known issue with gemma4:26b:** The model's "thinking" mode occasionally consumes all tokens on internal reasoning and produces no visible output, resulting in "Agent couldn't generate a response" errors. This happens intermittently — retrying usually works.
+
+**Note on gemma4:31b:** Uses 43.9 GB memory and suffers from the same "thinking" mode timeout issue — frequently produces no response before the idle watchdog fires, even with 120s timeout. Not recommended.
 
 **Note on qwen3:32b (excluded):** Uses 29.1 GB memory and runs at only 17.6 tok/s. Causes Ollama idle timeouts and unresponsive behavior in practice. Ranks #1 on public benchmarks (MMLU 83.2%) but unusable for interactive use.
 
