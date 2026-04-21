@@ -67,11 +67,12 @@ Score = 70% accuracy + 30% speed (capped at 50 tok/s). Results will vary on diff
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
 | 1 | gemma4:26b | 96% | 85.0/s | 24.0 GB | 0.97 |
-| 2 | mistral-small:24b | 94% | 26.1/s | 20.1 GB | 0.81 |
 
-**Default: gemma4:26b** — faster and more accurate. mistral-small:24b is a reliable alternative with lower memory.
+**Default: gemma4:26b** — fastest and most accurate in tier.
 
 **Known issue with gemma4:26b:** The model's "thinking" mode occasionally consumes all tokens on internal reasoning and produces no visible output, resulting in "Agent couldn't generate a response" errors. This happens intermittently — retrying usually works.
+
+**Note on mistral-small:24b (excluded):** Non-thinking and always responds reliably, but only has a 32K context window — causes "Context limit exceeded" errors on long conversations, resetting the session and losing history.
 
 ### XLarge Tier (32GB+ memory, known issues)
 
@@ -84,6 +85,8 @@ Score = 70% accuracy + 30% speed (capped at 50 tok/s). Results will vary on diff
 **Not recommended for most users.** These models require 32-64GB RAM and have responsiveness issues.
 
 **Note on qwen3:32b (excluded):** 29.1 GB memory, 17.6 tok/s. Causes Ollama idle timeouts. Ranks #1 on MMLU (83.2%) but unusable for interactive use.
+
+**Note on mistral-small:22b (excluded):** 54 GB memory (for a 22B model) and outputs raw JSON tool calls as text instead of executing them — broken tool use protocol.
 
 ```bash
 # To try xlarge models:
