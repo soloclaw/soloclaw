@@ -69,12 +69,16 @@ PUBLIC_BENCHMARKS = {
         "mmlu": 0.821, "humaneval": 0.778, "gsm8k": 0.918,
         "source": "Qwen3.5 model card (estimated for 27b variant)",
     },
+    "qwen3:14b": {
+        "mmlu": 0.768, "humaneval": 0.721, "gsm8k": 0.898,
+        "source": "Qwen3 technical report",
+    },
 }
 
 COMPARE_GROUPS = {
     "small": ["qwen3:8b", "qwen2.5:7b", "gemma4:e2b"],
     "medium": ["mistral-small:24b", "qwen3.5:9b", "qwen2.5:14b", "gemma4:e4b"],
-    "large": ["gemma4:26b"],
+    "large": ["gemma4:26b", "qwen3:14b"],
     # xlarge: models requiring 32GB+ memory, known responsiveness issues
     "xlarge": ["qwen3.5:27b", "qwen2.5:32b", "gemma4:31b"],
 }
