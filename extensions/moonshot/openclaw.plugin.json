@@ -1,9 +1,13 @@
 {
   "id": "moonshot",
-  "enabledByDefault": true,
-  "providers": ["moonshot"],
+  "enabledByDefault": false,
+  "providers": [
+    "moonshot"
+  ],
   "providerAuthEnvVars": {
-    "moonshot": ["MOONSHOT_API_KEY"]
+    "moonshot": [
+      "MOONSHOT_API_KEY"
+    ]
   },
   "providerAuthChoices": [
     {
@@ -49,8 +53,12 @@
     }
   },
   "contracts": {
-    "mediaUnderstandingProviders": ["moonshot"],
-    "webSearchProviders": ["kimi"]
+    "mediaUnderstandingProviders": [
+      "moonshot"
+    ],
+    "webSearchProviders": [
+      "kimi"
+    ]
   },
   "configSchema": {
     "type": "object",
@@ -61,7 +69,10 @@
         "additionalProperties": false,
         "properties": {
           "apiKey": {
-            "type": ["string", "object"]
+            "type": [
+              "string",
+              "object"
+            ]
           },
           "baseUrl": {
             "type": "string"

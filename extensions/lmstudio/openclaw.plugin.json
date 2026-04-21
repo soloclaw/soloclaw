@@ -1,9 +1,13 @@
 {
   "id": "lmstudio",
-  "enabledByDefault": true,
-  "providers": ["lmstudio"],
+  "enabledByDefault": false,
+  "providers": [
+    "lmstudio"
+  ],
   "providerAuthEnvVars": {
-    "lmstudio": ["LM_API_TOKEN"]
+    "lmstudio": [
+      "LM_API_TOKEN"
+    ]
   },
   "providerAuthChoices": [
     {
@@ -22,7 +26,9 @@
     }
   ],
   "contracts": {
-    "memoryEmbeddingProviders": ["lmstudio"]
+    "memoryEmbeddingProviders": [
+      "lmstudio"
+    ]
   },
   "configSchema": {
     "type": "object",

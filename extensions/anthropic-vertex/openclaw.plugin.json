@@ -1,7 +1,9 @@
 {
   "id": "anthropic-vertex",
-  "enabledByDefault": true,
-  "providers": ["anthropic-vertex"],
+  "enabledByDefault": false,
+  "providers": [
+    "anthropic-vertex"
+  ],
   "providerDiscoveryEntry": "./provider-discovery.ts",
   "configSchema": {
     "type": "object",

@@ -1,8 +1,10 @@
 {
   "id": "elevenlabs",
-  "enabledByDefault": true,
+  "enabledByDefault": false,
   "contracts": {
-    "speechProviders": ["elevenlabs"]
+    "speechProviders": [
+      "elevenlabs"
+    ]
   },
   "configContracts": {
     "compatibilityMigrationPaths": [

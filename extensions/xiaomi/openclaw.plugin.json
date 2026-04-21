@@ -1,9 +1,13 @@
 {
   "id": "xiaomi",
-  "enabledByDefault": true,
-  "providers": ["xiaomi"],
+  "enabledByDefault": false,
+  "providers": [
+    "xiaomi"
+  ],
   "providerAuthEnvVars": {
-    "xiaomi": ["XIAOMI_API_KEY"]
+    "xiaomi": [
+      "XIAOMI_API_KEY"
+    ]
   },
   "providerAuthChoices": [
     {

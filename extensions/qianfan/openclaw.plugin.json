@@ -1,9 +1,13 @@
 {
   "id": "qianfan",
-  "enabledByDefault": true,
-  "providers": ["qianfan"],
+  "enabledByDefault": false,
+  "providers": [
+    "qianfan"
+  ],
   "providerAuthEnvVars": {
-    "qianfan": ["QIANFAN_API_KEY"]
+    "qianfan": [
+      "QIANFAN_API_KEY"
+    ]
   },
   "providerAuthChoices": [
     {

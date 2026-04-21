@@ -1,11 +1,15 @@
 {
   "id": "voyage",
-  "enabledByDefault": true,
+  "enabledByDefault": false,
   "contracts": {
-    "memoryEmbeddingProviders": ["voyage"]
+    "memoryEmbeddingProviders": [
+      "voyage"
+    ]
   },
   "providerAuthEnvVars": {
-    "voyage": ["VOYAGE_API_KEY"]
+    "voyage": [
+      "VOYAGE_API_KEY"
+    ]
   },
   "configSchema": {
     "type": "object",

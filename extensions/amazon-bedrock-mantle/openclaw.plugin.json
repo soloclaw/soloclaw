@@ -1,10 +1,12 @@
 {
   "id": "amazon-bedrock-mantle",
-  "enabledByDefault": true,
+  "enabledByDefault": false,
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
     "properties": {}
   },
-  "providers": ["amazon-bedrock-mantle"]
+  "providers": [
+    "amazon-bedrock-mantle"
+  ]
 }

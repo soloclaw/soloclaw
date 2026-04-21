@@ -1,9 +1,13 @@
 {
   "id": "mistral",
-  "enabledByDefault": true,
-  "providers": ["mistral"],
+  "enabledByDefault": false,
+  "providers": [
+    "mistral"
+  ],
   "providerAuthEnvVars": {
-    "mistral": ["MISTRAL_API_KEY"]
+    "mistral": [
+      "MISTRAL_API_KEY"
+    ]
   },
   "providerAuthChoices": [
     {
@@ -21,8 +25,12 @@
     }
   ],
   "contracts": {
-    "memoryEmbeddingProviders": ["mistral"],
-    "mediaUnderstandingProviders": ["mistral"]
+    "memoryEmbeddingProviders": [
+      "mistral"
+    ],
+    "mediaUnderstandingProviders": [
+      "mistral"
+    ]
   },
   "configSchema": {
     "type": "object",
