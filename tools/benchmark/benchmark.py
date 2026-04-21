@@ -45,6 +45,10 @@ PUBLIC_BENCHMARKS = {
         "mmlu": 0.810, "humaneval": 0.756, "gsm8k": 0.912,
         "source": "Mistral Small 3.1 blog",
     },
+    "mistral-small:22b": {
+        "mmlu": 0.781, "humaneval": 0.732, "gsm8k": 0.887,
+        "source": "Mistral Small 3 blog",
+    },
     "qwen2.5:14b": {
         "mmlu": 0.752, "humaneval": 0.689, "gsm8k": 0.876,
         "source": "Qwen2.5 technical report",
@@ -78,7 +82,7 @@ PUBLIC_BENCHMARKS = {
 COMPARE_GROUPS = {
     "small": ["qwen3:8b", "qwen2.5:7b", "gemma4:e2b"],
     "medium": ["qwen3.5:9b", "qwen3:14b", "gemma4:e4b"],
-    "large": ["gemma4:26b", "mistral-small:24b"],
+    "large": ["gemma4:26b", "mistral-small:24b", "mistral-small:22b"],
     # xlarge: models requiring 32GB+ memory, known responsiveness issues
     "xlarge": ["qwen3.5:27b", "qwen2.5:32b", "gemma4:31b"],
 }
@@ -393,6 +397,20 @@ def get_model_memory(model):
     return None
 
 
+def get_model_context_length(model):
+    """Get context window length from ollama show API."""
+    try:
+        data = _post_json(
+            f"{OLLAMA_API}/api/show", {"name": model}, timeout=10
+        )
+        for key, value in data.get("model_info", {}).items():
+            if "context_length" in key:
+                return value
+    except Exception:
+        pass
+    return None
+
+
 def warm_up_model(model):
     """Load the model into memory by sending a trivial prompt."""
     print(f"  Warming up {model}...")
@@ -427,6 +445,7 @@ def benchmark_model(model):
         return {}
 
     mem = get_model_memory(model)
+    ctx = get_model_context_length(model)
 
     results = {}
     for domain, questions in QUESTIONS.items():
@@ -460,6 +479,8 @@ def benchmark_model(model):
 
     if mem:
         results["_memory_gb"] = mem["size_gb"]
+    if ctx:
+        results["_context_length"] = ctx
 
     return results
 
@@ -480,11 +501,13 @@ def build_summary(all_results):
         strengths = [d for d, a in domain_accs.items() if a >= overall_acc and a > 0]
         weaknesses = [d for d, a in domain_accs.items() if a < overall_acc]
         memory_gb = domains.get("_memory_gb")
+        context_length = domains.get("_context_length")
 
         summary[model] = {
             "overall_accuracy": round(overall_acc, 2),
             "overall_speed_tokens_per_second": round(overall_speed, 1),
             "memory_gb": memory_gb,
+            "context_length": context_length,
             "strengths": strengths,
             "weaknesses": weaknesses,
         }
@@ -670,20 +693,22 @@ def print_results_table(all_results, analysis):
         print("RANKING (sorted by combined score = 70% accuracy + 30% speed)")
         print("=" * 80)
 
-        print(f"\n  {'Model':<25} {'Accuracy':>10} {'Speed':>12} {'Memory':>10} {'Score':>8}")
-        print(f"  {'-' * 67}")
+        print(f"\n  {'Model':<25} {'Accuracy':>10} {'Speed':>12} {'Memory':>10} {'Context':>10} {'Score':>8}")
+        print(f"  {'-' * 77}")
         scored = []
         for model in models:
             s = analysis["summary"].get(model, {})
             acc = s.get("overall_accuracy", 0)
             tps = s.get("overall_speed_tokens_per_second", 0)
             mem = s.get("memory_gb")
+            ctx = s.get("context_length")
             score = acc * 0.7 + min(tps / 50, 1.0) * 0.3
-            scored.append((model, acc, tps, mem, score))
-        scored.sort(key=lambda x: x[4], reverse=True)
-        for i, (model, acc, tps, mem, score) in enumerate(scored):
+            scored.append((model, acc, tps, mem, ctx, score))
+        scored.sort(key=lambda x: x[5], reverse=True)
+        for i, (model, acc, tps, mem, ctx, score) in enumerate(scored):
             mem_str = f"{mem:.1f} GB" if mem else "n/a"
-            print(f"  #{i+1} {model:<23} {acc:>9.0%} {tps:>10.1f}/s {mem_str:>10} {score:>7.2f}")
+            ctx_str = f"{ctx // 1024}K" if ctx else "n/a"
+            print(f"  #{i+1} {model:<23} {acc:>9.0%} {tps:>10.1f}/s {mem_str:>10} {ctx_str:>10} {score:>7.2f}")
 
         # Sort by accuracy only
         by_accuracy = sorted(scored, key=lambda x: x[1], reverse=True)
