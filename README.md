@@ -19,7 +19,24 @@ pnpm install && pnpm build
 pnpm openclaw onboard
 ```
 
-That's it. SoloClaw installs a free local AI model via Ollama, starts the gateway service, and opens the chat UI. No API keys, no accounts, no questions asked.
+That's it. SoloClaw installs a free local AI model via Ollama, configures web search, starts the gateway service, and opens the chat UI. No API keys, no accounts, no questions asked.
+
+### Dependencies
+
+Install these before running SoloClaw:
+
+| Dependency | Purpose | Install |
+|-----------|---------|---------|
+| [Node.js 22+](https://nodejs.org) | Runtime | `brew install node` |
+| [pnpm](https://pnpm.io) | Package manager | `npm install -g pnpm` |
+| [Ollama](https://ollama.com) | Local AI models | Download from [ollama.com](https://ollama.com) |
+| [Docker](https://docker.com) | SearXNG web search | Download from [docker.com](https://docker.com) |
+
+Start SearXNG before onboarding:
+
+```bash
+docker run -d -p 8080:8080 searxng/searxng
+```
 
 ### Choose Your Model Size
 
@@ -60,11 +77,24 @@ No menus, no config files. Just ask.
 
 ## What's Included
 
-- **Local AI model** — free, runs entirely on your machine (qwen3.5:9b by default)
-- **Gateway service** — always-on background service (LaunchAgent on macOS)
-- **Chat UI** — browser-based TUI to talk to your AI
-- **Multi-channel inbox** — Telegram and Discord built-in, more channels can be enabled via config
-- **Tools** — browser, cron, sessions, and more via [skills](https://docs.openclaw.ai/tools/skills)
+**LLM**
+- qwen3.5:9b (medium), free local model via Ollama
+
+**Skills/Tools**
+- Web search — SearXNG (self-hosted, Docker)
+- Browser — agent-controlled Chromium for reading web pages
+- bash — run shell commands
+- read / write / edit — file operations
+- Extensible — add more via workspace skills
+
+**Channels**
+- Telegram, Discord built-in
+
+**Interface**
+- Browser-based TUI
+
+**Infrastructure**
+- Always-on LaunchAgent gateway (macOS)
 
 ## Using a Different Model
 
