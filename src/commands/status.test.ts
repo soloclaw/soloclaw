@@ -459,7 +459,7 @@ const mocks = vi.hoisted(() => ({
     readRuntime: async () => ({ status: "running", pid: 1234 }),
     readCommand: async () => ({
       programArguments: ["node", "dist/entry.js", "gateway"],
-      sourcePath: "/tmp/Library/LaunchAgents/ai.openclaw.gateway.plist",
+      sourcePath: "/tmp/Library/LaunchAgents/ai.soloclaw.gateway.plist",
     }),
   }),
   resolveNodeService: vi.fn().mockReturnValue({
@@ -475,7 +475,7 @@ const mocks = vi.hoisted(() => ({
     readRuntime: async () => ({ status: "running", pid: 4321 }),
     readCommand: async () => ({
       programArguments: ["node", "dist/entry.js", "node-host"],
-      sourcePath: "/tmp/Library/LaunchAgents/ai.openclaw.node.plist",
+      sourcePath: "/tmp/Library/LaunchAgents/ai.soloclaw.node.plist",
     }),
   }),
 }));
@@ -933,7 +933,7 @@ describe("statusCommand", () => {
       readRuntime: async () => ({ status: "running", pid: 1234 }),
       readCommand: async () => ({
         programArguments: ["node", "dist/entry.js", "gateway"],
-        sourcePath: "/tmp/Library/LaunchAgents/ai.openclaw.gateway.plist",
+        sourcePath: "/tmp/Library/LaunchAgents/ai.soloclaw.gateway.plist",
       }),
     });
     mocks.resolveNodeService.mockReset();
@@ -950,7 +950,7 @@ describe("statusCommand", () => {
       readRuntime: async () => ({ status: "running", pid: 4321 }),
       readCommand: async () => ({
         programArguments: ["node", "dist/entry.js", "node-host"],
-        sourcePath: "/tmp/Library/LaunchAgents/ai.openclaw.node.plist",
+        sourcePath: "/tmp/Library/LaunchAgents/ai.soloclaw.node.plist",
       }),
     });
     runtimeLogMock.mockClear();

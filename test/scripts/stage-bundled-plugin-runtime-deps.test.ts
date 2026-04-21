@@ -145,7 +145,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
       installPluginRuntimeDepsImpl: ({ fingerprint }: { fingerprint: string }) => {
         installCount += 1;
         fs.writeFileSync(
-          path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"),
+          path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"),
           `${JSON.stringify({ fingerprint }, null, 2)}\n`,
           "utf8",
         );
@@ -188,7 +188,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
           fs.mkdirSync(nodeModulesDir, { recursive: true });
           fs.writeFileSync(path.join(nodeModulesDir, "marker.txt"), `${installCount}\n`, "utf8");
           fs.writeFileSync(
-            path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"),
+            path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"),
             `${JSON.stringify({ fingerprint }, null, 2)}\n`,
             "utf8",
           );
@@ -232,7 +232,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
           fs.mkdirSync(nodeModulesDir, { recursive: true });
           fs.writeFileSync(path.join(nodeModulesDir, "marker.txt"), `${installCount}\n`, "utf8");
           fs.writeFileSync(
-            path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"),
+            path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"),
             `${JSON.stringify({ fingerprint }, null, 2)}\n`,
             "utf8",
           );
@@ -320,7 +320,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
     });
     const directDir = path.join(repoRoot, "node_modules", "direct");
     const outsideStamp = path.join(repoRoot, "outside-stamp.json");
-    const stampPath = path.join(pluginDir, ".openclaw-runtime-deps-stamp.json");
+    const stampPath = path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json");
     fs.mkdirSync(directDir, { recursive: true });
     fs.writeFileSync(
       path.join(directDir, "package.json"),
@@ -359,7 +359,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
     expect(
       fs.readFileSync(path.join(pluginDir, "node_modules", "left-pad", "index.js"), "utf8"),
     ).toBe("module.exports = 1;\n");
-    expect(fs.existsSync(path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"))).toBe(true);
+    expect(fs.existsSync(path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"))).toBe(true);
   });
 
   it("prunes staged test cargo from copied runtime dependencies", () => {
@@ -586,7 +586,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
         fs.mkdirSync(nodeModulesDir, { recursive: true });
         fs.writeFileSync(path.join(nodeModulesDir, "marker.txt"), "installed\n", "utf8");
         fs.writeFileSync(
-          path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"),
+          path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"),
           `${JSON.stringify({ fingerprint }, null, 2)}\n`,
           "utf8",
         );
@@ -667,7 +667,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
         fs.mkdirSync(nodeModulesDir, { recursive: true });
         fs.writeFileSync(path.join(nodeModulesDir, "marker.txt"), "installed\n", "utf8");
         fs.writeFileSync(
-          path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"),
+          path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"),
           `${JSON.stringify({ fingerprint }, null, 2)}\n`,
           "utf8",
         );
@@ -712,7 +712,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
         fs.mkdirSync(nodeModulesDir, { recursive: true });
         fs.writeFileSync(path.join(nodeModulesDir, "marker.txt"), "installed\n", "utf8");
         fs.writeFileSync(
-          path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"),
+          path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"),
           `${JSON.stringify({ fingerprint }, null, 2)}\n`,
           "utf8",
         );
@@ -766,7 +766,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
           "utf8",
         );
         fs.writeFileSync(
-          path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"),
+          path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"),
           `${JSON.stringify({ fingerprint }, null, 2)}\n`,
           "utf8",
         );
@@ -954,7 +954,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
           "utf8",
         );
         fs.writeFileSync(
-          path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"),
+          path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"),
           `${JSON.stringify({ fingerprint }, null, 2)}\n`,
           "utf8",
         );
@@ -997,7 +997,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
           "utf8",
         );
         fs.writeFileSync(
-          path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"),
+          path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"),
           `${JSON.stringify({ fingerprint }, null, 2)}\n`,
           "utf8",
         );
@@ -1037,7 +1037,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
           "utf8",
         );
         fs.writeFileSync(
-          path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"),
+          path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"),
           `${JSON.stringify({ fingerprint }, null, 2)}\n`,
           "utf8",
         );
@@ -1069,7 +1069,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
         fs.mkdirSync(nodeModulesDir, { recursive: true });
         fs.writeFileSync(path.join(nodeModulesDir, "marker.txt"), "ok\n", "utf8");
         fs.writeFileSync(
-          path.join(pluginDir, ".openclaw-runtime-deps-stamp.json"),
+          path.join(pluginDir, ".soloclaw-runtime-deps-stamp.json"),
           `${JSON.stringify({ fingerprint }, null, 2)}\n`,
           "utf8",
         );

@@ -63,7 +63,7 @@ export OPENCLAW_NIX_MODE=1
 On macOS, the GUI app does not automatically inherit shell environment variables. Enable Nix mode via defaults instead:
 
 ```bash
-defaults write ai.openclaw.mac openclaw.nixMode -bool true
+defaults write ai.soloclaw.mac openclaw.nixMode -bool true
 ```
 
 ### What changes in Nix mode
@@ -79,7 +79,7 @@ OpenClaw reads JSON5 config from `OPENCLAW_CONFIG_PATH` and stores mutable data 
 | Variable               | Default                                 |
 | ---------------------- | --------------------------------------- |
 | `OPENCLAW_HOME`        | `HOME` / `USERPROFILE` / `os.homedir()` |
-| `OPENCLAW_STATE_DIR`   | `~/.openclaw`                           |
+| `OPENCLAW_STATE_DIR`   | `~/.soloclaw`                           |
 | `OPENCLAW_CONFIG_PATH` | `$OPENCLAW_STATE_DIR/openclaw.json`     |
 
 ## Related

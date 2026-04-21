@@ -434,7 +434,7 @@ describe("node exec events", () => {
       event: "push.apns.register",
       payloadJSON: JSON.stringify({
         token: "abcd1234abcd1234abcd1234abcd1234",
-        topic: "ai.openclaw.ios",
+        topic: "ai.soloclaw.ios",
         environment: "sandbox",
       }),
     });
@@ -443,7 +443,7 @@ describe("node exec events", () => {
       nodeId: "node-direct",
       transport: "direct",
       token: "abcd1234abcd1234abcd1234abcd1234",
-      topic: "ai.openclaw.ios",
+      topic: "ai.soloclaw.ios",
       environment: "sandbox",
     });
   });
@@ -458,7 +458,7 @@ describe("node exec events", () => {
         sendGrant: "send-grant-123",
         gatewayDeviceId: "gateway-device-1",
         installationId: "install-123",
-        topic: "ai.openclaw.ios",
+        topic: "ai.soloclaw.ios",
         environment: "production",
         distribution: "official",
         tokenDebugSuffix: "abcd1234",
@@ -471,7 +471,7 @@ describe("node exec events", () => {
       relayHandle: "relay-handle-123",
       sendGrant: "send-grant-123",
       installationId: "install-123",
-      topic: "ai.openclaw.ios",
+      topic: "ai.soloclaw.ios",
       environment: "production",
       distribution: "official",
       tokenDebugSuffix: "abcd1234",
@@ -488,7 +488,7 @@ describe("node exec events", () => {
         sendGrant: "send-grant-123",
         gatewayDeviceId: "gateway-device-other",
         installationId: "install-123",
-        topic: "ai.openclaw.ios",
+        topic: "ai.soloclaw.ios",
         environment: "production",
         distribution: "official",
       }),

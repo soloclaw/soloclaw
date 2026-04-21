@@ -1134,7 +1134,7 @@ describe("buildStatusMessage", () => {
   }) {
     const logPath = path.join(
       params.dir,
-      ".openclaw",
+      ".soloclaw",
       "agents",
       params.agentId,
       "sessions",
@@ -1307,7 +1307,7 @@ describe("buildStatusMessage", () => {
         const sessionId = "sess-cache-delivery-mirror";
         const logPath = path.join(
           dir,
-          ".openclaw",
+          ".soloclaw",
           "agents",
           "main",
           "sessions",

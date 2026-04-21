@@ -223,7 +223,7 @@ async function setupGatewayTestHome() {
   tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-gateway-home-"));
   process.env.HOME = tempHome;
   process.env.USERPROFILE = tempHome;
-  process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".openclaw");
+  process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".soloclaw");
   delete process.env.OPENCLAW_CONFIG_PATH;
 }
 
@@ -260,7 +260,7 @@ async function resetGatewayTestState(options: { uniqueConfigRoot: boolean }) {
     await fs.mkdir(stateDir, { recursive: true });
   }
   if (options.uniqueConfigRoot) {
-    const suiteRoot = path.join(tempHome, ".openclaw-test-suite");
+    const suiteRoot = path.join(tempHome, ".soloclaw-test-suite");
     await fs.mkdir(suiteRoot, { recursive: true });
     tempConfigRoot = path.join(suiteRoot, `case-${suiteConfigRootSeq++}`);
     await fs.rm(tempConfigRoot, {
@@ -271,7 +271,7 @@ async function resetGatewayTestState(options: { uniqueConfigRoot: boolean }) {
     });
     await fs.mkdir(tempConfigRoot, { recursive: true });
   } else {
-    tempConfigRoot = path.join(tempHome, ".openclaw-test");
+    tempConfigRoot = path.join(tempHome, ".soloclaw-test");
     await fs.rm(tempConfigRoot, {
       recursive: true,
       force: true,
@@ -281,7 +281,7 @@ async function resetGatewayTestState(options: { uniqueConfigRoot: boolean }) {
     await fs.mkdir(tempConfigRoot, { recursive: true });
   }
   setTestConfigRoot(tempConfigRoot);
-  tempControlUiRoot = path.join(tempHome, ".openclaw-test-control-ui");
+  tempControlUiRoot = path.join(tempHome, ".soloclaw-test-control-ui");
   await fs.rm(tempControlUiRoot, {
     recursive: true,
     force: true,

@@ -52,7 +52,7 @@ async function writeWorkspacePlugin(params: {
   id: string;
   body: string;
 }): Promise<void> {
-  const pluginDir = path.join(params.workspaceDir, ".openclaw", "extensions", params.id);
+  const pluginDir = path.join(params.workspaceDir, ".soloclaw", "extensions", params.id);
   await fs.mkdir(pluginDir, { recursive: true });
   await fs.writeFile(
     path.join(pluginDir, "openclaw.plugin.json"),
@@ -93,7 +93,7 @@ async function setupGatewayTempHome(params: { prefix: string; minimalGateway?: b
 
   const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), params.prefix));
   process.env.HOME = tempHome;
-  process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".openclaw");
+  process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".soloclaw");
   delete process.env.OPENCLAW_CONFIG_PATH;
   process.env.OPENCLAW_SKIP_CHANNELS = "1";
   process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";
@@ -149,7 +149,7 @@ describe("gateway e2e", () => {
       const token = nextGatewayId("test-token");
       process.env.OPENCLAW_GATEWAY_TOKEN = token;
 
-      const configDir = path.join(tempHome, ".openclaw");
+      const configDir = path.join(tempHome, ".soloclaw");
       await fs.mkdir(configDir, { recursive: true });
       const configPath = path.join(configDir, "openclaw.json");
       const mockProvider = buildMockOpenAiResponsesProvider(openaiBaseUrl);
@@ -246,7 +246,7 @@ module.exports = {
 `.trimStart(),
       });
 
-      const configDir = path.join(tempHome, ".openclaw");
+      const configDir = path.join(tempHome, ".soloclaw");
       await fs.mkdir(configDir, { recursive: true });
       const configPath = path.join(configDir, "openclaw.json");
       const cfg = {
@@ -457,10 +457,10 @@ module.exports = {
       ]);
 
       const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-minimal-gateway-home-"));
-      const configPath = path.join(tempHome, ".openclaw", "openclaw.json");
+      const configPath = path.join(tempHome, ".soloclaw", "openclaw.json");
       const bundledPluginsDir = path.join(tempHome, "openclaw-test-no-bundled-extensions");
       process.env.HOME = tempHome;
-      process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".openclaw");
+      process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".soloclaw");
       process.env.OPENCLAW_CONFIG_PATH = configPath;
       process.env.OPENCLAW_SKIP_CHANNELS = "1";
       process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";

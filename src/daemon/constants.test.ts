@@ -32,12 +32,12 @@ describe("resolveGatewayLaunchAgentLabel", () => {
   it("returns default label when no profile is set", () => {
     const result = resolveGatewayLaunchAgentLabel();
     expect(result).toBe(GATEWAY_LAUNCH_AGENT_LABEL);
-    expect(result).toBe("ai.openclaw.gateway");
+    expect(result).toBe("ai.soloclaw.gateway");
   });
 
   it("returns profile-specific label when profile is set", () => {
     const result = resolveGatewayLaunchAgentLabel("dev");
-    expect(result).toBe("ai.openclaw.dev");
+    expect(result).toBe("ai.soloclaw.dev");
   });
 });
 

@@ -66,7 +66,7 @@ function writeTranscriptUsageLog(params: {
 }) {
   const logPath = path.join(
     params.dir,
-    ".openclaw",
+    ".soloclaw",
     "agents",
     params.agentId,
     "sessions",

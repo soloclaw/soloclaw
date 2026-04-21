@@ -9,7 +9,7 @@ APP_PROCESS_PATTERN="OpenClaw.app/Contents/MacOS/OpenClaw"
 DEBUG_PROCESS_PATTERN="${ROOT_DIR}/apps/macos/.build/debug/OpenClaw"
 LOCAL_PROCESS_PATTERN="${ROOT_DIR}/apps/macos/.build-local/debug/OpenClaw"
 RELEASE_PROCESS_PATTERN="${ROOT_DIR}/apps/macos/.build/release/OpenClaw"
-LAUNCH_AGENT="${HOME}/Library/LaunchAgents/ai.openclaw.mac.plist"
+LAUNCH_AGENT="${HOME}/Library/LaunchAgents/ai.soloclaw.mac.plist"
 LOCK_KEY="$(printf '%s' "${ROOT_DIR}" | shasum -a 256 | cut -c1-8)"
 LOCK_DIR="${TMPDIR:-/tmp}/openclaw-restart-${LOCK_KEY}"
 LOCK_PID_FILE="${LOCK_DIR}/pid"
@@ -19,7 +19,7 @@ NO_SIGN=0
 SIGN=0
 AUTO_DETECT_SIGNING=1
 GATEWAY_WAIT_SECONDS="${OPENCLAW_GATEWAY_WAIT_SECONDS:-0}"
-LAUNCHAGENT_DISABLE_MARKER="${HOME}/.openclaw/disable-launchagent"
+LAUNCHAGENT_DISABLE_MARKER="${HOME}/.soloclaw/disable-launchagent"
 ATTACH_ONLY=1
 
 log()  { printf '%s\n' "$*"; }
@@ -100,7 +100,7 @@ for arg in "$@"; do
       log "  node openclaw.mjs daemon restart"
       log ""
       log "Reset unsigned overrides:"
-      log "  rm ~/.openclaw/disable-launchagent"
+      log "  rm ~/.soloclaw/disable-launchagent"
       log ""
       log "Default behavior: Auto-detect signing keys, fallback to --no-sign if none found"
       exit 0
@@ -145,7 +145,7 @@ kill_all_openclaw() {
 }
 
 stop_launch_agent() {
-  launchctl bootout gui/"$UID"/ai.openclaw.mac 2>/dev/null || true
+  launchctl bootout gui/"$UID"/ai.soloclaw.mac 2>/dev/null || true
 }
 
 # 1) Kill all running instances first.
@@ -173,7 +173,7 @@ fi
 if [ "$NO_SIGN" -eq 1 ]; then
   export ALLOW_ADHOC_SIGNING=1
   export SIGN_IDENTITY="-"
-  mkdir -p "${HOME}/.openclaw"
+  mkdir -p "${HOME}/.soloclaw"
   run_step "disable launchagent writes" /usr/bin/touch "${LAUNCHAGENT_DISABLE_MARKER}"
 elif [ "$SIGN" -eq 1 ]; then
   if ! check_signing_keys; then
@@ -227,7 +227,7 @@ if [ "$NO_SIGN" -eq 1 ] && [ "$ATTACH_ONLY" -ne 1 ]; then
       const fs = require("node:fs");
       const path = require("node:path");
       try {
-        const raw = fs.readFileSync(path.join(process.env.HOME, ".openclaw", "openclaw.json"), "utf8");
+        const raw = fs.readFileSync(path.join(process.env.HOME, ".soloclaw", "openclaw.json"), "utf8");
         const cfg = JSON.parse(raw);
         const port = cfg && cfg.gateway && typeof cfg.gateway.port === "number" ? cfg.gateway.port : 18789;
         process.stdout.write(String(port));
@@ -265,5 +265,5 @@ else
 fi
 
 if [ "$NO_SIGN" -eq 1 ] && [ "$ATTACH_ONLY" -ne 1 ]; then
-  run_step "show gateway launch agent args (unsigned)" bash -lc "/usr/bin/plutil -p '${HOME}/Library/LaunchAgents/ai.openclaw.gateway.plist' | head -n 40 || true"
+  run_step "show gateway launch agent args (unsigned)" bash -lc "/usr/bin/plutil -p '${HOME}/Library/LaunchAgents/ai.soloclaw.gateway.plist' | head -n 40 || true"
 fi

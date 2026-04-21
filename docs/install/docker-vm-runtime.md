@@ -120,12 +120,12 @@ All long-lived state must survive restarts, rebuilds, and reboots.
 
 | Component           | Location                          | Persistence mechanism  | Notes                                                         |
 | ------------------- | --------------------------------- | ---------------------- | ------------------------------------------------------------- |
-| Gateway config      | `/home/node/.openclaw/`           | Host volume mount      | Includes `openclaw.json`, `.env`                              |
-| Model auth profiles | `/home/node/.openclaw/agents/`    | Host volume mount      | `agents/<agentId>/agent/auth-profiles.json` (OAuth, API keys) |
-| Skill configs       | `/home/node/.openclaw/skills/`    | Host volume mount      | Skill-level state                                             |
-| Agent workspace     | `/home/node/.openclaw/workspace/` | Host volume mount      | Code and agent artifacts                                      |
-| WhatsApp session    | `/home/node/.openclaw/`           | Host volume mount      | Preserves QR login                                            |
-| Gmail keyring       | `/home/node/.openclaw/`           | Host volume + password | Requires `GOG_KEYRING_PASSWORD`                               |
+| Gateway config      | `/home/node/.soloclaw/`           | Host volume mount      | Includes `openclaw.json`, `.env`                              |
+| Model auth profiles | `/home/node/.soloclaw/agents/`    | Host volume mount      | `agents/<agentId>/agent/auth-profiles.json` (OAuth, API keys) |
+| Skill configs       | `/home/node/.soloclaw/skills/`    | Host volume mount      | Skill-level state                                             |
+| Agent workspace     | `/home/node/.soloclaw/workspace/` | Host volume mount      | Code and agent artifacts                                      |
+| WhatsApp session    | `/home/node/.soloclaw/`           | Host volume mount      | Preserves QR login                                            |
+| Gmail keyring       | `/home/node/.soloclaw/`           | Host volume + password | Requires `GOG_KEYRING_PASSWORD`                               |
 | External binaries   | `/usr/local/bin/`                 | Docker image           | Must be baked at build time                                   |
 | Node runtime        | Container filesystem              | Docker image           | Rebuilt every image build                                     |
 | OS packages         | Container filesystem              | Docker image           | Do not install at runtime                                     |

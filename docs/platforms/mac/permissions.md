@@ -35,8 +35,8 @@ grants, and prompts can disappear entirely until the stale entries are cleared.
 Example resets (replace bundle ID as needed):
 
 ```bash
-sudo tccutil reset Accessibility ai.openclaw.mac
-sudo tccutil reset ScreenCapture ai.openclaw.mac
+sudo tccutil reset Accessibility ai.soloclaw.mac
+sudo tccutil reset ScreenCapture ai.soloclaw.mac
 sudo tccutil reset AppleEvents
 ```
 
@@ -44,7 +44,7 @@ sudo tccutil reset AppleEvents
 
 macOS may also gate Desktop, Documents, and Downloads for terminal/background processes. If file reads or directory listings hang, grant access to the same process context that performs file operations (for example Terminal/iTerm, LaunchAgent-launched app, or SSH process).
 
-Workaround: move files into the OpenClaw workspace (`~/.openclaw/workspace`) if you want to avoid per-folder grants.
+Workaround: move files into the OpenClaw workspace (`~/.soloclaw/workspace`) if you want to avoid per-folder grants.
 
 If you are testing permissions, always sign with a real certificate. Ad-hoc
 builds are only acceptable for quick local runs where permissions do not matter.

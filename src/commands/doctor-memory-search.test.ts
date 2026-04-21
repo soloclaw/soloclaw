@@ -625,7 +625,7 @@ describe("memory recall doctor integration", () => {
     });
     repairDreamingArtifacts.mockResolvedValueOnce({
       changed: true,
-      archiveDir: "/tmp/agent-default/workspace/.openclaw-repair/dreaming/2026-04-11T21-35-00-000Z",
+      archiveDir: "/tmp/agent-default/workspace/.soloclaw-repair/dreaming/2026-04-11T21-35-00-000Z",
       archivedDreamsDiary: false,
       archivedSessionCorpus: true,
       archivedSessionIngestion: true,

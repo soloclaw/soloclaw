@@ -74,8 +74,8 @@ When both daily and idle resets are configured, whichever expires first wins.
 All session state is owned by the **gateway**. UI clients query the gateway for
 session data.
 
-- **Store:** `~/.openclaw/agents/<agentId>/sessions/sessions.json`
-- **Transcripts:** `~/.openclaw/agents/<agentId>/sessions/<sessionId>.jsonl`
+- **Store:** `~/.soloclaw/agents/<agentId>/sessions/sessions.json`
+- **Transcripts:** `~/.soloclaw/agents/<agentId>/sessions/<sessionId>.jsonl`
 
 ## Session maintenance
 

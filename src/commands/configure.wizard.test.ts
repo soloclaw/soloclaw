@@ -41,7 +41,7 @@ vi.mock("@clack/prompts", () => ({
 }));
 
 vi.mock("../config/config.js", () => ({
-  CONFIG_PATH: "~/.openclaw/openclaw.json",
+  CONFIG_PATH: "~/.soloclaw/openclaw.json",
   readConfigFileSnapshot: mocks.readConfigFileSnapshot,
   writeConfigFile: mocks.writeConfigFile,
   replaceConfigFile: mocks.replaceConfigFile,
@@ -61,7 +61,7 @@ vi.mock("../terminal/note.js", () => ({
 }));
 
 vi.mock("./onboard-helpers.js", () => ({
-  DEFAULT_WORKSPACE: "~/.openclaw/workspace",
+  DEFAULT_WORKSPACE: "~/.soloclaw/workspace",
   applyWizardMetadata: (cfg: OpenClawConfig) => cfg,
   ensureWorkspaceAndSessions: vi.fn(),
   guardCancel: <T>(value: T) => value,
@@ -361,7 +361,7 @@ describe("runConfigureWizard", () => {
         envVars: [],
         placeholder: "(no key needed)",
         signupUrl: "https://duckduckgo.com/",
-        docsUrl: "https://docs.openclaw.ai/tools/web",
+        docsUrl: "https://docs.soloclaw.ai/tools/web",
         credentialPath: "",
       }),
     ]);
@@ -566,7 +566,7 @@ describe("runConfigureWizard", () => {
     expect(retryCall.nextConfig).toMatchObject({
       agents: {
         defaults: {
-          workspace: expect.stringContaining("/.openclaw/workspace"),
+          workspace: expect.stringContaining("/.soloclaw/workspace"),
         },
       },
       plugins: {

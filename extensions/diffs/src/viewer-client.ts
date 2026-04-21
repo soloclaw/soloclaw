@@ -335,9 +335,9 @@ async function hydrateViewer(): Promise<void> {
 async function main(): Promise<void> {
   try {
     await hydrateViewer();
-    document.documentElement.dataset.openclawDiffsReady = "true";
+    document.documentElement.dataset.soloclawDiffsReady = "true";
   } catch (error) {
-    document.documentElement.dataset.openclawDiffsError = "true";
+    document.documentElement.dataset.soloclawDiffsError = "true";
     console.error("Failed to hydrate diff viewer", error);
   }
 }

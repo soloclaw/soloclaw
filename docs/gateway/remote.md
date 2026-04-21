@@ -189,7 +189,7 @@ openclaw config set gateway.remote.token "<your-token>"
 
 #### Step 4: create the LaunchAgent
 
-Save this as `~/Library/LaunchAgents/ai.openclaw.ssh-tunnel.plist`:
+Save this as `~/Library/LaunchAgents/ai.soloclaw.ssh-tunnel.plist`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -197,7 +197,7 @@ Save this as `~/Library/LaunchAgents/ai.openclaw.ssh-tunnel.plist`:
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>ai.openclaw.ssh-tunnel</string>
+    <string>ai.soloclaw.ssh-tunnel</string>
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/ssh</string>
@@ -215,12 +215,12 @@ Save this as `~/Library/LaunchAgents/ai.openclaw.ssh-tunnel.plist`:
 #### Step 5: load the LaunchAgent
 
 ```bash
-launchctl bootstrap gui/$UID ~/Library/LaunchAgents/ai.openclaw.ssh-tunnel.plist
+launchctl bootstrap gui/$UID ~/Library/LaunchAgents/ai.soloclaw.ssh-tunnel.plist
 ```
 
 The tunnel will start automatically at login, restart on crash, and keep the forwarded port live.
 
-Note: if you have a leftover `com.openclaw.ssh-tunnel` LaunchAgent from an older setup, unload and delete it.
+Note: if you have a leftover `com.soloclaw.ssh-tunnel` LaunchAgent from an older setup, unload and delete it.
 
 #### Troubleshooting
 
@@ -234,13 +234,13 @@ lsof -i :18789
 Restart the tunnel:
 
 ```bash
-launchctl kickstart -k gui/$UID/ai.openclaw.ssh-tunnel
+launchctl kickstart -k gui/$UID/ai.soloclaw.ssh-tunnel
 ```
 
 Stop the tunnel:
 
 ```bash
-launchctl bootout gui/$UID/ai.openclaw.ssh-tunnel
+launchctl bootout gui/$UID/ai.soloclaw.ssh-tunnel
 ```
 
 | Config entry                         | What it does                                                 |

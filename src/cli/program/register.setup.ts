@@ -14,11 +14,11 @@ export function registerSetupCommand(program: Command) {
     .addHelpText(
       "after",
       () =>
-        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/setup", "docs.openclaw.ai/cli/setup")}\n`,
+        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/setup", "docs.soloclaw.ai/cli/setup")}\n`,
     )
     .option(
       "--workspace <dir>",
-      "Agent workspace directory (default: ~/.openclaw/workspace; stored as agents.defaults.workspace)",
+      "Agent workspace directory (default: ~/.soloclaw/workspace; stored as agents.defaults.workspace)",
     )
     .option("--wizard", "Run interactive onboarding", false)
     .option("--non-interactive", "Run onboarding without prompts", false)

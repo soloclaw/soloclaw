@@ -71,7 +71,7 @@ export async function setupWizardCommand(
     runtime.error(
       [
         "Non-interactive setup requires explicit risk acknowledgement.",
-        "Read: https://docs.openclaw.ai/security",
+        "Read: https://docs.soloclaw.ai/security",
         `Re-run with: ${formatCliCommand("openclaw onboard --non-interactive --accept-risk ...")}`,
       ].join("\n"),
     );

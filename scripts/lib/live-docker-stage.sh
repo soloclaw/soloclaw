@@ -47,7 +47,7 @@ openclaw_live_link_runtime_tree() {
 
 openclaw_live_stage_state_dir() {
   local dest_dir="${1:?destination directory required}"
-  local source_dir="${HOME}/.openclaw"
+  local source_dir="${HOME}/.soloclaw"
 
   mkdir -p "$dest_dir"
   if [ -d "$source_dir" ]; then

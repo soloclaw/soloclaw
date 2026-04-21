@@ -30,12 +30,12 @@ detected package manager. Node remains the recommended Gateway runtime.
 
 Label:
 
-- `ai.openclaw.gateway` (or `ai.openclaw.<profile>`; legacy `com.openclaw.*` may remain)
+- `ai.soloclaw.gateway` (or `ai.soloclaw.<profile>`; legacy `com.soloclaw.*` may remain)
 
 Plist location (per‑user):
 
-- `~/Library/LaunchAgents/ai.openclaw.gateway.plist`
-  (or `~/Library/LaunchAgents/ai.openclaw.<profile>.plist`)
+- `~/Library/LaunchAgents/ai.soloclaw.gateway.plist`
+  (or `~/Library/LaunchAgents/ai.soloclaw.<profile>.plist`)
 
 Manager:
 

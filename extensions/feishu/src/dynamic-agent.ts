@@ -77,8 +77,8 @@ export async function maybeCreateDynamicAgent(params: {
   }
 
   // Resolve path templates with substitutions
-  const workspaceTemplate = dynamicCfg.workspaceTemplate ?? "~/.openclaw/workspace-{agentId}";
-  const agentDirTemplate = dynamicCfg.agentDirTemplate ?? "~/.openclaw/agents/{agentId}/agent";
+  const workspaceTemplate = dynamicCfg.workspaceTemplate ?? "~/.soloclaw/workspace-{agentId}";
+  const agentDirTemplate = dynamicCfg.agentDirTemplate ?? "~/.soloclaw/agents/{agentId}/agent";
 
   const workspace = resolveUserPath(
     workspaceTemplate.replace("{userId}", senderOpenId).replace("{agentId}", agentId),

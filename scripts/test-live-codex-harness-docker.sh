@@ -5,8 +5,8 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$ROOT_DIR/scripts/lib/live-docker-auth.sh"
 IMAGE_NAME="${OPENCLAW_IMAGE:-openclaw:local}"
 LIVE_IMAGE_NAME="${OPENCLAW_LIVE_IMAGE:-${IMAGE_NAME}-live}"
-CONFIG_DIR="${OPENCLAW_CONFIG_DIR:-$HOME/.openclaw}"
-WORKSPACE_DIR="${OPENCLAW_WORKSPACE_DIR:-$HOME/.openclaw/workspace}"
+CONFIG_DIR="${OPENCLAW_CONFIG_DIR:-$HOME/.soloclaw}"
+WORKSPACE_DIR="${OPENCLAW_WORKSPACE_DIR:-$HOME/.soloclaw/workspace}"
 PROFILE_FILE="${OPENCLAW_PROFILE_FILE:-$HOME/.profile}"
 CODEX_HARNESS_AUTH_MODE="${OPENCLAW_LIVE_CODEX_HARNESS_AUTH:-codex-auth}"
 TEMP_DIRS=()
@@ -163,7 +163,7 @@ cp -aRs /app/node_modules/. "$tmp_dir/node_modules"
 rm -rf "$tmp_dir/node_modules/.vite-temp"
 mkdir -p "$tmp_dir/node_modules/.vite-temp"
 openclaw_live_link_runtime_tree "$tmp_dir"
-openclaw_live_stage_state_dir "$tmp_dir/.openclaw-state"
+openclaw_live_stage_state_dir "$tmp_dir/.soloclaw-state"
 openclaw_live_prepare_staged_config
 cd "$tmp_dir"
 pnpm test:live src/gateway/gateway-codex-harness.live.test.ts
@@ -201,8 +201,8 @@ docker run --rm -t \
   "${DOCKER_HOME_MOUNT[@]}" \
   -v "$CACHE_HOME_DIR":/home/node/.cache \
   -v "$ROOT_DIR":/src:ro \
-  -v "$CONFIG_DIR":/home/node/.openclaw \
-  -v "$WORKSPACE_DIR":/home/node/.openclaw/workspace \
+  -v "$CONFIG_DIR":/home/node/.soloclaw \
+  -v "$WORKSPACE_DIR":/home/node/.soloclaw/workspace \
   -v "$CLI_TOOLS_DIR":/home/node/.npm-global \
   "${EXTERNAL_AUTH_MOUNTS[@]}" \
   "${PROFILE_MOUNT[@]}" \

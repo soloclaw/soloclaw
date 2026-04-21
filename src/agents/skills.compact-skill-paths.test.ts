@@ -7,7 +7,7 @@ import { createCanonicalFixtureSkill } from "./skills.test-helpers.js";
 describe("compactSkillPaths", () => {
   it("replaces home directory prefix with ~ in skill locations", () => {
     const home = os.homedir();
-    const skillDir = path.join(home, ".openclaw-test-skills", "test-skill");
+    const skillDir = path.join(home, ".soloclaw-test-skills", "test-skill");
 
     const prompt = buildWorkspaceSkillsPrompt(home, {
       entries: [

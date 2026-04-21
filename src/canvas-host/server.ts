@@ -114,14 +114,14 @@ function defaultIndexHTML() {
     !!(
       window.webkit &&
       window.webkit.messageHandlers &&
-      window.webkit.messageHandlers.openclawCanvasA2UIAction
+      window.webkit.messageHandlers.soloclawCanvasA2UIAction
     );
   const hasAndroid = () =>
     !!(
-      (window.openclawCanvasA2UIAction &&
-        typeof window.openclawCanvasA2UIAction.postMessage === "function")
+      (window.soloclawCanvasA2UIAction &&
+        typeof window.soloclawCanvasA2UIAction.postMessage === "function")
     );
-  const hasHelper = () => typeof window.openclawSendUserAction === "function";
+  const hasHelper = () => typeof window.soloclawSendUserAction === "function";
   const helperReady = hasHelper();
   statusEl.textContent = "";
   statusEl.appendChild(document.createTextNode("Bridge: "));
@@ -147,8 +147,8 @@ function defaultIndexHTML() {
       return;
     }
     const sendUserAction =
-      typeof window.openclawSendUserAction === "function"
-        ? window.openclawSendUserAction
+      typeof window.soloclawSendUserAction === "function"
+        ? window.soloclawSendUserAction
         : undefined;
     const ok = sendUserAction({
       name,

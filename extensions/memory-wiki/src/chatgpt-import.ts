@@ -650,7 +650,7 @@ function buildRunId(exportPath: string, nowIso: string): string {
 }
 
 function resolveImportRunsDir(vaultRoot: string): string {
-  return path.join(vaultRoot, ".openclaw-wiki", "import-runs");
+  return path.join(vaultRoot, ".soloclaw-wiki", "import-runs");
 }
 
 function resolveImportRunPath(vaultRoot: string, runId: string): string {

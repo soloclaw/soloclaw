@@ -1,7 +1,7 @@
 ---
 name: session-memory
 description: "Save session context to memory when /new or /reset command is issued"
-homepage: https://docs.openclaw.ai/automation/hooks#session-memory
+homepage: https://docs.soloclaw.ai/automation/hooks#session-memory
 metadata:
   {
     "openclaw":
@@ -81,7 +81,7 @@ Example configuration:
 
 The hook automatically:
 
-- Uses your workspace directory (`~/.openclaw/workspace` by default)
+- Uses your workspace directory (`~/.soloclaw/workspace` by default)
 - Uses your configured LLM for slug generation
 - Falls back to timestamp slugs if LLM is unavailable
 

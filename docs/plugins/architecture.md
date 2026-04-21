@@ -1510,9 +1510,9 @@ Useful `openclaw.channel` fields beyond the minimal example:
 OpenClaw can also merge **external channel catalogs** (for example, an MPM
 registry export). Drop a JSON file at one of:
 
-- `~/.openclaw/mpm/plugins.json`
-- `~/.openclaw/mpm/catalog.json`
-- `~/.openclaw/plugins/catalog.json`
+- `~/.soloclaw/mpm/plugins.json`
+- `~/.soloclaw/mpm/catalog.json`
+- `~/.soloclaw/plugins/catalog.json`
 
 Or point `OPENCLAW_PLUGIN_CATALOG_PATHS` (or `OPENCLAW_MPM_CATALOG_PATHS`) at
 one or more JSON files (comma/semicolon/`PATH`-delimited). Each file should

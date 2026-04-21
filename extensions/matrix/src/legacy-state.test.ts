@@ -13,7 +13,7 @@ function writeFile(filePath: string, value: string) {
 describe("matrix legacy state migration", () => {
   it("migrates the flat legacy Matrix store into account-scoped storage", async () => {
     await withTempHome(async (home) => {
-      const stateDir = path.join(home, ".openclaw");
+      const stateDir = path.join(home, ".soloclaw");
       writeFile(path.join(stateDir, "matrix", "bot-storage.json"), '{"next_batch":"s1"}');
       writeFile(path.join(stateDir, "matrix", "crypto", "store.db"), "crypto");
 
@@ -45,7 +45,7 @@ describe("matrix legacy state migration", () => {
 
   it("uses cached Matrix credentials when the config no longer stores an access token", async () => {
     await withTempHome(async (home) => {
-      const stateDir = path.join(home, ".openclaw");
+      const stateDir = path.join(home, ".soloclaw");
       writeFile(path.join(stateDir, "matrix", "bot-storage.json"), '{"next_batch":"s1"}');
       writeFile(
         path.join(stateDir, "credentials", "matrix", "credentials.json"),

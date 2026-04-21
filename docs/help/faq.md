@@ -280,8 +280,8 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
     state) as long as you copy **both** locations:
 
     1. Install OpenClaw on the new machine.
-    2. Copy `$OPENCLAW_STATE_DIR` (default: `~/.openclaw`) from the old machine.
-    3. Copy your workspace (default: `~/.openclaw/workspace`).
+    2. Copy `$OPENCLAW_STATE_DIR` (default: `~/.soloclaw`) from the old machine.
+    3. Copy your workspace (default: `~/.soloclaw/workspace`).
     4. Run `openclaw doctor` and restart the Gateway service.
 
     That preserves config, auth profiles, WhatsApp creds, sessions, and memory. If you're in
@@ -289,7 +289,7 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
 
     **Important:** if you only commit/push your workspace to GitHub, you're backing
     up **memory + bootstrap files**, but **not** session history or auth. Those live
-    under `~/.openclaw/` (for example `~/.openclaw/agents/<agentId>/sessions/`).
+    under `~/.soloclaw/` (for example `~/.soloclaw/agents/<agentId>/sessions/`).
 
     Related: [Migrating](/install/migrating), [Where things live on disk](#where-things-live-on-disk),
     [Agent workspace](/concepts/agent-workspace), [Doctor](/gateway/doctor),
@@ -307,9 +307,9 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
 
   </Accordion>
 
-  <Accordion title="Cannot access docs.openclaw.ai (SSL error)">
-    Some Comcast/Xfinity connections incorrectly block `docs.openclaw.ai` via Xfinity
-    Advanced Security. Disable it or allowlist `docs.openclaw.ai`, then retry.
+  <Accordion title="Cannot access docs.soloclaw.ai (SSL error)">
+    Some Comcast/Xfinity connections incorrectly block `docs.soloclaw.ai` via Xfinity
+    Advanced Security. Disable it or allowlist `docs.soloclaw.ai`, then retry.
     Please help us unblock it by reporting here: [https://spa.xfinity.com/check_url_status](https://spa.xfinity.com/check_url_status).
 
     If you still can't reach the site, the docs are mirrored on GitHub:
@@ -821,7 +821,7 @@ for usage/billing and raise limits as needed.
   <Accordion title="Can I switch between npm and git installs later?">
     Yes. Install the other flavor, then run Doctor so the gateway service points at the new entrypoint.
     This **does not delete your data** - it only changes the OpenClaw code install. Your state
-    (`~/.openclaw`) and workspace (`~/.openclaw/workspace`) stay untouched.
+    (`~/.soloclaw`) and workspace (`~/.soloclaw/workspace`) stay untouched.
 
     From npm to git:
 
@@ -997,11 +997,11 @@ for usage/billing and raise limits as needed.
 
 <AccordionGroup>
   <Accordion title="How do I customize skills without keeping the repo dirty?">
-    Use managed overrides instead of editing the repo copy. Put your changes in `~/.openclaw/skills/<name>/SKILL.md` (or add a folder via `skills.load.extraDirs` in `~/.openclaw/openclaw.json`). Precedence is `<workspace>/skills` → `<workspace>/.agents/skills` → `~/.agents/skills` → `~/.openclaw/skills` → bundled → `skills.load.extraDirs`, so managed overrides still win over bundled skills without touching git. If you need the skill installed globally but only visible to some agents, keep the shared copy in `~/.openclaw/skills` and control visibility with `agents.defaults.skills` and `agents.list[].skills`. Only upstream-worthy edits should live in the repo and go out as PRs.
+    Use managed overrides instead of editing the repo copy. Put your changes in `~/.soloclaw/skills/<name>/SKILL.md` (or add a folder via `skills.load.extraDirs` in `~/.soloclaw/openclaw.json`). Precedence is `<workspace>/skills` → `<workspace>/.agents/skills` → `~/.agents/skills` → `~/.soloclaw/skills` → bundled → `skills.load.extraDirs`, so managed overrides still win over bundled skills without touching git. If you need the skill installed globally but only visible to some agents, keep the shared copy in `~/.soloclaw/skills` and control visibility with `agents.defaults.skills` and `agents.list[].skills`. Only upstream-worthy edits should live in the repo and go out as PRs.
   </Accordion>
 
   <Accordion title="Can I load skills from a custom folder?">
-    Yes. Add extra directories via `skills.load.extraDirs` in `~/.openclaw/openclaw.json` (lowest precedence). Default precedence is `<workspace>/skills` → `<workspace>/.agents/skills` → `~/.agents/skills` → `~/.openclaw/skills` → bundled → `skills.load.extraDirs`. `clawhub` installs into `./skills` by default, which OpenClaw treats as `<workspace>/skills` on the next session. If the skill should only be visible to certain agents, pair that with `agents.defaults.skills` or `agents.list[].skills`.
+    Yes. Add extra directories via `skills.load.extraDirs` in `~/.soloclaw/openclaw.json` (lowest precedence). Default precedence is `<workspace>/skills` → `<workspace>/.agents/skills` → `~/.agents/skills` → `~/.soloclaw/skills` → bundled → `skills.load.extraDirs`. `clawhub` installs into `./skills` by default, which OpenClaw treats as `<workspace>/skills` on the next session. If the skill should only be visible to certain agents, pair that with `agents.defaults.skills` or `agents.list[].skills`.
   </Accordion>
 
   <Accordion title="How can I use different models for different tasks?">
@@ -1162,7 +1162,7 @@ for usage/billing and raise limits as needed.
     Native `openclaw skills install` writes into the active workspace `skills/`
     directory. Install the separate `clawhub` CLI only if you want to publish or
     sync your own skills. For shared installs across agents, put the skill under
-    `~/.openclaw/skills` and use `agents.defaults.skills` or
+    `~/.soloclaw/skills` and use `agents.defaults.skills` or
     `agents.list[].skills` if you want to narrow which agents can see it.
 
   </Accordion>
@@ -1180,7 +1180,7 @@ for usage/billing and raise limits as needed.
   </Accordion>
 
   <Accordion title="Can I run Apple macOS-only skills from Linux?">
-    Not directly. macOS skills are gated by `metadata.openclaw.os` plus required binaries, and skills only appear in the system prompt when they are eligible on the **Gateway host**. On Linux, `darwin`-only skills (like `apple-notes`, `apple-reminders`, `things-mac`) will not load unless you override the gating.
+    Not directly. macOS skills are gated by `metadata.soloclaw.os` plus required binaries, and skills only appear in the system prompt when they are eligible on the **Gateway host**. On Linux, `darwin`-only skills (like `apple-notes`, `apple-reminders`, `things-mac`) will not load unless you override the gating.
 
     You have three supported patterns:
 
@@ -1202,7 +1202,7 @@ for usage/billing and raise limits as needed.
        ```
 
     2. Put the wrapper on `PATH` on the Linux host (for example `~/bin/memo`).
-    3. Override the skill metadata (workspace or `~/.openclaw/skills`) to allow Linux:
+    3. Override the skill metadata (workspace or `~/.soloclaw/skills`) to allow Linux:
 
        ```markdown
        ---
@@ -1239,7 +1239,7 @@ for usage/billing and raise limits as needed.
     openclaw skills update --all
     ```
 
-    Native installs land in the active workspace `skills/` directory. For shared skills across agents, place them in `~/.openclaw/skills/<name>/SKILL.md`. If only some agents should see a shared install, configure `agents.defaults.skills` or `agents.list[].skills`. Some skills expect binaries installed via Homebrew; on Linux that means Linuxbrew (see the Homebrew Linux FAQ entry above). See [Skills](/tools/skills), [Skills config](/tools/skills-config), and [ClawHub](/tools/clawhub).
+    Native installs land in the active workspace `skills/` directory. For shared skills across agents, place them in `~/.soloclaw/skills/<name>/SKILL.md`. If only some agents should see a shared install, configure `agents.defaults.skills` or `agents.list[].skills`. Some skills expect binaries installed via Homebrew; on Linux that means Linuxbrew (see the Homebrew Linux FAQ entry above). See [Skills](/tools/skills), [Skills config](/tools/skills-config), and [ClawHub](/tools/clawhub).
 
   </Accordion>
 
@@ -1375,7 +1375,7 @@ for usage/billing and raise limits as needed.
     No - **OpenClaw's state is local**, but **external services still see what you send them**.
 
     - **Local by default:** sessions, memory files, config, and workspace live on the Gateway host
-      (`~/.openclaw` + your workspace directory).
+      (`~/.soloclaw` + your workspace directory).
     - **Remote by necessity:** messages you send to model providers (Anthropic/OpenAI/etc.) go to
       their APIs, and chat platforms (WhatsApp/Telegram/Slack/etc.) store message data on their
       servers.
@@ -1387,7 +1387,7 @@ for usage/billing and raise limits as needed.
   </Accordion>
 
   <Accordion title="Where does OpenClaw store its data?">
-    Everything lives under `$OPENCLAW_STATE_DIR` (default: `~/.openclaw`):
+    Everything lives under `$OPENCLAW_STATE_DIR` (default: `~/.soloclaw`):
 
     | Path                                                            | Purpose                                                            |
     | --------------------------------------------------------------- | ------------------------------------------------------------------ |
@@ -1401,26 +1401,26 @@ for usage/billing and raise limits as needed.
     | `$OPENCLAW_STATE_DIR/agents/<agentId>/sessions/`                | Conversation history & state (per agent)                           |
     | `$OPENCLAW_STATE_DIR/agents/<agentId>/sessions/sessions.json`   | Session metadata (per agent)                                       |
 
-    Legacy single-agent path: `~/.openclaw/agent/*` (migrated by `openclaw doctor`).
+    Legacy single-agent path: `~/.soloclaw/agent/*` (migrated by `openclaw doctor`).
 
-    Your **workspace** (AGENTS.md, memory files, skills, etc.) is separate and configured via `agents.defaults.workspace` (default: `~/.openclaw/workspace`).
+    Your **workspace** (AGENTS.md, memory files, skills, etc.) is separate and configured via `agents.defaults.workspace` (default: `~/.soloclaw/workspace`).
 
   </Accordion>
 
   <Accordion title="Where should AGENTS.md / SOUL.md / USER.md / MEMORY.md live?">
-    These files live in the **agent workspace**, not `~/.openclaw`.
+    These files live in the **agent workspace**, not `~/.soloclaw`.
 
     - **Workspace (per agent)**: `AGENTS.md`, `SOUL.md`, `IDENTITY.md`, `USER.md`,
       `MEMORY.md` (or legacy fallback `memory.md` when `MEMORY.md` is absent),
       `memory/YYYY-MM-DD.md`, optional `HEARTBEAT.md`.
-    - **State dir (`~/.openclaw`)**: config, channel/provider state, auth profiles, sessions, logs,
-      and shared skills (`~/.openclaw/skills`).
+    - **State dir (`~/.soloclaw`)**: config, channel/provider state, auth profiles, sessions, logs,
+      and shared skills (`~/.soloclaw/skills`).
 
-    Default workspace is `~/.openclaw/workspace`, configurable via:
+    Default workspace is `~/.soloclaw/workspace`, configurable via:
 
     ```json5
     {
-      agents: { defaults: { workspace: "~/.openclaw/workspace" } },
+      agents: { defaults: { workspace: "~/.soloclaw/workspace" } },
     }
     ```
 
@@ -1440,7 +1440,7 @@ for usage/billing and raise limits as needed.
     private (for example GitHub private). This captures memory + AGENTS/SOUL/USER
     files, and lets you restore the assistant's "mind" later.
 
-    Do **not** commit anything under `~/.openclaw` (credentials, sessions, tokens, or encrypted secrets payloads).
+    Do **not** commit anything under `~/.soloclaw` (credentials, sessions, tokens, or encrypted secrets payloads).
     If you need a full restore, back up both the workspace and the state directory
     separately (see the migration question above).
 
@@ -1484,13 +1484,13 @@ for usage/billing and raise limits as needed.
 
 <AccordionGroup>
   <Accordion title="What format is the config? Where is it?">
-    OpenClaw reads an optional **JSON5** config from `$OPENCLAW_CONFIG_PATH` (default: `~/.openclaw/openclaw.json`):
+    OpenClaw reads an optional **JSON5** config from `$OPENCLAW_CONFIG_PATH` (default: `~/.soloclaw/openclaw.json`):
 
     ```
     $OPENCLAW_CONFIG_PATH
     ```
 
-    If the file is missing, it uses safe-ish defaults (including a default workspace of `~/.openclaw/workspace`).
+    If the file is missing, it uses safe-ish defaults (including a default workspace of `~/.soloclaw/workspace`).
 
   </Accordion>
 
@@ -1619,7 +1619,7 @@ for usage/billing and raise limits as needed.
     - If you use allowlists, add `web_search`/`web_fetch`/`x_search` or `group:web`.
     - `web_fetch` is enabled by default (unless explicitly disabled).
     - If `tools.web.fetch.provider` is omitted, OpenClaw auto-detects the first ready fetch fallback provider from available credentials. Today the bundled provider is Firecrawl.
-    - Daemons read env vars from `~/.openclaw/.env` (or the service environment).
+    - Daemons read env vars from `~/.soloclaw/.env` (or the service environment).
 
     Docs: [Web tools](/tools/web).
 
@@ -1631,7 +1631,7 @@ for usage/billing and raise limits as needed.
 
     Recover:
 
-    - Restore from backup (git or a copied `~/.openclaw/openclaw.json`).
+    - Restore from backup (git or a copied `~/.soloclaw/openclaw.json`).
     - If you have no backup, re-run `openclaw doctor` and reconfigure channels/models.
     - If this was unexpected, file a bug and include your last known config or any backup.
     - A local coding agent can often reconstruct a working config from logs or history.
@@ -1825,7 +1825,7 @@ for usage/billing and raise limits as needed.
   <Accordion title="Minimal sane config for a first install">
     ```json5
     {
-      agents: { defaults: { workspace: "~/.openclaw/workspace" } },
+      agents: { defaults: { workspace: "~/.soloclaw/workspace" } },
       channels: { whatsapp: { allowFrom: ["+15555550123"] } },
     }
     ```
@@ -1900,7 +1900,7 @@ for usage/billing and raise limits as needed.
     OpenClaw reads env vars from the parent process (shell, launchd/systemd, CI, etc.) and additionally loads:
 
     - `.env` from the current working directory
-    - a global fallback `.env` from `~/.openclaw/.env` (aka `$OPENCLAW_STATE_DIR/.env`)
+    - a global fallback `.env` from `~/.soloclaw/.env` (aka `$OPENCLAW_STATE_DIR/.env`)
 
     Neither `.env` file overrides existing env vars.
 
@@ -1922,7 +1922,7 @@ for usage/billing and raise limits as needed.
   <Accordion title="I started the Gateway via the service and my env vars disappeared. What now?">
     Two common fixes:
 
-    1. Put the missing keys in `~/.openclaw/.env` so they're picked up even when the service doesn't inherit your shell env.
+    1. Put the missing keys in `~/.soloclaw/.env` so they're picked up even when the service doesn't inherit your shell env.
     2. Enable shell import (opt-in convenience):
 
     ```json5
@@ -1949,7 +1949,7 @@ for usage/billing and raise limits as needed.
     If the Gateway runs as a service (launchd/systemd), it won't inherit your shell
     environment. Fix by doing one of these:
 
-    1. Put the token in `~/.openclaw/.env`:
+    1. Put the token in `~/.soloclaw/.env`:
 
        ```
        COPILOT_GITHUB_TOKEN=...
@@ -2042,7 +2042,7 @@ for usage/billing and raise limits as needed.
     Notes:
 
     - Onboarding also offers **Reset** if it sees an existing config. See [Onboarding (CLI)](/start/wizard).
-    - If you used profiles (`--profile` / `OPENCLAW_PROFILE`), reset each state dir (defaults are `~/.openclaw-<profile>`).
+    - If you used profiles (`--profile` / `OPENCLAW_PROFILE`), reset each state dir (defaults are `~/.soloclaw-<profile>`).
     - Dev reset: `openclaw gateway --dev --reset` (dev-only; wipes dev config + credentials + sessions + workspace).
 
   </Accordion>
@@ -2162,7 +2162,7 @@ for usage/billing and raise limits as needed.
   <Accordion title="How many workspaces and agents can I create?">
     No hard limits. Dozens (even hundreds) are fine, but watch for:
 
-    - **Disk growth:** sessions + transcripts live under `~/.openclaw/agents/<agentId>/sessions/`.
+    - **Disk growth:** sessions + transcripts live under `~/.soloclaw/agents/<agentId>/sessions/`.
     - **Token cost:** more agents means more concurrent model usage.
     - **Ops overhead:** per-agent auth profiles, workspaces, and channel routing.
 
@@ -2237,7 +2237,7 @@ for usage/billing and raise limits as needed.
     - `/model` in chat (quick, per-session)
     - `openclaw models set ...` (updates just model config)
     - `openclaw configure --section model` (interactive)
-    - edit `agents.defaults.model` in `~/.openclaw/openclaw.json`
+    - edit `agents.defaults.model` in `~/.soloclaw/openclaw.json`
 
     Avoid `config.apply` with a partial object unless you intend to replace the whole config.
     For RPC edits, inspect with `config.schema.lookup` first and prefer `config.patch`. The lookup payload gives you the normalized path, shallow schema docs/constraints, and immediate child summaries.
@@ -2526,7 +2526,7 @@ for usage/billing and raise limits as needed.
     stored in:
 
     ```
-    ~/.openclaw/agents/<agentId>/agent/auth-profiles.json
+    ~/.soloclaw/agents/<agentId>/agent/auth-profiles.json
     ```
 
     Fix options:
@@ -2594,10 +2594,10 @@ for usage/billing and raise limits as needed.
     **Fix checklist:**
 
     - **Confirm where auth profiles live** (new vs legacy paths)
-      - Current: `~/.openclaw/agents/<agentId>/agent/auth-profiles.json`
-      - Legacy: `~/.openclaw/agent/*` (migrated by `openclaw doctor`)
+      - Current: `~/.soloclaw/agents/<agentId>/agent/auth-profiles.json`
+      - Legacy: `~/.soloclaw/agent/*` (migrated by `openclaw doctor`)
     - **Confirm your env var is loaded by the Gateway**
-      - If you set `ANTHROPIC_API_KEY` in your shell but run the Gateway via systemd/launchd, it may not inherit it. Put it in `~/.openclaw/.env` or enable `env.shellEnv`.
+      - If you set `ANTHROPIC_API_KEY` in your shell but run the Gateway via systemd/launchd, it may not inherit it. Put it in `~/.soloclaw/.env` or enable `env.shellEnv`.
     - **Make sure you're editing the correct agent**
       - Multi-agent setups mean there can be multiple `auth-profiles.json` files.
     - **Sanity-check model/auth status**
@@ -2611,7 +2611,7 @@ for usage/billing and raise limits as needed.
     - **Use Claude CLI**
       - Run `openclaw models auth login --provider anthropic --method cli --set-default` on the gateway host.
     - **If you want to use an API key instead**
-      - Put `ANTHROPIC_API_KEY` in `~/.openclaw/.env` on the **gateway host**.
+      - Put `ANTHROPIC_API_KEY` in `~/.soloclaw/.env` on the **gateway host**.
       - Clear any pinned order that forces a missing profile:
 
         ```bash
@@ -2647,7 +2647,7 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
     An auth profile is a named credential record (OAuth or API key) tied to a provider. Profiles live in:
 
     ```
-    ~/.openclaw/agents/<agentId>/agent/auth-profiles.json
+    ~/.soloclaw/agents/<agentId>/agent/auth-profiles.json
     ```
 
   </Accordion>
@@ -2836,11 +2836,11 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
 
     Quick setup (recommended):
 
-    - Use `openclaw --profile <name> ...` per instance (auto-creates `~/.openclaw-<name>`).
+    - Use `openclaw --profile <name> ...` per instance (auto-creates `~/.soloclaw-<name>`).
     - Set a unique `gateway.port` in each profile config (or pass `--port` for manual runs).
     - Install a per-profile service: `openclaw --profile <name> gateway install`.
 
-    Profiles also suffix service names (`ai.openclaw.<profile>`; legacy `com.openclaw.*`, `openclaw-gateway-<profile>.service`, `OpenClaw Gateway (<profile>)`).
+    Profiles also suffix service names (`ai.soloclaw.<profile>`; legacy `com.soloclaw.*`, `openclaw-gateway-<profile>.service`, `OpenClaw Gateway (<profile>)`).
     Full guide: [Multiple gateways](/gateway/multiple-gateways).
 
   </Accordion>
@@ -2893,7 +2893,7 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
 
     Service/supervisor logs (when the gateway runs via launchd/systemd):
 
-    - macOS: `$OPENCLAW_STATE_DIR/logs/gateway.log` and `gateway.err.log` (default: `~/.openclaw/logs/...`; profiles use `~/.openclaw-<profile>/logs/...`)
+    - macOS: `$OPENCLAW_STATE_DIR/logs/gateway.log` and `gateway.err.log` (default: `~/.soloclaw/logs/...`; profiles use `~/.soloclaw-<profile>/logs/...`)
     - Linux: `journalctl --user -u openclaw-gateway[-<profile>].service -n 200 --no-pager`
     - Windows: `schtasks /Query /TN "OpenClaw Gateway (<profile>)" /V /FO LIST`
 

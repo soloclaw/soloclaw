@@ -17,7 +17,7 @@ describe("backupCreateCommand atomic archive write", () => {
 
   async function resetTempHome() {
     await fs.rm(tempHome.home, { recursive: true, force: true });
-    await fs.mkdir(path.join(tempHome.home, ".openclaw"), { recursive: true });
+    await fs.mkdir(path.join(tempHome.home, ".soloclaw"), { recursive: true });
     delete process.env.OPENCLAW_CONFIG_PATH;
   }
 
@@ -43,7 +43,7 @@ describe("backupCreateCommand atomic archive write", () => {
     archivePrefix: string;
     outputName?: string;
   }) {
-    const stateDir = path.join(tempHome.home, ".openclaw");
+    const stateDir = path.join(tempHome.home, ".soloclaw");
     const archiveDir = await fs.mkdtemp(path.join(os.tmpdir(), params.archivePrefix));
     await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
     await fs.writeFile(path.join(stateDir, "state.txt"), "state\n", "utf8");

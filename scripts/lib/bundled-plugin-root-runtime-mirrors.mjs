@@ -50,7 +50,7 @@ function collectPackageJsonPaths(rootDir) {
 }
 
 function usesStagedRuntimeDependencies(packageJson) {
-  return packageJson?.openclaw?.bundle?.stageRuntimeDependencies === true;
+  return packageJson?.soloclaw?.bundle?.stageRuntimeDependencies === true;
 }
 
 function dependencySentinelPath(packageRoot, dependencyName) {

@@ -121,13 +121,13 @@ the previous pending request is superseded and a new `requestId` is created.
 Run `openclaw devices list` again before approval.
 
 The node host stores its node id, token, display name, and gateway connection info in
-`~/.openclaw/node.json`.
+`~/.soloclaw/node.json`.
 
 ## Exec approvals
 
 `system.run` is gated by local exec approvals:
 
-- `~/.openclaw/exec-approvals.json`
+- `~/.soloclaw/exec-approvals.json`
 - [Exec approvals](/tools/exec-approvals)
 - `openclaw approvals --node <id|name|ip>` (edit from the Gateway)
 

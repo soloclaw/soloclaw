@@ -142,7 +142,7 @@ Password-based setup (token is cached after login):
 }
 ```
 
-Matrix stores cached credentials in `~/.openclaw/credentials/matrix/`.
+Matrix stores cached credentials in `~/.soloclaw/credentials/matrix/`.
 The default account uses `credentials.json`; named accounts use `credentials-<account>.json`.
 When cached credentials exist there, OpenClaw treats Matrix as configured for setup, doctor, and channel-status discovery even if current auth is not set directly in config.
 
@@ -318,7 +318,7 @@ OpenClaw marks finalized text-only preview edits with:
 
 ```json
 {
-  "com.openclaw.finalized_preview": true
+  "com.soloclaw.finalized_preview": true
 }
 ```
 
@@ -339,7 +339,7 @@ curl -sS -X PUT \
       },
       {
         "kind": "event_property_is",
-        "key": "content.com\\.openclaw\\.finalized_preview",
+        "key": "content.com\\.soloclaw\\.finalized_preview",
         "value": true
       },
       { "kind": "event_match", "key": "sender", "pattern": "@bot:example.org" }
@@ -658,7 +658,7 @@ openclaw matrix devices prune-stale
 Matrix E2EE uses the official `matrix-js-sdk` Rust crypto path in Node, with `fake-indexeddb` as the IndexedDB shim. Crypto state is persisted to a snapshot file (`crypto-idb-snapshot.json`) and restored on startup. The snapshot file is sensitive runtime state stored with restrictive file permissions.
 
 Encrypted runtime state lives under per-account, per-user token-hash roots in
-`~/.openclaw/matrix/accounts/<account>/<homeserver>__<user>/<token-hash>/`.
+`~/.soloclaw/matrix/accounts/<account>/<homeserver>__<user>/<token-hash>/`.
 That directory contains the sync store (`bot-storage.json`), crypto store (`crypto/`),
 recovery key file (`recovery-key.json`), IndexedDB snapshot (`crypto-idb-snapshot.json`),
 thread bindings (`thread-bindings.json`), and startup verification state (`startup-verification.json`).

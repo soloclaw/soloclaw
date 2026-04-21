@@ -67,7 +67,7 @@ Notes:
 ## If the command is missing
 
 If `openclaw browser` is an unknown command, check `plugins.allow` in
-`~/.openclaw/openclaw.json`.
+`~/.soloclaw/openclaw.json`.
 
 When `plugins.allow` is present, the bundled browser plugin must be listed
 explicitly:
@@ -114,7 +114,7 @@ openclaw browser tabs
 openclaw browser tab new
 openclaw browser tab select 2
 openclaw browser tab close 2
-openclaw browser open https://docs.openclaw.ai
+openclaw browser open https://docs.soloclaw.ai
 openclaw browser focus <targetId>
 openclaw browser close <targetId>
 ```

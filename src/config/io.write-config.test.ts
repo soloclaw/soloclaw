@@ -84,7 +84,7 @@ describe("config io write", () => {
     "tightens world-writable state dir when writing the default config",
     async () => {
       await withSuiteHome(async (home) => {
-        const stateDir = path.join(home, ".openclaw");
+        const stateDir = path.join(home, ".soloclaw");
         await fs.mkdir(stateDir, { recursive: true, mode: 0o777 });
         await fs.chmod(stateDir, 0o777);
 
@@ -104,7 +104,7 @@ describe("config io write", () => {
 
   it("keeps writes inside an OPENCLAW_STATE_DIR override even when the real home config exists", async () => {
     await withSuiteHome(async (home) => {
-      const liveConfigPath = path.join(home, ".openclaw", "openclaw.json");
+      const liveConfigPath = path.join(home, ".soloclaw", "openclaw.json");
       await fs.mkdir(path.dirname(liveConfigPath), { recursive: true });
       await fs.writeFile(
         liveConfigPath,
@@ -144,7 +144,7 @@ describe("config io write", () => {
 
   it("does not mutate caller config when unsetPaths is applied on first write", async () => {
     await withSuiteHome(async (home) => {
-      const configPath = path.join(home, ".openclaw", "openclaw.json");
+      const configPath = path.join(home, ".soloclaw", "openclaw.json");
       const io = createConfigIO({
         env: {} as NodeJS.ProcessEnv,
         homedir: () => home,

@@ -13,7 +13,7 @@ import {
 function createRenameAuditRecord(home: string) {
   return finalizeConfigWriteAuditRecord({
     base: createConfigWriteAuditRecordBase({
-      configPath: path.join(home, ".openclaw", "openclaw.json"),
+      configPath: path.join(home, ".soloclaw", "openclaw.json"),
       env: {} as NodeJS.ProcessEnv,
       existsBefore: true,
       previousHash: "prev-hash",
@@ -49,7 +49,7 @@ function createRenameAuditRecord(home: string) {
 }
 
 function readAuditLog(home: string): unknown[] {
-  const auditPath = path.join(home, ".openclaw", "logs", "config-audit.jsonl");
+  const auditPath = path.join(home, ".soloclaw", "logs", "config-audit.jsonl");
   return fs
     .readFileSync(auditPath, "utf-8")
     .trim()
@@ -78,7 +78,7 @@ describe("config io audit helpers", () => {
       } as NodeJS.ProcessEnv,
       () => home,
     );
-    expect(auditPath).toBe(path.join(home, ".openclaw", "logs", "config-audit.jsonl"));
+    expect(auditPath).toBe(path.join(home, ".soloclaw", "logs", "config-audit.jsonl"));
     expect(auditPath.startsWith(path.resolve("undefined"))).toBe(false);
   });
 

@@ -91,7 +91,7 @@ function mockNodeGatewayPlanFixture(
 }
 
 describe("buildGatewayInstallPlan", () => {
-  // Prevent tests from reading the developer's real ~/.openclaw/.env when
+  // Prevent tests from reading the developer's real ~/.soloclaw/.env when
   // passing `env: {}` (which falls back to os.homedir for state-dir resolution).
   let isolatedHome: string;
   beforeEach(() => {
@@ -336,7 +336,7 @@ describe("buildGatewayInstallPlan — dotenv merge", () => {
     await writeStateDirDotEnv(
       "BRAVE_API_KEY=BSA-from-env\nOPENROUTER_API_KEY=or-key\nMY_KEY=from-dotenv\nHOME=/from-dotenv\n",
       {
-        stateDir: path.join(tmpDir, ".openclaw"),
+        stateDir: path.join(tmpDir, ".soloclaw"),
       },
     );
     mockNodeGatewayPlanFixture({

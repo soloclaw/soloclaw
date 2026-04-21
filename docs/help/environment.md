@@ -15,11 +15,11 @@ OpenClaw pulls environment variables from multiple sources. The rule is **never 
 
 1. **Process environment** (what the Gateway process already has from the parent shell/daemon).
 2. **`.env` in the current working directory** (dotenv default; does not override).
-3. **Global `.env`** at `~/.openclaw/.env` (aka `$OPENCLAW_STATE_DIR/.env`; does not override).
-4. **Config `env` block** in `~/.openclaw/openclaw.json` (applied only if missing).
+3. **Global `.env`** at `~/.soloclaw/.env` (aka `$OPENCLAW_STATE_DIR/.env`; does not override).
+4. **Config `env` block** in `~/.soloclaw/openclaw.json` (applied only if missing).
 5. **Optional login-shell import** (`env.shellEnv.enabled` or `OPENCLAW_LOAD_SHELL_ENV=1`), applied only for missing expected keys.
 
-On Ubuntu fresh installs that use the default state dir, OpenClaw also treats `~/.config/openclaw/gateway.env` as a compatibility fallback after the global `.env`. If both files exist and disagree, OpenClaw keeps `~/.openclaw/.env` and prints a warning.
+On Ubuntu fresh installs that use the default state dir, OpenClaw also treats `~/.config/openclaw/gateway.env` as a compatibility fallback after the global `.env`. If both files exist and disagree, OpenClaw keeps `~/.soloclaw/.env` and prints a warning.
 
 If the config file is missing entirely, step 4 is skipped; shell import still runs if enabled.
 
@@ -107,9 +107,9 @@ Both resolve from process env at activation time. SecretRef details are document
 
 | Variable               | Purpose                                                                                                                                                                          |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `OPENCLAW_HOME`        | Override the home directory used for all internal path resolution (`~/.openclaw/`, agent dirs, sessions, credentials). Useful when running OpenClaw as a dedicated service user. |
-| `OPENCLAW_STATE_DIR`   | Override the state directory (default `~/.openclaw`).                                                                                                                            |
-| `OPENCLAW_CONFIG_PATH` | Override the config file path (default `~/.openclaw/openclaw.json`).                                                                                                             |
+| `OPENCLAW_HOME`        | Override the home directory used for all internal path resolution (`~/.soloclaw/`, agent dirs, sessions, credentials). Useful when running OpenClaw as a dedicated service user. |
+| `OPENCLAW_STATE_DIR`   | Override the state directory (default `~/.soloclaw`).                                                                                                                            |
+| `OPENCLAW_CONFIG_PATH` | Override the config file path (default `~/.soloclaw/openclaw.json`).                                                                                                             |
 
 ## Logging
 
@@ -155,7 +155,7 @@ export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
 openclaw gateway run
 ```
 
-Do not rely on writing only to `~/.openclaw/.env` for this variable; Node reads
+Do not rely on writing only to `~/.soloclaw/.env` for this variable; Node reads
 `NODE_EXTRA_CA_CERTS` at process startup.
 
 ## Related

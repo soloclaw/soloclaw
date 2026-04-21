@@ -38,7 +38,7 @@ function createEnv(stateDir: string): NodeJS.ProcessEnv {
 
 async function createLegacyStateFixture(params?: { includePreKey?: boolean }) {
   const root = await createTempDir();
-  const stateDir = path.join(root, ".openclaw");
+  const stateDir = path.join(root, ".soloclaw");
   const env = createEnv(stateDir);
   const cfg = createConfig();
 

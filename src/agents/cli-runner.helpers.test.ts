@@ -350,7 +350,7 @@ describe("writeCliImages", () => {
       expect(prepared.prompt).toContain("\n\n@");
       expect(prepared.prompt).toContain(prepared.imagePaths?.[0] ?? "");
       expect(prepared.prompt.trimEnd().endsWith(`@${prepared.imagePaths?.[0] ?? ""}`)).toBe(true);
-      expect(prepared.imagePaths?.[0]?.startsWith(path.join(tempDir, ".openclaw-cli-images"))).toBe(
+      expect(prepared.imagePaths?.[0]?.startsWith(path.join(tempDir, ".soloclaw-cli-images"))).toBe(
         true,
       );
 

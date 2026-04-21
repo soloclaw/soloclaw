@@ -494,7 +494,7 @@ implemented in `src/gateway/server-methods/*.ts`.
   - ClawHub mode: `{ source: "clawhub", slug, version?, force? }` installs a
     skill folder into the default agent workspace `skills/` directory.
   - Gateway installer mode: `{ name, installId, dangerouslyForceUnsafeInstall?, timeoutMs? }`
-    runs a declared `metadata.openclaw.install` action on the gateway host.
+    runs a declared `metadata.soloclaw.install` action on the gateway host.
 - Operators may call `skills.update` (`operator.admin`) in two modes:
   - ClawHub mode updates one tracked slug or all tracked ClawHub installs in
     the default agent workspace.

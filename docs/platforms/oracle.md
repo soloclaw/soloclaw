@@ -195,7 +195,7 @@ This setup often removes the _need_ for extra host-based firewall rules purely t
 
 ### Still Recommended
 
-- **Credential permissions:** `chmod 700 ~/.openclaw`
+- **Credential permissions:** `chmod 700 ~/.soloclaw`
 - **Security audit:** `openclaw security audit`
 - **System updates:** `sudo apt update && sudo apt upgrade` regularly
 - **Monitor Tailscale:** Review devices in [Tailscale admin console](https://login.tailscale.com/admin)
@@ -285,8 +285,8 @@ Most npm packages work fine. For binaries, look for `linux-arm64` or `aarch64` r
 
 All state lives in:
 
-- `~/.openclaw/` — `openclaw.json`, per-agent `auth-profiles.json`, channel/provider state, and session data
-- `~/.openclaw/workspace/` — workspace (SOUL.md, memory, artifacts)
+- `~/.soloclaw/` — `openclaw.json`, per-agent `auth-profiles.json`, channel/provider state, and session data
+- `~/.soloclaw/workspace/` — workspace (SOUL.md, memory, artifacts)
 
 Back up periodically:
 

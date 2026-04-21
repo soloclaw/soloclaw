@@ -20,7 +20,7 @@ For how skills are loaded and prioritized, see [Skills](/tools/skills).
     Skills live in your workspace. Create a new folder:
 
     ```bash
-    mkdir -p ~/.openclaw/workspace/skills/hello-world
+    mkdir -p ~/.soloclaw/workspace/skills/hello-world
     ```
 
   </Step>
@@ -89,9 +89,9 @@ The YAML frontmatter supports these fields:
 | ----------------------------------- | -------- | ------------------------------------------- |
 | `name`                              | Yes      | Unique identifier (snake_case)              |
 | `description`                       | Yes      | One-line description shown to the agent     |
-| `metadata.openclaw.os`              | No       | OS filter (`["darwin"]`, `["linux"]`, etc.) |
-| `metadata.openclaw.requires.bins`   | No       | Required binaries on PATH                   |
-| `metadata.openclaw.requires.config` | No       | Required config keys                        |
+| `metadata.soloclaw.os`              | No       | OS filter (`["darwin"]`, `["linux"]`, etc.) |
+| `metadata.soloclaw.requires.bins`   | No       | Required binaries on PATH                   |
+| `metadata.soloclaw.requires.config` | No       | Required config keys                        |
 
 ## Best practices
 
@@ -107,7 +107,7 @@ The YAML frontmatter supports these fields:
 | `\<workspace\>/skills/`         | Highest    | Per-agent             |
 | `\<workspace\>/.agents/skills/` | High       | Per-workspace agent   |
 | `~/.agents/skills/`             | Medium     | Shared agent profile  |
-| `~/.openclaw/skills/`           | Medium     | Shared (all agents)   |
+| `~/.soloclaw/skills/`           | Medium     | Shared (all agents)   |
 | Bundled (shipped with OpenClaw) | Low        | Global                |
 | `skills.load.extraDirs`         | Lowest     | Custom shared folders |
 

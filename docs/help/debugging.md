@@ -75,7 +75,7 @@ replaces the older watcher instead of leaving duplicate watcher parents behind.
 Use the dev profile to isolate state and spin up a safe, disposable setup for
 debugging. There are **two** `--dev` flags:
 
-- **Global `--dev` (profile):** isolates state under `~/.openclaw-dev` and
+- **Global `--dev` (profile):** isolates state under `~/.soloclaw-dev` and
   defaults the gateway port to `19001` (derived ports shift with it).
 - **`gateway --dev`: tells the Gateway to auto-create a default config +
   workspace** when missing (and skip BOOTSTRAP.md).
@@ -93,8 +93,8 @@ What this does:
 
 1. **Profile isolation** (global `--dev`)
    - `OPENCLAW_PROFILE=dev`
-   - `OPENCLAW_STATE_DIR=~/.openclaw-dev`
-   - `OPENCLAW_CONFIG_PATH=~/.openclaw-dev/openclaw.json`
+   - `OPENCLAW_STATE_DIR=~/.soloclaw-dev`
+   - `OPENCLAW_CONFIG_PATH=~/.soloclaw-dev/openclaw.json`
    - `OPENCLAW_GATEWAY_PORT=19001` (browser/canvas shift accordingly)
 
 2. **Dev bootstrap** (`gateway --dev`)
@@ -143,19 +143,19 @@ pnpm gateway:watch --raw-stream
 Optional path override:
 
 ```bash
-pnpm gateway:watch --raw-stream --raw-stream-path ~/.openclaw/logs/raw-stream.jsonl
+pnpm gateway:watch --raw-stream --raw-stream-path ~/.soloclaw/logs/raw-stream.jsonl
 ```
 
 Equivalent env vars:
 
 ```bash
 OPENCLAW_RAW_STREAM=1
-OPENCLAW_RAW_STREAM_PATH=~/.openclaw/logs/raw-stream.jsonl
+OPENCLAW_RAW_STREAM_PATH=~/.soloclaw/logs/raw-stream.jsonl
 ```
 
 Default file:
 
-`~/.openclaw/logs/raw-stream.jsonl`
+`~/.soloclaw/logs/raw-stream.jsonl`
 
 ## Raw chunk logging (pi-mono)
 

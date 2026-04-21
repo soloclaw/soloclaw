@@ -320,7 +320,7 @@ function collectCandidateLogDirs(): string[] {
     }
   }
 
-  for (const name of [".openclaw", ".clawdbot", ".moltbot", "openclaw", "clawdbot", "moltbot"]) {
+  for (const name of [".soloclaw", ".clawdbot", ".moltbot", "openclaw", "clawdbot", "moltbot"]) {
     pushDir(path.join(homeDir, name));
     pushDir(path.join(homeDir, name, "logs"));
   }

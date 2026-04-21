@@ -78,7 +78,7 @@ describe("normalizeReplyPayloadsForDelivery", () => {
         { text: "Replied in-thread." },
         { text: "Replied in #maintainers." },
         {
-          text: "Updated [wiki/providers.md](/Users/steipete/.openclaw/workspace/wiki/providers.md:33). No channel reply.",
+          text: "Updated [wiki/providers.md](/Users/steipete/.soloclaw/workspace/wiki/providers.md:33). No channel reply.",
         },
         {
           text: "Updated [wiki/tools.md] with the rollback failure-mode nuance. No channel reply.",

@@ -1074,7 +1074,7 @@ function createLaneState(name) {
   const rootDir = mkdtempSync(join(tmpdir(), `openclaw-${name}-`));
   const prefixDir = join(rootDir, "prefix");
   const homeDir = join(rootDir, "home");
-  const stateDir = join(homeDir, ".openclaw");
+  const stateDir = join(homeDir, ".soloclaw");
   const appDataDir = process.platform === "win32" ? join(homeDir, "AppData", "Roaming") : stateDir;
   mkdirSync(prefixDir, { recursive: true });
   mkdirSync(homeDir, { recursive: true });
@@ -1893,7 +1893,7 @@ async function configureDiscordSmoke(params) {
       lane: params.lane,
       cliPath: params.cliPath,
       env: gatewayEnv,
-      logPath: join(params.cwd, `.openclaw/logs/${params.lane.name}-discord-gateway.log`),
+      logPath: join(params.cwd, `.soloclaw/logs/${params.lane.name}-discord-gateway.log`),
     });
     if (params.gatewayHolder) {
       params.gatewayHolder.current = gateway;

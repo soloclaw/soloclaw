@@ -95,7 +95,7 @@ describe("browser server-context ensureBrowserAvailable", () => {
     const isChromeReachable = vi.mocked(chromeModule.isChromeReachable);
 
     const state = makeBrowserServerState();
-    state.resolved.profiles.openclaw = {
+    state.resolved.profiles.soloclaw = {
       cdpUrl: "ws://browserless:3001",
       color: "#00AA00",
     };

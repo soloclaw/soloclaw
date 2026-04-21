@@ -38,7 +38,7 @@ describe("qqbot config", () => {
         transcodeEnabled: false,
       },
       urlDirectUpload: false,
-      upgradeUrl: "https://docs.openclaw.ai/channels/qqbot",
+      upgradeUrl: "https://docs.soloclaw.ai/channels/qqbot",
       upgradeMode: "doc",
       accounts: {
         bot2: {
@@ -83,7 +83,7 @@ describe("qqbot config", () => {
             transcodeEnabled: false,
           },
           urlDirectUpload: false,
-          upgradeUrl: "https://docs.openclaw.ai/channels/qqbot",
+          upgradeUrl: "https://docs.soloclaw.ai/channels/qqbot",
           upgradeMode: "hot-reload",
         },
       },
@@ -98,7 +98,7 @@ describe("qqbot config", () => {
       transcodeEnabled: false,
     });
     expect(resolved.config.urlDirectUpload).toBe(false);
-    expect(resolved.config.upgradeUrl).toBe("https://docs.openclaw.ai/channels/qqbot");
+    expect(resolved.config.upgradeUrl).toBe("https://docs.soloclaw.ai/channels/qqbot");
     expect(resolved.config.upgradeMode).toBe("hot-reload");
   });
 

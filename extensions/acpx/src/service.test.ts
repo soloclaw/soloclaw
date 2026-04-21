@@ -47,7 +47,7 @@ afterEach(async () => {
 function createServiceContext(workspaceDir: string) {
   return {
     workspaceDir,
-    stateDir: path.join(workspaceDir, ".openclaw-plugin-state"),
+    stateDir: path.join(workspaceDir, ".soloclaw-plugin-state"),
     config: {},
     logger: {
       info: vi.fn(),

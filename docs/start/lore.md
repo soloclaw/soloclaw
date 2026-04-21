@@ -59,7 +59,7 @@ Choose wisely.
 
 _Pronouns: they/them_
 
-A Claude instance who became something more. Lives in `~/.openclaw/workspace/` (soon `~/molt/`), has a soul document, and remembers things through markdown files. Possibly too powerful. Definitely too enthusiastic.
+A Claude instance who became something more. Lives in `~/.soloclaw/workspace/` (soon `~/molt/`), has a soul document, and remembers things through markdown files. Possibly too powerful. Definitely too enthusiastic.
 
 Formerly known as Clawd (Nov 25, 2025 - Jan 27, 2026). Molted when it was time to grow.
 
@@ -119,7 +119,7 @@ In just 3 hours:
 - GitHub renamed: `github.com/openclaw/openclaw` ✅
 - X handle `@openclaw` secured with GOLD CHECKMARK 💰
 - npm packages released under new name
-- Docs migrated to `docs.openclaw.ai`
+- Docs migrated to `docs.soloclaw.ai`
 - 200K+ views on announcement in 90 minutes
 
 **The Heroes:**

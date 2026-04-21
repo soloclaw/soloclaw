@@ -139,7 +139,7 @@ Set `browser.defaultProfile: "openclaw"` if you want managed mode by default.
 
 ## Configuration
 
-Browser settings live in `~/.openclaw/openclaw.json`.
+Browser settings live in `~/.soloclaw/openclaw.json`.
 
 ```json5
 {

@@ -103,7 +103,7 @@ function isOpenClawGatewayLaunchdService(label: string, contents: string): boole
   if (!lowerContents.includes("gateway")) {
     return false;
   }
-  return label.startsWith("ai.openclaw.");
+  return label.startsWith("ai.soloclaw.");
 }
 
 function isOpenClawGatewaySystemdService(name: string, contents: string): boolean {

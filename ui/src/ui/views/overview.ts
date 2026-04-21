@@ -93,7 +93,7 @@ export function renderOverview(props: OverviewProps) {
         <div style="margin-top: 6px">
           <a
             class="session-link"
-            href="https://docs.openclaw.ai/web/control-ui#device-pairing-first-connection"
+            href="https://docs.soloclaw.ai/web/control-ui#device-pairing-first-connection"
             target=${EXTERNAL_LINK_TARGET}
             rel=${buildExternalLinkRel()}
             title="Device pairing docs (opens in new tab)"
@@ -126,7 +126,7 @@ export function renderOverview(props: OverviewProps) {
           <div style="margin-top: 6px">
             <a
               class="session-link"
-              href="https://docs.openclaw.ai/web/dashboard"
+              href="https://docs.soloclaw.ai/web/dashboard"
               target=${EXTERNAL_LINK_TARGET}
               rel=${buildExternalLinkRel()}
               title="Control UI auth docs (opens in new tab)"
@@ -142,7 +142,7 @@ export function renderOverview(props: OverviewProps) {
         <div style="margin-top: 6px">
           <a
             class="session-link"
-            href="https://docs.openclaw.ai/web/dashboard"
+            href="https://docs.soloclaw.ai/web/dashboard"
             target=${EXTERNAL_LINK_TARGET}
             rel=${buildExternalLinkRel()}
             title="Control UI auth docs (opens in new tab)"
@@ -175,7 +175,7 @@ export function renderOverview(props: OverviewProps) {
         <div style="margin-top: 6px">
           <a
             class="session-link"
-            href="https://docs.openclaw.ai/gateway/tailscale"
+            href="https://docs.soloclaw.ai/gateway/tailscale"
             target=${EXTERNAL_LINK_TARGET}
             rel=${buildExternalLinkRel()}
             title="Tailscale Serve docs (opens in new tab)"
@@ -184,7 +184,7 @@ export function renderOverview(props: OverviewProps) {
           <span class="muted"> · </span>
           <a
             class="session-link"
-            href="https://docs.openclaw.ai/web/control-ui#insecure-http"
+            href="https://docs.soloclaw.ai/web/control-ui#insecure-http"
             target=${EXTERNAL_LINK_TARGET}
             rel=${buildExternalLinkRel()}
             title="Insecure HTTP docs (opens in new tab)"
@@ -358,7 +358,7 @@ export function renderOverview(props: OverviewProps) {
                   ${t("overview.connection.docsHint")}
                   <a
                     class="session-link"
-                    href="https://docs.openclaw.ai/web/dashboard"
+                    href="https://docs.soloclaw.ai/web/dashboard"
                     target="_blank"
                     rel="noreferrer"
                     >${t("overview.connection.docsLink")}</a

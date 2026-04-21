@@ -633,7 +633,7 @@ run_ref_onboard() {
 inject_bad_plugin_fixture() {
   guest_bash_script <<'EOF'
 set -euo pipefail
-plugin_dir=/root/.openclaw/test-bad-plugin
+plugin_dir=/root/.soloclaw/test-bad-plugin
 mkdir -p "$plugin_dir"
 cat >"$plugin_dir/package.json" <<'JSON'
 {
@@ -671,7 +671,7 @@ python3 - <<'PY'
 import json
 from pathlib import Path
 
-config_path = Path("/root/.openclaw/openclaw.json")
+config_path = Path("/root/.soloclaw/openclaw.json")
 config = {}
 if config_path.exists():
     config = json.loads(config_path.read_text())
@@ -679,7 +679,7 @@ if config_path.exists():
 plugins = config.setdefault("plugins", {})
 load = plugins.setdefault("load", {})
 paths = load.setdefault("paths", [])
-plugin_dir = "/root/.openclaw/test-bad-plugin"
+plugin_dir = "/root/.soloclaw/test-bad-plugin"
 if plugin_dir not in paths:
     paths.append(plugin_dir)
 
@@ -704,7 +704,7 @@ start_gateway_background() {
   cmd="$(cat <<EOF
 pkill -f "openclaw gateway run" >/dev/null 2>&1 || true
 rm -f /tmp/openclaw-parallels-linux-gateway.log
-setsid sh -lc 'exec env OPENCLAW_HOME=/root OPENCLAW_STATE_DIR=/root/.openclaw OPENCLAW_CONFIG_PATH=/root/.openclaw/openclaw.json ${API_KEY_ENV}=${api_key_value_q} openclaw gateway run --bind loopback --port 18789 --force >/tmp/openclaw-parallels-linux-gateway.log 2>&1' >/dev/null 2>&1 < /dev/null &
+setsid sh -lc 'exec env OPENCLAW_HOME=/root OPENCLAW_STATE_DIR=/root/.soloclaw OPENCLAW_CONFIG_PATH=/root/.soloclaw/openclaw.json ${API_KEY_ENV}=${api_key_value_q} openclaw gateway run --bind loopback --port 18789 --force >/tmp/openclaw-parallels-linux-gateway.log 2>&1' >/dev/null 2>&1 < /dev/null &
 EOF
 )"
   guest_exec bash -lc "$cmd"

@@ -17,7 +17,7 @@ It intentionally exposes capability families, not raw gateway RPC names and not 
 Copy and paste this to an agent:
 
 ```text
-Read https://docs.openclaw.ai/cli/infer, then create a skill that routes my common workflows to `openclaw infer`.
+Read https://docs.soloclaw.ai/cli/infer, then create a skill that routes my common workflows to `openclaw infer`.
 Focus on model runs, image generation, video generation, audio transcription, TTS, web search, and embeddings.
 ```
 
@@ -212,7 +212,7 @@ Use `web` for search and fetch workflows.
 ```bash
 openclaw infer web search --query "OpenClaw docs" --json
 openclaw infer web search --query "OpenClaw infer web providers" --json
-openclaw infer web fetch --url https://docs.openclaw.ai/cli/infer --json
+openclaw infer web fetch --url https://docs.soloclaw.ai/cli/infer --json
 openclaw infer web providers --json
 ```
 

@@ -141,7 +141,7 @@ describe("syncMemoryWikiBridgeSources", () => {
     expect(second.skippedCount).toBe(3);
     expect(second.removedCount).toBe(0);
 
-    const logLines = (await fs.readFile(path.join(vaultDir, ".openclaw-wiki", "log.jsonl"), "utf8"))
+    const logLines = (await fs.readFile(path.join(vaultDir, ".soloclaw-wiki", "log.jsonl"), "utf8"))
       .trim()
       .split("\n");
     expect(logLines).toHaveLength(2);

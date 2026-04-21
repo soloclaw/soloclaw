@@ -103,9 +103,9 @@ describe("restart-helper", () => {
       });
       expect(scriptPath.endsWith(".sh")).toBe(true);
       expect(content).toContain("#!/bin/sh");
-      expect(content).toContain("launchctl kickstart -k 'gui/501/ai.openclaw.gateway'");
+      expect(content).toContain("launchctl kickstart -k 'gui/501/ai.soloclaw.gateway'");
       // Should clear disabled state and fall back to bootstrap when kickstart fails.
-      expect(content).toContain("launchctl enable 'gui/501/ai.openclaw.gateway'");
+      expect(content).toContain("launchctl enable 'gui/501/ai.soloclaw.gateway'");
       expect(content).toContain("launchctl bootstrap 'gui/501'");
       expect(content).toContain('rm -f "$0"');
       await cleanupScript(scriptPath);
@@ -117,9 +117,9 @@ describe("restart-helper", () => {
 
       const { scriptPath, content } = await prepareAndReadScript({
         OPENCLAW_PROFILE: "default",
-        OPENCLAW_LAUNCHD_LABEL: "com.custom.openclaw",
+        OPENCLAW_LAUNCHD_LABEL: "com.custom.soloclaw",
       });
-      expect(content).toContain("launchctl kickstart -k 'gui/501/com.custom.openclaw'");
+      expect(content).toContain("launchctl kickstart -k 'gui/501/com.custom.soloclaw'");
       await cleanupScript(scriptPath);
     });
 
@@ -186,7 +186,7 @@ describe("restart-helper", () => {
       const { scriptPath, content } = await prepareAndReadScript({
         OPENCLAW_PROFILE: "staging",
       });
-      expect(content).toContain("gui/502/ai.openclaw.staging");
+      expect(content).toContain("gui/502/ai.soloclaw.staging");
       await cleanupScript(scriptPath);
     });
 
@@ -264,10 +264,10 @@ describe("restart-helper", () => {
 
       const { scriptPath, content } = await prepareAndReadScript({
         HOME: "/Users/testuser",
-        OPENCLAW_LAUNCHD_LABEL: "ai.openclaw.it's-a-test",
+        OPENCLAW_LAUNCHD_LABEL: "ai.soloclaw.it's-a-test",
       });
       // The plist path must also shell-escape the label to prevent injection
-      expect(content).toContain("ai.openclaw.it'\\''s-a-test.plist");
+      expect(content).toContain("ai.soloclaw.it'\\''s-a-test.plist");
       await cleanupScript(scriptPath);
     });
 

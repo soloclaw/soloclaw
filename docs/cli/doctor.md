@@ -39,9 +39,9 @@ openclaw doctor --generate-gateway-token
 Notes:
 
 - Interactive prompts (like keychain/OAuth fixes) only run when stdin is a TTY and `--non-interactive` is **not** set. Headless runs (cron, Telegram, no terminal) will skip prompts.
-- `--fix` (alias for `--repair`) writes a backup to `~/.openclaw/openclaw.json.bak` and drops unknown config keys, listing each removal.
+- `--fix` (alias for `--repair`) writes a backup to `~/.soloclaw/openclaw.json.bak` and drops unknown config keys, listing each removal.
 - State integrity checks now detect orphan transcript files in the sessions directory and can archive them as `.deleted.<timestamp>` to reclaim space safely.
-- Doctor also scans `~/.openclaw/cron/jobs.json` (or `cron.store`) for legacy cron job shapes and can rewrite them in place before the scheduler has to auto-normalize them at runtime.
+- Doctor also scans `~/.soloclaw/cron/jobs.json` (or `cron.store`) for legacy cron job shapes and can rewrite them in place before the scheduler has to auto-normalize them at runtime.
 - Doctor auto-migrates legacy flat Talk config (`talk.voiceId`, `talk.modelId`, and friends) into `talk.provider` + `talk.providers.<provider>`.
 - Repeat `doctor --fix` runs no longer report/apply Talk normalization when the only difference is object key order.
 - Doctor includes a memory-search readiness check and can recommend `openclaw configure --section model` when embedding credentials are missing.

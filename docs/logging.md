@@ -25,7 +25,7 @@ By default, the Gateway writes a rolling log file under:
 
 The date uses the gateway host's local timezone.
 
-You can override this in `~/.openclaw/openclaw.json`:
+You can override this in `~/.soloclaw/openclaw.json`:
 
 ```json
 {
@@ -129,7 +129,7 @@ openclaw gateway --verbose --ws-log full
 
 ## Configuring logging
 
-All logging configuration lives under `logging` in `~/.openclaw/openclaw.json`.
+All logging configuration lives under `logging` in `~/.soloclaw/openclaw.json`.
 
 ```json
 {

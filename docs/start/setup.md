@@ -15,7 +15,7 @@ For onboarding details, see [Onboarding (CLI)](/start/wizard).
 
 ## TL;DR
 
-- **Tailoring lives outside the repo:** `~/.openclaw/workspace` (workspace) + `~/.openclaw/openclaw.json` (config).
+- **Tailoring lives outside the repo:** `~/.soloclaw/workspace` (workspace) + `~/.soloclaw/openclaw.json` (config).
 - **Stable workflow:** install the macOS app; let it run the bundled Gateway.
 - **Bleeding edge workflow:** run the Gateway yourself via `pnpm gateway:watch`, then let the macOS app attach in Local mode.
 
@@ -29,8 +29,8 @@ For onboarding details, see [Onboarding (CLI)](/start/wizard).
 
 If you want “100% tailored to me” _and_ easy updates, keep your customization in:
 
-- **Config:** `~/.openclaw/openclaw.json` (JSON/JSON5-ish)
-- **Workspace:** `~/.openclaw/workspace` (skills, prompts, memories; make it a private git repo)
+- **Config:** `~/.soloclaw/openclaw.json` (JSON/JSON5-ish)
+- **Workspace:** `~/.soloclaw/workspace` (skills, prompts, memories; make it a private git repo)
 
 Bootstrap once:
 
@@ -124,30 +124,30 @@ openclaw health
 
 - **Wrong port:** Gateway WS defaults to `ws://127.0.0.1:18789`; keep app + CLI on the same port.
 - **Where state lives:**
-  - Channel/provider state: `~/.openclaw/credentials/`
-  - Model auth profiles: `~/.openclaw/agents/<agentId>/agent/auth-profiles.json`
-  - Sessions: `~/.openclaw/agents/<agentId>/sessions/`
+  - Channel/provider state: `~/.soloclaw/credentials/`
+  - Model auth profiles: `~/.soloclaw/agents/<agentId>/agent/auth-profiles.json`
+  - Sessions: `~/.soloclaw/agents/<agentId>/sessions/`
   - Logs: `/tmp/openclaw/`
 
 ## Credential storage map
 
 Use this when debugging auth or deciding what to back up:
 
-- **WhatsApp**: `~/.openclaw/credentials/whatsapp/<accountId>/creds.json`
+- **WhatsApp**: `~/.soloclaw/credentials/whatsapp/<accountId>/creds.json`
 - **Telegram bot token**: config/env or `channels.telegram.tokenFile` (regular file only; symlinks rejected)
 - **Discord bot token**: config/env or SecretRef (env/file/exec providers)
 - **Slack tokens**: config/env (`channels.slack.*`)
 - **Pairing allowlists**:
-  - `~/.openclaw/credentials/<channel>-allowFrom.json` (default account)
-  - `~/.openclaw/credentials/<channel>-<accountId>-allowFrom.json` (non-default accounts)
-- **Model auth profiles**: `~/.openclaw/agents/<agentId>/agent/auth-profiles.json`
-- **File-backed secrets payload (optional)**: `~/.openclaw/secrets.json`
-- **Legacy OAuth import**: `~/.openclaw/credentials/oauth.json`
+  - `~/.soloclaw/credentials/<channel>-allowFrom.json` (default account)
+  - `~/.soloclaw/credentials/<channel>-<accountId>-allowFrom.json` (non-default accounts)
+- **Model auth profiles**: `~/.soloclaw/agents/<agentId>/agent/auth-profiles.json`
+- **File-backed secrets payload (optional)**: `~/.soloclaw/secrets.json`
+- **Legacy OAuth import**: `~/.soloclaw/credentials/oauth.json`
   More detail: [Security](/gateway/security#credential-storage-map).
 
 ## Updating (without wrecking your setup)
 
-- Keep `~/.openclaw/workspace` and `~/.openclaw/` as “your stuff”; don’t put personal prompts/config into the `openclaw` repo.
+- Keep `~/.soloclaw/workspace` and `~/.soloclaw/` as “your stuff”; don’t put personal prompts/config into the `openclaw` repo.
 - Updating source: `git pull` + your chosen package-manager install step (`pnpm install` by default; `bun install` for Bun workflow) + keep using the matching `gateway:watch` command.
 
 ## Linux (systemd user service)

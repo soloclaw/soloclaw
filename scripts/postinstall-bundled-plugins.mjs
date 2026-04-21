@@ -480,7 +480,7 @@ export function applyBaileysEncryptedStreamFinishHotfix(params = {}) {
     ((unsafeTargetPath) =>
       join(
         dirname(unsafeTargetPath),
-        `.${basename(unsafeTargetPath)}.openclaw-hotfix-${randomUUID()}`,
+        `.${basename(unsafeTargetPath)}.soloclaw-hotfix-${randomUUID()}`,
       ));
   const writeFile =
     params.writeFileSync ?? ((filePath, value) => writeFileSync(filePath, value, "utf8"));

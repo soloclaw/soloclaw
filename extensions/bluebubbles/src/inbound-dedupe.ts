@@ -23,7 +23,7 @@ const MAX_GUID_CHARS = 512;
 
 function resolveStateDirFromEnv(env: NodeJS.ProcessEnv = process.env): string {
   if (env.VITEST || env.NODE_ENV === "test") {
-    // Isolate tests from real ~/.openclaw state without sharing across tests.
+    // Isolate tests from real ~/.soloclaw state without sharing across tests.
     // Stable-per-pid so the scoped dedupe test can observe persistence.
     const name = "openclaw-vitest-" + process.pid;
     return path.join(resolvePreferredOpenClawTmpDir(), name);

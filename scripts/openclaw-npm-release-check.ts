@@ -265,9 +265,9 @@ export function collectReleasePackageMetadataErrors(pkg: PackageJson): string[] 
       }.`,
     );
   }
-  if (pkg.bin?.openclaw !== "openclaw.mjs") {
+  if (pkg.bin?.soloclaw !== "openclaw.mjs") {
     errors.push(
-      `package.json bin.openclaw must be "openclaw.mjs"; found "${pkg.bin?.openclaw ?? ""}".`,
+      `package.json bin.soloclaw must be "openclaw.mjs"; found "${pkg.bin?.soloclaw ?? ""}".`,
     );
   }
   if (pkg.peerDependencies?.["node-llama-cpp"] !== "3.18.1") {

@@ -58,10 +58,10 @@ happened while the attempt was running.
 
 OpenClaw uses **auth profiles** for both API keys and OAuth tokens.
 
-- Secrets live in `~/.openclaw/agents/<agentId>/agent/auth-profiles.json` (legacy: `~/.openclaw/agent/auth-profiles.json`).
-- Runtime auth-routing state lives in `~/.openclaw/agents/<agentId>/agent/auth-state.json`.
+- Secrets live in `~/.soloclaw/agents/<agentId>/agent/auth-profiles.json` (legacy: `~/.soloclaw/agent/auth-profiles.json`).
+- Runtime auth-routing state lives in `~/.soloclaw/agents/<agentId>/agent/auth-state.json`.
 - Config `auth.profiles` / `auth.order` are **metadata + routing only** (no secrets).
-- Legacy import-only OAuth file: `~/.openclaw/credentials/oauth.json` (imported into `auth-profiles.json` on first use).
+- Legacy import-only OAuth file: `~/.soloclaw/credentials/oauth.json` (imported into `auth-profiles.json` on first use).
 
 More detail: [/concepts/oauth](/concepts/oauth)
 
@@ -77,7 +77,7 @@ OAuth logins create distinct profiles so multiple accounts can coexist.
 - Default: `provider:default` when no email is available.
 - OAuth with email: `provider:<email>` (for example `google-antigravity:user@gmail.com`).
 
-Profiles live in `~/.openclaw/agents/<agentId>/agent/auth-profiles.json` under `profiles`.
+Profiles live in `~/.soloclaw/agents/<agentId>/agent/auth-profiles.json` under `profiles`.
 
 ## Rotation order
 
