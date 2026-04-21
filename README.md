@@ -87,19 +87,19 @@ No menus, no config files. Just ask.
 **LLM**
 - qwen3.5:9b (medium), free local model via Ollama
 
-**Plugins** — system-level components integrated with the gateway. Always running, configured in `openclaw.json`.
+**Plugins** (`extensions/`) — system-level components integrated with the gateway. Always running, configured in `openclaw.json`.
 - Web search — SearXNG (self-hosted, Docker)
 - Browser — agent-controlled Chromium for reading web pages
 - Channels — Telegram, Discord built-in
 - Model providers — Ollama, OpenAI, Anthropic, and more
 
-**Tools** — built-in APIs the model can call directly. Always available, no installation needed.
+**Tools** (`src/agents/`) — built-in APIs the model can call directly. Always available, no installation needed.
 - bash — run shell commands
 - read / write / edit — file operations
 - web_search — search the web via the configured plugin
 - browser — open and read web pages
 
-**Skills** — lightweight instruction files that teach the model how to use CLI tools for specific tasks. Installed on demand per workspace.
+**Skills** (`skills/`) — lightweight instruction files that teach the model how to use CLI tools for specific tasks. Installed on demand to `~/.openclaw/workspace/skills/`.
 - 53 bundled templates (weather, github, spotify, apple-notes, etc.)
 - Install by asking: *"install the weather skill"*
 - Create your own: the `skill-creator` skill lets the AI build new skills
