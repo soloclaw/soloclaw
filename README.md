@@ -11,7 +11,7 @@ Based on [OpenClaw](https://github.com/openclaw/openclaw).
 ## Why SoloClaw
 
 - **Zero friction** — one command to install, no configuration, no maintenance. It just works.
-- **Completely free** — runs entirely on your machine with open-source models. No API keys, no subscriptions, no cloud dependency.
+- **Completely free** — runs entirely on your machine with well-tested open-source models. No API keys, no subscriptions, no cloud dependency.
 - **Self-extending** — need a new capability? Just ask. SoloClaw installs skills on demand from natural language requests.
 - **Continuously learning** — remembers your preferences, learns from conversations, and gets better over time through workspace memory.
 
