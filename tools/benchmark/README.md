@@ -54,11 +54,14 @@ Score = 70% accuracy + 30% speed (capped at 50 tok/s). Results will vary on diff
 
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
-| 1 | qwen3.5:9b | 97% | 45.0/s | 18.7 GB | 0.95 |
-| 2 | qwen3:14b | 95% | 39.4/s | 15.1 GB | 0.90 |
-| 3 | qwen2.5:14b | 94% | 41.6/s | 16.5 GB | 0.91 |
+| 1 | gemma4:e4b | 95% | 87.0/s | 12.1 GB | 0.96 |
+| 2 | qwen3.5:9b | 97% | 44.7/s | 18.7 GB | 0.95 |
+| 3 | qwen3:14b | 95% | 39.1/s | 15.1 GB | 0.90 |
+| 4 | qwen2.5:14b | 91% | 41.4/s | 16.5 GB | 0.89 |
 
-**Default: qwen3.5:9b** — highest accuracy (97%) and fastest in tier.
+**Default: qwen3.5:9b** — highest accuracy (97%), wins all 8 per-domain categories. gemma4:e4b is fastest (87 tok/s) with lowest memory (12.1 GB) but is a thinking model — may have idle timeout issues like gemma4:26b.
+
+**Note:** qwen3.5:9b and qwen3:14b are thinking models and may occasionally time out. If you experience "Agent couldn't generate a response" errors, try qwen2.5:14b (non-thinking, always responds).
 
 ### Large Tier (20-24GB class)
 
