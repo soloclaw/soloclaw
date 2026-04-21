@@ -53,29 +53,36 @@ Tested on macOS (Apple Silicon). Score = 70% accuracy + 30% speed.
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
 | 1 | qwen3.5:9b | 97% | 45.0/s | 18.7 GB | 0.95 |
-| 2 | qwen2.5:14b | 94% | 41.6/s | 16.5 GB | 0.91 |
-| 3 | mistral-small:24b | 94% | 26.1/s | 20.1 GB | 0.81 |
+| 2 | qwen3:14b | 95% | 39.4/s | 15.1 GB | 0.90 |
+| 3 | qwen2.5:14b | 94% | 41.6/s | 16.5 GB | 0.91 |
+| 4 | mistral-small:24b | 94% | 26.1/s | 20.1 GB | 0.81 |
 
-**Default: mistral-small:24b** — despite lower combined score, it wins 4/8 per-domain categories (physics, function calling, philosophy, mathematics) which are critical for SoloClaw's agent workflow. Our ranking diverges from public benchmarks (MMLU ranks mistral-small #1), suggesting our keyword scoring favors qwen3.5's newer architecture on reasoning and Chinese tasks.
+**Default: mistral-small:24b** — despite lower combined score, it wins 4/8 per-domain categories (physics, function calling, philosophy, mathematics) which are critical for SoloClaw's agent workflow. qwen3:14b is a strong alternative at only 15.1 GB memory.
 
-### Large Tier
+### Large Tier (24GB class)
 
 | # | Model | Accuracy | Speed | Memory | Score |
 |---|-------|----------|-------|--------|-------|
-| 1 | gemma4:26b | 96% | 80.9/s | 24.0 GB | 0.97 |
-| 2 | qwen2.5:32b | 96% | 18.6/s | 28.7 GB | 0.78 |
-| 3 | gemma4:31b | 96% | 15.7/s | 43.9 GB | 0.77 |
+| 1 | gemma4:26b | 96% | 85.0/s | 24.0 GB | 0.97 |
 
-**Default: gemma4:26b** — wins 7/8 per-domain categories, 4x faster than alternatives, and lowest memory (24 GB).
+**Default: gemma4:26b** — wins 7/8 per-domain categories vs qwen3:14b, 2x faster.
 
 **Known issue with gemma4:26b:** The model's "thinking" mode occasionally consumes all tokens on internal reasoning and produces no visible output, resulting in "Agent couldn't generate a response" errors. This happens intermittently — retrying usually works.
 
-**Note on gemma4:31b:** Uses 43.9 GB memory and suffers from the same "thinking" mode timeout issue — frequently produces no response before the idle watchdog fires, even with 120s timeout. Not recommended.
+### XLarge Tier (32GB+ memory, known issues)
 
-**Note on qwen3:32b (excluded):** Uses 29.1 GB memory and runs at only 17.6 tok/s. Causes Ollama idle timeouts and unresponsive behavior in practice. Ranks #1 on public benchmarks (MMLU 83.2%) but unusable for interactive use.
+| # | Model | Accuracy | Speed | Memory | Score | Issue |
+|---|-------|----------|-------|--------|-------|-------|
+| 1 | qwen3.5:27b | 99% | 15.7/s | 39.3 GB | 0.79 | High memory despite 27B params |
+| 2 | qwen2.5:32b | 96% | 18.6/s | 28.7 GB | 0.78 | Slow but reliable |
+| 3 | gemma4:31b | 96% | 15.7/s | 43.9 GB | 0.77 | Thinking mode timeouts |
+
+**Not recommended for most users.** These models require 32-64GB RAM and have responsiveness issues.
+
+**Note on qwen3:32b (excluded):** 29.1 GB memory, 17.6 tok/s. Causes Ollama idle timeouts. Ranks #1 on MMLU (83.2%) but unusable for interactive use.
 
 ```bash
-# To try other large models:
+# To try xlarge models:
 openclaw config set agents.defaults.model.primary ollama/qwen2.5:32b
 openclaw gateway restart
 ```

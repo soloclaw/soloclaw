@@ -65,14 +65,22 @@ PUBLIC_BENCHMARKS = {
         "mmlu": 0.812, "humaneval": 0.762, "gsm8k": 0.895,
         "source": "Gemma 4 model card (estimated for 31b variant)",
     },
+    "qwen3.5:27b": {
+        "mmlu": 0.821, "humaneval": 0.778, "gsm8k": 0.918,
+        "source": "Qwen3.5 model card (estimated for 27b variant)",
+    },
+    "qwen3:14b": {
+        "mmlu": 0.768, "humaneval": 0.721, "gsm8k": 0.898,
+        "source": "Qwen3 technical report",
+    },
 }
 
 COMPARE_GROUPS = {
     "small": ["qwen3:8b", "qwen2.5:7b", "gemma4:e2b"],
-    "medium": ["mistral-small:24b", "qwen3.5:9b", "qwen2.5:14b", "gemma4:e4b"],
-    # qwen3:32b excluded: 29GB memory, 18 tok/s, causes Ollama idle timeouts
-    # gemma4:31b included but uses 43.9GB memory due to large KV cache
-    "large": ["gemma4:26b", "gemma4:31b", "qwen2.5:32b"],
+    "medium": ["mistral-small:24b", "qwen3.5:9b", "qwen2.5:14b", "qwen3:14b", "gemma4:e4b"],
+    "large": ["gemma4:26b"],
+    # xlarge: models requiring 32GB+ memory, known responsiveness issues
+    "xlarge": ["qwen3.5:27b", "qwen2.5:32b", "gemma4:31b"],
 }
 
 QUESTIONS = {
@@ -536,6 +544,7 @@ def main():
     parser.add_argument("--small", action="store_true", help="Compare small-tier models")
     parser.add_argument("--medium", action="store_true", help="Compare medium-tier models")
     parser.add_argument("--large", action="store_true", help="Compare large-tier models")
+    parser.add_argument("--xlarge", action="store_true", help="Compare xlarge-tier models (32B+, high memory)")
     parser.add_argument(
         "--output",
         default="tools/benchmark/results.json",
@@ -543,7 +552,7 @@ def main():
     )
     args = parser.parse_args()
 
-    compare_tiers = [t for t in ["small", "medium", "large"] if getattr(args, t)]
+    compare_tiers = [t for t in ["small", "medium", "large", "xlarge"] if getattr(args, t)]
 
     if args.models:
         models = args.models
