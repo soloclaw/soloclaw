@@ -1,9 +1,14 @@
 {
   "id": "opencode",
-  "enabledByDefault": true,
-  "providers": ["opencode"],
+  "enabledByDefault": false,
+  "providers": [
+    "opencode"
+  ],
   "providerAuthEnvVars": {
-    "opencode": ["OPENCODE_API_KEY", "OPENCODE_ZEN_API_KEY"]
+    "opencode": [
+      "OPENCODE_API_KEY",
+      "OPENCODE_ZEN_API_KEY"
+    ]
   },
   "providerAuthChoices": [
     {

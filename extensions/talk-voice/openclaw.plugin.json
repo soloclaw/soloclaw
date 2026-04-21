@@ -1,6 +1,6 @@
 {
   "id": "talk-voice",
-  "enabledByDefault": true,
+  "enabledByDefault": false,
   "name": "Talk Voice",
   "description": "Manage Talk voice selection (list/set).",
   "commandAliases": [

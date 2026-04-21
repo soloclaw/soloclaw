@@ -1,8 +1,10 @@
 {
   "id": "microsoft",
-  "enabledByDefault": true,
+  "enabledByDefault": false,
   "contracts": {
-    "speechProviders": ["microsoft"]
+    "speechProviders": [
+      "microsoft"
+    ]
   },
   "configSchema": {
     "type": "object",

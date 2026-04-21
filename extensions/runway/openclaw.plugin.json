@@ -1,8 +1,11 @@
 {
   "id": "runway",
-  "enabledByDefault": true,
+  "enabledByDefault": false,
   "providerAuthEnvVars": {
-    "runway": ["RUNWAYML_API_SECRET", "RUNWAY_API_KEY"]
+    "runway": [
+      "RUNWAYML_API_SECRET",
+      "RUNWAY_API_KEY"
+    ]
   },
   "providerAuthChoices": [
     {
@@ -20,7 +23,9 @@
     }
   ],
   "contracts": {
-    "videoGenerationProviders": ["runway"]
+    "videoGenerationProviders": [
+      "runway"
+    ]
   },
   "configSchema": {
     "type": "object",

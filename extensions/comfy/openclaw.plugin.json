@@ -1,14 +1,25 @@
 {
   "id": "comfy",
-  "enabledByDefault": true,
-  "providers": ["comfy"],
+  "enabledByDefault": false,
+  "providers": [
+    "comfy"
+  ],
   "providerAuthEnvVars": {
-    "comfy": ["COMFY_API_KEY", "COMFY_CLOUD_API_KEY"]
+    "comfy": [
+      "COMFY_API_KEY",
+      "COMFY_CLOUD_API_KEY"
+    ]
   },
   "contracts": {
-    "imageGenerationProviders": ["comfy"],
-    "musicGenerationProviders": ["comfy"],
-    "videoGenerationProviders": ["comfy"]
+    "imageGenerationProviders": [
+      "comfy"
+    ],
+    "musicGenerationProviders": [
+      "comfy"
+    ],
+    "videoGenerationProviders": [
+      "comfy"
+    ]
   },
   "configSchema": {
     "type": "object",
@@ -16,13 +27,19 @@
     "properties": {
       "mode": {
         "type": "string",
-        "enum": ["local", "cloud"]
+        "enum": [
+          "local",
+          "cloud"
+        ]
       },
       "baseUrl": {
         "type": "string"
       },
       "apiKey": {
-        "type": ["string", "object"]
+        "type": [
+          "string",
+          "object"
+        ]
       },
       "allowPrivateNetwork": {
         "type": "boolean"
@@ -60,43 +77,99 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "workflowPath": { "type": "string" },
-          "workflow": { "type": "object" },
-          "promptNodeId": { "type": "string" },
-          "promptInputName": { "type": "string" },
-          "inputImageNodeId": { "type": "string" },
-          "inputImageInputName": { "type": "string" },
-          "outputNodeId": { "type": "string" },
-          "pollIntervalMs": { "type": "integer", "minimum": 100 },
-          "timeoutMs": { "type": "integer", "minimum": 1000 }
+          "workflowPath": {
+            "type": "string"
+          },
+          "workflow": {
+            "type": "object"
+          },
+          "promptNodeId": {
+            "type": "string"
+          },
+          "promptInputName": {
+            "type": "string"
+          },
+          "inputImageNodeId": {
+            "type": "string"
+          },
+          "inputImageInputName": {
+            "type": "string"
+          },
+          "outputNodeId": {
+            "type": "string"
+          },
+          "pollIntervalMs": {
+            "type": "integer",
+            "minimum": 100
+          },
+          "timeoutMs": {
+            "type": "integer",
+            "minimum": 1000
+          }
         }
       },
       "video": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "workflowPath": { "type": "string" },
-          "workflow": { "type": "object" },
-          "promptNodeId": { "type": "string" },
-          "promptInputName": { "type": "string" },
-          "inputImageNodeId": { "type": "string" },
-          "inputImageInputName": { "type": "string" },
-          "outputNodeId": { "type": "string" },
-          "pollIntervalMs": { "type": "integer", "minimum": 100 },
-          "timeoutMs": { "type": "integer", "minimum": 1000 }
+          "workflowPath": {
+            "type": "string"
+          },
+          "workflow": {
+            "type": "object"
+          },
+          "promptNodeId": {
+            "type": "string"
+          },
+          "promptInputName": {
+            "type": "string"
+          },
+          "inputImageNodeId": {
+            "type": "string"
+          },
+          "inputImageInputName": {
+            "type": "string"
+          },
+          "outputNodeId": {
+            "type": "string"
+          },
+          "pollIntervalMs": {
+            "type": "integer",
+            "minimum": 100
+          },
+          "timeoutMs": {
+            "type": "integer",
+            "minimum": 1000
+          }
         }
       },
       "music": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "workflowPath": { "type": "string" },
-          "workflow": { "type": "object" },
-          "promptNodeId": { "type": "string" },
-          "promptInputName": { "type": "string" },
-          "outputNodeId": { "type": "string" },
-          "pollIntervalMs": { "type": "integer", "minimum": 100 },
-          "timeoutMs": { "type": "integer", "minimum": 1000 }
+          "workflowPath": {
+            "type": "string"
+          },
+          "workflow": {
+            "type": "object"
+          },
+          "promptNodeId": {
+            "type": "string"
+          },
+          "promptInputName": {
+            "type": "string"
+          },
+          "outputNodeId": {
+            "type": "string"
+          },
+          "pollIntervalMs": {
+            "type": "integer",
+            "minimum": 100
+          },
+          "timeoutMs": {
+            "type": "integer",
+            "minimum": 1000
+          }
         }
       }
     }

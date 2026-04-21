@@ -1,8 +1,12 @@
 {
   "id": "alibaba",
-  "enabledByDefault": true,
+  "enabledByDefault": false,
   "providerAuthEnvVars": {
-    "alibaba": ["MODELSTUDIO_API_KEY", "DASHSCOPE_API_KEY", "QWEN_API_KEY"]
+    "alibaba": [
+      "MODELSTUDIO_API_KEY",
+      "DASHSCOPE_API_KEY",
+      "QWEN_API_KEY"
+    ]
   },
   "providerAuthChoices": [
     {
@@ -20,7 +24,9 @@
     }
   ],
   "contracts": {
-    "videoGenerationProviders": ["alibaba"]
+    "videoGenerationProviders": [
+      "alibaba"
+    ]
   },
   "configSchema": {
     "type": "object",
