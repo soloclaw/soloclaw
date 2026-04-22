@@ -305,7 +305,7 @@ describe("collectInstalledMirroredRootDependencyManifestErrors", () => {
         version: "2026.4.10",
         dependencies: {},
       });
-      writePackageFile(packageRoot, "dist/extensions/device-pair/openclaw.plugin.json", {
+      writePackageFile(packageRoot, "dist/extensions/device-pair/soloclaw.plugin.json", {
         id: "device-pair",
       });
 

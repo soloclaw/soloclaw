@@ -28,7 +28,7 @@ are **external** (published on npm by the community).
   <Step title="Install a plugin">
     ```bash
     # From npm
-    openclaw plugins install @openclaw/voice-call
+    openclaw plugins install @soloclaw/voice-call
 
     # From a local directory or archive
     openclaw plugins install ./my-plugin
@@ -50,7 +50,7 @@ are **external** (published on npm by the community).
 If you prefer chat-native control, enable `commands.plugins: true` and use:
 
 ```text
-/plugin install clawhub:@openclaw/voice-call
+/plugin install clawhub:@soloclaw/voice-call
 /plugin show voice-call
 /plugin enable voice-call
 ```
@@ -69,7 +69,7 @@ OpenClaw recognizes two plugin formats:
 
 | Format     | How it works                                                       | Examples                                               |
 | ---------- | ------------------------------------------------------------------ | ------------------------------------------------------ |
-| **Native** | `openclaw.plugin.json` + runtime module; executes in-process       | Official plugins, community npm packages               |
+| **Native** | `soloclaw.plugin.json` + runtime module; executes in-process       | Official plugins, community npm packages               |
 | **Bundle** | Codex/Claude/Cursor-compatible layout; mapped to OpenClaw features | `.codex-plugin/`, `.claude-plugin/`, `.cursor-plugin/` |
 
 Both show up under `soloclaw plugins list`. See [Plugin Bundles](/plugins/bundles) for bundle details.
@@ -83,12 +83,12 @@ and the [Plugin SDK Overview](/plugins/sdk-overview).
 
 | Plugin          | Package                | Docs                                 |
 | --------------- | ---------------------- | ------------------------------------ |
-| Matrix          | `@openclaw/matrix`     | [Matrix](/channels/matrix)           |
-| Microsoft Teams | `@openclaw/msteams`    | [Microsoft Teams](/channels/msteams) |
-| Nostr           | `@openclaw/nostr`      | [Nostr](/channels/nostr)             |
-| Voice Call      | `@openclaw/voice-call` | [Voice Call](/plugins/voice-call)    |
-| Zalo            | `@openclaw/zalo`       | [Zalo](/channels/zalo)               |
-| Zalo Personal   | `@openclaw/zalouser`   | [Zalo Personal](/plugins/zalouser)   |
+| Matrix          | `@soloclaw/matrix`     | [Matrix](/channels/matrix)           |
+| Microsoft Teams | `@soloclaw/msteams`    | [Microsoft Teams](/channels/msteams) |
+| Nostr           | `@soloclaw/nostr`      | [Nostr](/channels/nostr)             |
+| Voice Call      | `@soloclaw/voice-call` | [Voice Call](/plugins/voice-call)    |
+| Zalo            | `@soloclaw/zalo`       | [Zalo](/channels/zalo)               |
+| Zalo Personal   | `@soloclaw/zalouser`   | [Zalo Personal](/plugins/zalouser)   |
 
 ### Core (shipped with OpenClaw)
 

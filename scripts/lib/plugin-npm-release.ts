@@ -211,9 +211,9 @@ export function collectPublishablePluginPackageErrors(
   const packageVersion = packageJson.version?.trim() ?? "";
   const extensions = packageJson.openclaw?.extensions ?? [];
 
-  if (!packageName.startsWith("@openclaw/")) {
+  if (!packageName.startsWith("@soloclaw/")) {
     errors.push(
-      `package name must start with "@openclaw/"; found "${packageName || "<missing>"}".`,
+      `package name must start with "@soloclaw/"; found "${packageName || "<missing>"}".`,
     );
   }
   if (packageJson.private === true) {

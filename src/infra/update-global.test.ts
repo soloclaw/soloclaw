@@ -497,7 +497,7 @@ describe("update global helpers", () => {
         "package.json",
       );
       await fs.mkdir(path.dirname(matrixPackageJson), { recursive: true });
-      await fs.writeFile(matrixPackageJson, JSON.stringify({ name: "@openclaw/matrix" }), "utf-8");
+      await fs.writeFile(matrixPackageJson, JSON.stringify({ name: "@soloclaw/matrix" }), "utf-8");
 
       await expect(collectInstalledGlobalPackageErrors({ packageRoot })).resolves.toContain(
         `missing bundled runtime sidecar ${MATRIX_HELPER_API}`,
@@ -529,7 +529,7 @@ describe("update global helpers", () => {
         await fs.mkdir(path.dirname(matrixPackageJson), { recursive: true });
         await fs.writeFile(
           matrixPackageJson,
-          JSON.stringify({ name: "@openclaw/matrix" }),
+          JSON.stringify({ name: "@soloclaw/matrix" }),
           "utf-8",
         );
         await writePackageDistInventory(packageRoot);
@@ -565,7 +565,7 @@ describe("update global helpers", () => {
         await fs.mkdir(path.dirname(staleQaLabPackageJson), { recursive: true });
         await fs.writeFile(
           staleQaLabPackageJson,
-          JSON.stringify({ name: "@openclaw/qa-lab" }),
+          JSON.stringify({ name: "@soloclaw/qa-lab" }),
           "utf-8",
         );
         await writePackageDistInventory(packageRoot);

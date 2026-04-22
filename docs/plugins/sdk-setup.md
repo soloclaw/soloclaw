@@ -11,7 +11,7 @@ read_when:
 # Plugin Setup and Config
 
 Reference for plugin packaging (`package.json` metadata), manifests
-(`openclaw.plugin.json`), setup entries, and config schemas.
+(`soloclaw.plugin.json`), setup entries, and config schemas.
 
 <Tip>
   **Looking for a walkthrough?** The how-to guides cover packaging in context:
@@ -200,7 +200,7 @@ to `operator.admin`.
 
 ## Plugin manifest
 
-Every native plugin must ship an `openclaw.plugin.json` in the package root.
+Every native plugin must ship an `soloclaw.plugin.json` in the package root.
 OpenClaw uses this to validate config without executing plugin code.
 
 ```json

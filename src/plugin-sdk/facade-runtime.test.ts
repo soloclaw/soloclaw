@@ -284,7 +284,7 @@ describe("plugin-sdk facade runtime", () => {
     fs.writeFileSync(
       path.join(lineDir, "package.json"),
       JSON.stringify({
-        name: "@openclaw/line",
+        name: "@soloclaw/line",
         version: "0.0.0",
         openclaw: {
           extensions: ["./runtime-api.js"],
@@ -294,7 +294,7 @@ describe("plugin-sdk facade runtime", () => {
       "utf8",
     );
     fs.writeFileSync(
-      path.join(lineDir, "openclaw.plugin.json"),
+      path.join(lineDir, "soloclaw.plugin.json"),
       JSON.stringify({
         id: "line",
         channels: ["line"],
@@ -332,7 +332,7 @@ describe("plugin-sdk facade runtime", () => {
     fs.writeFileSync(
       path.join(encodedDir, "package.json"),
       JSON.stringify({
-        name: "@openclaw/line",
+        name: "@soloclaw/line",
         version: "0.0.0",
         openclaw: {
           extensions: ["./runtime-api.js"],
@@ -342,7 +342,7 @@ describe("plugin-sdk facade runtime", () => {
       "utf8",
     );
     fs.writeFileSync(
-      path.join(encodedDir, "openclaw.plugin.json"),
+      path.join(encodedDir, "soloclaw.plugin.json"),
       JSON.stringify({
         id: "line",
         channels: ["line"],

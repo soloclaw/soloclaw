@@ -187,7 +187,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
       "dist/extensions/feishu/package.json",
       JSON.stringify(
         {
-          name: "@openclaw/feishu",
+          name: "@soloclaw/feishu",
           version: "2026.4.10",
           dependencies: {
             "@larksuiteoapi/node-sdk": "^1.60.0",
@@ -259,13 +259,13 @@ describe("stageBundledPluginRuntimeDeps", () => {
       "dist/extensions/amazon-bedrock/package.json",
       JSON.stringify(
         {
-          name: "@openclaw/amazon-bedrock-provider",
+          name: "@soloclaw/amazon-bedrock-provider",
           version: "2026.4.10",
           dependencies: {
             "@aws-sdk/client-bedrock": "3.1024.0",
           },
           devDependencies: {
-            "@openclaw/plugin-sdk": "workspace:*",
+            "@soloclaw/plugin-sdk": "workspace:*",
           },
           peerDependencies: {
             openclaw: "^0.0.0",

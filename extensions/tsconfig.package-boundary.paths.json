@@ -47,10 +47,10 @@
         "../dist/plugin-sdk/src/plugin-sdk/secret-ref-runtime.d.ts"
       ],
       "openclaw/plugin-sdk/ssrf-runtime": ["../dist/plugin-sdk/src/plugin-sdk/ssrf-runtime.d.ts"],
-      "@openclaw/qa-channel/api.js": ["../dist/plugin-sdk/extensions/qa-channel/api.d.ts"],
-      "@openclaw/*.js": ["../packages/plugin-sdk/dist/extensions/*.d.ts", "../extensions/*"],
-      "@openclaw/*": ["../packages/plugin-sdk/dist/extensions/*", "../extensions/*"],
-      "@openclaw/plugin-sdk/*": ["../dist/plugin-sdk/src/plugin-sdk/*.d.ts"]
+      "@soloclaw/qa-channel/api.js": ["../dist/plugin-sdk/extensions/qa-channel/api.d.ts"],
+      "@soloclaw/*.js": ["../packages/plugin-sdk/dist/extensions/*.d.ts", "../extensions/*"],
+      "@soloclaw/*": ["../packages/plugin-sdk/dist/extensions/*", "../extensions/*"],
+      "@soloclaw/plugin-sdk/*": ["../dist/plugin-sdk/src/plugin-sdk/*.d.ts"]
     }
   }
 }

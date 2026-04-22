@@ -17,7 +17,7 @@ describe("collectBuiltBundledPluginStagedRuntimeDependencyErrors", () => {
     const repoRoot = createTempDir("openclaw-runtime-contracts-");
 
     writeJson(repoRoot, "dist/extensions/diffs/package.json", {
-      name: "@openclaw/diffs",
+      name: "@soloclaw/diffs",
       dependencies: {
         "@pierre/diffs": "^0.1.0",
       },
@@ -41,7 +41,7 @@ describe("collectBuiltBundledPluginStagedRuntimeDependencyErrors", () => {
     const repoRoot = createTempDir("openclaw-runtime-contracts-");
 
     writeJson(repoRoot, "dist/extensions/diffs/package.json", {
-      name: "@openclaw/diffs",
+      name: "@soloclaw/diffs",
       dependencies: {
         "@pierre/diffs": "^0.1.0",
       },

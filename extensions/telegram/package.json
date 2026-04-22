@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/telegram",
+  "name": "@soloclaw/telegram",
   "version": "2026.4.16",
   "private": true,
   "description": "OpenClaw Telegram channel plugin",
@@ -10,9 +10,9 @@
     "grammy": "^1.42.0"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*"
   },
-  "openclaw": {
+  "soloclaw": {
     "extensions": [
       "./index.ts"
     ],

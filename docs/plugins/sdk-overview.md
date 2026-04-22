@@ -500,9 +500,9 @@ promoting Anthropic beta-header and `service_tier` logic into a generic
 
 Other current bundled examples:
 
-- `@openclaw/openai-provider`: `api.ts` exports provider builders,
+- `@soloclaw/openai-provider`: `api.ts` exports provider builders,
   default-model helpers, and realtime provider builders
-- `@openclaw/openrouter-provider`: `api.ts` exports the provider builder plus
+- `@soloclaw/openrouter-provider`: `api.ts` exports the provider builder plus
   onboarding/config helpers
 
 <Warning>

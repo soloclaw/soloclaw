@@ -27,7 +27,7 @@ describe("buildOfficialChannelCatalog", () => {
   it("includes publishable official channel plugins and skips non-publishable entries", () => {
     const repoRoot = makeRepoRoot("openclaw-official-channel-catalog-");
     writeJson(path.join(repoRoot, "extensions", "whatsapp", "package.json"), {
-      name: "@openclaw/whatsapp",
+      name: "@soloclaw/whatsapp",
       version: "2026.3.23",
       description: "OpenClaw WhatsApp channel plugin",
       openclaw: {
@@ -40,7 +40,7 @@ describe("buildOfficialChannelCatalog", () => {
           blurb: "works with your own number; recommend a separate phone + eSIM.",
         },
         install: {
-          npmSpec: "@openclaw/whatsapp",
+          npmSpec: "@soloclaw/whatsapp",
           localPath: bundledPluginRoot("whatsapp"),
           defaultChoice: "npm",
         },
@@ -50,7 +50,7 @@ describe("buildOfficialChannelCatalog", () => {
       },
     });
     writeJson(path.join(repoRoot, "extensions", "local-only", "package.json"), {
-      name: "@openclaw/local-only",
+      name: "@soloclaw/local-only",
       openclaw: {
         channel: {
           id: "local-only",
@@ -71,7 +71,7 @@ describe("buildOfficialChannelCatalog", () => {
     expect(buildOfficialChannelCatalog({ repoRoot })).toEqual({
       entries: [
         {
-          name: "@openclaw/whatsapp",
+          name: "@soloclaw/whatsapp",
           version: "2026.3.23",
           description: "OpenClaw WhatsApp channel plugin",
           openclaw: {
@@ -84,7 +84,7 @@ describe("buildOfficialChannelCatalog", () => {
               blurb: "works with your own number; recommend a separate phone + eSIM.",
             },
             install: {
-              npmSpec: "@openclaw/whatsapp",
+              npmSpec: "@soloclaw/whatsapp",
               defaultChoice: "npm",
             },
           },
@@ -96,7 +96,7 @@ describe("buildOfficialChannelCatalog", () => {
   it("writes the official catalog under dist", () => {
     const repoRoot = makeRepoRoot("openclaw-official-channel-catalog-write-");
     writeJson(path.join(repoRoot, "extensions", "whatsapp", "package.json"), {
-      name: "@openclaw/whatsapp",
+      name: "@soloclaw/whatsapp",
       openclaw: {
         channel: {
           id: "whatsapp",
@@ -106,7 +106,7 @@ describe("buildOfficialChannelCatalog", () => {
           blurb: "wa",
         },
         install: {
-          npmSpec: "@openclaw/whatsapp",
+          npmSpec: "@soloclaw/whatsapp",
         },
         release: {
           publishToNpm: true,
@@ -121,7 +121,7 @@ describe("buildOfficialChannelCatalog", () => {
     expect(JSON.parse(fs.readFileSync(outputPath, "utf8"))).toEqual({
       entries: [
         {
-          name: "@openclaw/whatsapp",
+          name: "@soloclaw/whatsapp",
           openclaw: {
             channel: {
               id: "whatsapp",
@@ -131,7 +131,7 @@ describe("buildOfficialChannelCatalog", () => {
               blurb: "wa",
             },
             install: {
-              npmSpec: "@openclaw/whatsapp",
+              npmSpec: "@soloclaw/whatsapp",
             },
           },
         },

@@ -18,14 +18,14 @@ describe("package-json helpers", () => {
     await withTempDir({ prefix: "openclaw-package-json-" }, async (root) => {
       await fs.writeFile(
         path.join(root, "package.json"),
-        JSON.stringify({ version: " 1.2.3 ", name: "  @openclaw/demo  " }),
+        JSON.stringify({ version: " 1.2.3 ", name: "  @soloclaw/demo  " }),
         "utf8",
       );
 
       await expectPackageMeta({
         root,
         expectedVersion: "1.2.3",
-        expectedName: "@openclaw/demo",
+        expectedName: "@soloclaw/demo",
       });
     });
   });
@@ -62,12 +62,12 @@ describe("package-json helpers", () => {
       writePackageJson: async (root: string) => {
         await fs.writeFile(
           path.join(root, "package.json"),
-          JSON.stringify({ version: "   ", name: "@openclaw/demo" }),
+          JSON.stringify({ version: "   ", name: "@soloclaw/demo" }),
           "utf8",
         );
       },
       expectedVersion: null,
-      expectedName: "@openclaw/demo",
+      expectedName: "@soloclaw/demo",
     },
   ])(
     "returns normalized nulls for $name",

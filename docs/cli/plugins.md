@@ -43,7 +43,7 @@ Bundled plugins ship with OpenClaw. Some are enabled by default (for example
 bundled model providers, bundled speech providers, and the bundled browser
 plugin); others require `plugins enable`.
 
-Native OpenClaw plugins must ship `openclaw.plugin.json` with an inline JSON
+Native OpenClaw plugins must ship `soloclaw.plugin.json` with an inline JSON
 Schema (`configSchema`, even if empty). Compatible bundles use their own bundle
 manifests instead.
 
@@ -164,7 +164,7 @@ plugin sources from remote manifests.
 
 For local paths and archives, OpenClaw auto-detects:
 
-- native OpenClaw plugins (`openclaw.plugin.json`)
+- native OpenClaw plugins (`soloclaw.plugin.json`)
 - Codex-compatible bundles (`.codex-plugin/plugin.json`)
 - Claude-compatible bundles (`.claude-plugin/plugin.json` or the default Claude
   component layout)
@@ -227,7 +227,7 @@ state-dir plugin root. Use
 openclaw plugins update <id-or-npm-spec>
 openclaw plugins update --all
 openclaw plugins update <id-or-npm-spec> --dry-run
-openclaw plugins update @openclaw/voice-call@beta
+openclaw plugins update @soloclaw/voice-call@beta
 openclaw plugins update openclaw-codex-app-server --dangerously-force-unsafe-install
 ```
 

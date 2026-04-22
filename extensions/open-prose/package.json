@@ -1,13 +1,13 @@
 {
-  "name": "@openclaw/open-prose",
+  "name": "@soloclaw/open-prose",
   "version": "2026.4.16",
   "private": true,
   "description": "OpenProse VM skill pack plugin (slash command + telemetry).",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*"
   },
-  "openclaw": {
+  "soloclaw": {
     "extensions": [
       "./index.ts"
     ]

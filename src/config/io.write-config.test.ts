@@ -204,7 +204,7 @@ describe("config io write", () => {
           hooks: [],
           rootDir: "/tmp/openclaw-test-required-plugin",
           source: "/tmp/openclaw-test-required-plugin/index.ts",
-          manifestPath: "/tmp/openclaw-test-required-plugin/openclaw.plugin.json",
+          manifestPath: "/tmp/openclaw-test-required-plugin/soloclaw.plugin.json",
           configSchema: {
             type: "object",
             properties: {

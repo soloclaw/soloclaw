@@ -187,7 +187,7 @@ node --import tsx scripts/openclaw-npm-postpublish-verify.ts <published-version>
   attempts should fail before the protected environment is reached.
 - The release workflows stay tag-based; rely on the documented release sequence
   rather than workflow-level SHA pinning.
-- The `npm-release` environment must be approved by `@openclaw/openclaw-release-managers` before publish continues.
+- The `npm-release` environment must be approved by `@soloclaw/openclaw-release-managers` before publish continues.
 - Mac publish uses
   `openclaw/releases-private/.github/workflows/openclaw-macos-publish.yml` for
   private mac preflight artifact preparation and real publish artifact
@@ -209,7 +209,7 @@ node --import tsx scripts/openclaw-npm-postpublish-verify.ts <published-version>
   publish path; package publishing uses trusted publishing.
 - Use `NPM_TOKEN` only for explicit npm dist-tag management modes, because npm
   does not support trusted publishing for `npm dist-tag add`.
-- `@openclaw/*` plugin publishes use a separate maintainer-only flow.
+- `@soloclaw/*` plugin publishes use a separate maintainer-only flow.
 - Only publish plugins that already exist on npm; bundled disk-tree-only plugins stay unpublished.
 
 ## Fallback local mac publish
@@ -272,7 +272,7 @@ node --import tsx scripts/openclaw-npm-postpublish-verify.ts <published-version>
     the real publish, choose `npm_dist_tag` (`beta` default, `latest` only when
     you intentionally want direct stable publish), keep it the same as the
     preflight run, and pass the successful npm `preflight_run_id`.
-15. Wait for `npm-release` approval from `@openclaw/openclaw-release-managers`.
+15. Wait for `npm-release` approval from `@soloclaw/openclaw-release-managers`.
 16. If the stable release was published to `beta`, start
     `.github/workflows/openclaw-npm-release.yml` again after beta validation
     passes with the same stable tag, `promote_beta_to_latest=true`,

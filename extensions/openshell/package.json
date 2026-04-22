@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/openshell-sandbox",
+  "name": "@soloclaw/openshell-sandbox",
   "version": "2026.4.16",
   "private": true,
   "description": "OpenClaw OpenShell sandbox backend",
@@ -8,9 +8,9 @@
     "openshell": "0.1.0"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*"
   },
-  "openclaw": {
+  "soloclaw": {
     "extensions": [
       "./index.ts"
     ]

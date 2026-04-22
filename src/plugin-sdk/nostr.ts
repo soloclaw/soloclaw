@@ -38,7 +38,7 @@ export { mapAllowFromEntries } from "./channel-config-helpers.js";
 const nostrSetup = createOptionalChannelSetupSurface({
   channel: "nostr",
   label: "Nostr",
-  npmSpec: "@openclaw/nostr",
+  npmSpec: "@soloclaw/nostr",
   docsPath: "/channels/nostr",
 });
 

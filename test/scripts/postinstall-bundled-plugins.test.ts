@@ -224,7 +224,7 @@ describe("bundled plugin postinstall", () => {
       "dist",
       "extensions",
       "qa-lab",
-      "openclaw.plugin.json",
+      "soloclaw.plugin.json",
     );
     await fs.mkdir(path.dirname(stalePackage), { recursive: true });
     await fs.writeFile(currentFile, "export {};\n");
@@ -285,13 +285,13 @@ describe("bundled plugin postinstall", () => {
       fs.stat(path.join(packageRoot, "dist", "extensions", "qa-channel", "package.json")),
     ).rejects.toMatchObject({ code: "ENOENT" });
     await expect(
-      fs.stat(path.join(packageRoot, "dist", "extensions", "qa-channel", "openclaw.plugin.json")),
+      fs.stat(path.join(packageRoot, "dist", "extensions", "qa-channel", "soloclaw.plugin.json")),
     ).rejects.toMatchObject({ code: "ENOENT" });
     await expect(
       fs.stat(path.join(packageRoot, "dist", "extensions", "qa-lab", "package.json")),
     ).rejects.toMatchObject({ code: "ENOENT" });
     await expect(
-      fs.stat(path.join(packageRoot, "dist", "extensions", "qa-lab", "openclaw.plugin.json")),
+      fs.stat(path.join(packageRoot, "dist", "extensions", "qa-lab", "soloclaw.plugin.json")),
     ).rejects.toMatchObject({ code: "ENOENT" });
   });
 
@@ -698,7 +698,7 @@ describe("bundled plugin postinstall", () => {
     await fs.mkdir(path.join(extensionsDir, "fixtures", "node_modules"), { recursive: true });
     await fs.writeFile(
       path.join(extensionsDir, "acpx", "package.json"),
-      JSON.stringify({ name: "@openclaw/acpx" }),
+      JSON.stringify({ name: "@soloclaw/acpx" }),
     );
 
     pruneBundledPluginSourceNodeModules({ extensionsDir });

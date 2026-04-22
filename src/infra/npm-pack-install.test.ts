@@ -21,7 +21,7 @@ vi.mock("./install-source-utils.js", async () => {
 });
 
 describe("installFromNpmSpecArchive", () => {
-  const baseSpec = "@openclaw/test@1.0.0";
+  const baseSpec = "@soloclaw/test@1.0.0";
   const baseArchivePath = "/tmp/openclaw-test.tgz";
 
   const mockPackedSuccess = (overrides?: {
@@ -83,7 +83,7 @@ describe("installFromNpmSpecArchive", () => {
 
     const result = await installFromNpmSpecArchive({
       tempDirPrefix: "openclaw-test-",
-      spec: "@openclaw/test@1.0.0",
+      spec: "@soloclaw/test@1.0.0",
       timeoutMs: 1000,
       installFromArchive,
     });
@@ -112,7 +112,7 @@ describe("installFromNpmSpecArchive", () => {
   });
 
   it("returns resolution metadata and installer result on success", async () => {
-    mockPackedSuccess({ name: "@openclaw/test", version: "1.0.0" });
+    mockPackedSuccess({ name: "@soloclaw/test", version: "1.0.0" });
     const installFromArchive = vi.fn(async () => ({ ok: true as const, target: "done" }));
 
     const result = await runInstall({
@@ -122,7 +122,7 @@ describe("installFromNpmSpecArchive", () => {
 
     const okResult = expectWrappedOkResult(result, { ok: true, target: "done" });
     expect(okResult.integrityDrift).toBeUndefined();
-    expect(okResult.npmResolution.resolvedSpec).toBe("@openclaw/test@1.0.0");
+    expect(okResult.npmResolution.resolvedSpec).toBe("@soloclaw/test@1.0.0");
     expect(okResult.npmResolution.resolvedAt).toBeTruthy();
     expect(installFromArchive).toHaveBeenCalledWith({ archivePath: "/tmp/openclaw-test.tgz" });
   });
@@ -158,7 +158,7 @@ describe("installFromNpmSpecArchive", () => {
 
     expect(result).toEqual({
       ok: false,
-      error: "aborted: npm package integrity drift detected for @openclaw/test@1.0.0",
+      error: "aborted: npm package integrity drift detected for @soloclaw/test@1.0.0",
     });
     expect(installFromArchive).not.toHaveBeenCalled();
   });
@@ -180,7 +180,7 @@ describe("installFromNpmSpecArchive", () => {
       actualIntegrity: "sha512-new",
     });
     expect(warn).toHaveBeenCalledWith(
-      "Integrity drift detected for @openclaw/test@1.0.0: expected sha512-old, got sha512-new",
+      "Integrity drift detected for @soloclaw/test@1.0.0: expected sha512-old, got sha512-new",
     );
   });
 
@@ -202,7 +202,7 @@ describe("installFromNpmSpecArchive", () => {
       ok: true,
       archivePath: baseArchivePath,
       metadata: {
-        resolvedSpec: "@openclaw/test@latest",
+        resolvedSpec: "@soloclaw/test@latest",
         integrity: "sha512-same",
         version: "1.1.0-beta.1",
       },
@@ -211,7 +211,7 @@ describe("installFromNpmSpecArchive", () => {
 
     const result = await installFromNpmSpecArchive({
       tempDirPrefix: "openclaw-test-",
-      spec: "@openclaw/test@latest",
+      spec: "@soloclaw/test@latest",
       timeoutMs: 1000,
       installFromArchive,
     });
@@ -229,7 +229,7 @@ describe("installFromNpmSpecArchive", () => {
       ok: true,
       archivePath: baseArchivePath,
       metadata: {
-        resolvedSpec: "@openclaw/test@beta",
+        resolvedSpec: "@soloclaw/test@beta",
         integrity: "sha512-same",
         version: "1.1.0-beta.1",
       },
@@ -238,7 +238,7 @@ describe("installFromNpmSpecArchive", () => {
 
     const result = await installFromNpmSpecArchive({
       tempDirPrefix: "openclaw-test-",
-      spec: "@openclaw/test@beta",
+      spec: "@soloclaw/test@beta",
       timeoutMs: 1000,
       installFromArchive,
     });
@@ -258,7 +258,7 @@ describe("installFromNpmSpecArchiveWithInstaller", () => {
       ok: true,
       archivePath: "/tmp/openclaw-plugin.tgz",
       metadata: {
-        resolvedSpec: "@openclaw/voice-call@1.0.0",
+        resolvedSpec: "@soloclaw/voice-call@1.0.0",
         integrity: "sha512-same",
       },
     });
@@ -269,7 +269,7 @@ describe("installFromNpmSpecArchiveWithInstaller", () => {
 
     const result = await installFromNpmSpecArchiveWithInstaller({
       tempDirPrefix: "openclaw-test-",
-      spec: "@openclaw/voice-call@1.0.0",
+      spec: "@soloclaw/voice-call@1.0.0",
       timeoutMs: 1000,
       installFromArchive,
       archiveInstallParams: { pluginId: "voice-call" },
@@ -302,7 +302,7 @@ describe("finalizeNpmSpecArchiveInstall", () => {
       ok: true,
       installResult: { ok: false, error: "install failed" },
       npmResolution: {
-        resolvedSpec: "@openclaw/test@1.0.0",
+        resolvedSpec: "@soloclaw/test@1.0.0",
         integrity: "sha512-same",
         resolvedAt: "2026-01-01T00:00:00.000Z",
       },
@@ -318,7 +318,7 @@ describe("finalizeNpmSpecArchiveInstall", () => {
       ok: true,
       installResult: { ok: true, pluginId: "voice-call" },
       npmResolution: {
-        resolvedSpec: "@openclaw/voice-call@1.0.0",
+        resolvedSpec: "@soloclaw/voice-call@1.0.0",
         integrity: "sha512-same",
         resolvedAt: "2026-01-01T00:00:00.000Z",
       },
@@ -332,7 +332,7 @@ describe("finalizeNpmSpecArchiveInstall", () => {
       ok: true,
       pluginId: "voice-call",
       npmResolution: {
-        resolvedSpec: "@openclaw/voice-call@1.0.0",
+        resolvedSpec: "@soloclaw/voice-call@1.0.0",
         integrity: "sha512-same",
         resolvedAt: "2026-01-01T00:00:00.000Z",
       },

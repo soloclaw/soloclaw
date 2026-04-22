@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/diffs",
+  "name": "@soloclaw/diffs",
   "version": "2026.4.16",
   "private": true,
   "description": "OpenClaw diff viewer plugin",
@@ -14,9 +14,9 @@
     "playwright-core": "1.59.1"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*"
   },
-  "openclaw": {
+  "soloclaw": {
     "bundle": {
       "stageRuntimeDependencies": true
     },

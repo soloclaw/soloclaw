@@ -89,7 +89,7 @@ describe("installTestEnv", () => {
     );
     writeFile(path.join(realHome, ".soloclaw", "credentials", "token.txt"), "secret\n");
     writeFile(
-      path.join(realHome, ".soloclaw", "external-plugins", "glueclaw", "openclaw.plugin.json"),
+      path.join(realHome, ".soloclaw", "external-plugins", "glueclaw", "soloclaw.plugin.json"),
       '{"id":"glueclaw"}\n',
     );
     writeFile(
@@ -154,7 +154,7 @@ describe("installTestEnv", () => {
           ".soloclaw",
           "external-plugins",
           "glueclaw",
-          "openclaw.plugin.json",
+          "soloclaw.plugin.json",
         ),
       ),
     ).toBe(true);

@@ -176,7 +176,7 @@ describe("plugin-sdk package contract guardrails", () => {
     ]) {
       expect(rootRuntimeDeps.get(dep)).toBe(matrixRuntimeDeps.get(dep));
     }
-    expect(rootRuntimeDeps.has("@openclaw/plugin-package-contract")).toBe(false);
+    expect(rootRuntimeDeps.has("@soloclaw/plugin-package-contract")).toBe(false);
   });
 
   it("resolves matrix crypto WASM from the root runtime surface", () => {

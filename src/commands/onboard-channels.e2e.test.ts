@@ -100,7 +100,7 @@ function createTelegramCfg(botToken: string, enabled?: boolean): OpenClawConfig 
 function createMSTeamsCatalogEntry(): ChannelPluginCatalogEntry {
   return {
     id: "external-chat",
-    pluginId: "@openclaw/external-chat-plugin",
+    pluginId: "@soloclaw/external-chat-plugin",
     meta: {
       id: "external-chat",
       label: "External Chat",
@@ -109,7 +109,7 @@ function createMSTeamsCatalogEntry(): ChannelPluginCatalogEntry {
       blurb: "external chat channel",
     },
     install: {
-      npmSpec: "@openclaw/external-chat",
+      npmSpec: "@soloclaw/external-chat",
     },
   };
 }
@@ -195,7 +195,7 @@ type PatchedSetupAdapterFields = {
 
 function createMSTeamsPluginRegistryEntry(params?: { includeSetupWizard?: boolean }) {
   return {
-    pluginId: "@openclaw/external-chat-plugin",
+    pluginId: "@soloclaw/external-chat-plugin",
     source: "test",
     plugin: {
       id: "external-chat",
@@ -699,7 +699,7 @@ describe("setupChannels", () => {
         },
         plugins: {
           entries: {
-            "@openclaw/external-chat-plugin": { enabled: true },
+            "@soloclaw/external-chat-plugin": { enabled: true },
           },
         },
       } as OpenClawConfig,
@@ -709,7 +709,7 @@ describe("setupChannels", () => {
     expect(loadChannelSetupPluginRegistrySnapshotForChannel).toHaveBeenCalledWith(
       expect.objectContaining({
         channel: "external-chat",
-        pluginId: "@openclaw/external-chat-plugin",
+        pluginId: "@soloclaw/external-chat-plugin",
       }),
     );
     expect(multiselect).not.toHaveBeenCalled();
@@ -766,7 +766,7 @@ describe("setupChannels", () => {
     manifestRegistryMocks.loadPluginManifestRegistry.mockReturnValue({
       plugins: [
         {
-          id: "@openclaw/external-chat-plugin",
+          id: "@soloclaw/external-chat-plugin",
           channels: ["external-chat"],
         } as never,
       ],
@@ -795,7 +795,7 @@ describe("setupChannels", () => {
     expect(loadChannelSetupPluginRegistrySnapshotForChannel).toHaveBeenCalledWith(
       expect.objectContaining({
         channel: "external-chat",
-        pluginId: "@openclaw/external-chat-plugin",
+        pluginId: "@soloclaw/external-chat-plugin",
       }),
     );
     expect(multiselect).not.toHaveBeenCalled();

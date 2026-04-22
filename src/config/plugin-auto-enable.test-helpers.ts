@@ -40,7 +40,7 @@ export function writePluginManifestFixture(params: {
 }): void {
   mkdirSafeDir(params.rootDir);
   fs.writeFileSync(
-    path.join(params.rootDir, "openclaw.plugin.json"),
+    path.join(params.rootDir, "soloclaw.plugin.json"),
     JSON.stringify(
       {
         id: params.id,
@@ -85,7 +85,7 @@ export function makeRegistry(
       origin: "config" as const,
       rootDir: `/fake/${plugin.id}`,
       source: `/fake/${plugin.id}/index.js`,
-      manifestPath: `/fake/${plugin.id}/openclaw.plugin.json`,
+      manifestPath: `/fake/${plugin.id}/soloclaw.plugin.json`,
     })),
     diagnostics: [],
   };

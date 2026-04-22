@@ -293,7 +293,7 @@ should use `resolveInboundMentionDecision({ facts, policy })`.
     }
     ```
 
-    ```json openclaw.plugin.json
+    ```json soloclaw.plugin.json
     {
       "id": "acme-chat",
       "kind": "channel",
@@ -591,7 +591,7 @@ Write colocated tests in `src/channel.test.ts`:
 ```
 <bundled-plugin-root>/acme-chat/
 ├── package.json              # openclaw.channel metadata
-├── openclaw.plugin.json      # Manifest with config schema
+├── soloclaw.plugin.json      # Manifest with config schema
 ├── index.ts                  # defineChannelPluginEntry
 ├── setup-entry.ts            # defineSetupPluginEntry
 ├── api.ts                    # Public exports (optional)

@@ -52,7 +52,7 @@ export default definePluginEntry({
 | `configSchema` | `OpenClawPluginConfigSchema \| () => OpenClawPluginConfigSchema` | No       | Empty object schema |
 | `register`     | `(api: OpenClawPluginApi) => void`                               | Yes      | —                   |
 
-- `id` must match your `openclaw.plugin.json` manifest.
+- `id` must match your `soloclaw.plugin.json` manifest.
 - `kind` is for exclusive slots: `"memory"` or `"context-engine"`.
 - `configSchema` can be a function for lazy evaluation.
 - OpenClaw resolves and memoizes that schema on first access, so expensive schema

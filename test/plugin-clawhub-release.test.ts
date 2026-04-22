@@ -24,7 +24,7 @@ describe("resolveChangedClawHubPublishablePluginPackages", () => {
     {
       extensionId: "feishu",
       packageDir: "extensions/feishu",
-      packageName: "@openclaw/feishu",
+      packageName: "@soloclaw/feishu",
       version: "2026.4.1",
       channel: "stable",
       publishTag: "latest",
@@ -32,7 +32,7 @@ describe("resolveChangedClawHubPublishablePluginPackages", () => {
     {
       extensionId: "zalo",
       packageDir: "extensions/zalo",
-      packageName: "@openclaw/zalo",
+      packageName: "@soloclaw/zalo",
       version: "2026.4.1-beta.1",
       channel: "beta",
       publishTag: "beta",
@@ -99,7 +99,7 @@ describe("collectClawHubVersionGateErrors", () => {
     });
 
     expect(errors).toEqual([
-      "@openclaw/demo-plugin@2026.4.1: changed publishable plugin still has the same version in package.json.",
+      "@soloclaw/demo-plugin@2026.4.1: changed publishable plugin still has the same version in package.json.",
     ]);
   });
 
@@ -113,7 +113,7 @@ describe("collectClawHubVersionGateErrors", () => {
       join(repoDir, "extensions", "demo-plugin", "package.json"),
       JSON.stringify(
         {
-          name: "@openclaw/demo-plugin",
+          name: "@soloclaw/demo-plugin",
           version: "2026.4.1",
           openclaw: {
             extensions: ["./index.ts"],
@@ -250,7 +250,7 @@ describe("collectPluginClawHubReleasePlan", () => {
 
     const plan = await collectPluginClawHubReleasePlan({
       rootDir: repoDir,
-      selection: ["@openclaw/demo-plugin"],
+      selection: ["@soloclaw/demo-plugin"],
       fetchImpl: async () => new Response("{}", { status: 200 }),
       registryBaseUrl: "https://clawhub.ai",
     });
@@ -258,7 +258,7 @@ describe("collectPluginClawHubReleasePlan", () => {
     expect(plan.candidates).toEqual([]);
     expect(plan.skippedPublished).toHaveLength(1);
     expect(plan.skippedPublished[0]).toMatchObject({
-      packageName: "@openclaw/demo-plugin",
+      packageName: "@soloclaw/demo-plugin",
       version: "2026.4.1",
     });
   });
@@ -304,7 +304,7 @@ function createTempPluginRepo(
       join(repoDir, "extensions", currentExtensionId, "package.json"),
       JSON.stringify(
         {
-          name: `@openclaw/${currentExtensionId}`,
+          name: `@soloclaw/${currentExtensionId}`,
           version: "2026.4.1",
           openclaw: {
             extensions: ["./index.ts"],

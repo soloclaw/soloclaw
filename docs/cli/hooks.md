@@ -237,7 +237,7 @@ openclaw plugins install ./my-hook-pack
 openclaw plugins install ./my-hook-pack.zip
 
 # NPM package
-openclaw plugins install @openclaw/my-hook-pack
+openclaw plugins install @soloclaw/my-hook-pack
 
 # Link a local directory without copying
 openclaw plugins install -l ./my-hook-pack

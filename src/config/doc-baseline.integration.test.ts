@@ -87,7 +87,7 @@ describe("config doc baseline integration", () => {
       label: "Matrix",
       help: "open protocol; install the plugin to enable.",
     });
-    expect(byPath.get("channels.msteams")?.label).not.toContain("@openclaw/");
+    expect(byPath.get("channels.msteams")?.label).not.toContain("@soloclaw/");
     expect(byPath.get("channels.matrix")?.help).not.toContain("homeserver");
   });
 

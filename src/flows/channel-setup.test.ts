@@ -31,7 +31,7 @@ function makeCatalogEntry(
     pluginId: overrides.pluginId ?? id,
     origin: overrides.origin,
     meta: makeMeta(id, label, overrides.meta),
-    install: overrides.install ?? { npmSpec: `@openclaw/${id}` },
+    install: overrides.install ?? { npmSpec: `@soloclaw/${id}` },
   };
 }
 
@@ -191,7 +191,7 @@ describe("setupChannels workspace shadow exclusion", () => {
     listTrustedChannelPluginCatalogEntries.mockReturnValue([
       {
         id: "telegram",
-        pluginId: "@openclaw/telegram-plugin",
+        pluginId: "@soloclaw/telegram-plugin",
         origin: "bundled",
       },
     ]);
@@ -235,7 +235,7 @@ describe("setupChannels workspace shadow exclusion", () => {
     expect(loadChannelSetupPluginRegistrySnapshotForChannel).toHaveBeenCalledWith(
       expect.objectContaining({
         channel: "telegram",
-        pluginId: "@openclaw/telegram-plugin",
+        pluginId: "@soloclaw/telegram-plugin",
         workspaceDir: "/tmp/openclaw-workspace",
       }),
     );

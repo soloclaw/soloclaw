@@ -279,11 +279,11 @@ describe("plugin-sdk root alias", () => {
     expect((lazyModule.moduleExports.slowHelper as () => string)()).toBe("loaded");
     expect(lazyModule.createJitiOptions.at(-1)?.alias).toMatchObject({
       "openclaw/plugin-sdk": rootAliasPath,
-      "@openclaw/plugin-sdk": rootAliasPath,
+      "@soloclaw/plugin-sdk": rootAliasPath,
       "openclaw/plugin-sdk/group-access": expect.stringContaining(
         path.join("src", "plugin-sdk", "group-access.ts"),
       ),
-      "@openclaw/plugin-sdk/group-access": expect.stringContaining(
+      "@soloclaw/plugin-sdk/group-access": expect.stringContaining(
         path.join("src", "plugin-sdk", "group-access.ts"),
       ),
     });
@@ -308,13 +308,13 @@ describe("plugin-sdk root alias", () => {
     );
     expect(aliasKeys).toEqual([
       "openclaw/plugin-sdk/alpha",
-      "@openclaw/plugin-sdk/alpha",
+      "@soloclaw/plugin-sdk/alpha",
       "openclaw/plugin-sdk/group-access",
-      "@openclaw/plugin-sdk/group-access",
+      "@soloclaw/plugin-sdk/group-access",
       "openclaw/plugin-sdk/zeta",
-      "@openclaw/plugin-sdk/zeta",
+      "@soloclaw/plugin-sdk/zeta",
       "openclaw/plugin-sdk",
-      "@openclaw/plugin-sdk",
+      "@soloclaw/plugin-sdk",
     ]);
   });
 
@@ -334,7 +334,7 @@ describe("plugin-sdk root alias", () => {
     expect(aliasMap["openclaw/plugin-sdk/qa-lab"]).toBe(
       path.join(packageRoot, "src", "plugin-sdk", "qa-lab.ts"),
     );
-    expect(aliasMap["@openclaw/plugin-sdk/qa-lab"]).toBe(
+    expect(aliasMap["@soloclaw/plugin-sdk/qa-lab"]).toBe(
       path.join(packageRoot, "src", "plugin-sdk", "qa-lab.ts"),
     );
     expect(aliasMap).not.toHaveProperty("openclaw/plugin-sdk/../escape");
@@ -361,7 +361,7 @@ describe("plugin-sdk root alias", () => {
         "plugin-sdk",
         "channel-runtime.mts",
       ),
-      "@openclaw/plugin-sdk/channel-runtime": path.join(
+      "@soloclaw/plugin-sdk/channel-runtime": path.join(
         packageRoot,
         "src",
         "plugin-sdk",

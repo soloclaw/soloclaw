@@ -68,7 +68,7 @@ function writeDiscoveredChannelPlugin(params: {
     "utf8",
   );
   fs.writeFileSync(
-    path.join(pluginDir, "openclaw.plugin.json"),
+    path.join(pluginDir, "soloclaw.plugin.json"),
     JSON.stringify({
       id: params.pluginId,
       configSchema: {},
@@ -127,7 +127,7 @@ export function describeChannelPluginCatalogEntriesContract() {
           writeCatalogFile(
             catalogPath,
             createCatalogEntry({
-              packageName: "@openclaw/demo-channel",
+              packageName: "@soloclaw/demo-channel",
               channelId: "demo-channel",
               label: "Demo Channel",
               blurb: "Demo entry",
@@ -227,7 +227,7 @@ export function describeChannelPluginCatalogPathResolutionContract() {
           writeCatalogFile(
             catalogPath,
             createCatalogEntry({
-              packageName: "@openclaw/env-demo-channel",
+              packageName: "@soloclaw/env-demo-channel",
               channelId: "env-demo-channel",
               label: "Env Demo Channel",
               blurb: "Env demo entry",
@@ -254,7 +254,7 @@ export function describeChannelPluginCatalogPathResolutionContract() {
           writeCatalogFile(
             catalogPath,
             createCatalogEntry({
-              packageName: "@openclaw/default-env-demo",
+              packageName: "@soloclaw/default-env-demo",
               channelId: "default-env-demo",
               label: "Default Env Demo",
               blurb: "Default env demo entry",

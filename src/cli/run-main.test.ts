@@ -19,7 +19,7 @@ const memoryWikiCommandAliasRegistry: PluginManifestRegistry = {
       origin: "bundled",
       rootDir: "/tmp/memory-wiki",
       source: "bundled",
-      manifestPath: "/tmp/memory-wiki/openclaw.plugin.json",
+      manifestPath: "/tmp/memory-wiki/soloclaw.plugin.json",
       commandAliases: [{ name: "wiki" }],
     },
   ],

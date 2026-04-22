@@ -46,7 +46,7 @@ function seedChannelPkg(
   opts: { id: string; docsPath: string; label?: string; blurb?: string },
 ): void {
   writeJsonFile(pkgJsonPath, {
-    name: `@openclaw/${opts.id}`,
+    name: `@soloclaw/${opts.id}`,
     openclaw: {
       channel: {
         id: opts.id,
@@ -96,7 +96,7 @@ describe("listBundledChannelCatalogEntries", () => {
     writeJsonFile(path.join(root, "dist", "channel-catalog.json"), {
       entries: [
         {
-          name: "@openclaw/fallback",
+          name: "@soloclaw/fallback",
           openclaw: {
             channel: {
               id: "fallback-channel",
@@ -125,7 +125,7 @@ describe("listBundledChannelCatalogEntries", () => {
     writeJsonFile(path.join(root, "dist", "channel-catalog.json"), {
       entries: [
         {
-          name: "@openclaw/fallback",
+          name: "@soloclaw/fallback",
           openclaw: {
             channel: {
               id: "fallback-channel",

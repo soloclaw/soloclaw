@@ -1,8 +1,8 @@
 export type {
   DiscordInteractiveHandlerContext,
   DiscordInteractiveHandlerRegistration,
-} from "@openclaw/discord/contract-api.js";
+} from "@soloclaw/discord/contract-api.js";
 export type {
   TelegramInteractiveHandlerContext,
   TelegramInteractiveHandlerRegistration,
-} from "@openclaw/telegram/contract-api.js";
+} from "@soloclaw/telegram/contract-api.js";

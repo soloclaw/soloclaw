@@ -72,7 +72,7 @@ const DYNAMIC_ARCHIVE_TEMPLATE_PRESETS = [
     outName: "bad.tgz",
     withDistIndex: false,
     packageJson: {
-      name: "@openclaw/nope",
+      name: "@soloclaw/nope",
       version: "0.0.1",
     } as Record<string, unknown>,
   },
@@ -239,7 +239,7 @@ function setupManifestInstallFixture(params: { manifestId: string; packageName?:
     fs.writeFileSync(packageJsonPath, JSON.stringify(manifest), "utf-8");
   }
   fs.writeFileSync(
-    path.join(pluginDir, "openclaw.plugin.json"),
+    path.join(pluginDir, "soloclaw.plugin.json"),
     JSON.stringify({
       id: params.manifestId,
       configSchema: { type: "object", properties: {} },
@@ -370,7 +370,7 @@ function setupDualFormatInstallFixture(params: { bundleFormat: "codex" | "claude
   fs.writeFileSync(
     path.join(pluginDir, "package.json"),
     JSON.stringify({
-      name: "@openclaw/native-dual",
+      name: "@soloclaw/native-dual",
       version: "0.0.1",
       openclaw: { extensions: ["./dist/index.js"] },
       dependencies: { "left-pad": "1.3.0" },
@@ -378,7 +378,7 @@ function setupDualFormatInstallFixture(params: { bundleFormat: "codex" | "claude
     "utf-8",
   );
   fs.writeFileSync(
-    path.join(pluginDir, "openclaw.plugin.json"),
+    path.join(pluginDir, "soloclaw.plugin.json"),
     JSON.stringify({
       id: "native-dual",
       configSchema: { type: "object", properties: {} },
@@ -510,7 +510,7 @@ beforeAll(async () => {
   fs.writeFileSync(
     path.join(installPluginFromDirTemplateDir, "package.json"),
     JSON.stringify({
-      name: "@openclaw/test-plugin",
+      name: "@soloclaw/test-plugin",
       version: "0.0.1",
       openclaw: { extensions: ["./dist/index.js"] },
       dependencies: { "left-pad": "1.3.0" },
@@ -528,7 +528,7 @@ beforeAll(async () => {
   fs.writeFileSync(
     path.join(manifestInstallTemplateDir, "package.json"),
     JSON.stringify({
-      name: "@openclaw/cognee-openclaw",
+      name: "@soloclaw/cognee-openclaw",
       version: "0.0.1",
       openclaw: { extensions: ["./dist/index.js"] },
     }),
@@ -540,7 +540,7 @@ beforeAll(async () => {
     "utf-8",
   );
   fs.writeFileSync(
-    path.join(manifestInstallTemplateDir, "openclaw.plugin.json"),
+    path.join(manifestInstallTemplateDir, "soloclaw.plugin.json"),
     JSON.stringify({
       id: "manifest-template",
       configSchema: { type: "object", properties: {} },
@@ -589,7 +589,7 @@ describe("installPluginFromArchive", () => {
       archivePath: archiveV1,
       extensionsDir,
     });
-    expectSuccessfulArchiveInstall({ result: first, stateDir, pluginId: "@openclaw/voice-call" });
+    expectSuccessfulArchiveInstall({ result: first, stateDir, pluginId: "@soloclaw/voice-call" });
 
     const duplicate = await installPluginFromArchive({
       archivePath: archiveV1,
@@ -628,7 +628,7 @@ describe("installPluginFromArchive", () => {
       archivePath,
       extensionsDir,
     });
-    expectSuccessfulArchiveInstall({ result, stateDir, pluginId: "@openclaw/zipper" });
+    expectSuccessfulArchiveInstall({ result, stateDir, pluginId: "@soloclaw/zipper" });
   });
 
   it("allows archive installs with dangerous code patterns when forced unsafe install is set", async () => {
@@ -666,7 +666,7 @@ describe("installPluginFromArchive", () => {
   it("installs flat-root plugin archives from ClawHub-style downloads", async () => {
     const result = await installArchivePackageAndReturnResult({
       packageJson: {
-        name: "@openclaw/rootless",
+        name: "@soloclaw/rootless",
         version: "0.0.1",
         openclaw: { extensions: ["./dist/index.js"] },
       },
@@ -694,7 +694,7 @@ describe("installPluginFromArchive", () => {
 
   it("rejects packages without openclaw.extensions", async () => {
     const result = await installArchivePackageAndReturnResult({
-      packageJson: { name: "@openclaw/nope", version: "0.0.1" },
+      packageJson: { name: "@soloclaw/nope", version: "0.0.1" },
       outName: "bad.tgz",
     });
     expect(result.ok).toBe(false);
@@ -710,13 +710,13 @@ describe("installPluginFromArchive", () => {
     fs.writeFileSync(
       path.join(pluginDir, "package.json"),
       JSON.stringify({
-        name: "@openclaw/legacy-entry-fallback",
+        name: "@soloclaw/legacy-entry-fallback",
         version: "0.0.1",
       }),
       "utf-8",
     );
     fs.writeFileSync(
-      path.join(pluginDir, "openclaw.plugin.json"),
+      path.join(pluginDir, "soloclaw.plugin.json"),
       JSON.stringify({
         id: "legacy-entry-fallback",
         configSchema: { type: "object", properties: {} },
@@ -1435,7 +1435,7 @@ describe("installPluginFromArchive", () => {
       logger: { warn: vi.fn() },
       packageDir: pluginDir,
       pluginId: "qa-matrix",
-      packageName: "@openclaw/qa-matrix",
+      packageName: "@soloclaw/qa-matrix",
       manifestId: "qa-matrix",
     });
 
@@ -2182,7 +2182,7 @@ describe("installPluginFromDir", () => {
     },
   );
 
-  it("uses openclaw.plugin.json id as install key when it differs from package name", async () => {
+  it("uses soloclaw.plugin.json id as install key when it differs from package name", async () => {
     const { pluginDir, extensionsDir } = setupManifestInstallFixture({
       manifestId: "memory-cognee",
     });
@@ -2198,7 +2198,7 @@ describe("installPluginFromDir", () => {
     expect(
       infoMessages.some((msg) =>
         msg.includes(
-          'Plugin manifest id "memory-cognee" differs from npm package name "@openclaw/cognee-openclaw"',
+          'Plugin manifest id "memory-cognee" differs from npm package name "@soloclaw/cognee-openclaw"',
         ),
       ),
     ).toBe(true);
@@ -2207,7 +2207,7 @@ describe("installPluginFromDir", () => {
   it("does not warn when a scoped npm package name matches the manifest id", async () => {
     const { pluginDir, extensionsDir } = setupManifestInstallFixture({
       manifestId: "matrix",
-      packageName: "@openclaw/matrix",
+      packageName: "@soloclaw/matrix",
     });
 
     const infoMessages: string[] = [];
@@ -2237,7 +2237,7 @@ describe("installPluginFromDir", () => {
     {
       name: "package name keeps scoped plugin id by default",
       setup: () => setupInstallPluginFromDirFixture(),
-      expectedPluginId: "@openclaw/test-plugin",
+      expectedPluginId: "@soloclaw/test-plugin",
       install: (pluginDir: string, extensionsDir: string) =>
         installPluginFromDir({
           dirPath: pluginDir,
@@ -2247,7 +2247,7 @@ describe("installPluginFromDir", () => {
     {
       name: "unscoped expectedPluginId resolves to scoped install id",
       setup: () => setupInstallPluginFromDirFixture(),
-      expectedPluginId: "@openclaw/test-plugin",
+      expectedPluginId: "@soloclaw/test-plugin",
       install: (pluginDir: string, extensionsDir: string) =>
         installPluginFromDir({
           dirPath: pluginDir,

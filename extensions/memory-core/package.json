@@ -1,22 +1,22 @@
 {
-  "name": "@openclaw/memory-core",
+  "name": "@soloclaw/memory-core",
   "version": "2026.4.16",
   "private": true,
   "description": "OpenClaw core memory search plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*",
-    "openclaw": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*",
+    "soloclaw": "workspace:*"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.4.16"
+    "soloclaw": ">=2026.4.16"
   },
   "peerDependenciesMeta": {
-    "openclaw": {
+    "soloclaw": {
       "optional": true
     }
   },
-  "openclaw": {
+  "soloclaw": {
     "extensions": [
       "./index.ts"
     ]

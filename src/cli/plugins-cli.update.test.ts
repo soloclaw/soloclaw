@@ -172,7 +172,7 @@ describe("plugins cli update", () => {
         installs: {
           alpha: {
             source: "npm",
-            spec: "@openclaw/alpha@1.0.0",
+            spec: "@soloclaw/alpha@1.0.0",
           },
         },
       },
@@ -182,7 +182,7 @@ describe("plugins cli update", () => {
         installs: {
           alpha: {
             source: "npm",
-            spec: "@openclaw/alpha@1.1.0",
+            spec: "@soloclaw/alpha@1.1.0",
           },
         },
       },

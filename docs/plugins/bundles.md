@@ -243,7 +243,7 @@ These are recognized and shown in diagnostics, but OpenClaw does not run them:
 
 OpenClaw checks for native plugin format first:
 
-1. `openclaw.plugin.json` or valid `package.json` with `openclaw.extensions` — treated as **native plugin**
+1. `soloclaw.plugin.json` or valid `package.json` with `openclaw.extensions` — treated as **native plugin**
 2. Bundle markers (`.codex-plugin/`, `.claude-plugin/`, or default Claude/Cursor layout) — treated as **bundle**
 
 If a directory contains both, OpenClaw uses the native path. This prevents

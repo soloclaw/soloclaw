@@ -1,8 +1,8 @@
 import { resolveRelativeBundledPluginPublicModuleId } from "../../../src/test-utils/bundled-plugin-public-surface.js";
 
 type DiscordSecurityAuditSurface =
-  typeof import("@openclaw/discord/security-audit-contract-api.js");
-type TelegramSecuritySurface = typeof import("@openclaw/telegram/security-audit-contract-api.js");
+  typeof import("@soloclaw/discord/security-audit-contract-api.js");
+type TelegramSecuritySurface = typeof import("@soloclaw/telegram/security-audit-contract-api.js");
 
 const discordSecurityAuditModuleId = resolveRelativeBundledPluginPublicModuleId({
   fromModuleUrl: import.meta.url,

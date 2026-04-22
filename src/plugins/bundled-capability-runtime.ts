@@ -53,7 +53,7 @@ export function buildVitestCapabilityShimAliasMap(): Record<string, string> {
       const targetPath = fileURLToPath(target);
       return [
         [`openclaw/plugin-sdk/${subpath}`, targetPath],
-        [`@openclaw/plugin-sdk/${subpath}`, targetPath],
+        [`@soloclaw/plugin-sdk/${subpath}`, targetPath],
       ];
     }),
   );
@@ -70,7 +70,7 @@ function applyVitestCapabilityAliasOverrides(params: {
 
   const {
     ["openclaw/plugin-sdk"]: _ignoredLegacyRootAlias,
-    ["@openclaw/plugin-sdk"]: _ignoredScopedRootAlias,
+    ["@soloclaw/plugin-sdk"]: _ignoredScopedRootAlias,
     ...scopedAliasMap
   } = params.aliasMap;
   return {
