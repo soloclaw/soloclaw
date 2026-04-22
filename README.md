@@ -91,7 +91,7 @@ No menus, no config files. Just ask.
 - Web search — SearXNG (self-hosted, Docker)
 - Browser — agent-controlled Chromium for reading web pages
 - Channels — Telegram, Discord built-in
-- Model providers — Ollama, OpenAI, Anthropic, and more
+- Model provider — Ollama (local, free)
 
 **Tools** (`src/agents/`) — built-in APIs the model can call directly. Always available, no installation needed.
 - bash — run shell commands
@@ -100,7 +100,7 @@ No menus, no config files. Just ask.
 - browser — open and read web pages
 
 **Skills** (`skills/`) — lightweight instruction files that teach the model how to use CLI tools for specific tasks. Installed on demand to `~/.soloclaw/workspace/skills/`.
-- 53 bundled templates (weather, github, spotify, apple-notes, etc.)
+- 35 bundled templates (weather, github, spotify, apple-notes, etc.)
 - Install by asking: *"install the weather skill"*
 - Create your own: the `skill-creator` skill lets the AI build new skills
 
@@ -113,6 +113,56 @@ No menus, no config files. Just ask.
 
 **Infrastructure**
 - Always-on LaunchAgent gateway (macOS)
+
+## How It Works
+
+```
+User
+  │
+  ├── CLI (openclaw tui / openclaw agent)
+  │     │
+  │     ▼
+  │   Gateway (always-on background service)
+  │     │
+  │     ├── Plugins (loaded at startup)
+  │     │     ├── ollama → sends prompts to local LLM
+  │     │     ├── browser → manages Chromium
+  │     │     ├── searxng → web search backend
+  │     │     ├── telegram → polls for messages
+  │     │     └── discord → connects via WebSocket
+  │     │
+  │     ├── Tools (registered as callable functions)
+  │     │     ├── bash, read, write, edit (core)
+  │     │     ├── web_search → calls searxng plugin
+  │     │     ├── browser → calls browser plugin
+  │     │     └── cron, sessions, discord actions
+  │     │
+  │     └── Agent Runtime
+  │           ├── Reads AGENTS.md, SOUL.md, skill files
+  │           ├── Sends prompt + tool definitions to LLM
+  │           ├── LLM responds with text or tool calls
+  │           ├── Gateway executes tool calls via plugins
+  │           └── Loop until done
+  │
+  └── Channels (alternative entry points)
+        ├── Telegram message → Gateway → Agent → Telegram
+        └── Discord message → Gateway → Agent → Discord
+```
+
+**Message flow:**
+
+1. You type in the TUI (or send a Telegram/Discord message)
+2. **Gateway** receives the message and creates a session
+3. **Agent Runtime** builds a prompt from workspace files (AGENTS.md, SOUL.md) and skill instructions
+4. **Ollama plugin** sends the prompt to the local LLM
+5. LLM responds — either with text or a tool call (e.g., `web_search("liverpool score")`)
+6. **Gateway** routes the tool call to the right plugin (SearXNG)
+7. **Plugin** executes the work and returns results
+8. Results go back to the LLM for another turn
+9. LLM produces a final text response
+10. **Gateway** sends it back to you
+
+**Key insight:** Plugins provide the infrastructure, tools provide the API surface, skills provide the knowledge, and the LLM orchestrates everything.
 
 ## Using a Different Model
 
