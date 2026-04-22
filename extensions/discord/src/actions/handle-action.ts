@@ -3,12 +3,12 @@ import {
   readNumberParam,
   readStringArrayParam,
   readStringParam,
-} from "openclaw/plugin-sdk/agent-runtime";
-import { readBooleanParam } from "openclaw/plugin-sdk/boolean-param";
-import { resolveReactionMessageId } from "openclaw/plugin-sdk/channel-actions";
-import type { ChannelMessageActionContext } from "openclaw/plugin-sdk/channel-contract";
-import { normalizeInteractiveReply } from "openclaw/plugin-sdk/interactive-runtime";
-import { normalizeOptionalStringifiedId } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/agent-runtime";
+import { readBooleanParam } from "soloclaw/plugin-sdk/boolean-param";
+import { resolveReactionMessageId } from "soloclaw/plugin-sdk/channel-actions";
+import type { ChannelMessageActionContext } from "soloclaw/plugin-sdk/channel-contract";
+import { normalizeInteractiveReply } from "soloclaw/plugin-sdk/interactive-runtime";
+import { normalizeOptionalStringifiedId } from "soloclaw/plugin-sdk/text-runtime";
 import { handleDiscordAction } from "../../action-runtime-api.js";
 import { buildDiscordInteractiveComponents } from "../shared-interactive.js";
 import { resolveDiscordChannelId } from "../targets.js";

@@ -1,31 +1,31 @@
 import type { Message, ReactionTypeEmoji } from "@grammyjs/types";
-import { resolveChannelConfigWrites } from "openclaw/plugin-sdk/channel-config-helpers";
-import { shouldDebounceTextInbound } from "openclaw/plugin-sdk/channel-inbound";
+import { resolveChannelConfigWrites } from "soloclaw/plugin-sdk/channel-config-helpers";
+import { shouldDebounceTextInbound } from "soloclaw/plugin-sdk/channel-inbound";
 import {
   createInboundDebouncer,
   resolveInboundDebounceMs,
-} from "openclaw/plugin-sdk/channel-inbound";
-import { resolveStoredModelOverride } from "openclaw/plugin-sdk/command-auth";
-import { buildCommandsMessagePaginated } from "openclaw/plugin-sdk/command-status";
-import { writeConfigFile } from "openclaw/plugin-sdk/config-runtime";
+} from "soloclaw/plugin-sdk/channel-inbound";
+import { resolveStoredModelOverride } from "soloclaw/plugin-sdk/command-auth";
+import { buildCommandsMessagePaginated } from "soloclaw/plugin-sdk/command-status";
+import { writeConfigFile } from "soloclaw/plugin-sdk/config-runtime";
 import {
   loadSessionStore,
   resolveSessionStoreEntry,
   updateSessionStore,
-} from "openclaw/plugin-sdk/config-runtime";
-import type { DmPolicy } from "openclaw/plugin-sdk/config-runtime";
-import type { TelegramGroupConfig, TelegramTopicConfig } from "openclaw/plugin-sdk/config-runtime";
-import { applyModelOverrideToSessionEntry } from "openclaw/plugin-sdk/config-runtime";
+} from "soloclaw/plugin-sdk/config-runtime";
+import type { DmPolicy } from "soloclaw/plugin-sdk/config-runtime";
+import type { TelegramGroupConfig, TelegramTopicConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { applyModelOverrideToSessionEntry } from "soloclaw/plugin-sdk/config-runtime";
 import {
   buildPluginBindingResolvedText,
   parsePluginBindingApprovalCustomId,
   resolvePluginConversationBindingApproval,
-} from "openclaw/plugin-sdk/conversation-runtime";
-import { parseExecApprovalCommandText } from "openclaw/plugin-sdk/infra-runtime";
-import { formatModelsAvailableHeader } from "openclaw/plugin-sdk/models-provider-runtime";
-import { resolveAgentRoute } from "openclaw/plugin-sdk/routing";
-import { resolveThreadSessionKeys } from "openclaw/plugin-sdk/routing";
-import { danger, logVerbose, warn } from "openclaw/plugin-sdk/runtime-env";
+} from "soloclaw/plugin-sdk/conversation-runtime";
+import { parseExecApprovalCommandText } from "soloclaw/plugin-sdk/infra-runtime";
+import { formatModelsAvailableHeader } from "soloclaw/plugin-sdk/models-provider-runtime";
+import { resolveAgentRoute } from "soloclaw/plugin-sdk/routing";
+import { resolveThreadSessionKeys } from "soloclaw/plugin-sdk/routing";
+import { danger, logVerbose, warn } from "soloclaw/plugin-sdk/runtime-env";
 import { resolveTelegramMediaRuntimeOptions } from "./accounts.js";
 import { withTelegramApiErrorLogging } from "./api-logging.js";
 import {

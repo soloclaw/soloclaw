@@ -25,19 +25,19 @@ reference for **what to import** and **what you can register**.
 Always import from a specific subpath:
 
 ```typescript
-import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
-import { defineChannelPluginEntry } from "openclaw/plugin-sdk/channel-core";
+import { definePluginEntry } from "soloclaw/plugin-sdk/plugin-entry";
+import { defineChannelPluginEntry } from "soloclaw/plugin-sdk/channel-core";
 ```
 
 Each subpath is a small, self-contained module. This keeps startup fast and
 prevents circular dependency issues. For channel-specific entry/build helpers,
-prefer `openclaw/plugin-sdk/channel-core`; keep `openclaw/plugin-sdk/core` for
+prefer `soloclaw/plugin-sdk/channel-core`; keep `soloclaw/plugin-sdk/core` for
 the broader umbrella surface and shared helpers such as
 `buildChannelConfigSchema`.
 
 Do not add or depend on provider-named convenience seams such as
-`openclaw/plugin-sdk/slack`, `openclaw/plugin-sdk/discord`,
-`openclaw/plugin-sdk/signal`, `openclaw/plugin-sdk/whatsapp`, or
+`soloclaw/plugin-sdk/slack`, `soloclaw/plugin-sdk/discord`,
+`soloclaw/plugin-sdk/signal`, `soloclaw/plugin-sdk/whatsapp`, or
 channel-branded helper seams. Bundled plugins should compose generic
 SDK subpaths inside their own `api.ts` or `runtime-api.ts` barrels, and core
 should either use those plugin-local barrels or add a narrow generic SDK
@@ -423,7 +423,7 @@ AI CLI backend such as `codex-cli`.
 - `registerMemoryCapability` is the preferred exclusive memory-plugin API.
 - `registerMemoryCapability` may also expose `publicArtifacts.listArtifacts(...)`
   so companion plugins can consume exported memory artifacts through
-  `openclaw/plugin-sdk/memory-host-core` instead of reaching into a specific
+  `soloclaw/plugin-sdk/memory-host-core` instead of reaching into a specific
   memory plugin's private layout.
 - `registerMemoryPromptSection`, `registerMemoryFlushPlan`, and
   `registerMemoryRuntime` are legacy-compatible exclusive memory-plugin APIs.
@@ -481,7 +481,7 @@ my-plugin/
 ```
 
 <Warning>
-  Never import your own plugin through `openclaw/plugin-sdk/<your-plugin>`
+  Never import your own plugin through `soloclaw/plugin-sdk/<your-plugin>`
   from production code. Route internal imports through `./api.ts` or
   `./runtime-api.ts`. The SDK path is the external contract only.
 </Warning>
@@ -506,9 +506,9 @@ Other current bundled examples:
   onboarding/config helpers
 
 <Warning>
-  Extension production code should also avoid `openclaw/plugin-sdk/<other-plugin>`
+  Extension production code should also avoid `soloclaw/plugin-sdk/<other-plugin>`
   imports. If a helper is truly shared, promote it to a neutral SDK subpath
-  such as `openclaw/plugin-sdk/speech`, `.../provider-model-shared`, or another
+  such as `soloclaw/plugin-sdk/speech`, `.../provider-model-shared`, or another
   capability-oriented surface instead of coupling two plugins together.
 </Warning>
 

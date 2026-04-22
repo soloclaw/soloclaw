@@ -7,14 +7,14 @@ import {
   resolveAgentDir,
   resolveAgentEffectiveModelPrimary,
   resolveAgentWorkspaceDir,
-} from "openclaw/plugin-sdk/agent-runtime";
+} from "soloclaw/plugin-sdk/agent-runtime";
 import {
   resolveSessionStoreEntry,
   updateSessionStore,
   type OpenClawConfig,
-} from "openclaw/plugin-sdk/config-runtime";
-import { definePluginEntry, type OpenClawPluginApi } from "openclaw/plugin-sdk/plugin-entry";
-import { resolvePreferredOpenClawTmpDir } from "openclaw/plugin-sdk/temp-path";
+} from "soloclaw/plugin-sdk/config-runtime";
+import { definePluginEntry, type OpenClawPluginApi } from "soloclaw/plugin-sdk/plugin-entry";
+import { resolvePreferredOpenClawTmpDir } from "soloclaw/plugin-sdk/temp-path";
 
 const DEFAULT_TIMEOUT_MS = 15_000;
 const DEFAULT_AGENT_ID = "main";

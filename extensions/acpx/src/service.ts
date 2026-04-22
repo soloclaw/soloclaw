@@ -1,5 +1,5 @@
 import fs from "node:fs/promises";
-import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
 import type {
   AcpRuntime,
   OpenClawPluginService,

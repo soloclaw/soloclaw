@@ -1,18 +1,18 @@
-import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
 import {
   jsonResult,
   readNumberParam,
   readStringParam,
   type OpenClawConfig,
-} from "openclaw/plugin-sdk/memory-core-host-runtime-core";
+} from "soloclaw/plugin-sdk/memory-core-host-runtime-core";
 import type {
   MemorySearchResult,
   MemorySearchRuntimeDebug,
-} from "openclaw/plugin-sdk/memory-core-host-runtime-files";
+} from "soloclaw/plugin-sdk/memory-core-host-runtime-files";
 import {
   resolveMemoryCorePluginConfig,
   resolveMemoryDeepDreamingConfig,
-} from "openclaw/plugin-sdk/memory-core-host-status";
+} from "soloclaw/plugin-sdk/memory-core-host-status";
 import { recordShortTermRecalls } from "./short-term-promotion.js";
 import {
   clampResultsByInjectedChars,

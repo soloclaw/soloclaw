@@ -3,46 +3,46 @@ import {
   EmbeddedBlockChunker,
   resolveAckReaction,
   resolveHumanDelayConfig,
-} from "openclaw/plugin-sdk/agent-runtime";
+} from "soloclaw/plugin-sdk/agent-runtime";
 import {
   createStatusReactionController,
   DEFAULT_TIMING,
   logAckFailure,
   logTypingFailure,
   shouldAckReaction as shouldAckReactionGate,
-} from "openclaw/plugin-sdk/channel-feedback";
+} from "soloclaw/plugin-sdk/channel-feedback";
 import {
   formatInboundEnvelope,
   resolveEnvelopeFormatOptions,
-} from "openclaw/plugin-sdk/channel-inbound";
-import { createChannelReplyPipeline } from "openclaw/plugin-sdk/channel-reply-pipeline";
-import { resolveChannelStreamingBlockEnabled } from "openclaw/plugin-sdk/channel-streaming";
+} from "soloclaw/plugin-sdk/channel-inbound";
+import { createChannelReplyPipeline } from "soloclaw/plugin-sdk/channel-reply-pipeline";
+import { resolveChannelStreamingBlockEnabled } from "soloclaw/plugin-sdk/channel-streaming";
 import {
   isDangerousNameMatchingEnabled,
   readSessionUpdatedAt,
   resolveChannelContextVisibilityMode,
   resolveMarkdownTableMode,
   resolveStorePath,
-} from "openclaw/plugin-sdk/config-runtime";
-import { recordInboundSession } from "openclaw/plugin-sdk/conversation-runtime";
-import { getAgentScopedMediaLocalRoots } from "openclaw/plugin-sdk/media-runtime";
-import { resolveChunkMode } from "openclaw/plugin-sdk/reply-chunking";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-dispatch-runtime";
-import { finalizeInboundContext } from "openclaw/plugin-sdk/reply-dispatch-runtime";
+} from "soloclaw/plugin-sdk/config-runtime";
+import { recordInboundSession } from "soloclaw/plugin-sdk/conversation-runtime";
+import { getAgentScopedMediaLocalRoots } from "soloclaw/plugin-sdk/media-runtime";
+import { resolveChunkMode } from "soloclaw/plugin-sdk/reply-chunking";
+import type { ReplyPayload } from "soloclaw/plugin-sdk/reply-dispatch-runtime";
+import { finalizeInboundContext } from "soloclaw/plugin-sdk/reply-dispatch-runtime";
 import {
   buildPendingHistoryContextFromMap,
   clearHistoryEntriesIfEnabled,
-} from "openclaw/plugin-sdk/reply-history";
-import { resolveSendableOutboundReplyParts } from "openclaw/plugin-sdk/reply-payload";
-import { buildAgentSessionKey, resolveThreadSessionKeys } from "openclaw/plugin-sdk/routing";
-import { danger, logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { evaluateSupplementalContextVisibility } from "openclaw/plugin-sdk/security-runtime";
+} from "soloclaw/plugin-sdk/reply-history";
+import { resolveSendableOutboundReplyParts } from "soloclaw/plugin-sdk/reply-payload";
+import { buildAgentSessionKey, resolveThreadSessionKeys } from "soloclaw/plugin-sdk/routing";
+import { danger, logVerbose, shouldLogVerbose } from "soloclaw/plugin-sdk/runtime-env";
+import { evaluateSupplementalContextVisibility } from "soloclaw/plugin-sdk/security-runtime";
 import {
   convertMarkdownTables,
   stripInlineDirectiveTagsForDelivery,
   stripReasoningTagsFromText,
   truncateUtf16Safe,
-} from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/text-runtime";
 import { resolveDiscordMaxLinesPerMessage } from "../accounts.js";
 import { chunkDiscordTextWithMode } from "../chunk.js";
 import { createDiscordRestClient } from "../client.js";
@@ -86,10 +86,10 @@ function sleep(ms: number): Promise<void> {
 }
 
 const DISCORD_TYPING_MAX_DURATION_MS = 20 * 60_000;
-let replyRuntimePromise: Promise<typeof import("openclaw/plugin-sdk/reply-runtime")> | undefined;
+let replyRuntimePromise: Promise<typeof import("soloclaw/plugin-sdk/reply-runtime")> | undefined;
 
 async function loadReplyRuntime() {
-  replyRuntimePromise ??= import("openclaw/plugin-sdk/reply-runtime");
+  replyRuntimePromise ??= import("soloclaw/plugin-sdk/reply-runtime");
   return await replyRuntimePromise;
 }
 

@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { readAcpSessionEntry } from "openclaw/plugin-sdk/acp-runtime";
-import { loadConfig } from "openclaw/plugin-sdk/config-runtime";
+import { readAcpSessionEntry } from "soloclaw/plugin-sdk/acp-runtime";
+import { loadConfig } from "soloclaw/plugin-sdk/config-runtime";
 import {
   formatThreadBindingDurationLabel,
   registerSessionBindingAdapter,
@@ -12,13 +12,13 @@ import {
   type BindingTargetKind,
   type SessionBindingAdapter,
   type SessionBindingRecord,
-} from "openclaw/plugin-sdk/conversation-runtime";
-import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
-import { writeJsonFileAtomically } from "openclaw/plugin-sdk/json-store";
-import { normalizeAccountId, isAcpSessionKey } from "openclaw/plugin-sdk/routing";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { resolveStateDir } from "openclaw/plugin-sdk/state-paths";
-import { normalizeOptionalString } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/conversation-runtime";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
+import { writeJsonFileAtomically } from "soloclaw/plugin-sdk/json-store";
+import { normalizeAccountId, isAcpSessionKey } from "soloclaw/plugin-sdk/routing";
+import { logVerbose } from "soloclaw/plugin-sdk/runtime-env";
+import { resolveStateDir } from "soloclaw/plugin-sdk/state-paths";
+import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { resolveTelegramToken } from "./token.js";
 
 const DEFAULT_THREAD_BINDING_IDLE_TIMEOUT_MS = 24 * 60 * 60 * 1000;

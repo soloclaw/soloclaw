@@ -18,11 +18,11 @@ const { getActiveMemorySearchManagerMock, resolveDefaultAgentIdMock, resolveSess
     ),
   }));
 
-vi.mock("openclaw/plugin-sdk/memory-host-search", () => ({
+vi.mock("soloclaw/plugin-sdk/memory-host-search", () => ({
   getActiveMemorySearchManager: getActiveMemorySearchManagerMock,
 }));
 
-vi.mock("openclaw/plugin-sdk/memory-host-core", () => ({
+vi.mock("soloclaw/plugin-sdk/memory-host-core", () => ({
   resolveDefaultAgentId: resolveDefaultAgentIdMock,
   resolveSessionAgentId: resolveSessionAgentIdMock,
 }));

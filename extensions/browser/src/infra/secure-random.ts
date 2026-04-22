@@ -1,1 +1,1 @@
-export { generateSecureToken } from "openclaw/plugin-sdk/browser-security-runtime";
+export { generateSecureToken } from "soloclaw/plugin-sdk/browser-security-runtime";

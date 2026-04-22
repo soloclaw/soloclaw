@@ -42,14 +42,14 @@ vi.mock("@buape/carbon/dist/src/plugins/gateway/index.js", () => ({
   GatewayPlugin,
 }));
 
-vi.mock("openclaw/plugin-sdk/proxy-capture", () => ({
+vi.mock("soloclaw/plugin-sdk/proxy-capture", () => ({
   captureHttpExchange: vi.fn(),
   captureWsEvent: vi.fn(),
   resolveEffectiveDebugProxyUrl: () => undefined,
   resolveDebugProxySettings: () => ({ enabled: false }),
 }));
 
-vi.mock("openclaw/plugin-sdk/runtime-env", () => ({
+vi.mock("soloclaw/plugin-sdk/runtime-env", () => ({
   danger: (value: string) => value,
 }));
 

@@ -14,13 +14,13 @@ import type {
   ChannelStatusIssue as ContractChannelStatusIssue,
   ChannelThreadingContext as ContractChannelThreadingContext,
   ChannelThreadingToolContext as ContractChannelThreadingToolContext,
-} from "openclaw/plugin-sdk/channel-contract";
+} from "soloclaw/plugin-sdk/channel-contract";
 import type {
   ChannelMessageActionContext as CoreChannelMessageActionContext,
   OpenClawPluginApi as CoreOpenClawPluginApi,
   PluginRuntime as CorePluginRuntime,
-} from "openclaw/plugin-sdk/core";
-import * as providerEntrySdk from "openclaw/plugin-sdk/provider-entry";
+} from "soloclaw/plugin-sdk/core";
+import * as providerEntrySdk from "soloclaw/plugin-sdk/provider-entry";
 import { describe, expect, expectTypeOf, it } from "vitest";
 import type { ChannelMessageActionContext } from "../../channels/plugins/types.js";
 import type {
@@ -1094,27 +1094,27 @@ describe("plugin-sdk subpath exports", () => {
   });
 
   it("keeps runtime entry subpaths importable", async () => {
-    const coreSdk = await importResolvedPluginSdkSubpath("openclaw/plugin-sdk/core");
+    const coreSdk = await importResolvedPluginSdkSubpath("soloclaw/plugin-sdk/core");
     const channelActionsSdk = await importResolvedPluginSdkSubpath(
-      "openclaw/plugin-sdk/channel-actions",
+      "soloclaw/plugin-sdk/channel-actions",
     );
     const globalSingletonSdk = await importResolvedPluginSdkSubpath(
-      "openclaw/plugin-sdk/global-singleton",
+      "soloclaw/plugin-sdk/global-singleton",
     );
-    const textRuntimeSdk = await importResolvedPluginSdkSubpath("openclaw/plugin-sdk/text-runtime");
-    const pluginEntrySdk = await importResolvedPluginSdkSubpath("openclaw/plugin-sdk/plugin-entry");
+    const textRuntimeSdk = await importResolvedPluginSdkSubpath("soloclaw/plugin-sdk/text-runtime");
+    const pluginEntrySdk = await importResolvedPluginSdkSubpath("soloclaw/plugin-sdk/plugin-entry");
     const channelLifecycleSdk = await importResolvedPluginSdkSubpath(
-      "openclaw/plugin-sdk/channel-lifecycle",
+      "soloclaw/plugin-sdk/channel-lifecycle",
     );
     const channelPairingSdk = await importResolvedPluginSdkSubpath(
-      "openclaw/plugin-sdk/channel-pairing",
+      "soloclaw/plugin-sdk/channel-pairing",
     );
     const channelReplyPipelineSdk = await importResolvedPluginSdkSubpath(
-      "openclaw/plugin-sdk/channel-reply-pipeline",
+      "soloclaw/plugin-sdk/channel-reply-pipeline",
     );
     const representativeModules = [];
     for (const id of representativeRuntimeSmokeSubpaths) {
-      representativeModules.push(await importResolvedPluginSdkSubpath(`openclaw/plugin-sdk/${id}`));
+      representativeModules.push(await importResolvedPluginSdkSubpath(`soloclaw/plugin-sdk/${id}`));
     }
 
     expect(coreSdk.definePluginEntry).toBe(pluginEntrySdk.definePluginEntry);

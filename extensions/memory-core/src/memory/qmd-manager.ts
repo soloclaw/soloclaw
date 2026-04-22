@@ -5,8 +5,8 @@ import os from "node:os";
 import path from "node:path";
 import readline from "node:readline";
 import chokidar, { type FSWatcher } from "chokidar";
-import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
-import { withFileLock } from "openclaw/plugin-sdk/file-lock";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
+import { withFileLock } from "soloclaw/plugin-sdk/file-lock";
 import {
   createSubsystemLogger,
   resolveMemorySearchSyncConfig,
@@ -15,8 +15,8 @@ import {
   resolveStateDir,
   writeFileWithinRoot,
   type OpenClawConfig,
-} from "openclaw/plugin-sdk/memory-core-host-engine-foundation";
-import { resolveAgentContextLimits } from "openclaw/plugin-sdk/memory-core-host-engine-foundation";
+} from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
+import { resolveAgentContextLimits } from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
 import {
   buildSessionEntry,
   deriveQmdScopeChannel,
@@ -28,7 +28,7 @@ import {
   runCliCommand,
   type QmdQueryResult,
   type SessionFileEntry,
-} from "openclaw/plugin-sdk/memory-core-host-engine-qmd";
+} from "soloclaw/plugin-sdk/memory-core-host-engine-qmd";
 import {
   buildMemoryReadResult,
   buildMemoryReadResultFromSlice,
@@ -47,11 +47,11 @@ import {
   type ResolvedMemoryBackendConfig,
   type ResolvedQmdConfig,
   type ResolvedQmdMcporterConfig,
-} from "openclaw/plugin-sdk/memory-core-host-engine-storage";
+} from "soloclaw/plugin-sdk/memory-core-host-engine-storage";
 import {
   localeLowercasePreservingWhitespace,
   normalizeLowercaseStringOrEmpty,
-} from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/text-runtime";
 import { asRecord } from "../dreaming-shared.js";
 import { resolveQmdCollectionPatternFlags, type QmdCollectionPatternFlag } from "./qmd-compat.js";
 

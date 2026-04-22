@@ -48,10 +48,10 @@ function emitAndClose(
   });
 }
 
-vi.mock("openclaw/plugin-sdk/memory-core-host-engine-foundation", async () => {
+vi.mock("soloclaw/plugin-sdk/memory-core-host-engine-foundation", async () => {
   const actual = await vi.importActual<
-    typeof import("openclaw/plugin-sdk/memory-core-host-engine-foundation")
-  >("openclaw/plugin-sdk/memory-core-host-engine-foundation");
+    typeof import("soloclaw/plugin-sdk/memory-core-host-engine-foundation")
+  >("soloclaw/plugin-sdk/memory-core-host-engine-foundation");
   return {
     ...actual,
     createSubsystemLogger: () => {
@@ -75,8 +75,8 @@ vi.mock("node:child_process", async () => {
 });
 
 import { spawn as mockedSpawn } from "node:child_process";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/memory-core-host-engine-foundation";
-import { resolveMemoryBackendConfig } from "openclaw/plugin-sdk/memory-core-host-engine-storage";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
+import { resolveMemoryBackendConfig } from "soloclaw/plugin-sdk/memory-core-host-engine-storage";
 import { QmdMemoryManager } from "./qmd-manager.js";
 
 const spawnMock = mockedSpawn as unknown as Mock;

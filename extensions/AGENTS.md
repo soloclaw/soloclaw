@@ -24,7 +24,7 @@ third-party plugins see.
 
 ## Boundary Rules
 
-- Extension production code should import from `openclaw/plugin-sdk/*` and its
+- Extension production code should import from `soloclaw/plugin-sdk/*` and its
   own local barrels such as `./api.ts` and `./runtime-api.ts`.
 - Do not import core internals from `src/**`, `src/channels/**`,
   `src/plugin-sdk-internal/**`, or another extension's `src/**`.
@@ -41,7 +41,7 @@ third-party plugins see.
   core just because two providers look similar.
 - Before adding a new provider-local `wrapStreamFn`, `buildReplayPolicy`,
   `normalizeToolSchemas`, `inspectToolSchemas`, or compat patch helper, check
-  whether the same behavior already exists through `openclaw/plugin-sdk/*`.
+  whether the same behavior already exists through `soloclaw/plugin-sdk/*`.
   Reuse shared family helpers first.
 - If two bundled providers share the same replay policy shape, tool-schema
   compat rewrite, payload patch, or stream-wrapper chain, stop copying the

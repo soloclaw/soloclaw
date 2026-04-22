@@ -1,5 +1,5 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { RuntimeEnv } from "soloclaw/plugin-sdk/runtime-env";
 import type { Mock } from "vitest";
 import { expect, vi } from "vitest";
 
@@ -344,9 +344,9 @@ vi.mock("@buape/carbon/voice", () => ({
   VoicePlugin: function VoicePlugin() {},
 }));
 
-vi.mock("openclaw/plugin-sdk/acp-runtime", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/acp-runtime")>(
-    "openclaw/plugin-sdk/acp-runtime",
+vi.mock("soloclaw/plugin-sdk/acp-runtime", async () => {
+  const actual = await vi.importActual<typeof import("soloclaw/plugin-sdk/acp-runtime")>(
+    "soloclaw/plugin-sdk/acp-runtime",
   );
   return {
     ...actual,
@@ -358,9 +358,9 @@ vi.mock("openclaw/plugin-sdk/acp-runtime", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/command-auth", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/command-auth")>(
-    "openclaw/plugin-sdk/command-auth",
+vi.mock("soloclaw/plugin-sdk/command-auth", async () => {
+  const actual = await vi.importActual<typeof import("soloclaw/plugin-sdk/command-auth")>(
+    "soloclaw/plugin-sdk/command-auth",
   );
   return {
     ...actual,
@@ -368,9 +368,9 @@ vi.mock("openclaw/plugin-sdk/command-auth", async () => {
     listSkillCommandsForAgents: listSkillCommandsForAgentsMock,
   };
 });
-vi.mock("openclaw/plugin-sdk/reply-runtime", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/reply-runtime")>(
-    "openclaw/plugin-sdk/reply-runtime",
+vi.mock("soloclaw/plugin-sdk/reply-runtime", async () => {
+  const actual = await vi.importActual<typeof import("soloclaw/plugin-sdk/reply-runtime")>(
+    "soloclaw/plugin-sdk/reply-runtime",
   );
   return {
     ...actual,
@@ -378,9 +378,9 @@ vi.mock("openclaw/plugin-sdk/reply-runtime", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/config-runtime", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/config-runtime")>(
-    "openclaw/plugin-sdk/config-runtime",
+vi.mock("soloclaw/plugin-sdk/config-runtime", async () => {
+  const actual = await vi.importActual<typeof import("soloclaw/plugin-sdk/config-runtime")>(
+    "soloclaw/plugin-sdk/config-runtime",
   );
   return {
     ...actual,
@@ -391,9 +391,9 @@ vi.mock("openclaw/plugin-sdk/config-runtime", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/runtime-env", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/runtime-env")>(
-    "openclaw/plugin-sdk/runtime-env",
+vi.mock("soloclaw/plugin-sdk/runtime-env", async () => {
+  const actual = await vi.importActual<typeof import("soloclaw/plugin-sdk/runtime-env")>(
+    "soloclaw/plugin-sdk/runtime-env",
   );
   return {
     ...actual,
@@ -416,9 +416,9 @@ vi.mock("openclaw/plugin-sdk/runtime-env", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/infra-runtime", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/infra-runtime")>(
-    "openclaw/plugin-sdk/infra-runtime",
+vi.mock("soloclaw/plugin-sdk/infra-runtime", async () => {
+  const actual = await vi.importActual<typeof import("soloclaw/plugin-sdk/infra-runtime")>(
+    "soloclaw/plugin-sdk/infra-runtime",
   );
   return {
     ...actual,

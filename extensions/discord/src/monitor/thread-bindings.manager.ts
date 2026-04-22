@@ -6,14 +6,14 @@ import {
   type BindingTargetKind,
   type SessionBindingAdapter,
   type SessionBindingRecord,
-} from "openclaw/plugin-sdk/conversation-runtime";
-import { normalizeAccountId, resolveAgentIdFromSessionKey } from "openclaw/plugin-sdk/routing";
+} from "soloclaw/plugin-sdk/conversation-runtime";
+import { normalizeAccountId, resolveAgentIdFromSessionKey } from "soloclaw/plugin-sdk/routing";
 import {
   getRuntimeConfigSnapshot,
   type OpenClawConfig,
-} from "openclaw/plugin-sdk/runtime-config-snapshot";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { normalizeOptionalString } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/runtime-config-snapshot";
+import { logVerbose } from "soloclaw/plugin-sdk/runtime-env";
+import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { createDiscordRestClient } from "../client.js";
 import {
   createThreadForBinding,

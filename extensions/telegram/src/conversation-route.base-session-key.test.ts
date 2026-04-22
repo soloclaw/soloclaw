@@ -1,5 +1,5 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveThreadSessionKeys } from "openclaw/plugin-sdk/routing";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { resolveThreadSessionKeys } from "soloclaw/plugin-sdk/routing";
 import { describe, expect, it } from "vitest";
 import { resolveTelegramConversationBaseSessionKey } from "./conversation-route.js";
 

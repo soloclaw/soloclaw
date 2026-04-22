@@ -9,22 +9,22 @@ import {
   unlinkSync,
 } from "node:fs";
 import path from "node:path";
-import { normalizeChannelId, type ChannelId } from "openclaw/plugin-sdk/channel-targets";
+import { normalizeChannelId, type ChannelId } from "soloclaw/plugin-sdk/channel-targets";
 import type {
   OpenClawConfig,
   TtsAutoMode,
   TtsConfig,
   TtsModelOverrideConfig,
   TtsProvider,
-} from "openclaw/plugin-sdk/config-runtime";
-import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
-import { redactSensitiveText } from "openclaw/plugin-sdk/logging-core";
+} from "soloclaw/plugin-sdk/config-runtime";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
+import { redactSensitiveText } from "soloclaw/plugin-sdk/logging-core";
 import {
   resolveSendableOutboundReplyParts,
   type ReplyPayload,
-} from "openclaw/plugin-sdk/reply-payload";
-import { isVerbose, logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { resolvePreferredOpenClawTmpDir } from "openclaw/plugin-sdk/sandbox";
+} from "soloclaw/plugin-sdk/reply-payload";
+import { isVerbose, logVerbose } from "soloclaw/plugin-sdk/runtime-env";
+import { resolvePreferredOpenClawTmpDir } from "soloclaw/plugin-sdk/sandbox";
 import {
   normalizeLowercaseStringOrEmpty,
   normalizeOptionalLowercaseString,
@@ -32,7 +32,7 @@ import {
   resolveConfigDir,
   resolveUserPath,
   stripMarkdown,
-} from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/text-runtime";
 import {
   canonicalizeSpeechProviderId,
   getSpeechProvider,

@@ -1,9 +1,9 @@
 import { isIP } from "node:net";
-import { type OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { makeProxyFetch } from "openclaw/plugin-sdk/infra-runtime";
-import { danger } from "openclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/text-runtime";
+import { type OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { makeProxyFetch } from "soloclaw/plugin-sdk/infra-runtime";
+import { danger } from "soloclaw/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "soloclaw/plugin-sdk/runtime-env";
+import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
 import type { ResolvedDiscordAccount } from "./accounts.js";
 
 export function resolveDiscordProxyUrl(

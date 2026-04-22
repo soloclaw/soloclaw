@@ -1,9 +1,9 @@
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openclaw/plugin-sdk/account-id";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "soloclaw/plugin-sdk/account-id";
 import {
   hasConfiguredSecretInput,
   normalizeSecretInputString,
-} from "openclaw/plugin-sdk/secret-input";
-import { normalizeOptionalString } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/secret-input";
+import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import {
   mergeDiscordAccountConfig,
   resolveDefaultDiscordAccountId,

@@ -315,11 +315,11 @@ understanding, image generation, video generation, web fetch, and web search,
 a vendor can own all of its surfaces in one place:
 
 ```ts
-import type { OpenClawPluginDefinition } from "openclaw/plugin-sdk/plugin-entry";
+import type { OpenClawPluginDefinition } from "soloclaw/plugin-sdk/plugin-entry";
 import {
   describeImageWithModel,
   transcribeOpenAiCompatibleAudio,
-} from "openclaw/plugin-sdk/media-understanding";
+} from "soloclaw/plugin-sdk/media-understanding";
 
 const plugin: OpenClawPluginDefinition = {
   id: "exampleai",
@@ -1131,26 +1131,26 @@ Notes:
 
 ## Plugin SDK import paths
 
-Use SDK subpaths instead of the monolithic `openclaw/plugin-sdk` import when
+Use SDK subpaths instead of the monolithic `soloclaw/plugin-sdk` import when
 authoring plugins:
 
-- `openclaw/plugin-sdk/plugin-entry` for plugin registration primitives.
-- `openclaw/plugin-sdk/core` for the generic shared plugin-facing contract.
-- `openclaw/plugin-sdk/config-schema` for the root `soloclaw.json` Zod schema
+- `soloclaw/plugin-sdk/plugin-entry` for plugin registration primitives.
+- `soloclaw/plugin-sdk/core` for the generic shared plugin-facing contract.
+- `soloclaw/plugin-sdk/config-schema` for the root `soloclaw.json` Zod schema
   export (`OpenClawSchema`).
-- Stable channel primitives such as `openclaw/plugin-sdk/channel-setup`,
-  `openclaw/plugin-sdk/setup-runtime`,
-  `openclaw/plugin-sdk/setup-adapter-runtime`,
-  `openclaw/plugin-sdk/setup-tools`,
-  `openclaw/plugin-sdk/channel-pairing`,
-  `openclaw/plugin-sdk/channel-contract`,
-  `openclaw/plugin-sdk/channel-feedback`,
-  `openclaw/plugin-sdk/channel-inbound`,
-  `openclaw/plugin-sdk/channel-lifecycle`,
-  `openclaw/plugin-sdk/channel-reply-pipeline`,
-  `openclaw/plugin-sdk/command-auth`,
-  `openclaw/plugin-sdk/secret-input`, and
-  `openclaw/plugin-sdk/webhook-ingress` for shared setup/auth/reply/webhook
+- Stable channel primitives such as `soloclaw/plugin-sdk/channel-setup`,
+  `soloclaw/plugin-sdk/setup-runtime`,
+  `soloclaw/plugin-sdk/setup-adapter-runtime`,
+  `soloclaw/plugin-sdk/setup-tools`,
+  `soloclaw/plugin-sdk/channel-pairing`,
+  `soloclaw/plugin-sdk/channel-contract`,
+  `soloclaw/plugin-sdk/channel-feedback`,
+  `soloclaw/plugin-sdk/channel-inbound`,
+  `soloclaw/plugin-sdk/channel-lifecycle`,
+  `soloclaw/plugin-sdk/channel-reply-pipeline`,
+  `soloclaw/plugin-sdk/command-auth`,
+  `soloclaw/plugin-sdk/secret-input`, and
+  `soloclaw/plugin-sdk/webhook-ingress` for shared setup/auth/reply/webhook
   wiring. `channel-inbound` is the shared home for debounce, mention matching,
   inbound mention-policy helpers, envelope formatting, and inbound envelope
   context helpers.
@@ -1161,25 +1161,25 @@ authoring plugins:
   `setup-tools` is the small CLI/archive/docs helper seam (`formatCliCommand`,
   `detectBinary`, `extractArchive`, `resolveBrewExecutable`, `formatDocsLink`,
   `CONFIG_DIR`).
-- Domain subpaths such as `openclaw/plugin-sdk/channel-config-helpers`,
-  `openclaw/plugin-sdk/allow-from`,
-  `openclaw/plugin-sdk/channel-config-schema`,
-  `openclaw/plugin-sdk/telegram-command-config`,
-  `openclaw/plugin-sdk/channel-policy`,
-  `openclaw/plugin-sdk/approval-gateway-runtime`,
-  `openclaw/plugin-sdk/approval-handler-adapter-runtime`,
-  `openclaw/plugin-sdk/approval-handler-runtime`,
-  `openclaw/plugin-sdk/approval-runtime`,
-  `openclaw/plugin-sdk/config-runtime`,
-  `openclaw/plugin-sdk/infra-runtime`,
-  `openclaw/plugin-sdk/agent-runtime`,
-  `openclaw/plugin-sdk/lazy-runtime`,
-  `openclaw/plugin-sdk/reply-history`,
-  `openclaw/plugin-sdk/routing`,
-  `openclaw/plugin-sdk/status-helpers`,
-  `openclaw/plugin-sdk/text-runtime`,
-  `openclaw/plugin-sdk/runtime-store`, and
-  `openclaw/plugin-sdk/directory-runtime` for shared runtime/config helpers.
+- Domain subpaths such as `soloclaw/plugin-sdk/channel-config-helpers`,
+  `soloclaw/plugin-sdk/allow-from`,
+  `soloclaw/plugin-sdk/channel-config-schema`,
+  `soloclaw/plugin-sdk/telegram-command-config`,
+  `soloclaw/plugin-sdk/channel-policy`,
+  `soloclaw/plugin-sdk/approval-gateway-runtime`,
+  `soloclaw/plugin-sdk/approval-handler-adapter-runtime`,
+  `soloclaw/plugin-sdk/approval-handler-runtime`,
+  `soloclaw/plugin-sdk/approval-runtime`,
+  `soloclaw/plugin-sdk/config-runtime`,
+  `soloclaw/plugin-sdk/infra-runtime`,
+  `soloclaw/plugin-sdk/agent-runtime`,
+  `soloclaw/plugin-sdk/lazy-runtime`,
+  `soloclaw/plugin-sdk/reply-history`,
+  `soloclaw/plugin-sdk/routing`,
+  `soloclaw/plugin-sdk/status-helpers`,
+  `soloclaw/plugin-sdk/text-runtime`,
+  `soloclaw/plugin-sdk/runtime-store`, and
+  `soloclaw/plugin-sdk/directory-runtime` for shared runtime/config helpers.
   `telegram-command-config` is the narrow public seam for Telegram custom
   command normalization/validation and stays available even if the bundled
   Telegram contract surface is temporarily unavailable.
@@ -1190,12 +1190,12 @@ authoring plugins:
   contract on the plugin. Core then reads approval auth, delivery, render,
   native-routing, and lazy native-handler behavior through that one capability
   instead of mixing approval behavior into unrelated plugin fields.
-- `openclaw/plugin-sdk/channel-runtime` is deprecated and remains only as a
+- `soloclaw/plugin-sdk/channel-runtime` is deprecated and remains only as a
   compatibility shim for older plugins. New code should import the narrower
   generic primitives instead, and repo code should not add new imports of the
   shim.
 - Bundled extension internals remain private. External plugins should use only
-  `openclaw/plugin-sdk/*` subpaths. OpenClaw core/test code may use the repo
+  `soloclaw/plugin-sdk/*` subpaths. OpenClaw core/test code may use the repo
   public entry points under a plugin package root such as `index.js`, `api.js`,
   `runtime-api.js`, `setup-entry.js`, and narrowly scoped files such as
   `login-qr-api.js`. Never import a plugin package's `src/*` from core or from
@@ -1226,20 +1226,20 @@ authoring plugins:
 
 Compatibility note:
 
-- Avoid the root `openclaw/plugin-sdk` barrel for new code.
+- Avoid the root `soloclaw/plugin-sdk` barrel for new code.
 - Prefer the narrow stable primitives first. The newer setup/pairing/reply/
   feedback/contract/inbound/threading/command/secret-input/webhook/infra/
   allowlist/status/message-tool subpaths are the intended contract for new
   bundled and external plugin work.
-  Target parsing/matching belongs on `openclaw/plugin-sdk/channel-targets`.
+  Target parsing/matching belongs on `soloclaw/plugin-sdk/channel-targets`.
   Message action gates and reaction message-id helpers belong on
-  `openclaw/plugin-sdk/channel-actions`.
+  `soloclaw/plugin-sdk/channel-actions`.
 - Bundled extension-specific helper barrels are not stable by default. If a
   helper is only needed by a bundled extension, keep it behind the extension's
   local `api.js` or `runtime-api.js` seam instead of promoting it into
-  `openclaw/plugin-sdk/<extension>`.
+  `soloclaw/plugin-sdk/<extension>`.
 - New shared helper seams should be generic, not channel-branded. Shared target
-  parsing belongs on `openclaw/plugin-sdk/channel-targets`; channel-specific
+  parsing belongs on `soloclaw/plugin-sdk/channel-targets`; channel-specific
   internals stay behind the owning plugin's local `api.js` or `runtime-api.js`
   seam.
 - Capability-specific subpaths such as `image-generation`,
@@ -1253,7 +1253,7 @@ Plugins should own channel-specific `describeMessageTool(...)` schema
 contributions. Keep provider-specific fields in the plugin, not in shared core.
 
 For shared portable schema fragments, reuse the generic helpers exported through
-`openclaw/plugin-sdk/channel-actions`:
+`soloclaw/plugin-sdk/channel-actions`:
 
 - `createMessageToolButtonsSchema()` for button-grid style payloads
 - `createMessageToolCardSchema()` for structured card payloads
@@ -1291,7 +1291,7 @@ Recommended split:
 
 Plugins that derive directory entries from config should keep that logic in the
 plugin and reuse the shared helpers from
-`openclaw/plugin-sdk/directory-runtime`.
+`soloclaw/plugin-sdk/directory-runtime`.
 
 Use this when a channel needs config-backed peers/groups such as:
 
@@ -1529,7 +1529,7 @@ Use this when your plugin needs to replace or extend the default context
 pipeline rather than just add memory search or hooks.
 
 ```ts
-import { buildMemorySystemPromptAddition } from "openclaw/plugin-sdk/core";
+import { buildMemorySystemPromptAddition } from "soloclaw/plugin-sdk/core";
 
 export default function (api) {
   api.registerContextEngine("lossless-claw", () => ({
@@ -1561,7 +1561,7 @@ implemented and delegate it explicitly:
 import {
   buildMemorySystemPromptAddition,
   delegateCompactionToRuntime,
-} from "openclaw/plugin-sdk/core";
+} from "soloclaw/plugin-sdk/core";
 
 export default function (api) {
   api.registerContextEngine("my-memory-engine", () => ({

@@ -1,11 +1,11 @@
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "soloclaw/plugin-sdk/config-runtime";
 import {
   buildOutboundMediaLoadOptions,
   isGifMedia,
   kindFromMime,
   normalizePollInput,
-} from "openclaw/plugin-sdk/media-runtime";
-import type { MockFn } from "openclaw/plugin-sdk/testing";
+} from "soloclaw/plugin-sdk/media-runtime";
+import type { MockFn } from "soloclaw/plugin-sdk/testing";
 import { beforeEach, vi } from "vitest";
 
 const { botApi, botCtorSpy } = vi.hoisted(() => ({
@@ -92,7 +92,7 @@ type TelegramSendTestMocks = {
   imageMetadata: { width: number | undefined; height: number | undefined };
 };
 
-vi.mock("openclaw/plugin-sdk/web-media", () => ({
+vi.mock("soloclaw/plugin-sdk/web-media", () => ({
   loadWebMedia,
 }));
 

@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { BrowserDispatchResponse } from "./routes/dispatcher.js";
 
-vi.mock("openclaw/plugin-sdk/browser-security-runtime", async () => {
+vi.mock("soloclaw/plugin-sdk/browser-security-runtime", async () => {
   const actual = await vi.importActual<
-    typeof import("openclaw/plugin-sdk/browser-security-runtime")
-  >("openclaw/plugin-sdk/browser-security-runtime");
+    typeof import("soloclaw/plugin-sdk/browser-security-runtime")
+  >("soloclaw/plugin-sdk/browser-security-runtime");
   const lookupFn = async (_hostname: string, options?: { all?: boolean }) => {
     const result = { address: "93.184.216.34", family: 4 };
     return options?.all === true ? [result] : result;
@@ -16,9 +16,9 @@ vi.mock("openclaw/plugin-sdk/browser-security-runtime", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/ssrf-runtime", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/ssrf-runtime")>(
-    "openclaw/plugin-sdk/ssrf-runtime",
+vi.mock("soloclaw/plugin-sdk/ssrf-runtime", async () => {
+  const actual = await vi.importActual<typeof import("soloclaw/plugin-sdk/ssrf-runtime")>(
+    "soloclaw/plugin-sdk/ssrf-runtime",
   );
   return {
     ...actual,

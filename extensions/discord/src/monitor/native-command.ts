@@ -11,18 +11,18 @@ import {
   type TopLevelComponents,
 } from "@buape/carbon";
 import { ApplicationCommandOptionType } from "discord-api-types/v10";
-import { resolveHumanDelayConfig } from "openclaw/plugin-sdk/agent-runtime";
-import { createChannelReplyPipeline } from "openclaw/plugin-sdk/channel-reply-pipeline";
-import { resolveChannelStreamingBlockEnabled } from "openclaw/plugin-sdk/channel-streaming";
+import { resolveHumanDelayConfig } from "soloclaw/plugin-sdk/agent-runtime";
+import { createChannelReplyPipeline } from "soloclaw/plugin-sdk/channel-reply-pipeline";
+import { resolveChannelStreamingBlockEnabled } from "soloclaw/plugin-sdk/channel-streaming";
 import {
   resolveCommandAuthorizedFromAuthorizers,
   resolveNativeCommandSessionTargets,
-} from "openclaw/plugin-sdk/command-auth-native";
-import { resolveDirectStatusReplyForSession } from "openclaw/plugin-sdk/command-status-runtime";
-import type { OpenClawConfig, loadConfig } from "openclaw/plugin-sdk/config-runtime";
-import { buildPairingReply } from "openclaw/plugin-sdk/conversation-runtime";
-import { isDangerousNameMatchingEnabled } from "openclaw/plugin-sdk/dangerous-name-runtime";
-import { getAgentScopedMediaLocalRoots } from "openclaw/plugin-sdk/media-runtime";
+} from "soloclaw/plugin-sdk/command-auth-native";
+import { resolveDirectStatusReplyForSession } from "soloclaw/plugin-sdk/command-status-runtime";
+import type { OpenClawConfig, loadConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { buildPairingReply } from "soloclaw/plugin-sdk/conversation-runtime";
+import { isDangerousNameMatchingEnabled } from "soloclaw/plugin-sdk/dangerous-name-runtime";
+import { getAgentScopedMediaLocalRoots } from "soloclaw/plugin-sdk/media-runtime";
 import {
   buildCommandTextFromArgs,
   findCommandByNativeName,
@@ -35,24 +35,24 @@ import {
   type CommandArgValues,
   type CommandArgs,
   type NativeCommandSpec,
-} from "openclaw/plugin-sdk/native-command-registry";
-import * as pluginRuntime from "openclaw/plugin-sdk/plugin-runtime";
-import { resolveChunkMode, resolveTextChunkLimit } from "openclaw/plugin-sdk/reply-chunking";
+} from "soloclaw/plugin-sdk/native-command-registry";
+import * as pluginRuntime from "soloclaw/plugin-sdk/plugin-runtime";
+import { resolveChunkMode, resolveTextChunkLimit } from "soloclaw/plugin-sdk/reply-chunking";
 import {
   dispatchReplyWithDispatcher,
   type ReplyPayload,
-} from "openclaw/plugin-sdk/reply-dispatch-runtime";
+} from "soloclaw/plugin-sdk/reply-dispatch-runtime";
 import {
   resolveSendableOutboundReplyParts,
   resolveTextChunksWithFallback,
-} from "openclaw/plugin-sdk/reply-payload";
-import { createSubsystemLogger, logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { resolveOpenProviderRuntimeGroupPolicy } from "openclaw/plugin-sdk/runtime-group-policy";
+} from "soloclaw/plugin-sdk/reply-payload";
+import { createSubsystemLogger, logVerbose } from "soloclaw/plugin-sdk/runtime-env";
+import { resolveOpenProviderRuntimeGroupPolicy } from "soloclaw/plugin-sdk/runtime-group-policy";
 import {
   normalizeLowercaseStringOrEmpty,
   normalizeOptionalString,
-} from "openclaw/plugin-sdk/text-runtime";
-import { loadWebMedia } from "openclaw/plugin-sdk/web-media";
+} from "soloclaw/plugin-sdk/text-runtime";
+import { loadWebMedia } from "soloclaw/plugin-sdk/web-media";
 import { resolveDiscordMaxLinesPerMessage } from "../accounts.js";
 import { chunkDiscordTextWithMode } from "../chunk.js";
 import {

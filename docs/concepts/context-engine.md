@@ -115,7 +115,7 @@ engine is used automatically.
 A plugin can register a context engine using the plugin API:
 
 ```ts
-import { buildMemorySystemPromptAddition } from "openclaw/plugin-sdk/core";
+import { buildMemorySystemPromptAddition } from "soloclaw/plugin-sdk/core";
 
 export default function register(api) {
   api.registerContextEngine("my-engine", () => ({
@@ -218,7 +218,7 @@ That means there are two valid plugin patterns:
 - **Owning mode** — implement your own compaction algorithm and set
   `ownsCompaction: true`.
 - **Delegating mode** — set `ownsCompaction: false` and have `compact()` call
-  `delegateCompactionToRuntime(...)` from `openclaw/plugin-sdk/core` to use
+  `delegateCompactionToRuntime(...)` from `soloclaw/plugin-sdk/core` to use
   OpenClaw's built-in compaction behavior.
 
 A no-op `compact()` is unsafe for an active non-owning engine because it
@@ -255,10 +255,10 @@ OpenClaw resolves when it needs a context engine.
   model sees. They can work together — a context engine might use memory
   plugin data during assembly. Plugin engines that want the active memory
   prompt path should prefer `buildMemorySystemPromptAddition(...)` from
-  `openclaw/plugin-sdk/core`, which converts the active memory prompt sections
+  `soloclaw/plugin-sdk/core`, which converts the active memory prompt sections
   into a ready-to-prepend `systemPromptAddition`. If an engine needs lower-level
   control, it can still pull raw lines from
-  `openclaw/plugin-sdk/memory-host-core` via
+  `soloclaw/plugin-sdk/memory-host-core` via
   `buildActiveMemoryPromptSection(...)`.
 - **Session pruning** (trimming old tool results in-memory) still runs
   regardless of which context engine is active.

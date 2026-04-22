@@ -382,8 +382,8 @@ Use `createPluginRuntimeStore` to store the runtime reference for use outside
 the `register` callback:
 
 ```typescript
-import { createPluginRuntimeStore } from "openclaw/plugin-sdk/runtime-store";
-import type { PluginRuntime } from "openclaw/plugin-sdk/runtime-store";
+import { createPluginRuntimeStore } from "soloclaw/plugin-sdk/runtime-store";
+import type { PluginRuntime } from "soloclaw/plugin-sdk/runtime-store";
 
 const store = createPluginRuntimeStore<PluginRuntime>({
   pluginId: "my-plugin",

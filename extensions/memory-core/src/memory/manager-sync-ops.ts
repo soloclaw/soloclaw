@@ -4,12 +4,12 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import type { DatabaseSync } from "node:sqlite";
 import chokidar, { FSWatcher } from "chokidar";
-import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
 import {
   buildCaseInsensitiveExtensionGlob,
   classifyMemoryMultimodalPath,
   getMemoryMultimodalExtensions,
-} from "openclaw/plugin-sdk/memory-core-host-engine-embeddings";
+} from "soloclaw/plugin-sdk/memory-core-host-engine-embeddings";
 import {
   createSubsystemLogger,
   onSessionTranscriptUpdate,
@@ -18,13 +18,13 @@ import {
   resolveUserPath,
   type OpenClawConfig,
   type ResolvedMemorySearchConfig,
-} from "openclaw/plugin-sdk/memory-core-host-engine-foundation";
+} from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
 import {
   buildSessionEntry,
   listSessionFilesForAgent,
   sessionPathForFile,
   type SessionFileEntry,
-} from "openclaw/plugin-sdk/memory-core-host-engine-qmd";
+} from "soloclaw/plugin-sdk/memory-core-host-engine-qmd";
 import {
   buildFileEntry,
   ensureMemoryIndexSchema,
@@ -36,8 +36,8 @@ import {
   type MemoryFileEntry,
   type MemorySource,
   type MemorySyncProgressUpdate,
-} from "openclaw/plugin-sdk/memory-core-host-engine-storage";
-import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/memory-core-host-engine-storage";
+import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
 import {
   createEmbeddingProvider,
   type EmbeddingProvider,

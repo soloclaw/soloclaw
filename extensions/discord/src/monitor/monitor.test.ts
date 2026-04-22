@@ -5,8 +5,8 @@ import type {
   StringSelectMenuInteraction,
 } from "@buape/carbon";
 import { ChannelType } from "discord-api-types/v10";
-import type { DiscordAccountConfig, OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { buildPluginBindingApprovalCustomId } from "openclaw/plugin-sdk/conversation-runtime";
+import type { DiscordAccountConfig, OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { buildPluginBindingApprovalCustomId } from "soloclaw/plugin-sdk/conversation-runtime";
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { type DiscordComponentEntry, type DiscordModalEntry } from "../components.js";
 import {
@@ -27,7 +27,7 @@ type CreateDiscordComponentModal =
 type CreateDiscordComponentStringSelect =
   typeof import("./agent-components.js").createDiscordComponentStringSelect;
 type DispatchReplyWithBufferedBlockDispatcherFn =
-  typeof import("openclaw/plugin-sdk/reply-dispatch-runtime").dispatchReplyWithBufferedBlockDispatcher;
+  typeof import("soloclaw/plugin-sdk/reply-dispatch-runtime").dispatchReplyWithBufferedBlockDispatcher;
 type DispatchReplyWithBufferedBlockDispatcherResult = Awaited<
   ReturnType<DispatchReplyWithBufferedBlockDispatcherFn>
 >;

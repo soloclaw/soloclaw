@@ -1,6 +1,6 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import * as runtimeEnvModule from "openclaw/plugin-sdk/runtime-env";
-import { withEnv } from "openclaw/plugin-sdk/testing";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import * as runtimeEnvModule from "soloclaw/plugin-sdk/runtime-env";
+import { withEnv } from "soloclaw/plugin-sdk/testing";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   createTelegramActionGate,

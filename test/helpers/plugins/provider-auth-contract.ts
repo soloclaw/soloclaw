@@ -12,13 +12,13 @@ import type {
 import { registerProviders, requireProvider } from "./contracts-testkit.js";
 
 type LoginOpenAICodexOAuth =
-  (typeof import("openclaw/plugin-sdk/provider-auth-login"))["loginOpenAICodexOAuth"];
+  (typeof import("soloclaw/plugin-sdk/provider-auth-login"))["loginOpenAICodexOAuth"];
 type CreateVpsAwareHandlers =
   (typeof import("../../../src/plugins/provider-oauth-flow.js"))["createVpsAwareOAuthHandlers"];
 type EnsureAuthProfileStore =
-  typeof import("openclaw/plugin-sdk/provider-auth").ensureAuthProfileStore;
+  typeof import("soloclaw/plugin-sdk/provider-auth").ensureAuthProfileStore;
 type ListProfilesForProvider =
-  typeof import("openclaw/plugin-sdk/provider-auth").listProfilesForProvider;
+  typeof import("soloclaw/plugin-sdk/provider-auth").listProfilesForProvider;
 
 const loginOpenAICodexOAuthMock = vi.hoisted(() => vi.fn<LoginOpenAICodexOAuth>());
 const ensureAuthProfileStoreMock = vi.hoisted(() => vi.fn<EnsureAuthProfileStore>());
@@ -31,9 +31,9 @@ const providerAuthContractModules = {
   }),
 };
 
-vi.mock("openclaw/plugin-sdk/provider-auth-login", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/provider-auth-login")>(
-    "openclaw/plugin-sdk/provider-auth-login",
+vi.mock("soloclaw/plugin-sdk/provider-auth-login", async () => {
+  const actual = await vi.importActual<typeof import("soloclaw/plugin-sdk/provider-auth-login")>(
+    "soloclaw/plugin-sdk/provider-auth-login",
   );
   return {
     ...actual,
@@ -41,9 +41,9 @@ vi.mock("openclaw/plugin-sdk/provider-auth-login", async () => {
   };
 });
 
-vi.mock("openclaw/plugin-sdk/provider-auth", async () => {
-  const actual = await vi.importActual<typeof import("openclaw/plugin-sdk/provider-auth")>(
-    "openclaw/plugin-sdk/provider-auth",
+vi.mock("soloclaw/plugin-sdk/provider-auth", async () => {
+  const actual = await vi.importActual<typeof import("soloclaw/plugin-sdk/provider-auth")>(
+    "soloclaw/plugin-sdk/provider-auth",
   );
   return {
     ...actual,

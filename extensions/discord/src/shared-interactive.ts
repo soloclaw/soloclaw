@@ -1,8 +1,8 @@
-import { reduceInteractiveReply } from "openclaw/plugin-sdk/interactive-runtime";
+import { reduceInteractiveReply } from "soloclaw/plugin-sdk/interactive-runtime";
 import type {
   InteractiveButtonStyle,
   InteractiveReply,
-} from "openclaw/plugin-sdk/interactive-runtime";
+} from "soloclaw/plugin-sdk/interactive-runtime";
 import type {
   DiscordComponentButtonStyle,
   DiscordComponentMessageSpec,

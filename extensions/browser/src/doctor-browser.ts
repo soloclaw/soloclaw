@@ -1,5 +1,5 @@
-import { note } from "openclaw/plugin-sdk/browser-setup-tools";
-import { normalizeOptionalString } from "openclaw/plugin-sdk/text-runtime";
+import { note } from "soloclaw/plugin-sdk/browser-setup-tools";
+import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import {
   parseBrowserMajorVersion,
   readBrowserVersion,

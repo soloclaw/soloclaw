@@ -1,14 +1,14 @@
 import { ChannelType } from "discord-api-types/v10";
-import type { NativeCommandSpec } from "openclaw/plugin-sdk/command-auth";
-import { resolveDirectStatusReplyForSession } from "openclaw/plugin-sdk/command-status-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import type { NativeCommandSpec } from "soloclaw/plugin-sdk/command-auth";
+import { resolveDirectStatusReplyForSession } from "soloclaw/plugin-sdk/command-status-runtime";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import {
   clearPluginCommands,
   executePluginCommand,
   matchPluginCommand,
   registerPluginCommand,
-} from "openclaw/plugin-sdk/plugin-runtime";
-import { dispatchReplyWithDispatcher } from "openclaw/plugin-sdk/reply-dispatch-runtime";
+} from "soloclaw/plugin-sdk/plugin-runtime";
+import { dispatchReplyWithDispatcher } from "soloclaw/plugin-sdk/reply-dispatch-runtime";
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   createTestRegistry,
@@ -363,10 +363,10 @@ describe("Discord native plugin command dispatch", () => {
       text: "status reply",
     });
     discordNativeCommandTesting.setMatchPluginCommand(
-      runtimeModuleMocks.matchPluginCommand as typeof import("openclaw/plugin-sdk/plugin-runtime").matchPluginCommand,
+      runtimeModuleMocks.matchPluginCommand as typeof import("soloclaw/plugin-sdk/plugin-runtime").matchPluginCommand,
     );
     discordNativeCommandTesting.setExecutePluginCommand(
-      runtimeModuleMocks.executePluginCommand as typeof import("openclaw/plugin-sdk/plugin-runtime").executePluginCommand,
+      runtimeModuleMocks.executePluginCommand as typeof import("soloclaw/plugin-sdk/plugin-runtime").executePluginCommand,
     );
     discordNativeCommandTesting.setDispatchReplyWithDispatcher(
       runtimeModuleMocks.dispatchReplyWithDispatcher as typeof dispatchReplyWithDispatcher,

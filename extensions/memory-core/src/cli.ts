@@ -3,7 +3,7 @@ import {
   formatDocsLink,
   formatHelpExamples,
   theme,
-} from "openclaw/plugin-sdk/memory-core-host-runtime-cli";
+} from "soloclaw/plugin-sdk/memory-core-host-runtime-cli";
 import type {
   MemoryCommandOptions,
   MemoryPromoteCommandOptions,

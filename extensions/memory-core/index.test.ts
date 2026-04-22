@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/memory-core";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/memory-core";
 import { describe, expect, it } from "vitest";
 import {
   buildMemoryFlushPlan,

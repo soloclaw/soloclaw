@@ -1,10 +1,10 @@
 import type { DatabaseSync } from "node:sqlite";
-import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
 import {
   createSubsystemLogger,
   type OpenClawConfig,
-} from "openclaw/plugin-sdk/memory-core-host-engine-foundation";
-import type { MemorySyncProgressUpdate } from "openclaw/plugin-sdk/memory-core-host-engine-storage";
+} from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
+import type { MemorySyncProgressUpdate } from "soloclaw/plugin-sdk/memory-core-host-engine-storage";
 
 const log = createSubsystemLogger("memory");
 

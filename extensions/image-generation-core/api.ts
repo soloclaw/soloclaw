@@ -1,1 +1,1 @@
-export * from "openclaw/plugin-sdk/image-generation-core";
+export * from "soloclaw/plugin-sdk/image-generation-core";

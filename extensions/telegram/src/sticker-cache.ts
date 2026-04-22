@@ -1,19 +1,19 @@
-import { resolveApiKeyForProvider } from "openclaw/plugin-sdk/agent-runtime";
-import type { ModelCatalogEntry } from "openclaw/plugin-sdk/agent-runtime";
+import { resolveApiKeyForProvider } from "soloclaw/plugin-sdk/agent-runtime";
+import type { ModelCatalogEntry } from "soloclaw/plugin-sdk/agent-runtime";
 import {
   findModelInCatalog,
   loadModelCatalog,
   modelSupportsVision,
-} from "openclaw/plugin-sdk/agent-runtime";
-import { resolveDefaultModelForAgent } from "openclaw/plugin-sdk/agent-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveAutoImageModel } from "openclaw/plugin-sdk/media-runtime";
+} from "soloclaw/plugin-sdk/agent-runtime";
+import { resolveDefaultModelForAgent } from "soloclaw/plugin-sdk/agent-runtime";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { resolveAutoImageModel } from "soloclaw/plugin-sdk/media-runtime";
 import {
   resolveAutoMediaKeyProviders,
   resolveDefaultMediaModel,
-} from "openclaw/plugin-sdk/media-runtime";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/media-runtime";
+import { logVerbose } from "soloclaw/plugin-sdk/runtime-env";
+import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
 import { getTelegramRuntime } from "./runtime.js";
 export {
   cacheSticker,

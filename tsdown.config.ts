@@ -173,8 +173,8 @@ function normalizeBundledPluginOutEntry(entry: string): string {
 
 function isPluginSdkSelfReference(id: string): boolean {
   return (
-    id === "openclaw/plugin-sdk" ||
-    id.startsWith("openclaw/plugin-sdk/") ||
+    id === "soloclaw/plugin-sdk" ||
+    id.startsWith("soloclaw/plugin-sdk/") ||
     id === "@soloclaw/plugin-sdk" ||
     id.startsWith("@soloclaw/plugin-sdk/")
   );
