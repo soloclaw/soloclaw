@@ -34,7 +34,7 @@ title: "OpenClaw"
     Install OpenClaw and bring up the Gateway in minutes.
   </Card>
   <Card title="Run Onboarding" href="/start/wizard" icon="sparkles">
-    Guided setup with `openclaw onboard` and pairing flows.
+    Guided setup with `soloclaw onboard` and pairing flows.
   </Card>
   <Card title="Open the Control UI" href="/web/control-ui" icon="layout-dashboard">
     Launch the browser dashboard for chat, config, and sessions.
@@ -103,7 +103,7 @@ The Gateway is the single source of truth for sessions, routing, and channel con
   </Step>
   <Step title="Onboard and install the service">
     ```bash
-    openclaw onboard --install-daemon
+    soloclaw onboard --install-daemon
     ```
   </Step>
   <Step title="Chat">

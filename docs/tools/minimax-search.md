@@ -24,7 +24,7 @@ snippets, and related queries.
     Set `MINIMAX_CODE_PLAN_KEY` in the Gateway environment, or configure via:
 
     ```bash
-    openclaw configure --section web
+    soloclaw configure --section web
     ```
 
   </Step>

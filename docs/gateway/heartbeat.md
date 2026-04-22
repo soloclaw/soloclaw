@@ -227,7 +227,7 @@ Use `accountId` to target a specific account on multi-account channels like Tele
 - `isolatedSession`: when true, each heartbeat runs in a fresh session with no prior conversation history. Uses the same isolation pattern as cron `sessionTarget: "isolated"`. Dramatically reduces per-heartbeat token cost. Combine with `lightContext: true` for maximum savings. Delivery routing still uses the main session context.
 - `session`: optional session key for heartbeat runs.
   - `main` (default): agent main session.
-  - Explicit session key (copy from `openclaw sessions --json` or the [sessions CLI](/cli/sessions)).
+  - Explicit session key (copy from `soloclaw sessions --json` or the [sessions CLI](/cli/sessions)).
   - Session key formats: see [Sessions](/concepts/session) and [Groups](/channels/groups).
 - `target`:
   - `last`: deliver to the last used external channel.

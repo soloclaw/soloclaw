@@ -138,7 +138,7 @@ describe("resolveOpenClawPackageRoot", () => {
         const project = fx("symlink-scenario");
         const bin = path.join(project, "bin", "openclaw");
         const realPkg = path.join(project, "real-pkg");
-        state.realpaths.set(abs(bin), abs(path.join(realPkg, "openclaw.mjs")));
+        state.realpaths.set(abs(bin), abs(path.join(realPkg, "soloclaw.mjs")));
         setPackageRoot(realPkg);
         return { opts: { argv1: bin }, expected: realPkg };
       },
@@ -207,7 +207,7 @@ describe("resolveOpenClawPackageRoot", () => {
         const argv1 = path.join(project, "node_modules", ".bin", "openclaw");
         state.realpaths.set(
           abs(argv1),
-          abs(path.join(project, "versions", "current", "openclaw.mjs")),
+          abs(path.join(project, "versions", "current", "soloclaw.mjs")),
         );
         const pkgRoot = path.join(project, "node_modules", "openclaw");
         setPackageRoot(pkgRoot);

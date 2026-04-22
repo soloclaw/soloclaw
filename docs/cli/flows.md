@@ -1,13 +1,13 @@
 ---
-summary: "Redirect: flow commands live under `openclaw tasks flow`"
+summary: "Redirect: flow commands live under `soloclaw tasks flow`"
 read_when:
   - You encounter openclaw flows in older docs or release notes
 title: "flows (redirect)"
 ---
 
-# `openclaw tasks flow`
+# `soloclaw tasks flow`
 
-Flow commands are subcommands of `openclaw tasks`, not a standalone `flows` command.
+Flow commands are subcommands of `soloclaw tasks`, not a standalone `flows` command.
 
 ```bash
 openclaw tasks flow list [--json]

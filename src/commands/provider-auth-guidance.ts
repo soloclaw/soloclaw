@@ -32,7 +32,7 @@ export function resolveProviderAuthLoginCommand(params: {
   if (!provider || provider.auth.length === 0) {
     return undefined;
   }
-  return formatCliCommand(`openclaw models auth login --provider ${provider.id}`);
+  return formatCliCommand(`soloclaw models auth login --provider ${provider.id}`);
 }
 
 export function buildProviderAuthRecoveryHint(params: {
@@ -49,13 +49,13 @@ export function buildProviderAuthRecoveryHint(params: {
     parts.push(`Run \`${loginCommand}\``);
   }
   if (params.includeConfigure !== false) {
-    parts.push(`\`${formatCliCommand("openclaw configure")}\``);
+    parts.push(`\`${formatCliCommand("soloclaw configure")}\``);
   }
   if (params.includeEnvVar) {
     parts.push("set an API key env var");
   }
   if (parts.length === 0) {
-    return `Run \`${formatCliCommand("openclaw configure")}\`.`;
+    return `Run \`${formatCliCommand("soloclaw configure")}\`.`;
   }
   if (parts.length === 1) {
     return `${parts[0]}.`;

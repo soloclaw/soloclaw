@@ -55,7 +55,7 @@ from URLs (including JavaScript-rendered pages).
 
 Notes:
 
-- Choosing Tavily in onboarding or `openclaw configure --section web` enables
+- Choosing Tavily in onboarding or `soloclaw configure --section web` enables
   the bundled Tavily plugin automatically.
 - Store Tavily config under `plugins.entries.tavily.config.webSearch.*`.
 - `web_search` with Tavily supports `query` and `count` (up to 20 results).

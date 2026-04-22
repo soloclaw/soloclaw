@@ -21,7 +21,7 @@ When the Gateway’s OpenAI-compatible HTTP surface is enabled, it also serves:
 - `POST /v1/embeddings`
 - `POST /v1/responses`
 
-Under the hood, requests are executed as a normal Gateway agent run (same codepath as `openclaw agent`), so routing/permissions/config match your Gateway.
+Under the hood, requests are executed as a normal Gateway agent run (same codepath as `soloclaw agent`), so routing/permissions/config match your Gateway.
 
 ## Authentication
 

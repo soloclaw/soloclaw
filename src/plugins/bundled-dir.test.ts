@@ -314,7 +314,7 @@ describe("resolveBundledPluginsDir", () => {
         return {
           installedRoot,
           cwd: cwdRepoRoot,
-          argv1: path.join(installedRoot, "openclaw.mjs"),
+          argv1: path.join(installedRoot, "soloclaw.mjs"),
         };
       },
     },
@@ -328,7 +328,7 @@ describe("resolveBundledPluginsDir", () => {
         seedBundledPluginTree(installedRoot, path.join("dist", "extensions"));
         return {
           installedRoot,
-          argv1: path.join(installedRoot, "openclaw.mjs"),
+          argv1: path.join(installedRoot, "soloclaw.mjs"),
           bundledDirOverride: path.join(installedRoot, "missing-extensions"),
         };
       },

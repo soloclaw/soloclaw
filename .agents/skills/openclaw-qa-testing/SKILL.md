@@ -36,7 +36,7 @@ Use this skill for `qa-lab` / `qa-channel` work. Repo-local QA only.
 
 ```bash
 OPENCLAW_LIVE_OPENAI_KEY="${OPENAI_API_KEY}" \
-pnpm openclaw qa suite \
+pnpm soloclaw qa suite \
   --provider-mode live-frontier \
   --model openai/gpt-5.4 \
   --alt-model openai/gpt-5.4 \
@@ -54,7 +54,7 @@ pnpm openclaw qa suite \
 Use `qa character-eval` for style/persona/vibe checks across multiple live models.
 
 ```bash
-pnpm openclaw qa character-eval \
+pnpm soloclaw qa character-eval \
   --model openai/gpt-5.4,thinking=xhigh \
   --model openai/gpt-5.2,thinking=xhigh \
   --model openai/gpt-5,thinking=xhigh \
@@ -91,7 +91,7 @@ Use model refs shaped like `codex-cli/<codex-model>` whenever QA should exercise
 Examples:
 
 ```bash
-pnpm openclaw qa suite \
+pnpm soloclaw qa suite \
   --provider-mode live-frontier \
   --model codex-cli/<codex-model> \
   --alt-model codex-cli/<codex-model> \
@@ -100,7 +100,7 @@ pnpm openclaw qa suite \
 ```
 
 ```bash
-pnpm openclaw qa manual \
+pnpm soloclaw qa manual \
   --model codex-cli/<codex-model> \
   --message "Reply exactly: CODEX_OK"
 ```

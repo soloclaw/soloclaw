@@ -1,21 +1,21 @@
 ---
-summary: "CLI reference for `openclaw clawbot` (legacy alias namespace)"
+summary: "CLI reference for `soloclaw clawbot` (legacy alias namespace)"
 read_when:
-  - You maintain older scripts using `openclaw clawbot ...`
+  - You maintain older scripts using `soloclaw clawbot ...`
   - You need migration guidance to current commands
 title: "clawbot"
 ---
 
-# `openclaw clawbot`
+# `soloclaw clawbot`
 
 Legacy alias namespace kept for backwards compatibility.
 
 Current supported alias:
 
-- `openclaw clawbot qr` (same behavior as [`openclaw qr`](/cli/qr))
+- `soloclaw clawbot qr` (same behavior as [`soloclaw qr`](/cli/qr))
 
 ## Migration
 
 Prefer modern top-level commands directly:
 
-- `openclaw clawbot qr` -> `openclaw qr`
+- `soloclaw clawbot qr` -> `soloclaw qr`

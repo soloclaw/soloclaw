@@ -617,7 +617,7 @@ verify_version_contains() {
 }
 
 run_ref_onboard() {
-  guest_exec /usr/bin/env "$API_KEY_ENV=$API_KEY_VALUE" openclaw onboard \
+  guest_exec /usr/bin/env "$API_KEY_ENV=$API_KEY_VALUE" soloclaw onboard \
     --non-interactive \
     --mode local \
     --auth-choice "$AUTH_CHOICE" \
@@ -702,9 +702,9 @@ start_gateway_background() {
   local cmd api_key_value_q
   api_key_value_q="$(shell_quote "$API_KEY_VALUE")"
   cmd="$(cat <<EOF
-pkill -f "openclaw gateway run" >/dev/null 2>&1 || true
+pkill -f "soloclaw gateway run" >/dev/null 2>&1 || true
 rm -f /tmp/openclaw-parallels-linux-gateway.log
-setsid sh -lc 'exec env OPENCLAW_HOME=/root OPENCLAW_STATE_DIR=/root/.soloclaw OPENCLAW_CONFIG_PATH=/root/.soloclaw/openclaw.json ${API_KEY_ENV}=${api_key_value_q} openclaw gateway run --bind loopback --port 18789 --force >/tmp/openclaw-parallels-linux-gateway.log 2>&1' >/dev/null 2>&1 < /dev/null &
+setsid sh -lc 'exec env OPENCLAW_HOME=/root OPENCLAW_STATE_DIR=/root/.soloclaw OPENCLAW_CONFIG_PATH=/root/.soloclaw/openclaw.json ${API_KEY_ENV}=${api_key_value_q} soloclaw gateway run --bind loopback --port 18789 --force >/tmp/openclaw-parallels-linux-gateway.log 2>&1' >/dev/null 2>&1 < /dev/null &
 EOF
 )"
   guest_exec bash -lc "$cmd"
@@ -725,16 +725,16 @@ EOF
 }
 
 show_gateway_status_compat() {
-  if guest_exec openclaw gateway status --help | grep -Fq -- "--require-rpc"; then
-    guest_exec openclaw gateway status --deep --require-rpc
+  if guest_exec soloclaw gateway status --help | grep -Fq -- "--require-rpc"; then
+    guest_exec soloclaw gateway status --deep --require-rpc
     return
   fi
-  guest_exec openclaw gateway status --deep
+  guest_exec soloclaw gateway status --deep
 }
 
 verify_local_turn() {
   guest_exec openclaw models set "$MODEL_ID"
-  guest_exec /usr/bin/env "$API_KEY_ENV=$API_KEY_VALUE" openclaw agent \
+  guest_exec /usr/bin/env "$API_KEY_ENV=$API_KEY_VALUE" soloclaw agent \
     --local \
     --agent main \
     --message ping \

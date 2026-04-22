@@ -110,7 +110,7 @@ If Readability extraction fails, `web_fetch` can fall back to
 ```
 
 `plugins.entries.firecrawl.config.webFetch.apiKey` supports SecretRef objects.
-Legacy `tools.web.fetch.firecrawl.*` config is auto-migrated by `openclaw doctor --fix`.
+Legacy `tools.web.fetch.firecrawl.*` config is auto-migrated by `soloclaw doctor --fix`.
 
 <Note>
   If Firecrawl is enabled and its SecretRef is unresolved with no

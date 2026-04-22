@@ -28,7 +28,7 @@ Most days:
 - Direct file targeting now routes extension/channel paths too: `pnpm test extensions/discord/src/monitor/message-handler.preflight.test.ts`
 - Prefer targeted runs first when you are iterating on a single failure.
 - Docker-backed QA site: `pnpm qa:lab:up`
-- Linux VM-backed QA lane: `pnpm openclaw qa suite --runner multipass --scenario channel-chat-baseline`
+- Linux VM-backed QA lane: `pnpm soloclaw qa suite --runner multipass --scenario channel-chat-baseline`
 
 When you touch tests or want extra confidence:
 
@@ -46,7 +46,7 @@ Tip: when you only need one failing case, prefer narrowing live tests via the al
 
 These commands sit beside the main test suites when you need QA-lab realism:
 
-- `pnpm openclaw qa suite`
+- `pnpm soloclaw qa suite`
   - Runs repo-backed QA scenarios directly on the host.
   - Runs multiple selected scenarios in parallel by default with isolated
     gateway workers, up to 64 workers or the selected scenario count. Use
@@ -56,7 +56,7 @@ These commands sit beside the main test suites when you need QA-lab realism:
     `aimock` starts a local AIMock-backed provider server for experimental
     fixture and protocol-mock coverage without replacing the scenario-aware
     `mock-openai` lane.
-- `pnpm openclaw qa suite --runner multipass`
+- `pnpm soloclaw qa suite --runner multipass`
   - Runs the same QA suite inside a disposable Multipass Linux VM.
   - Keeps the same scenario-selection behavior as `qa suite` on the host.
   - Reuses the same provider/model selection flags as `qa suite`.
@@ -69,20 +69,20 @@ These commands sit beside the main test suites when you need QA-lab realism:
     `.artifacts/qa-e2e/...`.
 - `pnpm qa:lab:up`
   - Starts the Docker-backed QA site for operator-style QA work.
-- `pnpm openclaw qa aimock`
+- `pnpm soloclaw qa aimock`
   - Starts only the local AIMock provider server for direct protocol smoke
     testing.
-- `pnpm openclaw qa matrix`
+- `pnpm soloclaw qa matrix`
   - Runs the Matrix live QA lane against a disposable Docker-backed Tuwunel homeserver.
   - This QA host is repo/dev-only today. Packaged OpenClaw installs do not ship
-    `qa-lab`, so they do not expose `openclaw qa`.
+    `qa-lab`, so they do not expose `soloclaw qa`.
   - Repo checkouts load the bundled runner directly; no separate plugin install
     step is needed.
   - Provisions three temporary Matrix users (`driver`, `sut`, `observer`) plus one private room, then starts a QA gateway child with the real Matrix plugin as the SUT transport.
   - Uses the pinned stable Tuwunel image `ghcr.io/matrix-construct/tuwunel:v1.5.1` by default. Override with `OPENCLAW_QA_MATRIX_TUWUNEL_IMAGE` when you need to test a different image.
   - Matrix does not expose shared credential-source flags because the lane provisions disposable users locally.
   - Writes a Matrix QA report, summary, observed-events artifact, and combined stdout/stderr output log under `.artifacts/qa-e2e/...`.
-- `pnpm openclaw qa telegram`
+- `pnpm soloclaw qa telegram`
   - Runs the Telegram live QA lane against a real private group using the driver and SUT bot tokens from env.
   - Requires `OPENCLAW_QA_TELEGRAM_GROUP_ID`, `OPENCLAW_QA_TELEGRAM_DRIVER_BOT_TOKEN`, and `OPENCLAW_QA_TELEGRAM_SUT_BOT_TOKEN`. The group id must be the numeric Telegram chat id.
   - Supports `--credential-source convex` for shared pooled credentials. Use env mode by default, or set `OPENCLAW_QA_CREDENTIAL_SOURCE=convex` to opt into pooled leases.
@@ -103,7 +103,7 @@ transport coverage matrix.
 ### Shared Telegram credentials via Convex (v1)
 
 When `--credential-source convex` (or `OPENCLAW_QA_CREDENTIAL_SOURCE=convex`) is enabled for
-`openclaw qa telegram`, QA lab acquires an exclusive lease from a Convex-backed pool, heartbeats
+`soloclaw qa telegram`, QA lab acquires an exclusive lease from a Convex-backed pool, heartbeats
 that lease while the lane is running, and releases the lease on shutdown.
 
 Reference Convex project scaffold:
@@ -138,9 +138,9 @@ Maintainer admin commands (pool add/remove/list) require
 CLI helpers for maintainers:
 
 ```bash
-pnpm openclaw qa credentials add --kind telegram --payload-file qa/telegram-credential.json
-pnpm openclaw qa credentials list --kind telegram
-pnpm openclaw qa credentials remove --credential-id <credential-id>
+pnpm soloclaw qa credentials add --kind telegram --payload-file qa/telegram-credential.json
+pnpm soloclaw qa credentials list --kind telegram
+pnpm soloclaw qa credentials remove --credential-id <credential-id>
 ```
 
 Use `--json` for machine-readable output in scripts and CI utilities.
@@ -186,7 +186,7 @@ own the flow.
 
 `qa-lab` owns the shared host mechanics:
 
-- the `openclaw qa` command root
+- the `soloclaw qa` command root
 - suite startup and teardown
 - worker concurrency
 - artifact writing
@@ -196,7 +196,7 @@ own the flow.
 
 Runner plugins own the transport contract:
 
-- how `openclaw qa <runner>` is mounted beneath the shared `qa` root
+- how `soloclaw qa <runner>` is mounted beneath the shared `qa` root
 - how the gateway is configured for that transport
 - how readiness is checked
 - how inbound events are injected
@@ -210,7 +210,7 @@ The minimum adoption bar for a new channel is:
 1. Keep `qa-lab` as the owner of the shared `qa` root.
 2. Implement the transport runner on the shared `qa-lab` host seam.
 3. Keep transport-specific mechanics inside the runner plugin or channel harness.
-4. Mount the runner as `openclaw qa <runner>` instead of registering a competing root command.
+4. Mount the runner as `soloclaw qa <runner>` instead of registering a competing root command.
    Runner plugins should declare `qaRunners` in `openclaw.plugin.json` and export a matching `qaRunnerCliRegistrations` array from `runtime-api.ts`.
    Keep `runtime-api.ts` light; lazy CLI and runner execution should stay behind separate entrypoints.
 5. Author or adapt markdown scenarios under the themed `qa/scenarios/` directories.
@@ -697,7 +697,7 @@ Include at least one image-capable model in `OPENCLAW_LIVE_GATEWAY_MODELS` (Clau
 
 If you have keys enabled, we also support testing via:
 
-- OpenRouter: `openrouter/...` (hundreds of models; use `openclaw models scan` to find tool+image capable candidates)
+- OpenRouter: `openrouter/...` (hundreds of models; use `soloclaw models scan` to find tool+image capable candidates)
 - OpenCode: `opencode/...` for Zen and `opencode-go/...` for Go (auth via `OPENCODE_API_KEY` / `OPENCODE_ZEN_API_KEY`)
 
 More providers you can include in the live matrix (if you have creds/config):
@@ -712,7 +712,7 @@ Tip: don’t try to hardcode “all models” in docs. The authoritative list is
 Live tests discover credentials the same way the CLI does. Practical implications:
 
 - If the CLI works, live tests should find the same keys.
-- If a live test says “no creds”, debug the same way you’d debug `openclaw models list` / model selection.
+- If a live test says “no creds”, debug the same way you’d debug `soloclaw models list` / model selection.
 
 - Per-agent auth profiles: `~/.soloclaw/agents/<agentId>/agent/auth-profiles.json` (this is what “profile keys” means in the live tests)
 - Config: `~/.soloclaw/openclaw.json` (or `OPENCLAW_CONFIG_PATH`)
@@ -892,7 +892,7 @@ Successful runs print a small JSON payload like `{ "ok": true, "model":
 "openclaw/default", ... }`.
 `test:docker:mcp-channels` is intentionally deterministic and does not need a
 real Telegram, Discord, or iMessage account. It boots a seeded Gateway
-container, starts a second container that spawns `openclaw mcp serve`, then
+container, starts a second container that spawns `soloclaw mcp serve`, then
 verifies routed conversation discovery, transcript reads, attachment metadata,
 live event queue behavior, outbound send routing, and Claude-style channel +
 permission notifications over the real stdio MCP bridge. The notification check

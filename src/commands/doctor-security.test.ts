@@ -213,7 +213,7 @@ describe("noteSecurityWarnings gateway exposure", () => {
     const message = lastMessage();
     expect(message).toContain("disables approval forwarding only");
     expect(message).toContain("exec-approvals.json");
-    expect(message).toContain("openclaw approvals get --gateway");
+    expect(message).toContain("soloclaw approvals get --gateway");
   });
 
   it("warns when tools.exec is broader than host exec defaults", async () => {

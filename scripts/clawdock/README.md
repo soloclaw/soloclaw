@@ -237,7 +237,7 @@ OpenClaw loads env vars in this order (highest wins, never overrides existing):
 
 ### Update OpenClaw
 
-> **Important:** `openclaw update` does not work inside Docker.
+> **Important:** `soloclaw update` does not work inside Docker.
 > The container runs as a non-root user with a source-built image, so `npm i -g` fails with EACCES.
 > Use `clawdock-update` instead — it pulls, rebuilds, and restarts from the host.
 
@@ -284,7 +284,7 @@ clawdock-shell
 **Inside the container, login to WhatsApp:**
 
 ```bash
-openclaw channels login --channel whatsapp --verbose
+soloclaw channels login --channel whatsapp --verbose
 ```
 
 Scan the QR code with WhatsApp on your phone.
@@ -292,7 +292,7 @@ Scan the QR code with WhatsApp on your phone.
 **Verify connection:**
 
 ```bash
-openclaw status
+soloclaw status
 ```
 
 ### Troubleshooting Device Pairing

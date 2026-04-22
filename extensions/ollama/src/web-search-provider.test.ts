@@ -153,7 +153,7 @@ describe("ollama web search provider", () => {
     if (!tool) {
       throw new Error("Expected tool definition");
     }
-    const result = await tool.execute({ query: "openclaw docs", count: 3 });
+    const result = await tool.execute({ query: "soloclaw docs", count: 3 });
 
     expect(fetchWithSsrFGuardMock).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -172,11 +172,11 @@ describe("ollama web search provider", () => {
         ),
       ),
     ).toEqual({
-      query: "openclaw docs",
+      query: "soloclaw docs",
       max_results: 3,
     });
     expect(result).toMatchObject({
-      query: "openclaw docs",
+      query: "soloclaw docs",
       provider: "ollama",
       count: 1,
       results: [{ url: "https://openclaw.ai/docs" }],

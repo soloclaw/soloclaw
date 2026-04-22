@@ -98,7 +98,7 @@ function expectedBuildSpawn() {
 }
 
 function statusCommandSpawn() {
-  return [process.execPath, "openclaw.mjs", "status"];
+  return [process.execPath, "soloclaw.mjs", "status"];
 }
 
 function resolvePath(tmp: string, relativePath: string) {
@@ -295,7 +295,7 @@ describe("run-node script", () => {
         await expect(fs.readFile(indexPath, "utf-8")).resolves.toContain("sentinel");
         expect(nodeCalls).toEqual([
           [process.execPath, "scripts/tsdown-build.mjs", "--no-clean"],
-          [process.execPath, "openclaw.mjs", "--version"],
+          [process.execPath, "soloclaw.mjs", "--version"],
         ]);
       });
     },
@@ -367,8 +367,8 @@ describe("run-node script", () => {
           stdio: opts?.stdio,
         });
         return createPipedExitedProcess({
-          stdout: args[0] === "openclaw.mjs" ? "child stdout\n" : "",
-          stderr: args[0] === "openclaw.mjs" ? "child stderr\n" : "",
+          stdout: args[0] === "soloclaw.mjs" ? "child stdout\n" : "",
+          stderr: args[0] === "soloclaw.mjs" ? "child stderr\n" : "",
         });
       };
       const mutedStream = {
@@ -395,7 +395,7 @@ describe("run-node script", () => {
       await expect(fs.readFile(outputPath, "utf-8")).resolves.toContain("child stdout\n");
       await expect(fs.readFile(outputPath, "utf-8")).resolves.toContain("child stderr\n");
       await expect(fs.readFile(outputPath, "utf-8")).resolves.toContain("[openclaw]");
-      expect(spawnCalls.at(-1)?.args).toEqual(["openclaw.mjs", "status"]);
+      expect(spawnCalls.at(-1)?.args).toEqual(["soloclaw.mjs", "status"]);
       expect(spawnCalls.at(-1)?.env.OPENCLAW_RUN_NODE_OUTPUT_LOG).toBe(outputPath);
       expect(spawnCalls.at(-1)?.stdio).toEqual(["inherit", "pipe", "pipe"]);
     });
@@ -464,7 +464,7 @@ describe("run-node script", () => {
 
       expect(exitCode).toBe(0);
       const childArgs = spawnCalls.at(-1)?.args ?? [];
-      expect(childArgs).toEqual(["openclaw.mjs", "qa", "matrix"]);
+      expect(childArgs).toEqual(["soloclaw.mjs", "qa", "matrix"]);
       expect(spawnCalls.at(-1)?.env.OPENCLAW_RUN_NODE_OUTPUT_LOG).toBeUndefined();
     });
   });
@@ -518,7 +518,7 @@ describe("run-node script", () => {
       expect(spawnCalls).toEqual([
         [
           process.execPath,
-          "openclaw.mjs",
+          "soloclaw.mjs",
           "qa",
           "suite",
           "--transport",
@@ -552,7 +552,7 @@ describe("run-node script", () => {
         expectedBuildSpawn(),
         [
           process.execPath,
-          "openclaw.mjs",
+          "soloclaw.mjs",
           "qa",
           "suite",
           "--transport",
@@ -699,7 +699,7 @@ describe("run-node script", () => {
       expect(exitCode).toBe(143);
       expect(spawn).toHaveBeenCalledWith(
         process.execPath,
-        ["openclaw.mjs", "status"],
+        ["soloclaw.mjs", "status"],
         expect.objectContaining({ stdio: "inherit" }),
       );
       expect(child.kill).toHaveBeenCalledWith("SIGTERM");

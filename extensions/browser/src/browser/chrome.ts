@@ -387,14 +387,14 @@ export async function launchOpenClawChrome(
       });
       log.info(`🦞 openclaw browser profile decorated (${profile.color})`);
     } catch (err) {
-      log.warn(`openclaw browser profile decoration failed: ${String(err)}`);
+      log.warn(`soloclaw browser profile decoration failed: ${String(err)}`);
     }
   }
 
   try {
     ensureProfileCleanExit(userDataDir);
   } catch (err) {
-    log.warn(`openclaw browser clean-exit prefs failed: ${String(err)}`);
+    log.warn(`soloclaw browser clean-exit prefs failed: ${String(err)}`);
   }
 
   const proc = spawnOnce();

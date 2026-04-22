@@ -234,14 +234,14 @@ async function loadConfigFromSnapshotForInstall(
 ): Promise<OpenClawConfig> {
   if (resolvePluginInstallInvalidConfigPolicy(request) !== "allow-bundled-recovery") {
     throw buildInvalidPluginInstallConfigError(
-      "Config invalid; run `openclaw doctor --fix` before installing plugins.",
+      "Config invalid; run `soloclaw doctor --fix` before installing plugins.",
     );
   }
   const snapshot = await readConfigFileSnapshot();
   const parsed = (snapshot.parsed ?? {}) as Record<string, unknown>;
   if (!snapshot.exists || Object.keys(parsed).length === 0) {
     throw buildInvalidPluginInstallConfigError(
-      "Config file could not be parsed; run `openclaw doctor` to repair it.",
+      "Config file could not be parsed; run `soloclaw doctor` to repair it.",
     );
   }
   if (
@@ -251,7 +251,7 @@ async function loadConfigFromSnapshotForInstall(
   ) {
     const pluginLabel = request.bundledPluginId ?? "the requested plugin";
     throw buildInvalidPluginInstallConfigError(
-      `Config invalid outside the bundled recovery path for ${pluginLabel}; run \`openclaw doctor --fix\` before reinstalling it.`,
+      `Config invalid outside the bundled recovery path for ${pluginLabel}; run \`soloclaw doctor --fix\` before reinstalling it.`,
     );
   }
   let nextConfig = snapshot.config;

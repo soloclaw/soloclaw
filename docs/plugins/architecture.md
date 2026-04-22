@@ -84,7 +84,7 @@ registration behavior (not just static metadata):
 - **non-capability** -- registers tools, commands, services, or routes but no
   capabilities
 
-Use `openclaw plugins inspect <id>` to see a plugin's shape and capability
+Use `soloclaw plugins inspect <id>` to see a plugin's shape and capability
 breakdown. See [CLI reference](/cli/plugins#inspect) for details.
 
 ### Legacy hooks
@@ -102,7 +102,7 @@ Direction:
 
 ### Compatibility signals
 
-When you run `openclaw doctor` or `openclaw plugins inspect <id>`, you may see
+When you run `soloclaw doctor` or `soloclaw plugins inspect <id>`, you may see
 one of these labels:
 
 | Signal                     | Meaning                                                      |
@@ -114,7 +114,7 @@ one of these labels:
 
 Neither `hook-only` nor `before_agent_start` will break your plugin today --
 `hook-only` is advisory, and `before_agent_start` only triggers a warning. These
-signals also appear in `openclaw status --all` and `openclaw plugins doctor`.
+signals also appear in `soloclaw status --all` and `soloclaw plugins doctor`.
 
 ## Architecture overview
 
@@ -1348,8 +1348,8 @@ Why:
 
 - `resolveAccount(...)` is the runtime path. It is allowed to assume credentials
   are fully materialized and can fail fast when required secrets are missing.
-- Read-only command paths such as `openclaw status`, `openclaw status --all`,
-  `openclaw channels status`, `openclaw channels resolve`, and doctor/config
+- Read-only command paths such as `soloclaw status`, `soloclaw status --all`,
+  `soloclaw channels status`, `soloclaw channels resolve`, and doctor/config
   repair flows should not need to materialize runtime credentials just to
   describe configuration.
 
@@ -1395,7 +1395,7 @@ Security guardrail: every `openclaw.extensions` entry must stay inside the plugi
 directory after symlink resolution. Entries that escape the package directory are
 rejected.
 
-Security note: `openclaw plugins install` installs plugin dependencies with
+Security note: `soloclaw plugins install` installs plugin dependencies with
 `npm install --omit=dev --ignore-scripts` (no lifecycle scripts, no dev dependencies at runtime). Keep plugin dependency
 trees "pure JS/TS" and avoid packages that require `postinstall` builds.
 

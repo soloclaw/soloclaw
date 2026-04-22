@@ -13,19 +13,19 @@ Run the [Agent Client Protocol (ACP)](https://agentclientprotocol.com/) bridge t
 This command speaks ACP over stdio for IDEs and forwards prompts to the Gateway
 over WebSocket. It keeps ACP sessions mapped to Gateway session keys.
 
-`openclaw acp` is a Gateway-backed ACP bridge, not a full ACP-native editor
+`soloclaw acp` is a Gateway-backed ACP bridge, not a full ACP-native editor
 runtime. It focuses on session routing, prompt delivery, and basic streaming
 updates.
 
 If you want an external MCP client to talk directly to OpenClaw channel
 conversations instead of hosting an ACP harness session, use
-[`openclaw mcp serve`](/cli/mcp) instead.
+[`soloclaw mcp serve`](/cli/mcp) instead.
 
 ## What this is not
 
 This page is often confused with ACP harness sessions.
 
-`openclaw acp` means:
+`soloclaw acp` means:
 
 - OpenClaw acts as an ACP server
 - an IDE or ACP client connects to OpenClaw
@@ -36,7 +36,7 @@ external harness such as Codex or Claude Code through `acpx`.
 
 Quick rule:
 
-- editor/client wants to talk ACP to OpenClaw: use `openclaw acp`
+- editor/client wants to talk ACP to OpenClaw: use `soloclaw acp`
 - OpenClaw should launch Codex/Claude/Gemini as an ACP harness: use `/acp spawn` and [ACP Agents](/tools/acp-agents)
 
 ## Compatibility Matrix
@@ -129,13 +129,13 @@ it to drive an OpenClaw Gateway session.
 
 1. Ensure the Gateway is running (local or remote).
 2. Configure the Gateway target (config or flags).
-3. Point your IDE to run `openclaw acp` over stdio.
+3. Point your IDE to run `soloclaw acp` over stdio.
 
 Example config (persisted):
 
 ```bash
-openclaw config set gateway.remote.url wss://gateway-host:18789
-openclaw config set gateway.remote.token <token>
+soloclaw config set gateway.remote.url wss://gateway-host:18789
+soloclaw config set gateway.remote.token <token>
 ```
 
 Example direct run (no config write):
@@ -178,7 +178,7 @@ OpenClaw bot over ACP, use `acpx` with its built-in `openclaw` target.
 Typical flow:
 
 1. Run the Gateway and make sure the ACP bridge can reach it.
-2. Point `acpx openclaw` at `openclaw acp`.
+2. Point `acpx openclaw` at `soloclaw acp`.
 3. Target the OpenClaw session key you want the coding agent to use.
 
 Examples:
@@ -305,7 +305,7 @@ Security note:
   - remote mode: `gateway.remote.*` with env/config fallback per remote precedence rules
   - `--url` is override-safe and does not reuse implicit config/env credentials; pass explicit `--token`/`--password` (or file variants)
 - ACP runtime backend child processes receive `OPENCLAW_SHELL=acp`, which can be used for context-specific shell/profile rules.
-- `openclaw acp client` sets `OPENCLAW_SHELL=acp-client` on the spawned bridge process.
+- `soloclaw acp client` sets `OPENCLAW_SHELL=acp-client` on the spawned bridge process.
 
 ### `acp client` options
 

@@ -21777,7 +21777,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
                 },
                 title: "Gateway Node Allowlist (Extra Commands)",
                 description:
-                  "Extra node.invoke commands to allow beyond the gateway defaults (array of command strings). Enabling dangerous commands here is a security-sensitive override and is flagged by `openclaw security audit`.",
+                  "Extra node.invoke commands to allow beyond the gateway defaults (array of command strings). Enabling dangerous commands here is a security-sensitive override and is flagged by `soloclaw security audit`.",
               },
               denyCommands: {
                 type: "array",
@@ -22704,7 +22704,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
             },
             title: "Plugin Install Records",
             description:
-              "CLI-managed install metadata (used by `openclaw plugins update` to locate install sources).",
+              "CLI-managed install metadata (used by `soloclaw plugins update` to locate install sources).",
           },
         },
         additionalProperties: false,
@@ -24497,7 +24497,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
     },
     "gateway.nodes.allowCommands": {
       label: "Gateway Node Allowlist (Extra Commands)",
-      help: "Extra node.invoke commands to allow beyond the gateway defaults (array of command strings). Enabling dangerous commands here is a security-sensitive override and is flagged by `openclaw security audit`.",
+      help: "Extra node.invoke commands to allow beyond the gateway defaults (array of command strings). Enabling dangerous commands here is a security-sensitive override and is flagged by `soloclaw security audit`.",
       tags: ["access", "network"],
     },
     "gateway.nodes.denyCommands": {
@@ -26985,7 +26985,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
     },
     "plugins.installs": {
       label: "Plugin Install Records",
-      help: "CLI-managed install metadata (used by `openclaw plugins update` to locate install sources).",
+      help: "CLI-managed install metadata (used by `soloclaw plugins update` to locate install sources).",
       tags: ["advanced"],
     },
     "plugins.installs.*.source": {

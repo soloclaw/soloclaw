@@ -1,12 +1,12 @@
 ---
-summary: "CLI reference for `openclaw plugins` (list, install, marketplace, uninstall, enable/disable, doctor)"
+summary: "CLI reference for `soloclaw plugins` (list, install, marketplace, uninstall, enable/disable, doctor)"
 read_when:
   - You want to install or manage Gateway plugins or compatible bundles
   - You want to debug plugin load failures
 title: "plugins"
 ---
 
-# `openclaw plugins`
+# `soloclaw plugins`
 
 Manage Gateway plugins/extensions, hook packs, and compatible bundles.
 
@@ -69,7 +69,7 @@ Bare package names are checked against ClawHub first, then npm. Security note:
 treat plugin installs like running code. Prefer pinned versions.
 
 If config is invalid, `plugins install` normally fails closed and tells you to
-run `openclaw doctor --fix` first. The only documented exception is a narrow
+run `soloclaw doctor --fix` first. The only documented exception is a narrow
 bundled-plugin recovery path for plugins that explicitly opt into
 `openclaw.install.allowInvalidConfigRecovery`.
 
@@ -89,11 +89,11 @@ failures.
 
 This CLI flag applies to plugin install/update flows. Gateway-backed skill
 dependency installs use the matching `dangerouslyForceUnsafeInstall` request
-override, while `openclaw skills install` remains a separate ClawHub skill
+override, while `soloclaw skills install` remains a separate ClawHub skill
 download/install flow.
 
 `plugins install` is also the install surface for hook packs that expose
-`openclaw.hooks` in `package.json`. Use `openclaw hooks` for filtered hook
+`openclaw.hooks` in `package.json`. Use `soloclaw hooks` for filtered hook
 visibility and per-hook enablement, not package installation.
 
 Npm specs are **registry-only** (package name + optional **exact version** or

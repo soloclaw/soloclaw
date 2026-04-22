@@ -208,7 +208,7 @@ describe("abort detection", () => {
       "exit",
       "interrupt",
       "stop openclaw",
-      "openclaw stop",
+      "soloclaw stop",
       "stop action",
       "stop current action",
       "stop run",

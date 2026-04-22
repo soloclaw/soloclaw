@@ -31,7 +31,7 @@ const ABORT_TRIGGERS = new Set([
   "stopp",
   "pare",
   "stop openclaw",
-  "openclaw stop",
+  "soloclaw stop",
   "stop action",
   "stop current action",
   "stop run",

@@ -1,11 +1,11 @@
 ---
-summary: "CLI reference for `openclaw docs` (search the live docs index)"
+summary: "CLI reference for `soloclaw docs` (search the live docs index)"
 read_when:
   - You want to search the live OpenClaw docs from the terminal
 title: "docs"
 ---
 
-# `openclaw docs`
+# `soloclaw docs`
 
 Search the live docs index.
 
@@ -24,5 +24,5 @@ openclaw docs gateway token secretref
 
 Notes:
 
-- With no query, `openclaw docs` opens the live docs search entrypoint.
+- With no query, `soloclaw docs` opens the live docs search entrypoint.
 - Multi-word queries are passed through as one search request.

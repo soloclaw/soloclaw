@@ -39,7 +39,7 @@ are **external** (published on npm by the community).
 
   <Step title="Restart the Gateway">
     ```bash
-    openclaw gateway restart
+    soloclaw gateway restart
     ```
 
     Then configure under `plugins.entries.\<id\>.config` in your config file.
@@ -59,7 +59,7 @@ The install path uses the same resolver as the CLI: local path/archive, explicit
 `clawhub:<pkg>`, or bare package spec (ClawHub first, then npm fallback).
 
 If config is invalid, install normally fails closed and points you at
-`openclaw doctor --fix`. The only recovery exception is a narrow bundled-plugin
+`soloclaw doctor --fix`. The only recovery exception is a narrow bundled-plugin
 reinstall path for plugins that opt into
 `openclaw.install.allowInvalidConfigRecovery`.
 
@@ -72,7 +72,7 @@ OpenClaw recognizes two plugin formats:
 | **Native** | `openclaw.plugin.json` + runtime module; executes in-process       | Official plugins, community npm packages               |
 | **Bundle** | Codex/Claude/Cursor-compatible layout; mapped to OpenClaw features | `.codex-plugin/`, `.claude-plugin/`, `.cursor-plugin/` |
 
-Both show up under `openclaw plugins list`. See [Plugin Bundles](/plugins/bundles) for bundle details.
+Both show up under `soloclaw plugins list`. See [Plugin Bundles](/plugins/bundles) for bundle details.
 
 If you are writing a native plugin, start with [Building Plugins](/plugins/building-plugins)
 and the [Plugin SDK Overview](/plugins/sdk-overview).
@@ -111,7 +111,7 @@ and the [Plugin SDK Overview](/plugins/sdk-overview).
   </Accordion>
 
   <Accordion title="Other">
-    - `browser` — bundled browser plugin for the browser tool, `openclaw browser` CLI, `browser.request` gateway method, browser runtime, and default browser control service (enabled by default; disable before replacing it)
+    - `browser` — bundled browser plugin for the browser tool, `soloclaw browser` CLI, `browser.request` gateway method, browser runtime, and default browser control service (enabled by default; disable before replacing it)
     - `copilot-proxy` — VS Code Copilot Proxy bridge (disabled by default)
   </Accordion>
 </AccordionGroup>
@@ -144,7 +144,7 @@ Looking for third-party plugins? See [Community Plugins](/plugins/community).
 | `entries.\<id\>` | Per-plugin toggles + config                               |
 
 Config changes **require a gateway restart**. If the Gateway is running with config
-watch + in-process restart enabled (the default `openclaw gateway` path), that
+watch + in-process restart enabled (the default `soloclaw gateway` path), that
 restart is usually performed automatically a moment after the config write lands.
 
 <Accordion title="Plugin states: disabled vs missing vs invalid">
@@ -241,7 +241,7 @@ openclaw plugins disable <id>
 
 Bundled plugins ship with OpenClaw. Many are enabled by default (for example
 bundled model providers, bundled speech providers, and the bundled browser
-plugin). Other bundled plugins still need `openclaw plugins enable <id>`.
+plugin). Other bundled plugins still need `soloclaw plugins enable <id>`.
 
 `--force` overwrites an existing installed plugin or hook pack in place.
 It is not supported with `--link`, which reuses the source path instead of
@@ -257,7 +257,7 @@ does not bypass plugin `before_install` policy blocks or scan-failure blocking.
 
 This CLI flag applies to plugin install/update flows only. Gateway-backed skill
 dependency installs use the matching `dangerouslyForceUnsafeInstall` request
-override instead, while `openclaw skills install` remains the separate ClawHub
+override instead, while `soloclaw skills install` remains the separate ClawHub
 skill download/install flow.
 
 Compatible bundles participate in the same plugin list/inspect/enable/disable
@@ -266,7 +266,7 @@ Claude `settings.json` defaults, Claude `.lsp.json` and manifest-declared
 `lspServers` defaults, Cursor command-skills, and compatible Codex hook
 directories.
 
-`openclaw plugins inspect <id>` also reports detected bundle capabilities plus
+`soloclaw plugins inspect <id>` also reports detected bundle capabilities plus
 supported or unsupported MCP and LSP server entries for bundle-backed plugins.
 
 Marketplace sources can be a Claude known-marketplace name from
@@ -275,7 +275,7 @@ Marketplace sources can be a Claude known-marketplace name from
 URL, or a git URL. For remote marketplaces, plugin entries must stay inside the
 cloned marketplace repo and use relative path sources only.
 
-See [`openclaw plugins` CLI reference](/cli/plugins) for full details.
+See [`soloclaw plugins` CLI reference](/cli/plugins) for full details.
 
 ## Plugin API overview
 

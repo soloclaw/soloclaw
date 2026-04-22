@@ -363,7 +363,7 @@ describe("modelsAuthLoginCommand", () => {
       "Default model available: openai-codex/gpt-5.4 (use --set-default to apply)",
     );
     expect(runtime.log).toHaveBeenCalledWith(
-      "Tip: Codex-capable models can use native Codex web search. Enable it with openclaw configure --section web (recommended mode: cached). Docs: https://docs.soloclaw.ai/tools/web",
+      "Tip: Codex-capable models can use native Codex web search. Enable it with soloclaw configure --section web (recommended mode: cached). Docs: https://docs.soloclaw.ai/tools/web",
     );
   });
 
@@ -588,7 +588,7 @@ describe("modelsAuthLoginCommand", () => {
     const runtime = createRuntime();
 
     await expect(modelsAuthLoginCommand({ provider: "anthropic" }, runtime)).rejects.toThrow(
-      'Unknown provider "anthropic". Loaded providers: openai-codex. Verify plugins via `openclaw plugins list --json`.',
+      'Unknown provider "anthropic". Loaded providers: openai-codex. Verify plugins via `soloclaw plugins list --json`.',
     );
   });
 

@@ -8,7 +8,7 @@
 #
 # Manage the running container from the host CLI:
 #   openclaw --container openclaw dashboard --no-open
-#   openclaw --container openclaw channels login
+#   openclaw --container soloclaw channels login
 #
 # Legacy: "setup-host" delegates to the Podman setup script
 
@@ -272,7 +272,7 @@ resolve_config_gateway_bind() {
     return 0
   fi
   OPENCLAW_CONTAINER="" OPENCLAW_CONFIG_DIR="$config_dir" \
-    openclaw config get gateway.bind 2>/dev/null || true
+    soloclaw config get gateway.bind 2>/dev/null || true
 }
 
 # For published container ports, the gateway must listen on the container
@@ -350,14 +350,14 @@ sync_local_control_ui_origins_via_cli() {
   fi
   if ! command -v python3 >/dev/null 2>&1; then
     OPENCLAW_CONTAINER="" OPENCLAW_CONFIG_DIR="$config_dir" \
-      openclaw config set gateway.controlUi.allowedOrigins \
+      soloclaw config set gateway.controlUi.allowedOrigins \
       "[\"http://127.0.0.1:${port}\",\"http://localhost:${port}\"]" \
       --strict-json >/dev/null
     return 0
   fi
   allowed_json="$(
     OPENCLAW_CONTAINER="" OPENCLAW_CONFIG_DIR="$config_dir" \
-      openclaw config get gateway.controlUi.allowedOrigins --json 2>/dev/null || true
+      soloclaw config get gateway.controlUi.allowedOrigins --json 2>/dev/null || true
   )"
   merged_json="$(python3 - "$port" "$allowed_json" <<'PY'
 import json
@@ -391,7 +391,7 @@ print(json.dumps(cleaned))
 PY
   )"
   OPENCLAW_CONTAINER="" OPENCLAW_CONFIG_DIR="$config_dir" \
-    openclaw config set gateway.controlUi.allowedOrigins "$merged_json" --strict-json >/dev/null
+    soloclaw config set gateway.controlUi.allowedOrigins "$merged_json" --strict-json >/dev/null
 }
 
 sync_local_control_ui_origins() {
@@ -567,7 +567,7 @@ podman run --pull="$PODMAN_PULL" -d --replace \
 
 echo "Container $CONTAINER_NAME started: http://127.0.0.1:${HOST_GATEWAY_PORT}/"
 echo "podman exec -it $CONTAINER_NAME openclaw dashboard --no-open"
-echo "podman exec -it $CONTAINER_NAME openclaw devices approve --latest  # if pairing required"
+echo "podman exec -it $CONTAINER_NAME soloclaw devices approve --latest  # if pairing required"
 echo "podman logs -f $CONTAINER_NAME"
 if [[ "$PLATFORM_NAME" == "Linux" ]]; then
   echo "For auto-start/restarts, use: ./scripts/podman/setup.sh --quadlet (Quadlet + systemd user service)."

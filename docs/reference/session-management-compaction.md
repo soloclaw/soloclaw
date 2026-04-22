@@ -295,8 +295,8 @@ Source: `src/plugins/compaction-provider.ts`, `src/agents/pi-hooks/compaction-sa
 You can observe compaction and session state via:
 
 - `/status` (in any chat session)
-- `openclaw status` (CLI)
-- `openclaw sessions` / `sessions --json`
+- `soloclaw status` (CLI)
+- `soloclaw sessions` / `sessions --json`
 - Verbose mode: `🧹 Auto-compaction complete` + compaction count
 
 ---
@@ -359,7 +359,7 @@ flush logic lives on the Gateway side today.
 ## Troubleshooting checklist
 
 - Session key wrong? Start with [/concepts/session](/concepts/session) and confirm the `sessionKey` in `/status`.
-- Store vs transcript mismatch? Confirm the Gateway host and the store path from `openclaw status`.
+- Store vs transcript mismatch? Confirm the Gateway host and the store path from `soloclaw status`.
 - Compaction spam? Check:
   - model context window (too small)
   - compaction settings (`reserveTokens` too high for the model window can cause earlier compaction)

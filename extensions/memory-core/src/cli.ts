@@ -73,24 +73,24 @@ export function registerMemoryCli(program: Command) {
       "after",
       () =>
         `\n${theme.heading("Examples:")}\n${formatHelpExamples([
-          ["openclaw memory status", "Show index and provider status."],
+          ["soloclaw memory status", "Show index and provider status."],
           [
-            "openclaw memory status --fix",
+            "soloclaw memory status --fix",
             "Repair stale recall locks and normalize promotion metadata.",
           ],
-          ["openclaw memory status --deep", "Probe embedding provider readiness."],
-          ["openclaw memory index --force", "Force a full reindex."],
+          ["soloclaw memory status --deep", "Probe embedding provider readiness."],
+          ["soloclaw memory index --force", "Force a full reindex."],
           ['openclaw memory search "meeting notes"', "Quick search using positional query."],
           [
             'openclaw memory search --query "deployment" --max-results 20',
             "Limit results for focused troubleshooting.",
           ],
           [
-            `openclaw memory promote --limit 10 --min-score ${DEFAULT_PROMOTION_MIN_SCORE}`,
+            `soloclaw memory promote --limit 10 --min-score ${DEFAULT_PROMOTION_MIN_SCORE}`,
             "Review weighted short-term candidates for long-term memory.",
           ],
           [
-            "openclaw memory promote --apply",
+            "soloclaw memory promote --apply",
             "Append top-ranked short-term candidates into MEMORY.md.",
           ],
           [
@@ -98,18 +98,18 @@ export function registerMemoryCli(program: Command) {
             "Explain why a specific candidate would or would not promote.",
           ],
           [
-            "openclaw memory rem-harness --json",
+            "soloclaw memory rem-harness --json",
             "Preview REM reflections, candidate truths, and deep promotion output.",
           ],
           [
-            "openclaw memory rem-backfill --path ./memory",
+            "soloclaw memory rem-backfill --path ./memory",
             "Write grounded historical REM entries into DREAMS.md for UI review.",
           ],
           [
-            "openclaw memory rem-backfill --path ./memory --stage-short-term",
+            "soloclaw memory rem-backfill --path ./memory --stage-short-term",
             "Also seed durable grounded candidates into the live short-term promotion store.",
           ],
-          ["openclaw memory status --json", "Output machine-readable JSON (good for scripts)."],
+          ["soloclaw memory status --json", "Output machine-readable JSON (good for scripts)."],
         ])}\n\n${theme.muted("Docs:")} ${formatDocsLink("/cli/memory", "docs.soloclaw.ai/cli/memory")}\n`,
     );
 

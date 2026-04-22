@@ -417,8 +417,8 @@ Command paths can opt into supported SecretRef resolution via gateway snapshot R
 
 There are two broad behaviors:
 
-- Strict command paths (for example `openclaw memory` remote-memory paths and `openclaw qr --remote` when it needs remote shared-secret refs) read from the active snapshot and fail fast when a required SecretRef is unavailable.
-- Read-only command paths (for example `openclaw status`, `openclaw status --all`, `openclaw channels status`, `openclaw channels resolve`, `openclaw security audit`, and read-only doctor/config repair flows) also prefer the active snapshot, but degrade instead of aborting when a targeted SecretRef is unavailable in that command path.
+- Strict command paths (for example `soloclaw memory` remote-memory paths and `soloclaw qr --remote` when it needs remote shared-secret refs) read from the active snapshot and fail fast when a required SecretRef is unavailable.
+- Read-only command paths (for example `soloclaw status`, `soloclaw status --all`, `soloclaw channels status`, `soloclaw channels resolve`, `soloclaw security audit`, and read-only doctor/config repair flows) also prefer the active snapshot, but degrade instead of aborting when a targeted SecretRef is unavailable in that command path.
 
 Read-only behavior:
 
@@ -429,7 +429,7 @@ Read-only behavior:
 
 Other notes:
 
-- Snapshot refresh after backend secret rotation is handled by `openclaw secrets reload`.
+- Snapshot refresh after backend secret rotation is handled by `soloclaw secrets reload`.
 - Gateway RPC method used by these command paths: `secrets.resolve`.
 
 ## Audit and configure workflow
@@ -455,7 +455,7 @@ Findings include:
 Exec note:
 
 - By default, audit skips exec SecretRef resolvability checks to avoid command side effects.
-- Use `openclaw secrets audit --allow-exec` to execute exec providers during audit.
+- Use `soloclaw secrets audit --allow-exec` to execute exec providers during audit.
 
 Header residue note:
 
@@ -479,9 +479,9 @@ Exec note:
 
 Helpful modes:
 
-- `openclaw secrets configure --providers-only`
-- `openclaw secrets configure --skip-provider-setup`
-- `openclaw secrets configure --agent <id>`
+- `soloclaw secrets configure --providers-only`
+- `soloclaw secrets configure --skip-provider-setup`
+- `soloclaw secrets configure --agent <id>`
 
 `configure` apply defaults:
 

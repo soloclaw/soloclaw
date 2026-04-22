@@ -290,7 +290,7 @@ export class OpenClawChannelBridge {
       inputPreview: params.inputPreview,
     });
     if (this.verbose) {
-      process.stderr.write(`openclaw mcp: pending Claude permission ${params.requestId}\n`);
+      process.stderr.write(`soloclaw mcp: pending Claude permission ${params.requestId}\n`);
     }
   }
 
@@ -313,7 +313,7 @@ export class OpenClawChannelBridge {
     } catch (error) {
       if (this.verbose && !this.closed) {
         process.stderr.write(
-          `openclaw mcp: notification ${notification.method} failed: ${String(error)}\n`,
+          `soloclaw mcp: notification ${notification.method} failed: ${String(error)}\n`,
         );
       }
     }

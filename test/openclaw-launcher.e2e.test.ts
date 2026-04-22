@@ -7,8 +7,8 @@ import { cleanupTempDirs, makeTempDir } from "./helpers/temp-dir.js";
 async function makeLauncherFixture(fixtureRoots: string[]): Promise<string> {
   const fixtureRoot = makeTempDir(fixtureRoots, "openclaw-launcher-");
   await fs.copyFile(
-    path.resolve(process.cwd(), "openclaw.mjs"),
-    path.join(fixtureRoot, "openclaw.mjs"),
+    path.resolve(process.cwd(), "soloclaw.mjs"),
+    path.join(fixtureRoot, "soloclaw.mjs"),
   );
   await fs.mkdir(path.join(fixtureRoot, "dist"), { recursive: true });
   return fixtureRoot;
@@ -19,7 +19,7 @@ async function addSourceTreeMarker(fixtureRoot: string): Promise<void> {
   await fs.writeFile(path.join(fixtureRoot, "src", "entry.ts"), "export {};\n", "utf8");
 }
 
-describe("openclaw launcher", () => {
+describe("soloclaw launcher", () => {
   const fixtureRoots: string[] = [];
 
   afterEach(async () => {
@@ -34,7 +34,7 @@ describe("openclaw launcher", () => {
       "utf8",
     );
 
-    const result = spawnSync(process.execPath, [path.join(fixtureRoot, "openclaw.mjs"), "--help"], {
+    const result = spawnSync(process.execPath, [path.join(fixtureRoot, "soloclaw.mjs"), "--help"], {
       cwd: fixtureRoot,
       encoding: "utf8",
     });
@@ -47,7 +47,7 @@ describe("openclaw launcher", () => {
   it("keeps the friendly launcher error for a truly missing entry build output", async () => {
     const fixtureRoot = await makeLauncherFixture(fixtureRoots);
 
-    const result = spawnSync(process.execPath, [path.join(fixtureRoot, "openclaw.mjs"), "--help"], {
+    const result = spawnSync(process.execPath, [path.join(fixtureRoot, "soloclaw.mjs"), "--help"], {
       cwd: fixtureRoot,
       encoding: "utf8",
     });
@@ -60,7 +60,7 @@ describe("openclaw launcher", () => {
     const fixtureRoot = await makeLauncherFixture(fixtureRoots);
     await addSourceTreeMarker(fixtureRoot);
 
-    const result = spawnSync(process.execPath, [path.join(fixtureRoot, "openclaw.mjs"), "--help"], {
+    const result = spawnSync(process.execPath, [path.join(fixtureRoot, "soloclaw.mjs"), "--help"], {
       cwd: fixtureRoot,
       encoding: "utf8",
     });

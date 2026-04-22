@@ -283,7 +283,7 @@ async function openclawCliJson<T>(params: { openclawBin: string; args: string[] 
   });
   const stdout = (result.stdout || "").trim();
   if (!stdout) {
-    throw new Error(`openclaw ${params.args.join(" ")} returned empty stdout`);
+    throw new Error(`soloclaw ${params.args.join(" ")} returned empty stdout`);
   }
   return JSON.parse(stdout) as T;
 }
@@ -661,7 +661,7 @@ async function run(): Promise<SuccessResult | FailureResult> {
       });
       sentMessageId = sent.payload?.result?.messageId || "";
       if (!sentMessageId) {
-        throw new Error("openclaw message send did not return payload.result.messageId");
+        throw new Error("soloclaw message send did not return payload.result.messageId");
       }
     }
   } catch (err) {

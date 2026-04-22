@@ -62,10 +62,10 @@ Channel config lives under `channels.zalouser` (not `plugins.entries.*`):
 ## CLI
 
 ```bash
-openclaw channels login --channel zalouser
-openclaw channels logout --channel zalouser
-openclaw channels status --probe
-openclaw message send --channel zalouser --target <threadId> --message "Hello from OpenClaw"
+soloclaw channels login --channel zalouser
+soloclaw channels logout --channel zalouser
+soloclaw channels status --probe
+soloclaw message send --channel zalouser --target <threadId> --message "Hello from OpenClaw"
 openclaw directory peers list --channel zalouser --query "name"
 ```
 

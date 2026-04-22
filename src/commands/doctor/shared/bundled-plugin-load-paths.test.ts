@@ -171,12 +171,12 @@ describe("bundled plugin load path repair", () => {
           pathLabel: "plugins.load.paths",
         },
       ],
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "soloclaw doctor --fix",
     });
 
     expect(warnings).toEqual([
       expect.stringContaining(`plugins.load.paths: legacy bundled plugin path "${legacyPath}"`),
-      expect.stringContaining('Run "openclaw doctor --fix"'),
+      expect.stringContaining('Run "soloclaw doctor --fix"'),
     ]);
   });
 

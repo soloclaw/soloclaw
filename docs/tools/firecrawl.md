@@ -53,7 +53,7 @@ which helps with JS-heavy sites or pages that block plain HTTP fetches.
 
 Notes:
 
-- Choosing Firecrawl in onboarding or `openclaw configure --section web` enables the bundled Firecrawl plugin automatically.
+- Choosing Firecrawl in onboarding or `soloclaw configure --section web` enables the bundled Firecrawl plugin automatically.
 - `web_search` with Firecrawl supports `query` and `count`.
 - For Firecrawl-specific controls like `sources`, `categories`, or result scraping, use `firecrawl_search`.
 - `baseUrl` overrides must stay on `https://api.firecrawl.dev`.
@@ -86,7 +86,7 @@ Notes:
 
 - Firecrawl fallback attempts run only when an API key is available (`plugins.entries.firecrawl.config.webFetch.apiKey` or `FIRECRAWL_API_KEY`).
 - `maxAgeMs` controls how old cached results can be (ms). Default is 2 days.
-- Legacy `tools.web.fetch.firecrawl.*` config is auto-migrated by `openclaw doctor --fix`.
+- Legacy `tools.web.fetch.firecrawl.*` config is auto-migrated by `soloclaw doctor --fix`.
 - Firecrawl scrape/base URL overrides are restricted to `https://api.firecrawl.dev`.
 
 `firecrawl_scrape` reuses the same `plugins.entries.firecrawl.config.webFetch.*` settings and env vars.

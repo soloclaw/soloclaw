@@ -226,7 +226,7 @@ describe("buildAgentSystemPrompt", () => {
     });
 
     expect(prompt).toContain("## OpenClaw CLI Quick Reference");
-    expect(prompt).toContain("openclaw gateway restart");
+    expect(prompt).toContain("soloclaw gateway restart");
     expect(prompt).toContain("Do not invent commands");
   });
 
@@ -894,7 +894,7 @@ describe("buildSubagentSystemPrompt", () => {
     expect(prompt).toContain("For ACP harness sessions (codex/claudecode/gemini)");
     expect(prompt).toContain("set `agentId` unless `acp.defaultAgent` is configured");
     expect(prompt).toContain("Do not ask users to run slash commands or CLI");
-    expect(prompt).toContain("Do not use `exec` (`openclaw ...`, `acpx ...`)");
+    expect(prompt).toContain("Do not use `exec` (`soloclaw ...`, `acpx ...`)");
     expect(prompt).toContain("Use `subagents` only for OpenClaw subagents");
     expect(prompt).toContain("Subagent results auto-announce back to you");
     expect(prompt).toContain(

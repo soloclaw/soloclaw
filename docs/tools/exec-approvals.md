@@ -17,13 +17,13 @@ Effective policy is the **stricter** of `tools.exec.*` and approvals defaults; i
 Host exec also uses the local approvals state on that machine. A host-local
 `ask: "always"` in `~/.soloclaw/exec-approvals.json` keeps prompting even if
 session or config defaults request `ask: "on-miss"`.
-Use `openclaw approvals get`, `openclaw approvals get --gateway`, or
-`openclaw approvals get --node <id|name|ip>` to inspect the requested policy,
+Use `soloclaw approvals get`, `soloclaw approvals get --gateway`, or
+`soloclaw approvals get --node <id|name|ip>` to inspect the requested policy,
 host policy sources, and the effective result.
-For the local machine, `openclaw exec-policy show` exposes the same merged view and
-`openclaw exec-policy set|preset` can synchronize the local requested policy with the
+For the local machine, `soloclaw exec-policy show` exposes the same merged view and
+`soloclaw exec-policy set|preset` can synchronize the local requested policy with the
 local host approvals file in one step. When a local scope requests `host=node`,
-`openclaw exec-policy show` reports that scope as node-managed at runtime instead of
+`soloclaw exec-policy show` reports that scope as node-managed at runtime instead of
 pretending the local approvals file is the effective source of truth.
 
 If the companion app UI is **not available**, any request that requires a prompt is
@@ -127,10 +127,10 @@ or `deny`.
 Persistent gateway-host "never prompt" setup:
 
 ```bash
-openclaw config set tools.exec.host gateway
-openclaw config set tools.exec.security full
-openclaw config set tools.exec.ask off
-openclaw gateway restart
+soloclaw config set tools.exec.host gateway
+soloclaw config set tools.exec.security full
+soloclaw config set tools.exec.ask off
+soloclaw gateway restart
 ```
 
 Then set the host approvals file to match:
@@ -160,8 +160,8 @@ That local shortcut updates both:
 - local `~/.soloclaw/exec-approvals.json` defaults
 
 It is intentionally local-only. If you need to change gateway-host or node-host approvals
-remotely, continue using `openclaw approvals set --gateway` or
-`openclaw approvals set --node <id|name|ip>`.
+remotely, continue using `soloclaw approvals set --gateway` or
+`soloclaw approvals set --node <id|name|ip>`.
 
 For a node host, apply the same approvals file on that node instead:
 
@@ -180,9 +180,9 @@ EOF
 
 Important local-only limitation:
 
-- `openclaw exec-policy` does not synchronize node approvals
-- `openclaw exec-policy set --host node` is rejected
-- node exec approvals are fetched from the node at runtime, so node-targeted updates must use `openclaw approvals --node ...`
+- `soloclaw exec-policy` does not synchronize node approvals
+- `soloclaw exec-policy set --host node` is rejected
+- node exec approvals are fetched from the node at runtime, so node-targeted updates must use `soloclaw approvals --node ...`
 
 Session-only shortcut:
 
@@ -351,9 +351,9 @@ Configuration location:
 - `safeBins` comes from config (`tools.exec.safeBins` or per-agent `agents.list[].tools.exec.safeBins`).
 - `safeBinTrustedDirs` comes from config (`tools.exec.safeBinTrustedDirs` or per-agent `agents.list[].tools.exec.safeBinTrustedDirs`).
 - `safeBinProfiles` comes from config (`tools.exec.safeBinProfiles` or per-agent `agents.list[].tools.exec.safeBinProfiles`). Per-agent profile keys override global keys.
-- allowlist entries live in host-local `~/.soloclaw/exec-approvals.json` under `agents.<id>.allowlist` (or via Control UI / `openclaw approvals allowlist ...`).
-- `openclaw security audit` warns with `tools.exec.safe_bins_interpreter_unprofiled` when interpreter/runtime bins appear in `safeBins` without explicit profiles.
-- `openclaw doctor --fix` can scaffold missing custom `safeBinProfiles.<bin>` entries as `{}` (review and tighten afterward). Interpreter/runtime bins are not auto-scaffolded.
+- allowlist entries live in host-local `~/.soloclaw/exec-approvals.json` under `agents.<id>.allowlist` (or via Control UI / `soloclaw approvals allowlist ...`).
+- `soloclaw security audit` warns with `tools.exec.safe_bins_interpreter_unprofiled` when interpreter/runtime bins appear in `safeBins` without explicit profiles.
+- `soloclaw doctor --fix` can scaffold missing custom `safeBinProfiles.<bin>` entries as `{}` (review and tighten afterward). Interpreter/runtime bins are not auto-scaffolded.
 
 Custom profile example:
 
@@ -391,7 +391,7 @@ must advertise `system.execApprovals.get/set` (macOS app or headless node host).
 If a node does not advertise exec approvals yet, edit its local
 `~/.soloclaw/exec-approvals.json` directly.
 
-CLI: `openclaw approvals` supports gateway or node editing (see [Approvals CLI](/cli/approvals)).
+CLI: `soloclaw approvals` supports gateway or node editing (see [Approvals CLI](/cli/approvals)).
 
 ## Approval flow
 

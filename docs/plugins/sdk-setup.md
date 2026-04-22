@@ -164,7 +164,7 @@ it. Older hosts skip the plugin; invalid version strings are rejected.
 for narrow bundled-plugin recovery only, so reinstall/setup can repair known
 upgrade leftovers like a missing bundled plugin path or stale `channels.<id>`
 entry for that same plugin. If config is broken for unrelated reasons, install
-still fails closed and tells the operator to run `openclaw doctor --fix`.
+still fails closed and tells the operator to run `soloclaw doctor --fix`.
 
 ### Deferred full load
 
@@ -404,7 +404,7 @@ const configSchema = buildChannelConfigSchema(accountSchema);
 
 ## Setup wizards
 
-Channel plugins can provide interactive setup wizards for `openclaw onboard`.
+Channel plugins can provide interactive setup wizards for `soloclaw onboard`.
 The wizard is a `ChannelSetupWizard` object on the `ChannelPlugin`:
 
 ```typescript
@@ -524,7 +524,7 @@ openclaw plugins install <package-name>
 ```
 
 <Info>
-  For npm-sourced installs, `openclaw plugins install` runs
+  For npm-sourced installs, `soloclaw plugins install` runs
   `npm install --ignore-scripts` (no lifecycle scripts). Keep plugin dependency
   trees pure JS/TS and avoid packages that require `postinstall` builds.
 </Info>

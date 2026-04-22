@@ -41,7 +41,7 @@ For faster QA Lab UI iteration without rebuilding the Docker image each time,
 start the stack with a bind-mounted QA Lab bundle:
 
 ```bash
-pnpm openclaw qa docker-build-image
+pnpm soloclaw qa docker-build-image
 pnpm qa:lab:build
 pnpm qa:lab:up:fast
 pnpm qa:lab:watch
@@ -55,7 +55,7 @@ asset hash changes.
 For a transport-real Matrix smoke lane, run:
 
 ```bash
-pnpm openclaw qa matrix
+pnpm soloclaw qa matrix
 ```
 
 That lane provisions a disposable Tuwunel homeserver in Docker, registers
@@ -70,7 +70,7 @@ capture the outer `scripts/run-node.mjs` build/launcher output too, set
 For a transport-real Telegram smoke lane, run:
 
 ```bash
-pnpm openclaw qa telegram
+pnpm soloclaw qa telegram
 ```
 
 That lane targets one real private Telegram group instead of provisioning a
@@ -99,7 +99,7 @@ checklist.
 For a disposable Linux VM lane without bringing Docker into the QA path, run:
 
 ```bash
-pnpm openclaw qa suite --runner multipass --scenario channel-chat-baseline
+pnpm soloclaw qa suite --runner multipass --scenario channel-chat-baseline
 ```
 
 This boots a fresh Multipass guest, installs dependencies, builds OpenClaw
@@ -202,7 +202,7 @@ For character and style checks, run the same scenario across multiple live model
 refs and write a judged Markdown report:
 
 ```bash
-pnpm openclaw qa character-eval \
+pnpm soloclaw qa character-eval \
   --model openai/gpt-5.4,thinking=xhigh \
   --model openai/gpt-5.2,thinking=xhigh \
   --model openai/gpt-5,thinking=xhigh \

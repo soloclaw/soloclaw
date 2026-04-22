@@ -109,8 +109,8 @@ async function requireRiskAcknowledgement(params: {
       "- Use the strongest available model for any bot with tools or untrusted inboxes.",
       "",
       "Run regularly:",
-      "openclaw security audit --deep",
-      "openclaw security audit --fix",
+      "soloclaw security audit --deep",
+      "soloclaw security audit --fix",
       "",
       "Must read: https://docs.soloclaw.ai/gateway/security",
     ].join("\n"),
@@ -157,7 +157,7 @@ export async function runSetupWizard(
       );
     }
     await prompter.outro(
-      `Config invalid. Run \`${formatCliCommand("openclaw doctor")}\` to repair it, then re-run setup.`,
+      `Config invalid. Run \`${formatCliCommand("soloclaw doctor")}\` to repair it, then re-run setup.`,
     );
     runtime.exit(1);
     return;
@@ -177,14 +177,14 @@ export async function runSetupWizard(
           ? [`- ... +${compatibilityNotices.length - 4} more`]
           : []),
         "",
-        `Review: ${formatCliCommand("openclaw doctor")}`,
-        `Inspect: ${formatCliCommand("openclaw plugins inspect --all")}`,
+        `Review: ${formatCliCommand("soloclaw doctor")}`,
+        `Inspect: ${formatCliCommand("soloclaw plugins inspect --all")}`,
       ].join("\n"),
       "Plugin compatibility",
     );
   }
 
-  const quickstartHint = `Configure details later via ${formatCliCommand("openclaw configure")}.`;
+  const quickstartHint = `Configure details later via ${formatCliCommand("soloclaw configure")}.`;
   const manualHint = "Configure port, network, Tailscale, and auth options.";
   const explicitFlowRaw = opts.flow?.trim();
   const normalizedExplicitFlow = explicitFlowRaw === "manual" ? "advanced" : explicitFlowRaw;

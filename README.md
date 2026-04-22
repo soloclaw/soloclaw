@@ -23,7 +23,7 @@ Based on [OpenClaw](https://github.com/openclaw/openclaw).
 git clone https://github.com/soloclaw/soloclaw.git
 cd soloclaw
 pnpm install && pnpm build
-pnpm openclaw onboard
+pnpm soloclaw onboard
 ```
 
 That's it. SoloClaw installs a free local AI model via Ollama, configures web search, starts the gateway service, and opens the chat UI. No API keys, no accounts, no questions asked.
@@ -54,22 +54,22 @@ docker run -d -p 8080:8080 searxng/searxng
 | `--large` | gemma4:26b | 24GB |
 
 ```bash
-pnpm openclaw onboard --small    # Low-end machines
-pnpm openclaw onboard            # Defaults to medium
-pnpm openclaw onboard --large    # High-end machines
+pnpm soloclaw onboard --small    # Low-end machines
+pnpm soloclaw onboard            # Defaults to medium
+pnpm soloclaw onboard --large    # High-end machines
 ```
 
 ## Quick Start
 
 ```bash
 # Talk to your AI in the terminal
-openclaw tui
+soloclaw tui
 
 # Send a one-off message
-openclaw agent --message "Hello"
+soloclaw agent --message "Hello"
 
 # Check gateway status
-openclaw gateway status --deep
+soloclaw gateway status --deep
 ```
 
 ## Extend It
@@ -87,7 +87,7 @@ No menus, no config files. Just ask.
 **LLM**
 - qwen3.5:9b (medium), free local model via Ollama
 
-**Plugins** (`extensions/`) — system-level components integrated with the gateway. Always running, configured in `openclaw.json`.
+**Plugins** (`extensions/`) — system-level components integrated with the gateway. Always running, configured in config.
 - Web search — SearXNG (self-hosted, Docker)
 - Browser — agent-controlled Chromium for reading web pages
 - Channels — Telegram, Discord built-in
@@ -119,7 +119,7 @@ No menus, no config files. Just ask.
 ```
 User
   │
-  ├── CLI (openclaw tui / openclaw agent)
+  ├── CLI (soloclaw tui / soloclaw agent)
   │     │
   │     ▼
   │   Gateway (always-on background service)
@@ -169,27 +169,27 @@ User
 Use a preset size:
 
 ```bash
-pnpm openclaw onboard --small     # gemma4:e2b
-pnpm openclaw onboard --medium    # qwen3.5:9b
-pnpm openclaw onboard --large     # gemma4:26b
+pnpm soloclaw onboard --small     # gemma4:e2b
+pnpm soloclaw onboard --medium    # qwen3.5:9b
+pnpm soloclaw onboard --large     # gemma4:26b
 ```
 
 Or specify any Ollama model directly:
 
 ```bash
-pnpm openclaw onboard --custom-model-id qwen2.5:14b
+pnpm soloclaw onboard --custom-model-id qwen2.5:14b
 ```
 
 Switch model after install:
 
 ```bash
-openclaw config set agents.defaults.model.primary ollama/gemma4:e2b
+soloclaw config set agents.defaults.model.primary ollama/gemma4:e2b
 ```
 
 Any model available in [Ollama](https://ollama.com/library) works. You can also use cloud providers (OpenAI, Anthropic, etc.):
 
 ```bash
-pnpm openclaw onboard --non-interactive --accept-risk --auth-choice openai --openai-api-key YOUR_KEY
+pnpm soloclaw onboard --non-interactive --accept-risk --auth-choice openai --openai-api-key YOUR_KEY
 ```
 
 ## Configuration
@@ -225,13 +225,13 @@ pnpm install
 pnpm ui:build   # auto-installs UI deps on first run
 pnpm build
 
-pnpm openclaw onboard
+pnpm soloclaw onboard
 
 # Dev loop (auto-reload on source/config changes)
 pnpm gateway:watch
 ```
 
-Note: `pnpm openclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` produces `dist/` for running via Node / the packaged `openclaw` binary.
+Note: `pnpm soloclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` produces `dist/` for running via Node / the packaged `soloclaw` binary.
 
 ## License
 

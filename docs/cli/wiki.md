@@ -1,12 +1,12 @@
 ---
-summary: "CLI reference for `openclaw wiki` (memory-wiki vault status, search, compile, lint, apply, bridge, and Obsidian helpers)"
+summary: "CLI reference for `soloclaw wiki` (memory-wiki vault status, search, compile, lint, apply, bridge, and Obsidian helpers)"
 read_when:
   - You want to use the memory-wiki CLI
-  - You are documenting or changing `openclaw wiki`
+  - You are documenting or changing `soloclaw wiki`
 title: "wiki"
 ---
 
-# `openclaw wiki`
+# `soloclaw wiki`
 
 Inspect and maintain the `memory-wiki` vault.
 
@@ -20,7 +20,7 @@ Related:
 
 ## What it is for
 
-Use `openclaw wiki` when you want a compiled knowledge vault with:
+Use `soloclaw wiki` when you want a compiled knowledge vault with:
 
 - wiki-native search and page reads
 - provenance-rich syntheses
@@ -129,7 +129,7 @@ Behavior depends on config:
 - `search.corpus`: `wiki`, `memory`, or `all`
 
 Use `wiki search` when you want wiki-specific ranking or provenance details.
-For one broad shared recall pass, prefer `openclaw memory search` when the
+For one broad shared recall pass, prefer `soloclaw memory search` when the
 active memory plugin exposes shared search.
 
 ### `wiki get <lookup>`
@@ -201,7 +201,7 @@ These require the official `obsidian` CLI on `PATH` when
 
 ## Configuration tie-ins
 
-`openclaw wiki` behavior is shaped by:
+`soloclaw wiki` behavior is shaped by:
 
 - `plugins.entries.memory-wiki.config.vaultMode`
 - `plugins.entries.memory-wiki.config.search.backend`

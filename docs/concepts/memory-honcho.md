@@ -51,7 +51,7 @@ Install the plugin and run setup:
 ```bash
 openclaw plugins install @honcho-ai/openclaw-honcho
 openclaw honcho setup
-openclaw gateway --force
+soloclaw gateway --force
 ```
 
 The setup command prompts for your API credentials, writes the config, and
@@ -89,7 +89,7 @@ For self-hosted instances, point `baseUrl` to your local server (for example
 ## Migrating existing memory
 
 If you have existing workspace memory files (`USER.md`, `MEMORY.md`,
-`IDENTITY.md`, `memory/`, `canvas/`), `openclaw honcho setup` detects and
+`IDENTITY.md`, `memory/`, `canvas/`), `soloclaw honcho setup` detects and
 offers to migrate them.
 
 <Info>

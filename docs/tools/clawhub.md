@@ -48,9 +48,9 @@ Plugin installs validate advertised `pluginApi` and `minGatewayVersion`
 compatibility before archive install runs, so incompatible hosts fail closed
 early instead of partially installing the package.
 
-`openclaw plugins install clawhub:...` only accepts installable plugin families.
+`soloclaw plugins install clawhub:...` only accepts installable plugin families.
 If a ClawHub package is actually a skill, OpenClaw stops and points you at
-`openclaw skills install <slug>` instead.
+`soloclaw skills install <slug>` instead.
 
 ## What ClawHub is
 
@@ -85,9 +85,9 @@ If you want to add new capabilities to your OpenClaw agent, ClawHub is the easie
 ## Quick start (non-technical)
 
 1. Search for something you need:
-   - `openclaw skills search "calendar"`
+   - `soloclaw skills search "calendar"`
 2. Install a skill:
-   - `openclaw skills install <skill-slug>`
+   - `soloclaw skills install <skill-slug>`
 3. Start a new OpenClaw session so it picks up the new skill.
 4. If you want to publish or manage registry auth, install the separate
    `clawhub` CLI too.
@@ -106,8 +106,8 @@ pnpm add -g clawhub
 
 ## How it fits into OpenClaw
 
-Native `openclaw skills install` installs into the active workspace `skills/`
-directory. `openclaw plugins install clawhub:...` records a normal managed
+Native `soloclaw skills install` installs into the active workspace `skills/`
+directory. `soloclaw plugins install clawhub:...` records a normal managed
 plugin install plus ClawHub source metadata for updates.
 
 Anonymous ClawHub plugin installs also fail closed for private packages.

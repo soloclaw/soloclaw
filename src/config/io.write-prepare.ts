@@ -85,10 +85,10 @@ export function formatConfigValidationFailure(pathLabel: string, issueMessage: s
     `Configuration mismatch: ${policyPath} is "open", but ${allowPath} does not include "*".`,
     "",
     "Fix with:",
-    `  openclaw config set ${allowPath} '["*"]'`,
+    `  soloclaw config set ${allowPath} '["*"]'`,
     "",
     "Or switch policy:",
-    `  openclaw config set ${policyPath} "pairing"`,
+    `  soloclaw config set ${policyPath} "pairing"`,
   ].join("\n");
 }
 

@@ -34,7 +34,7 @@ local while `web_search` and `x_search` can use xAI Responses under the hood.
   </Step>
   <Step title="Configure">
     ```bash
-    openclaw configure --section web
+    soloclaw configure --section web
     ```
     This stores the provider and any needed credential. You can also set an env
     var (for example `BRAVE_API_KEY`) and skip this step for API-backed
@@ -216,16 +216,16 @@ examples.
 - today the bundled web-fetch provider is Firecrawl, configured under
   `plugins.entries.firecrawl.config.webFetch.*`
 
-When you choose **Kimi** during `openclaw onboard` or
-`openclaw configure --section web`, OpenClaw can also ask for:
+When you choose **Kimi** during `soloclaw onboard` or
+`soloclaw configure --section web`, OpenClaw can also ask for:
 
 - the Moonshot API region (`https://api.moonshot.ai/v1` or `https://api.moonshot.cn/v1`)
 - the default Kimi web-search model (defaults to `kimi-k2.5`)
 
 For `x_search`, configure `plugins.entries.xai.config.xSearch.*`. It uses the
 same `XAI_API_KEY` fallback as Grok web search.
-Legacy `tools.web.x_search.*` config is auto-migrated by `openclaw doctor --fix`.
-When you choose Grok during `openclaw onboard` or `openclaw configure --section web`,
+Legacy `tools.web.x_search.*` config is auto-migrated by `soloclaw doctor --fix`.
+When you choose Grok during `soloclaw onboard` or `soloclaw configure --section web`,
 OpenClaw can also offer optional `x_search` setup with the same key.
 This is a separate follow-up step inside the Grok path, not a separate top-level
 web-search provider choice. If you pick another provider, OpenClaw does not
@@ -235,7 +235,7 @@ show the `x_search` prompt.
 
 <Tabs>
   <Tab title="Config file">
-    Run `openclaw configure --section web` or set the key directly:
+    Run `soloclaw configure --section web` or set the key directly:
 
     ```json5
     {

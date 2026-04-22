@@ -92,7 +92,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
     }
     defaultRuntime.error(
       warnText(
-        `Recommendation: run "${formatCliCommand("openclaw doctor")}" (or "${formatCliCommand("openclaw doctor --repair")}").`,
+        `Recommendation: run "${formatCliCommand("soloclaw doctor")}" (or "${formatCliCommand("soloclaw doctor --repair")}").`,
       ),
     );
   }
@@ -126,7 +126,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
       );
       defaultRuntime.error(
         errorText(
-          `Fix: rerun \`${formatCliCommand("openclaw gateway install --force")}\` from the same --profile / OPENCLAW_STATE_DIR you expect.`,
+          `Fix: rerun \`${formatCliCommand("soloclaw gateway install --force")}\` from the same --profile / OPENCLAW_STATE_DIR you expect.`,
         ),
       );
     }
@@ -200,7 +200,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
     );
     defaultRuntime.error(
       errorText(
-        `Fix: run ${formatCliCommand("openclaw gateway restart")} and re-check with ${formatCliCommand("openclaw gateway status --deep")}.`,
+        `Fix: run ${formatCliCommand("soloclaw gateway restart")} and re-check with ${formatCliCommand("soloclaw gateway status --deep")}.`,
       ),
     );
     spacer();
@@ -234,7 +234,7 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
       ),
     );
     defaultRuntime.error(
-      errorText(`Then reinstall: ${formatCliCommand("openclaw gateway install")}`),
+      errorText(`Then reinstall: ${formatCliCommand("soloclaw gateway install")}`),
     );
     spacer();
   }
@@ -307,6 +307,6 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
     spacer();
   }
 
-  defaultRuntime.log(`${label("Troubles:")} run ${formatCliCommand("openclaw status")}`);
+  defaultRuntime.log(`${label("Troubles:")} run ${formatCliCommand("soloclaw status")}`);
   defaultRuntime.log(`${label("Troubleshooting:")} https://docs.soloclaw.ai/troubleshooting`);
 }

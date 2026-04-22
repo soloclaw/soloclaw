@@ -1,13 +1,13 @@
 ---
-summary: "CLI reference for `openclaw browser` (lifecycle, profiles, tabs, actions, state, and debugging)"
+summary: "CLI reference for `soloclaw browser` (lifecycle, profiles, tabs, actions, state, and debugging)"
 read_when:
-  - You use `openclaw browser` and want examples for common tasks
+  - You use `soloclaw browser` and want examples for common tasks
   - You want to control a browser running on another machine via a node host
   - You want to attach to your local signed-in Chrome via Chrome MCP
 title: "browser"
 ---
 
-# `openclaw browser`
+# `soloclaw browser`
 
 Manage OpenClaw's browser control surface and run browser actions (lifecycle, profiles, tabs, snapshots, screenshots, navigation, input, state emulation, and debugging).
 
@@ -58,15 +58,15 @@ openclaw browser --browser-profile openclaw reset-profile
 
 Notes:
 
-- For `attachOnly` and remote CDP profiles, `openclaw browser stop` closes the
+- For `attachOnly` and remote CDP profiles, `soloclaw browser stop` closes the
   active control session and clears temporary emulation overrides even when
   OpenClaw did not launch the browser process itself.
-- For local managed profiles, `openclaw browser stop` stops the spawned browser
+- For local managed profiles, `soloclaw browser stop` stops the spawned browser
   process.
 
 ## If the command is missing
 
-If `openclaw browser` is an unknown command, check `plugins.allow` in
+If `soloclaw browser` is an unknown command, check `plugins.allow` in
 `~/.soloclaw/openclaw.json`.
 
 When `plugins.allow` is present, the bundled browser plugin must be listed

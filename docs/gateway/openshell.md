@@ -114,7 +114,7 @@ Best for:
 
 Important: if you edit files on the host outside OpenClaw after the initial seed,
 the remote sandbox does **not** see those changes. Use
-`openclaw sandbox recreate` to re-seed.
+`soloclaw sandbox recreate` to re-seed.
 
 ### Choosing a mode
 
@@ -304,4 +304,4 @@ openclaw sandbox recreate --all
 - [Sandboxing](/gateway/sandboxing) -- modes, scopes, and backend comparison
 - [Sandbox vs Tool Policy vs Elevated](/gateway/sandbox-vs-tool-policy-vs-elevated) -- debugging blocked tools
 - [Multi-Agent Sandbox and Tools](/tools/multi-agent-sandbox-tools) -- per-agent overrides
-- [Sandbox CLI](/cli/sandbox) -- `openclaw sandbox` commands
+- [Sandbox CLI](/cli/sandbox) -- `soloclaw sandbox` commands

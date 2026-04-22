@@ -73,7 +73,7 @@ Use these in chat:
 Other surfaces:
 
 - **TUI/Web TUI:** `/status` + `/usage` are supported.
-- **CLI:** `openclaw status --usage` and `openclaw channels list` show
+- **CLI:** `soloclaw status --usage` and `soloclaw channels list` show
   normalized provider quota windows (`X% left`, not per-response costs).
   Current usage-window providers: Anthropic, GitHub Copilot, Gemini CLI,
   OpenAI Codex, MiniMax, Xiaomi, and z.ai.

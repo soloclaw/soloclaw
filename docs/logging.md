@@ -70,14 +70,14 @@ In JSON mode, the CLI emits `type`-tagged objects:
 - `notice`: truncation / rotation hints
 - `raw`: unparsed log line
 
-If the local loopback Gateway asks for pairing, `openclaw logs` falls back to
+If the local loopback Gateway asks for pairing, `soloclaw logs` falls back to
 the configured local log file automatically. Explicit `--url` targets do not
 use this fallback.
 
 If the Gateway is unreachable, the CLI prints a short hint to run:
 
 ```bash
-openclaw doctor
+soloclaw doctor
 ```
 
 ### Control UI (web)
@@ -90,7 +90,7 @@ See [/web/control-ui](/web/control-ui) for how to open it.
 To filter channel activity (WhatsApp/Telegram/etc), use:
 
 ```bash
-openclaw channels logs --channel whatsapp
+soloclaw channels logs --channel whatsapp
 ```
 
 ## Log formats
@@ -112,7 +112,7 @@ Console formatting is controlled by `logging.consoleStyle`.
 
 ### Gateway WebSocket logs
 
-`openclaw gateway` also has WebSocket protocol logging for RPC traffic:
+`soloclaw gateway` also has WebSocket protocol logging for RPC traffic:
 
 - normal mode: only interesting results (errors, parse errors, slow calls)
 - `--verbose`: all request/response traffic
@@ -122,9 +122,9 @@ Console formatting is controlled by `logging.consoleStyle`.
 Examples:
 
 ```bash
-openclaw gateway
-openclaw gateway --verbose --ws-log compact
-openclaw gateway --verbose --ws-log full
+soloclaw gateway
+soloclaw gateway --verbose --ws-log compact
+soloclaw gateway --verbose --ws-log full
 ```
 
 ## Configuring logging
@@ -149,7 +149,7 @@ All logging configuration lives under `logging` in `~/.soloclaw/openclaw.json`.
 - `logging.level`: **file logs** (JSONL) level.
 - `logging.consoleLevel`: **console** verbosity level.
 
-You can override both via the **`OPENCLAW_LOG_LEVEL`** environment variable (e.g. `OPENCLAW_LOG_LEVEL=debug`). The env var takes precedence over the config file, so you can raise verbosity for a single run without editing `openclaw.json`. You can also pass the global CLI option **`--log-level <level>`** (for example, `openclaw --log-level debug gateway run`), which overrides the environment variable for that command.
+You can override both via the **`OPENCLAW_LOG_LEVEL`** environment variable (e.g. `OPENCLAW_LOG_LEVEL=debug`). The env var takes precedence over the config file, so you can raise verbosity for a single run without editing `openclaw.json`. You can also pass the global CLI option **`--log-level <level>`** (for example, `soloclaw --log-level debug gateway run`), which overrides the environment variable for that command.
 
 `--verbose` only affects console output and WS log verbosity; it does not change
 file log levels.
@@ -287,7 +287,7 @@ works with any OpenTelemetry collector/backend that accepts OTLP/HTTP.
 
 Notes:
 
-- You can also enable the plugin with `openclaw plugins enable diagnostics-otel`.
+- You can also enable the plugin with `soloclaw plugins enable diagnostics-otel`.
 - `protocol` currently supports `http/protobuf` only. `grpc` is ignored.
 - Metrics include token usage, cost, context size, run duration, and message-flow
   counters/histograms (webhooks, queueing, session state, queue depth/wait).
@@ -378,7 +378,7 @@ Queues + sessions:
 
 ## Troubleshooting tips
 
-- **Gateway not reachable?** Run `openclaw doctor` first.
+- **Gateway not reachable?** Run `soloclaw doctor` first.
 - **Logs empty?** Check that the Gateway is running and writing to the file path
   in `logging.file`.
 - **Need more detail?** Set `logging.level` to `debug` or `trace` and retry.

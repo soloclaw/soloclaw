@@ -1,16 +1,16 @@
 ---
-summary: "CLI reference for `openclaw hooks` (agent hooks)"
+summary: "CLI reference for `soloclaw hooks` (agent hooks)"
 read_when:
   - You want to manage agent hooks
   - You want to inspect hook availability or enable workspace hooks
 title: "hooks"
 ---
 
-# `openclaw hooks`
+# `soloclaw hooks`
 
 Manage agent hooks (event-driven automations for commands like `/new`, `/reset`, and gateway startup).
 
-Running `openclaw hooks` with no subcommand is equivalent to `openclaw hooks list`.
+Running `soloclaw hooks` with no subcommand is equivalent to `soloclaw hooks list`.
 
 Related:
 
@@ -129,7 +129,7 @@ openclaw hooks enable <name>
 
 Enable a specific hook by adding it to your config (`~/.soloclaw/openclaw.json` by default).
 
-**Note:** Workspace hooks are disabled by default until enabled here or in config. Hooks managed by plugins show `plugin:<id>` in `openclaw hooks list` and can’t be enabled/disabled here. Enable/disable the plugin instead.
+**Note:** Workspace hooks are disabled by default until enabled here or in config. Hooks managed by plugins show `plugin:<id>` in `soloclaw hooks list` and can’t be enabled/disabled here. Enable/disable the plugin instead.
 
 **Arguments:**
 
@@ -190,7 +190,7 @@ openclaw hooks disable command-logger
 
 ## Notes
 
-- `openclaw hooks list --json`, `info --json`, and `check --json` write structured JSON directly to stdout.
+- `soloclaw hooks list --json`, `info --json`, and `check --json` write structured JSON directly to stdout.
 - Plugin-managed hooks cannot be enabled or disabled here; enable or disable the owning plugin instead.
 
 ## Install Hook Packs
@@ -203,8 +203,8 @@ openclaw plugins install <path>           # local path
 
 Install hook packs through the unified plugins installer.
 
-`openclaw hooks install` still works as a compatibility alias, but it prints a
-deprecation warning and forwards to `openclaw plugins install`.
+`soloclaw hooks install` still works as a compatibility alias, but it prints a
+deprecation warning and forwards to `soloclaw plugins install`.
 
 Npm specs are **registry-only** (package name + optional **exact version** or
 **dist-tag**). Git/URL/file specs and semver ranges are rejected. Dependency
@@ -255,8 +255,8 @@ openclaw plugins update --all
 
 Update tracked npm-based hook packs through the unified plugins updater.
 
-`openclaw hooks update` still works as a compatibility alias, but it prints a
-deprecation warning and forwards to `openclaw plugins update`.
+`soloclaw hooks update` still works as a compatibility alias, but it prints a
+deprecation warning and forwards to `soloclaw plugins update`.
 
 **Options:**
 

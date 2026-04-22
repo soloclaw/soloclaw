@@ -1056,8 +1056,8 @@ describe("statusCommand", () => {
     expect(
       logs.some(
         (line) =>
-          line.includes("openclaw status --all") ||
-          line.includes("openclaw --profile isolated status --all"),
+          line.includes("soloclaw status --all") ||
+          line.includes("soloclaw --profile isolated status --all"),
       ),
     ).toBe(true);
     expect(logs.some((line) => line.includes("Cache"))).toBe(true);
@@ -1157,7 +1157,7 @@ describe("statusCommand", () => {
     const joined = await runStatusAndGetJoinedLogs();
     expect(joined).toContain("node → gateway.example.com:19000 · no local gateway");
     expect(joined).not.toContain("Gateway: local · ws://127.0.0.1:18789");
-    expect(joined).toContain("openclaw --profile isolated node status");
+    expect(joined).toContain("soloclaw --profile isolated node status");
     expect(joined).not.toContain("Fix reachability first");
   });
 

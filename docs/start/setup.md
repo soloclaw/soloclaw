@@ -44,7 +44,7 @@ From inside this repo, use the local CLI entry:
 openclaw setup
 ```
 
-If you don’t have a global install yet, run it via `pnpm openclaw setup` (or `bun run openclaw setup` if you are using the Bun workflow).
+If you don’t have a global install yet, run it via `pnpm soloclaw setup` (or `bun run openclaw setup` if you are using the Bun workflow).
 
 ## Run the Gateway from this repo
 
@@ -62,7 +62,7 @@ node openclaw.mjs gateway --port 18789 --verbose
 4. Link surfaces (example: WhatsApp):
 
 ```bash
-openclaw channels login
+soloclaw channels login
 ```
 
 5. Sanity check:
@@ -73,7 +73,7 @@ openclaw health
 
 If onboarding is not available in your build:
 
-- Run `openclaw setup`, then `openclaw channels login`, then start the Gateway manually (`openclaw gateway`).
+- Run `soloclaw setup`, then `soloclaw channels login`, then start the Gateway manually (`soloclaw gateway`).
 
 ## Bleeding edge workflow (Gateway in a terminal)
 

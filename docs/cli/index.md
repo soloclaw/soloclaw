@@ -70,7 +70,7 @@ This page describes the current CLI behavior. If commands change, update this do
 - `--profile <name>`: isolate state under `~/.soloclaw-<name>`.
 - `--container <name>`: target a named container for execution.
 - `--no-color`: disable ANSI colors.
-- `--update`: shorthand for `openclaw update` (source installs only).
+- `--update`: shorthand for `soloclaw update` (source installs only).
 - `-V`, `--version`, `-v`: print version and exit.
 
 ## Output styling
@@ -375,13 +375,13 @@ openclaw [--dev] [--profile <name>] <command>
   tui
 ```
 
-Note: plugins can add additional top-level commands (for example `openclaw voicecall`).
+Note: plugins can add additional top-level commands (for example `soloclaw voicecall`).
 
 ## Security
 
-- `openclaw security audit` — audit config + local state for common security foot-guns.
-- `openclaw security audit --deep` — best-effort live Gateway probe.
-- `openclaw security audit --fix` — tighten safe defaults and state/config permissions.
+- `soloclaw security audit` — audit config + local state for common security foot-guns.
+- `soloclaw security audit --deep` — best-effort live Gateway probe.
+- `soloclaw security audit --fix` — tighten safe defaults and state/config permissions.
 
 ## Secrets
 
@@ -433,12 +433,12 @@ Notes:
 
 Manage extensions and their config:
 
-- `openclaw plugins list` — discover plugins (use `--json` for machine output).
-- `openclaw plugins inspect <id>` — show details for a plugin (`info` is an alias).
-- `openclaw plugins install <path|.tgz|npm-spec|plugin@marketplace>` — install a plugin (or add a plugin path to `plugins.load.paths`; use `--force` to overwrite an existing install target).
-- `openclaw plugins marketplace list <marketplace>` — list marketplace entries before install.
-- `openclaw plugins enable <id>` / `disable <id>` — toggle `plugins.entries.<id>.enabled`.
-- `openclaw plugins doctor` — report plugin load errors.
+- `soloclaw plugins list` — discover plugins (use `--json` for machine output).
+- `soloclaw plugins inspect <id>` — show details for a plugin (`info` is an alias).
+- `soloclaw plugins install <path|.tgz|npm-spec|plugin@marketplace>` — install a plugin (or add a plugin path to `plugins.load.paths`; use `--force` to overwrite an existing install target).
+- `soloclaw plugins marketplace list <marketplace>` — list marketplace entries before install.
+- `soloclaw plugins enable <id>` / `disable <id>` — toggle `plugins.entries.<id>.enabled`.
+- `soloclaw plugins doctor` — report plugin load errors.
 
 Most plugin changes require a gateway restart. See [/plugin](/tools/plugin).
 
@@ -446,10 +446,10 @@ Most plugin changes require a gateway restart. See [/plugin](/tools/plugin).
 
 Vector search over `MEMORY.md` + `memory/*.md`:
 
-- `openclaw memory status` — show index stats; use `--deep` for vector + embedding readiness checks or `--fix` to repair stale recall/promotion artifacts.
-- `openclaw memory index` — reindex memory files.
-- `openclaw memory search "<query>"` (or `--query "<query>"`) — semantic search over memory.
-- `openclaw memory promote` — rank short-term recalls and optionally append top entries into `MEMORY.md`.
+- `soloclaw memory status` — show index stats; use `--deep` for vector + embedding readiness checks or `--fix` to repair stale recall/promotion artifacts.
+- `soloclaw memory index` — reindex memory files.
+- `soloclaw memory search "<query>"` (or `--query "<query>"`) — semantic search over memory.
+- `soloclaw memory promote` — rank short-term recalls and optionally append top entries into `MEMORY.md`.
 
 ## Sandbox
 
@@ -588,7 +588,7 @@ Options:
 
 ### `config`
 
-Non-interactive config helpers (get/set/unset/file/schema/validate). Running `openclaw config` with no
+Non-interactive config helpers (get/set/unset/file/schema/validate). Running `soloclaw config` with no
 subcommand launches the wizard.
 
 Subcommands:
@@ -665,7 +665,7 @@ Subcommands:
 
 Notes:
 
-- `openclaw --update` rewrites to `openclaw update`.
+- `soloclaw --update` rewrites to `soloclaw update`.
 
 ### `backup`
 
@@ -698,8 +698,8 @@ Manage chat channel accounts (WhatsApp/Telegram/Discord/Google Chat/Slack/Matter
 Subcommands:
 
 - `channels list`: show configured channels and auth profiles.
-- `channels status`: check gateway reachability and channel health (`--probe` runs live per-account probe/audit checks when the gateway is reachable; if not, it falls back to config-only channel summaries. Use `openclaw health` or `openclaw status --deep` for broader gateway health probes).
-- Tip: `channels status` prints warnings with suggested fixes when it can detect common misconfigurations (then points you to `openclaw doctor`).
+- `channels status`: check gateway reachability and channel health (`--probe` runs live per-account probe/audit checks when the gateway is reachable; if not, it falls back to config-only channel summaries. Use `soloclaw health` or `soloclaw status --deep` for broader gateway health probes).
+- Tip: `channels status` prints warnings with suggested fixes when it can detect common misconfigurations (then points you to `soloclaw doctor`).
 - `channels logs`: show recent channel logs from the gateway log file.
 - `channels add`: wizard-style setup when no flags are passed; flags switch to non-interactive mode.
   - When adding a non-default account to a channel still using single-account top-level config, OpenClaw promotes account-scoped values into the channel account map before writing the new account. Most channels use `accounts.default`; Matrix can preserve an existing matching named/default target instead.
@@ -769,16 +769,16 @@ More detail: [/concepts/oauth](/concepts/oauth)
 Examples:
 
 ```bash
-openclaw channels add --channel telegram --account alerts --name "Alerts Bot" --token $TELEGRAM_BOT_TOKEN
-openclaw channels add --channel discord --account work --name "Work Bot" --token $DISCORD_BOT_TOKEN
-openclaw channels remove --channel discord --account work --delete
-openclaw channels status --probe
-openclaw status --deep
+soloclaw channels add --channel telegram --account alerts --name "Alerts Bot" --token $TELEGRAM_BOT_TOKEN
+soloclaw channels add --channel discord --account work --name "Work Bot" --token $DISCORD_BOT_TOKEN
+soloclaw channels remove --channel discord --account work --delete
+soloclaw channels status --probe
+soloclaw status --deep
 ```
 
 ### `directory`
 
-Look up self, peer, and group IDs for channels that expose a directory surface. See [`openclaw directory`](/cli/directory).
+Look up self, peer, and group IDs for channels that expose a directory surface. See [`soloclaw directory`](/cli/directory).
 
 Common options:
 
@@ -819,7 +819,7 @@ Options:
 - `--json`: output JSON (no styling).
 - `-v`, `--verbose`: include missing requirements detail.
 
-Tip: use `openclaw skills search`, `openclaw skills install`, and `openclaw skills update` for ClawHub-backed skills.
+Tip: use `soloclaw skills search`, `soloclaw skills install`, and `soloclaw skills update` for ClawHub-backed skills.
 
 ### `pairing`
 
@@ -861,7 +861,7 @@ Notes:
 
 ### `qr`
 
-Generate a mobile pairing QR and setup code from the current Gateway config. See [`openclaw qr`](/cli/qr).
+Generate a mobile pairing QR and setup code from the current Gateway config. See [`soloclaw qr`](/cli/qr).
 
 Options:
 
@@ -882,11 +882,11 @@ Notes:
 - Any handed-off operator bootstrap token stays bounded to `operator.approvals`, `operator.read`, `operator.talk.secrets`, and `operator.write`.
 - Bootstrap scope checks are role-prefixed, so that operator allowlist only satisfies operator requests; non-operator roles still need scopes under their own role prefix.
 - `--remote` can use `gateway.remote.url` or the active Tailscale Serve/Funnel URL.
-- After scanning, approve the request with `openclaw devices list` / `openclaw devices approve <requestId>`.
+- After scanning, approve the request with `soloclaw devices list` / `soloclaw devices approve <requestId>`.
 
 ### `clawbot`
 
-Legacy alias namespace. Currently supports `openclaw clawbot qr`, which maps to [`openclaw qr`](/cli/qr).
+Legacy alias namespace. Currently supports `soloclaw clawbot qr`, which maps to [`soloclaw qr`](/cli/qr).
 
 ### `hooks`
 
@@ -899,8 +899,8 @@ Subcommands:
 - `hooks check`
 - `hooks enable <name>`
 - `hooks disable <name>`
-- `hooks install <path-or-spec>` (deprecated alias for `openclaw plugins install`)
-- `hooks update [id]` (deprecated alias for `openclaw plugins update`)
+- `hooks install <path-or-spec>` (deprecated alias for `soloclaw plugins install`)
+- `hooks update [id]` (deprecated alias for `soloclaw plugins update`)
 
 Common options:
 
@@ -910,7 +910,7 @@ Common options:
 
 Notes:
 
-- Plugin-managed hooks cannot be enabled or disabled through `openclaw hooks`; enable or disable the owning plugin instead.
+- Plugin-managed hooks cannot be enabled or disabled through `soloclaw hooks`; enable or disable the owning plugin instead.
 - `hooks install` and `hooks update` still work as compatibility aliases, but they print deprecation warnings and forward to the plugin commands.
 
 ### `webhooks`
@@ -976,8 +976,8 @@ Subcommands:
 
 Examples:
 
-- `openclaw message send --target +15555550123 --message "Hi"`
-- `openclaw message poll --channel discord --target channel:123 --poll-question "Snack?" --poll-option Pizza --poll-option Sushi`
+- `soloclaw message send --target +15555550123 --message "Hi"`
+- `soloclaw message poll --channel discord --target channel:123 --poll-question "Snack?" --poll-option Pizza --poll-option Sushi`
 
 ### `agent`
 
@@ -1015,7 +1015,7 @@ Notes:
 
 Manage isolated agents (workspaces + auth + routing).
 
-Running `openclaw agents` with no subcommand is equivalent to `openclaw agents list`.
+Running `soloclaw agents` with no subcommand is equivalent to `soloclaw agents list`.
 
 #### `agents list`
 
@@ -1197,7 +1197,7 @@ Options:
 - `--node <node>`
 - `--gateway`
 - `--json`
-- node RPC options from `openclaw nodes`
+- node RPC options from `soloclaw nodes`
 
 #### `approvals set`
 
@@ -1210,7 +1210,7 @@ Options:
 - `--file <path>`
 - `--stdin`
 - `--json`
-- node RPC options from `openclaw nodes`
+- node RPC options from `soloclaw nodes`
 
 #### `approvals allowlist add|remove`
 
@@ -1222,7 +1222,7 @@ Options:
 - `--gateway`
 - `--agent <id>` (defaults to `*`)
 - `--json`
-- node RPC options from `openclaw nodes`
+- node RPC options from `soloclaw nodes`
 
 ### `status`
 
@@ -1250,7 +1250,7 @@ OpenClaw can surface provider usage/quota when OAuth/API creds are available.
 Surfaces:
 
 - `/status` (adds a short provider usage line when available)
-- `openclaw status --usage` (prints full provider breakdown)
+- `soloclaw status --usage` (prints full provider breakdown)
 - macOS menu bar (Usage section under Context)
 
 Notes:
@@ -1352,7 +1352,7 @@ List and manage [background task](/automation/tasks) runs across agents.
 
 ### `flows`
 
-Legacy docs shortcut. Flow commands live under `openclaw tasks flow`:
+Legacy docs shortcut. Flow commands live under `soloclaw tasks flow`:
 
 - `tasks flow list [--json]`
 - `tasks flow show <lookup>`
@@ -1515,7 +1515,7 @@ Anthropic setup-token remains available as a supported token-auth path, but Open
 
 ### `models` (root)
 
-`openclaw models` is an alias for `models status`.
+`soloclaw models` is an alias for `models status`.
 
 Root options:
 
@@ -1694,7 +1694,7 @@ agent primary as a hidden extra retry target.
 ### `node`
 
 `node` runs a **headless node host** or manages it as a background service. See
-[`openclaw node`](/cli/node).
+[`soloclaw node`](/cli/node).
 
 Subcommands:
 
@@ -1753,7 +1753,7 @@ Location:
 
 ## Browser
 
-Browser control CLI (dedicated Chrome/Brave/Edge/Chromium). See [`openclaw browser`](/cli/browser) and the [Browser tool](/tools/browser).
+Browser control CLI (dedicated Chrome/Brave/Edge/Chromium). See [`soloclaw browser`](/cli/browser) and the [Browser tool](/tools/browser).
 
 Common options:
 
@@ -1801,7 +1801,7 @@ Actions:
 
 ### `voicecall`
 
-Plugin-provided voice-call utilities. Only appears when the voice-call plugin is installed and enabled. See [`openclaw voicecall`](/cli/voicecall).
+Plugin-provided voice-call utilities. Only appears when the voice-call plugin is installed and enabled. See [`soloclaw voicecall`](/cli/voicecall).
 
 Common commands:
 

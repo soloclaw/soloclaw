@@ -22,14 +22,14 @@ to produce AI-synthesized answers with citations.
     configure via:
 
     ```bash
-    openclaw configure --section web
+    soloclaw configure --section web
     ```
 
   </Step>
 </Steps>
 
-When you choose **Kimi** during `openclaw onboard` or
-`openclaw configure --section web`, OpenClaw can also ask for:
+When you choose **Kimi** during `soloclaw onboard` or
+`soloclaw configure --section web`, OpenClaw can also ask for:
 
 - the Moonshot API region:
   - `https://api.moonshot.ai/v1`

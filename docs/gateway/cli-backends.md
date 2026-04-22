@@ -31,7 +31,7 @@ You can use Codex CLI **without any config** (the bundled OpenAI plugin
 registers a default backend):
 
 ```bash
-openclaw agent --message "hi" --model codex-cli/gpt-5.4
+soloclaw agent --message "hi" --model codex-cli/gpt-5.4
 ```
 
 If your gateway runs under launchd/systemd and PATH is minimal, add just the

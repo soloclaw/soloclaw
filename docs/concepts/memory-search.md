@@ -131,14 +131,14 @@ earlier conversations. This is opt-in via
 
 ## Troubleshooting
 
-**No results?** Run `openclaw memory status` to check the index. If empty, run
-`openclaw memory index --force`.
+**No results?** Run `soloclaw memory status` to check the index. If empty, run
+`soloclaw memory index --force`.
 
 **Only keyword matches?** Your embedding provider may not be configured. Check
-`openclaw memory status --deep`.
+`soloclaw memory status --deep`.
 
 **CJK text not found?** Rebuild the FTS index with
-`openclaw memory index --force`.
+`soloclaw memory index --force`.
 
 ## Further reading
 

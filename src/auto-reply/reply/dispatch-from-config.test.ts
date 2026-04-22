@@ -2494,7 +2494,7 @@ describe("dispatchReplyFromConfig", () => {
       },
     } satisfies SessionBindingRecord);
 
-    const replyResolver = vi.fn(async () => ({ text: "openclaw fallback" }) satisfies ReplyPayload);
+    const replyResolver = vi.fn(async () => ({ text: "soloclaw fallback" }) satisfies ReplyPayload);
 
     const firstDispatcher = createDispatcher();
     await dispatchReplyFromConfig({
@@ -2579,7 +2579,7 @@ describe("dispatchReplyFromConfig", () => {
       },
     } satisfies SessionBindingRecord);
     const dispatcher = createDispatcher();
-    const replyResolver = vi.fn(async () => ({ text: "openclaw fallback" }) satisfies ReplyPayload);
+    const replyResolver = vi.fn(async () => ({ text: "soloclaw fallback" }) satisfies ReplyPayload);
 
     await dispatchReplyFromConfig({
       ctx: buildTestCtx({

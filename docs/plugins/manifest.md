@@ -56,7 +56,7 @@ Use it for:
   plugin before runtime loads
 - static capability ownership snapshots used for bundled compat wiring and
   contract coverage
-- cheap QA runner metadata that the shared `openclaw qa` host can inspect
+- cheap QA runner metadata that the shared `soloclaw qa` host can inspect
   before plugin runtime loads
 - channel-specific config metadata that should merge into catalog and validation
   surfaces without loading runtime
@@ -160,7 +160,7 @@ Those belong in your plugin code and `package.json`.
 | `providerAuthChoices`               | No       | `object[]`                       | Cheap auth-choice metadata for onboarding pickers, preferred-provider resolution, and simple CLI flag wiring.                                                                                                |
 | `activation`                        | No       | `object`                         | Cheap activation hints for provider, command, channel, route, and capability-triggered loading. Metadata only; plugin runtime still owns actual behavior.                                                    |
 | `setup`                             | No       | `object`                         | Cheap setup/onboarding descriptors that discovery and setup surfaces can inspect without loading plugin runtime.                                                                                             |
-| `qaRunners`                         | No       | `object[]`                       | Cheap QA runner descriptors used by the shared `openclaw qa` host before plugin runtime loads.                                                                                                               |
+| `qaRunners`                         | No       | `object[]`                       | Cheap QA runner descriptors used by the shared `soloclaw qa` host before plugin runtime loads.                                                                                                               |
 | `contracts`                         | No       | `object`                         | Static bundled capability snapshot for speech, realtime transcription, realtime voice, media-understanding, image-generation, music-generation, video-generation, web-fetch, web search, and tool ownership. |
 | `channelConfigs`                    | No       | `Record<string, object>`         | Manifest-owned channel config metadata merged into discovery and validation surfaces before runtime loads.                                                                                                   |
 | `skills`                            | No       | `string[]`                       | Skill directories to load, relative to the plugin root.                                                                                                                                                      |
@@ -225,7 +225,7 @@ should activate it later.
 ## qaRunners reference
 
 Use `qaRunners` when a plugin contributes one or more transport runners beneath
-the shared `openclaw qa` root. Keep this metadata cheap and static; the plugin
+the shared `soloclaw qa` root. Keep this metadata cheap and static; the plugin
 runtime still owns actual CLI registration through a lightweight
 `runtime-api.ts` surface that exports `qaRunnerCliRegistrations`.
 
@@ -242,7 +242,7 @@ runtime still owns actual CLI registration through a lightweight
 
 | Field         | Required | Type     | What it means                                                      |
 | ------------- | -------- | -------- | ------------------------------------------------------------------ |
-| `commandName` | Yes      | `string` | Subcommand mounted beneath `openclaw qa`, for example `matrix`.    |
+| `commandName` | Yes      | `string` | Subcommand mounted beneath `soloclaw qa`, for example `matrix`.    |
 | `description` | No       | `string` | Fallback help text used when the shared host needs a stub command. |
 
 This block is metadata only. It does not register runtime behavior, and it does
@@ -468,7 +468,7 @@ Fields:
 | `modelPrefixes` | `string[]` | Prefixes matched with `startsWith` against shorthand model ids.                 |
 | `modelPatterns` | `string[]` | Regex sources matched against shorthand model ids after profile suffix removal. |
 
-Legacy top-level capability keys are deprecated. Use `openclaw doctor --fix` to
+Legacy top-level capability keys are deprecated. Use `soloclaw doctor --fix` to
 move `speechProviders`, `realtimeTranscriptionProviders`,
 `realtimeVoiceProviders`, `mediaUnderstandingProviders`,
 `imageGenerationProviders`, `videoGenerationProviders`,
@@ -519,7 +519,7 @@ not make arbitrary broken configs installable. Today it only allows install
 flows to recover from specific stale bundled-plugin upgrade failures, such as a
 missing bundled plugin path or a stale `channels.<id>` entry for that same
 bundled plugin. Unrelated config errors still block install and send operators
-to `openclaw doctor --fix`.
+to `soloclaw doctor --fix`.
 
 `openclaw.channel.persistedAuthState` is package metadata for a tiny checker
 module:

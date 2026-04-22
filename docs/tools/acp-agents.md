@@ -16,7 +16,7 @@ title: "ACP Agents"
 If you ask OpenClaw in plain language to "run this in Codex" or "start Claude Code in a thread", OpenClaw should route that request to the ACP runtime (not the native sub-agent runtime). Each ACP session spawn is tracked as a [background task](/automation/tasks).
 
 If you want Codex or Claude Code to connect as an external MCP client directly
-to existing OpenClaw channel conversations, use [`openclaw mcp serve`](/cli/mcp)
+to existing OpenClaw channel conversations, use [`soloclaw mcp serve`](/cli/mcp)
 instead of ACP.
 
 ## Which page do I want?
@@ -26,7 +26,7 @@ There are three nearby surfaces that are easy to confuse:
 | You want to...                                                                     | Use this                              | Notes                                                                                                       |
 | ---------------------------------------------------------------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | Run Codex, Claude Code, Gemini CLI, or another external harness _through_ OpenClaw | This page: ACP agents                 | Chat-bound sessions, `/acp spawn`, `sessions_spawn({ runtime: "acp" })`, background tasks, runtime controls |
-| Expose an OpenClaw Gateway session _as_ an ACP server for an editor or client      | [`openclaw acp`](/cli/acp)            | Bridge mode. IDE/client talks ACP to OpenClaw over stdio/WebSocket                                          |
+| Expose an OpenClaw Gateway session _as_ an ACP server for an editor or client      | [`soloclaw acp`](/cli/acp)            | Bridge mode. IDE/client talks ACP to OpenClaw over stdio/WebSocket                                          |
 | Reuse a local AI CLI as a text-only fallback model                                 | [CLI Backends](/gateway/cli-backends) | Not ACP. No OpenClaw tools, no ACP controls, no harness runtime                                             |
 
 ## Does this work out of the box?
@@ -682,7 +682,7 @@ to switch to a local development checkout, use the explicit plugin path:
 
 ```bash
 openclaw plugins install acpx
-openclaw config set plugins.entries.acpx.enabled true
+soloclaw config set plugins.entries.acpx.enabled true
 ```
 
 Local workspace install during development:
@@ -741,7 +741,7 @@ See [Plugins](/tools/plugin).
 When you install OpenClaw globally with `npm install -g openclaw`, the acpx
 runtime dependencies (platform-specific binaries) are installed automatically
 via a postinstall hook. If the automatic install fails, the gateway still starts
-normally and reports the missing dependency through `openclaw acp doctor`.
+normally and reports the missing dependency through `soloclaw acp doctor`.
 
 ### Plugin tools MCP bridge
 
@@ -752,7 +752,7 @@ If you want ACP agents such as Codex or Claude Code to call installed
 OpenClaw plugin tools such as memory recall/store, enable the dedicated bridge:
 
 ```bash
-openclaw config set plugins.entries.acpx.config.pluginToolsMcpBridge true
+soloclaw config set plugins.entries.acpx.config.pluginToolsMcpBridge true
 ```
 
 What this does:
@@ -782,7 +782,7 @@ ACP startup and initialization. Override it if your host needs a different
 runtime limit:
 
 ```bash
-openclaw config set plugins.entries.acpx.config.timeoutSeconds 180
+soloclaw config set plugins.entries.acpx.config.timeoutSeconds 180
 ```
 
 Restart the gateway after changing this value.
@@ -817,8 +817,8 @@ Controls what happens when a permission prompt would be shown but no interactive
 Set via plugin config:
 
 ```bash
-openclaw config set plugins.entries.acpx.config.permissionMode approve-all
-openclaw config set plugins.entries.acpx.config.nonInteractivePermissions fail
+soloclaw config set plugins.entries.acpx.config.permissionMode approve-all
+soloclaw config set plugins.entries.acpx.config.nonInteractivePermissions fail
 ```
 
 Restart the gateway after changing these values.

@@ -1431,7 +1431,7 @@ resolve_dashboard_url() {
 
 verify_dashboard_load() {
   local dashboard_url dashboard_http_url dashboard_url_q dashboard_http_url_q cmd headless_flag
-  # `openclaw dashboard --no-open` can hang under the Tahoe Parallels transport
+  # `soloclaw dashboard --no-open` can hang under the Tahoe Parallels transport
   # even when the dashboard itself is healthy. Probe the local dashboard URL
   # directly so the smoke still validates HTML readiness and browser reachability.
   dashboard_url="http://127.0.0.1:18789/"

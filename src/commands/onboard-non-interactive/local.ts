@@ -273,7 +273,7 @@ export async function runNonInteractiveLocalSetup(params: {
           installed: false,
         },
         daemonRuntime: daemonRuntimeRaw,
-        hints: [`Run \`${formatCliCommand("openclaw gateway status --deep")}\` for more detail.`],
+        hints: [`Run \`${formatCliCommand("soloclaw gateway status --deep")}\` for more detail.`],
       });
       runtime.exit(1);
       return;
@@ -326,9 +326,9 @@ export async function runNonInteractiveLocalSetup(params: {
         hints: !opts.installDaemon
           ? [
               "Non-interactive local setup only waits for an already-running gateway unless you pass --install-daemon.",
-              `Fix: start \`${formatCliCommand("openclaw gateway run")}\`, re-run with \`--install-daemon\`, or use \`--skip-health\`.`,
+              `Fix: start \`${formatCliCommand("soloclaw gateway run")}\`, re-run with \`--install-daemon\`, or use \`--skip-health\`.`,
             ]
-          : [`Run \`${formatCliCommand("openclaw gateway status --deep")}\` for more detail.`],
+          : [`Run \`${formatCliCommand("soloclaw gateway status --deep")}\` for more detail.`],
       });
       runtime.exit(1);
       return;
@@ -365,7 +365,7 @@ export async function runNonInteractiveLocalSetup(params: {
 
   if (!opts.json) {
     runtime.log(
-      `Tip: run \`${formatCliCommand("openclaw configure --section web")}\` to store your Brave API key for web_search. Docs: https://docs.soloclaw.ai/tools/web`,
+      `Tip: run \`${formatCliCommand("soloclaw configure --section web")}\` to store your Brave API key for web_search. Docs: https://docs.soloclaw.ai/tools/web`,
     );
   }
 }

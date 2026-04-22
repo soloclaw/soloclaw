@@ -1,11 +1,11 @@
 ---
-summary: "CLI reference for `openclaw health` (gateway health snapshot via RPC)"
+summary: "CLI reference for `soloclaw health` (gateway health snapshot via RPC)"
 read_when:
   - You want to quickly check the running Gateway’s health
 title: "health"
 ---
 
-# `openclaw health`
+# `soloclaw health`
 
 Fetch health from the running Gateway.
 
@@ -28,7 +28,7 @@ openclaw health --debug
 
 Notes:
 
-- Default `openclaw health` asks the running gateway for its health snapshot. When the
+- Default `soloclaw health` asks the running gateway for its health snapshot. When the
   gateway already has a fresh cached snapshot, it can return that cached payload and
   refresh in the background.
 - `--verbose` forces a live probe, prints gateway connection details, and expands the

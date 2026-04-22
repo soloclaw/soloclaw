@@ -191,7 +191,7 @@ function getGatewayStartGuardErrors(params: {
   }
   if (!params.configExists) {
     return [
-      `Missing config. Run \`${formatCliCommand("openclaw setup")}\` or set gateway.mode=local (or pass --allow-unconfigured).`,
+      `Missing config. Run \`${formatCliCommand("soloclaw setup")}\` or set gateway.mode=local (or pass --allow-unconfigured).`,
     ];
   }
   if (params.mode === undefined) {
@@ -199,7 +199,7 @@ function getGatewayStartGuardErrors(params: {
       [
         "Gateway start blocked: existing config is missing gateway.mode.",
         "Treat this as suspicious or clobbered config.",
-        `Re-run \`${formatCliCommand("openclaw onboard --mode local")}\` or \`${formatCliCommand("openclaw setup")}\`, set gateway.mode=local manually, or pass --allow-unconfigured.`,
+        `Re-run \`${formatCliCommand("soloclaw onboard --mode local")}\` or \`${formatCliCommand("soloclaw setup")}\`, set gateway.mode=local manually, or pass --allow-unconfigured.`,
       ].join(" "),
       `Config write audit: ${params.configAuditPath}`,
     ];
@@ -574,7 +574,7 @@ async function runGatewayCommand(opts: GatewayRunOpts) {
     if (isGatewayLockError(err)) {
       const errMessage = formatErrorMessage(err);
       defaultRuntime.error(
-        `Gateway failed to start: ${errMessage}\nIf the gateway is supervised, stop it with: ${formatCliCommand("openclaw gateway stop")}`,
+        `Gateway failed to start: ${errMessage}\nIf the gateway is supervised, stop it with: ${formatCliCommand("soloclaw gateway stop")}`,
       );
       try {
         const diagnostics = await inspectPortUsage(port);

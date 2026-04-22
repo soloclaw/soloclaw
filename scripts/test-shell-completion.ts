@@ -2,7 +2,7 @@
  * Test script for shell completion installation feature.
  *
  * This script simulates the shell completion prompt that appears during
- * `openclaw update`. Use it to verify the completion installation flow
+ * `soloclaw update`. Use it to verify the completion installation flow
  * without running a full update.
  *
  * Run from repo root:
@@ -67,7 +67,7 @@ function printHelp(): void {
 ${theme.heading("Shell Completion Test Script")}
 
 This script simulates the shell completion checks that run during
-\`openclaw update\`, \`openclaw doctor\`, and \`openclaw onboard\`.
+\`soloclaw update\`, \`soloclaw doctor\`, and \`soloclaw onboard\`.
 
 ${theme.heading("Usage (run from repo root):")}
   node --import tsx scripts/test-shell-completion.ts [options]
@@ -198,7 +198,7 @@ async function main() {
   });
 
   if (isCancel(shouldInstall) || !shouldInstall) {
-    console.log(theme.muted(`Skipped. Run \`openclaw completion --install\` later to enable.`));
+    console.log(theme.muted(`Skipped. Run \`soloclaw completion --install\` later to enable.`));
     return;
   }
 

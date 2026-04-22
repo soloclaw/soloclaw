@@ -8,14 +8,14 @@ title: "Hooks"
 
 # Hooks
 
-Hooks are small scripts that run when something happens inside the Gateway. They are automatically discovered from directories and can be inspected with `openclaw hooks`.
+Hooks are small scripts that run when something happens inside the Gateway. They are automatically discovered from directories and can be inspected with `soloclaw hooks`.
 
 There are two kinds of hooks in OpenClaw:
 
 - **Internal hooks** (this page): run inside the Gateway when agent events fire, like `/new`, `/reset`, `/stop`, or lifecycle events.
 - **Webhooks**: external HTTP endpoints that let other systems trigger work in OpenClaw. See [Webhooks](/automation/cron-jobs#webhooks).
 
-Hooks can also be bundled inside plugins. `openclaw hooks list` shows both standalone hooks and plugin-managed hooks.
+Hooks can also be bundled inside plugins. `soloclaw hooks list` shows both standalone hooks and plugin-managed hooks.
 
 ## Quick start
 
@@ -307,7 +307,7 @@ Check for missing binaries (PATH), environment variables, config values, or OS c
 
 ### Hook not executing
 
-1. Verify the hook is enabled: `openclaw hooks list`
+1. Verify the hook is enabled: `soloclaw hooks list`
 2. Restart your gateway process so hooks reload.
 3. Check gateway logs: `./scripts/clawlog.sh | grep hook`
 

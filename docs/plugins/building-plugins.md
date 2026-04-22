@@ -17,7 +17,7 @@ combination.
 
 You do not need to add your plugin to the OpenClaw repository. Publish to
 [ClawHub](/tools/clawhub) or npm and users install with
-`openclaw plugins install <package-name>`. OpenClaw tries ClawHub first and
+`soloclaw plugins install <package-name>`. OpenClaw tries ClawHub first and
 falls back to npm automatically.
 
 ## Prerequisites

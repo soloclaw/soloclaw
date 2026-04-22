@@ -1,11 +1,11 @@
 ---
-summary: "CLI reference for `openclaw agents` (list/add/delete/bindings/bind/unbind/set identity)"
+summary: "CLI reference for `soloclaw agents` (list/add/delete/bindings/bind/unbind/set identity)"
 read_when:
   - You want multiple isolated agents (workspaces + routing + auth)
 title: "agents"
 ---
 
-# `openclaw agents`
+# `soloclaw agents`
 
 Manage isolated agents (workspaces + auth + routing).
 
@@ -18,16 +18,16 @@ Related:
 ## Examples
 
 ```bash
-openclaw agents list
-openclaw agents list --bindings
-openclaw agents add work --workspace ~/.soloclaw/workspace-work
-openclaw agents add ops --workspace ~/.soloclaw/workspace-ops --bind telegram:ops --non-interactive
-openclaw agents bindings
-openclaw agents bind --agent work --bind telegram:ops
-openclaw agents unbind --agent work --bind telegram:ops
-openclaw agents set-identity --workspace ~/.soloclaw/workspace --from-identity
-openclaw agents set-identity --agent main --avatar avatars/openclaw.png
-openclaw agents delete work
+soloclaw agents list
+soloclaw agents list --bindings
+soloclaw agents add work --workspace ~/.soloclaw/workspace-work
+soloclaw agents add ops --workspace ~/.soloclaw/workspace-ops --bind telegram:ops --non-interactive
+soloclaw agents bindings
+soloclaw agents bind --agent work --bind telegram:ops
+soloclaw agents unbind --agent work --bind telegram:ops
+soloclaw agents set-identity --workspace ~/.soloclaw/workspace --from-identity
+soloclaw agents set-identity --agent main --avatar avatars/openclaw.png
+soloclaw agents delete work
 ```
 
 ## Routing bindings
@@ -42,15 +42,15 @@ If you also want different visible skills per agent, configure
 List bindings:
 
 ```bash
-openclaw agents bindings
-openclaw agents bindings --agent work
-openclaw agents bindings --json
+soloclaw agents bindings
+soloclaw agents bindings --agent work
+soloclaw agents bindings --json
 ```
 
 Add bindings:
 
 ```bash
-openclaw agents bind --agent work --bind telegram:ops --bind discord:guild-a
+soloclaw agents bind --agent work --bind telegram:ops --bind discord:guild-a
 ```
 
 If you omit `accountId` (`--bind <channel>`), OpenClaw resolves it from channel defaults and plugin setup hooks when available.
@@ -67,10 +67,10 @@ Example:
 
 ```bash
 # initial channel-only binding
-openclaw agents bind --agent work --bind telegram
+soloclaw agents bind --agent work --bind telegram
 
 # later upgrade to account-scoped binding
-openclaw agents bind --agent work --bind telegram:ops
+soloclaw agents bind --agent work --bind telegram:ops
 ```
 
 After the upgrade, routing for that binding is scoped to `telegram:ops`. If you also want default-account routing, add it explicitly (for example `--bind telegram:default`).
@@ -78,8 +78,8 @@ After the upgrade, routing for that binding is scoped to `telegram:ops`. If you 
 Remove bindings:
 
 ```bash
-openclaw agents unbind --agent work --bind telegram:ops
-openclaw agents unbind --agent work --all
+soloclaw agents unbind --agent work --bind telegram:ops
+soloclaw agents unbind --agent work --all
 ```
 
 `unbind` accepts either `--all` or one or more `--bind` values, not both.
@@ -88,7 +88,7 @@ openclaw agents unbind --agent work --all
 
 ### `agents`
 
-Running `openclaw agents` with no subcommand is equivalent to `openclaw agents list`.
+Running `soloclaw agents` with no subcommand is equivalent to `soloclaw agents list`.
 
 ### `agents list`
 
@@ -190,13 +190,13 @@ Notes:
 Load from `IDENTITY.md`:
 
 ```bash
-openclaw agents set-identity --workspace ~/.soloclaw/workspace --from-identity
+soloclaw agents set-identity --workspace ~/.soloclaw/workspace --from-identity
 ```
 
 Override fields explicitly:
 
 ```bash
-openclaw agents set-identity --agent main --name "OpenClaw" --emoji "🦞" --avatar avatars/openclaw.png
+soloclaw agents set-identity --agent main --name "OpenClaw" --emoji "🦞" --avatar avatars/openclaw.png
 ```
 
 Config sample:

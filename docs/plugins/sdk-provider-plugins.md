@@ -172,7 +172,7 @@ API key auth, and dynamic model resolution.
     ```
 
     That is a working provider. Users can now
-    `openclaw onboard --acme-ai-api-key <key>` and select
+    `soloclaw onboard --acme-ai-api-key <key>` and select
     `acme-ai/acme-large` as their model.
 
     If the upstream provider uses different control tokens than OpenClaw, add a

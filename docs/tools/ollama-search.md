@@ -37,7 +37,7 @@ default. It does require:
     Run:
 
     ```bash
-    openclaw configure --section web
+    soloclaw configure --section web
     ```
 
     Then select **Ollama Web Search** as the provider.

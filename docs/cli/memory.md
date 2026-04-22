@@ -1,5 +1,5 @@
 ---
-summary: "CLI reference for `openclaw memory` (status/index/search/promote/promote-explain/rem-harness)"
+summary: "CLI reference for `soloclaw memory` (status/index/search/promote/promote-explain/rem-harness)"
 read_when:
   - You want to index or search semantic memory
   - You’re debugging memory availability or indexing
@@ -7,7 +7,7 @@ read_when:
 title: "memory"
 ---
 
-# `openclaw memory`
+# `soloclaw memory`
 
 Manage semantic memory indexing and search.
 Provided by the active memory plugin (default: `memory-core`; set `plugins.slots.memory = "none"` to disable).
@@ -86,7 +86,7 @@ Full options:
 
 - Ranks short-term candidates from `memory/YYYY-MM-DD.md` using weighted promotion signals (`frequency`, `relevance`, `query diversity`, `recency`, `consolidation`, `conceptual richness`).
 - Uses short-term signals from both memory recalls and daily-ingestion passes, plus light/REM phase reinforcement signals.
-- When dreaming is enabled, `memory-core` auto-manages one cron job that runs a full sweep (`light -> REM -> deep`) in the background (no manual `openclaw cron add` required).
+- When dreaming is enabled, `memory-core` auto-manages one cron job that runs a full sweep (`light -> REM -> deep`) in the background (no manual `soloclaw cron add` required).
 - `--agent <id>`: scope to a single agent (default: the default agent).
 - `--limit <n>`: max candidates to return/apply.
 - `--min-score <n>`: minimum weighted promotion score.
