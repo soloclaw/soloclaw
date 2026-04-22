@@ -1,11 +1,11 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import {
   deriveLastRoutePolicy,
   resolveAgentRoute,
   type ResolvedAgentRoute,
   type RoutePeer,
-} from "openclaw/plugin-sdk/routing";
-import { resolveAgentIdFromSessionKey } from "openclaw/plugin-sdk/routing";
+} from "soloclaw/plugin-sdk/routing";
+import { resolveAgentIdFromSessionKey } from "soloclaw/plugin-sdk/routing";
 
 export function buildDiscordRoutePeer(params: {
   isDirectMessage: boolean;

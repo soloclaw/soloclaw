@@ -1,5 +1,5 @@
-import { fetchWithSsrFGuard } from "openclaw/plugin-sdk/ssrf-runtime";
-import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/text-runtime";
+import { fetchWithSsrFGuard } from "soloclaw/plugin-sdk/ssrf-runtime";
+import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
 import WebSocket from "ws";
 import { isLoopbackHost } from "../gateway/net.js";
 import {

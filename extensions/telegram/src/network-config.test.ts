@@ -1,7 +1,7 @@
-import type { TelegramNetworkConfig } from "openclaw/plugin-sdk/config-runtime";
+import type { TelegramNetworkConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("openclaw/plugin-sdk/runtime-env", () => ({
+vi.mock("soloclaw/plugin-sdk/runtime-env", () => ({
   isTruthyEnvValue: (value: string | undefined) =>
     typeof value === "string" && /^(1|true|yes|on)$/i.test(value.trim()),
 }));

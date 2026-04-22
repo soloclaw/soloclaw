@@ -2,8 +2,8 @@ import type { Bot } from "grammy";
 import {
   clearFinalizableDraftMessage,
   createFinalizableDraftStreamControlsForState,
-} from "openclaw/plugin-sdk/channel-lifecycle";
-import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
+} from "soloclaw/plugin-sdk/channel-lifecycle";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
 import { buildTelegramThreadParams, type TelegramThreadSpec } from "./bot/helpers.js";
 import { isSafeToRetrySendError, isTelegramClientRejection } from "./network-errors.js";
 import { normalizeTelegramReplyToMessageId } from "./outbound-params.js";

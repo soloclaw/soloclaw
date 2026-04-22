@@ -1,1 +1,1 @@
-export { createDeferred } from "openclaw/plugin-sdk/extension-shared";
+export { createDeferred } from "soloclaw/plugin-sdk/extension-shared";

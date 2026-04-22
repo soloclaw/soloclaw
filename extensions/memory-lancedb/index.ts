@@ -10,8 +10,8 @@ import { randomUUID } from "node:crypto";
 import type * as LanceDB from "@lancedb/lancedb";
 import { Type } from "@sinclair/typebox";
 import OpenAI from "openai";
-import { ensureGlobalUndiciEnvProxyDispatcher } from "openclaw/plugin-sdk/runtime-env";
-import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/text-runtime";
+import { ensureGlobalUndiciEnvProxyDispatcher } from "soloclaw/plugin-sdk/runtime-env";
+import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
 import { definePluginEntry, type OpenClawPluginApi } from "./api.js";
 import {
   DEFAULT_CAPTURE_MAX_CHARS,

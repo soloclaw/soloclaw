@@ -1,4 +1,4 @@
-// Legacy compat surface for plugins that still import openclaw/extension-api.
+// Legacy compat surface for plugins that still import soloclaw/extension-api.
 // Keep this file intentionally narrow and forward-only.
 
 const shouldWarnExtensionApiImport =
@@ -8,7 +8,7 @@ const shouldWarnExtensionApiImport =
 
 if (shouldWarnExtensionApiImport) {
   process.emitWarning(
-    "openclaw/extension-api is deprecated. Migrate to api.runtime.agent.* or focused openclaw/plugin-sdk/<subpath> imports. See https://docs.soloclaw.ai/plugins/sdk-migration",
+    "soloclaw/extension-api is deprecated. Migrate to api.runtime.agent.* or focused soloclaw/plugin-sdk/<subpath> imports. See https://docs.soloclaw.ai/plugins/sdk-migration",
     {
       code: "OPENCLAW_EXTENSION_API_DEPRECATED",
       detail:

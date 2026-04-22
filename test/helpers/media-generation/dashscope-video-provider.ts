@@ -1,4 +1,4 @@
-import type { VideoGenerationResult } from "openclaw/plugin-sdk/video-generation";
+import type { VideoGenerationResult } from "soloclaw/plugin-sdk/video-generation";
 import { expect, vi } from "vitest";
 
 type ClearableMock = {

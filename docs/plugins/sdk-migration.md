@@ -20,10 +20,10 @@ the new architecture, this guide helps you migrate.
 The old plugin system provided two wide-open surfaces that let plugins import
 anything they needed from a single entry point:
 
-- **`openclaw/plugin-sdk/compat`** — a single import that re-exported dozens of
+- **`soloclaw/plugin-sdk/compat`** — a single import that re-exported dozens of
   helpers. It was introduced to keep older hook-based plugins working while the
   new plugin architecture was being built.
-- **`openclaw/extension-api`** — a bridge that gave plugins direct access to
+- **`soloclaw/extension-api`** — a bridge that gave plugins direct access to
   host-side helpers like the embedded agent runner.
 
 Both surfaces are now **deprecated**. They still work at runtime, but new
@@ -43,14 +43,14 @@ The old approach caused problems:
 - **Circular dependencies** — broad re-exports made it easy to create import cycles
 - **Unclear API surface** — no way to tell which exports were stable vs internal
 
-The modern plugin SDK fixes this: each import path (`openclaw/plugin-sdk/\<subpath\>`)
+The modern plugin SDK fixes this: each import path (`soloclaw/plugin-sdk/\<subpath\>`)
 is a small, self-contained module with a clear purpose and documented contract.
 
 Legacy provider convenience seams for bundled channels are also gone. Imports
-such as `openclaw/plugin-sdk/slack`, `openclaw/plugin-sdk/discord`,
-`openclaw/plugin-sdk/signal`, `openclaw/plugin-sdk/whatsapp`,
+such as `soloclaw/plugin-sdk/slack`, `soloclaw/plugin-sdk/discord`,
+`soloclaw/plugin-sdk/signal`, `soloclaw/plugin-sdk/whatsapp`,
 channel-branded helper seams, and
-`openclaw/plugin-sdk/telegram-core` were private mono-repo shortcuts, not
+`soloclaw/plugin-sdk/telegram-core` were private mono-repo shortcuts, not
 stable plugin contracts. Use narrow generic SDK subpaths instead. Inside the
 bundled plugin workspace, keep provider-owned helpers in that plugin's own
 `api.ts` or `runtime-api.ts`.
@@ -82,7 +82,7 @@ Current bundled provider examples:
     - `plugin.auth` remains for channel login/logout flows only; approval auth
       hooks there are no longer read by core
     - Register channel-owned runtime objects such as clients, tokens, or Bolt
-      apps through `openclaw/plugin-sdk/channel-runtime-context`
+      apps through `soloclaw/plugin-sdk/channel-runtime-context`
     - Do not send plugin-owned reroute notices from native approval handlers;
       core now owns routed-elsewhere notices from actual delivery results
     - When passing `channelRuntime` into `createChannelManager(...)`, provide a
@@ -94,7 +94,7 @@ Current bundled provider examples:
   </Step>
 
   <Step title="Audit Windows wrapper fallback behavior">
-    If your plugin uses `openclaw/plugin-sdk/windows-spawn`, unresolved Windows
+    If your plugin uses `soloclaw/plugin-sdk/windows-spawn`, unresolved Windows
     `.cmd`/`.bat` wrappers now fail closed unless you explicitly pass
     `allowShellFallback: true`.
 
@@ -121,7 +121,7 @@ Current bundled provider examples:
 
     ```bash
     grep -r "plugin-sdk/compat" my-plugin/
-    grep -r "openclaw/extension-api" my-plugin/
+    grep -r "soloclaw/extension-api" my-plugin/
     ```
 
   </Step>
@@ -135,12 +135,12 @@ Current bundled provider examples:
       createChannelReplyPipeline,
       createPluginRuntimeStore,
       resolveControlCommandGate,
-    } from "openclaw/plugin-sdk/compat";
+    } from "soloclaw/plugin-sdk/compat";
 
     // After (modern focused imports)
-    import { createChannelReplyPipeline } from "openclaw/plugin-sdk/channel-reply-pipeline";
-    import { createPluginRuntimeStore } from "openclaw/plugin-sdk/runtime-store";
-    import { resolveControlCommandGate } from "openclaw/plugin-sdk/command-auth";
+    import { createChannelReplyPipeline } from "soloclaw/plugin-sdk/channel-reply-pipeline";
+    import { createPluginRuntimeStore } from "soloclaw/plugin-sdk/runtime-store";
+    import { resolveControlCommandGate } from "soloclaw/plugin-sdk/command-auth";
     ```
 
     For host-side helpers, use the injected plugin runtime instead of importing
@@ -148,7 +148,7 @@ Current bundled provider examples:
 
     ```typescript
     // Before (deprecated extension-api bridge)
-    import { runEmbeddedPiAgent } from "openclaw/extension-api";
+    import { runEmbeddedPiAgent } from "soloclaw/extension-api";
     const result = await runEmbeddedPiAgent({ sessionId, prompt });
 
     // After (injected runtime)

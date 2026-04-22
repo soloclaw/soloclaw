@@ -1,1 +1,1 @@
-export { getProxyUrlFromFetch, makeProxyFetch } from "openclaw/plugin-sdk/fetch-runtime";
+export { getProxyUrlFromFetch, makeProxyFetch } from "soloclaw/plugin-sdk/fetch-runtime";

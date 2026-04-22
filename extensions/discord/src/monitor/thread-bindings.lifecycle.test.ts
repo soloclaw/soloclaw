@@ -6,8 +6,8 @@ import {
   clearRuntimeConfigSnapshot,
   setRuntimeConfigSnapshot,
   type OpenClawConfig,
-} from "openclaw/plugin-sdk/config-runtime";
-import { getSessionBindingService } from "openclaw/plugin-sdk/conversation-runtime";
+} from "soloclaw/plugin-sdk/config-runtime";
+import { getSessionBindingService } from "soloclaw/plugin-sdk/conversation-runtime";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const hoisted = vi.hoisted(() => {
@@ -68,7 +68,7 @@ const { resolveThreadBindingInactivityExpiresAt, resolveThreadBindingMaxAgeExpir
 const { resolveThreadBindingIntroText } = await import("./thread-bindings.messages.js");
 const discordClientModule = await import("../client.js");
 const discordThreadBindingApi = await import("./thread-bindings.discord-api.js");
-const acpRuntime = await import("openclaw/plugin-sdk/acp-runtime");
+const acpRuntime = await import("soloclaw/plugin-sdk/acp-runtime");
 
 describe("thread binding lifecycle", () => {
   beforeEach(() => {

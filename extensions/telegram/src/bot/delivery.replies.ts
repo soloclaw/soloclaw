@@ -1,23 +1,23 @@
 import { type Bot, GrammyError, InputFile } from "grammy";
-import type { ReplyToMode } from "openclaw/plugin-sdk/config-runtime";
-import type { MarkdownTableMode } from "openclaw/plugin-sdk/config-runtime";
-import { fireAndForgetHook } from "openclaw/plugin-sdk/hook-runtime";
-import { createInternalHookEvent, triggerInternalHook } from "openclaw/plugin-sdk/hook-runtime";
+import type { ReplyToMode } from "soloclaw/plugin-sdk/config-runtime";
+import type { MarkdownTableMode } from "soloclaw/plugin-sdk/config-runtime";
+import { fireAndForgetHook } from "soloclaw/plugin-sdk/hook-runtime";
+import { createInternalHookEvent, triggerInternalHook } from "soloclaw/plugin-sdk/hook-runtime";
 import {
   buildCanonicalSentMessageHookContext,
   toInternalMessageSentContext,
   toPluginMessageContext,
   toPluginMessageSentEvent,
-} from "openclaw/plugin-sdk/hook-runtime";
-import { buildOutboundMediaLoadOptions } from "openclaw/plugin-sdk/media-runtime";
-import { isGifMedia, kindFromMime } from "openclaw/plugin-sdk/media-runtime";
-import { getGlobalHookRunner } from "openclaw/plugin-sdk/plugin-runtime";
-import type { ReplyPayload } from "openclaw/plugin-sdk/reply-runtime";
-import { chunkMarkdownTextWithMode, type ChunkMode } from "openclaw/plugin-sdk/reply-runtime";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import { danger, logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { formatErrorMessage } from "openclaw/plugin-sdk/ssrf-runtime";
-import { loadWebMedia } from "openclaw/plugin-sdk/web-media";
+} from "soloclaw/plugin-sdk/hook-runtime";
+import { buildOutboundMediaLoadOptions } from "soloclaw/plugin-sdk/media-runtime";
+import { isGifMedia, kindFromMime } from "soloclaw/plugin-sdk/media-runtime";
+import { getGlobalHookRunner } from "soloclaw/plugin-sdk/plugin-runtime";
+import type { ReplyPayload } from "soloclaw/plugin-sdk/reply-runtime";
+import { chunkMarkdownTextWithMode, type ChunkMode } from "soloclaw/plugin-sdk/reply-runtime";
+import type { RuntimeEnv } from "soloclaw/plugin-sdk/runtime-env";
+import { danger, logVerbose } from "soloclaw/plugin-sdk/runtime-env";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/ssrf-runtime";
+import { loadWebMedia } from "soloclaw/plugin-sdk/web-media";
 import type { TelegramInlineButtons } from "../button-types.js";
 import { splitTelegramCaption } from "../caption.js";
 import {

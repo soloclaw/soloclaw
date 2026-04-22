@@ -1,5 +1,5 @@
-import { peekSystemEventEntries } from "openclaw/plugin-sdk/infra-runtime";
-import type { OpenClawConfig, OpenClawPluginApi } from "openclaw/plugin-sdk/memory-core";
+import { peekSystemEventEntries } from "soloclaw/plugin-sdk/infra-runtime";
+import type { OpenClawConfig, OpenClawPluginApi } from "soloclaw/plugin-sdk/memory-core";
 import {
   DEFAULT_MEMORY_DREAMING_FREQUENCY as DEFAULT_MEMORY_DREAMING_CRON_EXPR,
   DEFAULT_MEMORY_DEEP_DREAMING_LIMIT as DEFAULT_MEMORY_DREAMING_LIMIT,
@@ -10,8 +10,8 @@ import {
   resolveMemoryCorePluginConfig,
   resolveMemoryDeepDreamingConfig,
   resolveMemoryDreamingWorkspaces,
-} from "openclaw/plugin-sdk/memory-core-host-status";
-import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/memory-core-host-status";
+import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
 import { writeDeepDreamingReport } from "./dreaming-markdown.js";
 import { generateAndAppendDreamNarrative, type NarrativePhaseData } from "./dreaming-narrative.js";
 import { runDreamingSweepPhases } from "./dreaming-phases.js";

@@ -5,6 +5,7 @@
   "description": "OpenClaw speech runtime package",
   "type": "module",
   "devDependencies": {
-    "@soloclaw/plugin-sdk": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*",
+    "soloclaw": "workspace:*"
   }
 }

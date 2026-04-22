@@ -1,7 +1,7 @@
 import type {
   OpenClawConfig,
   ResolvedMemorySearchConfig,
-} from "openclaw/plugin-sdk/memory-core-host-engine-foundation";
+} from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
 import {
   resolveEmbeddingProviderFallbackModel,
   type EmbeddingProvider,

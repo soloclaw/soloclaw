@@ -2,9 +2,9 @@ import type { Client } from "@buape/carbon";
 import {
   createChannelInboundDebouncer,
   shouldDebounceTextInbound,
-} from "openclaw/plugin-sdk/channel-inbound";
-import { resolveOpenProviderRuntimeGroupPolicy } from "openclaw/plugin-sdk/config-runtime";
-import { danger } from "openclaw/plugin-sdk/runtime-env";
+} from "soloclaw/plugin-sdk/channel-inbound";
+import { resolveOpenProviderRuntimeGroupPolicy } from "soloclaw/plugin-sdk/config-runtime";
+import { danger } from "soloclaw/plugin-sdk/runtime-env";
 import {
   buildDiscordInboundReplayKey,
   claimDiscordInboundReplay,

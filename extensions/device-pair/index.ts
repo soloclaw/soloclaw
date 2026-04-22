@@ -4,7 +4,7 @@ import path from "node:path";
 import {
   normalizeLowercaseStringOrEmpty,
   normalizeOptionalString,
-} from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/text-runtime";
 import {
   clearDeviceBootstrapTokens,
   definePluginEntry,

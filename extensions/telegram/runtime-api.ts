@@ -1,13 +1,13 @@
-export type { OpenClawPluginApi } from "openclaw/plugin-sdk/plugin-entry";
-export type { ChannelMessageActionAdapter } from "openclaw/plugin-sdk/channel-contract";
+export type { OpenClawPluginApi } from "soloclaw/plugin-sdk/plugin-entry";
+export type { ChannelMessageActionAdapter } from "soloclaw/plugin-sdk/channel-contract";
 export type { TelegramApiOverride } from "./src/send.js";
 export type {
   OpenClawPluginService,
   OpenClawPluginServiceContext,
   PluginLogger,
-} from "openclaw/plugin-sdk/plugin-entry";
-import type { OpenClawConfig as RuntimeOpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-export type { PluginRuntime } from "openclaw/plugin-sdk/runtime-store";
+} from "soloclaw/plugin-sdk/plugin-entry";
+import type { OpenClawConfig as RuntimeOpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+export type { PluginRuntime } from "soloclaw/plugin-sdk/runtime-store";
 export type {
   AcpRuntime,
   AcpRuntimeCapabilities,
@@ -19,23 +19,23 @@ export type {
   AcpRuntimeTurnInput,
   AcpRuntimeErrorCode,
   AcpSessionUpdateTag,
-} from "openclaw/plugin-sdk/acp-runtime";
-export { AcpRuntimeError } from "openclaw/plugin-sdk/acp-runtime";
+} from "soloclaw/plugin-sdk/acp-runtime";
+export { AcpRuntimeError } from "soloclaw/plugin-sdk/acp-runtime";
 
 export {
   emptyPluginConfigSchema,
   formatPairingApproveHint,
   getChatChannelMeta,
-} from "openclaw/plugin-sdk/channel-plugin-common";
-export { clearAccountEntryFields } from "openclaw/plugin-sdk/channel-core";
+} from "soloclaw/plugin-sdk/channel-plugin-common";
+export { clearAccountEntryFields } from "soloclaw/plugin-sdk/channel-core";
 export { buildChannelConfigSchema, TelegramConfigSchema } from "./config-api.js";
-export { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openclaw/plugin-sdk/account-id";
+export { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "soloclaw/plugin-sdk/account-id";
 export {
   PAIRING_APPROVED_MESSAGE,
   buildTokenChannelStatusSummary,
   projectCredentialSnapshotFields,
   resolveConfiguredFromCredentialStatuses,
-} from "openclaw/plugin-sdk/channel-status";
+} from "soloclaw/plugin-sdk/channel-status";
 export {
   jsonResult,
   readNumberParam,
@@ -44,7 +44,7 @@ export {
   readStringOrNumberParam,
   readStringParam,
   resolvePollMaxSelections,
-} from "openclaw/plugin-sdk/channel-actions";
+} from "soloclaw/plugin-sdk/channel-actions";
 export type { TelegramProbe } from "./src/probe.js";
 export { auditTelegramGroupMembership, collectTelegramUnmentionedGroupIds } from "./src/audit.js";
 export { resolveTelegramRuntimeGroupPolicy } from "./src/group-access.js";
@@ -85,8 +85,8 @@ export {
 } from "./src/thread-bindings.js";
 export { resolveTelegramToken } from "./src/token.js";
 export { setTelegramRuntime } from "./src/runtime.js";
-export type { ChannelPlugin } from "openclaw/plugin-sdk/channel-core";
-export type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+export type { ChannelPlugin } from "soloclaw/plugin-sdk/channel-core";
+export type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 export type TelegramAccountConfig = NonNullable<
   NonNullable<RuntimeOpenClawConfig["channels"]>["telegram"]
 >;

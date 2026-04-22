@@ -1,9 +1,9 @@
 import type {
   ChannelThreadingContext,
   ChannelThreadingToolContext,
-} from "openclaw/plugin-sdk/channel-contract";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { normalizeOptionalString } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/channel-contract";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { parseTelegramTarget } from "./targets.js";
 
 function resolveTelegramToolContextThreadId(context: ChannelThreadingContext): string | undefined {

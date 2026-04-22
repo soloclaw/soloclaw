@@ -1,1 +1,1 @@
-export * from "openclaw/plugin-sdk/llm-task";
+export * from "soloclaw/plugin-sdk/llm-task";

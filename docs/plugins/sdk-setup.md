@@ -270,7 +270,7 @@ disabled channel inspection).
 
 ```typescript
 // setup-entry.ts
-import { defineSetupPluginEntry } from "openclaw/plugin-sdk/channel-core";
+import { defineSetupPluginEntry } from "soloclaw/plugin-sdk/channel-core";
 import { myChannelPlugin } from "./src/channel.js";
 
 export default defineSetupPluginEntry(myChannelPlugin);
@@ -281,7 +281,7 @@ background services) during setup flows.
 
 Bundled workspace channels that keep setup-safe exports in sidecar modules can
 use `defineBundledChannelSetupEntry(...)` from
-`openclaw/plugin-sdk/channel-entry-contract` instead of
+`soloclaw/plugin-sdk/channel-entry-contract` instead of
 `defineSetupPluginEntry(...)`. That bundled contract also supports an optional
 `runtime` export so setup-time runtime wiring can stay lightweight and explicit.
 
@@ -385,12 +385,12 @@ For channel-specific config, use the channel config section instead:
 
 ### Building channel config schemas
 
-Use `buildChannelConfigSchema` from `openclaw/plugin-sdk/core` to convert a
+Use `buildChannelConfigSchema` from `soloclaw/plugin-sdk/core` to convert a
 Zod schema into the `ChannelConfigSchema` wrapper that OpenClaw validates:
 
 ```typescript
 import { z } from "zod";
-import { buildChannelConfigSchema } from "openclaw/plugin-sdk/core";
+import { buildChannelConfigSchema } from "soloclaw/plugin-sdk/core";
 
 const accountSchema = z.object({
   token: z.string().optional(),
@@ -408,7 +408,7 @@ Channel plugins can provide interactive setup wizards for `soloclaw onboard`.
 The wizard is a `ChannelSetupWizard` object on the `ChannelPlugin`:
 
 ```typescript
-import type { ChannelSetupWizard } from "openclaw/plugin-sdk/channel-setup";
+import type { ChannelSetupWizard } from "soloclaw/plugin-sdk/channel-setup";
 
 const setupWizard: ChannelSetupWizard = {
   channel: "my-channel",
@@ -445,20 +445,20 @@ full examples.
 
 For DM allowlist prompts that only need the standard
 `note -> prompt -> parse -> merge -> patch` flow, prefer the shared setup
-helpers from `openclaw/plugin-sdk/setup`: `createPromptParsedAllowFromForAccount(...)`,
+helpers from `soloclaw/plugin-sdk/setup`: `createPromptParsedAllowFromForAccount(...)`,
 `createTopLevelChannelParsedAllowFromPrompt(...)`, and
 `createNestedChannelParsedAllowFromPrompt(...)`.
 
 For channel setup status blocks that only vary by labels, scores, and optional
 extra lines, prefer `createStandardChannelSetupStatus(...)` from
-`openclaw/plugin-sdk/setup` instead of hand-rolling the same `status` object in
+`soloclaw/plugin-sdk/setup` instead of hand-rolling the same `status` object in
 each plugin.
 
 For optional setup surfaces that should only appear in certain contexts, use
-`createOptionalChannelSetupSurface` from `openclaw/plugin-sdk/channel-setup`:
+`createOptionalChannelSetupSurface` from `soloclaw/plugin-sdk/channel-setup`:
 
 ```typescript
-import { createOptionalChannelSetupSurface } from "openclaw/plugin-sdk/channel-setup";
+import { createOptionalChannelSetupSurface } from "soloclaw/plugin-sdk/channel-setup";
 
 const setupSurface = createOptionalChannelSetupSurface({
   channel: "my-channel",

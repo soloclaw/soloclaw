@@ -1,12 +1,12 @@
 import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
-import * as configRuntimeModule from "openclaw/plugin-sdk/config-runtime";
+import * as configRuntimeModule from "soloclaw/plugin-sdk/config-runtime";
 import {
   RequestScopedSubagentRuntimeError,
   SUBAGENT_RUNTIME_REQUEST_SCOPE_ERROR_CODE,
-} from "openclaw/plugin-sdk/error-runtime";
-import * as memoryCoreHostRuntimeCoreModule from "openclaw/plugin-sdk/memory-core-host-runtime-core";
+} from "soloclaw/plugin-sdk/error-runtime";
+import * as memoryCoreHostRuntimeCoreModule from "soloclaw/plugin-sdk/memory-core-host-runtime-core";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { resolveGlobalMap } from "../../../src/shared/global-singleton.js";
 import {

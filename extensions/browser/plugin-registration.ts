@@ -3,7 +3,7 @@ import type {
   OpenClawPluginNodeHostCommand,
   OpenClawPluginToolContext,
   OpenClawPluginToolFactory,
-} from "openclaw/plugin-sdk/plugin-entry";
+} from "soloclaw/plugin-sdk/plugin-entry";
 import {
   collectBrowserSecurityAuditFindings,
   createBrowserPluginService,

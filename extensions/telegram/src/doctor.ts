@@ -1,10 +1,10 @@
 import {
   type ChannelDoctorAdapter,
   type ChannelDoctorEmptyAllowlistAccountContext,
-} from "openclaw/plugin-sdk/channel-contract";
-import { type OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
-import { normalizeOptionalString } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/channel-contract";
+import { type OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
+import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { inspectTelegramAccount } from "./account-inspect.js";
 import { listTelegramAccountIds, resolveTelegramAccount } from "./accounts.js";
 import { isNumericTelegramSenderUserId, normalizeTelegramAllowFromEntry } from "./allow-from.js";
@@ -167,7 +167,7 @@ export async function maybeRepairTelegramAllowFromUsernames(cfg: OpenClawConfig)
   }
 
   const { getChannelsCommandSecretTargetIds, resolveCommandSecretRefsViaGateway } =
-    await import("openclaw/plugin-sdk/runtime-secret-resolution");
+    await import("soloclaw/plugin-sdk/runtime-secret-resolution");
 
   const { resolvedConfig } = await resolveCommandSecretRefsViaGateway({
     config: cfg,

@@ -66,10 +66,10 @@ function hasTrustedOpenClawRootIndicator(params: {
   const hasCliEntryExport = Object.prototype.hasOwnProperty.call(packageExports, "./cli-entry");
   const hasOpenClawBin =
     (typeof params.packageJson.bin === "string" &&
-      normalizeLowercaseStringOrEmpty(params.packageJson.bin).includes("openclaw")) ||
+      normalizeLowercaseStringOrEmpty(params.packageJson.bin).includes("soloclaw")) ||
     (typeof params.packageJson.bin === "object" &&
       params.packageJson.bin !== null &&
-      typeof params.packageJson.bin.openclaw === "string");
+      typeof params.packageJson.bin.soloclaw === "string");
   const hasOpenClawEntrypoint = fs.existsSync(path.join(params.packageRoot, "soloclaw.mjs"));
   return hasCliEntryExport || hasOpenClawBin || hasOpenClawEntrypoint;
 }
@@ -251,7 +251,7 @@ export function resolvePluginSdkAliasFile(params: {
 
 const cachedPluginSdkExportedSubpaths = new Map<string, string[]>();
 const cachedPluginSdkScopedAliasMaps = new Map<string, Record<string, string>>();
-const PLUGIN_SDK_PACKAGE_NAMES = ["openclaw/plugin-sdk", "@soloclaw/plugin-sdk"] as const;
+const PLUGIN_SDK_PACKAGE_NAMES = ["soloclaw/plugin-sdk", "@soloclaw/plugin-sdk"] as const;
 const PLUGIN_SDK_SOURCE_CANDIDATE_EXTENSIONS = [
   ".ts",
   ".mts",
@@ -387,7 +387,7 @@ export function resolvePluginSdkScopedAliasMap(
         }
         break;
       }
-      if (Object.prototype.hasOwnProperty.call(aliasMap, `openclaw/plugin-sdk/${subpath}`)) {
+      if (Object.prototype.hasOwnProperty.call(aliasMap, `soloclaw/plugin-sdk/${subpath}`)) {
         break;
       }
     }
@@ -447,7 +447,7 @@ export function buildPluginLoaderAliasMap(
   const extensionApiAlias = resolveExtensionApiAlias({ modulePath, pluginSdkResolution });
   return {
     ...(extensionApiAlias
-      ? { "openclaw/extension-api": normalizeJitiAliasTargetPath(extensionApiAlias) }
+      ? { "soloclaw/extension-api": normalizeJitiAliasTargetPath(extensionApiAlias) }
       : {}),
     ...(pluginSdkAlias
       ? Object.fromEntries(

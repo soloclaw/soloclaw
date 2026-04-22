@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/provider-auth";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/provider-auth";
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 const { fetchWithSsrFGuardMock } = vi.hoisted(() => ({
@@ -8,7 +8,7 @@ const { fetchWithSsrFGuardMock } = vi.hoisted(() => ({
   })),
 }));
 
-vi.mock("openclaw/plugin-sdk/ssrf-runtime", () => ({
+vi.mock("soloclaw/plugin-sdk/ssrf-runtime", () => ({
   fetchWithSsrFGuard: fetchWithSsrFGuardMock,
   formatErrorMessage: (error: unknown) => (error instanceof Error ? error.message : String(error)),
 }));

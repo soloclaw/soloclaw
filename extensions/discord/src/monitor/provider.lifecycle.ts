@@ -1,6 +1,6 @@
-import { createConnectedChannelStatusPatch } from "openclaw/plugin-sdk/gateway-runtime";
-import { danger } from "openclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+import { createConnectedChannelStatusPatch } from "soloclaw/plugin-sdk/gateway-runtime";
+import { danger } from "soloclaw/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "soloclaw/plugin-sdk/runtime-env";
 import { attachDiscordGatewayLogging } from "../gateway-logging.js";
 import { getDiscordGatewayEmitter, waitForDiscordGatewayStop } from "../monitor.gateway.js";
 import type { DiscordVoiceManager } from "../voice/manager.js";

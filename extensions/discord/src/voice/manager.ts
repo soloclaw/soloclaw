@@ -12,17 +12,17 @@ import {
   resolveTtsConfig,
   resolveTtsPrefsPath,
   type ResolvedTtsConfig,
-} from "openclaw/plugin-sdk/agent-runtime";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { DiscordAccountConfig, TtsConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveAgentRoute } from "openclaw/plugin-sdk/routing";
-import { logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { createSubsystemLogger } from "openclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import { parseTtsDirectives } from "openclaw/plugin-sdk/speech";
-import { formatErrorMessage } from "openclaw/plugin-sdk/ssrf-runtime";
-import { resolvePreferredOpenClawTmpDir } from "openclaw/plugin-sdk/temp-path";
-import { normalizeOptionalString } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/agent-runtime";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { DiscordAccountConfig, TtsConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { resolveAgentRoute } from "soloclaw/plugin-sdk/routing";
+import { logVerbose, shouldLogVerbose } from "soloclaw/plugin-sdk/runtime-env";
+import { createSubsystemLogger } from "soloclaw/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "soloclaw/plugin-sdk/runtime-env";
+import { parseTtsDirectives } from "soloclaw/plugin-sdk/speech";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/ssrf-runtime";
+import { resolvePreferredOpenClawTmpDir } from "soloclaw/plugin-sdk/temp-path";
+import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { formatMention } from "../mentions.js";
 import { normalizeDiscordSlug, resolveDiscordOwnerAccess } from "../monitor/allow-list.js";
 import { formatDiscordUserTag } from "../monitor/format.js";

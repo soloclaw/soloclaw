@@ -5,14 +5,14 @@ import {
   normalizeOptionalAccountId,
   resolveAccountWithDefaultFallback,
   type OpenClawConfig,
-} from "openclaw/plugin-sdk/account-core";
+} from "soloclaw/plugin-sdk/account-core";
 import type {
   TelegramAccountConfig,
   TelegramActionConfig,
-} from "openclaw/plugin-sdk/config-runtime";
-import { formatSetExplicitDefaultInstruction } from "openclaw/plugin-sdk/routing";
-import { createSubsystemLogger, isTruthyEnvValue } from "openclaw/plugin-sdk/runtime-env";
-import { normalizeOptionalString } from "openclaw/plugin-sdk/string-coerce-runtime";
+} from "soloclaw/plugin-sdk/config-runtime";
+import { formatSetExplicitDefaultInstruction } from "soloclaw/plugin-sdk/routing";
+import { createSubsystemLogger, isTruthyEnvValue } from "soloclaw/plugin-sdk/runtime-env";
+import { normalizeOptionalString } from "soloclaw/plugin-sdk/string-coerce-runtime";
 import { mergeTelegramAccountConfig, resolveTelegramAccountConfig } from "./account-config.js";
 import {
   listTelegramAccountIds as listSelectedTelegramAccountIds,

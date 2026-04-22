@@ -1,7 +1,7 @@
 import { Type } from "@sinclair/typebox";
-import type { ChannelMessageActionContext } from "openclaw/plugin-sdk/channel-contract";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { withEnv } from "openclaw/plugin-sdk/testing";
+import type { ChannelMessageActionContext } from "soloclaw/plugin-sdk/channel-contract";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { withEnv } from "soloclaw/plugin-sdk/testing";
 import { describe, expect, it, vi } from "vitest";
 
 const handleDiscordMessageActionMock = vi.hoisted(() =>

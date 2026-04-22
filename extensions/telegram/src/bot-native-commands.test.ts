@@ -1,5 +1,5 @@
-import type { OpenClawConfig, TelegramAccountConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
+import type { OpenClawConfig, TelegramAccountConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { RuntimeEnv } from "soloclaw/plugin-sdk/runtime-env";
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   createCommandBot,

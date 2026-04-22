@@ -103,8 +103,8 @@ API key auth, and dynamic model resolution.
     A minimal provider needs an `id`, `label`, `auth`, and `catalog`:
 
     ```typescript index.ts
-    import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
-    import { createProviderApiKeyAuthMethod } from "openclaw/plugin-sdk/provider-auth";
+    import { definePluginEntry } from "soloclaw/plugin-sdk/plugin-entry";
+    import { createProviderApiKeyAuthMethod } from "soloclaw/plugin-sdk/provider-auth";
 
     export default definePluginEntry({
       id: "acme-ai",
@@ -202,7 +202,7 @@ API key auth, and dynamic model resolution.
     `defineSingleProviderPluginEntry(...)` helper:
 
     ```typescript
-    import { defineSingleProviderPluginEntry } from "openclaw/plugin-sdk/provider-entry";
+    import { defineSingleProviderPluginEntry } from "soloclaw/plugin-sdk/provider-entry";
 
     export default defineSingleProviderPluginEntry({
       id: "acme-ai",
@@ -236,14 +236,14 @@ API key auth, and dynamic model resolution.
 
     If your auth flow also needs to patch `models.providers.*`, aliases, and
     the agent default model during onboarding, use the preset helpers from
-    `openclaw/plugin-sdk/provider-onboard`. The narrowest helpers are
+    `soloclaw/plugin-sdk/provider-onboard`. The narrowest helpers are
     `createDefaultModelPresetAppliers(...)`,
     `createDefaultModelsPresetAppliers(...)`, and
     `createModelCatalogPresetAppliers(...)`.
 
     When a provider's native endpoint supports streamed usage blocks on the
     normal `openai-completions` transport, prefer the shared catalog helpers in
-    `openclaw/plugin-sdk/provider-catalog-shared` instead of hardcoding
+    `soloclaw/plugin-sdk/provider-catalog-shared` instead of hardcoding
     provider-id checks. `supportsNativeStreamingUsageCompat(...)` and
     `applyProviderNativeStreamingUsageCompat(...)` detect support from the
     endpoint capability map, so native Moonshot/DashScope-style endpoints still
@@ -287,9 +287,9 @@ API key auth, and dynamic model resolution.
     families, so plugins usually do not need to hand-wire each hook one by one:
 
     ```typescript
-    import { buildProviderReplayFamilyHooks } from "openclaw/plugin-sdk/provider-model-shared";
-    import { buildProviderStreamFamilyHooks } from "openclaw/plugin-sdk/provider-stream";
-    import { buildProviderToolCompatFamilyHooks } from "openclaw/plugin-sdk/provider-tools";
+    import { buildProviderReplayFamilyHooks } from "soloclaw/plugin-sdk/provider-model-shared";
+    import { buildProviderStreamFamilyHooks } from "soloclaw/plugin-sdk/provider-stream";
+    import { buildProviderToolCompatFamilyHooks } from "soloclaw/plugin-sdk/provider-tools";
 
     const GOOGLE_FAMILY_HOOKS = {
       ...buildProviderReplayFamilyHooks({ family: "google-gemini" }),
@@ -344,7 +344,7 @@ API key auth, and dynamic model resolution.
     - `openrouter`: `openrouter-thinking`
     - `zai`: `tool-stream-default-on`
 
-    `openclaw/plugin-sdk/provider-model-shared` also exports the replay-family
+    `soloclaw/plugin-sdk/provider-model-shared` also exports the replay-family
     enum plus the shared helpers those families are built from. Common public
     exports include:
 
@@ -360,7 +360,7 @@ API key auth, and dynamic model resolution.
       `normalizeProviderId(...)`, `normalizeGooglePreviewModelId(...)`, and
       `normalizeNativeXaiModelId(...)`
 
-    `openclaw/plugin-sdk/provider-stream` exposes both the family builder and
+    `soloclaw/plugin-sdk/provider-stream` exposes both the family builder and
     the public wrapper helpers those families reuse. Common public exports
     include:
 
@@ -391,7 +391,7 @@ API key auth, and dynamic model resolution.
     unsupported strict-tool cleanup, and xAI-specific reasoning-payload
     removal.
 
-    `openclaw/plugin-sdk/provider-tools` currently exposes one shared
+    `soloclaw/plugin-sdk/provider-tools` currently exposes one shared
     tool-schema family plus shared schema/compat helpers:
 
     - `ProviderToolCompatFamily` documents the shared family inventory today.

@@ -3,33 +3,33 @@ import {
   buildLegacyDmAccountAllowlistAdapter,
   createAccountScopedAllowlistNameResolver,
   createNestedAllowlistOverrideResolver,
-} from "openclaw/plugin-sdk/allowlist-config-edit";
-import { createScopedDmSecurityResolver } from "openclaw/plugin-sdk/channel-config-helpers";
+} from "soloclaw/plugin-sdk/allowlist-config-edit";
+import { createScopedDmSecurityResolver } from "soloclaw/plugin-sdk/channel-config-helpers";
 import type {
   ChannelMessageActionAdapter,
   ChannelMessageToolDiscovery,
-} from "openclaw/plugin-sdk/channel-contract";
-import { createChatChannelPlugin } from "openclaw/plugin-sdk/channel-core";
-import { createPairingPrefixStripper } from "openclaw/plugin-sdk/channel-pairing";
-import { createOpenProviderConfiguredRouteWarningCollector } from "openclaw/plugin-sdk/channel-policy";
+} from "soloclaw/plugin-sdk/channel-contract";
+import { createChatChannelPlugin } from "soloclaw/plugin-sdk/channel-core";
+import { createPairingPrefixStripper } from "soloclaw/plugin-sdk/channel-pairing";
+import { createOpenProviderConfiguredRouteWarningCollector } from "soloclaw/plugin-sdk/channel-policy";
 import {
   createChannelDirectoryAdapter,
   createRuntimeDirectoryLiveAdapter,
-} from "openclaw/plugin-sdk/directory-runtime";
-import { formatErrorMessage } from "openclaw/plugin-sdk/error-runtime";
-import { createLazyRuntimeModule } from "openclaw/plugin-sdk/lazy-runtime";
-import { resolveOutboundSendDep } from "openclaw/plugin-sdk/outbound-runtime";
-import { sleepWithAbort } from "openclaw/plugin-sdk/runtime-env";
+} from "soloclaw/plugin-sdk/directory-runtime";
+import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
+import { createLazyRuntimeModule } from "soloclaw/plugin-sdk/lazy-runtime";
+import { resolveOutboundSendDep } from "soloclaw/plugin-sdk/outbound-runtime";
+import { sleepWithAbort } from "soloclaw/plugin-sdk/runtime-env";
 import {
   createComputedAccountStatusAdapter,
   createDefaultChannelRuntimeState,
-} from "openclaw/plugin-sdk/status-helpers";
-import { resolveTargetsWithOptionalToken } from "openclaw/plugin-sdk/target-resolver-runtime";
+} from "soloclaw/plugin-sdk/status-helpers";
+import { resolveTargetsWithOptionalToken } from "soloclaw/plugin-sdk/target-resolver-runtime";
 import {
   normalizeLowercaseStringOrEmpty,
   normalizeOptionalString,
   normalizeOptionalStringifiedId,
-} from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/text-runtime";
 import {
   listDiscordAccountIds,
   resolveDiscordAccount,

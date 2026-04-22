@@ -320,22 +320,22 @@ vi.mock("../process/exec.js", () => ({
   runCommandWithTimeout,
 }));
 
-vi.mock("openclaw/plugin-sdk/provider-auth", () => ({
+vi.mock("soloclaw/plugin-sdk/provider-auth", () => ({
   isNonSecretApiKeyMarker: () => false,
 }));
 
-vi.mock("openclaw/plugin-sdk/provider-model-shared", () => ({
+vi.mock("soloclaw/plugin-sdk/provider-model-shared", () => ({
   DEFAULT_CONTEXT_TOKENS: 32768,
   normalizeProviderId: (value: string) => normalizeLowercaseStringOrEmpty(value),
 }));
 
-vi.mock("openclaw/plugin-sdk/provider-stream-shared", () => ({
+vi.mock("soloclaw/plugin-sdk/provider-stream-shared", () => ({
   createMoonshotThinkingWrapper: () => undefined,
   resolveMoonshotThinkingType: () => undefined,
   streamWithPayloadPatch: () => undefined,
 }));
 
-vi.mock("openclaw/plugin-sdk/runtime-env", () => ({
+vi.mock("soloclaw/plugin-sdk/runtime-env", () => ({
   createSubsystemLogger: () => ({
     debug: () => {},
     info: () => {},

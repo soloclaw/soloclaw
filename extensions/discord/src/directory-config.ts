@@ -1,8 +1,8 @@
-import { normalizeAccountId } from "openclaw/plugin-sdk/account-id";
+import { normalizeAccountId } from "soloclaw/plugin-sdk/account-id";
 import {
   createResolvedDirectoryEntriesLister,
   type DirectoryConfigParams,
-} from "openclaw/plugin-sdk/directory-config-runtime";
+} from "soloclaw/plugin-sdk/directory-config-runtime";
 import { mergeDiscordAccountConfig, resolveDefaultDiscordAccountId } from "./accounts.js";
 
 function resolveDiscordDirectoryConfigAccount(

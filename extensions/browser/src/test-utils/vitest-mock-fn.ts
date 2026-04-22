@@ -1,1 +1,1 @@
-export type { MockFn } from "openclaw/plugin-sdk/browser-setup-tools";
+export type { MockFn } from "soloclaw/plugin-sdk/browser-setup-tools";

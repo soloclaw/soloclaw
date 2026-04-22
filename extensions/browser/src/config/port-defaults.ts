@@ -2,4 +2,4 @@ export {
   DEFAULT_BROWSER_CONTROL_PORT,
   deriveDefaultBrowserCdpPortRange,
   deriveDefaultBrowserControlPort,
-} from "openclaw/plugin-sdk/browser-config-support";
+} from "soloclaw/plugin-sdk/browser-config-support";

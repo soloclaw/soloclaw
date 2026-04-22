@@ -8,15 +8,15 @@ import type {
   SandboxBackendFactory,
   SandboxBackendManager,
   SshSandboxSession,
-} from "openclaw/plugin-sdk/sandbox";
+} from "soloclaw/plugin-sdk/sandbox";
 import {
   createRemoteShellSandboxFsBridge,
   disposeSshSandboxSession,
   resolvePreferredOpenClawTmpDir,
   runSshSandboxCommand,
   sanitizeEnvVars,
-} from "openclaw/plugin-sdk/sandbox";
-import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/sandbox";
+import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
 import type { OpenShellSandboxBackend } from "./backend.types.js";
 import {
   buildExecRemoteCommand,

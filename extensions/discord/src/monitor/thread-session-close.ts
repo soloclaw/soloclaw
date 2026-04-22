@@ -1,6 +1,6 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveStorePath, updateSessionStore } from "openclaw/plugin-sdk/config-runtime";
-import { normalizeOptionalLowercaseString } from "openclaw/plugin-sdk/text-runtime";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { resolveStorePath, updateSessionStore } from "soloclaw/plugin-sdk/config-runtime";
+import { normalizeOptionalLowercaseString } from "soloclaw/plugin-sdk/text-runtime";
 
 /**
  * Marks every session entry in the store whose key contains {@link threadId}

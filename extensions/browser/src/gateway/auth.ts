@@ -1,1 +1,1 @@
-export { resolveGatewayAuth } from "openclaw/plugin-sdk/browser-node-runtime";
+export { resolveGatewayAuth } from "soloclaw/plugin-sdk/browser-node-runtime";

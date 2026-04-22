@@ -49,11 +49,11 @@ providers, replace channel delivery, or silently switch models.
 
 ## Register a harness
 
-**Import:** `openclaw/plugin-sdk/agent-harness`
+**Import:** `soloclaw/plugin-sdk/agent-harness`
 
 ```typescript
-import type { AgentHarness } from "openclaw/plugin-sdk/agent-harness";
-import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
+import type { AgentHarness } from "soloclaw/plugin-sdk/agent-harness";
+import { definePluginEntry } from "soloclaw/plugin-sdk/plugin-entry";
 
 const myHarness: AgentHarness = {
   id: "my-harness",

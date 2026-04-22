@@ -1,8 +1,8 @@
-import { resolveChannelStreamingPreviewChunk } from "openclaw/plugin-sdk/channel-streaming";
-import { type OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveTextChunkLimit } from "openclaw/plugin-sdk/reply-chunking";
-import { resolveAccountEntry } from "openclaw/plugin-sdk/routing";
-import { normalizeAccountId } from "openclaw/plugin-sdk/routing";
+import { resolveChannelStreamingPreviewChunk } from "soloclaw/plugin-sdk/channel-streaming";
+import { type OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { resolveTextChunkLimit } from "soloclaw/plugin-sdk/reply-chunking";
+import { resolveAccountEntry } from "soloclaw/plugin-sdk/routing";
+import { normalizeAccountId } from "soloclaw/plugin-sdk/routing";
 import { TELEGRAM_TEXT_CHUNK_LIMIT } from "./outbound-adapter.js";
 
 const DEFAULT_TELEGRAM_DRAFT_STREAM_MIN = 200;

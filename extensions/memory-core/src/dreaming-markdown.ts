@@ -4,12 +4,12 @@ import {
   formatMemoryDreamingDay,
   type MemoryDreamingPhaseName,
   type MemoryDreamingStorageConfig,
-} from "openclaw/plugin-sdk/memory-core-host-status";
-import { appendMemoryHostEvent } from "openclaw/plugin-sdk/memory-host-events";
+} from "soloclaw/plugin-sdk/memory-core-host-status";
+import { appendMemoryHostEvent } from "soloclaw/plugin-sdk/memory-host-events";
 import {
   replaceManagedMarkdownBlock,
   withTrailingNewline,
-} from "openclaw/plugin-sdk/memory-host-markdown";
+} from "soloclaw/plugin-sdk/memory-host-markdown";
 
 const DAILY_PHASE_HEADINGS: Record<Exclude<MemoryDreamingPhaseName, "deep">, string> = {
   light: "## Light Sleep",

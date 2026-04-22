@@ -2,10 +2,10 @@ import {
   createAccountActionGate,
   createAccountListHelpers,
   resolveMergedAccountConfig,
-} from "openclaw/plugin-sdk/account-helpers";
-import { normalizeAccountId } from "openclaw/plugin-sdk/account-id";
-import { resolveAccountEntry } from "openclaw/plugin-sdk/routing";
-import { normalizeOptionalString } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/account-helpers";
+import { normalizeAccountId } from "soloclaw/plugin-sdk/account-id";
+import { resolveAccountEntry } from "soloclaw/plugin-sdk/routing";
+import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import type { DiscordAccountConfig, DiscordActionConfig, OpenClawConfig } from "./runtime-api.js";
 import { resolveDiscordToken } from "./token.js";
 

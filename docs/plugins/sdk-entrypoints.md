@@ -20,13 +20,13 @@ creating them.
 
 ## `definePluginEntry`
 
-**Import:** `openclaw/plugin-sdk/plugin-entry`
+**Import:** `soloclaw/plugin-sdk/plugin-entry`
 
 For provider plugins, tool plugins, hook plugins, and anything that is **not**
 a messaging channel.
 
 ```typescript
-import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
+import { definePluginEntry } from "soloclaw/plugin-sdk/plugin-entry";
 
 export default definePluginEntry({
   id: "my-plugin",
@@ -60,14 +60,14 @@ export default definePluginEntry({
 
 ## `defineChannelPluginEntry`
 
-**Import:** `openclaw/plugin-sdk/channel-core`
+**Import:** `soloclaw/plugin-sdk/channel-core`
 
 Wraps `definePluginEntry` with channel-specific wiring. Automatically calls
 `api.registerChannel({ plugin })`, exposes an optional root-help CLI metadata
 seam, and gates `registerFull` on registration mode.
 
 ```typescript
-import { defineChannelPluginEntry } from "openclaw/plugin-sdk/channel-core";
+import { defineChannelPluginEntry } from "soloclaw/plugin-sdk/channel-core";
 
 export default defineChannelPluginEntry({
   id: "my-channel",
@@ -118,13 +118,13 @@ export default defineChannelPluginEntry({
 
 ## `defineSetupPluginEntry`
 
-**Import:** `openclaw/plugin-sdk/channel-core`
+**Import:** `soloclaw/plugin-sdk/channel-core`
 
 For the lightweight `setup-entry.ts` file. Returns just `{ plugin }` with no
 runtime or CLI wiring.
 
 ```typescript
-import { defineSetupPluginEntry } from "openclaw/plugin-sdk/channel-core";
+import { defineSetupPluginEntry } from "soloclaw/plugin-sdk/channel-core";
 
 export default defineSetupPluginEntry(myChannelPlugin);
 ```
@@ -136,23 +136,23 @@ unconfigured, or when deferred loading is enabled. See
 In practice, pair `defineSetupPluginEntry(...)` with the narrow setup helper
 families:
 
-- `openclaw/plugin-sdk/setup-runtime` for runtime-safe setup helpers such as
+- `soloclaw/plugin-sdk/setup-runtime` for runtime-safe setup helpers such as
   import-safe setup patch adapters, lookup-note output,
   `promptResolvedAllowFrom`, `splitSetupEntries`, and delegated setup proxies
-- `openclaw/plugin-sdk/channel-setup` for optional-install setup surfaces
-- `openclaw/plugin-sdk/setup-tools` for setup/install CLI/archive/docs helpers
+- `soloclaw/plugin-sdk/channel-setup` for optional-install setup surfaces
+- `soloclaw/plugin-sdk/setup-tools` for setup/install CLI/archive/docs helpers
 
 Keep heavy SDKs, CLI registration, and long-lived runtime services in the full
 entry.
 
 Bundled workspace channels that split setup and runtime surfaces can use
 `defineBundledChannelSetupEntry(...)` from
-`openclaw/plugin-sdk/channel-entry-contract` instead. That contract lets the
+`soloclaw/plugin-sdk/channel-entry-contract` instead. That contract lets the
 setup entry keep setup-safe plugin/secrets exports while still exposing a
 runtime setter:
 
 ```typescript
-import { defineBundledChannelSetupEntry } from "openclaw/plugin-sdk/channel-entry-contract";
+import { defineBundledChannelSetupEntry } from "soloclaw/plugin-sdk/channel-entry-contract";
 
 export default defineBundledChannelSetupEntry({
   importMetaUrl: import.meta.url,

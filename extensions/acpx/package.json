@@ -7,7 +7,8 @@
     "acpx": "0.5.3"
   },
   "devDependencies": {
-    "@soloclaw/plugin-sdk": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*",
+    "soloclaw": "workspace:*"
   },
   "soloclaw": {
     "extensions": [

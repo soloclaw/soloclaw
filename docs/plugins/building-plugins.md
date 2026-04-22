@@ -42,7 +42,7 @@ falls back to npm automatically.
 
 If a channel plugin is optional and may not be installed when onboarding/setup
 runs, use `createOptionalChannelSetupSurface(...)` from
-`openclaw/plugin-sdk/channel-setup`. It produces a setup adapter + wizard pair
+`soloclaw/plugin-sdk/channel-setup`. It produces a setup adapter + wizard pair
 that advertises the install requirement and fails closed on real config writes
 until the plugin is installed.
 
@@ -96,7 +96,7 @@ and provider plugins have dedicated guides linked above.
 
     ```typescript
     // index.ts
-    import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
+    import { definePluginEntry } from "soloclaw/plugin-sdk/plugin-entry";
     import { Type } from "@sinclair/typebox";
 
     export default definePluginEntry({
@@ -188,7 +188,7 @@ Hook guard semantics to keep in mind:
 The `/approve` command handles both exec and plugin approvals with bounded fallback: when an exec approval id is not found, OpenClaw retries the same id through plugin approvals. Plugin approval forwarding can be configured independently via `approvals.plugin` in config.
 
 If custom approval plumbing needs to detect that same bounded fallback case,
-prefer `isApprovalNotFoundError` from `openclaw/plugin-sdk/error-runtime`
+prefer `isApprovalNotFoundError` from `soloclaw/plugin-sdk/error-runtime`
 instead of matching approval-expiry strings manually.
 
 See [SDK Overview hook decision semantics](/plugins/sdk-overview#hook-decision-semantics) for details.
@@ -239,14 +239,14 @@ Users enable optional tools in config:
 
 ## Import conventions
 
-Always import from focused `openclaw/plugin-sdk/<subpath>` paths:
+Always import from focused `soloclaw/plugin-sdk/<subpath>` paths:
 
 ```typescript
-import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
-import { createPluginRuntimeStore } from "openclaw/plugin-sdk/runtime-store";
+import { definePluginEntry } from "soloclaw/plugin-sdk/plugin-entry";
+import { createPluginRuntimeStore } from "soloclaw/plugin-sdk/runtime-store";
 
 // Wrong: monolithic root (deprecated, will be removed)
-import { ... } from "openclaw/plugin-sdk";
+import { ... } from "soloclaw/plugin-sdk";
 ```
 
 For the full subpath reference, see [SDK Overview](/plugins/sdk-overview).
@@ -262,9 +262,9 @@ barrels unless the seam is truly generic. Current bundled examples:
 - OpenRouter: provider builder plus onboarding/config helpers
 
 If a helper is only useful inside one bundled provider package, keep it on that
-package-root seam instead of promoting it into `openclaw/plugin-sdk/*`.
+package-root seam instead of promoting it into `soloclaw/plugin-sdk/*`.
 
-Some generated `openclaw/plugin-sdk/<bundled-id>` helper seams still exist for
+Some generated `soloclaw/plugin-sdk/<bundled-id>` helper seams still exist for
 bundled-plugin maintenance and compatibility, for example
 `plugin-sdk/feishu-setup` or `plugin-sdk/zalo-setup`. Treat those as reserved
 surfaces, not as the default pattern for new third-party plugins.

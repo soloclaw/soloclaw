@@ -1,5 +1,5 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { ResolvedAgentRoute } from "openclaw/plugin-sdk/routing";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { ResolvedAgentRoute } from "soloclaw/plugin-sdk/routing";
 import { describe, expect, it } from "vitest";
 import {
   buildDiscordRoutePeer,

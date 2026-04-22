@@ -1,1 +1,1 @@
-export * from "openclaw/plugin-sdk/video-generation-core";
+export * from "soloclaw/plugin-sdk/video-generation-core";

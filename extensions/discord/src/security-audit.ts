@@ -1,10 +1,10 @@
-import { coerceNativeSetting, normalizeAllowFromList } from "openclaw/plugin-sdk/channel-policy";
-import { readChannelAllowFromStore } from "openclaw/plugin-sdk/conversation-runtime";
-import { isDangerousNameMatchingEnabled } from "openclaw/plugin-sdk/dangerous-name-runtime";
+import { coerceNativeSetting, normalizeAllowFromList } from "soloclaw/plugin-sdk/channel-policy";
+import { readChannelAllowFromStore } from "soloclaw/plugin-sdk/conversation-runtime";
+import { isDangerousNameMatchingEnabled } from "soloclaw/plugin-sdk/dangerous-name-runtime";
 import {
   resolveNativeCommandsEnabled,
   resolveNativeSkillsEnabled,
-} from "openclaw/plugin-sdk/native-command-config-runtime";
+} from "soloclaw/plugin-sdk/native-command-config-runtime";
 import type { ResolvedDiscordAccount } from "./accounts.js";
 import type { OpenClawConfig } from "./runtime-api.js";
 import { isDiscordMutableAllowEntry } from "./security-doctor.js";

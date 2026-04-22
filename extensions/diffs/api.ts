@@ -1,1 +1,1 @@
-export * from "openclaw/plugin-sdk/diffs";
+export * from "soloclaw/plugin-sdk/diffs";

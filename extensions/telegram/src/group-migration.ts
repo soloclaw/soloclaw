@@ -1,7 +1,7 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { TelegramGroupConfig } from "openclaw/plugin-sdk/config-runtime";
-import { normalizeAccountId } from "openclaw/plugin-sdk/routing";
-import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/text-runtime";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { TelegramGroupConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { normalizeAccountId } from "soloclaw/plugin-sdk/routing";
+import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
 
 type TelegramGroups = Record<string, TelegramGroupConfig>;
 

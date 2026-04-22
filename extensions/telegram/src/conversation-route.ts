@@ -1,23 +1,23 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import {
   resolveConfiguredBindingRoute,
   type ConfiguredBindingRouteResult,
-} from "openclaw/plugin-sdk/conversation-runtime";
-import { getSessionBindingService } from "openclaw/plugin-sdk/conversation-runtime";
-import { isPluginOwnedSessionBindingRecord } from "openclaw/plugin-sdk/conversation-runtime";
+} from "soloclaw/plugin-sdk/conversation-runtime";
+import { getSessionBindingService } from "soloclaw/plugin-sdk/conversation-runtime";
+import { isPluginOwnedSessionBindingRecord } from "soloclaw/plugin-sdk/conversation-runtime";
 import {
   buildAgentSessionKey,
   deriveLastRoutePolicy,
   resolveAgentRoute,
-} from "openclaw/plugin-sdk/routing";
+} from "soloclaw/plugin-sdk/routing";
 import {
   buildAgentMainSessionKey,
   DEFAULT_ACCOUNT_ID,
   resolveAgentIdFromSessionKey,
   sanitizeAgentId,
-} from "openclaw/plugin-sdk/routing";
-import { logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/routing";
+import { logVerbose } from "soloclaw/plugin-sdk/runtime-env";
+import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
 import {
   buildTelegramGroupPeerId,
   buildTelegramParentPeer,

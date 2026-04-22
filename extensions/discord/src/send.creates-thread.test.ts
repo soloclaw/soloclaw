@@ -1,10 +1,10 @@
 import { RateLimitError } from "@buape/carbon";
 import { ChannelType, Routes } from "discord-api-types/v10";
-import { loadWebMediaRaw } from "openclaw/plugin-sdk/web-media";
+import { loadWebMediaRaw } from "soloclaw/plugin-sdk/web-media";
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { makeDiscordRest } from "./send.test-harness.js";
 
-vi.mock("openclaw/plugin-sdk/web-media", async () => {
+vi.mock("soloclaw/plugin-sdk/web-media", async () => {
   const { discordWebMediaMockFactory } = await import("./send.test-harness.js");
   return discordWebMediaMockFactory();
 });
@@ -68,7 +68,7 @@ afterEach(() => {
 });
 
 afterAll(() => {
-  vi.doUnmock("openclaw/plugin-sdk/web-media");
+  vi.doUnmock("soloclaw/plugin-sdk/web-media");
 });
 
 describe("sendMessageDiscord", () => {

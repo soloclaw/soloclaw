@@ -1,10 +1,10 @@
 import type { Bot, Context } from "grammy";
-import { resolveChannelStreamingBlockEnabled } from "openclaw/plugin-sdk/channel-streaming";
+import { resolveChannelStreamingBlockEnabled } from "soloclaw/plugin-sdk/channel-streaming";
 import {
   resolveCommandAuthorization,
   resolveCommandAuthorizedFromAuthorizers,
   resolveNativeCommandSessionTargets,
-} from "openclaw/plugin-sdk/command-auth-native";
+} from "soloclaw/plugin-sdk/command-auth-native";
 import {
   buildCommandTextFromArgs,
   findCommandByNativeName,
@@ -13,23 +13,23 @@ import {
   parseCommandArgs,
   resolveCommandArgMenu,
   type CommandArgs,
-} from "openclaw/plugin-sdk/command-auth-native";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import type { ChannelGroupPolicy } from "openclaw/plugin-sdk/config-runtime";
+} from "soloclaw/plugin-sdk/command-auth-native";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { ChannelGroupPolicy } from "soloclaw/plugin-sdk/config-runtime";
 import type {
   ReplyToMode,
   TelegramAccountConfig,
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "openclaw/plugin-sdk/config-runtime";
-import { resolveMarkdownTableMode } from "openclaw/plugin-sdk/markdown-table-runtime";
-import { resolveAgentRoute } from "openclaw/plugin-sdk/routing";
-import { getRuntimeConfigSnapshot } from "openclaw/plugin-sdk/runtime-config-snapshot";
-import { danger, logVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { getChildLogger } from "openclaw/plugin-sdk/runtime-env";
-import type { RuntimeEnv } from "openclaw/plugin-sdk/runtime-env";
-import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/config-runtime";
+import { resolveMarkdownTableMode } from "soloclaw/plugin-sdk/markdown-table-runtime";
+import { resolveAgentRoute } from "soloclaw/plugin-sdk/routing";
+import { getRuntimeConfigSnapshot } from "soloclaw/plugin-sdk/runtime-config-snapshot";
+import { danger, logVerbose } from "soloclaw/plugin-sdk/runtime-env";
+import { getChildLogger } from "soloclaw/plugin-sdk/runtime-env";
+import type { RuntimeEnv } from "soloclaw/plugin-sdk/runtime-env";
+import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
 import { resolveTelegramAccount } from "./accounts.js";
 import { withTelegramApiErrorLogging } from "./api-logging.js";
 import { isSenderAllowed, normalizeDmAllowFromWithStore } from "./bot-access.js";
@@ -83,9 +83,9 @@ const TELEGRAM_NATIVE_COMMAND_CALLBACK_PREFIX = "tgcmd:";
 
 type TelegramNativeCommandContext = Context & { match?: string };
 type TelegramChunkMode = ReturnType<
-  typeof import("openclaw/plugin-sdk/reply-dispatch-runtime").resolveChunkMode
+  typeof import("soloclaw/plugin-sdk/reply-dispatch-runtime").resolveChunkMode
 >;
-type TelegramNativeReplyPayload = import("openclaw/plugin-sdk/reply-dispatch-runtime").ReplyPayload;
+type TelegramNativeReplyPayload = import("soloclaw/plugin-sdk/reply-dispatch-runtime").ReplyPayload;
 type TelegramNativeReplyChannelData = {
   buttons?: TelegramInlineButtons;
   pin?: boolean;

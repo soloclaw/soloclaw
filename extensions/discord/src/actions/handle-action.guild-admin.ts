@@ -4,9 +4,9 @@ import {
   readNumberParam,
   readStringArrayParam,
   readStringParam,
-} from "openclaw/plugin-sdk/agent-runtime";
-import type { ChannelMessageActionContext } from "openclaw/plugin-sdk/channel-contract";
-import { normalizeOptionalString } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/agent-runtime";
+import type { ChannelMessageActionContext } from "soloclaw/plugin-sdk/channel-contract";
+import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { handleDiscordAction } from "../../action-runtime-api.js";
 import {
   isDiscordModerationAction,

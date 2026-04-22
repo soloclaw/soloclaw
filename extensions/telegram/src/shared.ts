@@ -1,14 +1,14 @@
-import { resolveNormalizedAccountEntry } from "openclaw/plugin-sdk/account-core";
-import { normalizeAccountId } from "openclaw/plugin-sdk/account-id";
-import { formatAllowFromLowercase } from "openclaw/plugin-sdk/allow-from";
+import { resolveNormalizedAccountEntry } from "soloclaw/plugin-sdk/account-core";
+import { normalizeAccountId } from "soloclaw/plugin-sdk/account-id";
+import { formatAllowFromLowercase } from "soloclaw/plugin-sdk/allow-from";
 import {
   adaptScopedAccountAccessor,
   createScopedChannelConfigAdapter,
-} from "openclaw/plugin-sdk/channel-config-helpers";
-import { createChannelPluginBase, type ChannelPlugin } from "openclaw/plugin-sdk/channel-core";
-import { getChatChannelMeta } from "openclaw/plugin-sdk/channel-plugin-common";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { DEFAULT_ACCOUNT_ID } from "openclaw/plugin-sdk/routing";
+} from "soloclaw/plugin-sdk/channel-config-helpers";
+import { createChannelPluginBase, type ChannelPlugin } from "soloclaw/plugin-sdk/channel-core";
+import { getChatChannelMeta } from "soloclaw/plugin-sdk/channel-plugin-common";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { DEFAULT_ACCOUNT_ID } from "soloclaw/plugin-sdk/routing";
 import { inspectTelegramAccount } from "./account-inspect.js";
 import {
   listTelegramAccountIds,

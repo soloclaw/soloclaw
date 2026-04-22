@@ -1,19 +1,19 @@
 import {
   createApproverRestrictedNativeApprovalCapability,
   splitChannelApprovalCapability,
-} from "openclaw/plugin-sdk/approval-delivery-runtime";
-import { createLazyChannelApprovalNativeRuntimeAdapter } from "openclaw/plugin-sdk/approval-handler-adapter-runtime";
-import type { ChannelApprovalNativeRuntimeAdapter } from "openclaw/plugin-sdk/approval-handler-runtime";
+} from "soloclaw/plugin-sdk/approval-delivery-runtime";
+import { createLazyChannelApprovalNativeRuntimeAdapter } from "soloclaw/plugin-sdk/approval-handler-adapter-runtime";
+import type { ChannelApprovalNativeRuntimeAdapter } from "soloclaw/plugin-sdk/approval-handler-runtime";
 import {
   createChannelApproverDmTargetResolver,
   createChannelNativeOriginTargetResolver,
-} from "openclaw/plugin-sdk/approval-native-runtime";
-import type { ChannelApprovalCapability } from "openclaw/plugin-sdk/channel-contract";
-import type { ExecApprovalRequest, PluginApprovalRequest } from "openclaw/plugin-sdk/infra-runtime";
+} from "soloclaw/plugin-sdk/approval-native-runtime";
+import type { ChannelApprovalCapability } from "soloclaw/plugin-sdk/channel-contract";
+import type { ExecApprovalRequest, PluginApprovalRequest } from "soloclaw/plugin-sdk/infra-runtime";
 import {
   normalizeLowercaseStringOrEmpty,
   normalizeOptionalString,
-} from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/text-runtime";
 import { listTelegramAccountIds } from "./accounts.js";
 import {
   getTelegramExecApprovalApprovers,

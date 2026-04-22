@@ -6,4 +6,4 @@ export {
   type BrowserConfig,
   type BrowserProfileConfig,
   type OpenClawConfig,
-} from "openclaw/plugin-sdk/browser-config-runtime";
+} from "soloclaw/plugin-sdk/browser-config-runtime";

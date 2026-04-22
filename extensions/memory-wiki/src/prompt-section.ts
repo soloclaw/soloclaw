@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { MemoryPromptSectionBuilder } from "openclaw/plugin-sdk/memory-host-core";
+import type { MemoryPromptSectionBuilder } from "soloclaw/plugin-sdk/memory-host-core";
 import { resolveMemoryWikiConfig, type ResolvedMemoryWikiConfig } from "./config.js";
 
 const AGENT_DIGEST_PATH = ".soloclaw-wiki/cache/agent-digest.json";

@@ -3,23 +3,23 @@ import {
   resolveEnvelopeFormatOptions,
   toLocationContext,
   type NormalizedLocation,
-} from "openclaw/plugin-sdk/channel-inbound";
-import { normalizeCommandBody } from "openclaw/plugin-sdk/command-surface";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveChannelContextVisibilityMode } from "openclaw/plugin-sdk/config-runtime";
+} from "soloclaw/plugin-sdk/channel-inbound";
+import { normalizeCommandBody } from "soloclaw/plugin-sdk/command-surface";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { resolveChannelContextVisibilityMode } from "soloclaw/plugin-sdk/config-runtime";
 import type {
   TelegramDirectConfig,
   TelegramGroupConfig,
   TelegramTopicConfig,
-} from "openclaw/plugin-sdk/config-runtime";
+} from "soloclaw/plugin-sdk/config-runtime";
 import {
   buildPendingHistoryContextFromMap,
   type HistoryEntry,
-} from "openclaw/plugin-sdk/reply-history";
-import type { ResolvedAgentRoute } from "openclaw/plugin-sdk/routing";
-import { logVerbose, shouldLogVerbose } from "openclaw/plugin-sdk/runtime-env";
-import { evaluateSupplementalContextVisibility } from "openclaw/plugin-sdk/security-runtime";
-import { normalizeOptionalLowercaseString } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/reply-history";
+import type { ResolvedAgentRoute } from "soloclaw/plugin-sdk/routing";
+import { logVerbose, shouldLogVerbose } from "soloclaw/plugin-sdk/runtime-env";
+import { evaluateSupplementalContextVisibility } from "soloclaw/plugin-sdk/security-runtime";
+import { normalizeOptionalLowercaseString } from "soloclaw/plugin-sdk/text-runtime";
 import type { NormalizedAllowFrom } from "./bot-access.js";
 import { isSenderAllowed, normalizeAllowFrom } from "./bot-access.js";
 import type {

@@ -8,8 +8,8 @@ import {
   type ResolverContext,
   type SecretDefaults,
   type SecretTargetRegistryEntry,
-} from "openclaw/plugin-sdk/channel-secret-basic-runtime";
-import { collectNestedChannelTtsAssignments } from "openclaw/plugin-sdk/channel-secret-tts-runtime";
+} from "soloclaw/plugin-sdk/channel-secret-basic-runtime";
+import { collectNestedChannelTtsAssignments } from "soloclaw/plugin-sdk/channel-secret-tts-runtime";
 
 export const secretTargetRegistryEntries = [
   {

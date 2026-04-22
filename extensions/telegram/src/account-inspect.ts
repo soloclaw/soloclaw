@@ -1,15 +1,15 @@
-import { resolveAccountWithDefaultFallback } from "openclaw/plugin-sdk/account-core";
-import { tryReadSecretFileSync } from "openclaw/plugin-sdk/channel-core";
-import type { OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
-import { coerceSecretRef } from "openclaw/plugin-sdk/config-runtime";
-import type { TelegramAccountConfig } from "openclaw/plugin-sdk/config-runtime";
-import { resolveDefaultSecretProviderAlias } from "openclaw/plugin-sdk/provider-auth";
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openclaw/plugin-sdk/routing";
+import { resolveAccountWithDefaultFallback } from "soloclaw/plugin-sdk/account-core";
+import { tryReadSecretFileSync } from "soloclaw/plugin-sdk/channel-core";
+import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { coerceSecretRef } from "soloclaw/plugin-sdk/config-runtime";
+import type { TelegramAccountConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { resolveDefaultSecretProviderAlias } from "soloclaw/plugin-sdk/provider-auth";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "soloclaw/plugin-sdk/routing";
 import {
   hasConfiguredSecretInput,
   normalizeSecretInputString,
-} from "openclaw/plugin-sdk/secret-input";
-import { normalizeOptionalString } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/secret-input";
+import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import {
   mergeTelegramAccountConfig,
   resolveDefaultTelegramAccountId,

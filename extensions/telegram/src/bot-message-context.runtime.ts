@@ -1,4 +1,4 @@
-export { createStatusReactionController } from "openclaw/plugin-sdk/channel-feedback";
-export { recordChannelActivity } from "openclaw/plugin-sdk/infra-runtime";
-export { loadConfig } from "openclaw/plugin-sdk/config-runtime";
-export { ensureConfiguredBindingRouteReady } from "openclaw/plugin-sdk/conversation-runtime";
+export { createStatusReactionController } from "soloclaw/plugin-sdk/channel-feedback";
+export { recordChannelActivity } from "soloclaw/plugin-sdk/infra-runtime";
+export { loadConfig } from "soloclaw/plugin-sdk/config-runtime";
+export { ensureConfiguredBindingRouteReady } from "soloclaw/plugin-sdk/conversation-runtime";

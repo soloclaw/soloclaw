@@ -262,7 +262,7 @@ export async function loadChannelConfigSurfaceModule(
       pluginSdkResolution: "src",
     });
     const aliasMap = {
-      ...(pluginSdkAlias ? { "openclaw/plugin-sdk": pluginSdkAlias } : {}),
+      ...(pluginSdkAlias ? { "soloclaw/plugin-sdk": pluginSdkAlias } : {}),
       ...resolvePluginSdkScopedAliasMap({
         modulePath: resolvedPath,
         pluginSdkResolution: "src",

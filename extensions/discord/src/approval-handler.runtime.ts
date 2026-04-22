@@ -17,14 +17,14 @@ import type {
   PluginApprovalExpiredView,
   PluginApprovalPendingView,
   PluginApprovalResolvedView,
-} from "openclaw/plugin-sdk/approval-handler-runtime";
-import { createChannelApprovalNativeRuntimeAdapter } from "openclaw/plugin-sdk/approval-handler-runtime";
-import type { DiscordExecApprovalConfig, OpenClawConfig } from "openclaw/plugin-sdk/config-runtime";
+} from "soloclaw/plugin-sdk/approval-handler-runtime";
+import { createChannelApprovalNativeRuntimeAdapter } from "soloclaw/plugin-sdk/approval-handler-runtime";
+import type { DiscordExecApprovalConfig, OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import type {
   ExecApprovalActionDescriptor,
   ExecApprovalDecision,
-} from "openclaw/plugin-sdk/infra-runtime";
-import { logDebug, logError, normalizeOptionalString } from "openclaw/plugin-sdk/text-runtime";
+} from "soloclaw/plugin-sdk/infra-runtime";
+import { logDebug, logError, normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { shouldHandleDiscordApprovalRequest } from "./approval-shared.js";
 import { isDiscordExecApprovalClientEnabled } from "./exec-approvals.js";
 import { createDiscordClient, stripUndefinedFields } from "./send.shared.js";
