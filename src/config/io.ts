@@ -1799,7 +1799,7 @@ export function projectConfigOntoRuntimeSourceSnapshot(config: OpenClawConfig): 
 export function loadConfig(): OpenClawConfig {
   // First successful load becomes the process snapshot. Long-lived runtimes
   // should swap this snapshot via explicit reload/watcher paths instead of
-  // reparsing openclaw.json on hot code paths.
+  // reparsing soloclaw.json on hot code paths.
   return loadPinnedRuntimeConfig(() => createConfigIO().loadConfig());
 }
 

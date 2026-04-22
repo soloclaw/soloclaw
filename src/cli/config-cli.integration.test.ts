@@ -68,7 +68,7 @@ async function withExecDryRunConfigHarness(
   }) => Promise<void>,
 ) {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
-  const configPath = path.join(tempDir, "openclaw.json");
+  const configPath = path.join(tempDir, "soloclaw.json");
   const batchPath = path.join(tempDir, "batch.json");
   const markerPath = path.join(tempDir, "marker.txt");
   const envSnapshot = captureEnv(["OPENCLAW_CONFIG_PATH", "OPENCLAW_TEST_FAST"]);
@@ -112,7 +112,7 @@ async function withExecDryRunConfigHarness(
 describe("config cli integration", () => {
   it("supports batch-file dry-run and then writes real config changes", async () => {
     const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-config-cli-int-"));
-    const configPath = path.join(tempDir, "openclaw.json");
+    const configPath = path.join(tempDir, "soloclaw.json");
     const batchPath = path.join(tempDir, "batch.json");
     const envSnapshot = captureEnv([
       "OPENCLAW_CONFIG_PATH",
@@ -201,7 +201,7 @@ describe("config cli integration", () => {
 
   it("keeps file unchanged when real-file dry-run fails and reports JSON error payload", async () => {
     const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-config-cli-int-fail-"));
-    const configPath = path.join(tempDir, "openclaw.json");
+    const configPath = path.join(tempDir, "soloclaw.json");
     const envSnapshot = captureEnv([
       "OPENCLAW_CONFIG_PATH",
       "OPENCLAW_TEST_FAST",

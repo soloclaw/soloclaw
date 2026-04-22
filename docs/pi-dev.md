@@ -64,7 +64,7 @@ State lives under the OpenClaw state directory. Default is `~/.soloclaw`. If `OP
 
 To reset everything:
 
-- `openclaw.json` for config
+- `soloclaw.json` for config
 - `agents/<agentId>/agent/auth-profiles.json` for model auth profiles (API keys + OAuth)
 - `credentials/` for provider/channel state that still lives outside the auth profile store
 - `agents/<agentId>/sessions/` for agent session history

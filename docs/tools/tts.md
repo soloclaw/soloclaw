@@ -68,7 +68,7 @@ speech provider in registry auto-select order.
 
 ## Config
 
-TTS config lives under `messages.tts` in `openclaw.json`.
+TTS config lives under `messages.tts` in `soloclaw.json`.
 Full schema is in [Gateway configuration](/gateway/configuration).
 
 ### Minimal config (enable + provider)

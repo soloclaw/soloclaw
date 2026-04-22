@@ -16,7 +16,7 @@ provider mixes reasoning into normal text.
 
 Use `/debug` in chat to set **runtime-only** config overrides (memory, not disk).
 `/debug` is disabled by default; enable with `commands.debug: true`.
-This is handy when you need to toggle obscure settings without editing `openclaw.json`.
+This is handy when you need to toggle obscure settings without editing `soloclaw.json`.
 
 Examples:
 
@@ -94,7 +94,7 @@ What this does:
 1. **Profile isolation** (global `--dev`)
    - `OPENCLAW_PROFILE=dev`
    - `OPENCLAW_STATE_DIR=~/.soloclaw-dev`
-   - `OPENCLAW_CONFIG_PATH=~/.soloclaw-dev/openclaw.json`
+   - `OPENCLAW_CONFIG_PATH=~/.soloclaw-dev/soloclaw.json`
    - `OPENCLAW_GATEWAY_PORT=19001` (browser/canvas shift accordingly)
 
 2. **Dev bootstrap** (`gateway --dev`)

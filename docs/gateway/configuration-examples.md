@@ -22,7 +22,7 @@ Examples below are aligned with the current config schema. For the exhaustive re
 }
 ```
 
-Save to `~/.soloclaw/openclaw.json` and you can DM the bot from that number.
+Save to `~/.soloclaw/soloclaw.json` and you can DM the bot from that number.
 
 ### Recommended starter
 

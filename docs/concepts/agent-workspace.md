@@ -26,7 +26,7 @@ inside a sandbox workspace under `~/.soloclaw/sandboxes`, not your host workspac
 - Default: `~/.soloclaw/workspace`
 - If `OPENCLAW_PROFILE` is set and not `"default"`, the default becomes
   `~/.soloclaw/workspace-<profile>`.
-- Override in `~/.soloclaw/openclaw.json`:
+- Override in `~/.soloclaw/soloclaw.json`:
 
 ```json5
 {
@@ -129,7 +129,7 @@ files.
 
 These live under `~/.soloclaw/` and should NOT be committed to the workspace repo:
 
-- `~/.soloclaw/openclaw.json` (config)
+- `~/.soloclaw/soloclaw.json` (config)
 - `~/.soloclaw/agents/<agentId>/agent/auth-profiles.json` (model auth profiles: OAuth + API keys)
 - `~/.soloclaw/credentials/` (channel/provider state plus legacy OAuth import data)
 - `~/.soloclaw/agents/<agentId>/sessions/` (session transcripts + metadata)
@@ -226,7 +226,7 @@ Suggested `.gitignore` starter:
 ## Moving the workspace to a new machine
 
 1. Clone the repo to the desired path (default `~/.soloclaw/workspace`).
-2. Set `agents.defaults.workspace` to that path in `~/.soloclaw/openclaw.json`.
+2. Set `agents.defaults.workspace` to that path in `~/.soloclaw/soloclaw.json`.
 3. Run `soloclaw setup --workspace <path>` to seed any missing files.
 4. If you need sessions, copy `~/.soloclaw/agents/<agentId>/sessions/` from the
    old machine separately.

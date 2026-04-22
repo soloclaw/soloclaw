@@ -251,7 +251,7 @@ Look for:
 
 Common signatures:
 
-- `Gateway start blocked: set gateway.mode=local` or `existing config is missing gateway.mode` → local gateway mode is not enabled, or the config file was clobbered and lost `gateway.mode`. Fix: set `gateway.mode="local"` in your config, or re-run `soloclaw onboard --mode local` / `soloclaw setup` to restamp the expected local-mode config. If you are running OpenClaw via Podman, the default config path is `~/.soloclaw/openclaw.json`.
+- `Gateway start blocked: set gateway.mode=local` or `existing config is missing gateway.mode` → local gateway mode is not enabled, or the config file was clobbered and lost `gateway.mode`. Fix: set `gateway.mode="local"` in your config, or re-run `soloclaw onboard --mode local` / `soloclaw setup` to restamp the expected local-mode config. If you are running OpenClaw via Podman, the default config path is `~/.soloclaw/soloclaw.json`.
 - `refusing to bind gateway ... without auth` → non-loopback bind without a valid gateway auth path (token/password, or trusted-proxy where configured).
 - `another gateway instance is already listening` / `EADDRINUSE` → port conflict.
 - `Other gateway-like services detected (best effort)` → stale or parallel launchd/systemd/schtasks units exist. Most setups should keep one gateway per machine; if you do need more than one, isolate ports + config/state/workspace. See [/gateway#multiple-gateways-same-host](/gateway#multiple-gateways-same-host).

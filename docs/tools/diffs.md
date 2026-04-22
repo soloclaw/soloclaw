@@ -197,7 +197,7 @@ Mode behavior summary:
 
 ## Plugin defaults
 
-Set plugin-wide defaults in `~/.soloclaw/openclaw.json`:
+Set plugin-wide defaults in `~/.soloclaw/soloclaw.json`:
 
 ```json5
 {

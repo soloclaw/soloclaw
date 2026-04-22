@@ -104,7 +104,7 @@ export async function spawnGatewayInstance(name: string): Promise<GatewayInstanc
   const homeDir = await fs.mkdtemp(path.join(os.tmpdir(), `openclaw-e2e-${name}-`));
   const configDir = path.join(homeDir, ".soloclaw");
   await fs.mkdir(configDir, { recursive: true });
-  const configPath = path.join(configDir, "openclaw.json");
+  const configPath = path.join(configDir, "soloclaw.json");
   const stateDir = path.join(configDir, "state");
   const config = {
     gateway: {

@@ -4,7 +4,7 @@ set -euo pipefail
 cd /repo
 
 export OPENCLAW_STATE_DIR="/tmp/openclaw-test"
-export OPENCLAW_CONFIG_PATH="${OPENCLAW_STATE_DIR}/openclaw.json"
+export OPENCLAW_CONFIG_PATH="${OPENCLAW_STATE_DIR}/soloclaw.json"
 
 echo "==> Build"
 if ! pnpm build >/tmp/openclaw-cleanup-build.log 2>&1; then

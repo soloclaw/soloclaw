@@ -124,7 +124,7 @@ async function persistTestSessionConfig(): Promise<void> {
     configPaths.add(process.env.OPENCLAW_CONFIG_PATH);
   }
   if (process.env.OPENCLAW_STATE_DIR) {
-    configPaths.add(path.join(process.env.OPENCLAW_STATE_DIR, "openclaw.json"));
+    configPaths.add(path.join(process.env.OPENCLAW_STATE_DIR, "soloclaw.json"));
   }
   const parsedConfigs = new Map<string, Record<string, unknown>>();
   let preservedTemplateStore: string | undefined;

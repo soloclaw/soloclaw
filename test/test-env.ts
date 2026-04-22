@@ -371,11 +371,11 @@ function stageLiveTestState(params: {
 
   const realConfigPath = params.env.OPENCLAW_CONFIG_PATH?.trim()
     ? resolveHomeRelativePath(params.env.OPENCLAW_CONFIG_PATH, params.realHome)
-    : path.join(realStateDir, "openclaw.json");
+    : path.join(realStateDir, "soloclaw.json");
   if (fs.existsSync(realConfigPath)) {
     const rawConfig = fs.readFileSync(realConfigPath, "utf8");
     fs.writeFileSync(
-      path.join(tempStateDir, "openclaw.json"),
+      path.join(tempStateDir, "soloclaw.json"),
       sanitizeLiveConfig(rawConfig),
       "utf8",
     );

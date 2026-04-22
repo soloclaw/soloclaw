@@ -5,7 +5,7 @@ import { withTempHome } from "../../test/helpers/temp-home.js";
 import { setupCommand } from "./setup.js";
 
 function createSetupDeps(home: string) {
-  const configPath = path.join(home, ".soloclaw", "openclaw.json");
+  const configPath = path.join(home, ".soloclaw", "soloclaw.json");
   return {
     createConfigIO: () => ({ configPath }),
     ensureAgentWorkspace: vi.fn(async (params?: { dir?: string }) => ({
@@ -40,7 +40,7 @@ describe("setupCommand", () => {
 
       await setupCommand({ workspace }, runtime, deps);
 
-      const configPath = path.join(home, ".soloclaw", "openclaw.json");
+      const configPath = path.join(home, ".soloclaw", "soloclaw.json");
       const raw = await fs.readFile(configPath, "utf-8");
 
       expect(raw).toContain('"mode": "local"');
@@ -56,7 +56,7 @@ describe("setupCommand", () => {
         exit: vi.fn(),
       };
       const configDir = path.join(home, ".soloclaw");
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "soloclaw.json");
       const workspace = path.join(home, "custom-workspace");
       const deps = createSetupDeps(home);
 
@@ -92,7 +92,7 @@ describe("setupCommand", () => {
         exit: vi.fn(),
       };
       const configDir = path.join(home, ".soloclaw");
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "soloclaw.json");
       const deps = createSetupDeps(home);
       const workspace = path.join(home, ".soloclaw", "workspace");
 

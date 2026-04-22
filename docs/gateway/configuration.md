@@ -9,7 +9,7 @@ title: "Configuration"
 
 # Configuration
 
-OpenClaw reads an optional <Tooltip tip="JSON5 supports comments and trailing commas">**JSON5**</Tooltip> config from `~/.soloclaw/openclaw.json`.
+OpenClaw reads an optional <Tooltip tip="JSON5 supports comments and trailing commas">**JSON5**</Tooltip> config from `~/.soloclaw/soloclaw.json`.
 
 If the file is missing, OpenClaw uses safe defaults. Common reasons to add a config:
 
@@ -26,7 +26,7 @@ See the [full reference](/gateway/configuration-reference) for every available f
 ## Minimal config
 
 ```json5
-// ~/.soloclaw/openclaw.json
+// ~/.soloclaw/soloclaw.json
 {
   agents: { defaults: { workspace: "~/.soloclaw/workspace" } },
   channels: { whatsapp: { allowFrom: ["+15555550123"] } },
@@ -58,7 +58,7 @@ See the [full reference](/gateway/configuration-reference) for every available f
     fetch one path-scoped schema node plus immediate child summaries.
   </Tab>
   <Tab title="Direct edit">
-    Edit `~/.soloclaw/openclaw.json` directly. The Gateway watches the file and applies changes automatically (see [hot reload](#config-hot-reload)).
+    Edit `~/.soloclaw/soloclaw.json` directly. The Gateway watches the file and applies changes automatically (see [hot reload](#config-hot-reload)).
   </Tab>
 </Tabs>
 
@@ -73,7 +73,7 @@ Schema tooling notes:
 - `soloclaw config schema` prints the same JSON Schema family used by Control UI
   and config validation.
 - Treat that schema output as the canonical machine-readable contract for
-  `openclaw.json`; this overview and the configuration reference summarize it.
+  `soloclaw.json`; this overview and the configuration reference summarize it.
 - Field `title` and `description` values are carried into the schema output for
   editor and form tooling.
 - Nested object, wildcard (`*`), and array-item (`[]`) entries inherit the same
@@ -309,7 +309,7 @@ When validation fails:
   </Accordion>
 
   <Accordion title="Enable relay-backed push for official iOS builds">
-    Relay-backed push is configured in `openclaw.json`.
+    Relay-backed push is configured in `soloclaw.json`.
 
     Set this in gateway config:
 
@@ -470,7 +470,7 @@ When validation fails:
     Use `$include` to organize large configs:
 
     ```json5
-    // ~/.soloclaw/openclaw.json
+    // ~/.soloclaw/soloclaw.json
     {
       gateway: { port: 18789 },
       agents: { $include: "./agents.json5" },
@@ -492,7 +492,7 @@ When validation fails:
 
 ## Config hot reload
 
-The Gateway watches `~/.soloclaw/openclaw.json` and applies changes automatically — no manual restart needed for most settings.
+The Gateway watches `~/.soloclaw/soloclaw.json` and applies changes automatically — no manual restart needed for most settings.
 
 ### Reload modes
 

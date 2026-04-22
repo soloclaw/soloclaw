@@ -23,7 +23,7 @@ Check which engine is active:
 ```bash
 soloclaw doctor
 # or inspect config directly:
-cat ~/.soloclaw/openclaw.json | jq '.plugins.slots.contextEngine'
+cat ~/.soloclaw/soloclaw.json | jq '.plugins.slots.contextEngine'
 ```
 
 ### Installing a context engine plugin
@@ -42,7 +42,7 @@ openclaw plugins install -l ./my-context-engine
 Then enable the plugin and select it as the active engine in your config:
 
 ```json5
-// openclaw.json
+// soloclaw.json
 {
   plugins: {
     slots: {

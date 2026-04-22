@@ -5,7 +5,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } 
 import { createSuiteTempRootTracker } from "../../test-helpers/temp-dir.js";
 import type { SessionEntry } from "./types.js";
 
-// Keep integration tests deterministic: never read a real openclaw.json.
+// Keep integration tests deterministic: never read a real soloclaw.json.
 vi.mock("../config.js", async () => ({
   ...(await vi.importActual<typeof import("../config.js")>("../config.js")),
   loadConfig: vi.fn().mockReturnValue({}),

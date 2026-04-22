@@ -220,7 +220,7 @@ describe("runCli profile env bootstrap", () => {
   });
 
   it("allows container mode when only OPENCLAW_CONFIG_PATH is set in env", async () => {
-    process.env.OPENCLAW_CONFIG_PATH = "/tmp/openclaw-host-state/openclaw.json";
+    process.env.OPENCLAW_CONFIG_PATH = "/tmp/openclaw-host-state/soloclaw.json";
 
     await expect(
       runCli(["node", "openclaw", "--container", "demo", "status"]),

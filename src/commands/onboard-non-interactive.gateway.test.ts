@@ -50,7 +50,7 @@ function resolveTestConfigPath() {
   if (!stateDir) {
     throw new Error("OPENCLAW_STATE_DIR must be set before config IO in this test");
   }
-  return path.join(stateDir, "openclaw.json");
+  return path.join(stateDir, "soloclaw.json");
 }
 
 function readTestConfig<T = OpenClawConfig>(): T {
@@ -479,7 +479,7 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
     }
     await withStateDir("state-lan-", async (stateDir) => {
       process.env.OPENCLAW_STATE_DIR = stateDir;
-      process.env.OPENCLAW_CONFIG_PATH = path.join(stateDir, "openclaw.json");
+      process.env.OPENCLAW_CONFIG_PATH = path.join(stateDir, "soloclaw.json");
 
       const port = getPseudoPort(40_000);
       const workspace = path.join(stateDir, "openclaw");

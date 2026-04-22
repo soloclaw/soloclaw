@@ -13,7 +13,7 @@ import {
 function createRenameAuditRecord(home: string) {
   return finalizeConfigWriteAuditRecord({
     base: createConfigWriteAuditRecordBase({
-      configPath: path.join(home, ".soloclaw", "openclaw.json"),
+      configPath: path.join(home, ".soloclaw", "soloclaw.json"),
       env: {} as NodeJS.ProcessEnv,
       existsBefore: true,
       previousHash: "prev-hash",
@@ -85,19 +85,19 @@ describe("config io audit helpers", () => {
   it("formats overwrite warnings with hash transition and backup path", () => {
     expect(
       formatConfigOverwriteLogMessage({
-        configPath: "/tmp/openclaw.json",
+        configPath: "/tmp/soloclaw.json",
         previousHash: "prev-hash",
         nextHash: "next-hash",
         changedPathCount: 3,
       }),
     ).toBe(
-      "Config overwrite: /tmp/openclaw.json (sha256 prev-hash -> next-hash, backup=/tmp/openclaw.json.bak, changedPaths=3)",
+      "Config overwrite: /tmp/soloclaw.json (sha256 prev-hash -> next-hash, backup=/tmp/soloclaw.json.bak, changedPaths=3)",
     );
   });
 
   it("captures watch markers and next stat metadata for successful writes", () => {
     const base = createConfigWriteAuditRecordBase({
-      configPath: "/tmp/openclaw.json",
+      configPath: "/tmp/soloclaw.json",
       env: {
         OPENCLAW_WATCH_MODE: "1",
         OPENCLAW_WATCH_SESSION: "watch-session-1",
@@ -156,7 +156,7 @@ describe("config io audit helpers", () => {
 
   it("drops next-file metadata and preserves error details for failed writes", () => {
     const base = createConfigWriteAuditRecordBase({
-      configPath: "/tmp/openclaw.json",
+      configPath: "/tmp/soloclaw.json",
       env: {} as NodeJS.ProcessEnv,
       existsBefore: true,
       previousHash: "prev-hash",

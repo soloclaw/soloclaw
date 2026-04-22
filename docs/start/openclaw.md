@@ -55,7 +55,7 @@ soloclaw channels login
 soloclaw gateway --port 18789
 ```
 
-3. Put a minimal config in `~/.soloclaw/openclaw.json`:
+3. Put a minimal config in `~/.soloclaw/soloclaw.json`:
 
 ```json5
 {

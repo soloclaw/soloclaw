@@ -104,7 +104,7 @@ export function installMaybePersistResolvedTelegramTargetTests(params?: {
             },
           },
         },
-        writeOptions: { expectedConfigPath: "/tmp/openclaw.json" },
+        writeOptions: { expectedConfigPath: "/tmp/soloclaw.json" },
       });
       loadCronStore.mockResolvedValue({
         version: 1,
@@ -136,7 +136,7 @@ export function installMaybePersistResolvedTelegramTargetTests(params?: {
             },
           },
         }),
-        expect.objectContaining({ expectedConfigPath: "/tmp/openclaw.json" }),
+        expect.objectContaining({ expectedConfigPath: "/tmp/soloclaw.json" }),
       );
       expect(saveCronStore).toHaveBeenCalledTimes(1);
       expect(saveCronStore).toHaveBeenCalledWith(

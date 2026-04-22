@@ -1136,7 +1136,7 @@ authoring plugins:
 
 - `openclaw/plugin-sdk/plugin-entry` for plugin registration primitives.
 - `openclaw/plugin-sdk/core` for the generic shared plugin-facing contract.
-- `openclaw/plugin-sdk/config-schema` for the root `openclaw.json` Zod schema
+- `openclaw/plugin-sdk/config-schema` for the root `soloclaw.json` Zod schema
   export (`OpenClawSchema`).
 - Stable channel primitives such as `openclaw/plugin-sdk/channel-setup`,
   `openclaw/plugin-sdk/setup-runtime`,

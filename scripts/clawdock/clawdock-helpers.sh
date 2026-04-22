@@ -207,12 +207,12 @@ clawdock-show-config() {
   echo -e "${_CLR_BOLD}Config directory:${_CLR_RESET} ${_CLR_CYAN}${config_dir}${_CLR_RESET}"
   echo ""
 
-  # Show openclaw.json
-  if [[ -f "${config_dir}/openclaw.json" ]]; then
-    echo -e "${_CLR_BOLD}${config_dir}/openclaw.json${_CLR_RESET}"
-    echo -e "${_CLR_DIM}$(cat "${config_dir}/openclaw.json")${_CLR_RESET}"
+  # Show soloclaw.json
+  if [[ -f "${config_dir}/soloclaw.json" ]]; then
+    echo -e "${_CLR_BOLD}${config_dir}/soloclaw.json${_CLR_RESET}"
+    echo -e "${_CLR_DIM}$(cat "${config_dir}/soloclaw.json")${_CLR_RESET}"
   else
-    echo -e "${_CLR_YELLOW}No openclaw.json found${_CLR_RESET}"
+    echo -e "${_CLR_YELLOW}No soloclaw.json found${_CLR_RESET}"
   fi
   echo ""
 

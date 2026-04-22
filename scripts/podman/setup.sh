@@ -392,7 +392,7 @@ fi
 upsert_env_var "$ENV_FILE" "OPENCLAW_PODMAN_CONTAINER" "$OPENCLAW_CONTAINER_NAME"
 upsert_env_var "$ENV_FILE" "OPENCLAW_PODMAN_IMAGE" "$OPENCLAW_IMAGE"
 
-CONFIG_JSON="$OPENCLAW_CONFIG_DIR/openclaw.json"
+CONFIG_JSON="$OPENCLAW_CONFIG_DIR/soloclaw.json"
 if [[ ! -f "$CONFIG_JSON" ]]; then
   (
     umask 077

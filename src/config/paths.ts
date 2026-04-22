@@ -20,8 +20,8 @@ export const isNixMode = resolveIsNixMode();
 // Support the remaining legacy pre-rebrand state dir.
 const LEGACY_STATE_DIRNAMES = [".clawdbot"] as const;
 const NEW_STATE_DIRNAME = ".soloclaw";
-const CONFIG_FILENAME = "openclaw.json";
-const LEGACY_CONFIG_FILENAMES = ["clawdbot.json"] as const;
+const CONFIG_FILENAME = "soloclaw.json";
+const LEGACY_CONFIG_FILENAMES = ["openclaw.json", "clawdbot.json"] as const;
 
 function resolveDefaultHomeDir(): string {
   return resolveRequiredHomeDir(process.env, os.homedir);
@@ -101,7 +101,7 @@ export const STATE_DIR = resolveStateDir();
 /**
  * Config file path (JSON or JSON5).
  * Can be overridden via OPENCLAW_CONFIG_PATH.
- * Default: ~/.soloclaw/openclaw.json (or $OPENCLAW_STATE_DIR/openclaw.json)
+ * Default: ~/.soloclaw/soloclaw.json (or $OPENCLAW_STATE_DIR/soloclaw.json)
  */
 export function resolveCanonicalConfigPath(
   env: NodeJS.ProcessEnv = process.env,

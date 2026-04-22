@@ -25,7 +25,7 @@ describe("persistGeneratedOwnerDisplaySecret", () => {
 
   it("persists generated owner display secrets once and clears state on success", async () => {
     const state = createState();
-    const configPath = "/tmp/openclaw.json";
+    const configPath = "/tmp/soloclaw.json";
     const config = {
       commands: {
         ownerDisplay: "hash",
@@ -60,7 +60,7 @@ describe("persistGeneratedOwnerDisplaySecret", () => {
 
   it("warns once and keeps the generated secret pending when persistence fails", async () => {
     const state = createState();
-    const configPath = "/tmp/openclaw.json";
+    const configPath = "/tmp/soloclaw.json";
     const config = {
       commands: {
         ownerDisplay: "hash",
@@ -107,7 +107,7 @@ describe("persistGeneratedOwnerDisplaySecret", () => {
 
   it("clears pending state when no generated secret is present", () => {
     const state = createState();
-    const configPath = "/tmp/openclaw.json";
+    const configPath = "/tmp/soloclaw.json";
     state.pendingByPath.set(configPath, "stale-secret");
     state.persistWarned.add(configPath);
     const config = {

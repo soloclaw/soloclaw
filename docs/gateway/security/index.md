@@ -58,7 +58,7 @@ Start with the smallest access that still works, then widen it as you gain confi
 
 OpenClaw assumes the host and config boundary are trusted:
 
-- If someone can modify Gateway host state/config (`~/.soloclaw`, including `openclaw.json`), treat them as a trusted operator.
+- If someone can modify Gateway host state/config (`~/.soloclaw`, including `soloclaw.json`), treat them as a trusted operator.
 - Running one Gateway for multiple mutually untrusted/adversarial operators is **not a recommended setup**.
 - For mixed-trust teams, split trust boundaries with separate gateways (or at minimum separate OS users/hosts).
 - Recommended default: one user per machine/host (or VPS), one gateway for that user, and one or more agents in that gateway.
@@ -246,13 +246,13 @@ High-signal `checkId` values you will most likely see in real deployments (not e
 | `fs.state_dir.perms_group_writable`                           | warn          | Group users can modify full OpenClaw state                                           | filesystem perms on `~/.soloclaw`                                                                    | yes      |
 | `fs.state_dir.perms_readable`                                 | warn          | State dir is readable by others                                                      | filesystem perms on `~/.soloclaw`                                                                    | yes      |
 | `fs.state_dir.symlink`                                        | warn          | State dir target becomes another trust boundary                                      | state dir filesystem layout                                                                          | no       |
-| `fs.config.perms_writable`                                    | critical      | Others can change auth/tool policy/config                                            | filesystem perms on `~/.soloclaw/openclaw.json`                                                      | yes      |
+| `fs.config.perms_writable`                                    | critical      | Others can change auth/tool policy/config                                            | filesystem perms on `~/.soloclaw/soloclaw.json`                                                      | yes      |
 | `fs.config.symlink`                                           | warn          | Config target becomes another trust boundary                                         | config file filesystem layout                                                                        | no       |
 | `fs.config.perms_group_readable`                              | warn          | Group users can read config tokens/settings                                          | filesystem perms on config file                                                                      | yes      |
 | `fs.config.perms_world_readable`                              | critical      | Config can expose tokens/settings                                                    | filesystem perms on config file                                                                      | yes      |
-| `fs.config_include.perms_writable`                            | critical      | Config include file can be modified by others                                        | include-file perms referenced from `openclaw.json`                                                   | yes      |
-| `fs.config_include.perms_group_readable`                      | warn          | Group users can read included secrets/settings                                       | include-file perms referenced from `openclaw.json`                                                   | yes      |
-| `fs.config_include.perms_world_readable`                      | critical      | Included secrets/settings are world-readable                                         | include-file perms referenced from `openclaw.json`                                                   | yes      |
+| `fs.config_include.perms_writable`                            | critical      | Config include file can be modified by others                                        | include-file perms referenced from `soloclaw.json`                                                   | yes      |
+| `fs.config_include.perms_group_readable`                      | warn          | Group users can read included secrets/settings                                       | include-file perms referenced from `soloclaw.json`                                                   | yes      |
+| `fs.config_include.perms_world_readable`                      | critical      | Included secrets/settings are world-readable                                         | include-file perms referenced from `soloclaw.json`                                                   | yes      |
 | `fs.auth_profiles.perms_writable`                             | critical      | Others can inject or replace stored model credentials                                | `agents/<agentId>/agent/auth-profiles.json` perms                                                    | yes      |
 | `fs.auth_profiles.perms_readable`                             | warn          | Others can read API keys and OAuth tokens                                            | `agents/<agentId>/agent/auth-profiles.json` perms                                                    | yes      |
 | `fs.credentials_dir.perms_writable`                           | critical      | Others can modify channel pairing/credential state                                   | filesystem perms on `~/.soloclaw/credentials`                                                        | yes      |
@@ -747,7 +747,7 @@ Guidance:
 
 Keep config + state private on the gateway host:
 
-- `~/.soloclaw/openclaw.json`: `600` (user read/write only)
+- `~/.soloclaw/soloclaw.json`: `600` (user read/write only)
 - `~/.soloclaw`: `700` (user only)
 
 `soloclaw doctor` can warn and offer to tighten these permissions.
@@ -994,7 +994,7 @@ Avoid:
 
 Assume anything under `~/.soloclaw/` (or `$OPENCLAW_STATE_DIR/`) may contain secrets or private data:
 
-- `openclaw.json`: config may include tokens (gateway, remote gateway), provider settings, and allowlists.
+- `soloclaw.json`: config may include tokens (gateway, remote gateway), provider settings, and allowlists.
 - `credentials/**`: channel credentials (example: WhatsApp creds), pairing allowlists, legacy OAuth imports.
 - `agents/<agentId>/agent/auth-profiles.json`: API keys, token profiles, OAuth tokens, and optional `keyRef`/`tokenRef`.
 - `secrets.json` (optional): file-backed secret payload used by `file` SecretRef providers (`secrets.providers`).

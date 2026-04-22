@@ -20,7 +20,7 @@ async function writeConfig(
   home: string,
   dirname: ".soloclaw",
   port: number,
-  filename: string = "openclaw.json",
+  filename: string = "soloclaw.json",
 ) {
   const dir = path.join(home, dirname);
   await fs.mkdir(dir, { recursive: true });
@@ -37,7 +37,7 @@ function createIoForHome(home: string, env: NodeJS.ProcessEnv = {} as NodeJS.Pro
 }
 
 describe("config io paths", () => {
-  it("uses ~/.soloclaw/openclaw.json when config exists", async () => {
+  it("uses ~/.soloclaw/soloclaw.json when config exists", async () => {
     await withTempHome(async (home) => {
       const configPath = await writeConfig(home, ".soloclaw", 19001);
       const io = createIoForHome(home);
@@ -45,10 +45,10 @@ describe("config io paths", () => {
     });
   });
 
-  it("defaults to ~/.soloclaw/openclaw.json when config is missing", async () => {
+  it("defaults to ~/.soloclaw/soloclaw.json when config is missing", async () => {
     await withTempHome(async (home) => {
       const io = createIoForHome(home);
-      expect(io.configPath).toBe(path.join(home, ".soloclaw", "openclaw.json"));
+      expect(io.configPath).toBe(path.join(home, ".soloclaw", "soloclaw.json"));
     });
   });
 
@@ -58,7 +58,7 @@ describe("config io paths", () => {
         env: { OPENCLAW_HOME: path.join(home, "svc-home") } as NodeJS.ProcessEnv,
         homedir: () => path.join(home, "ignored-home"),
       });
-      expect(io.configPath).toBe(path.join(home, "svc-home", ".soloclaw", "openclaw.json"));
+      expect(io.configPath).toBe(path.join(home, "svc-home", ".soloclaw", "soloclaw.json"));
     });
   });
 

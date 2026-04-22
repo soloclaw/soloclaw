@@ -151,7 +151,7 @@ describe("gateway e2e", () => {
 
       const configDir = path.join(tempHome, ".soloclaw");
       await fs.mkdir(configDir, { recursive: true });
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "soloclaw.json");
       const mockProvider = buildMockOpenAiResponsesProvider(openaiBaseUrl);
 
       const cfg = {
@@ -248,7 +248,7 @@ module.exports = {
 
       const configDir = path.join(tempHome, ".soloclaw");
       await fs.mkdir(configDir, { recursive: true });
-      const configPath = path.join(configDir, "openclaw.json");
+      const configPath = path.join(configDir, "soloclaw.json");
       const cfg = {
         agents: {
           defaults: { workspace: workspaceDir },
@@ -457,7 +457,7 @@ module.exports = {
       ]);
 
       const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-minimal-gateway-home-"));
-      const configPath = path.join(tempHome, ".soloclaw", "openclaw.json");
+      const configPath = path.join(tempHome, ".soloclaw", "soloclaw.json");
       const bundledPluginsDir = path.join(tempHome, "openclaw-test-no-bundled-extensions");
       process.env.HOME = tempHome;
       process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".soloclaw");

@@ -203,7 +203,7 @@ async function withTempConfigPath<T>(
   run: (configPath: string) => Promise<T>,
 ): Promise<T> {
   const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-allowlist-config-"));
-  const configPath = path.join(dir, "openclaw.json");
+  const configPath = path.join(dir, "soloclaw.json");
   const previous = process.env.OPENCLAW_CONFIG_PATH;
   process.env.OPENCLAW_CONFIG_PATH = configPath;
   await fs.writeFile(configPath, JSON.stringify(initialConfig, null, 2), "utf-8");

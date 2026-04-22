@@ -40,7 +40,7 @@ is_truthy_value() {
 }
 
 read_config_gateway_token() {
-  local config_path="$OPENCLAW_CONFIG_DIR/openclaw.json"
+  local config_path="$OPENCLAW_CONFIG_DIR/soloclaw.json"
   if [[ ! -f "$config_path" ]]; then
     return 0
   fi
@@ -296,7 +296,7 @@ if [[ -z "${OPENCLAW_GATEWAY_TOKEN:-}" ]]; then
   EXISTING_CONFIG_TOKEN="$(read_config_gateway_token || true)"
   if [[ -n "$EXISTING_CONFIG_TOKEN" ]]; then
     OPENCLAW_GATEWAY_TOKEN="$EXISTING_CONFIG_TOKEN"
-    echo "Reusing gateway token from $OPENCLAW_CONFIG_DIR/openclaw.json"
+    echo "Reusing gateway token from $OPENCLAW_CONFIG_DIR/soloclaw.json"
   else
     DOTENV_GATEWAY_TOKEN="$(read_env_gateway_token "$ROOT_DIR/.env" || true)"
     if [[ -n "$DOTENV_GATEWAY_TOKEN" ]]; then

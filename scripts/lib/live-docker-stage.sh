@@ -76,7 +76,7 @@ openclaw_live_stage_state_dir() {
   fi
 
   export OPENCLAW_STATE_DIR="$dest_dir"
-  export OPENCLAW_CONFIG_PATH="$dest_dir/openclaw.json"
+  export OPENCLAW_CONFIG_PATH="$dest_dir/soloclaw.json"
 }
 
 openclaw_live_prepare_staged_config() {

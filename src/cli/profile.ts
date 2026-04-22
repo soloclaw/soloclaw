@@ -113,7 +113,7 @@ export function applyCliProfileEnv(params: {
   }
 
   if (!normalizeOptionalString(env.OPENCLAW_CONFIG_PATH)) {
-    env.OPENCLAW_CONFIG_PATH = path.join(stateDir, "openclaw.json");
+    env.OPENCLAW_CONFIG_PATH = path.join(stateDir, "soloclaw.json");
   }
 
   if (profile === "dev" && !env.OPENCLAW_GATEWAY_PORT?.trim()) {

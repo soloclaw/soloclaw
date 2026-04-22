@@ -78,7 +78,7 @@ describe("resolveStatusTtsSnapshot", () => {
           }),
         );
 
-        vi.stubEnv("OPENCLAW_CONFIG_PATH", path.join(stateDir, "openclaw.json"));
+        vi.stubEnv("OPENCLAW_CONFIG_PATH", path.join(stateDir, "soloclaw.json"));
         try {
           expect(
             resolveStatusTtsSnapshot({

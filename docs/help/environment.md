@@ -16,7 +16,7 @@ OpenClaw pulls environment variables from multiple sources. The rule is **never 
 1. **Process environment** (what the Gateway process already has from the parent shell/daemon).
 2. **`.env` in the current working directory** (dotenv default; does not override).
 3. **Global `.env`** at `~/.soloclaw/.env` (aka `$OPENCLAW_STATE_DIR/.env`; does not override).
-4. **Config `env` block** in `~/.soloclaw/openclaw.json` (applied only if missing).
+4. **Config `env` block** in `~/.soloclaw/soloclaw.json` (applied only if missing).
 5. **Optional login-shell import** (`env.shellEnv.enabled` or `OPENCLAW_LOAD_SHELL_ENV=1`), applied only for missing expected keys.
 
 On Ubuntu fresh installs that use the default state dir, OpenClaw also treats `~/.config/openclaw/gateway.env` as a compatibility fallback after the global `.env`. If both files exist and disagree, OpenClaw keeps `~/.soloclaw/.env` and prints a warning.
@@ -109,7 +109,7 @@ Both resolve from process env at activation time. SecretRef details are document
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `OPENCLAW_HOME`        | Override the home directory used for all internal path resolution (`~/.soloclaw/`, agent dirs, sessions, credentials). Useful when running OpenClaw as a dedicated service user. |
 | `OPENCLAW_STATE_DIR`   | Override the state directory (default `~/.soloclaw`).                                                                                                                            |
-| `OPENCLAW_CONFIG_PATH` | Override the config file path (default `~/.soloclaw/openclaw.json`).                                                                                                             |
+| `OPENCLAW_CONFIG_PATH` | Override the config file path (default `~/.soloclaw/soloclaw.json`).                                                                                                             |
 
 ## Logging
 

@@ -39,7 +39,7 @@ export async function withTempConfig(params: {
 
   const testConfig = withStableOwnerDisplaySecretForTest(params.cfg) as OpenClawConfig;
   const dir = await mkdtemp(path.join(os.tmpdir(), params.prefix ?? "openclaw-test-config-"));
-  const configPath = path.join(dir, "openclaw.json");
+  const configPath = path.join(dir, "soloclaw.json");
 
   process.env.OPENCLAW_CONFIG_PATH = configPath;
 

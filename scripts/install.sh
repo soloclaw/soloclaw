@@ -2082,7 +2082,7 @@ run_bootstrap_onboarding_if_needed() {
         return
     fi
 
-    local config_path="${OPENCLAW_CONFIG_PATH:-$HOME/.soloclaw/openclaw.json}"
+    local config_path="${OPENCLAW_CONFIG_PATH:-$HOME/.soloclaw/soloclaw.json}"
     if [[ -f "${config_path}" || -f "$HOME/.clawdbot/clawdbot.json" ]]; then
         return
     fi
@@ -2498,7 +2498,7 @@ main() {
         if [[ "$NO_ONBOARD" == "1" || "$skip_onboard" == "true" ]]; then
             ui_info "Skipping onboard (requested); run soloclaw onboard later"
         else
-            local config_path="${OPENCLAW_CONFIG_PATH:-$HOME/.soloclaw/openclaw.json}"
+            local config_path="${OPENCLAW_CONFIG_PATH:-$HOME/.soloclaw/soloclaw.json}"
             if [[ -f "${config_path}" || -f "$HOME/.clawdbot/clawdbot.json" ]]; then
                 ui_info "Config already present; running doctor"
                 run_doctor

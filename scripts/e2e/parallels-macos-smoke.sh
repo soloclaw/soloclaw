@@ -1359,7 +1359,7 @@ trap '' HUP
   $(shell_quote "$API_KEY_ENV=$API_KEY_VALUE") \\
   OPENCLAW_HOME=$(shell_quote "$guest_home") \\
   OPENCLAW_STATE_DIR=$(shell_quote "$guest_home/.soloclaw") \\
-  OPENCLAW_CONFIG_PATH=$(shell_quote "$guest_home/.soloclaw/openclaw.json") \\
+  OPENCLAW_CONFIG_PATH=$(shell_quote "$guest_home/.soloclaw/soloclaw.json") \\
   $(shell_quote "$GUEST_NODE_BIN") $(shell_quote "$GUEST_OPENCLAW_ENTRY") gateway run --bind loopback --port 18789 --force \\
   < /dev/null >$(shell_quote "$guest_gateway_log") 2>&1 &
 gateway_pid="\$!"

@@ -38,7 +38,7 @@ describe("removeChannelConfigWizard", () => {
     confirm.mockResolvedValue(true);
   });
 
-  it("lists configured channels from openclaw.json even when no plugins are loaded", async () => {
+  it("lists configured channels from soloclaw.json even when no plugins are loaded", async () => {
     select.mockResolvedValue(doneChoice);
 
     await removeChannelConfigWizard(
@@ -67,7 +67,7 @@ describe("removeChannelConfigWizard", () => {
     );
   });
 
-  it("deletes the selected channel block from openclaw.json", async () => {
+  it("deletes the selected channel block from soloclaw.json", async () => {
     select.mockResolvedValueOnce(channelChoice("telegram")).mockResolvedValueOnce(doneChoice);
 
     const next = await removeChannelConfigWizard(
@@ -82,7 +82,7 @@ describe("removeChannelConfigWizard", () => {
 
     expect(confirm).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: "Delete Telegram configuration from ~/.soloclaw/openclaw.json?",
+        message: "Delete Telegram configuration from ~/.soloclaw/soloclaw.json?",
       }),
     );
     expect(next.channels).toEqual({ twitch: { token: "secret" } });
@@ -107,7 +107,7 @@ describe("removeChannelConfigWizard", () => {
 
     expect(confirm).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: "Delete done configuration from ~/.soloclaw/openclaw.json?",
+        message: "Delete done configuration from ~/.soloclaw/soloclaw.json?",
       }),
     );
     expect(next.channels).toEqual({ telegram: { token: "secret" } });
@@ -187,7 +187,7 @@ describe("removeChannelConfigWizard", () => {
     );
     expect(confirm).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: "Delete Telegram\\nBot configuration from ~/.soloclaw/openclaw.json?",
+        message: "Delete Telegram\\nBot configuration from ~/.soloclaw/soloclaw.json?",
       }),
     );
     expect(note).toHaveBeenCalledWith(
@@ -219,7 +219,7 @@ describe("removeChannelConfigWizard", () => {
     );
     expect(confirm).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: "Delete bad\\nkey configuration from ~/.soloclaw/openclaw.json?",
+        message: "Delete bad\\nkey configuration from ~/.soloclaw/soloclaw.json?",
       }),
     );
     expect(next.channels).toEqual({ telegram: { token: "secret" } });
@@ -255,7 +255,7 @@ describe("removeChannelConfigWizard", () => {
     );
     expect(confirm).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: "Delete <invalid channel key> configuration from ~/.soloclaw/openclaw.json?",
+        message: "Delete <invalid channel key> configuration from ~/.soloclaw/soloclaw.json?",
       }),
     );
     expect(next.channels).toEqual({ telegram: { token: "secret" } });

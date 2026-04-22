@@ -140,7 +140,7 @@ openclaw hooks disable command-logger
 
 ## Configuration
 
-Hooks can be configured in `~/.soloclaw/openclaw.json`:
+Hooks can be configured in `~/.soloclaw/soloclaw.json`:
 
 ```json
 {

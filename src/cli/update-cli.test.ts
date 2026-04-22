@@ -1270,7 +1270,7 @@ describe("update-cli", () => {
         await withEnvAsync(
           {
             OPENCLAW_STATE_DIR: "./state",
-            OPENCLAW_CONFIG_PATH: "./config/openclaw.json",
+            OPENCLAW_CONFIG_PATH: "./config/soloclaw.json",
           },
           async () => {
             await updateCommand({});
@@ -1282,7 +1282,7 @@ describe("update-cli", () => {
           cwd: root,
           env: expect.objectContaining({
             OPENCLAW_STATE_DIR: path.resolve("./state"),
-            OPENCLAW_CONFIG_PATH: path.resolve("./config/openclaw.json"),
+            OPENCLAW_CONFIG_PATH: path.resolve("./config/soloclaw.json"),
           }),
           timeoutMs: 60_000,
         }),

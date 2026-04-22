@@ -487,7 +487,7 @@ if [[ -z "${OPENCLAW_GATEWAY_TOKEN:-}" ]]; then
   echo "Generated OPENCLAW_GATEWAY_TOKEN and wrote it to $ENV_FILE." >&2
 fi
 
-CONFIG_JSON="$CONFIG_DIR/openclaw.json"
+CONFIG_JSON="$CONFIG_DIR/soloclaw.json"
 if [[ ! -f "$CONFIG_JSON" ]]; then
   (
     umask 077

@@ -346,7 +346,7 @@ function resolveBrowserBaseUrl(params: {
   }
   if (!resolved.enabled) {
     throw new Error(
-      "Browser control is disabled. Set browser.enabled=true in ~/.soloclaw/openclaw.json.",
+      "Browser control is disabled. Set browser.enabled=true in ~/.soloclaw/soloclaw.json.",
     );
   }
   return undefined;
