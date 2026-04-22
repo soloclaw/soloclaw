@@ -5,7 +5,8 @@
   "description": "OpenProse VM skill pack plugin (slash command + telemetry).",
   "type": "module",
   "devDependencies": {
-    "@soloclaw/plugin-sdk": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*",
+    "soloclaw": "workspace:*"
   },
   "soloclaw": {
     "extensions": [

@@ -8,7 +8,8 @@
     "openshell": "0.1.0"
   },
   "devDependencies": {
-    "@soloclaw/plugin-sdk": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*",
+    "soloclaw": "workspace:*"
   },
   "soloclaw": {
     "extensions": [

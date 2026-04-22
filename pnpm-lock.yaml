@@ -345,12 +345,18 @@ importers:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/browser:
     devDependencies:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/diagnostics-otel:
     dependencies:
@@ -391,6 +397,9 @@ importers:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/diffs:
     dependencies:
@@ -410,6 +419,9 @@ importers:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/discord:
     dependencies:
@@ -448,12 +460,18 @@ importers:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/image-generation-core:
     devDependencies:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/llm-task:
     dependencies:
@@ -467,6 +485,9 @@ importers:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/lobster:
     dependencies:
@@ -480,12 +501,18 @@ importers:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/media-understanding-core:
     devDependencies:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/memory-core:
     devDependencies:
@@ -511,6 +538,9 @@ importers:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/memory-wiki:
     dependencies:
@@ -530,12 +560,18 @@ importers:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/open-prose:
     devDependencies:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/openshell:
     dependencies:
@@ -546,18 +582,27 @@ importers:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/searxng:
     devDependencies:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/speech-core:
     devDependencies:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/telegram:
     dependencies:
@@ -574,12 +619,18 @@ importers:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   extensions/video-generation-core:
     devDependencies:
       '@soloclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
+      soloclaw:
+        specifier: workspace:*
+        version: link:../..
 
   packages/memory-host-sdk: {}
 
