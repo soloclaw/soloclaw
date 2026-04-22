@@ -353,7 +353,7 @@ describe("resolveProviderAuths key normalization", () => {
     const stateDir = path.join(home, ".soloclaw");
     await fs.mkdir(stateDir, { recursive: true });
     await fs.writeFile(
-      path.join(stateDir, "openclaw.json"),
+      path.join(stateDir, "soloclaw.json"),
       `${JSON.stringify(config, null, 2)}\n`,
       "utf8",
     );

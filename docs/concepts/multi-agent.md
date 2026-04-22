@@ -52,7 +52,7 @@ reach other host locations unless sandboxing is enabled. See
 
 ## Paths (quick map)
 
-- Config: `~/.soloclaw/openclaw.json` (or `OPENCLAW_CONFIG_PATH`)
+- Config: `~/.soloclaw/soloclaw.json` (or `OPENCLAW_CONFIG_PATH`)
 - State dir: `~/.soloclaw` (or `OPENCLAW_STATE_DIR`)
 - Workspace: `~/.soloclaw/workspace` (or `~/.soloclaw/workspace-<agentId>`)
 - Agent dir: `~/.soloclaw/agents/<agentId>/agent` (or `agents.list[].agentDir`)
@@ -368,7 +368,7 @@ soloclaw channels login --channel whatsapp --account personal
 soloclaw channels login --channel whatsapp --account biz
 ```
 
-`~/.soloclaw/openclaw.json` (JSON5):
+`~/.soloclaw/soloclaw.json` (JSON5):
 
 ```js
 {

@@ -671,7 +671,7 @@ python3 - <<'PY'
 import json
 from pathlib import Path
 
-config_path = Path("/root/.soloclaw/openclaw.json")
+config_path = Path("/root/.soloclaw/soloclaw.json")
 config = {}
 if config_path.exists():
     config = json.loads(config_path.read_text())
@@ -704,7 +704,7 @@ start_gateway_background() {
   cmd="$(cat <<EOF
 pkill -f "soloclaw gateway run" >/dev/null 2>&1 || true
 rm -f /tmp/openclaw-parallels-linux-gateway.log
-setsid sh -lc 'exec env OPENCLAW_HOME=/root OPENCLAW_STATE_DIR=/root/.soloclaw OPENCLAW_CONFIG_PATH=/root/.soloclaw/openclaw.json ${API_KEY_ENV}=${api_key_value_q} soloclaw gateway run --bind loopback --port 18789 --force >/tmp/openclaw-parallels-linux-gateway.log 2>&1' >/dev/null 2>&1 < /dev/null &
+setsid sh -lc 'exec env OPENCLAW_HOME=/root OPENCLAW_STATE_DIR=/root/.soloclaw OPENCLAW_CONFIG_PATH=/root/.soloclaw/soloclaw.json ${API_KEY_ENV}=${api_key_value_q} soloclaw gateway run --bind loopback --port 18789 --force >/tmp/openclaw-parallels-linux-gateway.log 2>&1' >/dev/null 2>&1 < /dev/null &
 EOF
 )"
   guest_exec bash -lc "$cmd"

@@ -20,7 +20,7 @@ function createSnapshot(params: {
     params.sourceConfig) as ConfigFileSnapshot["config"];
   const sourceConfig = params.sourceConfig as ConfigFileSnapshot["sourceConfig"];
   return {
-    path: params.path ?? "/tmp/openclaw.json",
+    path: params.path ?? "/tmp/soloclaw.json",
     exists: true,
     raw: "{}",
     parsed: params.sourceConfig,

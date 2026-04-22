@@ -72,7 +72,7 @@ Resolve the active state directory first:
 STATE_DIR="${OPENCLAW_STATE_DIR:-$HOME/.soloclaw}"
 ```
 
-Then write those resolved paths into the active OpenClaw config file (`$OPENCLAW_CONFIG_PATH`, default `~/.soloclaw/openclaw.json`):
+Then write those resolved paths into the active OpenClaw config file (`$OPENCLAW_CONFIG_PATH`, default `~/.soloclaw/soloclaw.json`):
 
 ```json5
 {

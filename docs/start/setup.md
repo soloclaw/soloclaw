@@ -15,7 +15,7 @@ For onboarding details, see [Onboarding (CLI)](/start/wizard).
 
 ## TL;DR
 
-- **Tailoring lives outside the repo:** `~/.soloclaw/workspace` (workspace) + `~/.soloclaw/openclaw.json` (config).
+- **Tailoring lives outside the repo:** `~/.soloclaw/workspace` (workspace) + `~/.soloclaw/soloclaw.json` (config).
 - **Stable workflow:** install the macOS app; let it run the bundled Gateway.
 - **Bleeding edge workflow:** run the Gateway yourself via `pnpm gateway:watch`, then let the macOS app attach in Local mode.
 
@@ -29,7 +29,7 @@ For onboarding details, see [Onboarding (CLI)](/start/wizard).
 
 If you want “100% tailored to me” _and_ easy updates, keep your customization in:
 
-- **Config:** `~/.soloclaw/openclaw.json` (JSON/JSON5-ish)
+- **Config:** `~/.soloclaw/soloclaw.json` (JSON/JSON5-ish)
 - **Workspace:** `~/.soloclaw/workspace` (skills, prompts, memories; make it a private git repo)
 
 Bootstrap once:

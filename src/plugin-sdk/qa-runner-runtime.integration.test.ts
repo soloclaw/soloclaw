@@ -58,7 +58,7 @@ describe("plugin-sdk qa-runner-runtime linked plugin smoke", () => {
   it("loads an activated qa runner from a linked plugin path without a bundled install fallback", async () => {
     const stateDir = makeTempDir("openclaw-qa-runner-state-");
     const pluginDir = path.join(stateDir, "extensions", "qa-linked");
-    const configPath = path.join(stateDir, "openclaw.json");
+    const configPath = path.join(stateDir, "soloclaw.json");
 
     fs.writeFileSync(
       configPath,

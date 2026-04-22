@@ -194,7 +194,7 @@ pnpm soloclaw onboard --non-interactive --accept-risk --auth-choice openai --ope
 
 ## Configuration
 
-Config lives at `~/.soloclaw/openclaw.json`:
+Config lives at `~/.soloclaw/soloclaw.json`:
 
 ```json5
 {

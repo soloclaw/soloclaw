@@ -7,7 +7,7 @@ title: "config"
 
 # `soloclaw config`
 
-Config helpers for non-interactive edits in `openclaw.json`: get/set/unset/file/schema/validate
+Config helpers for non-interactive edits in `soloclaw.json`: get/set/unset/file/schema/validate
 values by path and print the active config file. Run without a subcommand to
 open the configure wizard (same as `soloclaw configure`).
 
@@ -48,7 +48,7 @@ soloclaw config validate --json
 
 ### `config schema`
 
-Print the generated JSON schema for `openclaw.json` to stdout as JSON.
+Print the generated JSON schema for `soloclaw.json` to stdout as JSON.
 
 What it includes:
 
@@ -216,7 +216,7 @@ soloclaw config set secrets.providers.vault \
 
 ## Dry run
 
-Use `--dry-run` to validate changes without writing `openclaw.json`.
+Use `--dry-run` to validate changes without writing `soloclaw.json`.
 
 ```bash
 soloclaw config set channels.discord.token \
@@ -291,7 +291,7 @@ Success example:
 {
   "ok": true,
   "operations": 1,
-  "configPath": "~/.soloclaw/openclaw.json",
+  "configPath": "~/.soloclaw/soloclaw.json",
   "inputModes": ["builder"],
   "checks": {
     "schema": false,
@@ -309,7 +309,7 @@ Failure example:
 {
   "ok": false,
   "operations": 1,
-  "configPath": "~/.soloclaw/openclaw.json",
+  "configPath": "~/.soloclaw/soloclaw.json",
   "inputModes": ["builder"],
   "checks": {
     "schema": false,

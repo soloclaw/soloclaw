@@ -130,7 +130,7 @@ describe("handlePluginsCommand", () => {
     vi.clearAllMocks();
     readConfigFileSnapshotMock.mockResolvedValue({
       valid: true,
-      path: "/tmp/openclaw.json",
+      path: "/tmp/soloclaw.json",
       resolved: buildCfg(),
     });
     validateConfigObjectWithPluginsMock.mockReturnValue({

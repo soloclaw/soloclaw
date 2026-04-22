@@ -10,7 +10,7 @@ const mcpServers = vi.hoisted(() => new Map<string, Record<string, unknown>>());
 vi.mock("../../config/mcp-config.js", () => ({
   listConfiguredMcpServers: vi.fn(async () => ({
     ok: true,
-    path: "/tmp/openclaw.json",
+    path: "/tmp/soloclaw.json",
     config: {},
     mcpServers: Object.fromEntries(mcpServers),
   })),
@@ -18,7 +18,7 @@ vi.mock("../../config/mcp-config.js", () => ({
     mcpServers.set(name, { ...(server as Record<string, unknown>) });
     return {
       ok: true,
-      path: "/tmp/openclaw.json",
+      path: "/tmp/soloclaw.json",
       config: {},
       mcpServers: Object.fromEntries(mcpServers),
     };
@@ -27,7 +27,7 @@ vi.mock("../../config/mcp-config.js", () => ({
     const removed = mcpServers.delete(name);
     return {
       ok: true,
-      path: "/tmp/openclaw.json",
+      path: "/tmp/soloclaw.json",
       config: {},
       mcpServers: Object.fromEntries(mcpServers),
       removed,

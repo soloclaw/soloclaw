@@ -42,7 +42,7 @@ describe("config observe recovery", () => {
     auditPath: string;
     warn: ReturnType<typeof vi.fn>;
   } {
-    const configPath = path.join(home, ".soloclaw", "openclaw.json");
+    const configPath = path.join(home, ".soloclaw", "soloclaw.json");
     return {
       deps: {
         fs,

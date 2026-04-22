@@ -226,7 +226,7 @@ TRASH
     export HOME="$home_dir"
     export OPENCLAW_HOME="$home_dir"
     export OPENCLAW_STATE_DIR="$home_dir/.soloclaw"
-    export OPENCLAW_CONFIG_PATH="$OPENCLAW_STATE_DIR/openclaw.json"
+    export OPENCLAW_CONFIG_PATH="$OPENCLAW_STATE_DIR/soloclaw.json"
     mkdir -p "$OPENCLAW_STATE_DIR"
   }
 

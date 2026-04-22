@@ -29,7 +29,7 @@ Cover:
 
 ```bash
 export OPENCLAW_PARALLELS_DISCORD_TOKEN="$(
-  ssh peters-mac-studio-1 'jq -r ".channels.discord.token" ~/.soloclaw/openclaw.json' | tr -d '\n'
+  ssh peters-mac-studio-1 'jq -r ".channels.discord.token" ~/.soloclaw/soloclaw.json' | tr -d '\n'
 )"
 
 pnpm test:parallels:macos \

@@ -45,7 +45,7 @@ describe("backupCreateCommand atomic archive write", () => {
   }) {
     const stateDir = path.join(tempHome.home, ".soloclaw");
     const archiveDir = await fs.mkdtemp(path.join(os.tmpdir(), params.archivePrefix));
-    await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
+    await fs.writeFile(path.join(stateDir, "soloclaw.json"), JSON.stringify({}), "utf8");
     await fs.writeFile(path.join(stateDir, "state.txt"), "state\n", "utf8");
 
     const runtime = createBackupTestRuntime();

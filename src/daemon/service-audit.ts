@@ -129,7 +129,7 @@ function auditGatewayToken(
   issues.push({
     code: SERVICE_AUDIT_CODES.gatewayTokenMismatch,
     message:
-      "Gateway service OPENCLAW_GATEWAY_TOKEN does not match gateway.auth.token in openclaw.json",
+      "Gateway service OPENCLAW_GATEWAY_TOKEN does not match gateway.auth.token in soloclaw.json",
     detail: "service token is stale",
     level: "recommended",
   });

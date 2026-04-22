@@ -63,7 +63,7 @@ describe("backup commands", () => {
     const stateDir = path.join(tempHome.home, ".soloclaw");
     const configPath = path.join(tempHome.home, "custom-config.json");
     process.env.OPENCLAW_CONFIG_PATH = configPath;
-    await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
+    await fs.writeFile(path.join(stateDir, "soloclaw.json"), JSON.stringify({}), "utf8");
     await fs.writeFile(configPath, '{"agents": { defaults: { workspace: ', "utf8");
     const runtime = createBackupTestRuntime();
 
@@ -86,7 +86,7 @@ describe("backup commands", () => {
 
   it("collapses default config, credentials, and workspace into the state backup root", async () => {
     const stateDir = path.join(tempHome.home, ".soloclaw");
-    const configPath = path.join(stateDir, "openclaw.json");
+    const configPath = path.join(stateDir, "soloclaw.json");
     const oauthDir = path.join(stateDir, "credentials");
     const workspaceDir = path.join(stateDir, "workspace");
     await fs.writeFile(configPath, JSON.stringify({}), "utf8");
@@ -123,7 +123,7 @@ describe("backup commands", () => {
       await fs.symlink(workspaceDir, workspaceLink);
       const plan = await resolveBackupPlanFromPaths({
         stateDir,
-        configPath: path.join(stateDir, "openclaw.json"),
+        configPath: path.join(stateDir, "soloclaw.json"),
         oauthDir: path.join(stateDir, "credentials"),
         workspaceDirs: [workspaceLink],
         includeWorkspace: true,
@@ -255,7 +255,7 @@ describe("backup commands", () => {
 
   it("rejects output paths that would be created inside a backed-up directory", async () => {
     const stateDir = path.join(tempHome.home, ".soloclaw");
-    await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
+    await fs.writeFile(path.join(stateDir, "soloclaw.json"), JSON.stringify({}), "utf8");
 
     const runtime = createBackupTestRuntime();
     await mockStateOnlyBackupPlan(stateDir);
@@ -276,7 +276,7 @@ describe("backup commands", () => {
     const symlinkDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-backup-link-"));
     const symlinkPath = path.join(symlinkDir, "linked-state");
     try {
-      await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
+      await fs.writeFile(path.join(stateDir, "soloclaw.json"), JSON.stringify({}), "utf8");
       await fs.symlink(stateDir, symlinkPath);
 
       const runtime = createBackupTestRuntime();
@@ -295,14 +295,14 @@ describe("backup commands", () => {
   it("falls back to the home directory when cwd is inside a backed-up source tree", async () => {
     const stateDir = path.join(tempHome.home, ".soloclaw");
     const workspaceDir = path.join(stateDir, "workspace");
-    await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
+    await fs.writeFile(path.join(stateDir, "soloclaw.json"), JSON.stringify({}), "utf8");
     await fs.mkdir(workspaceDir, { recursive: true });
     await fs.writeFile(path.join(workspaceDir, "SOUL.md"), "# soul\n", "utf8");
     vi.spyOn(process, "cwd").mockReturnValue(workspaceDir);
     vi.spyOn(backupShared, "resolveBackupPlanFromDisk").mockResolvedValue(
       await resolveBackupPlanFromPaths({
         stateDir,
-        configPath: path.join(stateDir, "openclaw.json"),
+        configPath: path.join(stateDir, "soloclaw.json"),
         oauthDir: path.join(stateDir, "credentials"),
         workspaceDirs: [workspaceDir],
         includeWorkspace: true,
@@ -331,7 +331,7 @@ describe("backup commands", () => {
         vi.spyOn(backupShared, "resolveBackupPlanFromDisk").mockResolvedValue(
           await resolveBackupPlanFromPaths({
             stateDir,
-            configPath: path.join(stateDir, "openclaw.json"),
+            configPath: path.join(stateDir, "soloclaw.json"),
             oauthDir: path.join(stateDir, "credentials"),
             workspaceDirs: [workspaceDir],
             includeWorkspace: true,
@@ -358,12 +358,12 @@ describe("backup commands", () => {
   it("allows dry-run preview even when the target archive already exists", async () => {
     const stateDir = path.join(tempHome.home, ".soloclaw");
     const existingArchive = path.join(tempHome.home, "existing-backup.tar.gz");
-    await fs.writeFile(path.join(stateDir, "openclaw.json"), JSON.stringify({}), "utf8");
+    await fs.writeFile(path.join(stateDir, "soloclaw.json"), JSON.stringify({}), "utf8");
     await fs.writeFile(existingArchive, "already here", "utf8");
     vi.spyOn(backupShared, "resolveBackupPlanFromDisk").mockResolvedValue(
       await resolveBackupPlanFromPaths({
         stateDir,
-        configPath: path.join(stateDir, "openclaw.json"),
+        configPath: path.join(stateDir, "soloclaw.json"),
         oauthDir: path.join(stateDir, "credentials"),
         includeWorkspace: false,
         configInsideState: true,
@@ -410,7 +410,7 @@ describe("backup commands", () => {
 
   it("backs up only the active config file when --only-config is requested", async () => {
     const stateDir = path.join(tempHome.home, ".soloclaw");
-    const configPath = path.join(stateDir, "openclaw.json");
+    const configPath = path.join(stateDir, "soloclaw.json");
     await fs.mkdir(path.join(stateDir, "credentials"), { recursive: true });
     await fs.writeFile(configPath, JSON.stringify({ theme: "config-only" }), "utf8");
     await fs.writeFile(path.join(stateDir, "state.txt"), "state\n", "utf8");

@@ -82,7 +82,7 @@ Input safety limits:
 
 ## Plugin Defaults
 
-Set plugin-wide defaults in `~/.soloclaw/openclaw.json`:
+Set plugin-wide defaults in `~/.soloclaw/soloclaw.json`:
 
 ```json5
 {

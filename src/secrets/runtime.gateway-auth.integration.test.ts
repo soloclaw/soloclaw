@@ -118,7 +118,7 @@ describe("secrets runtime snapshot gateway-auth integration", () => {
         expect(activeAfterFailure?.sourceConfig.gateway?.auth?.token).toEqual(initialTokenRef);
 
         const persistedConfig = JSON.parse(
-          await fs.readFile(path.join(home, ".soloclaw", "openclaw.json"), "utf8"),
+          await fs.readFile(path.join(home, ".soloclaw", "soloclaw.json"), "utf8"),
         ) as OpenClawConfig;
         expect(persistedConfig.gateway?.auth?.token).toEqual(missingTokenRef);
       });

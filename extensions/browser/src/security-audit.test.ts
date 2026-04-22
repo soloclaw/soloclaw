@@ -9,7 +9,7 @@ function collectFindings(
     sourceConfig: config,
     env: {} as NodeJS.ProcessEnv,
     stateDir: "/tmp/openclaw-state",
-    configPath: "/tmp/openclaw.json",
+    configPath: "/tmp/soloclaw.json",
   });
 }
 

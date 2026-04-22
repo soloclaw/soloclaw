@@ -37,7 +37,7 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 sudo apt --fix-broken install -y  # if there are dependency errors
 ```
 
-Then update your OpenClaw config (`~/.soloclaw/openclaw.json`):
+Then update your OpenClaw config (`~/.soloclaw/soloclaw.json`):
 
 ```json
 {

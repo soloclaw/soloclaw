@@ -1113,7 +1113,7 @@ vi.mock("./doctor-config-preflight.js", async () => {
     const stateDir =
       process.env.OPENCLAW_STATE_DIR ||
       (process.env.HOME ? path.join(process.env.HOME, ".soloclaw") : "");
-    return process.env.OPENCLAW_CONFIG_PATH || path.join(stateDir, "openclaw.json");
+    return process.env.OPENCLAW_CONFIG_PATH || path.join(stateDir, "soloclaw.json");
   }
 
   function normalizeDiscordStreamingCompat(cfg: Record<string, unknown>): Record<string, unknown> {
@@ -1698,7 +1698,7 @@ describe("doctor config flow", () => {
     await withTempHome(
       async (home) => {
         const configDir = path.join(home, ".soloclaw");
-        const configPath = path.join(configDir, "openclaw.json");
+        const configPath = path.join(configDir, "soloclaw.json");
         await fs.mkdir(configDir, { recursive: true });
         await fs.writeFile(
           configPath,
@@ -2002,7 +2002,7 @@ describe("doctor config flow", () => {
         const configDir = path.join(home, ".soloclaw");
         await fs.mkdir(configDir, { recursive: true });
         await fs.writeFile(
-          path.join(configDir, "openclaw.json"),
+          path.join(configDir, "soloclaw.json"),
           JSON.stringify(
             {
               channels: {
@@ -2174,7 +2174,7 @@ describe("doctor config flow", () => {
         const credentialsDir = path.join(configDir, "credentials");
         await fs.mkdir(credentialsDir, { recursive: true });
         await fs.writeFile(
-          path.join(configDir, "openclaw.json"),
+          path.join(configDir, "soloclaw.json"),
           JSON.stringify(
             {
               channels: {
@@ -2503,7 +2503,7 @@ describe("doctor config flow", () => {
         const configDir = path.join(home, ".soloclaw");
         await fs.mkdir(configDir, { recursive: true });
         await fs.writeFile(
-          path.join(configDir, "openclaw.json"),
+          path.join(configDir, "soloclaw.json"),
           JSON.stringify(
             {
               talk: {

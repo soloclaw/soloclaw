@@ -75,7 +75,7 @@ The safest setup is:
 2. target one conversational agent
 3. keep logging on only while tuning
 
-Start with this in `openclaw.json`:
+Start with this in `soloclaw.json`:
 
 ```json5
 {

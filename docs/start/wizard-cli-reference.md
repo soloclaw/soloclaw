@@ -31,7 +31,7 @@ It does not install or modify anything on the remote host.
 
 <Steps>
   <Step title="Existing config detection">
-    - If `~/.soloclaw/openclaw.json` exists, choose Keep, Modify, or Reset.
+    - If `~/.soloclaw/soloclaw.json` exists, choose Keep, Modify, or Reset.
     - Re-running the wizard does not wipe anything unless you explicitly choose Reset (or pass `--reset`).
     - CLI `--reset` defaults to `config+creds+sessions`; use `--reset-scope full` to also remove workspace.
     - If config is invalid or contains legacy keys, the wizard stops and asks you to run `soloclaw doctor` before continuing.
@@ -260,7 +260,7 @@ is only a legacy import source.
 
 ## Outputs and internals
 
-Typical fields in `~/.soloclaw/openclaw.json`:
+Typical fields in `~/.soloclaw/soloclaw.json`:
 
 - `agents.defaults.workspace`
 - `agents.defaults.model` / `models.providers` (if Minimax chosen)

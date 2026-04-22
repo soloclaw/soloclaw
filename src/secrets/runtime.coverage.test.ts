@@ -9,7 +9,7 @@ import { canonicalizeSecretTargetCoverageId } from "./target-registry-test-helpe
 
 type SecretRegistryEntry = {
   id: string;
-  configFile: "openclaw.json" | "auth-profiles.json";
+  configFile: "soloclaw.json" | "auth-profiles.json";
   pathPattern: string;
   refPathPattern?: string;
   secretShape: "secret_input" | "sibling_ref";
@@ -20,7 +20,7 @@ type SecretRegistryEntry = {
 type SecretRefCredentialMatrix = {
   entries: Array<{
     id: string;
-    configFile: "openclaw.json" | "auth-profiles.json";
+    configFile: "soloclaw.json" | "auth-profiles.json";
     path: string;
     refPath?: string;
     secretShape: SecretRegistryEntry["secretShape"];
@@ -515,14 +515,14 @@ describe("secrets runtime target coverage", () => {
     ({ resolveSecretRefValues } = resolver);
   });
 
-  it("handles every openclaw.json registry target when configured as active", async () => {
+  it("handles every soloclaw.json registry target when configured as active", async () => {
     const entries = COVERAGE_REGISTRY_ENTRIES.filter(
       (entry) =>
-        entry.configFile === "openclaw.json" &&
+        entry.configFile === "soloclaw.json" &&
         !PLUGIN_OWNED_OPENCLAW_COVERAGE_EXCLUSIONS.has(entry.id),
     );
     for (const batch of buildCoverageBatches(entries)) {
-      logCoverageBatch("openclaw.json", batch);
+      logCoverageBatch("soloclaw.json", batch);
       const config = {} as OpenClawConfig;
       const env: Record<string, string> = {};
       for (const [index, entry] of batch.entries()) {

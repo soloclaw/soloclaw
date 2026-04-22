@@ -67,7 +67,7 @@ Notes:
 ## If the command is missing
 
 If `soloclaw browser` is an unknown command, check `plugins.allow` in
-`~/.soloclaw/openclaw.json`.
+`~/.soloclaw/soloclaw.json`.
 
 When `plugins.allow` is present, the bundled browser plugin must be listed
 explicitly:

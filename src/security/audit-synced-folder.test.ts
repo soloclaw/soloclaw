@@ -5,7 +5,7 @@ describe("security audit synced folder findings", () => {
   it("warns when state/config look like a synced folder", () => {
     const findings = collectSyncedFolderFindings({
       stateDir: "/Users/test/Dropbox/.soloclaw",
-      configPath: "/Users/test/Dropbox/.soloclaw/openclaw.json",
+      configPath: "/Users/test/Dropbox/.soloclaw/soloclaw.json",
     });
 
     expect(

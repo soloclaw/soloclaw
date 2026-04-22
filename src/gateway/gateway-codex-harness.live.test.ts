@@ -430,7 +430,7 @@ describeLive("gateway live (Codex harness)", () => {
       const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-live-codex-harness-"));
       const stateDir = path.join(tempDir, "state");
       const workspace = await createLiveWorkspace(tempDir);
-      const configPath = path.join(tempDir, "openclaw.json");
+      const configPath = path.join(tempDir, "soloclaw.json");
       const token = `test-${randomUUID()}`;
       const port = await getFreeGatewayPort();
 

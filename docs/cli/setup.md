@@ -8,7 +8,7 @@ title: "setup"
 
 # `soloclaw setup`
 
-Initialize `~/.soloclaw/openclaw.json` and the agent workspace.
+Initialize `~/.soloclaw/soloclaw.json` and the agent workspace.
 
 Related:
 

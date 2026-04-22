@@ -50,7 +50,7 @@ vi.mock("../config/paths.js", async () => {
   return {
     ...actual,
     STATE_DIR: "/tmp/openclaw-state",
-    resolveConfigPath: vi.fn(() => "/tmp/openclaw-state/openclaw.json"),
+    resolveConfigPath: vi.fn(() => "/tmp/openclaw-state/soloclaw.json"),
     resolveGatewayPort: vi.fn(() => 18789),
     resolveStateDir: vi.fn(() => "/tmp/openclaw-state"),
   };
