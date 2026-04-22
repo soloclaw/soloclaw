@@ -55,7 +55,7 @@ function setBundledManifestIdsByRoot(manifestIds: Record<string, string>) {
       : {
           ok: false,
           error: "invalid manifest",
-          manifestPath: `${rootDir}/openclaw.plugin.json`,
+          manifestPath: `${rootDir}/soloclaw.plugin.json`,
         },
   );
 }
@@ -64,11 +64,11 @@ function setBundledLookupFixture() {
   setBundledDiscoveryCandidates([
     createBundledCandidate({
       rootDir: appBundledPluginRoot("feishu"),
-      packageName: "@openclaw/feishu",
+      packageName: "@soloclaw/feishu",
     }),
     createBundledCandidate({
       rootDir: appBundledPluginRoot("diffs"),
-      packageName: "@openclaw/diffs",
+      packageName: "@soloclaw/diffs",
     }),
   ]);
   setBundledManifestIdsByRoot({
@@ -85,7 +85,7 @@ function createResolvedBundledSource(params: {
   return {
     pluginId: params.pluginId,
     localPath: params.localPath,
-    npmSpec: params.npmSpec ?? `@openclaw/${params.pluginId}`,
+    npmSpec: params.npmSpec ?? `@soloclaw/${params.pluginId}`,
   };
 }
 
@@ -131,19 +131,19 @@ describe("bundled plugin sources", () => {
       createBundledCandidate({
         origin: "global",
         rootDir: "/global/feishu",
-        packageName: "@openclaw/feishu",
+        packageName: "@soloclaw/feishu",
       }),
       createBundledCandidate({
         rootDir: appBundledPluginRoot("feishu"),
-        packageName: "@openclaw/feishu",
+        packageName: "@soloclaw/feishu",
       }),
       createBundledCandidate({
         rootDir: appBundledPluginRoot("feishu-dup"),
-        packageName: "@openclaw/feishu",
+        packageName: "@soloclaw/feishu",
       }),
       createBundledCandidate({
         rootDir: appBundledPluginRoot("msteams"),
-        packageName: "@openclaw/msteams",
+        packageName: "@soloclaw/msteams",
       }),
     ]);
     setBundledManifestIdsByRoot({
@@ -165,12 +165,12 @@ describe("bundled plugin sources", () => {
   it.each([
     [
       "finds bundled source by npm spec",
-      { kind: "npmSpec", value: "@openclaw/feishu" } as const,
+      { kind: "npmSpec", value: "@soloclaw/feishu" } as const,
       { pluginId: "feishu", localPath: appBundledPluginRoot("feishu") },
     ],
     [
       "returns undefined for missing npm spec",
-      { kind: "npmSpec", value: "@openclaw/not-found" } as const,
+      { kind: "npmSpec", value: "@soloclaw/not-found" } as const,
       undefined,
     ],
     [
@@ -237,7 +237,7 @@ describe("bundled plugin sources", () => {
     expect(
       findBundledPluginSourceInMap({
         bundled,
-        lookup: { kind: "npmSpec", value: "@openclaw/feishu" },
+        lookup: { kind: "npmSpec", value: "@soloclaw/feishu" },
       })?.pluginId,
     ).toBe("feishu");
   });

@@ -22,10 +22,10 @@ const BUILD_STAMP = "dist/.buildstamp";
 const QA_LAB_PLUGIN_SDK_ENTRY = "dist/plugin-sdk/qa-lab.js";
 const QA_RUNTIME_PLUGIN_SDK_ENTRY = "dist/plugin-sdk/qa-runtime.js";
 const EXTENSION_SRC = bundledPluginFile("demo", "src/index.ts");
-const EXTENSION_MANIFEST = bundledPluginFile("demo", "openclaw.plugin.json");
+const EXTENSION_MANIFEST = bundledPluginFile("demo", "soloclaw.plugin.json");
 const EXTENSION_PACKAGE = bundledPluginFile("demo", "package.json");
 const EXTENSION_README = bundledPluginFile("demo", "README.md");
-const DIST_EXTENSION_MANIFEST = bundledDistPluginFile("demo", "openclaw.plugin.json");
+const DIST_EXTENSION_MANIFEST = bundledDistPluginFile("demo", "soloclaw.plugin.json");
 const DIST_EXTENSION_PACKAGE = bundledDistPluginFile("demo", "package.json");
 
 const OLD_TIME = new Date("2026-03-13T10:00:00.000Z");

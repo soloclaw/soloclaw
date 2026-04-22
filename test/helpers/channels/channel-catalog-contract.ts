@@ -72,7 +72,7 @@ export function describeBundledMetadataOnlyChannelCatalogContract(params: {
       );
       fs.writeFileSync(path.join(bundledDir, "index.js"), "export default {};\n", "utf8");
       fs.writeFileSync(
-        path.join(bundledDir, "openclaw.plugin.json"),
+        path.join(bundledDir, "soloclaw.plugin.json"),
         JSON.stringify({ id: params.pluginId, channels: [params.meta.id], configSchema: {} }),
         "utf8",
       );

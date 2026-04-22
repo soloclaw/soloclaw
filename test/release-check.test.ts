@@ -77,7 +77,7 @@ describe("collectBundledExtensionManifestErrors", () => {
           id: "broken",
           packageJson: {
             openclaw: {
-              install: { npmSpec: "@openclaw/broken", minHostVersion: "2026.3.14" },
+              install: { npmSpec: "@soloclaw/broken", minHostVersion: "2026.3.14" },
             },
           },
         },
@@ -375,11 +375,11 @@ describe("collectMissingPackPaths", () => {
         bundledDistPluginFile("matrix", "helper-api.js"),
         bundledDistPluginFile("matrix", "runtime-api.js"),
         bundledDistPluginFile("matrix", "thread-bindings-runtime.js"),
-        bundledDistPluginFile("matrix", "openclaw.plugin.json"),
+        bundledDistPluginFile("matrix", "soloclaw.plugin.json"),
         bundledDistPluginFile("matrix", "package.json"),
         bundledDistPluginFile("whatsapp", "light-runtime-api.js"),
         bundledDistPluginFile("whatsapp", "runtime-api.js"),
-        bundledDistPluginFile("whatsapp", "openclaw.plugin.json"),
+        bundledDistPluginFile("whatsapp", "soloclaw.plugin.json"),
         bundledDistPluginFile("whatsapp", "package.json"),
       ]),
     );

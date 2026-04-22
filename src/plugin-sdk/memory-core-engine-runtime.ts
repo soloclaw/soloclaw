@@ -1,5 +1,5 @@
 // Manual facade. Keep loader boundary explicit.
-type FacadeModule = typeof import("@openclaw/memory-core/runtime-api.js");
+type FacadeModule = typeof import("@soloclaw/memory-core/runtime-api.js");
 import {
   createLazyFacadeObjectValue,
   loadActivatedBundledPluginPublicSurfaceModuleSync,
@@ -44,12 +44,12 @@ export const repairDreamingArtifacts: FacadeModule["repairDreamingArtifacts"] = 
     ...args,
   )) as FacadeModule["repairDreamingArtifacts"];
 export type BuiltinMemoryEmbeddingProviderDoctorMetadata =
-  import("@openclaw/memory-core/runtime-api.js").BuiltinMemoryEmbeddingProviderDoctorMetadata;
+  import("@soloclaw/memory-core/runtime-api.js").BuiltinMemoryEmbeddingProviderDoctorMetadata;
 export type DreamingArtifactsAuditSummary =
-  import("@openclaw/memory-core/runtime-api.js").DreamingArtifactsAuditSummary;
+  import("@soloclaw/memory-core/runtime-api.js").DreamingArtifactsAuditSummary;
 export type RepairDreamingArtifactsResult =
-  import("@openclaw/memory-core/runtime-api.js").RepairDreamingArtifactsResult;
+  import("@soloclaw/memory-core/runtime-api.js").RepairDreamingArtifactsResult;
 export type RepairShortTermPromotionArtifactsResult =
-  import("@openclaw/memory-core/runtime-api.js").RepairShortTermPromotionArtifactsResult;
+  import("@soloclaw/memory-core/runtime-api.js").RepairShortTermPromotionArtifactsResult;
 export type ShortTermAuditSummary =
-  import("@openclaw/memory-core/runtime-api.js").ShortTermAuditSummary;
+  import("@soloclaw/memory-core/runtime-api.js").ShortTermAuditSummary;

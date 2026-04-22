@@ -126,8 +126,8 @@ describe("installPluginFromNpmSpec", () => {
           code: 0,
           stdout: JSON.stringify([
             {
-              id: "@openclaw/voice-call@0.0.1",
-              name: "@openclaw/voice-call",
+              id: "@soloclaw/voice-call@0.0.1",
+              name: "@soloclaw/voice-call",
               version: "0.0.1",
               filename: packedName,
               integrity: "sha512-plugin-test",
@@ -144,7 +144,7 @@ describe("installPluginFromNpmSpec", () => {
     });
 
     const result = await installPluginFromNpmSpec({
-      spec: "@openclaw/voice-call@0.0.1",
+      spec: "@soloclaw/voice-call@0.0.1",
       extensionsDir,
       logger: { info: () => {}, warn: () => {} },
     });
@@ -152,12 +152,12 @@ describe("installPluginFromNpmSpec", () => {
     if (!result.ok) {
       return;
     }
-    expect(result.npmResolution?.resolvedSpec).toBe("@openclaw/voice-call@0.0.1");
+    expect(result.npmResolution?.resolvedSpec).toBe("@soloclaw/voice-call@0.0.1");
     expect(result.npmResolution?.integrity).toBe("sha512-plugin-test");
 
     expectSingleNpmPackIgnoreScriptsCall({
       calls: run.mock.calls as Array<[unknown, unknown]>,
-      expectedSpec: "@openclaw/voice-call@0.0.1",
+      expectedSpec: "@soloclaw/voice-call@0.0.1",
     });
 
     expect(packTmpDir).not.toBe("");
@@ -248,8 +248,8 @@ describe("installPluginFromNpmSpec", () => {
   it("aborts when integrity drift callback rejects the fetched artifact", async () => {
     const run = runCommandWithTimeoutMock;
     mockNpmPackMetadataResult(run, {
-      id: "@openclaw/voice-call@0.0.1",
-      name: "@openclaw/voice-call",
+      id: "@soloclaw/voice-call@0.0.1",
+      name: "@soloclaw/voice-call",
       version: "0.0.1",
       filename: "voice-call-0.0.1.tgz",
       integrity: "sha512-new",
@@ -258,7 +258,7 @@ describe("installPluginFromNpmSpec", () => {
 
     const onIntegrityDrift = vi.fn(async () => false);
     const result = await installPluginFromNpmSpec({
-      spec: "@openclaw/voice-call@0.0.1",
+      spec: "@soloclaw/voice-call@0.0.1",
       expectedIntegrity: "sha512-old",
       onIntegrityDrift,
     });
@@ -282,7 +282,7 @@ describe("installPluginFromNpmSpec", () => {
     });
 
     const result = await installPluginFromNpmSpec({
-      spec: "@openclaw/not-found",
+      spec: "@soloclaw/not-found",
       logger: { info: () => {}, warn: () => {} },
     });
     expect(result.ok).toBe(false);
@@ -293,8 +293,8 @@ describe("installPluginFromNpmSpec", () => {
 
   it("handles prerelease npm specs correctly", async () => {
     const prereleaseMetadata = {
-      id: "@openclaw/voice-call@0.0.2-beta.1",
-      name: "@openclaw/voice-call",
+      id: "@soloclaw/voice-call@0.0.2-beta.1",
+      name: "@soloclaw/voice-call",
       version: "0.0.2-beta.1",
       filename: "voice-call-0.0.2-beta.1.tgz",
       integrity: "sha512-beta",
@@ -306,13 +306,13 @@ describe("installPluginFromNpmSpec", () => {
       mockNpmPackMetadataResult(run, prereleaseMetadata);
 
       const result = await installPluginFromNpmSpec({
-        spec: "@openclaw/voice-call",
+        spec: "@soloclaw/voice-call",
         logger: { info: () => {}, warn: () => {} },
       });
       expect(result.ok).toBe(false);
       if (!result.ok) {
         expect(result.error).toContain("prerelease version 0.0.2-beta.1");
-        expect(result.error).toContain('"@openclaw/voice-call@beta"');
+        expect(result.error).toContain('"@soloclaw/voice-call@beta"');
       }
     }
 
@@ -343,7 +343,7 @@ describe("installPluginFromNpmSpec", () => {
       const extensionsDir = path.join(stateDir, "extensions");
       fs.mkdirSync(extensionsDir, { recursive: true });
       const result = await installPluginFromNpmSpec({
-        spec: "@openclaw/voice-call@beta",
+        spec: "@soloclaw/voice-call@beta",
         extensionsDir,
         logger: { info: () => {}, warn: () => {} },
       });
@@ -352,10 +352,10 @@ describe("installPluginFromNpmSpec", () => {
         return;
       }
       expect(result.npmResolution?.version).toBe("0.0.2-beta.1");
-      expect(result.npmResolution?.resolvedSpec).toBe("@openclaw/voice-call@0.0.2-beta.1");
+      expect(result.npmResolution?.resolvedSpec).toBe("@soloclaw/voice-call@0.0.2-beta.1");
       expectSingleNpmPackIgnoreScriptsCall({
         calls: run.mock.calls as Array<[unknown, unknown]>,
-        expectedSpec: "@openclaw/voice-call@beta",
+        expectedSpec: "@soloclaw/voice-call@beta",
       });
       expect(packTmpDir).not.toBe("");
     }

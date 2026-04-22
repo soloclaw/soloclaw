@@ -306,7 +306,7 @@ describe("plugin-sdk qa-runner-runtime", () => {
     const module = await import("./qa-runner-runtime.js");
 
     expect(() => module.listQaRunnerCliContributions()).toThrow(
-      'QA runner plugin "qa-matrix" exported "extra" from runtime-api.js but did not declare it in openclaw.plugin.json',
+      'QA runner plugin "qa-matrix" exported "extra" from runtime-api.js but did not declare it in soloclaw.plugin.json',
     );
   });
 });

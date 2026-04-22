@@ -30,7 +30,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("pins fallback install specs to exact installed versions", () => {
     const { repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: {
           direct: "^1.0.0",
@@ -114,21 +114,21 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("skips restaging when runtime deps stamp matches the sanitized manifest", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { "left-pad": "1.3.0" },
         peerDependencies: {
-          "@openclaw/plugin-sdk": "workspace:*",
+          "@soloclaw/plugin-sdk": "workspace:*",
           openclaw: "^1.0.0",
           react: "^19.0.0",
         },
         peerDependenciesMeta: {
-          "@openclaw/plugin-sdk": { optional: true },
+          "@soloclaw/plugin-sdk": { optional: true },
           openclaw: { optional: true },
           react: { optional: true },
         },
         devDependencies: {
-          "@openclaw/plugin-sdk": "workspace:*",
+          "@soloclaw/plugin-sdk": "workspace:*",
           openclaw: "^1.0.0",
           typescript: "^5.9.0",
         },
@@ -161,7 +161,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
     expect(installCount).toBe(1);
     expect(fs.existsSync(path.join(nodeModulesDir, "marker.txt"))).toBe(true);
     expect(JSON.parse(fs.readFileSync(path.join(pluginDir, "package.json"), "utf8"))).toEqual({
-      name: "@openclaw/fixture-plugin",
+      name: "@soloclaw/fixture-plugin",
       version: "1.0.0",
       dependencies: { "left-pad": "1.3.0" },
       openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -171,7 +171,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("restages when the manifest-owned runtime deps change", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { "left-pad": "1.3.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -214,7 +214,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("restages when the root pnpm lockfile changes", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { "left-pad": "1.3.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -254,7 +254,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("restages when installed root runtime dependency contents change", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -285,7 +285,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("refuses to replace a symlinked plugin node_modules directory", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -312,7 +312,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("refuses to write a runtime deps stamp through a symlink", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -339,7 +339,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("stages runtime deps from the root node_modules when already installed", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { "left-pad": "1.3.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -365,7 +365,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("prunes staged test cargo from copied runtime dependencies", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -418,7 +418,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("preserves nested runtime dependencies named test or tests", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -479,7 +479,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("stages hoisted transitive runtime deps from the root node_modules", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -519,7 +519,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("stages nested dependency trees from installed direct package roots", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -557,7 +557,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("falls back to install when a dependency tree contains an unowned symlinked directory", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -605,7 +605,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("dedupes cyclic dependency aliases by canonical root", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { a: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -651,7 +651,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("falls back to install when a dependency name escapes node_modules", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { "../escape": "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -684,7 +684,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("falls back to install when a staged dependency tree contains a symlink outside copied roots", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -733,7 +733,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("falls back to install when the root transitive closure is incomplete", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -782,7 +782,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("removes global non-runtime suffixes from staged runtime dependencies", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -811,7 +811,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("applies package-specific cargo prune rules after staging", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { "rule-target": "1.0.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -856,7 +856,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("applies default prune rules for known heavy non-runtime package cargo", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: {
           "@cloudflare/workers-types": "1.0.0",
@@ -921,7 +921,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("falls back to staging installs when the root dependency version is incompatible", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { "left-pad": "^1.3.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -970,7 +970,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("falls back when a ^0.0.x root dependency exceeds the patch ceiling", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { tiny: "^0.0.3" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -1010,7 +1010,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("falls back when a stable caret range only matches a prerelease root build", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { direct: "^1.2.3" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -1050,7 +1050,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("retries transient runtime dependency staging failures before surfacing an error", () => {
     const { pluginDir, repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { "left-pad": "1.3.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },
@@ -1085,7 +1085,7 @@ describe("stageBundledPluginRuntimeDeps", () => {
   it("surfaces the last staging error after exhausting retries", () => {
     const { repoRoot } = createBundledPluginFixture({
       packageJson: {
-        name: "@openclaw/fixture-plugin",
+        name: "@soloclaw/fixture-plugin",
         version: "1.0.0",
         dependencies: { "left-pad": "1.3.0" },
         openclaw: { bundle: { stageRuntimeDependencies: true } },

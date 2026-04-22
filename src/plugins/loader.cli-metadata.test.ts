@@ -90,7 +90,7 @@ describe("plugin loader CLI metadata", () => {
 };`,
     });
     fs.writeFileSync(
-      path.join(plugin.dir, "openclaw.plugin.json"),
+      path.join(plugin.dir, "soloclaw.plugin.json"),
       JSON.stringify(
         {
           id: "config-cli",
@@ -140,7 +140,7 @@ describe("plugin loader CLI metadata", () => {
       path.join(pluginDir, "package.json"),
       JSON.stringify(
         {
-          name: "@openclaw/cli-metadata-channel",
+          name: "@soloclaw/cli-metadata-channel",
           openclaw: { extensions: ["./index.cjs"], setupEntry: "./setup-entry.cjs" },
         },
         null,
@@ -149,7 +149,7 @@ describe("plugin loader CLI metadata", () => {
       "utf-8",
     );
     fs.writeFileSync(
-      path.join(pluginDir, "openclaw.plugin.json"),
+      path.join(pluginDir, "soloclaw.plugin.json"),
       JSON.stringify(
         {
           id: "cli-metadata-channel",
@@ -247,7 +247,7 @@ module.exports = {
       path.join(pluginDir, "package.json"),
       JSON.stringify(
         {
-          name: "@openclaw/bundled-skip-channel",
+          name: "@soloclaw/bundled-skip-channel",
           openclaw: { extensions: ["./index.cjs"] },
         },
         null,
@@ -256,7 +256,7 @@ module.exports = {
       "utf-8",
     );
     fs.writeFileSync(
-      path.join(pluginDir, "openclaw.plugin.json"),
+      path.join(pluginDir, "soloclaw.plugin.json"),
       JSON.stringify(
         {
           id: "bundled-skip-channel",
@@ -315,7 +315,7 @@ module.exports = {
       path.join(pluginDir, "package.json"),
       JSON.stringify(
         {
-          name: "@openclaw/bundled-cli-channel",
+          name: "@soloclaw/bundled-cli-channel",
           openclaw: { extensions: ["./index.cjs"] },
         },
         null,
@@ -324,7 +324,7 @@ module.exports = {
       "utf-8",
     );
     fs.writeFileSync(
-      path.join(pluginDir, "openclaw.plugin.json"),
+      path.join(pluginDir, "soloclaw.plugin.json"),
       JSON.stringify(
         {
           id: "bundled-cli-channel",
@@ -399,7 +399,7 @@ module.exports = {
       path.join(pluginDir, "package.json"),
       JSON.stringify(
         {
-          name: "@openclaw/bundled-skip-provider",
+          name: "@soloclaw/bundled-skip-provider",
           openclaw: { extensions: ["./index.cjs"] },
         },
         null,
@@ -408,7 +408,7 @@ module.exports = {
       "utf-8",
     );
     fs.writeFileSync(
-      path.join(pluginDir, "openclaw.plugin.json"),
+      path.join(pluginDir, "soloclaw.plugin.json"),
       JSON.stringify(
         {
           id: "bundled-skip-provider",
@@ -463,7 +463,7 @@ module.exports = {
       path.join(pluginDir, "package.json"),
       JSON.stringify(
         {
-          name: "@openclaw/full-cli-metadata-channel",
+          name: "@soloclaw/full-cli-metadata-channel",
           openclaw: { extensions: ["./index.cjs"] },
         },
         null,
@@ -472,7 +472,7 @@ module.exports = {
       "utf-8",
     );
     fs.writeFileSync(
-      path.join(pluginDir, "openclaw.plugin.json"),
+      path.join(pluginDir, "soloclaw.plugin.json"),
       JSON.stringify(
         {
           id: "full-cli-metadata-channel",
@@ -609,7 +609,7 @@ module.exports = {
 };`,
     });
     fs.writeFileSync(
-      path.join(plugin.dir, "openclaw.plugin.json"),
+      path.join(plugin.dir, "soloclaw.plugin.json"),
       JSON.stringify(
         {
           id: "memory-external",

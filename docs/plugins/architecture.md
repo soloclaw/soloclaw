@@ -123,7 +123,7 @@ OpenClaw's plugin system has four layers:
 1. **Manifest + discovery**
    OpenClaw finds candidate plugins from configured paths, workspace roots,
    global extension roots, and bundled extensions. Discovery reads native
-   `openclaw.plugin.json` manifests plus supported bundle manifests first.
+   `soloclaw.plugin.json` manifests plus supported bundle manifests first.
 2. **Enablement + validation**
    Core decides whether a discovered plugin is enabled, disabled, blocked, or
    selected for an exclusive slot such as memory.
@@ -468,7 +468,7 @@ Use allowlists and explicit install/load paths for non-bundled plugins. Treat
 workspace plugins as development-time code, not production defaults.
 
 For bundled workspace package names, keep the plugin id anchored in the npm
-name: `@openclaw/<id>` by default, or an approved typed suffix such as
+name: `@soloclaw/<id>` by default, or an approved typed suffix such as
 `-provider`, `-plugin`, `-speech`, `-sandbox`, or `-media-understanding` when
 the package intentionally exposes a narrower plugin role.
 
@@ -1470,7 +1470,7 @@ Example:
 
 ```json
 {
-  "name": "@openclaw/nextcloud-talk",
+  "name": "@soloclaw/nextcloud-talk",
   "openclaw": {
     "extensions": ["./index.ts"],
     "channel": {
@@ -1484,7 +1484,7 @@ Example:
       "aliases": ["nc-talk", "nc"]
     },
     "install": {
-      "npmSpec": "@openclaw/nextcloud-talk",
+      "npmSpec": "@soloclaw/nextcloud-talk",
       "localPath": "<bundled-plugin-local-path>",
       "defaultChoice": "npm"
     }

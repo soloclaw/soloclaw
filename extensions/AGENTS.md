@@ -29,7 +29,7 @@ third-party plugins see.
 - Do not import core internals from `src/**`, `src/channels/**`,
   `src/plugin-sdk-internal/**`, or another extension's `src/**`.
 - Do not use relative imports that escape the current extension package root.
-- Keep plugin metadata accurate in `openclaw.plugin.json` and the package
+- Keep plugin metadata accurate in `soloclaw.plugin.json` and the package
   `openclaw` block so discovery and setup work without executing plugin code.
 - Treat files like `src/**`, `onboard.ts`, and other local helpers as private
   unless you intentionally promote them through `api.ts` and, if needed, a

@@ -52,7 +52,7 @@ function createManifestProviderPlugin(params: {
     origin: params.origin ?? "bundled",
     rootDir: `/tmp/${params.id}`,
     source: params.origin ?? "bundled",
-    manifestPath: `/tmp/${params.id}/openclaw.plugin.json`,
+    manifestPath: `/tmp/${params.id}/soloclaw.plugin.json`,
   };
 }
 

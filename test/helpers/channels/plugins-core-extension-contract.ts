@@ -9,17 +9,17 @@ import { resolveRelativeBundledPluginPublicModuleId } from "../../../src/test-ut
 import { withEnvAsync } from "../../../src/test-utils/env.js";
 
 type DiscordDirectoryContractApiSurface = Pick<
-  typeof import("@openclaw/discord/directory-contract-api.js"),
+  typeof import("@soloclaw/discord/directory-contract-api.js"),
   "listDiscordDirectoryPeersFromConfig" | "listDiscordDirectoryGroupsFromConfig"
 >;
-type DiscordProbe = import("@openclaw/discord/api.js").DiscordProbe;
-type DiscordTokenResolution = import("@openclaw/discord/api.js").DiscordTokenResolution;
+type DiscordProbe = import("@soloclaw/discord/api.js").DiscordProbe;
+type DiscordTokenResolution = import("@soloclaw/discord/api.js").DiscordTokenResolution;
 type TelegramDirectoryContractApiSurface = Pick<
-  typeof import("@openclaw/telegram/directory-contract-api.js"),
+  typeof import("@soloclaw/telegram/directory-contract-api.js"),
   "listTelegramDirectoryPeersFromConfig" | "listTelegramDirectoryGroupsFromConfig"
 >;
-type TelegramProbe = import("@openclaw/telegram/api.js").TelegramProbe;
-type TelegramTokenResolution = import("@openclaw/telegram/api.js").TelegramTokenResolution;
+type TelegramProbe = import("@soloclaw/telegram/api.js").TelegramProbe;
+type TelegramTokenResolution = import("@soloclaw/telegram/api.js").TelegramTokenResolution;
 
 let discordDirectoryContractApi: Promise<DiscordDirectoryContractApiSurface> | undefined;
 let telegramDirectoryContractApi: Promise<TelegramDirectoryContractApiSurface> | undefined;

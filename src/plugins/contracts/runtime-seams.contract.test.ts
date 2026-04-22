@@ -41,7 +41,7 @@ function createInstalledRuntimePluginDir(
   fs.writeFileSync(
     path.join(pluginRoot, "package.json"),
     JSON.stringify({
-      name: `@openclaw/${pluginId}`,
+      name: `@soloclaw/${pluginId}`,
       version: "0.0.0",
       openclaw: {
         extensions: ["./runtime-api.js"],
@@ -51,7 +51,7 @@ function createInstalledRuntimePluginDir(
     "utf8",
   );
   fs.writeFileSync(
-    path.join(pluginRoot, "openclaw.plugin.json"),
+    path.join(pluginRoot, "soloclaw.plugin.json"),
     JSON.stringify({
       id: pluginId,
       channels: [pluginId],

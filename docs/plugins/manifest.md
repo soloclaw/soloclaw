@@ -6,7 +6,7 @@ read_when:
 title: "Plugin Manifest"
 ---
 
-# Plugin manifest (openclaw.plugin.json)
+# Plugin manifest (soloclaw.plugin.json)
 
 This page is for the **native OpenClaw plugin manifest** only.
 
@@ -20,14 +20,14 @@ Compatible bundle formats use different manifest files:
 - Cursor bundle: `.cursor-plugin/plugin.json`
 
 OpenClaw auto-detects those bundle layouts too, but they are not validated
-against the `openclaw.plugin.json` schema described here.
+against the `soloclaw.plugin.json` schema described here.
 
 For compatible bundles, OpenClaw currently reads bundle metadata plus declared
 skill roots, Claude command roots, Claude bundle `settings.json` defaults,
 Claude bundle LSP defaults, and supported hook packs when the layout matches
 OpenClaw runtime expectations.
 
-Every native OpenClaw plugin **must** ship a `openclaw.plugin.json` file in the
+Every native OpenClaw plugin **must** ship a `soloclaw.plugin.json` file in the
 **plugin root**. OpenClaw uses this manifest to validate configuration
 **without executing plugin code**. Missing or invalid manifests are treated as
 plugin errors and block config validation.
@@ -38,7 +38,7 @@ For the native capability model and current external-compatibility guidance:
 
 ## What this file does
 
-`openclaw.plugin.json` is the metadata OpenClaw reads before it loads your
+`soloclaw.plugin.json` is the metadata OpenClaw reads before it loads your
 plugin code.
 
 Use it for:
@@ -482,18 +482,18 @@ The two files serve different jobs:
 
 | File                   | Use it for                                                                                                                       |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `openclaw.plugin.json` | Discovery, config validation, auth-choice metadata, and UI hints that must exist before plugin code runs                         |
+| `soloclaw.plugin.json` | Discovery, config validation, auth-choice metadata, and UI hints that must exist before plugin code runs                         |
 | `package.json`         | npm metadata, dependency installation, and the `openclaw` block used for entrypoints, install gating, setup, or catalog metadata |
 
 If you are unsure where a piece of metadata belongs, use this rule:
 
-- if OpenClaw must know it before loading plugin code, put it in `openclaw.plugin.json`
+- if OpenClaw must know it before loading plugin code, put it in `soloclaw.plugin.json`
 - if it is about packaging, entry files, or npm install behavior, put it in `package.json`
 
 ### package.json fields that affect discovery
 
 Some pre-runtime plugin metadata intentionally lives in `package.json` under the
-`openclaw` block instead of `openclaw.plugin.json`.
+`openclaw` block instead of `soloclaw.plugin.json`.
 
 Important examples:
 

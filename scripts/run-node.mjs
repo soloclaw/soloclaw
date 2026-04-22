@@ -22,7 +22,7 @@ const ignoredRunNodeRepoPaths = new Set([
   "src/canvas-host/a2ui/a2ui.bundle.js",
 ]);
 const extensionSourceFilePattern = /\.(?:[cm]?[jt]sx?)$/;
-const extensionRestartMetadataFiles = new Set(["openclaw.plugin.json", "package.json"]);
+const extensionRestartMetadataFiles = new Set(["soloclaw.plugin.json", "package.json"]);
 
 const normalizePath = (filePath) => String(filePath ?? "").replaceAll("\\", "/");
 

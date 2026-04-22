@@ -14,7 +14,7 @@ import {
 import type { PluginConfigUiHint } from "./manifest-types.js";
 import type { PluginKind } from "./plugin-kind.types.js";
 
-export const PLUGIN_MANIFEST_FILENAME = "openclaw.plugin.json";
+export const PLUGIN_MANIFEST_FILENAME = "soloclaw.plugin.json";
 export const PLUGIN_MANIFEST_FILENAMES = [PLUGIN_MANIFEST_FILENAME] as const;
 
 export type PluginManifestChannelConfig = {

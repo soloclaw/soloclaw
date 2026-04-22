@@ -16,7 +16,7 @@ const DEFAULT_FETCH_TIMEOUT_MS = 30_000;
 
 export type ClawHubPackageFamily = "skill" | "code-plugin" | "bundle-plugin";
 export type ClawHubPackageChannel = "official" | "community" | "private";
-// Keep aligned with @openclaw/plugin-package-contract ExternalPluginCompatibility.
+// Keep aligned with @soloclaw/plugin-package-contract ExternalPluginCompatibility.
 export type ClawHubPackageCompatibility = {
   pluginApiRange?: string;
   builtWithOpenClawVersion?: string;

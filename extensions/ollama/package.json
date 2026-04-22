@@ -1,13 +1,13 @@
 {
-  "name": "@openclaw/ollama-provider",
+  "name": "@soloclaw/ollama-provider",
   "version": "2026.4.16",
   "private": true,
   "description": "OpenClaw Ollama provider plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*"
   },
-  "openclaw": {
+  "soloclaw": {
     "extensions": [
       "./index.ts"
     ]

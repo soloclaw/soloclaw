@@ -71,7 +71,7 @@ describe("plugin-sdk qa-runner-runtime linked plugin smoke", () => {
 
     fs.mkdirSync(pluginDir, { recursive: true });
     fs.writeFileSync(
-      path.join(pluginDir, "openclaw.plugin.json"),
+      path.join(pluginDir, "soloclaw.plugin.json"),
       JSON.stringify({
         id: "qa-linked",
         qaRunners: [
@@ -91,12 +91,12 @@ describe("plugin-sdk qa-runner-runtime linked plugin smoke", () => {
     fs.writeFileSync(
       path.join(pluginDir, "package.json"),
       JSON.stringify({
-        name: "@openclaw/qa-linked",
+        name: "@soloclaw/qa-linked",
         type: "module",
         openclaw: {
           extensions: ["./index.js"],
           install: {
-            npmSpec: "@openclaw/qa-linked",
+            npmSpec: "@soloclaw/qa-linked",
           },
         },
       }),

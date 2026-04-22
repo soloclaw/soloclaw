@@ -38,7 +38,7 @@ const FULL_DEFAULTS = {
 
 function compileManifestConfigSchema() {
   const manifest = JSON.parse(
-    fs.readFileSync(new URL("../openclaw.plugin.json", import.meta.url), "utf8"),
+    fs.readFileSync(new URL("../soloclaw.plugin.json", import.meta.url), "utf8"),
   ) as { configSchema: Record<string, unknown> };
   const Ajv = AjvPkg as unknown as new (opts?: object) => import("ajv").default;
   const ajv = new Ajv({ allErrors: true, strict: false, useDefaults: true });
@@ -320,7 +320,7 @@ describe("diffs plugin schema surfaces", () => {
 
   it("keeps the runtime json schema in sync with the manifest config schema", () => {
     const manifest = JSON.parse(
-      fs.readFileSync(new URL("../openclaw.plugin.json", import.meta.url), "utf8"),
+      fs.readFileSync(new URL("../soloclaw.plugin.json", import.meta.url), "utf8"),
     ) as { configSchema?: unknown };
 
     expect(diffsPluginConfigSchema.jsonSchema).toEqual(manifest.configSchema);

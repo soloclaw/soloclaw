@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/llm-task",
+  "name": "@soloclaw/llm-task",
   "version": "2026.4.16",
   "private": true,
   "description": "OpenClaw JSON-only LLM task plugin",
@@ -9,9 +9,9 @@
     "ajv": "^8.18.0"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*"
   },
-  "openclaw": {
+  "soloclaw": {
     "extensions": [
       "./index.ts"
     ]

@@ -82,7 +82,7 @@ slash-command discovery, sandbox sync, and skill snapshots.
 ## Plugins + skills
 
 Plugins can ship their own skills by listing `skills` directories in
-`openclaw.plugin.json` (paths relative to the plugin root). Plugin skills load
+`soloclaw.plugin.json` (paths relative to the plugin root). Plugin skills load
 when the plugin is enabled. Today those directories are merged into the same
 low-precedence path as `skills.load.extraDirs`, so a same-named bundled,
 managed, agent, or workspace skill overrides them.

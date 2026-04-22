@@ -289,11 +289,11 @@ describe("stageBundledPluginRuntime", () => {
     createDistPluginDir(repoRoot, "diffs");
     setupRepoFiles(repoRoot, {
       [bundledDistPluginFile("diffs", "package.json")]: JSON.stringify(
-        { name: "@openclaw/diffs", openclaw: { extensions: ["./index.js"] } },
+        { name: "@soloclaw/diffs", openclaw: { extensions: ["./index.js"] } },
         null,
         2,
       ),
-      [bundledDistPluginFile("diffs", "openclaw.plugin.json")]: "{}\n",
+      [bundledDistPluginFile("diffs", "soloclaw.plugin.json")]: "{}\n",
       [bundledDistPluginFile("diffs", "assets/info.txt")]: "ok\n",
     });
 
@@ -302,7 +302,7 @@ describe("stageBundledPluginRuntime", () => {
     expectRuntimeArtifactText({
       repoRoot,
       pluginId: "diffs",
-      relativePath: "openclaw.plugin.json",
+      relativePath: "soloclaw.plugin.json",
       expectedText: "{}\n",
       symbolicLink: false,
     });
@@ -331,7 +331,7 @@ describe("stageBundledPluginRuntime", () => {
     setupRepoFiles(repoRoot, {
       [bundledDistPluginFile("demo", "package.json")]: JSON.stringify(
         {
-          name: "@openclaw/demo",
+          name: "@soloclaw/demo",
           openclaw: {
             extensions: ["./main.js"],
             setupEntry: "./setup.js",
@@ -343,7 +343,7 @@ describe("stageBundledPluginRuntime", () => {
         null,
         2,
       ),
-      [bundledDistPluginFile("demo", "openclaw.plugin.json")]: JSON.stringify(
+      [bundledDistPluginFile("demo", "soloclaw.plugin.json")]: JSON.stringify(
         {
           id: "demo",
           channels: ["demo"],

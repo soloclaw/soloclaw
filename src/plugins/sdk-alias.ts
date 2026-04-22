@@ -251,7 +251,7 @@ export function resolvePluginSdkAliasFile(params: {
 
 const cachedPluginSdkExportedSubpaths = new Map<string, string[]>();
 const cachedPluginSdkScopedAliasMaps = new Map<string, Record<string, string>>();
-const PLUGIN_SDK_PACKAGE_NAMES = ["openclaw/plugin-sdk", "@openclaw/plugin-sdk"] as const;
+const PLUGIN_SDK_PACKAGE_NAMES = ["openclaw/plugin-sdk", "@soloclaw/plugin-sdk"] as const;
 const PLUGIN_SDK_SOURCE_CANDIDATE_EXTENSIONS = [
   ".ts",
   ".mts",

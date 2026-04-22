@@ -45,7 +45,7 @@ fs.writeFileSync(
   path.join(distPluginDir, "package.json"),
   JSON.stringify(
     {
-      name: "@openclaw/build-smoke-plugin",
+      name: "@soloclaw/build-smoke-plugin",
       type: "module",
       openclaw: {
         extensions: ["./index.js"],
@@ -57,7 +57,7 @@ fs.writeFileSync(
   "utf8",
 );
 fs.writeFileSync(
-  path.join(distPluginDir, "openclaw.plugin.json"),
+  path.join(distPluginDir, "soloclaw.plugin.json"),
   JSON.stringify(
     {
       id: pluginId,

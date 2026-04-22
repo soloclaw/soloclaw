@@ -28,7 +28,7 @@ export const ACPX_PLUGIN_TOOLS_MCP_SERVER_NAME = "openclaw-plugin-tools";
 
 function isAcpxPluginRoot(dir: string): boolean {
   return (
-    fs.existsSync(path.join(dir, "openclaw.plugin.json")) &&
+    fs.existsSync(path.join(dir, "soloclaw.plugin.json")) &&
     fs.existsSync(path.join(dir, "package.json"))
   );
 }

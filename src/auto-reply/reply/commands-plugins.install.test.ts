@@ -135,11 +135,11 @@ describe("handleCommands /plugins install", () => {
       targetDir: "/tmp/clawhub-demo",
       version: "1.2.3",
       extensions: ["index.js"],
-      packageName: "@openclaw/clawhub-demo",
+      packageName: "@soloclaw/clawhub-demo",
       clawhub: {
         source: "clawhub",
         clawhubUrl: "https://clawhub.ai",
-        clawhubPackage: "@openclaw/clawhub-demo",
+        clawhubPackage: "@soloclaw/clawhub-demo",
         clawhubFamily: "code-plugin",
         clawhubChannel: "official",
         version: "1.2.3",
@@ -152,7 +152,7 @@ describe("handleCommands /plugins install", () => {
     await withTempHome("openclaw-command-plugins-home-", async () => {
       const workspaceDir = await workspaceHarness.createWorkspace();
       const params = buildPluginsParams(
-        "/plugins install clawhub:@openclaw/clawhub-demo@1.2.3",
+        "/plugins install clawhub:@soloclaw/clawhub-demo@1.2.3",
         workspaceDir,
       );
       const result = await handlePluginsCommand(params, true);
@@ -162,7 +162,7 @@ describe("handleCommands /plugins install", () => {
       expect(result.reply?.text).toContain('Installed plugin "clawhub-demo"');
       expect(installPluginFromClawHubMock).toHaveBeenCalledWith(
         expect.objectContaining({
-          spec: "clawhub:@openclaw/clawhub-demo@1.2.3",
+          spec: "clawhub:@soloclaw/clawhub-demo@1.2.3",
         }),
       );
       expect(persistPluginInstallMock).toHaveBeenCalledWith(
@@ -170,11 +170,11 @@ describe("handleCommands /plugins install", () => {
           pluginId: "clawhub-demo",
           install: expect.objectContaining({
             source: "clawhub",
-            spec: "clawhub:@openclaw/clawhub-demo@1.2.3",
+            spec: "clawhub:@soloclaw/clawhub-demo@1.2.3",
             installPath: "/tmp/clawhub-demo",
             version: "1.2.3",
             integrity: "sha512-demo",
-            clawhubPackage: "@openclaw/clawhub-demo",
+            clawhubPackage: "@soloclaw/clawhub-demo",
             clawhubChannel: "official",
           }),
         }),
@@ -189,11 +189,11 @@ describe("handleCommands /plugins install", () => {
       targetDir: "/tmp/alias-demo",
       version: "1.0.0",
       extensions: ["index.js"],
-      packageName: "@openclaw/alias-demo",
+      packageName: "@soloclaw/alias-demo",
       clawhub: {
         source: "clawhub",
         clawhubUrl: "https://clawhub.ai",
-        clawhubPackage: "@openclaw/alias-demo",
+        clawhubPackage: "@soloclaw/alias-demo",
         clawhubFamily: "code-plugin",
         clawhubChannel: "official",
         version: "1.0.0",
@@ -206,7 +206,7 @@ describe("handleCommands /plugins install", () => {
     await withTempHome("openclaw-command-plugins-home-", async () => {
       const workspaceDir = await workspaceHarness.createWorkspace();
       const params = buildPluginsParams(
-        "/plugin add clawhub:@openclaw/alias-demo@1.0.0",
+        "/plugin add clawhub:@soloclaw/alias-demo@1.0.0",
         workspaceDir,
       );
       const result = await handlePluginsCommand(params, true);
@@ -216,7 +216,7 @@ describe("handleCommands /plugins install", () => {
       expect(result.reply?.text).toContain('Installed plugin "alias-demo"');
       expect(installPluginFromClawHubMock).toHaveBeenCalledWith(
         expect.objectContaining({
-          spec: "clawhub:@openclaw/alias-demo@1.0.0",
+          spec: "clawhub:@soloclaw/alias-demo@1.0.0",
         }),
       );
     });

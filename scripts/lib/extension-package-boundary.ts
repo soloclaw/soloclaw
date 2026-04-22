@@ -60,10 +60,10 @@ export const EXTENSION_PACKAGE_BOUNDARY_BASE_PATHS = {
     "../dist/plugin-sdk/src/plugin-sdk/secret-ref-runtime.d.ts",
   ],
   "openclaw/plugin-sdk/ssrf-runtime": ["../dist/plugin-sdk/src/plugin-sdk/ssrf-runtime.d.ts"],
-  "@openclaw/qa-channel/api.js": ["../dist/plugin-sdk/extensions/qa-channel/api.d.ts"],
-  "@openclaw/*.js": ["../packages/plugin-sdk/dist/extensions/*.d.ts", "../extensions/*"],
-  "@openclaw/*": ["../packages/plugin-sdk/dist/extensions/*", "../extensions/*"],
-  "@openclaw/plugin-sdk/*": ["../dist/plugin-sdk/src/plugin-sdk/*.d.ts"],
+  "@soloclaw/qa-channel/api.js": ["../dist/plugin-sdk/extensions/qa-channel/api.d.ts"],
+  "@soloclaw/*.js": ["../packages/plugin-sdk/dist/extensions/*.d.ts", "../extensions/*"],
+  "@soloclaw/*": ["../packages/plugin-sdk/dist/extensions/*", "../extensions/*"],
+  "@soloclaw/plugin-sdk/*": ["../dist/plugin-sdk/src/plugin-sdk/*.d.ts"],
 } as const;
 
 function prefixExtensionPackageBoundaryPaths(
@@ -106,14 +106,14 @@ export const EXTENSION_PACKAGE_BOUNDARY_XAI_PATHS = {
   "openclaw/plugin-sdk/provider-web-search-contract": [
     "../../dist/plugin-sdk/src/plugin-sdk/provider-web-search-contract.d.ts",
   ],
-  "@openclaw/qa-channel/api.js": ["../../dist/plugin-sdk/extensions/qa-channel/api.d.ts"],
-  "@openclaw/*.js": ["../../packages/plugin-sdk/dist/extensions/*.d.ts", "../*"],
-  "@openclaw/*": ["../*"],
-  "@openclaw/plugin-sdk/*": ["../../dist/plugin-sdk/src/plugin-sdk/*.d.ts"],
-  "@openclaw/anthropic-vertex/api.js": ["./.boundary-stubs/anthropic-vertex-api.d.ts"],
-  "@openclaw/ollama/api.js": ["./.boundary-stubs/ollama-api.d.ts"],
-  "@openclaw/ollama/runtime-api.js": ["./.boundary-stubs/ollama-runtime-api.d.ts"],
-  "@openclaw/speech-core/runtime-api.js": ["./.boundary-stubs/speech-core-runtime-api.d.ts"],
+  "@soloclaw/qa-channel/api.js": ["../../dist/plugin-sdk/extensions/qa-channel/api.d.ts"],
+  "@soloclaw/*.js": ["../../packages/plugin-sdk/dist/extensions/*.d.ts", "../*"],
+  "@soloclaw/*": ["../*"],
+  "@soloclaw/plugin-sdk/*": ["../../dist/plugin-sdk/src/plugin-sdk/*.d.ts"],
+  "@soloclaw/anthropic-vertex/api.js": ["./.boundary-stubs/anthropic-vertex-api.d.ts"],
+  "@soloclaw/ollama/api.js": ["./.boundary-stubs/ollama-api.d.ts"],
+  "@soloclaw/ollama/runtime-api.js": ["./.boundary-stubs/ollama-runtime-api.d.ts"],
+  "@soloclaw/speech-core/runtime-api.js": ["./.boundary-stubs/speech-core-runtime-api.d.ts"],
 } as const;
 
 export type ExtensionPackageBoundaryTsConfigJson = {

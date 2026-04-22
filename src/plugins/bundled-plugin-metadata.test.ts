@@ -280,13 +280,13 @@ describe("bundled plugin metadata", () => {
     const pluginRoot = path.join(pluginsDir, "alpha");
 
     writeJson(path.join(pluginRoot, "package.json"), {
-      name: "@openclaw/alpha",
+      name: "@soloclaw/alpha",
       version: "0.0.1",
       openclaw: {
         extensions: ["./index.ts"],
       },
     });
-    writeJson(path.join(pluginRoot, "openclaw.plugin.json"), {
+    writeJson(path.join(pluginRoot, "soloclaw.plugin.json"), {
       id: "alpha",
       channels: ["alpha"],
       configSchema: { type: "object" },
@@ -346,13 +346,13 @@ describe("bundled plugin metadata", () => {
     const distPluginRoot = path.join(tempRoot, "dist", "extensions", "alpha");
 
     writeJson(path.join(pluginRoot, "package.json"), {
-      name: "@openclaw/alpha",
+      name: "@soloclaw/alpha",
       version: "0.0.1",
       openclaw: {
         extensions: ["./index.ts"],
       },
     });
-    writeJson(path.join(pluginRoot, "openclaw.plugin.json"), {
+    writeJson(path.join(pluginRoot, "soloclaw.plugin.json"), {
       id: "alpha",
       configSchema: { type: "object" },
     });
@@ -383,7 +383,7 @@ describe("bundled plugin metadata", () => {
     const tempRoot = createGeneratedPluginTempRoot("openclaw-bundled-plugin-channel-configs-");
 
     writeJson(path.join(tempRoot, "extensions", "alpha", "package.json"), {
-      name: "@openclaw/alpha",
+      name: "@soloclaw/alpha",
       version: "0.0.1",
       openclaw: {
         extensions: ["./index.ts"],
@@ -395,7 +395,7 @@ describe("bundled plugin metadata", () => {
         },
       },
     });
-    writeJson(path.join(tempRoot, "extensions", "alpha", "openclaw.plugin.json"), {
+    writeJson(path.join(tempRoot, "extensions", "alpha", "soloclaw.plugin.json"), {
       id: "alpha",
       channels: ["alpha"],
       configSchema: { type: "object" },
@@ -460,14 +460,14 @@ describe("bundled plugin metadata", () => {
     const tempRoot = createGeneratedPluginTempRoot("openclaw-bundled-plugin-public-artifacts-");
 
     writeJson(path.join(tempRoot, "extensions", "alpha", "package.json"), {
-      name: "@openclaw/alpha",
+      name: "@soloclaw/alpha",
       version: "0.0.1",
       openclaw: {
         extensions: ["./index.ts"],
         setupEntry: "./setup-entry.ts",
       },
     });
-    writeJson(path.join(tempRoot, "extensions", "alpha", "openclaw.plugin.json"), {
+    writeJson(path.join(tempRoot, "extensions", "alpha", "soloclaw.plugin.json"), {
       id: "alpha",
       configSchema: { type: "object" },
     });
@@ -505,7 +505,7 @@ describe("bundled plugin metadata", () => {
     const distRoot = path.join(tempRoot, "dist");
 
     writeJson(path.join(distRoot, "extensions", "alpha", "package.json"), {
-      name: "@openclaw/alpha",
+      name: "@soloclaw/alpha",
       version: "0.0.1",
       openclaw: {
         extensions: ["./index.ts"],
@@ -516,7 +516,7 @@ describe("bundled plugin metadata", () => {
         },
       },
     });
-    writeJson(path.join(distRoot, "extensions", "alpha", "openclaw.plugin.json"), {
+    writeJson(path.join(distRoot, "extensions", "alpha", "soloclaw.plugin.json"), {
       id: "alpha",
       configSchema: {
         type: "object",

@@ -1,13 +1,13 @@
 {
-  "name": "@openclaw/browser-plugin",
+  "name": "@soloclaw/browser-plugin",
   "version": "2026.4.16",
   "private": true,
   "description": "OpenClaw browser tool plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@soloclaw/plugin-sdk": "workspace:*"
   },
-  "openclaw": {
+  "soloclaw": {
     "extensions": [
       "./index.ts"
     ]

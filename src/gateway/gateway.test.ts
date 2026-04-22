@@ -55,7 +55,7 @@ async function writeWorkspacePlugin(params: {
   const pluginDir = path.join(params.workspaceDir, ".soloclaw", "extensions", params.id);
   await fs.mkdir(pluginDir, { recursive: true });
   await fs.writeFile(
-    path.join(pluginDir, "openclaw.plugin.json"),
+    path.join(pluginDir, "soloclaw.plugin.json"),
     `${JSON.stringify(
       {
         id: params.id,

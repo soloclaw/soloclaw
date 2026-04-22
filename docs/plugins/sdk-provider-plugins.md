@@ -53,7 +53,7 @@ API key auth, and dynamic model resolution.
     }
     ```
 
-    ```json openclaw.plugin.json
+    ```json soloclaw.plugin.json
     {
       "id": "acme-ai",
       "name": "Acme AI",
@@ -377,7 +377,7 @@ API key auth, and dynamic model resolution.
       `createToolStreamWrapper(...)`, and `createMinimaxFastModeWrapper(...)`
 
     Some stream helpers stay provider-local on purpose. Current bundled
-    example: `@openclaw/anthropic-provider` exports
+    example: `@soloclaw/anthropic-provider` exports
     `wrapAnthropicProviderStream`, `resolveAnthropicBetas`,
     `resolveAnthropicFastMode`, `resolveAnthropicServiceTier`, and the
     lower-level Anthropic wrapper builders from its public `api.ts` /
@@ -411,9 +411,9 @@ API key auth, and dynamic model resolution.
 
     The same package-root pattern also backs other bundled providers:
 
-    - `@openclaw/openai-provider`: `api.ts` exports provider builders,
+    - `@soloclaw/openai-provider`: `api.ts` exports provider builders,
       default-model helpers, and realtime provider builders
-    - `@openclaw/openrouter-provider`: `api.ts` exports the provider builder
+    - `@soloclaw/openrouter-provider`: `api.ts` exports the provider builder
       plus onboarding/config helpers
 
     <Tabs>
@@ -740,7 +740,7 @@ Do not use the legacy skill-only publish alias here; plugin packages should use
 ```
 <bundled-plugin-root>/acme-ai/
 ├── package.json              # openclaw.providers metadata
-├── openclaw.plugin.json      # Manifest with provider auth metadata
+├── soloclaw.plugin.json      # Manifest with provider auth metadata
 ├── index.ts                  # definePluginEntry + registerProvider
 └── src/
     ├── provider.test.ts      # Tests

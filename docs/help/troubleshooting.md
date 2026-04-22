@@ -72,7 +72,7 @@ Example:
 
 ```json
 {
-  "name": "@openclaw/my-plugin",
+  "name": "@soloclaw/my-plugin",
   "version": "1.2.3",
   "openclaw": {
     "extensions": ["./dist/index.js"]

@@ -13,7 +13,7 @@ type TtsCoreModule = typeof import("../../../src/tts/tts-core.js");
 
 const speechCoreRuntimeApiModuleId = resolveRelativeWorkspacePackagePublicModuleId({
   fromModuleUrl: import.meta.url,
-  packageName: "@openclaw/speech-core",
+  packageName: "@soloclaw/speech-core",
   artifactBasename: "runtime-api.js",
 });
 
