@@ -15,26 +15,26 @@ If you only have 2 minutes, use this page as a triage front door.
 Run this exact ladder in order:
 
 ```bash
-openclaw status
-openclaw status --all
-openclaw gateway probe
-openclaw gateway status
-openclaw doctor
-openclaw channels status --probe
+soloclaw status
+soloclaw status --all
+soloclaw gateway probe
+soloclaw gateway status
+soloclaw doctor
+soloclaw channels status --probe
 openclaw logs --follow
 ```
 
 Good output in one line:
 
-- `openclaw status` → shows configured channels and no obvious auth errors.
-- `openclaw status --all` → full report is present and shareable.
-- `openclaw gateway probe` → expected gateway target is reachable (`Reachable: yes`). `RPC: limited - missing scope: operator.read` is degraded diagnostics, not a connect failure.
-- `openclaw gateway status` → `Runtime: running` and `RPC probe: ok`.
-- `openclaw doctor` → no blocking config/service errors.
-- `openclaw channels status --probe` → reachable gateway returns live per-account
+- `soloclaw status` → shows configured channels and no obvious auth errors.
+- `soloclaw status --all` → full report is present and shareable.
+- `soloclaw gateway probe` → expected gateway target is reachable (`Reachable: yes`). `RPC: limited - missing scope: operator.read` is degraded diagnostics, not a connect failure.
+- `soloclaw gateway status` → `Runtime: running` and `RPC probe: ok`.
+- `soloclaw doctor` → no blocking config/service errors.
+- `soloclaw channels status --probe` → reachable gateway returns live per-account
   transport state plus probe/audit results such as `works` or `audit ok`; if the
   gateway is unreachable, the command falls back to config-only summaries.
-- `openclaw logs --follow` → steady activity, no repeating fatal errors.
+- `soloclaw logs --follow` → steady activity, no repeating fatal errors.
 
 ## Anthropic long context 429
 
@@ -45,7 +45,7 @@ go to [/gateway/troubleshooting#anthropic-429-extra-usage-required-for-long-cont
 ## Local OpenAI-compatible backend works directly but fails in OpenClaw
 
 If your local or self-hosted `/v1` backend answers small direct
-`/v1/chat/completions` probes but fails on `openclaw infer model run` or normal
+`/v1/chat/completions` probes but fails on `soloclaw infer model run` or normal
 agent turns:
 
 1. If the error mentions `messages[].content` expecting a string, set
@@ -66,7 +66,7 @@ Fix in the plugin package:
 
 1. Add `openclaw.extensions` to `package.json`.
 2. Point entries at built runtime files (usually `./dist/index.js`).
-3. Republish the plugin and run `openclaw plugins install <package>` again.
+3. Republish the plugin and run `soloclaw plugins install <package>` again.
 
 Example:
 
@@ -107,10 +107,10 @@ flowchart TD
 <AccordionGroup>
   <Accordion title="No replies">
     ```bash
-    openclaw status
-    openclaw gateway status
-    openclaw channels status --probe
-    openclaw pairing list --channel <channel> [--account <id>]
+    soloclaw status
+    soloclaw gateway status
+    soloclaw channels status --probe
+    soloclaw pairing list --channel <channel> [--account <id>]
     openclaw logs --follow
     ```
 
@@ -137,16 +137,16 @@ flowchart TD
 
   <Accordion title="Dashboard or Control UI will not connect">
     ```bash
-    openclaw status
-    openclaw gateway status
+    soloclaw status
+    soloclaw gateway status
     openclaw logs --follow
-    openclaw doctor
-    openclaw channels status --probe
+    soloclaw doctor
+    soloclaw channels status --probe
     ```
 
     Good output looks like:
 
-    - `Dashboard: http://...` is shown in `openclaw gateway status`
+    - `Dashboard: http://...` is shown in `soloclaw gateway status`
     - `RPC probe: ok`
     - No auth loop in logs
 
@@ -178,11 +178,11 @@ flowchart TD
 
   <Accordion title="Gateway will not start or service installed but not running">
     ```bash
-    openclaw status
-    openclaw gateway status
+    soloclaw status
+    soloclaw gateway status
     openclaw logs --follow
-    openclaw doctor
-    openclaw channels status --probe
+    soloclaw doctor
+    soloclaw channels status --probe
     ```
 
     Good output looks like:
@@ -207,11 +207,11 @@ flowchart TD
 
   <Accordion title="Channel connects but messages do not flow">
     ```bash
-    openclaw status
-    openclaw gateway status
+    soloclaw status
+    soloclaw gateway status
     openclaw logs --follow
-    openclaw doctor
-    openclaw channels status --probe
+    soloclaw doctor
+    soloclaw channels status --probe
     ```
 
     Good output looks like:
@@ -235,11 +235,11 @@ flowchart TD
 
   <Accordion title="Cron or heartbeat did not fire or did not deliver">
     ```bash
-    openclaw status
-    openclaw gateway status
-    openclaw cron status
-    openclaw cron list
-    openclaw cron runs --id <jobId> --limit 20
+    soloclaw status
+    soloclaw gateway status
+    soloclaw cron status
+    soloclaw cron list
+    soloclaw cron runs --id <jobId> --limit 20
     openclaw logs --follow
     ```
 
@@ -269,10 +269,10 @@ flowchart TD
 
     <Accordion title="Node is paired but tool fails camera canvas screen exec">
       ```bash
-      openclaw status
-      openclaw gateway status
-      openclaw nodes status
-      openclaw nodes describe --node <idOrNameOrIp>
+      soloclaw status
+      soloclaw gateway status
+      soloclaw nodes status
+      soloclaw nodes describe --node <idOrNameOrIp>
       openclaw logs --follow
       ```
 
@@ -299,10 +299,10 @@ flowchart TD
 
     <Accordion title="Exec suddenly asks for approval">
       ```bash
-      openclaw config get tools.exec.host
-      openclaw config get tools.exec.security
-      openclaw config get tools.exec.ask
-      openclaw gateway restart
+      soloclaw config get tools.exec.host
+      soloclaw config get tools.exec.security
+      soloclaw config get tools.exec.ask
+      soloclaw gateway restart
       ```
 
       What changed:
@@ -317,10 +317,10 @@ flowchart TD
       Restore current default no-approval behavior:
 
       ```bash
-      openclaw config set tools.exec.host gateway
-      openclaw config set tools.exec.security full
-      openclaw config set tools.exec.ask off
-      openclaw gateway restart
+      soloclaw config set tools.exec.host gateway
+      soloclaw config set tools.exec.security full
+      soloclaw config set tools.exec.ask off
+      soloclaw gateway restart
       ```
 
       Safer alternatives:
@@ -345,11 +345,11 @@ flowchart TD
 
     <Accordion title="Browser tool fails">
       ```bash
-      openclaw status
-      openclaw gateway status
+      soloclaw status
+      soloclaw gateway status
       openclaw browser status
       openclaw logs --follow
-      openclaw doctor
+      soloclaw doctor
       ```
 
       Good output looks like:
@@ -367,7 +367,7 @@ flowchart TD
       - `No Chrome tabs found for profile="user"` → the Chrome MCP attach profile has no open local Chrome tabs.
       - `Remote CDP for profile "<name>" is not reachable` → the configured remote CDP endpoint is not reachable from this host.
       - `Browser attachOnly is enabled ... not reachable` or `Browser attachOnly is enabled and CDP websocket ... is not reachable` → attach-only profile has no live CDP target.
-      - stale viewport / dark-mode / locale / offline overrides on attach-only or remote CDP profiles → run `openclaw browser stop --browser-profile <name>` to close the active control session and release emulation state without restarting the gateway.
+      - stale viewport / dark-mode / locale / offline overrides on attach-only or remote CDP profiles → run `soloclaw browser stop --browser-profile <name>` to close the active control session and release emulation state without restarting the gateway.
 
       Deep pages:
 

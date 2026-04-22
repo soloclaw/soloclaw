@@ -23,7 +23,7 @@ Quick mental model:
 - Install plugin
 - Restart Gateway
 - Configure under `plugins.entries.voice-call.config`
-- Use `openclaw voicecall ...` or the `voice_call` tool
+- Use `soloclaw voicecall ...` or the `voice_call` tool
 
 ## Where it runs (local vs remote)
 
@@ -134,7 +134,7 @@ Notes:
 - Twilio/Telnyx require a **publicly reachable** webhook URL.
 - Plivo requires a **publicly reachable** webhook URL.
 - `mock` is a local dev provider (no network calls).
-- If older configs still use `provider: "log"`, `twilio.from`, or legacy `streaming.*` OpenAI keys, run `openclaw doctor --fix` to rewrite them.
+- If older configs still use `provider: "log"`, `twilio.from`, or legacy `streaming.*` OpenAI keys, run `soloclaw doctor --fix` to rewrite them.
 - Telnyx requires `telnyx.publicKey` (or `TELNYX_PUBLIC_KEY`) unless `skipSignatureVerification` is true.
 - `skipSignatureVerification` is for local testing only.
 - If you use ngrok free tier, set `publicUrl` to the exact ngrok URL; signature verification is always enforced.
@@ -145,7 +145,7 @@ Notes:
 - `streaming.maxPendingConnections` caps total unauthenticated pre-start sockets.
 - `streaming.maxPendingConnectionsPerIp` caps unauthenticated pre-start sockets per source IP.
 - `streaming.maxConnections` caps total open media stream sockets (pending + active).
-- Runtime fallback still accepts those old voice-call keys for now, but the rewrite path is `openclaw doctor --fix` and the compat shim is temporary.
+- Runtime fallback still accepts those old voice-call keys for now, but the rewrite path is `soloclaw doctor --fix` and the compat shim is temporary.
 
 ## Streaming transcription
 
@@ -197,7 +197,7 @@ Example:
 }
 ```
 
-Legacy keys are still auto-migrated by `openclaw doctor --fix`:
+Legacy keys are still auto-migrated by `soloclaw doctor --fix`:
 
 - `streaming.sttProvider` → `streaming.provider`
 - `streaming.openaiApiKey` → `streaming.providers.openai.apiKey`

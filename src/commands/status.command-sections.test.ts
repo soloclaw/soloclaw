@@ -152,9 +152,9 @@ describe("status.command-sections", () => {
       "",
       "warn(upgrade ready)",
       "Next steps:",
-      "  Need to share?      cmd:openclaw status --all",
+      "  Need to share?      cmd:soloclaw status --all",
       "  Need to debug live? cmd:openclaw logs --follow",
-      "  Fix reachability first: cmd:openclaw gateway probe",
+      "  Fix reachability first: cmd:soloclaw gateway probe",
     ]);
   });
 
@@ -182,9 +182,9 @@ describe("status.command-sections", () => {
       }),
     ).toEqual([
       "warn(Gateway pairing approval required.)",
-      "muted(Recovery: cmd:openclaw devices approve req-123)",
-      "muted(Fallback: cmd:openclaw devices approve --latest)",
-      "muted(Inspect: cmd:openclaw devices list)",
+      "muted(Recovery: cmd:soloclaw devices approve req-123)",
+      "muted(Fallback: cmd:soloclaw devices approve --latest)",
+      "muted(Inspect: cmd:soloclaw devices list)",
     ]);
   });
 

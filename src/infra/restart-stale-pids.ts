@@ -52,7 +52,7 @@ function sleepSync(ms: number): void {
 }
 
 /**
- * Parse openclaw gateway PIDs from lsof -Fpc stdout.
+ * Parse soloclaw gateway PIDs from lsof -Fpc stdout.
  * Pure function — no I/O. Excludes the current process.
  */
 function parsePidsFromLsofOutput(stdout: string): number[] {
@@ -89,7 +89,7 @@ function parsePidsFromLsofOutput(stdout: string): number[] {
 
 /**
  * Find PIDs of gateway processes listening on the given port using synchronous lsof.
- * Returns only PIDs that belong to openclaw gateway processes (not the current process).
+ * Returns only PIDs that belong to soloclaw gateway processes (not the current process).
  */
 export function findGatewayPidsOnPortSync(
   port: number,

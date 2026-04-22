@@ -1,14 +1,14 @@
 ---
 summary: "Infer-first CLI for provider-backed model, image, audio, TTS, video, web, and embedding workflows"
 read_when:
-  - Adding or modifying `openclaw infer` commands
+  - Adding or modifying `soloclaw infer` commands
   - Designing stable headless capability automation
 title: "Inference CLI"
 ---
 
 # Inference CLI
 
-`openclaw infer` is the canonical headless surface for provider-backed inference workflows.
+`soloclaw infer` is the canonical headless surface for provider-backed inference workflows.
 
 It intentionally exposes capability families, not raw gateway RPC names and not raw agent tool ids.
 
@@ -17,7 +17,7 @@ It intentionally exposes capability families, not raw gateway RPC names and not 
 Copy and paste this to an agent:
 
 ```text
-Read https://docs.soloclaw.ai/cli/infer, then create a skill that routes my common workflows to `openclaw infer`.
+Read https://docs.soloclaw.ai/cli/infer, then create a skill that routes my common workflows to `soloclaw infer`.
 Focus on model runs, image generation, video generation, audio transcription, TTS, web search, and embeddings.
 ```
 
@@ -25,21 +25,21 @@ A good infer-based skill should:
 
 - map common user intents to the correct infer subcommand
 - include a few canonical infer examples for the workflows it covers
-- prefer `openclaw infer ...` in examples and suggestions
+- prefer `soloclaw infer ...` in examples and suggestions
 - avoid re-documenting the entire infer surface inside the skill body
 
 Typical infer-focused skill coverage:
 
-- `openclaw infer model run`
-- `openclaw infer image generate`
-- `openclaw infer audio transcribe`
-- `openclaw infer tts convert`
-- `openclaw infer web search`
-- `openclaw infer embedding create`
+- `soloclaw infer model run`
+- `soloclaw infer image generate`
+- `soloclaw infer audio transcribe`
+- `soloclaw infer tts convert`
+- `soloclaw infer web search`
+- `soloclaw infer embedding create`
 
 ## Why use infer
 
-`openclaw infer` provides one consistent CLI for provider-backed inference tasks inside OpenClaw.
+`soloclaw infer` provides one consistent CLI for provider-backed inference tasks inside OpenClaw.
 
 Benefits:
 
@@ -106,20 +106,20 @@ This table maps common inference tasks to the corresponding infer command.
 
 | Task                    | Command                                                                | Notes                                                |
 | ----------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------- |
-| Run a text/model prompt | `openclaw infer model run --prompt "..." --json`                       | Uses the normal local path by default                |
-| Generate an image       | `openclaw infer image generate --prompt "..." --json`                  | Use `image edit` when starting from an existing file |
-| Describe an image file  | `openclaw infer image describe --file ./image.png --json`              | `--model` must be `<provider/model>`                 |
-| Transcribe audio        | `openclaw infer audio transcribe --file ./memo.m4a --json`             | `--model` must be `<provider/model>`                 |
-| Synthesize speech       | `openclaw infer tts convert --text "..." --output ./speech.mp3 --json` | `tts status` is gateway-oriented                     |
-| Generate a video        | `openclaw infer video generate --prompt "..." --json`                  |                                                      |
-| Describe a video file   | `openclaw infer video describe --file ./clip.mp4 --json`               | `--model` must be `<provider/model>`                 |
-| Search the web          | `openclaw infer web search --query "..." --json`                       |                                                      |
-| Fetch a web page        | `openclaw infer web fetch --url https://example.com --json`            |                                                      |
-| Create embeddings       | `openclaw infer embedding create --text "..." --json`                  |                                                      |
+| Run a text/model prompt | `soloclaw infer model run --prompt "..." --json`                       | Uses the normal local path by default                |
+| Generate an image       | `soloclaw infer image generate --prompt "..." --json`                  | Use `image edit` when starting from an existing file |
+| Describe an image file  | `soloclaw infer image describe --file ./image.png --json`              | `--model` must be `<provider/model>`                 |
+| Transcribe audio        | `soloclaw infer audio transcribe --file ./memo.m4a --json`             | `--model` must be `<provider/model>`                 |
+| Synthesize speech       | `soloclaw infer tts convert --text "..." --output ./speech.mp3 --json` | `tts status` is gateway-oriented                     |
+| Generate a video        | `soloclaw infer video generate --prompt "..." --json`                  |                                                      |
+| Describe a video file   | `soloclaw infer video describe --file ./clip.mp4 --json`               | `--model` must be `<provider/model>`                 |
+| Search the web          | `soloclaw infer web search --query "..." --json`                       |                                                      |
+| Fetch a web page        | `soloclaw infer web fetch --url https://example.com --json`            |                                                      |
+| Create embeddings       | `soloclaw infer embedding create --text "..." --json`                  |                                                      |
 
 ## Behavior
 
-- `openclaw infer ...` is the primary CLI surface for these workflows.
+- `soloclaw infer ...` is the primary CLI surface for these workflows.
 - Use `--json` when the output will be consumed by another command or script.
 - Use `--provider` or `--model provider/model` when a specific backend is required.
 - For `image describe`, `audio transcribe`, and `video describe`, `--model` must use the form `<provider/model>`.
@@ -277,4 +277,4 @@ openclaw infer audio transcribe --file ./memo.m4a --model openai/whisper-1 --jso
 
 ## Notes
 
-- `openclaw capability ...` is an alias for `openclaw infer ...`.
+- `soloclaw capability ...` is an alias for `soloclaw infer ...`.

@@ -42,29 +42,29 @@ describe("buildPlatformServiceStartHints", () => {
     expect(
       buildPlatformServiceStartHints({
         platform: "darwin",
-        installCommand: "openclaw gateway install",
-        startCommand: "openclaw gateway",
+        installCommand: "soloclaw gateway install",
+        startCommand: "soloclaw gateway",
         launchAgentPlistPath: "~/Library/LaunchAgents/com.soloclaw.gateway.plist",
         systemdServiceName: "openclaw-gateway",
         windowsTaskName: "OpenClaw Gateway",
       }),
     ).toEqual([
-      "openclaw gateway install",
-      "openclaw gateway",
+      "soloclaw gateway install",
+      "soloclaw gateway",
       "launchctl bootstrap gui/$UID ~/Library/LaunchAgents/com.soloclaw.gateway.plist",
     ]);
     expect(
       buildPlatformServiceStartHints({
         platform: "linux",
-        installCommand: "openclaw gateway install",
-        startCommand: "openclaw gateway",
+        installCommand: "soloclaw gateway install",
+        startCommand: "soloclaw gateway",
         launchAgentPlistPath: "~/Library/LaunchAgents/com.soloclaw.gateway.plist",
         systemdServiceName: "openclaw-gateway",
         windowsTaskName: "OpenClaw Gateway",
       }),
     ).toEqual([
-      "openclaw gateway install",
-      "openclaw gateway",
+      "soloclaw gateway install",
+      "soloclaw gateway",
       "systemctl --user start openclaw-gateway.service",
     ]);
   });

@@ -387,8 +387,8 @@ before the next major release.
 Set these environment variables while you work on migrating:
 
 ```bash
-OPENCLAW_SUPPRESS_PLUGIN_SDK_COMPAT_WARNING=1 openclaw gateway run
-OPENCLAW_SUPPRESS_EXTENSION_API_WARNING=1 openclaw gateway run
+OPENCLAW_SUPPRESS_PLUGIN_SDK_COMPAT_WARNING=1 soloclaw gateway run
+OPENCLAW_SUPPRESS_EXTENSION_API_WARNING=1 soloclaw gateway run
 ```
 
 This is a temporary escape hatch, not a permanent solution.

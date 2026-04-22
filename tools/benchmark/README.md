@@ -90,8 +90,8 @@ Score = 70% accuracy + 30% speed (capped at 50 tok/s). Results will vary on diff
 
 ```bash
 # To try xlarge models:
-openclaw config set agents.defaults.model.primary ollama/qwen2.5:32b
-openclaw gateway restart
+soloclaw config set agents.defaults.model.primary ollama/qwen2.5:32b
+soloclaw gateway restart
 ```
 
 ## Test Domains

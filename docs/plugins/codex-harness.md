@@ -161,7 +161,7 @@ Environment override:
 ```bash
 OPENCLAW_AGENT_RUNTIME=codex \
 OPENCLAW_AGENT_HARNESS_FALLBACK=none \
-openclaw gateway run
+soloclaw gateway run
 ```
 
 With fallback disabled, OpenClaw fails early if the Codex plugin is disabled,

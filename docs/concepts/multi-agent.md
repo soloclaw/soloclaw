@@ -72,7 +72,7 @@ If you do nothing, OpenClaw runs a single agent:
 Use the agent wizard to add a new isolated agent:
 
 ```bash
-openclaw agents add work
+soloclaw agents add work
 ```
 
 Then add `bindings` (or let the wizard do it) to route inbound messages.
@@ -80,7 +80,7 @@ Then add `bindings` (or let the wizard do it) to route inbound messages.
 Verify with:
 
 ```bash
-openclaw agents list --bindings
+soloclaw agents list --bindings
 ```
 
 ## Quick start
@@ -91,8 +91,8 @@ openclaw agents list --bindings
 Use the wizard or create workspaces manually:
 
 ```bash
-openclaw agents add coding
-openclaw agents add social
+soloclaw agents add coding
+soloclaw agents add social
 ```
 
 Each agent gets its own workspace with `SOUL.md`, `AGENTS.md`, and optional `USER.md`, plus a dedicated `agentDir` and session store under `~/.soloclaw/agents/<agentId>`.
@@ -108,7 +108,7 @@ Create one account per agent on your preferred channels:
 - WhatsApp: link each phone number per account.
 
 ```bash
-openclaw channels login --channel whatsapp --account work
+soloclaw channels login --channel whatsapp --account work
 ```
 
 See channel guides: [Discord](/channels/discord), [Telegram](/channels/telegram), [WhatsApp](/channels/whatsapp).
@@ -124,9 +124,9 @@ Add agents under `agents.list`, channel accounts under `channels.<channel>.accou
   <Step title="Restart and verify">
 
 ```bash
-openclaw gateway restart
-openclaw agents list --bindings
-openclaw channels status --probe
+soloclaw gateway restart
+soloclaw agents list --bindings
+soloclaw channels status --probe
 ```
 
   </Step>
@@ -364,8 +364,8 @@ Notes:
 Link each account before starting the gateway:
 
 ```bash
-openclaw channels login --channel whatsapp --account personal
-openclaw channels login --channel whatsapp --account biz
+soloclaw channels login --channel whatsapp --account personal
+soloclaw channels login --channel whatsapp --account biz
 ```
 
 `~/.soloclaw/openclaw.json` (JSON5):

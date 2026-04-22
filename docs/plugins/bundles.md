@@ -57,7 +57,7 @@ and use it immediately.
 
   <Step title="Restart and use">
     ```bash
-    openclaw gateway restart
+    soloclaw gateway restart
     ```
 
     Mapped features (skills, hooks, MCP tools, LSP defaults) are available in the next session.
@@ -188,7 +188,7 @@ Sanitized keys:
 - OpenClaw loads `.lsp.json` plus any manifest-declared `lspServers` paths
 - bundle LSP config is merged into the effective embedded Pi LSP defaults
 - only supported stdio-backed LSP servers are runnable today; unsupported
-  transports still show up in `openclaw plugins inspect <id>`
+  transports still show up in `soloclaw plugins inspect <id>`
 
 ### Detected but not executed
 
@@ -265,7 +265,7 @@ bundles as trusted content for the features they do expose.
 
 <AccordionGroup>
   <Accordion title="Bundle is detected but capabilities do not run">
-    Run `openclaw plugins inspect <id>`. If a capability is listed but marked as
+    Run `soloclaw plugins inspect <id>`. If a capability is listed but marked as
     not wired, that is a product limit — not a broken install.
   </Accordion>
 

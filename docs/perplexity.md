@@ -85,7 +85,7 @@ Optional compatibility controls:
 
 ## Where to set the key
 
-**Via config:** run `openclaw configure --section web`. It stores the key in
+**Via config:** run `soloclaw configure --section web`. It stores the key in
 `~/.soloclaw/openclaw.json` under `plugins.entries.perplexity.config.webSearch.apiKey`.
 That field also accepts SecretRef objects.
 

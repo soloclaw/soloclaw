@@ -15,7 +15,7 @@ For model selection rules, see [/concepts/models](/concepts/models).
 
 - Model refs use `provider/model` (example: `opencode/claude-opus-4-6`).
 - If you set `agents.defaults.models`, it becomes the allowlist.
-- CLI helpers: `openclaw onboard`, `openclaw models list`, `openclaw models set <provider/model>`.
+- CLI helpers: `soloclaw onboard`, `soloclaw models list`, `soloclaw models set <provider/model>`.
 - Fallback runtime rules, cooldown probes, and session-override persistence are
   documented in [/concepts/model-failover](/concepts/model-failover).
 - `models.providers.*.models[].contextWindow` is native model metadata;
@@ -66,7 +66,7 @@ the generic inference loop.
 Typical split:
 
 - `auth[].run` / `auth[].runNonInteractive`: provider owns onboarding/login
-  flows for `openclaw onboard`, `openclaw models auth`, and headless setup
+  flows for `soloclaw onboard`, `soloclaw models auth`, and headless setup
 - `wizard.setup` / `wizard.modelPicker`: provider owns auth-choice labels,
   legacy aliases, onboarding allowlist hints, and setup entries in onboarding/model pickers
 - `catalog`: provider appears in `models.providers`
@@ -253,7 +253,7 @@ OpenClaw ships with the pi‑ai catalog. These providers require **no**
 - Auth: `OPENAI_API_KEY`
 - Optional rotation: `OPENAI_API_KEYS`, `OPENAI_API_KEY_1`, `OPENAI_API_KEY_2`, plus `OPENCLAW_LIVE_OPENAI_KEY` (single override)
 - Example models: `openai/gpt-5.4`, `openai/gpt-5.4-pro`
-- CLI: `openclaw onboard --auth-choice openai-api-key`
+- CLI: `soloclaw onboard --auth-choice openai-api-key`
 - Default transport is `auto` (WebSocket-first, SSE fallback)
 - Override per model via `agents.defaults.models["openai/<model>"].params.transport` (`"sse"`, `"websocket"`, or `"auto"`)
 - OpenAI Responses WebSocket warm-up defaults to enabled via `params.openaiWsWarmup` (`true`/`false`)
@@ -279,7 +279,7 @@ OpenClaw ships with the pi‑ai catalog. These providers require **no**
 - Auth: `ANTHROPIC_API_KEY`
 - Optional rotation: `ANTHROPIC_API_KEYS`, `ANTHROPIC_API_KEY_1`, `ANTHROPIC_API_KEY_2`, plus `OPENCLAW_LIVE_ANTHROPIC_KEY` (single override)
 - Example model: `anthropic/claude-opus-4-6`
-- CLI: `openclaw onboard --auth-choice apiKey`
+- CLI: `soloclaw onboard --auth-choice apiKey`
 - Direct public Anthropic requests support the shared `/fast` toggle and `params.fastMode`, including API-key and OAuth-authenticated traffic sent to `api.anthropic.com`; OpenClaw maps that to Anthropic `service_tier` (`auto` vs `standard_only`)
 - Anthropic note: Anthropic staff told us OpenClaw-style Claude CLI usage is allowed again, so OpenClaw treats Claude CLI reuse and `claude -p` usage as sanctioned for this integration unless Anthropic publishes a new policy.
 - Anthropic setup-token remains available as a supported OpenClaw token path, but OpenClaw now prefers Claude CLI reuse and `claude -p` when available.
@@ -295,7 +295,7 @@ OpenClaw ships with the pi‑ai catalog. These providers require **no**
 - Provider: `openai-codex`
 - Auth: OAuth (ChatGPT)
 - Example model: `openai-codex/gpt-5.4`
-- CLI: `openclaw onboard --auth-choice openai-codex` or `openclaw models auth login --provider openai-codex`
+- CLI: `soloclaw onboard --auth-choice openai-codex` or `soloclaw models auth login --provider openai-codex`
 - Default transport is `auto` (WebSocket-first, SSE fallback)
 - Override per model via `agents.defaults.models["openai-codex/<model>"].params.transport` (`"sse"`, `"websocket"`, or `"auto"`)
 - `params.serviceTier` is also forwarded on native Codex Responses requests (`chatgpt.com/backend-api`)
@@ -337,7 +337,7 @@ OpenClaw ships with the pi‑ai catalog. These providers require **no**
 - Zen runtime provider: `opencode`
 - Go runtime provider: `opencode-go`
 - Example models: `opencode/claude-opus-4-6`, `opencode-go/kimi-k2.5`
-- CLI: `openclaw onboard --auth-choice opencode-zen` or `openclaw onboard --auth-choice opencode-go`
+- CLI: `soloclaw onboard --auth-choice opencode-zen` or `soloclaw onboard --auth-choice opencode-go`
 
 ```json5
 {
@@ -352,7 +352,7 @@ OpenClaw ships with the pi‑ai catalog. These providers require **no**
 - Optional rotation: `GEMINI_API_KEYS`, `GEMINI_API_KEY_1`, `GEMINI_API_KEY_2`, `GOOGLE_API_KEY` fallback, and `OPENCLAW_LIVE_GEMINI_KEY` (single override)
 - Example models: `google/gemini-3.1-pro-preview`, `google/gemini-3-flash-preview`
 - Compatibility: legacy OpenClaw config using `google/gemini-3.1-flash-preview` is normalized to `google/gemini-3-flash-preview`
-- CLI: `openclaw onboard --auth-choice gemini-api-key`
+- CLI: `soloclaw onboard --auth-choice gemini-api-key`
 - Direct Gemini runs also accept `agents.defaults.models["google/<model>"].params.cachedContent`
   (or legacy `cached_content`) to forward a provider-native
   `cachedContents/...` handle; Gemini cache hits surface as OpenClaw `cacheRead`
@@ -366,8 +366,8 @@ OpenClaw ships with the pi‑ai catalog. These providers require **no**
   - Install Gemini CLI first:
     - `brew install gemini-cli`
     - or `npm install -g @google/gemini-cli`
-  - Enable: `openclaw plugins enable google`
-  - Login: `openclaw models auth login --provider google-gemini-cli --set-default`
+  - Enable: `soloclaw plugins enable google`
+  - Login: `soloclaw models auth login --provider google-gemini-cli --set-default`
   - Default model: `google-gemini-cli/gemini-3-flash-preview`
   - Note: you do **not** paste a client id or secret into `openclaw.json`. The CLI login flow stores
     tokens in auth profiles on the gateway host.
@@ -380,7 +380,7 @@ OpenClaw ships with the pi‑ai catalog. These providers require **no**
 - Provider: `zai`
 - Auth: `ZAI_API_KEY`
 - Example model: `zai/glm-5.1`
-- CLI: `openclaw onboard --auth-choice zai-api-key`
+- CLI: `soloclaw onboard --auth-choice zai-api-key`
   - Aliases: `z.ai/*` and `z-ai/*` normalize to `zai/*`
   - `zai-api-key` auto-detects the matching Z.AI endpoint; `zai-coding-global`, `zai-coding-cn`, `zai-global`, and `zai-cn` force a specific surface
 
@@ -389,14 +389,14 @@ OpenClaw ships with the pi‑ai catalog. These providers require **no**
 - Provider: `vercel-ai-gateway`
 - Auth: `AI_GATEWAY_API_KEY`
 - Example model: `vercel-ai-gateway/anthropic/claude-opus-4.6`
-- CLI: `openclaw onboard --auth-choice ai-gateway-api-key`
+- CLI: `soloclaw onboard --auth-choice ai-gateway-api-key`
 
 ### Kilo Gateway
 
 - Provider: `kilocode`
 - Auth: `KILOCODE_API_KEY`
 - Example model: `kilocode/kilo/auto`
-- CLI: `openclaw onboard --auth-choice kilocode-api-key`
+- CLI: `soloclaw onboard --auth-choice kilocode-api-key`
 - Base URL: `https://api.kilo.ai/api/gateway/`
 - Static fallback catalog ships `kilocode/kilo/auto`; live
   `https://api.kilo.ai/api/gateway/models` discovery can expand the runtime
@@ -463,13 +463,13 @@ See [/providers/kilocode](/providers/kilocode) for setup details.
     disable it
 - Mistral: `mistral` (`MISTRAL_API_KEY`)
 - Example model: `mistral/mistral-large-latest`
-- CLI: `openclaw onboard --auth-choice mistral-api-key`
+- CLI: `soloclaw onboard --auth-choice mistral-api-key`
 - Groq: `groq` (`GROQ_API_KEY`)
 - Cerebras: `cerebras` (`CEREBRAS_API_KEY`)
   - GLM models on Cerebras use ids `zai-glm-4.7` and `zai-glm-4.6`.
   - OpenAI-compatible base URL: `https://api.cerebras.ai/v1`.
 - GitHub Copilot: `github-copilot` (`COPILOT_GITHUB_TOKEN` / `GH_TOKEN` / `GITHUB_TOKEN`)
-- Hugging Face Inference example model: `huggingface/deepseek-ai/DeepSeek-R1`; CLI: `openclaw onboard --auth-choice huggingface-api-key`. See [Hugging Face (Inference)](/providers/huggingface).
+- Hugging Face Inference example model: `huggingface/deepseek-ai/DeepSeek-R1`; CLI: `soloclaw onboard --auth-choice huggingface-api-key`. See [Hugging Face (Inference)](/providers/huggingface).
 
 ## Providers via `models.providers` (custom/base URL)
 
@@ -489,7 +489,7 @@ need to override the base URL or model metadata:
 - Provider: `moonshot`
 - Auth: `MOONSHOT_API_KEY`
 - Example model: `moonshot/kimi-k2.5`
-- CLI: `openclaw onboard --auth-choice moonshot-api-key` or `openclaw onboard --auth-choice moonshot-api-key-cn`
+- CLI: `soloclaw onboard --auth-choice moonshot-api-key` or `soloclaw onboard --auth-choice moonshot-api-key-cn`
 
 Kimi K2 model IDs:
 
@@ -547,7 +547,7 @@ Volcano Engine (火山引擎) provides access to Doubao and other models in Chin
 - Provider: `volcengine` (coding: `volcengine-plan`)
 - Auth: `VOLCANO_ENGINE_API_KEY`
 - Example model: `volcengine-plan/ark-code-latest`
-- CLI: `openclaw onboard --auth-choice volcengine-api-key`
+- CLI: `soloclaw onboard --auth-choice volcengine-api-key`
 
 ```json5
 {
@@ -588,7 +588,7 @@ BytePlus ARK provides access to the same models as Volcano Engine for internatio
 - Provider: `byteplus` (coding: `byteplus-plan`)
 - Auth: `BYTEPLUS_API_KEY`
 - Example model: `byteplus-plan/ark-code-latest`
-- CLI: `openclaw onboard --auth-choice byteplus-api-key`
+- CLI: `soloclaw onboard --auth-choice byteplus-api-key`
 
 ```json5
 {
@@ -627,7 +627,7 @@ Synthetic provides Anthropic-compatible models behind the `synthetic` provider:
 - Provider: `synthetic`
 - Auth: `SYNTHETIC_API_KEY`
 - Example model: `synthetic/hf:MiniMaxAI/MiniMax-M2.5`
-- CLI: `openclaw onboard --auth-choice synthetic-api-key`
+- CLI: `soloclaw onboard --auth-choice synthetic-api-key`
 
 ```json5
 {
@@ -718,7 +718,7 @@ ollama pull llama3.3
 
 Ollama is detected locally at `http://127.0.0.1:11434` when you opt in with
 `OLLAMA_API_KEY`, and the bundled provider plugin adds Ollama directly to
-`openclaw onboard` and the model picker. See [/providers/ollama](/providers/ollama)
+`soloclaw onboard` and the model picker. See [/providers/ollama](/providers/ollama)
 for onboarding, cloud/local mode, and custom configuration.
 
 ### vLLM
@@ -832,7 +832,7 @@ Notes:
 ## CLI examples
 
 ```bash
-openclaw onboard --auth-choice opencode-zen
+soloclaw onboard --auth-choice opencode-zen
 openclaw models set opencode/claude-opus-4-6
 openclaw models list
 ```

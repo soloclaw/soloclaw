@@ -33,7 +33,7 @@ agent automation and verification.
 ## Quick start
 
 ```bash
-openclaw browser --browser-profile openclaw status
+openclaw browser --browser-profile soloclaw status
 openclaw browser --browser-profile openclaw start
 openclaw browser --browser-profile openclaw open https://example.com
 openclaw browser --browser-profile openclaw snapshot
@@ -42,7 +42,7 @@ openclaw browser --browser-profile openclaw snapshot
 If you get “Browser disabled”, enable it in config (see below) and restart the
 Gateway.
 
-If `openclaw browser` is missing entirely, or the agent says the browser tool
+If `soloclaw browser` is missing entirely, or the agent says the browser tool
 is unavailable, jump to [Missing browser command or tool](/tools/browser#missing-browser-command-or-tool).
 
 ## Plugin control
@@ -69,7 +69,7 @@ same `browser` tool name. The default browser experience needs both:
 - `plugins.entries.browser.enabled` not disabled
 - `browser.enabled=true`
 
-If you turn off only the plugin, the bundled browser CLI (`openclaw browser`),
+If you turn off only the plugin, the bundled browser CLI (`soloclaw browser`),
 gateway method (`browser.request`), agent tool, and default browser control
 service all disappear together. Your `browser.*` config stays intact for a
 replacement plugin to reuse.
@@ -85,7 +85,7 @@ can re-register its browser service with the new settings.
 
 ## Missing browser command or tool
 
-If `openclaw browser` suddenly becomes an unknown command after an upgrade, or
+If `soloclaw browser` suddenly becomes an unknown command after an upgrade, or
 the agent reports that the browser tool is missing, the most common cause is a
 restrictive `plugins.allow` list that does not include `browser`.
 
@@ -118,7 +118,7 @@ Important notes:
 
 Typical symptoms:
 
-- `openclaw browser` is an unknown command.
+- `soloclaw browser` is an unknown command.
 - `browser.request` is missing.
 - The agent reports the browser tool as unavailable or missing.
 
@@ -212,7 +212,7 @@ auto-detection:
 CLI example:
 
 ```bash
-openclaw config set browser.executablePath "/usr/bin/google-chrome"
+soloclaw config set browser.executablePath "/usr/bin/google-chrome"
 ```
 
 ```json5
@@ -247,9 +247,9 @@ openclaw config set browser.executablePath "/usr/bin/google-chrome"
 
 Stopping behavior differs by profile mode:
 
-- local managed profiles: `openclaw browser stop` stops the browser process that
+- local managed profiles: `soloclaw browser stop` stops the browser process that
   OpenClaw launched
-- attach-only and remote CDP profiles: `openclaw browser stop` closes the active
+- attach-only and remote CDP profiles: `soloclaw browser stop` closes the active
   control session and releases Playwright/CDP emulation overrides (viewport,
   color scheme, locale, timezone, offline mode, and similar state), even
   though no browser process was launched by OpenClaw
@@ -475,7 +475,7 @@ What to check if attach does not work:
 - the target Chromium-based browser is version `144+`
 - remote debugging is enabled in that browser's inspect page
 - the browser showed and you accepted the attach consent prompt
-- `openclaw doctor` migrates old extension-based browser config and checks that
+- `soloclaw doctor` migrates old extension-based browser config and checks that
   Chrome is installed locally for default auto-connect profiles, but it cannot
   enable browser-side remote debugging for you
 
@@ -660,86 +660,86 @@ All commands also accept `--json` for machine-readable output (stable payloads).
 
 Basics:
 
-- `openclaw browser status`
-- `openclaw browser start`
-- `openclaw browser stop`
-- `openclaw browser tabs`
-- `openclaw browser tab`
-- `openclaw browser tab new`
-- `openclaw browser tab select 2`
-- `openclaw browser tab close 2`
-- `openclaw browser open https://example.com`
-- `openclaw browser focus abcd1234`
-- `openclaw browser close abcd1234`
+- `soloclaw browser status`
+- `soloclaw browser start`
+- `soloclaw browser stop`
+- `soloclaw browser tabs`
+- `soloclaw browser tab`
+- `soloclaw browser tab new`
+- `soloclaw browser tab select 2`
+- `soloclaw browser tab close 2`
+- `soloclaw browser open https://example.com`
+- `soloclaw browser focus abcd1234`
+- `soloclaw browser close abcd1234`
 
 Inspection:
 
-- `openclaw browser screenshot`
-- `openclaw browser screenshot --full-page`
-- `openclaw browser screenshot --ref 12`
-- `openclaw browser screenshot --ref e12`
-- `openclaw browser snapshot`
-- `openclaw browser snapshot --format aria --limit 200`
-- `openclaw browser snapshot --interactive --compact --depth 6`
-- `openclaw browser snapshot --efficient`
-- `openclaw browser snapshot --labels`
-- `openclaw browser snapshot --selector "#main" --interactive`
-- `openclaw browser snapshot --frame "iframe#main" --interactive`
-- `openclaw browser console --level error`
+- `soloclaw browser screenshot`
+- `soloclaw browser screenshot --full-page`
+- `soloclaw browser screenshot --ref 12`
+- `soloclaw browser screenshot --ref e12`
+- `soloclaw browser snapshot`
+- `soloclaw browser snapshot --format aria --limit 200`
+- `soloclaw browser snapshot --interactive --compact --depth 6`
+- `soloclaw browser snapshot --efficient`
+- `soloclaw browser snapshot --labels`
+- `soloclaw browser snapshot --selector "#main" --interactive`
+- `soloclaw browser snapshot --frame "iframe#main" --interactive`
+- `soloclaw browser console --level error`
 
 Lifecycle note:
 
-- For attach-only and remote CDP profiles, `openclaw browser stop` is still the
+- For attach-only and remote CDP profiles, `soloclaw browser stop` is still the
   right cleanup command after tests. It closes the active control session and
   clears temporary emulation overrides instead of killing the underlying
   browser.
-- `openclaw browser errors --clear`
-- `openclaw browser requests --filter api --clear`
-- `openclaw browser pdf`
-- `openclaw browser responsebody "**/api" --max-chars 5000`
+- `soloclaw browser errors --clear`
+- `soloclaw browser requests --filter api --clear`
+- `soloclaw browser pdf`
+- `soloclaw browser responsebody "**/api" --max-chars 5000`
 
 Actions:
 
-- `openclaw browser navigate https://example.com`
-- `openclaw browser resize 1280 720`
-- `openclaw browser click 12 --double`
-- `openclaw browser click e12 --double`
-- `openclaw browser type 23 "hello" --submit`
-- `openclaw browser press Enter`
-- `openclaw browser hover 44`
-- `openclaw browser scrollintoview e12`
-- `openclaw browser drag 10 11`
-- `openclaw browser select 9 OptionA OptionB`
-- `openclaw browser download e12 report.pdf`
-- `openclaw browser waitfordownload report.pdf`
-- `openclaw browser upload /tmp/openclaw/uploads/file.pdf`
-- `openclaw browser fill --fields '[{"ref":"1","type":"text","value":"Ada"}]'`
-- `openclaw browser dialog --accept`
-- `openclaw browser wait --text "Done"`
-- `openclaw browser wait "#main" --url "**/dash" --load networkidle --fn "window.ready===true"`
-- `openclaw browser evaluate --fn '(el) => el.textContent' --ref 7`
-- `openclaw browser highlight e12`
-- `openclaw browser trace start`
-- `openclaw browser trace stop`
+- `soloclaw browser navigate https://example.com`
+- `soloclaw browser resize 1280 720`
+- `soloclaw browser click 12 --double`
+- `soloclaw browser click e12 --double`
+- `soloclaw browser type 23 "hello" --submit`
+- `soloclaw browser press Enter`
+- `soloclaw browser hover 44`
+- `soloclaw browser scrollintoview e12`
+- `soloclaw browser drag 10 11`
+- `soloclaw browser select 9 OptionA OptionB`
+- `soloclaw browser download e12 report.pdf`
+- `soloclaw browser waitfordownload report.pdf`
+- `soloclaw browser upload /tmp/openclaw/uploads/file.pdf`
+- `soloclaw browser fill --fields '[{"ref":"1","type":"text","value":"Ada"}]'`
+- `soloclaw browser dialog --accept`
+- `soloclaw browser wait --text "Done"`
+- `soloclaw browser wait "#main" --url "**/dash" --load networkidle --fn "window.ready===true"`
+- `soloclaw browser evaluate --fn '(el) => el.textContent' --ref 7`
+- `soloclaw browser highlight e12`
+- `soloclaw browser trace start`
+- `soloclaw browser trace stop`
 
 State:
 
-- `openclaw browser cookies`
-- `openclaw browser cookies set session abc123 --url "https://example.com"`
-- `openclaw browser cookies clear`
-- `openclaw browser storage local get`
-- `openclaw browser storage local set theme dark`
-- `openclaw browser storage session clear`
-- `openclaw browser set offline on`
-- `openclaw browser set headers --headers-json '{"X-Debug":"1"}'`
-- `openclaw browser set credentials user pass`
-- `openclaw browser set credentials --clear`
-- `openclaw browser set geo 37.7749 -122.4194 --origin "https://example.com"`
-- `openclaw browser set geo --clear`
-- `openclaw browser set media dark`
-- `openclaw browser set timezone America/New_York`
-- `openclaw browser set locale en-US`
-- `openclaw browser set device "iPhone 14"`
+- `soloclaw browser cookies`
+- `soloclaw browser cookies set session abc123 --url "https://example.com"`
+- `soloclaw browser cookies clear`
+- `soloclaw browser storage local get`
+- `soloclaw browser storage local set theme dark`
+- `soloclaw browser storage session clear`
+- `soloclaw browser set offline on`
+- `soloclaw browser set headers --headers-json '{"X-Debug":"1"}'`
+- `soloclaw browser set credentials user pass`
+- `soloclaw browser set credentials --clear`
+- `soloclaw browser set geo 37.7749 -122.4194 --origin "https://example.com"`
+- `soloclaw browser set geo --clear`
+- `soloclaw browser set media dark`
+- `soloclaw browser set timezone America/New_York`
+- `soloclaw browser set locale en-US`
+- `soloclaw browser set device "iPhone 14"`
 
 Notes:
 
@@ -767,14 +767,14 @@ Notes:
 
 OpenClaw supports two “snapshot” styles:
 
-- **AI snapshot (numeric refs)**: `openclaw browser snapshot` (default; `--format ai`)
+- **AI snapshot (numeric refs)**: `soloclaw browser snapshot` (default; `--format ai`)
   - Output: a text snapshot that includes numeric refs.
-  - Actions: `openclaw browser click 12`, `openclaw browser type 23 "hello"`.
+  - Actions: `soloclaw browser click 12`, `soloclaw browser type 23 "hello"`.
   - Internally, the ref is resolved via Playwright’s `aria-ref`.
 
-- **Role snapshot (role refs like `e12`)**: `openclaw browser snapshot --interactive` (or `--compact`, `--depth`, `--selector`, `--frame`)
+- **Role snapshot (role refs like `e12`)**: `soloclaw browser snapshot --interactive` (or `--compact`, `--depth`, `--selector`, `--frame`)
   - Output: a role-based list/tree with `[ref=e12]` (and optional `[nth=1]`).
-  - Actions: `openclaw browser click e12`, `openclaw browser highlight e12`.
+  - Actions: `soloclaw browser click e12`, `soloclaw browser highlight e12`.
   - Internally, the ref is resolved via `getByRole(...)` (plus `nth()` for duplicates).
   - Add `--labels` to include a viewport screenshot with overlayed `e12` labels.
 
@@ -788,13 +788,13 @@ Ref behavior:
 You can wait on more than just time/text:
 
 - Wait for URL (globs supported by Playwright):
-  - `openclaw browser wait --url "**/dash"`
+  - `soloclaw browser wait --url "**/dash"`
 - Wait for load state:
-  - `openclaw browser wait --load networkidle`
+  - `soloclaw browser wait --load networkidle`
 - Wait for a JS predicate:
-  - `openclaw browser wait --fn "window.ready===true"`
+  - `soloclaw browser wait --fn "window.ready===true"`
 - Wait for a selector to become visible:
-  - `openclaw browser wait "#main"`
+  - `soloclaw browser wait "#main"`
 
 These can be combined:
 
@@ -810,16 +810,16 @@ openclaw browser wait "#main" \
 
 When an action fails (e.g. “not visible”, “strict mode violation”, “covered”):
 
-1. `openclaw browser snapshot --interactive`
+1. `soloclaw browser snapshot --interactive`
 2. Use `click <ref>` / `type <ref>` (prefer role refs in interactive mode)
-3. If it still fails: `openclaw browser highlight <ref>` to see what Playwright is targeting
+3. If it still fails: `soloclaw browser highlight <ref>` to see what Playwright is targeting
 4. If the page behaves oddly:
-   - `openclaw browser errors --clear`
-   - `openclaw browser requests --filter api --clear`
+   - `soloclaw browser errors --clear`
+   - `soloclaw browser requests --filter api --clear`
 5. For deep debugging: record a trace:
-   - `openclaw browser trace start`
+   - `soloclaw browser trace start`
    - reproduce the issue
-   - `openclaw browser trace stop` (prints `TRACE:<path>`)
+   - `soloclaw browser trace stop` (prints `TRACE:<path>`)
 
 ## JSON output
 
@@ -855,7 +855,7 @@ These are useful for “make the site behave like X” workflows:
 ## Security & privacy
 
 - The openclaw browser profile may contain logged-in sessions; treat it as sensitive.
-- `browser act kind=evaluate` / `openclaw browser evaluate` and `wait --fn`
+- `browser act kind=evaluate` / `soloclaw browser evaluate` and `wait --fn`
   execute arbitrary JavaScript in the page context. Prompt injection can steer
   this. Disable it with `browser.evaluateEnabled=false` if you do not need it.
 - For logins and anti-bot notes (X/Twitter, etc.), see [Browser login + X/Twitter posting](/tools/browser-login).

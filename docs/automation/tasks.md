@@ -34,7 +34,7 @@ Not every agent run creates a task. Heartbeat turns and normal interactive chat 
   descendant subagent work is still draining, and it prefers final descendant
   output when that arrives before delivery.
 - Completion notifications are delivered directly to a channel or queued for the next heartbeat.
-- `openclaw tasks list` shows all tasks; `openclaw tasks audit` surfaces issues.
+- `soloclaw tasks list` shows all tasks; `soloclaw tasks audit` surfaces issues.
 - Terminal records are kept for 7 days, then automatically pruned.
 
 ## Quick start
@@ -76,7 +76,7 @@ openclaw tasks flow cancel <lookup>
 | ACP background runs    | `acp`        | Spawning a child ACP session                           | `done_only`           |
 | Subagent orchestration | `subagent`   | Spawning a subagent via `sessions_spawn`               | `done_only`           |
 | Cron jobs (all types)  | `cron`       | Every cron execution (main-session and isolated)       | `silent`              |
-| CLI operations         | `cli`        | `openclaw agent` commands that run through the gateway | `silent`              |
+| CLI operations         | `cli`        | `soloclaw agent` commands that run through the gateway | `silent`              |
 | Agent media jobs       | `cli`        | Session-backed `video_generate` runs                   | `silent`              |
 
 Main-session cron tasks use `silent` notify policy by default — they create records for tracking but do not generate notifications. Isolated cron tasks also default to `silent` but are more visible because they run in their own session.
@@ -112,7 +112,7 @@ stateDiagram-v2
 | `succeeded` | Completed successfully                                                     |
 | `failed`    | Completed with an error                                                    |
 | `timed_out` | Exceeded the configured timeout                                            |
-| `cancelled` | Stopped by the operator via `openclaw tasks cancel`                        |
+| `cancelled` | Stopped by the operator via `soloclaw tasks cancel`                        |
 | `lost`      | The runtime lost authoritative backing state after a 5-minute grace period |
 
 Transitions happen automatically — when the associated agent run ends, the task status updates to match.
@@ -194,7 +194,7 @@ openclaw tasks notify <lookup> <done_only|state_changes|silent>
 openclaw tasks audit [--json]
 ```
 
-Surfaces operational issues. Findings also appear in `openclaw status` when issues are detected.
+Surfaces operational issues. Findings also appear in `soloclaw status` when issues are detected.
 
 | Finding                   | Severity | Trigger                                               |
 | ------------------------- | -------- | ----------------------------------------------------- |
@@ -249,11 +249,11 @@ active and recently completed tasks with runtime, status, timing, and progress o
 When the current session has no visible linked tasks, `/tasks` falls back to agent-local task counts
 so you still get an overview without leaking other-session details.
 
-For the full operator ledger, use the CLI: `openclaw tasks list`.
+For the full operator ledger, use the CLI: `soloclaw tasks list`.
 
 ## Status integration (task pressure)
 
-`openclaw status` includes an at-a-glance task summary:
+`soloclaw status` includes an at-a-glance task summary:
 
 ```
 Tasks: 3 queued · 2 running · 1 issues
@@ -295,7 +295,7 @@ A sweeper runs every **60 seconds** and handles three things:
 
 ### Tasks and Task Flow
 
-[Task Flow](/automation/taskflow) is the flow orchestration layer above background tasks. A single flow may coordinate multiple tasks over its lifetime using managed or mirrored sync modes. Use `openclaw tasks` to inspect individual task records and `openclaw tasks flow` to inspect the orchestrating flow.
+[Task Flow](/automation/taskflow) is the flow orchestration layer above background tasks. A single flow may coordinate multiple tasks over its lifetime using managed or mirrored sync modes. Use `soloclaw tasks` to inspect individual task records and `soloclaw tasks flow` to inspect the orchestrating flow.
 
 See [Task Flow](/automation/taskflow) for details.
 

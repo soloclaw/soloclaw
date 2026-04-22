@@ -25,7 +25,7 @@ No API key needed — just set DuckDuckGo as your provider:
 <Steps>
   <Step title="Configure">
     ```bash
-    openclaw configure --section web
+    soloclaw configure --section web
     # Select "duckduckgo" as the provider
     ```
   </Step>

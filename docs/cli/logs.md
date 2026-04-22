@@ -1,12 +1,12 @@
 ---
-summary: "CLI reference for `openclaw logs` (tail gateway logs via RPC)"
+summary: "CLI reference for `soloclaw logs` (tail gateway logs via RPC)"
 read_when:
   - You need to tail Gateway logs remotely (without SSH)
   - You want JSON log lines for tooling
 title: "logs"
 ---
 
-# `openclaw logs`
+# `soloclaw logs`
 
 Tail Gateway file logs over RPC (works in remote mode).
 
@@ -28,7 +28,7 @@ Related:
 
 ## Shared Gateway RPC options
 
-`openclaw logs` also accepts the standard Gateway client flags:
+`soloclaw logs` also accepts the standard Gateway client flags:
 
 - `--url <url>`: Gateway WebSocket URL
 - `--token <token>`: Gateway token
@@ -56,4 +56,4 @@ openclaw logs --url ws://127.0.0.1:18789 --token "$OPENCLAW_GATEWAY_TOKEN"
 ## Notes
 
 - Use `--local-time` to render timestamps in your local timezone.
-- If the local loopback Gateway asks for pairing, `openclaw logs` falls back to the configured local log file automatically. Explicit `--url` targets do not use this fallback.
+- If the local loopback Gateway asks for pairing, `soloclaw logs` falls back to the configured local log file automatically. Explicit `--url` targets do not use this fallback.

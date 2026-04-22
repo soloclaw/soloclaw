@@ -108,7 +108,7 @@ We welcome community plugins that are useful, documented, and safe to operate.
 
 <Steps>
   <Step title="Publish to ClawHub or npm">
-    Your plugin must be installable via `openclaw plugins install \<package-name\>`.
+    Your plugin must be installable via `soloclaw plugins install \<package-name\>`.
     Publish to [ClawHub](/tools/clawhub) (preferred) or npm.
     See [Building Plugins](/plugins/building-plugins) for the full guide.
 
@@ -135,7 +135,7 @@ We welcome community plugins that are useful, documented, and safe to operate.
 
 | Requirement                 | Why                                           |
 | --------------------------- | --------------------------------------------- |
-| Published on ClawHub or npm | Users need `openclaw plugins install` to work |
+| Published on ClawHub or npm | Users need `soloclaw plugins install` to work |
 | Public GitHub repo          | Source review, issue tracking, transparency   |
 | Setup and usage docs        | Users need to know how to configure it        |
 | Active maintenance          | Recent updates or responsive issue handling   |

@@ -64,7 +64,7 @@ Practical rule:
 - use `memory_search corpus=all` when you want shared search to span both layers
 
 If bridge mode reports zero exported artifacts, the active memory plugin is not
-currently exposing public bridge inputs yet. Run `openclaw wiki doctor` first,
+currently exposing public bridge inputs yet. Run `soloclaw wiki doctor` first,
 then confirm the active memory plugin supports public artifacts.
 
 ## Vault modes

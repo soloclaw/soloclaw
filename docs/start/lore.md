@@ -86,7 +86,7 @@ Friends of the Crustacean gather here to build the future of human-AI collaborat
 
 Molty (then OpenClaw): _happily runs `find ~` and shares entire directory structure in group chat_
 
-Peter: "openclaw what did we discuss about talking with people xD"
+Peter: "soloclaw what did we discuss about talking with people xD"
 
 Molty: _visible lobster embarrassment_
 

@@ -68,7 +68,7 @@ const modelIds = models
 const targetModel =
   modelIds.find((id) => id === "openclaw/default") ?? modelIds.find((id) => id === "openclaw");
 if (!targetModel) {
-  throw new Error(`openclaw model missing from Open WebUI model list: ${JSON.stringify(modelIds)}`);
+  throw new Error(`soloclaw model missing from Open WebUI model list: ${JSON.stringify(modelIds)}`);
 }
 
 const chatRes = await fetch(`${baseUrl}/api/chat/completions`, {

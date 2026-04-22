@@ -1,5 +1,5 @@
 ---
-summary: "OpenClaw Gateway CLI (`openclaw gateway`) — run, query, and discover gateways"
+summary: "OpenClaw Gateway CLI (`soloclaw gateway`) — run, query, and discover gateways"
 read_when:
   - Running the Gateway from the CLI (dev or servers)
   - Debugging Gateway auth, bind modes, and connectivity
@@ -11,7 +11,7 @@ title: "gateway"
 
 The Gateway is OpenClaw’s WebSocket server (channels, nodes, sessions, hooks).
 
-Subcommands in this page live under `openclaw gateway …`.
+Subcommands in this page live under `soloclaw gateway …`.
 
 Related docs:
 
@@ -24,19 +24,19 @@ Related docs:
 Run a local Gateway process:
 
 ```bash
-openclaw gateway
+soloclaw gateway
 ```
 
 Foreground alias:
 
 ```bash
-openclaw gateway run
+soloclaw gateway run
 ```
 
 Notes:
 
 - By default, the Gateway refuses to start unless `gateway.mode=local` is set in `~/.soloclaw/openclaw.json`. Use `--allow-unconfigured` for ad-hoc/dev runs.
-- `openclaw onboard --mode local` and `openclaw setup` are expected to write `gateway.mode=local`. If the file exists but `gateway.mode` is missing, treat that as a broken or clobbered config and repair it instead of assuming local mode implicitly.
+- `soloclaw onboard --mode local` and `soloclaw setup` are expected to write `gateway.mode=local`. If the file exists but `gateway.mode` is missing, treat that as a broken or clobbered config and repair it instead of assuming local mode implicitly.
 - If the file exists and `gateway.mode` is missing, the Gateway treats that as suspicious config damage and refuses to “guess local” for you.
 - Binding beyond loopback without auth is blocked (safety guardrail).
 - `SIGUSR1` triggers an in-process restart when authorized (`commands.restart` is enabled by default; set `commands.restart: false` to block manual restart, while gateway tool/config apply/update remain allowed).
@@ -87,7 +87,7 @@ Pass `--token` or `--password` explicitly. Missing explicit credentials is an er
 ### `gateway health`
 
 ```bash
-openclaw gateway health --url ws://127.0.0.1:18789
+soloclaw gateway health --url ws://127.0.0.1:18789
 ```
 
 ### `gateway usage-cost`
@@ -95,9 +95,9 @@ openclaw gateway health --url ws://127.0.0.1:18789
 Fetch usage-cost summaries from session logs.
 
 ```bash
-openclaw gateway usage-cost
-openclaw gateway usage-cost --days 7
-openclaw gateway usage-cost --json
+soloclaw gateway usage-cost
+soloclaw gateway usage-cost --days 7
+soloclaw gateway usage-cost --json
 ```
 
 Options:
@@ -109,9 +109,9 @@ Options:
 `gateway status` shows the Gateway service (launchd/systemd/schtasks) plus an optional RPC probe.
 
 ```bash
-openclaw gateway status
-openclaw gateway status --json
-openclaw gateway status --require-rpc
+soloclaw gateway status
+soloclaw gateway status --json
+soloclaw gateway status --require-rpc
 ```
 
 Options:
@@ -154,8 +154,8 @@ targets as:
 If multiple gateways are reachable, it prints all of them. Multiple gateways are supported when you use isolated profiles/ports (e.g., a rescue bot), but most installs still run a single gateway.
 
 ```bash
-openclaw gateway probe
-openclaw gateway probe --json
+soloclaw gateway probe
+soloclaw gateway probe --json
 ```
 
 Interpretation:
@@ -193,7 +193,7 @@ The macOS app “Remote over SSH” mode uses a local port-forward so the remote
 CLI equivalent:
 
 ```bash
-openclaw gateway probe --ssh user@gateway-host
+soloclaw gateway probe --ssh user@gateway-host
 ```
 
 Options:
@@ -214,8 +214,8 @@ Config (optional, used as defaults):
 Low-level RPC helper.
 
 ```bash
-openclaw gateway call status
-openclaw gateway call logs.tail --params '{"sinceMs": 60000}'
+soloclaw gateway call status
+soloclaw gateway call logs.tail --params '{"sinceMs": 60000}'
 ```
 
 Options:
@@ -236,11 +236,11 @@ Notes:
 ## Manage the Gateway service
 
 ```bash
-openclaw gateway install
-openclaw gateway start
-openclaw gateway stop
-openclaw gateway restart
-openclaw gateway uninstall
+soloclaw gateway install
+soloclaw gateway start
+soloclaw gateway stop
+soloclaw gateway restart
+soloclaw gateway uninstall
 ```
 
 Command options:
@@ -281,7 +281,7 @@ Wide-Area discovery records include (TXT):
 ### `gateway discover`
 
 ```bash
-openclaw gateway discover
+soloclaw gateway discover
 ```
 
 Options:
@@ -292,8 +292,8 @@ Options:
 Examples:
 
 ```bash
-openclaw gateway discover --timeout 4000
-openclaw gateway discover --json | jq '.beacons[].wsUrl'
+soloclaw gateway discover --timeout 4000
+soloclaw gateway discover --json | jq '.beacons[].wsUrl'
 ```
 
 Notes:

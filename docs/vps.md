@@ -94,7 +94,7 @@ For VM hosts using `systemd`, consider:
   - `TimeoutStartSec=90`
 - Prefer SSD-backed disks for state/cache paths to reduce random-I/O cold-start penalties.
 
-For the standard `openclaw onboard --install-daemon` path, edit the user unit:
+For the standard `soloclaw onboard --install-daemon` path, edit the user unit:
 
 ```bash
 systemctl --user edit openclaw-gateway.service

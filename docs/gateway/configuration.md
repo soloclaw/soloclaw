@@ -20,7 +20,7 @@ If the file is missing, OpenClaw uses safe defaults. Common reasons to add a con
 See the [full reference](/gateway/configuration-reference) for every available field.
 
 <Tip>
-**New to configuration?** Start with `openclaw onboard` for interactive setup, or check out the [Configuration Examples](/gateway/configuration-examples) guide for complete copy-paste configs.
+**New to configuration?** Start with `soloclaw onboard` for interactive setup, or check out the [Configuration Examples](/gateway/configuration-examples) guide for complete copy-paste configs.
 </Tip>
 
 ## Minimal config
@@ -38,15 +38,15 @@ See the [full reference](/gateway/configuration-reference) for every available f
 <Tabs>
   <Tab title="Interactive wizard">
     ```bash
-    openclaw onboard       # full onboarding flow
-    openclaw configure     # config wizard
+    soloclaw onboard       # full onboarding flow
+    soloclaw configure     # config wizard
     ```
   </Tab>
   <Tab title="CLI (one-liners)">
     ```bash
-    openclaw config get agents.defaults.workspace
-    openclaw config set agents.defaults.heartbeat.every "2h"
-    openclaw config unset plugins.entries.brave.config.webSearch.apiKey
+    soloclaw config get agents.defaults.workspace
+    soloclaw config set agents.defaults.heartbeat.every "2h"
+    soloclaw config unset plugins.entries.brave.config.webSearch.apiKey
     ```
   </Tab>
   <Tab title="Control UI">
@@ -70,7 +70,7 @@ OpenClaw only accepts configurations that fully match the schema. Unknown keys, 
 
 Schema tooling notes:
 
-- `openclaw config schema` prints the same JSON Schema family used by Control UI
+- `soloclaw config schema` prints the same JSON Schema family used by Control UI
   and config validation.
 - Treat that schema output as the canonical machine-readable contract for
   `openclaw.json`; this overview and the configuration reference summarize it.
@@ -92,9 +92,9 @@ Schema tooling notes:
 When validation fails:
 
 - The Gateway does not boot
-- Only diagnostic commands work (`openclaw doctor`, `openclaw logs`, `openclaw health`, `openclaw status`)
-- Run `openclaw doctor` to see exact issues
-- Run `openclaw doctor --fix` (or `--yes`) to apply repairs
+- Only diagnostic commands work (`soloclaw doctor`, `soloclaw logs`, `soloclaw health`, `soloclaw status`)
+- Run `soloclaw doctor` to see exact issues
+- Run `soloclaw doctor --fix` (or `--yes`) to apply repairs
 
 ## Common tasks
 
@@ -332,7 +332,7 @@ When validation fails:
     CLI equivalent:
 
     ```bash
-    openclaw config set gateway.push.apns.relay.baseUrl https://relay.example.com
+    soloclaw config set gateway.push.apns.relay.baseUrl https://relay.example.com
     ```
 
     What this does:
@@ -553,7 +553,7 @@ then `config.patch`.
     Validates + writes the full config and restarts the Gateway in one step.
 
     <Warning>
-    `config.apply` replaces the **entire config**. Use `config.patch` for partial updates, or `openclaw config set` for single keys.
+    `config.apply` replaces the **entire config**. Use `config.patch` for partial updates, or `soloclaw config set` for single keys.
     </Warning>
 
     Params:
@@ -567,8 +567,8 @@ then `config.patch`.
     Restart requests are coalesced while one is already pending/in-flight, and a 30-second cooldown applies between restart cycles.
 
     ```bash
-    openclaw gateway call config.get --params '{}'  # capture payload.hash
-    openclaw gateway call config.apply --params '{
+    soloclaw gateway call config.get --params '{}'  # capture payload.hash
+    soloclaw gateway call config.apply --params '{
       "raw": "{ agents: { defaults: { workspace: \"~/.soloclaw/workspace\" } } }",
       "baseHash": "<hash>",
       "sessionKey": "agent:main:whatsapp:direct:+15555550123"
@@ -593,7 +593,7 @@ then `config.patch`.
     Restart behavior matches `config.apply`: coalesced pending restarts plus a 30-second cooldown between restart cycles.
 
     ```bash
-    openclaw gateway call config.patch --params '{
+    soloclaw gateway call config.patch --params '{
       "raw": "{ channels: { telegram: { groups: { \"*\": { requireMention: false } } } } }",
       "baseHash": "<hash>"
     }'

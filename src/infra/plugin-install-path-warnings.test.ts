@@ -27,7 +27,7 @@ async function detectMatrixCustomPathIssue(sourcePath: string | ((pluginPath: st
   });
 }
 
-const MATRIX_REPO_INSTALL_COMMAND = `openclaw plugins install ${repoInstallSpec("matrix")}`;
+const MATRIX_REPO_INSTALL_COMMAND = `soloclaw plugins install ${repoInstallSpec("matrix")}`;
 
 describe("plugin install path warnings", () => {
   it("ignores non-path installs and blank path candidates", async () => {
@@ -68,12 +68,12 @@ describe("plugin install path warnings", () => {
       formatPluginInstallPathIssue({
         issue: issue!,
         pluginLabel: "Matrix",
-        defaultInstallCommand: "openclaw plugins install @openclaw/matrix",
+        defaultInstallCommand: "soloclaw plugins install @openclaw/matrix",
         repoInstallCommand: MATRIX_REPO_INSTALL_COMMAND,
       }),
     ).toEqual([
       "Matrix is installed from a custom path that no longer exists: /tmp/openclaw-matrix-missing",
-      'Reinstall with "openclaw plugins install @openclaw/matrix".',
+      'Reinstall with "soloclaw plugins install @openclaw/matrix".',
       `If you are running from a repo checkout, you can also use "${MATRIX_REPO_INSTALL_COMMAND}".`,
     ]);
   });
@@ -107,7 +107,7 @@ describe("plugin install path warnings", () => {
           path: "/tmp/matrix-plugin",
         },
         pluginLabel: "Matrix",
-        defaultInstallCommand: "openclaw plugins install @openclaw/matrix",
+        defaultInstallCommand: "soloclaw plugins install @openclaw/matrix",
         repoInstallCommand: MATRIX_REPO_INSTALL_COMMAND,
         formatCommand: (command) => `<${command}>`,
       }),
@@ -128,12 +128,12 @@ describe("plugin install path warnings", () => {
           path: "/tmp/openclaw-matrix-missing",
         },
         pluginLabel: "Matrix",
-        defaultInstallCommand: "openclaw plugins install @openclaw/matrix",
+        defaultInstallCommand: "soloclaw plugins install @openclaw/matrix",
         repoInstallCommand: null,
       }),
     ).toEqual([
       "Matrix is installed from a custom path that no longer exists: /tmp/openclaw-matrix-missing",
-      'Reinstall with "openclaw plugins install @openclaw/matrix".',
+      'Reinstall with "soloclaw plugins install @openclaw/matrix".',
     ]);
   });
 });

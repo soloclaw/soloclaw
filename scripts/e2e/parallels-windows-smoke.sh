@@ -144,10 +144,10 @@ Options:
   --install-version <ver>    Pin site-installer version/dist-tag for the baseline lane.
   --upgrade-from-packed-main
                              Upgrade lane: install the packed current-main npm tgz as baseline,
-                             then run openclaw update --channel dev.
+                             then run soloclaw update --channel dev.
   --target-package-spec <npm-spec>
                              Upgrade lane: install this npm package tarball as the baseline,
-                             then run openclaw update --channel dev.
+                             then run soloclaw update --channel dev.
                              Fresh lane: install this npm package tarball instead of packing current main.
                              Example: openclaw@2026.3.13-beta.1
                              Default upgrade lane without this flag: latest/site installer -> dev channel update.
@@ -1042,7 +1042,7 @@ try {
   Write-ProgressLog 'install.version'
   & (Join-Path \$env:APPDATA 'npm\openclaw.cmd') --version *>&1 | Tee-Object -FilePath \$LogPath -Append | Out-Null
   if (\$LASTEXITCODE -ne 0) {
-    throw "openclaw --version failed with exit code \$LASTEXITCODE"
+    throw "soloclaw --version failed with exit code \$LASTEXITCODE"
   }
   Set-Content -Path \$DonePath -Value ([string]0)
   exit 0
@@ -1705,8 +1705,8 @@ exit `$LASTEXITCODE
   }
 
   Write-ProgressLog 'update.run-dev'
-  Invoke-Logged 'openclaw update --channel dev --yes --json' {
-    & $openclaw update --channel dev --yes --json
+  Invoke-Logged 'soloclaw update --channel dev --yes --json' {
+    & $soloclaw update --channel dev --yes --json
   }
 
   if (-not (Test-Path $gitEntry)) {
@@ -1722,7 +1722,7 @@ exit `$LASTEXITCODE
 
   Write-ProgressLog 'update.verify-post'
   Invoke-Logged 'git openclaw --version' { & node.exe $gitEntry --version }
-  Invoke-Logged 'git openclaw update status --json' { & node.exe $gitEntry update status --json }
+  Invoke-Logged 'git soloclaw update status --json' { & node.exe $gitEntry update status --json }
 
   Write-ProgressLog 'update.done'
   Set-Content -Path $DonePath -Value ([string]0)
@@ -1878,7 +1878,7 @@ $ErrorActionPreference = 'Stop'
 $busy = Get-CimInstance Win32_Process |
   Where-Object {
     $_.CommandLine -and
-    ($_.CommandLine -match 'openclaw update|npm install|pnpm install|pnpm run build')
+    ($_.CommandLine -match 'soloclaw update|npm install|pnpm install|pnpm run build')
   }
 if ($busy) {
   throw 'dev update still has active npm/pnpm/openclaw processes'
@@ -2183,7 +2183,7 @@ Remove-Item \$runner, \$log, \$done -Force -ErrorAction SilentlyContinue
 \$done = Join-Path \$env:TEMP '$done_name'
 try {
   \$openclaw = Join-Path \$env:APPDATA 'npm\openclaw.cmd'
-  & \$openclaw gateway $action *>&1 | Tee-Object -FilePath \$log -Append | Out-Null
+  & \$soloclaw gateway $action *>&1 | Tee-Object -FilePath \$log -Append | Out-Null
   Set-Content -Path \$done -Value ([string]\$LASTEXITCODE)
 } catch {
   if (Test-Path \$log) {

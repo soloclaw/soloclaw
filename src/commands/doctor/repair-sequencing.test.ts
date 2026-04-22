@@ -166,7 +166,7 @@ describe("doctor repair sequencing", () => {
         pendingChanges: false,
         fixHints: [],
       },
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "soloclaw doctor --fix",
     });
 
     expect(result.state.pendingChanges).toBe(true);
@@ -211,7 +211,7 @@ describe("doctor repair sequencing", () => {
         pendingChanges: false,
         fixHints: [],
       },
-      doctorFixCommand: "openclaw doctor --fix",
+      doctorFixCommand: "soloclaw doctor --fix",
     });
 
     expect(result.changeNotes).toEqual([]);

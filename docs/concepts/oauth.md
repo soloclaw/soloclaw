@@ -120,7 +120,7 @@ Flow shape (PKCE):
 5. exchange at `https://auth.openai.com/oauth/token`
 6. extract `accountId` from the access token and store `{ access, refresh, expires, accountId }`
 
-Wizard path is `openclaw onboard` → auth choice `openai-codex`.
+Wizard path is `soloclaw onboard` → auth choice `openai-codex`.
 
 ## Refresh + expiry
 
@@ -144,8 +144,8 @@ Two patterns:
 If you want “personal” and “work” to never interact, use isolated agents (separate sessions + credentials + workspace):
 
 ```bash
-openclaw agents add work
-openclaw agents add personal
+soloclaw agents add work
+soloclaw agents add personal
 ```
 
 Then configure auth per-agent (wizard) and route chats to the right agent.
@@ -165,7 +165,7 @@ Example (session override):
 
 How to see what profile IDs exist:
 
-- `openclaw channels list --json` (shows `auth[]`)
+- `soloclaw channels list --json` (shows `auth[]`)
 
 Related docs:
 

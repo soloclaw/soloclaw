@@ -39,7 +39,7 @@ show in `/usage full`.
 
 **CLI usage windows (provider quotas)**
 
-- `openclaw status --usage` and `openclaw channels list` show provider **usage windows**
+- `soloclaw status --usage` and `soloclaw channels list` show provider **usage windows**
   (quota snapshots, not per-message costs).
 - Human output is normalized to `X% left` across providers.
 - Current usage-window providers: Anthropic, GitHub Copilot, Gemini CLI,
@@ -162,8 +162,8 @@ See [Web tools](/tools/web).
 Some status commands call **provider usage endpoints** to display quota windows or auth health.
 These are typically low-volume calls but still hit provider APIs:
 
-- `openclaw status --usage`
-- `openclaw models status --json`
+- `soloclaw status --usage`
+- `soloclaw models status --json`
 
 See [Models CLI](/cli/models).
 
@@ -176,7 +176,7 @@ See [Session management + compaction](/reference/session-management-compaction).
 
 ### 8) Model scan / probe
 
-`openclaw models scan` can probe OpenRouter models and uses `OPENROUTER_API_KEY` when
+`soloclaw models scan` can probe OpenRouter models and uses `OPENROUTER_API_KEY` when
 probing is enabled.
 
 See [Models CLI](/cli/models).

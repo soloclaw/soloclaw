@@ -46,13 +46,13 @@ If you link your personal WhatsApp to OpenClaw, every message to you becomes “
 1. Pair WhatsApp Web (shows QR; scan with the assistant phone):
 
 ```bash
-openclaw channels login
+soloclaw channels login
 ```
 
 2. Start the Gateway (leave it running):
 
 ```bash
-openclaw gateway --port 18789
+soloclaw gateway --port 18789
 ```
 
 3. Put a minimal config in `~/.soloclaw/openclaw.json`:
@@ -66,7 +66,7 @@ openclaw gateway --port 18789
 
 Now message the assistant number from your allowlisted phone.
 
-When onboarding finishes, we auto-open the dashboard and print a clean (non-tokenized) link. If it prompts for auth, paste the configured shared secret into Control UI settings. Onboarding uses a token by default (`gateway.auth.token`), but password auth works too if you switched `gateway.auth.mode` to `password`. To reopen later: `openclaw dashboard`.
+When onboarding finishes, we auto-open the dashboard and print a clean (non-tokenized) link. If it prompts for auth, paste the configured shared secret into Control UI settings. Onboarding uses a token by default (`gateway.auth.token`), but password auth works too if you switched `gateway.auth.mode` to `password`. To reopen later: `soloclaw dashboard`.
 
 ## Give the agent a workspace (AGENTS)
 
@@ -204,9 +204,9 @@ That means generated images/files outside the workspace can now send when your f
 ## Operations checklist
 
 ```bash
-openclaw status          # local status (creds, sessions, queued events)
-openclaw status --all    # full diagnosis (read-only, pasteable)
-openclaw status --deep   # asks the gateway for a live health probe with channel probes when supported
+soloclaw status          # local status (creds, sessions, queued events)
+soloclaw status --all    # full diagnosis (read-only, pasteable)
+soloclaw status --deep   # asks the gateway for a live health probe with channel probes when supported
 openclaw health --json   # gateway health snapshot (WS; default can return a fresh cached snapshot)
 ```
 

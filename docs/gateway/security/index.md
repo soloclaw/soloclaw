@@ -26,7 +26,7 @@ OpenClaw security guidance assumes a **personal assistant** deployment: one trus
 
 This page explains hardening **within that model**. It does not claim hostile multi-tenant isolation on one shared gateway.
 
-## Quick check: `openclaw security audit`
+## Quick check: `soloclaw security audit`
 
 See also: [Formal Verification (Security Models)](/security/formal-verification)
 
@@ -311,8 +311,8 @@ High-signal `checkId` values you will most likely see in real deployments (not e
 | `sandbox.dangerous_apparmor_profile`                          | critical      | Sandbox AppArmor profile weakens container isolation                                 | `agents.*.sandbox.docker.securityOpt`                                                                | no       |
 | `sandbox.browser_cdp_bridge_unrestricted`                     | warn          | Sandbox browser bridge is exposed without source-range restriction                   | `sandbox.browser.cdpSourceRange`                                                                     | no       |
 | `sandbox.browser_container.non_loopback_publish`              | critical      | Existing browser container publishes CDP on non-loopback interfaces                  | browser sandbox container publish config                                                             | no       |
-| `sandbox.browser_container.hash_label_missing`                | warn          | Existing browser container predates current config-hash labels                       | `openclaw sandbox recreate --browser --all`                                                          | no       |
-| `sandbox.browser_container.hash_epoch_stale`                  | warn          | Existing browser container predates current browser config epoch                     | `openclaw sandbox recreate --browser --all`                                                          | no       |
+| `sandbox.browser_container.hash_label_missing`                | warn          | Existing browser container predates current config-hash labels                       | `soloclaw sandbox recreate --browser --all`                                                          | no       |
+| `sandbox.browser_container.hash_epoch_stale`                  | warn          | Existing browser container predates current browser config epoch                     | `soloclaw sandbox recreate --browser --all`                                                          | no       |
 | `tools.exec.host_sandbox_no_sandbox_defaults`                 | warn          | `exec host=sandbox` fails closed when sandbox is off                                 | `tools.exec.host`, `agents.defaults.sandbox.mode`                                                    | no       |
 | `tools.exec.host_sandbox_no_sandbox_agents`                   | warn          | Per-agent `exec host=sandbox` fails closed when sandbox is off                       | `agents.list[].tools.exec.host`, `agents.list[].sandbox.mode`                                        | no       |
 | `tools.exec.security_full_configured`                         | warn/critical | Host exec is running with `security="full"`                                          | `tools.exec.security`, `agents.list[].tools.exec.security`                                           | no       |
@@ -364,11 +364,11 @@ can admit **operator** Control UI sessions without device identity. That is an
 intentional auth-mode behavior, not an `allowInsecureAuth` shortcut, and it still
 does not extend to node-role Control UI sessions.
 
-`openclaw security audit` warns when this setting is enabled.
+`soloclaw security audit` warns when this setting is enabled.
 
 ## Insecure or dangerous flags summary
 
-`openclaw security audit` includes `config.insecure_or_dangerous_flags` when
+`soloclaw security audit` includes `config.insecure_or_dangerous_flags` when
 known insecure/dangerous debug switches are enabled. That check currently
 aggregates:
 
@@ -569,13 +569,13 @@ Plugins run **in-process** with the Gateway. Treat them as trusted code:
 - Prefer explicit `plugins.allow` allowlists.
 - Review plugin config before enabling.
 - Restart the Gateway after plugin changes.
-- If you install or update plugins (`openclaw plugins install <package>`, `openclaw plugins update <id>`), treat it like running untrusted code:
+- If you install or update plugins (`soloclaw plugins install <package>`, `soloclaw plugins update <id>`), treat it like running untrusted code:
   - The install path is the per-plugin directory under the active plugin install root.
   - OpenClaw runs a built-in dangerous-code scan before install/update. `critical` findings block by default.
   - OpenClaw uses `npm pack` and then runs `npm install --omit=dev` in that directory (npm lifecycle scripts can execute code during install).
   - Prefer pinned, exact versions (`@scope/pkg@1.2.3`), and inspect the unpacked code on disk before enabling.
   - `--dangerously-force-unsafe-install` is break-glass only for built-in scan false positives on plugin install/update flows. It does not bypass plugin `before_install` hook policy blocks and does not bypass scan failures.
-  - Gateway-backed skill dependency installs follow the same dangerous/suspicious split: built-in `critical` findings block unless the caller explicitly sets `dangerouslyForceUnsafeInstall`, while suspicious findings still warn only. `openclaw skills install` remains the separate ClawHub skill download/install flow.
+  - Gateway-backed skill dependency installs follow the same dangerous/suspicious split: built-in `critical` findings block unless the caller explicitly sets `dangerouslyForceUnsafeInstall`, while suspicious findings still warn only. `soloclaw skills install` remains the separate ClawHub skill download/install flow.
 
 Details: [Plugins](/tools/plugin)
 
@@ -593,8 +593,8 @@ All current DM-capable channels support a DM policy (`dmPolicy` or `*.dm.policy`
 Approve via CLI:
 
 ```bash
-openclaw pairing list <channel>
-openclaw pairing approve <channel> <code>
+soloclaw pairing list <channel>
+soloclaw pairing approve <channel> <code>
 ```
 
 Details + files on disk: [Pairing](/channels/pairing)
@@ -750,7 +750,7 @@ Keep config + state private on the gateway host:
 - `~/.soloclaw/openclaw.json`: `600` (user read/write only)
 - `~/.soloclaw`: `700` (user only)
 
-`openclaw doctor` can warn and offer to tighten these permissions.
+`soloclaw doctor` can warn and offer to tighten these permissions.
 
 ### 0.4) Network exposure (bind + port + firewall)
 
@@ -893,7 +893,7 @@ Set a token so **all** WS clients must authenticate:
 }
 ```
 
-Doctor can generate one for you: `openclaw doctor --generate-gateway-token`.
+Doctor can generate one for you: `soloclaw doctor --generate-gateway-token`.
 
 Note: `gateway.remote.token` / `.password` are client credential sources. They
 do **not** protect local WS access by themselves.
@@ -1020,7 +1020,7 @@ Recommendations:
 
 - Keep tool summary redaction on (`logging.redactSensitive: "tools"`; default).
 - Add custom patterns for your environment via `logging.redactPatterns` (tokens, hostnames, internal URLs).
-- When sharing diagnostics, prefer `openclaw status --all` (pasteable, secrets redacted) over raw logs.
+- When sharing diagnostics, prefer `soloclaw status --all` (pasteable, secrets redacted) over raw logs.
 - Prune old session transcripts and log files if you don’t need long retention.
 
 Details: [Logging](/gateway/logging)
@@ -1299,7 +1299,7 @@ If your AI does something bad:
 
 ### Contain
 
-1. **Stop it:** stop the macOS app (if it supervises the Gateway) or terminate your `openclaw gateway` process.
+1. **Stop it:** stop the macOS app (if it supervises the Gateway) or terminate your `soloclaw gateway` process.
 2. **Close exposure:** set `gateway.bind: "loopback"` (or disable Tailscale Funnel/Serve) until you understand what happened.
 3. **Freeze access:** switch risky DMs/groups to `dmPolicy: "disabled"` / require mentions, and remove `"*"` allow-all entries if you had them.
 
@@ -1314,7 +1314,7 @@ If your AI does something bad:
 1. Check Gateway logs: `/tmp/openclaw/openclaw-YYYY-MM-DD.log` (or `logging.file`).
 2. Review the relevant transcript(s): `~/.soloclaw/agents/<agentId>/sessions/*.jsonl`.
 3. Review recent config changes (anything that could have widened access: `gateway.bind`, `gateway.auth`, dm/group policies, `tools.elevated`, plugin changes).
-4. Re-run `openclaw security audit --deep` and confirm critical findings are resolved.
+4. Re-run `soloclaw security audit --deep` and confirm critical findings are resolved.
 
 ### Collect for a report
 

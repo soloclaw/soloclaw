@@ -660,7 +660,7 @@ async function activateLaunchAgent(params: { env: GatewayServiceEnv; plistPath: 
     domain,
     serviceTarget: `${domain}/${label}`,
     plistPath: params.plistPath,
-    actionHint: "openclaw gateway install --force",
+    actionHint: "soloclaw gateway install --force",
   });
 }
 
@@ -697,7 +697,7 @@ async function ensureLaunchAgentLoadedAfterFailure(params: {
       domain: params.domain,
       serviceTarget: params.serviceTarget,
       plistPath: params.plistPath,
-      actionHint: "openclaw gateway start",
+      actionHint: "soloclaw gateway start",
     });
   } catch {
     // Best-effort only. Preserve the original kickstart failure below.
@@ -735,7 +735,7 @@ export async function restartLaunchAgent({
     cleanStaleGatewayProcessesSync(cleanupPort);
   }
 
-  // `openclaw gateway restart` is an explicit operator request to bring the
+  // `soloclaw gateway restart` is an explicit operator request to bring the
   // LaunchAgent back, so clear any persisted disabled state before restart.
   await execLaunchctl(["enable", serviceTarget]);
 
@@ -755,7 +755,7 @@ export async function restartLaunchAgent({
     domain,
     serviceTarget,
     plistPath,
-    actionHint: "openclaw gateway restart",
+    actionHint: "soloclaw gateway restart",
   });
 
   const retry = await execLaunchctl(["kickstart", "-k", serviceTarget]);

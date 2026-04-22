@@ -69,7 +69,7 @@ export function isExpectedCodexModelsCommandText(text: string): boolean {
     normalized.includes("registered models") ||
     normalized.includes("only listed model") ||
     normalized.includes("single codex model") ||
-    normalized.includes("live openclaw config shows") ||
+    normalized.includes("live soloclaw config shows") ||
     normalized.includes("current gateway config");
   const isSessionConfigFallback =
     text.includes("`codex/") &&

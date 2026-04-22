@@ -228,7 +228,7 @@ environment.
 ```bash
 OPENCLAW_AGENT_RUNTIME=codex \
 OPENCLAW_AGENT_HARNESS_FALLBACK=none \
-openclaw gateway run
+soloclaw gateway run
 ```
 
 With fallback disabled, a session fails early when the requested harness is not

@@ -1,12 +1,12 @@
 ---
-summary: "CLI reference for `openclaw qr` (generate mobile pairing QR + setup code)"
+summary: "CLI reference for `soloclaw qr` (generate mobile pairing QR + setup code)"
 read_when:
   - You want to pair a mobile node app with a gateway quickly
   - You need setup-code output for remote/manual sharing
 title: "qr"
 ---
 
-# `openclaw qr`
+# `soloclaw qr`
 
 Generate a mobile pairing QR and setup code from your current Gateway configuration.
 
@@ -48,5 +48,5 @@ openclaw qr --url wss://gateway.example/ws
 - If both `gateway.auth.token` and `gateway.auth.password` are configured (including SecretRefs) and `gateway.auth.mode` is unset, setup-code resolution fails until mode is set explicitly.
 - Gateway version skew note: this command path requires a gateway that supports `secrets.resolve`; older gateways return an unknown-method error.
 - After scanning, approve device pairing with:
-  - `openclaw devices list`
-  - `openclaw devices approve <requestId>`
+  - `soloclaw devices list`
+  - `soloclaw devices approve <requestId>`

@@ -64,7 +64,7 @@ OpenClaw also injects context markers into spawned child processes:
 
 - `OPENCLAW_SHELL=exec`: set for commands run through the `exec` tool.
 - `OPENCLAW_SHELL=acp`: set for ACP runtime backend process spawns (for example `acpx`).
-- `OPENCLAW_SHELL=acp-client`: set for `openclaw acp client` when it spawns the ACP bridge process.
+- `OPENCLAW_SHELL=acp-client`: set for `soloclaw acp client` when it spawns the ACP bridge process.
 - `OPENCLAW_SHELL=tui-local`: set for local TUI `!` shell commands.
 
 These are runtime markers (not required user config). They can be used in shell/profile logic
@@ -143,7 +143,7 @@ DigiCert Global Root G2, etc.). This causes `web_fetch` to fail with `"fetch fai
 
 On Linux, OpenClaw automatically detects nvm and applies the fix in the actual startup environment:
 
-- `openclaw gateway install` writes `NODE_EXTRA_CA_CERTS` into the systemd service environment
+- `soloclaw gateway install` writes `NODE_EXTRA_CA_CERTS` into the systemd service environment
 - the `openclaw` CLI entrypoint re-execs itself with `NODE_EXTRA_CA_CERTS` set before Node startup
 
 **Manual fix (for older versions or direct `node ...` launches):**
@@ -152,7 +152,7 @@ Export the variable before starting OpenClaw:
 
 ```bash
 export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
-openclaw gateway run
+soloclaw gateway run
 ```
 
 Do not rely on writing only to `~/.soloclaw/.env` for this variable; Node reads

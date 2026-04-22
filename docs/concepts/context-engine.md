@@ -21,7 +21,7 @@ alternative engines that replace the active context-engine lifecycle.
 Check which engine is active:
 
 ```bash
-openclaw doctor
+soloclaw doctor
 # or inspect config directly:
 cat ~/.soloclaw/openclaw.json | jq '.plugins.slots.contextEngine'
 ```
@@ -265,14 +265,14 @@ OpenClaw resolves when it needs a context engine.
 
 ## Tips
 
-- Use `openclaw doctor` to verify your engine is loading correctly.
+- Use `soloclaw doctor` to verify your engine is loading correctly.
 - If switching engines, existing sessions continue with their current history.
   The new engine takes over for future runs.
 - Engine errors are logged and surfaced in diagnostics. If a plugin engine
   fails to register or the selected engine id cannot be resolved, OpenClaw
   does not fall back automatically; runs fail until you fix the plugin or
   switch `plugins.slots.contextEngine` back to `"legacy"`.
-- For development, use `openclaw plugins install -l ./my-engine` to link a
+- For development, use `soloclaw plugins install -l ./my-engine` to link a
   local plugin directory without copying.
 
 See also: [Compaction](/concepts/compaction), [Context](/concepts/context),

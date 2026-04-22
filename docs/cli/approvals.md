@@ -1,26 +1,26 @@
 ---
-summary: "CLI reference for `openclaw approvals` and `openclaw exec-policy`"
+summary: "CLI reference for `soloclaw approvals` and `soloclaw exec-policy`"
 read_when:
   - You want to edit exec approvals from the CLI
   - You need to manage allowlists on gateway or node hosts
 title: "approvals"
 ---
 
-# `openclaw approvals`
+# `soloclaw approvals`
 
 Manage exec approvals for the **local host**, **gateway host**, or a **node host**.
 By default, commands target the local approvals file on disk. Use `--gateway` to target the gateway, or `--node` to target a specific node.
 
-Alias: `openclaw exec-approvals`
+Alias: `soloclaw exec-approvals`
 
 Related:
 
 - Exec approvals: [Exec approvals](/tools/exec-approvals)
 - Nodes: [Nodes](/nodes)
 
-## `openclaw exec-policy`
+## `soloclaw exec-policy`
 
-`openclaw exec-policy` is the local convenience command for keeping the requested
+`soloclaw exec-policy` is the local convenience command for keeping the requested
 `tools.exec.*` config and the local host approvals file aligned in one step.
 
 Use it when you want to:
@@ -52,10 +52,10 @@ Current scope:
 - it updates the local config file and the local approvals file together
 - it does **not** push policy to the gateway host or a node host
 - `--host node` is rejected in this command because node exec approvals are fetched from the node at runtime and must be managed through node-targeted approvals commands instead
-- `openclaw exec-policy show` marks `host=node` scopes as node-managed at runtime instead of deriving an effective policy from the local approvals file
+- `soloclaw exec-policy show` marks `host=node` scopes as node-managed at runtime instead of deriving an effective policy from the local approvals file
 
-If you need to edit remote host approvals directly, keep using `openclaw approvals set --gateway`
-or `openclaw approvals set --node <id|name|ip>`.
+If you need to edit remote host approvals directly, keep using `soloclaw approvals set --gateway`
+or `soloclaw approvals set --node <id|name|ip>`.
 
 ## Common commands
 
@@ -65,7 +65,7 @@ openclaw approvals get --node <id|name|ip>
 openclaw approvals get --gateway
 ```
 
-`openclaw approvals get` now shows the effective exec policy for local, gateway, and node targets:
+`soloclaw approvals get` now shows the effective exec policy for local, gateway, and node targets:
 
 - requested `tools.exec` policy
 - host approvals-file policy
@@ -126,9 +126,9 @@ EOF
 This changes the **host approvals file** only. To keep the requested OpenClaw policy aligned, also set:
 
 ```bash
-openclaw config set tools.exec.host gateway
-openclaw config set tools.exec.security full
-openclaw config set tools.exec.ask off
+soloclaw config set tools.exec.host gateway
+soloclaw config set tools.exec.security full
+soloclaw config set tools.exec.ask off
 ```
 
 Why `tools.exec.host=gateway` in this example:
@@ -179,7 +179,7 @@ Targeting notes:
 
 ## Notes
 
-- `--node` uses the same resolver as `openclaw nodes` (id, name, ip, or id prefix).
+- `--node` uses the same resolver as `soloclaw nodes` (id, name, ip, or id prefix).
 - `--agent` defaults to `"*"`, which applies to all agents.
 - The node host must advertise `system.execApprovals.get/set` (macOS app or headless node host).
 - Approvals files are stored per host at `~/.soloclaw/exec-approvals.json`.

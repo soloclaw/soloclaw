@@ -63,7 +63,7 @@ OpenClaw indexes `MEMORY.md` and `memory/*.md` into chunks (~400 tokens with
 - **File watching:** changes to memory files trigger a debounced reindex (1.5s).
 - **Auto-reindex:** when the embedding provider, model, or chunking config
   changes, the entire index is rebuilt automatically.
-- **Reindex on demand:** `openclaw memory index --force`
+- **Reindex on demand:** `soloclaw memory index --force`
 
 <Info>
 You can also index Markdown files outside the workspace with
@@ -88,10 +88,10 @@ automatic user modeling.
 
 ## Troubleshooting
 
-**Memory search disabled?** Check `openclaw memory status`. If no provider is
+**Memory search disabled?** Check `soloclaw memory status`. If no provider is
 detected, set one explicitly or add an API key.
 
-**Stale results?** Run `openclaw memory index --force` to rebuild. The watcher
+**Stale results?** Run `soloclaw memory index --force` to rebuild. The watcher
 may miss changes in rare edge cases.
 
 **sqlite-vec not loading?** OpenClaw falls back to in-process cosine similarity

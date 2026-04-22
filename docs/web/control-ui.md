@@ -21,7 +21,7 @@ If the Gateway is running on the same computer, open:
 
 - [http://127.0.0.1:18789/](http://127.0.0.1:18789/) (or [http://localhost:18789/](http://localhost:18789/))
 
-If the page fails to load, start the Gateway first: `openclaw gateway`.
+If the page fails to load, start the Gateway first: `soloclaw gateway`.
 
 Auth is supplied during the WebSocket handshake via:
 
@@ -48,18 +48,18 @@ unauthorized access.
 
 ```bash
 # List pending requests
-openclaw devices list
+soloclaw devices list
 
 # Approve by request ID
-openclaw devices approve <requestId>
+soloclaw devices approve <requestId>
 ```
 
 If the browser retries pairing with changed auth details (role/scopes/public
 key), the previous pending request is superseded and a new `requestId` is
-created. Re-run `openclaw devices list` before approval.
+created. Re-run `soloclaw devices list` before approval.
 
 Once approved, the device is remembered and won't require re-approval unless
-you revoke it with `openclaw devices revoke --device <id> --role <role>`. See
+you revoke it with `soloclaw devices revoke --device <id> --role <role>`. See
 [Devices CLI](/cli/devices) for token rotation and revocation.
 
 **Notes:**
@@ -177,7 +177,7 @@ intentionally want `[embed url="https://..."]` to load third-party pages, set
 Keep the Gateway on loopback and let Tailscale Serve proxy it with HTTPS:
 
 ```bash
-openclaw gateway --tailscale serve
+soloclaw gateway --tailscale serve
 ```
 
 Open:
@@ -202,7 +202,7 @@ code may run on that host, require token/password auth.
 ### Bind to tailnet + token
 
 ```bash
-openclaw gateway --bind tailnet --token "$(openssl rand -hex 32)"
+soloclaw gateway --bind tailnet --token "$(openssl rand -hex 32)"
 ```
 
 Then open:

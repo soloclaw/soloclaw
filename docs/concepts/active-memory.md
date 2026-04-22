@@ -57,7 +57,7 @@ available.
 After that, restart the gateway:
 
 ```bash
-openclaw gateway
+soloclaw gateway
 ```
 
 To inspect it live in a conversation:
@@ -103,7 +103,7 @@ Start with this in `openclaw.json`:
 Then restart the gateway:
 
 ```bash
-openclaw gateway
+soloclaw gateway
 ```
 
 What this means:
@@ -687,7 +687,7 @@ If active memory is not showing up where you expect:
 2. Confirm the current agent id is listed in `config.agents`.
 3. Confirm you are testing through an interactive persistent chat session.
 4. Turn on `config.logging: true` and watch the gateway logs.
-5. Verify memory search itself works with `openclaw memory status --deep`.
+5. Verify memory search itself works with `soloclaw memory status --deep`.
 
 If memory hits are noisy, tighten:
 
@@ -829,7 +829,7 @@ If Active Memory is slow, empty, or appears to switch providers unexpectedly:
   the session
 - turn on `/verbose on` if you also want the normal `🧩 Active Memory: ...`
   status line after each reply
-- run `openclaw memory status --deep` to inspect the current memory-search
+- run `soloclaw memory status --deep` to inspect the current memory-search
   backend and index health
 - check `agents.defaults.memorySearch.provider` and related auth/config to make
   sure the provider you expect is actually the one that can resolve at runtime

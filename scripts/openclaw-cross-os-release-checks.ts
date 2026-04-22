@@ -1470,7 +1470,7 @@ async function verifyFreshShellCommand(params) {
     'if [ -f "$HOME/.bashrc" ]; then . "$HOME/.bashrc"; fi',
     "command -v openclaw >/dev/null 2>&1",
     'printf "__OPENCLAW_PATH__=%s\\n" "$(command -v openclaw)"',
-    "openclaw --version",
+    "soloclaw --version",
   ].join("\n");
   const result = await runPosixShellScript(script, {
     cwd: params.lane.homeDir,
@@ -1520,7 +1520,7 @@ async function ensureDevUpdateGitInstall(params) {
     env: params.env,
     logPath: join(params.logsDir, "dev-update-status.log"),
   });
-  // The dev-update lane must prove that `openclaw update --channel dev` landed on
+  // The dev-update lane must prove that `soloclaw update --channel dev` landed on
   // the expected git checkout. Falling back to a manual repair here would hide
   // updater regressions and turn the suite into a false green.
   verifyDevUpdateStatus(updateStatus.stdout, { ref: params.requestedRef });
@@ -2611,7 +2611,7 @@ function installedPackageRoot(prefixDir) {
 }
 
 function installedEntryPath(prefixDir) {
-  return join(installedPackageRoot(prefixDir), "openclaw.mjs");
+  return join(installedPackageRoot(prefixDir), "soloclaw.mjs");
 }
 
 function npmShimPath(prefixDir) {

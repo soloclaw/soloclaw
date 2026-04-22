@@ -1,12 +1,12 @@
 ---
-summary: "CLI reference for `openclaw models` (status/list/set/scan, aliases, fallbacks, auth)"
+summary: "CLI reference for `soloclaw models` (status/list/set/scan, aliases, fallbacks, auth)"
 read_when:
   - You want to change default models or view provider auth status
   - You want to scan available models/providers and debug auth profiles
 title: "models"
 ---
 
-# `openclaw models`
+# `soloclaw models`
 
 Model discovery, scanning, and configuration (default model, fallbacks, auth profiles).
 
@@ -24,7 +24,7 @@ openclaw models set <model-or-alias>
 openclaw models scan
 ```
 
-`openclaw models status` shows the resolved default/fallbacks plus an auth overview.
+`soloclaw models status` shows the resolved default/fallbacks plus an auth overview.
 When provider usage snapshots are available, the OAuth/API-key status section includes
 provider usage windows and quota snapshots.
 Current usage-window providers: Anthropic, GitHub Copilot, Gemini CLI, OpenAI
@@ -109,7 +109,7 @@ flow (OAuth/API key) or guide you into manual token paste, depending on the
 provider you choose.
 
 `models auth login` runs a provider plugin’s auth flow (OAuth/API key). Use
-`openclaw plugins list` to see which providers are installed.
+`soloclaw plugins list` to see which providers are installed.
 
 Examples:
 

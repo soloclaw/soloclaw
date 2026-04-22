@@ -54,7 +54,7 @@ If the same person contacts you from multiple channels, use
 `session.identityLinks` to link their identities so they share one session.
 </Tip>
 
-Verify your setup with `openclaw security audit`.
+Verify your setup with `soloclaw security audit`.
 
 ## Session lifecycle
 
@@ -95,12 +95,12 @@ to `"enforce"` for automatic cleanup:
 }
 ```
 
-Preview with `openclaw sessions cleanup --dry-run`.
+Preview with `soloclaw sessions cleanup --dry-run`.
 
 ## Inspecting sessions
 
-- `openclaw status` -- session store path and recent activity.
-- `openclaw sessions --json` -- all sessions (filter with `--active <minutes>`).
+- `soloclaw status` -- session store path and recent activity.
+- `soloclaw sessions --json` -- all sessions (filter with `--active <minutes>`).
 - `/status` in chat -- context usage, model, and toggles.
 - `/context list` -- what is in the system prompt.
 

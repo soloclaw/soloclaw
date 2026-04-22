@@ -226,16 +226,16 @@ run_update_smoke() {
   print_install_audit "baseline install"
   verify_installed_cli "$PACKAGE_NAME" "$UPDATE_BASELINE_VERSION"
 
-  echo "==> Run openclaw update from host-served tgz"
+  echo "==> Run soloclaw update from host-served tgz"
   local update_status
   local update_stderr_file
   local update_stderr
   update_stderr_file="$(mktemp)"
   set +e
   UPDATE_JSON="$(
-    run_with_heartbeat "openclaw update" \
+    run_with_heartbeat "soloclaw update" \
       env npm_config_omit=optional NPM_CONFIG_OMIT=optional \
-      openclaw update --tag "$UPDATE_TAG_URL" --yes --json 2>"$update_stderr_file"
+      soloclaw update --tag "$UPDATE_TAG_URL" --yes --json 2>"$update_stderr_file"
   )"
   update_status=$?
   set -e
@@ -246,7 +246,7 @@ run_update_smoke() {
     printf "%s\n" "$update_stderr" >&2
   fi
   if [[ "$update_status" -ne 0 ]]; then
-    echo "ERROR: openclaw update failed with exit code $update_status" >&2
+    echo "ERROR: soloclaw update failed with exit code $update_status" >&2
     return "$update_status"
   fi
 

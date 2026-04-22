@@ -33,7 +33,7 @@ Advantages:
   </Step>
   <Step title="Configure">
     ```bash
-    openclaw configure --section web
+    soloclaw configure --section web
     # Select "searxng" as the provider
     ```
 

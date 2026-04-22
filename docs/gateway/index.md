@@ -30,11 +30,11 @@ Use this page for day-1 startup and day-2 operations of the Gateway service.
   <Step title="Start the Gateway">
 
 ```bash
-openclaw gateway --port 18789
+soloclaw gateway --port 18789
 # debug/trace mirrored to stdio
-openclaw gateway --port 18789 --verbose
+soloclaw gateway --port 18789 --verbose
 # force-kill listener on selected port, then start
-openclaw gateway --force
+soloclaw gateway --force
 ```
 
   </Step>
@@ -42,8 +42,8 @@ openclaw gateway --force
   <Step title="Verify service health">
 
 ```bash
-openclaw gateway status
-openclaw status
+soloclaw gateway status
+soloclaw status
 openclaw logs --follow
 ```
 
@@ -54,7 +54,7 @@ Healthy baseline: `Runtime: running` and `RPC probe: ok`.
   <Step title="Validate channel readiness">
 
 ```bash
-openclaw channels status --probe
+soloclaw channels status --probe
 ```
 
 With a reachable gateway this runs live per-account channel probes and optional audits.
@@ -126,15 +126,15 @@ All of these run on the main Gateway port and use the same trusted operator auth
 ## Operator command set
 
 ```bash
-openclaw gateway status
-openclaw gateway status --deep   # adds a system-level service scan
-openclaw gateway status --json
-openclaw gateway install
-openclaw gateway restart
-openclaw gateway stop
+soloclaw gateway status
+soloclaw gateway status --deep   # adds a system-level service scan
+soloclaw gateway status --json
+soloclaw gateway install
+soloclaw gateway restart
+soloclaw gateway stop
 openclaw secrets reload
 openclaw logs --follow
-openclaw doctor
+soloclaw doctor
 ```
 
 `gateway status --deep` is for extra service discovery (LaunchDaemons/systemd system
@@ -150,8 +150,8 @@ You only need multiple gateways when you intentionally want isolation or a rescu
 Useful checks:
 
 ```bash
-openclaw gateway status --deep
-openclaw gateway probe
+soloclaw gateway status --deep
+soloclaw gateway probe
 ```
 
 What to expect:
@@ -191,22 +191,22 @@ Use supervised runs for production-like reliability.
   <Tab title="macOS (launchd)">
 
 ```bash
-openclaw gateway install
-openclaw gateway status
-openclaw gateway restart
-openclaw gateway stop
+soloclaw gateway install
+soloclaw gateway status
+soloclaw gateway restart
+soloclaw gateway stop
 ```
 
-LaunchAgent labels are `ai.soloclaw.gateway` (default) or `ai.soloclaw.<profile>` (named profile). `openclaw doctor` audits and repairs service config drift.
+LaunchAgent labels are `ai.soloclaw.gateway` (default) or `ai.soloclaw.<profile>` (named profile). `soloclaw doctor` audits and repairs service config drift.
 
   </Tab>
 
   <Tab title="Linux (systemd user)">
 
 ```bash
-openclaw gateway install
+soloclaw gateway install
 systemctl --user enable --now openclaw-gateway[-<profile>].service
-openclaw gateway status
+soloclaw gateway status
 ```
 
 For persistence after logout, enable lingering:
@@ -224,7 +224,7 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/usr/local/bin/openclaw gateway --port 18789
+ExecStart=/usr/local/bin/soloclaw gateway --port 18789
 Restart=always
 RestartSec=5
 TimeoutStopSec=30
@@ -241,10 +241,10 @@ WantedBy=default.target
   <Tab title="Windows (native)">
 
 ```powershell
-openclaw gateway install
-openclaw gateway status --json
-openclaw gateway restart
-openclaw gateway stop
+soloclaw gateway install
+soloclaw gateway status --json
+soloclaw gateway restart
+soloclaw gateway stop
 ```
 
 Native Windows managed startup uses a Scheduled Task named `OpenClaw Gateway`
@@ -285,8 +285,8 @@ Checklist per instance:
 Example:
 
 ```bash
-OPENCLAW_CONFIG_PATH=~/.soloclaw/a.json OPENCLAW_STATE_DIR=~/.soloclaw-a openclaw gateway --port 19001
-OPENCLAW_CONFIG_PATH=~/.soloclaw/b.json OPENCLAW_STATE_DIR=~/.soloclaw-b openclaw gateway --port 19002
+OPENCLAW_CONFIG_PATH=~/.soloclaw/a.json OPENCLAW_STATE_DIR=~/.soloclaw-a soloclaw gateway --port 19001
+OPENCLAW_CONFIG_PATH=~/.soloclaw/b.json OPENCLAW_STATE_DIR=~/.soloclaw-b soloclaw gateway --port 19002
 ```
 
 See: [Multiple gateways](/gateway/multiple-gateways).
@@ -329,8 +329,8 @@ See full protocol docs: [Gateway Protocol](/gateway/protocol).
 ### Readiness
 
 ```bash
-openclaw gateway status
-openclaw channels status --probe
+soloclaw gateway status
+soloclaw channels status --probe
 openclaw health
 ```
 

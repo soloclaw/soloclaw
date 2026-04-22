@@ -10,7 +10,7 @@ sidebarTitle: "Onboarding Reference"
 
 # Onboarding Reference
 
-This is the full reference for `openclaw onboard`.
+This is the full reference for `soloclaw onboard`.
 For a high-level overview, see [Onboarding (CLI)](/start/wizard).
 
 ## Flow details (local mode)
@@ -23,7 +23,7 @@ For a high-level overview, see [Onboarding (CLI)](/start/wizard).
     - CLI `--reset` defaults to `config+creds+sessions`; use `--reset-scope full`
       to also remove workspace.
     - If the config is invalid or contains legacy keys, the wizard stops and asks
-      you to run `openclaw doctor` before continuing.
+      you to run `soloclaw doctor` before continuing.
     - Reset uses `trash` (never `rm`) and offers scopes:
       - Config only
       - Config + credentials + sessions
@@ -102,13 +102,13 @@ For a high-level overview, see [Onboarding (CLI)](/start/wizard).
     - [Signal](/channels/signal): optional `signal-cli` install + account config.
     - [BlueBubbles](/channels/bluebubbles): **recommended for iMessage**; server URL + password + webhook.
     - [iMessage](/channels/imessage): legacy `imsg` CLI path + DB access.
-    - DM security: default is pairing. First DM sends a code; approve via `openclaw pairing approve <channel> <code>` or use allowlists.
+    - DM security: default is pairing. First DM sends a code; approve via `soloclaw pairing approve <channel> <code>` or use allowlists.
   </Step>
   <Step title="Web search">
     - Pick a supported provider such as Brave, DuckDuckGo, Exa, Firecrawl, Gemini, Grok, Kimi, MiniMax Search, Ollama Web Search, Perplexity, SearXNG, or Tavily (or skip).
     - API-backed providers can use env vars or existing config for quick setup; key-free providers use their provider-specific prerequisites instead.
     - Skip with `--skip-search`.
-    - Configure later: `openclaw configure --section web`.
+    - Configure later: `soloclaw configure --section web`.
   </Step>
   <Step title="Daemon install">
     - macOS: LaunchAgent
@@ -122,8 +122,8 @@ For a high-level overview, see [Onboarding (CLI)](/start/wizard).
     - If both `gateway.auth.token` and `gateway.auth.password` are configured and `gateway.auth.mode` is unset, daemon install is blocked until mode is set explicitly.
   </Step>
   <Step title="Health check">
-    - Starts the Gateway (if needed) and runs `openclaw health`.
-    - Tip: `openclaw status --deep` adds the live gateway health probe to status output, including channel probes when supported (requires a reachable gateway).
+    - Starts the Gateway (if needed) and runs `soloclaw health`.
+    - Tip: `soloclaw status --deep` adds the live gateway health probe to status output, including channel probes when supported (requires a reachable gateway).
   </Step>
   <Step title="Skills (recommended)">
     - Reads the available skills and checks requirements.
@@ -145,7 +145,7 @@ If the Control UI assets are missing, onboarding attempts to build them; fallbac
 Use `--non-interactive` to automate or script onboarding:
 
 ```bash
-openclaw onboard --non-interactive \
+soloclaw onboard --non-interactive \
   --mode local \
   --auth-choice apiKey \
   --anthropic-api-key "$ANTHROPIC_API_KEY" \
@@ -162,7 +162,7 @@ Gateway token SecretRef in non-interactive mode:
 
 ```bash
 export OPENCLAW_GATEWAY_TOKEN="your-token"
-openclaw onboard --non-interactive \
+soloclaw onboard --non-interactive \
   --mode local \
   --auth-choice skip \
   --gateway-auth token \
@@ -181,7 +181,7 @@ Use this reference page for flag semantics and step ordering.
 ### Add agent (non-interactive)
 
 ```bash
-openclaw agents add work \
+soloclaw agents add work \
   --workspace ~/.soloclaw/workspace-work \
   --model openai/gpt-5.4 \
   --bind whatsapp:biz \
@@ -228,7 +228,7 @@ Typical fields in `~/.soloclaw/openclaw.json`:
 - `wizard.lastRunCommand`
 - `wizard.lastRunMode`
 
-`openclaw agents add` writes `agents.list[]` and optional `bindings`.
+`soloclaw agents add` writes `agents.list[]` and optional `bindings`.
 
 WhatsApp credentials go under `~/.soloclaw/credentials/whatsapp/<accountId>/`.
 Sessions are stored under `~/.soloclaw/agents/<agentId>/sessions/`.

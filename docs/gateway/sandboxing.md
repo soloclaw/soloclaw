@@ -140,7 +140,7 @@ This is a **remote-canonical** model. The remote SSH workspace becomes the real 
 Important consequences:
 
 - Host-local edits made outside OpenClaw after the seed step are not visible remotely until you recreate the sandbox.
-- `openclaw sandbox recreate` deletes the per-scope remote root and seeds again from local on next use.
+- `soloclaw sandbox recreate` deletes the per-scope remote root and seeds again from local on next use.
 - Browser sandboxing is not supported on the SSH backend.
 - `sandbox.docker.*` settings do not apply to the SSH backend.
 
@@ -256,8 +256,8 @@ Choose `remote` if you think of the sandbox as the real workspace.
 
 OpenShell sandboxes are still managed through the normal sandbox lifecycle:
 
-- `openclaw sandbox list` shows OpenShell runtimes as well as Docker runtimes
-- `openclaw sandbox recreate` deletes the current runtime and lets OpenClaw recreate it on next use
+- `soloclaw sandbox list` shows OpenShell runtimes as well as Docker runtimes
+- `soloclaw sandbox recreate` deletes the current runtime and lets OpenClaw recreate it on next use
 - prune logic is backend-aware too
 
 For `remote` mode, recreate is especially important:
@@ -450,7 +450,7 @@ globally or per-agent, sandboxing doesn’t bring it back.
 
 Debugging:
 
-- Use `openclaw sandbox explain` to inspect effective sandbox mode, tool policy, and fix-it config keys.
+- Use `soloclaw sandbox explain` to inspect effective sandbox mode, tool policy, and fix-it config keys.
 - See [Sandbox vs Tool Policy vs Elevated](/gateway/sandbox-vs-tool-policy-vs-elevated) for the “why is this blocked?” mental model.
   Keep it locked down.
 

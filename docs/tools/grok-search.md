@@ -25,8 +25,8 @@ query.
 
 If you choose **Grok** during:
 
-- `openclaw onboard`
-- `openclaw configure --section web`
+- `soloclaw onboard`
+- `soloclaw configure --section web`
 
 OpenClaw can show a separate follow-up step to enable `x_search` with the same
 `XAI_API_KEY`. That follow-up:
@@ -47,7 +47,7 @@ If you skip it, you can enable or change `x_search` later in config.
     Set `XAI_API_KEY` in the Gateway environment, or configure via:
 
     ```bash
-    openclaw configure --section web
+    soloclaw configure --section web
     ```
 
   </Step>

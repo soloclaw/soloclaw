@@ -237,7 +237,7 @@ function runPackedBundledChannelEntrySmoke(): void {
     mkdirSync(homeDir, { recursive: true });
     execFileSync(
       process.execPath,
-      [join(packageRoot, "openclaw.mjs"), "completion", "--write-state"],
+      [join(packageRoot, "soloclaw.mjs"), "completion", "--write-state"],
       {
         cwd: packageRoot,
         stdio: "inherit",

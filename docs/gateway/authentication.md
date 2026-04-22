@@ -30,7 +30,7 @@ For Anthropic specifically, API key auth is still the most predictable server
 setup, but OpenClaw also supports reusing a local Claude CLI login.
 
 1. Create an API key in your provider console.
-2. Put it on the **gateway host** (the machine running `openclaw gateway`).
+2. Put it on the **gateway host** (the machine running `soloclaw gateway`).
 
 ```bash
 export <PROVIDER>_API_KEY="..."
@@ -50,11 +50,11 @@ Then restart the daemon (or restart your Gateway process) and re-check:
 
 ```bash
 openclaw models status
-openclaw doctor
+soloclaw doctor
 ```
 
 If you’d rather not manage env vars yourself, onboarding can store
-API keys for daemon use: `openclaw onboard`.
+API keys for daemon use: `soloclaw onboard`.
 
 See [Help](/help) for details on env inheritance (`env.shellEnv`,
 `~/.soloclaw/.env`, systemd/launchd).
@@ -122,7 +122,7 @@ The Anthropic `claude-cli` backend is supported again.
 
 ```bash
 openclaw models status
-openclaw doctor
+soloclaw doctor
 ```
 
 ## API key rotation behavior (gateway)
@@ -163,7 +163,7 @@ openclaw models auth order clear --provider anthropic
 ```
 
 Use `--agent <id>` to target a specific agent; omit it to use the configured default agent.
-When you debug order issues, `openclaw models status --probe` shows omitted
+When you debug order issues, `soloclaw models status --probe` shows omitted
 stored profiles as `excluded_by_auth_order` instead of silently skipping them.
 When you debug cooldown issues, remember that rate-limit cooldowns can be tied
 to one model id rather than the whole provider profile.
@@ -181,6 +181,6 @@ openclaw models status
 
 ### Token expiring/expired
 
-Run `openclaw models status` to confirm which profile is expiring. If an
+Run `soloclaw models status` to confirm which profile is expiring. If an
 Anthropic token profile is missing or expired, refresh that setup via
 setup-token or migrate to an Anthropic API key.

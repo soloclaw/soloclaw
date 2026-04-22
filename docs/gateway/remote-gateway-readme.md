@@ -60,7 +60,7 @@ ssh-copy-id -i ~/.ssh/id_rsa <REMOTE_USER>@<REMOTE_IP>
 ### Step 3: Configure Remote Gateway Auth
 
 ```bash
-openclaw config set gateway.remote.token "<your-token>"
+soloclaw config set gateway.remote.token "<your-token>"
 ```
 
 Use `gateway.remote.password` instead if your remote gateway uses password auth.

@@ -76,8 +76,8 @@ ssh -N -L 18789:127.0.0.1:18789 user@host
 
 With the tunnel up:
 
-- `openclaw health` and `openclaw status --deep` now reach the remote gateway via `ws://127.0.0.1:18789`.
-- `openclaw gateway status`, `openclaw gateway health`, `openclaw gateway probe`, and `openclaw gateway call` can also target the forwarded URL via `--url` when needed.
+- `soloclaw health` and `soloclaw status --deep` now reach the remote gateway via `ws://127.0.0.1:18789`.
+- `soloclaw gateway status`, `soloclaw gateway health`, `soloclaw gateway probe`, and `soloclaw gateway call` can also target the forwarded URL via `--url` when needed.
 
 Note: replace `18789` with your configured `gateway.port` (or `--port`/`OPENCLAW_GATEWAY_PORT`).
 Note: when you pass `--url`, the CLI does not fall back to config or environment credentials.
@@ -184,7 +184,7 @@ ssh-copy-id -i ~/.ssh/id_rsa <REMOTE_USER>@<REMOTE_IP>
 Store the token in config so it persists across restarts:
 
 ```bash
-openclaw config set gateway.remote.token "<your-token>"
+soloclaw config set gateway.remote.token "<your-token>"
 ```
 
 #### Step 4: create the LaunchAgent

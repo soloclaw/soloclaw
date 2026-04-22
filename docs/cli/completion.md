@@ -1,12 +1,12 @@
 ---
-summary: "CLI reference for `openclaw completion` (generate/install shell completion scripts)"
+summary: "CLI reference for `soloclaw completion` (generate/install shell completion scripts)"
 read_when:
   - You want shell completions for zsh/bash/fish/PowerShell
   - You need to cache completion scripts under OpenClaw state
 title: "completion"
 ---
 
-# `openclaw completion`
+# `soloclaw completion`
 
 Generate shell completion scripts and optionally install them into your shell profile.
 

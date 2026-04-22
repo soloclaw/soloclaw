@@ -1131,7 +1131,7 @@ describe("handleSystemRunInvoke mac app exec host routing", () => {
   });
 
   it("denies semicolon-chained shell payloads in allowlist mode without explicit approval", async () => {
-    const payloads = ["openclaw status; id", "openclaw status; cat /etc/passwd"];
+    const payloads = ["soloclaw status; id", "soloclaw status; cat /etc/passwd"];
     for (const payload of payloads) {
       const command =
         process.platform === "win32"

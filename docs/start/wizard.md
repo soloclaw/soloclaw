@@ -15,19 +15,19 @@ It configures a local Gateway or a remote Gateway connection, plus channels, ski
 and workspace defaults in one guided flow.
 
 ```bash
-openclaw onboard
+soloclaw onboard
 ```
 
 <Info>
 Fastest first chat: open the Control UI (no channel setup needed). Run
-`openclaw dashboard` and chat in the browser. Docs: [Dashboard](/web/dashboard).
+`soloclaw dashboard` and chat in the browser. Docs: [Dashboard](/web/dashboard).
 </Info>
 
 To reconfigure later:
 
 ```bash
-openclaw configure
-openclaw agents add <name>
+soloclaw configure
+soloclaw agents add <name>
 ```
 
 <Note>
@@ -39,7 +39,7 @@ CLI onboarding includes a web search step where you can pick a provider
 such as Brave, DuckDuckGo, Exa, Firecrawl, Gemini, Grok, Kimi, MiniMax Search,
 Ollama Web Search, Perplexity, SearXNG, or Tavily. Some providers require an
 API key, while others are key-free. You can also configure this later with
-`openclaw configure --section web`. Docs: [Web tools](/tools/web).
+`soloclaw configure --section web`. Docs: [Web tools](/tools/web).
 </Tip>
 
 ## QuickStart vs Advanced
@@ -88,7 +88,7 @@ Onboarding starts with **QuickStart** (defaults) vs **Advanced** (full control).
 <Note>
 Re-running onboarding does **not** wipe anything unless you explicitly choose **Reset** (or pass `--reset`).
 CLI `--reset` defaults to config, credentials, and sessions; use `--reset-scope full` to include workspace.
-If the config is invalid or contains legacy keys, onboarding asks you to run `openclaw doctor` first.
+If the config is invalid or contains legacy keys, onboarding asks you to run `soloclaw doctor` first.
 </Note>
 
 **Remote mode** only configures the local client to connect to a Gateway elsewhere.
@@ -96,7 +96,7 @@ It does **not** install or change anything on the remote host.
 
 ## Add another agent
 
-Use `openclaw agents add <name>` to create a separate agent with its own workspace,
+Use `soloclaw agents add <name>` to create a separate agent with its own workspace,
 sessions, and auth profiles. Running without `--workspace` launches onboarding.
 
 What it sets:
@@ -121,7 +121,7 @@ For the deeper technical reference, including RPC details, see
 
 ## Related docs
 
-- CLI command reference: [`openclaw onboard`](/cli/onboard)
+- CLI command reference: [`soloclaw onboard`](/cli/onboard)
 - Onboarding overview: [Onboarding Overview](/start/onboarding-overview)
 - macOS app onboarding: [Onboarding](/start/onboarding)
 - Agent first-run ritual: [Agent Bootstrapping](/start/bootstrapping)

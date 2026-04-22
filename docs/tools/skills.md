@@ -93,7 +93,7 @@ tool surface those skills teach.
 ## ClawHub (install + sync)
 
 ClawHub is the public skills registry for OpenClaw. Browse at
-[https://clawhub.ai](https://clawhub.ai). Use native `openclaw skills`
+[https://clawhub.ai](https://clawhub.ai). Use native `soloclaw skills`
 commands to discover/install/update skills, or the separate `clawhub` CLI when
 you need publish/sync workflows.
 Full guide: [ClawHub](/tools/clawhub).
@@ -101,13 +101,13 @@ Full guide: [ClawHub](/tools/clawhub).
 Common flows:
 
 - Install a skill into your workspace:
-  - `openclaw skills install <skill-slug>`
+  - `soloclaw skills install <skill-slug>`
 - Update all installed skills:
-  - `openclaw skills update --all`
+  - `soloclaw skills update --all`
 - Sync (scan + publish updates):
   - `clawhub sync --all`
 
-Native `openclaw skills install` installs into the active workspace `skills/`
+Native `soloclaw skills install` installs into the active workspace `skills/`
 directory. The separate `clawhub` CLI also installs into `./skills` under your
 current working directory (or falls back to the configured OpenClaw workspace).
 OpenClaw picks that up as `<workspace>/skills` on the next session.
@@ -118,7 +118,7 @@ OpenClaw picks that up as `<workspace>/skills` on the next session.
 - Prefer sandboxed runs for untrusted inputs and risky tools. See [Sandboxing](/gateway/sandboxing).
 - Workspace and extra-dir skill discovery only accepts skill roots and `SKILL.md` files whose resolved realpath stays inside the configured root.
 - Gateway-backed skill dependency installs (`skills.install`, onboarding, and the Skills settings UI) run the built-in dangerous-code scanner before executing installer metadata. `critical` findings block by default unless the caller explicitly sets the dangerous override; suspicious findings still warn only.
-- `openclaw skills install <slug>` is different: it downloads a ClawHub skill folder into the workspace and does not use the installer-metadata path above.
+- `soloclaw skills install <slug>` is different: it downloads a ClawHub skill folder into the workspace and does not use the installer-metadata path above.
 - `skills.entries.*.env` and `skills.entries.*.apiKey` inject secrets into the **host** process
   for that agent turn (not the sandbox). Keep secrets out of prompts and logs.
 - For a broader threat model and checklists, see [Security](/gateway/security).

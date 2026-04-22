@@ -150,7 +150,7 @@ export async function recoverOrphanedSubagentSessions(params: {
 }): Promise<{ recovered: number; failed: number; skipped: number }> {
   const result = { recovered: 0, failed: 0, skipped: 0 };
   const resumedSessionKeys = params.resumedSessionKeys ?? new Set<string>();
-  const configChangePattern = /openclaw\.json|openclaw gateway restart|config\.patch/i;
+  const configChangePattern = /openclaw\.json|soloclaw gateway restart|config\.patch/i;
 
   try {
     const activeRuns = params.getActiveRuns();

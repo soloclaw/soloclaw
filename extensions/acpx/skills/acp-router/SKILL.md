@@ -207,7 +207,7 @@ ${ACPX_CMD} codex sessions close oc-codex-<conversationId>
 
 Defaults are:
 
-- `openclaw -> openclaw acp`
+- `soloclaw -> openclaw acp`
 - `claude -> npx -y @zed-industries/claude-agent-acp@0.21.0`
 - `codex -> npx @zed-industries/codex-acp@^0.9.5`
 - `copilot -> copilot --acp --stdio`

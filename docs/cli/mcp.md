@@ -2,16 +2,16 @@
 summary: "Expose OpenClaw channel conversations over MCP and manage saved MCP server definitions"
 read_when:
   - Connecting Codex, Claude Code, or another MCP client to OpenClaw-backed channels
-  - Running `openclaw mcp serve`
+  - Running `soloclaw mcp serve`
   - Managing OpenClaw-saved MCP server definitions
 title: "mcp"
 ---
 
 # mcp
 
-`openclaw mcp` has two jobs:
+`soloclaw mcp` has two jobs:
 
-- run OpenClaw as an MCP server with `openclaw mcp serve`
+- run OpenClaw as an MCP server with `soloclaw mcp serve`
 - manage OpenClaw-owned outbound MCP server definitions with `list`, `show`,
   `set`, and `unset`
 
@@ -21,16 +21,16 @@ In other words:
 - `list` / `show` / `set` / `unset` is OpenClaw acting as an MCP client-side
   registry for other MCP servers its runtimes may consume later
 
-Use [`openclaw acp`](/cli/acp) when OpenClaw should host a coding harness
+Use [`soloclaw acp`](/cli/acp) when OpenClaw should host a coding harness
 session itself and route that runtime through ACP.
 
 ## OpenClaw as an MCP server
 
-This is the `openclaw mcp serve` path.
+This is the `soloclaw mcp serve` path.
 
 ## When to use `serve`
 
-Use `openclaw mcp serve` when:
+Use `soloclaw mcp serve` when:
 
 - Codex, Claude Code, or another MCP client should talk directly to
   OpenClaw-backed channel conversations
@@ -38,19 +38,19 @@ Use `openclaw mcp serve` when:
 - you want one MCP server that works across OpenClaw's channel backends instead
   of running separate per-channel bridges
 
-Use [`openclaw acp`](/cli/acp) instead when OpenClaw should host the coding
+Use [`soloclaw acp`](/cli/acp) instead when OpenClaw should host the coding
 runtime itself and keep the agent session inside OpenClaw.
 
 ## How it works
 
-`openclaw mcp serve` starts a stdio MCP server. The MCP client owns that
+`soloclaw mcp serve` starts a stdio MCP server. The MCP client owns that
 process. While the client keeps the stdio session open, the bridge connects to a
 local or remote OpenClaw Gateway over WebSocket and exposes routed channel
 conversations over MCP.
 
 Lifecycle:
 
-1. the MCP client spawns `openclaw mcp serve`
+1. the MCP client spawns `soloclaw mcp serve`
 2. the bridge connects to Gateway
 3. routed sessions become MCP conversations and transcript/history tools
 4. live events are queued in memory while the bridge is connected
@@ -270,7 +270,7 @@ Claude-specific notification methods.
 
 ## Options
 
-`openclaw mcp serve` supports:
+`soloclaw mcp serve` supports:
 
 - `--url <url>`: Gateway WebSocket URL
 - `--token <token>`: Gateway token
@@ -311,7 +311,7 @@ pnpm test:docker:mcp-channels
 That smoke:
 
 - starts a seeded Gateway container
-- starts a second container that spawns `openclaw mcp serve`
+- starts a second container that spawns `soloclaw mcp serve`
 - verifies conversation discovery, transcript reads, attachment metadata reads,
   live event queue behavior, and outbound send routing
 - validates Claude-style channel and permission notifications over the real
@@ -351,7 +351,7 @@ was connected. It is not a durable approval history API.
 
 ## OpenClaw as an MCP client registry
 
-This is the `openclaw mcp list`, `show`, `set`, and `unset` path.
+This is the `soloclaw mcp list`, `show`, `set`, and `unset` path.
 
 These commands do not expose OpenClaw over MCP. They manage OpenClaw-owned MCP
 server definitions under `mcp.servers` in OpenClaw config.
@@ -377,10 +377,10 @@ that want OpenClaw-managed MCP definitions.
 
 Commands:
 
-- `openclaw mcp list`
-- `openclaw mcp show [name]`
-- `openclaw mcp set <name> <json>`
-- `openclaw mcp unset <name>`
+- `soloclaw mcp list`
+- `soloclaw mcp show [name]`
+- `soloclaw mcp set <name> <json>`
+- `soloclaw mcp unset <name>`
 
 Notes:
 

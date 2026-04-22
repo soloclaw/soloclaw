@@ -35,7 +35,7 @@ export GEMINI_API_KEY="your-key"
 2. Optionally pin a default model:
 
 ```bash
-openclaw config set agents.defaults.videoGenerationModel.primary "google/veo-3.1-fast-generate-preview"
+soloclaw config set agents.defaults.videoGenerationModel.primary "google/veo-3.1-fast-generate-preview"
 ```
 
 3. Ask the agent:
@@ -53,7 +53,7 @@ Video generation is asynchronous. When the agent calls `video_generate` in a ses
 3. When the video is ready, OpenClaw wakes the same session with an internal completion event.
 4. The agent posts the finished video back into the original conversation.
 
-While a job is in flight, duplicate `video_generate` calls in the same session return the current task status instead of starting another generation. Use `openclaw tasks list` or `openclaw tasks show <taskId>` to check progress from the CLI.
+While a job is in flight, duplicate `video_generate` calls in the same session return the current task status instead of starting another generation. Use `soloclaw tasks list` or `soloclaw tasks show <taskId>` to check progress from the CLI.
 
 Outside of session-backed agent runs (for example, direct tool invocations), the tool falls back to inline generation and returns the final media path in the same turn.
 
@@ -361,7 +361,7 @@ Set the default video generation model in your OpenClaw config:
 Or via the CLI:
 
 ```bash
-openclaw config set agents.defaults.videoGenerationModel.primary "qwen/wan2.6-t2v"
+soloclaw config set agents.defaults.videoGenerationModel.primary "qwen/wan2.6-t2v"
 ```
 
 ## Related

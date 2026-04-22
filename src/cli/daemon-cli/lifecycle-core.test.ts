@@ -77,7 +77,7 @@ describe("runServiceRestart token drift", () => {
       service,
       renderStartHints: () => [
         "Restart the container or the service that manages it for openclaw-demo-container.",
-        "openclaw gateway install",
+        "soloclaw gateway install",
       ],
       opts: { json: false },
     });
@@ -352,7 +352,7 @@ describe("runServiceRestart token drift", () => {
     await runServiceStart({
       serviceNoun: "Gateway",
       service,
-      renderStartHints: () => ["openclaw gateway install"],
+      renderStartHints: () => ["soloclaw gateway install"],
       opts: { json: true },
     });
 
@@ -364,12 +364,12 @@ describe("runServiceRestart token drift", () => {
     }>();
     expect(payload.ok).toBe(true);
     expect(payload.result).toBe("not-loaded");
-    expect(payload.hints).toEqual(expect.arrayContaining(["openclaw gateway install"]));
+    expect(payload.hints).toEqual(expect.arrayContaining(["soloclaw gateway install"]));
     expect(payload.hintItems).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           kind: "install",
-          text: "openclaw gateway install",
+          text: "soloclaw gateway install",
         }),
       ]),
     );

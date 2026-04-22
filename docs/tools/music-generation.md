@@ -143,7 +143,7 @@ Tool results report the applied settings. When OpenClaw clamps duration during p
 - Session-backed agent runs: `music_generate` creates a background task, returns a started/task response immediately, and posts the finished track later in a follow-up agent message.
 - Duplicate prevention: while that background task is still `queued` or `running`, later `music_generate` calls in the same session return task status instead of starting another generation.
 - Status lookup: use `action: "status"` to inspect the active session-backed music task without starting a new one.
-- Task tracking: use `openclaw tasks list` or `openclaw tasks show <taskId>` to inspect queued, running, and terminal status for the generation.
+- Task tracking: use `soloclaw tasks list` or `soloclaw tasks show <taskId>` to inspect queued, running, and terminal status for the generation.
 - Completion wake: OpenClaw injects an internal completion event back into the same session so the model can write the user-facing follow-up itself.
 - Prompt hint: later user/manual turns in the same session get a small runtime hint when a music task is already in flight so the model does not blindly call `music_generate` again.
 - No-session fallback: direct/local contexts without a real agent session still run inline and return the final audio result in the same turn.

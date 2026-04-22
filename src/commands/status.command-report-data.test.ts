@@ -46,6 +46,6 @@ describe("buildStatusCommandReportData", () => {
       Status: "ok(reachable)",
       Detail: "42ms",
     });
-    expect(result.footerLines.at(-1)).toBe("  Need to test channels? cmd:openclaw status --deep");
+    expect(result.footerLines.at(-1)).toBe("  Need to test channels? cmd:soloclaw status --deep");
   });
 });

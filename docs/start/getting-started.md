@@ -53,7 +53,7 @@ Need to install Node? See [Node setup](/install/node).
   </Step>
   <Step title="Run onboarding">
     ```bash
-    openclaw onboard --install-daemon
+    soloclaw onboard --install-daemon
     ```
 
     The wizard walks you through choosing a model provider, setting an API key,
@@ -64,7 +64,7 @@ Need to install Node? See [Node setup](/install/node).
   </Step>
   <Step title="Verify the Gateway is running">
     ```bash
-    openclaw gateway status
+    soloclaw gateway status
     ```
 
     You should see the Gateway listening on port 18789.
@@ -114,7 +114,7 @@ Then set:
 Restart the gateway and reopen the dashboard:
 
 ```bash
-openclaw gateway restart
+soloclaw gateway restart
 openclaw dashboard
 ```
 

@@ -15,7 +15,7 @@ Cron is the Gateway's built-in scheduler. It persists jobs, wakes the agent at t
 
 ```bash
 # Add a one-shot reminder
-openclaw cron add \
+soloclaw cron add \
   --name "Reminder" \
   --at "2026-02-01T16:00:00Z" \
   --session main \
@@ -24,10 +24,10 @@ openclaw cron add \
   --delete-after-run
 
 # Check your jobs
-openclaw cron list
+soloclaw cron list
 
 # See run history
-openclaw cron runs --id <job-id>
+soloclaw cron runs --id <job-id>
 ```
 
 ## How cron works
@@ -152,7 +152,7 @@ Failure notifications follow a separate destination path:
 One-shot reminder (main session):
 
 ```bash
-openclaw cron add \
+soloclaw cron add \
   --name "Calendar check" \
   --at "20m" \
   --session main \
@@ -163,7 +163,7 @@ openclaw cron add \
 Recurring isolated job with delivery:
 
 ```bash
-openclaw cron add \
+soloclaw cron add \
   --name "Morning brief" \
   --cron "0 7 * * *" \
   --tz "America/Los_Angeles" \
@@ -177,7 +177,7 @@ openclaw cron add \
 Isolated job with model and thinking override:
 
 ```bash
-openclaw cron add \
+soloclaw cron add \
   --name "Deep analysis" \
   --cron "0 6 * * 1" \
   --tz "America/Los_Angeles" \
@@ -315,31 +315,31 @@ gog gmail watch start \
 
 ```bash
 # List all jobs
-openclaw cron list
+soloclaw cron list
 
 # Edit a job
-openclaw cron edit <jobId> --message "Updated prompt" --model "opus"
+soloclaw cron edit <jobId> --message "Updated prompt" --model "opus"
 
 # Force run a job now
-openclaw cron run <jobId>
+soloclaw cron run <jobId>
 
 # Run only if due
-openclaw cron run <jobId> --due
+soloclaw cron run <jobId> --due
 
 # View run history
-openclaw cron runs --id <jobId> --limit 50
+soloclaw cron runs --id <jobId> --limit 50
 
 # Delete a job
-openclaw cron remove <jobId>
+soloclaw cron remove <jobId>
 
 # Agent selection (multi-agent setups)
-openclaw cron add --name "Ops sweep" --cron "0 6 * * *" --session isolated --message "Check ops queue" --agent ops
-openclaw cron edit <jobId> --clear-agent
+soloclaw cron add --name "Ops sweep" --cron "0 6 * * *" --session isolated --message "Check ops queue" --agent ops
+soloclaw cron edit <jobId> --clear-agent
 ```
 
 Model override note:
 
-- `openclaw cron add|edit --model ...` changes the job's selected model.
+- `soloclaw cron add|edit --model ...` changes the job's selected model.
 - If the model is allowed, that exact provider/model reaches the isolated agent
   run.
 - If it is not allowed, cron warns and falls back to the job's agent/default
@@ -381,14 +381,14 @@ Disable cron: `cron.enabled: false` or `OPENCLAW_SKIP_CRON=1`.
 ### Command ladder
 
 ```bash
-openclaw status
-openclaw gateway status
-openclaw cron status
-openclaw cron list
-openclaw cron runs --id <jobId> --limit 20
+soloclaw status
+soloclaw gateway status
+soloclaw cron status
+soloclaw cron list
+soloclaw cron runs --id <jobId> --limit 20
 openclaw system heartbeat last
 openclaw logs --follow
-openclaw doctor
+soloclaw doctor
 ```
 
 ### Cron not firing
@@ -396,7 +396,7 @@ openclaw doctor
 - Check `cron.enabled` and `OPENCLAW_SKIP_CRON` env var.
 - Confirm the Gateway is running continuously.
 - For `cron` schedules, verify timezone (`--tz`) vs the host timezone.
-- `reason: not-due` in run output means manual run was checked with `openclaw cron run <jobId> --due` and the job was not due yet.
+- `reason: not-due` in run output means manual run was checked with `soloclaw cron run <jobId> --due` and the job was not due yet.
 
 ### Cron fired but no delivery
 

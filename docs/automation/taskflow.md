@@ -49,7 +49,7 @@ Each flow persists its own state and tracks revisions so progress survives gatew
 
 ## Cancel behavior
 
-`openclaw tasks flow cancel` sets a sticky cancel intent on the flow. Active tasks within the flow are cancelled, and no new steps are started. The cancel intent persists across restarts, so a cancelled flow stays cancelled even if the gateway restarts before all child tasks have terminated.
+`soloclaw tasks flow cancel` sets a sticky cancel intent on the flow. Active tasks within the flow are cancelled, and no new steps are started. The cancel intent persists across restarts, so a cancelled flow stays cancelled even if the gateway restarts before all child tasks have terminated.
 
 ## CLI commands
 
@@ -66,17 +66,17 @@ openclaw tasks flow cancel <lookup>
 
 | Command                           | Description                                   |
 | --------------------------------- | --------------------------------------------- |
-| `openclaw tasks flow list`        | Shows tracked flows with status and sync mode |
-| `openclaw tasks flow show <id>`   | Inspect one flow by flow id or lookup key     |
-| `openclaw tasks flow cancel <id>` | Cancel a running flow and its active tasks    |
+| `soloclaw tasks flow list`        | Shows tracked flows with status and sync mode |
+| `soloclaw tasks flow show <id>`   | Inspect one flow by flow id or lookup key     |
+| `soloclaw tasks flow cancel <id>` | Cancel a running flow and its active tasks    |
 
 ## How flows relate to tasks
 
-Flows coordinate tasks, not replace them. A single flow may drive multiple background tasks over its lifetime. Use `openclaw tasks` to inspect individual task records and `openclaw tasks flow` to inspect the orchestrating flow.
+Flows coordinate tasks, not replace them. A single flow may drive multiple background tasks over its lifetime. Use `soloclaw tasks` to inspect individual task records and `soloclaw tasks flow` to inspect the orchestrating flow.
 
 ## Related
 
 - [Background Tasks](/automation/tasks) — the detached work ledger that flows coordinate
-- [CLI: tasks](/cli/index#tasks) — CLI command reference for `openclaw tasks flow`
+- [CLI: tasks](/cli/index#tasks) — CLI command reference for `soloclaw tasks flow`
 - [Automation Overview](/automation) — all automation mechanisms at a glance
 - [Cron Jobs](/automation/cron-jobs) — scheduled jobs that may feed into flows

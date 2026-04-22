@@ -1,12 +1,12 @@
 ---
-summary: "CLI reference for `openclaw setup` (initialize config + workspace)"
+summary: "CLI reference for `soloclaw setup` (initialize config + workspace)"
 read_when:
   - You’re doing first-run setup without full CLI onboarding
   - You want to set the default workspace path
 title: "setup"
 ---
 
-# `openclaw setup`
+# `soloclaw setup`
 
 Initialize `~/.soloclaw/openclaw.json` and the agent workspace.
 
@@ -41,5 +41,5 @@ openclaw setup --wizard
 
 Notes:
 
-- Plain `openclaw setup` initializes config + workspace without the full onboarding flow.
+- Plain `soloclaw setup` initializes config + workspace without the full onboarding flow.
 - Onboarding auto-runs when any onboarding flags are present (`--wizard`, `--non-interactive`, `--mode`, `--remote-url`, `--remote-token`).

@@ -25,7 +25,7 @@ citations.
     Set `GEMINI_API_KEY` in the Gateway environment, or configure via:
 
     ```bash
-    openclaw configure --section web
+    soloclaw configure --section web
     ```
 
   </Step>

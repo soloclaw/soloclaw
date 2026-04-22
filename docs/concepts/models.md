@@ -45,7 +45,7 @@ Related:
 If you don’t want to hand-edit config, run onboarding:
 
 ```bash
-openclaw onboard
+soloclaw onboard
 ```
 
 It can set up model + auth for common providers, including **OpenAI Code (Codex)
@@ -155,7 +155,7 @@ openclaw models image-fallbacks remove <provider/model>
 openclaw models image-fallbacks clear
 ```
 
-`openclaw models` (no subcommand) is a shortcut for `models status`.
+`soloclaw models` (no subcommand) is a shortcut for `models status`.
 
 ### `models list`
 
@@ -198,7 +198,7 @@ openclaw models status
 
 ## Scanning (OpenRouter free models)
 
-`openclaw models scan` inspects OpenRouter’s **free model catalog** and can
+`soloclaw models scan` inspects OpenRouter’s **free model catalog** and can
 optionally probe models for tool and image support.
 
 Key flags:
@@ -247,7 +247,7 @@ Merge mode precedence for matching provider IDs:
 - Other provider fields are refreshed from config and normalized catalog data.
 
 Marker persistence is source-authoritative: OpenClaw writes markers from the active source config snapshot (pre-resolution), not from resolved runtime secret values.
-This applies whenever OpenClaw regenerates `models.json`, including command-driven paths like `openclaw agent`.
+This applies whenever OpenClaw regenerates `models.json`, including command-driven paths like `soloclaw agent`.
 
 ## Related
 

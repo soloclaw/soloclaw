@@ -1,11 +1,11 @@
 ---
-summary: "CLI reference for `openclaw agent` (send one agent turn via the Gateway)"
+summary: "CLI reference for `soloclaw agent` (send one agent turn via the Gateway)"
 read_when:
   - You want to run one agent turn from scripts (optionally deliver reply)
 title: "agent"
 ---
 
-# `openclaw agent`
+# `soloclaw agent`
 
 Run an agent turn via the Gateway (use `--local` for embedded).
 Use `--agent <id>` to target a configured agent directly.
@@ -40,12 +40,12 @@ Related:
 ## Examples
 
 ```bash
-openclaw agent --to +15555550123 --message "status update" --deliver
-openclaw agent --agent ops --message "Summarize logs"
-openclaw agent --session-id 1234 --message "Summarize inbox" --thinking medium
-openclaw agent --to +15555550123 --message "Trace logs" --verbose on --json
-openclaw agent --agent ops --message "Generate report" --deliver --reply-channel slack --reply-to "#reports"
-openclaw agent --agent ops --message "Run locally" --local
+soloclaw agent --to +15555550123 --message "status update" --deliver
+soloclaw agent --agent ops --message "Summarize logs"
+soloclaw agent --session-id 1234 --message "Summarize inbox" --thinking medium
+soloclaw agent --to +15555550123 --message "Trace logs" --verbose on --json
+soloclaw agent --agent ops --message "Generate report" --deliver --reply-channel slack --reply-to "#reports"
+soloclaw agent --agent ops --message "Run locally" --local
 ```
 
 ## Notes

@@ -20,7 +20,7 @@ echo 'creds' >"${OPENCLAW_STATE_DIR}/credentials/marker.txt"
 echo 'session' >"${OPENCLAW_STATE_DIR}/agents/main/sessions/sessions.json"
 
 echo "==> Reset (config+creds+sessions)"
-if ! pnpm openclaw reset --scope config+creds+sessions --yes --non-interactive >/tmp/openclaw-cleanup-reset.log 2>&1; then
+if ! pnpm soloclaw reset --scope config+creds+sessions --yes --non-interactive >/tmp/openclaw-cleanup-reset.log 2>&1; then
   cat /tmp/openclaw-cleanup-reset.log
   exit 1
 fi
@@ -34,7 +34,7 @@ mkdir -p "${OPENCLAW_STATE_DIR}/credentials"
 echo '{}' >"${OPENCLAW_CONFIG_PATH}"
 
 echo "==> Uninstall (state only)"
-if ! pnpm openclaw uninstall --state --yes --non-interactive >/tmp/openclaw-cleanup-uninstall.log 2>&1; then
+if ! pnpm soloclaw uninstall --state --yes --non-interactive >/tmp/openclaw-cleanup-uninstall.log 2>&1; then
   cat /tmp/openclaw-cleanup-uninstall.log
   exit 1
 fi

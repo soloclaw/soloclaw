@@ -22,12 +22,12 @@ Today that usually means:
 For `ssh` and OpenShell `remote`, recreate matters more than with Docker:
 
 - the remote workspace is canonical after the initial seed
-- `openclaw sandbox recreate` deletes that canonical remote workspace for the selected scope
+- `soloclaw sandbox recreate` deletes that canonical remote workspace for the selected scope
 - next use seeds it again from the current local workspace
 
 ## Commands
 
-### `openclaw sandbox explain`
+### `soloclaw sandbox explain`
 
 Inspect the **effective** sandbox mode/scope/workspace access, sandbox tool policy, and elevated gates (with fix-it config key paths).
 
@@ -38,7 +38,7 @@ openclaw sandbox explain --agent work
 openclaw sandbox explain --json
 ```
 
-### `openclaw sandbox list`
+### `soloclaw sandbox list`
 
 List all sandbox runtimes with their status and configuration.
 
@@ -57,7 +57,7 @@ openclaw sandbox list --json     # JSON output
 - Idle time (time since last use)
 - Associated session/agent
 
-### `openclaw sandbox recreate`
+### `soloclaw sandbox recreate`
 
 Remove sandbox runtimes to force recreation with updated config.
 
@@ -158,9 +158,9 @@ openclaw sandbox recreate --agent alfred
 - Runtimes are only pruned after 24h of inactivity
 - Regularly-used agents keep old runtimes alive indefinitely
 
-**Solution:** Use `openclaw sandbox recreate` to force removal of old runtimes. They'll be recreated automatically with current settings when next needed.
+**Solution:** Use `soloclaw sandbox recreate` to force removal of old runtimes. They'll be recreated automatically with current settings when next needed.
 
-Tip: prefer `openclaw sandbox recreate` over manual backend-specific cleanup.
+Tip: prefer `soloclaw sandbox recreate` over manual backend-specific cleanup.
 It uses the Gateway’s runtime registry and avoids mismatches when scope/session keys change.
 
 ## Configuration

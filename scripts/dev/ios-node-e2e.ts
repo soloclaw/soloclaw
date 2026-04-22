@@ -101,7 +101,7 @@ async function main() {
     maxProtocol: 3,
     client: {
       id: "cli",
-      displayName: "openclaw ios node e2e",
+      displayName: "soloclaw ios node e2e",
       version: "dev",
       platform: "dev",
       mode: "cli",
