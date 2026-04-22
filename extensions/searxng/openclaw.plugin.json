@@ -1,5 +1,6 @@
 {
   "id": "searxng",
+  "enabledByDefault": true,
   "uiHints": {
     "webSearch.baseUrl": {
       "label": "SearXNG Base URL",
