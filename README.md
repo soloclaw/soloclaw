@@ -87,7 +87,7 @@ No menus, no config files. Just ask.
 **LLM**
 - qwen3.5:9b (medium), free local model via Ollama
 
-**Plugins** (`extensions/`) — system-level components integrated with the gateway. Always running, configured in `openclaw.json`.
+**Plugins** (`extensions/`) — system-level components integrated with the gateway. Always running, configured in config.
 - Web search — SearXNG (self-hosted, Docker)
 - Browser — agent-controlled Chromium for reading web pages
 - Channels — Telegram, Discord built-in
@@ -231,7 +231,7 @@ pnpm soloclaw onboard
 pnpm gateway:watch
 ```
 
-Note: `pnpm soloclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` produces `dist/` for running via Node / the packaged `openclaw` binary.
+Note: `pnpm soloclaw ...` runs TypeScript directly (via `tsx`). `pnpm build` produces `dist/` for running via Node / the packaged `soloclaw` binary.
 
 ## License
 
