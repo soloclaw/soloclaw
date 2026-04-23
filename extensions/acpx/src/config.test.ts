@@ -55,7 +55,7 @@ describe("embedded acpx plugin config", () => {
       workspaceDir: "/tmp/openclaw-acpx",
     });
 
-    const server = resolved.mcpServers["openclaw-plugin-tools"];
+    const server = resolved.mcpServers["soloclaw-plugin-tools"];
     expect(server).toBeDefined();
     expect(server.command).toBe(process.execPath);
     expect(Array.isArray(server.args)).toBe(true);

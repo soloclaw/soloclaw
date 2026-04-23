@@ -2,7 +2,7 @@
 // Keep this list additive and scoped to the bundled LLM task surface.
 
 export { definePluginEntry } from "./plugin-entry.js";
-export { resolvePreferredOpenClawTmpDir } from "../infra/tmp-openclaw-dir.js";
+export { resolvePreferredOpenClawTmpDir } from "../infra/tmp-soloclaw-dir.js";
 export {
   formatThinkingLevels,
   formatXHighModelHint,

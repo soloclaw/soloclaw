@@ -10,7 +10,7 @@ vi.mock("./facade-runtime.js", () => ({
   loadBundledPluginPublicSurfaceModuleSync,
 }));
 
-vi.mock("../infra/openclaw-root.js", () => ({
+vi.mock("../infra/soloclaw-root.js", () => ({
   resolveOpenClawPackageRootSync,
 }));
 

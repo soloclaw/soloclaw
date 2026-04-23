@@ -95,7 +95,7 @@ describe("unit vitest config", () => {
     const unitConfig = createUnitVitestConfig({});
     expect(normalizeConfigPaths(unitConfig.test?.setupFiles)).toEqual([
       "test/setup.ts",
-      "test/setup-openclaw-runtime.ts",
+      "test/setup-soloclaw-runtime.ts",
     ]);
   });
 

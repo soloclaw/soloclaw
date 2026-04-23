@@ -8,7 +8,7 @@ import type {
   PluginAutoEnableCandidate,
   PluginAutoEnableResult,
 } from "./plugin-auto-enable.types.js";
-import type { OpenClawConfig } from "./types.openclaw.js";
+import type { OpenClawConfig } from "./types.soloclaw.js";
 
 export function materializePluginAutoEnableCandidates(params: {
   config?: OpenClawConfig;

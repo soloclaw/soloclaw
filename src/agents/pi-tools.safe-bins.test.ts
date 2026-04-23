@@ -112,7 +112,7 @@ vi.mock("./channel-tools.js", () => ({
   listChannelAgentTools: () => [],
 }));
 
-vi.mock("./openclaw-tools.js", () => ({
+vi.mock("./soloclaw-tools.js", () => ({
   createOpenClawTools: () => [],
 }));
 

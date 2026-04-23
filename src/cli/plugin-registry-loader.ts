@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import { loggingState } from "../logging/state.js";
 import type { PluginRegistryScope } from "./plugin-registry.js";
 

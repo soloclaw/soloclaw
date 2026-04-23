@@ -24,7 +24,7 @@ export {
   createAcpxPluginConfigSchema,
 } from "./config-schema.js";
 
-export const ACPX_PLUGIN_TOOLS_MCP_SERVER_NAME = "openclaw-plugin-tools";
+export const ACPX_PLUGIN_TOOLS_MCP_SERVER_NAME = "soloclaw-plugin-tools";
 
 function isAcpxPluginRoot(dir: string): boolean {
   return (

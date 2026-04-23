@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import type { ConfigFileSnapshot } from "../config/types.openclaw.js";
+import type { ConfigFileSnapshot } from "../config/types.soloclaw.js";
 import { collectIncludeFilePermFindings } from "./audit-extra.async.js";
 
 const isWindows = process.platform === "win32";

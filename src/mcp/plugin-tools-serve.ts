@@ -12,7 +12,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import type { AnyAgentTool } from "../agents/tools/common.js";
 import { loadConfig } from "../config/config.js";
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import { formatErrorMessage } from "../infra/errors.js";
 import { routeLogsToStderr } from "../logging/console.js";
 import { resolvePluginTools } from "../plugins/tools.js";
@@ -37,7 +37,7 @@ export function createPluginToolsMcpServer(
   const handlers = createPluginToolsMcpHandlers(tools);
 
   const server = new Server(
-    { name: "openclaw-plugin-tools", version: VERSION },
+    { name: "soloclaw-plugin-tools", version: VERSION },
     { capabilities: { tools: {} } },
   );
 

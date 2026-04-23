@@ -1,6 +1,6 @@
 import type { DispatchReplyWithBufferedBlockDispatcher } from "../auto-reply/reply/provider-dispatcher.types.js";
 import type { FinalizedMsgContext } from "../auto-reply/templating.js";
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import { resolveInboundRouteEnvelopeBuilderWithRuntime } from "./inbound-envelope.js";
 import { recordInboundSessionAndDispatchReply } from "./inbound-reply-dispatch.js";
 import type { OutboundReplyPayload } from "./reply-payload.js";

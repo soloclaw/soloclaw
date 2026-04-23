@@ -6,7 +6,7 @@ import { runEmbeddedPiAgent } from "../agents/pi-embedded.js";
 import * as configIoModule from "../config/io.js";
 import * as runtimeSnapshotModule from "../config/runtime-snapshot.js";
 import { clearSessionStoreCacheForTest } from "../config/sessions/store.js";
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import { resetAgentEventsForTest, resetAgentRunContextForTest } from "../infra/agent-events.js";
 import { resetPluginRuntimeStateForTest } from "../plugins/runtime.js";
 import type { RuntimeEnv } from "../runtime.js";

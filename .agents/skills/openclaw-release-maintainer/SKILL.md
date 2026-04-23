@@ -79,7 +79,7 @@ For a non-root smoke path:
 After npm publish, run:
 
 ```bash
-node --import tsx scripts/openclaw-npm-postpublish-verify.ts <published-version>
+node --import tsx scripts/soloclaw-npm-postpublish-verify.ts <published-version>
 ```
 
 - This verifies the published registry install path in a fresh temp prefix.
@@ -140,7 +140,7 @@ node --import tsx scripts/openclaw-npm-postpublish-verify.ts <published-version>
 
 - OpenClaw publish uses GitHub trusted publishing.
 - Stable npm promotion from `beta` to `latest` is an explicit mode on
-  `.github/workflows/openclaw-npm-release.yml`, but it still needs a valid
+  `.github/workflows/soloclaw-npm-release.yml`, but it still needs a valid
   `NPM_TOKEN` because `npm dist-tag` management is separate from trusted
   publishing.
 - Direct stable publishes can also run the same workflow with
@@ -251,7 +251,7 @@ node --import tsx scripts/openclaw-npm-postpublish-verify.ts <published-version>
 6. Confirm the target npm version is not already published.
 7. Create and push the git tag.
 8. Create or refresh the matching GitHub release.
-9. Start `.github/workflows/openclaw-npm-release.yml` with `preflight_only=true`
+9. Start `.github/workflows/soloclaw-npm-release.yml` with `preflight_only=true`
    and choose the intended `npm_dist_tag` (`beta` default; `latest` only for
    an intentional direct stable publish). Wait for it to pass. Save that run id
    because the real publish requires it to reuse the prepared npm tarball.
@@ -268,18 +268,18 @@ node --import tsx scripts/openclaw-npm-postpublish-verify.ts <published-version>
     delete the tag and matching GitHub release, recreate them from the fixed
     commit, and rerun all relevant preflights from scratch before continuing.
     Never reuse old preflight results after the commit changes.
-14. Start `.github/workflows/openclaw-npm-release.yml` with the same tag for
+14. Start `.github/workflows/soloclaw-npm-release.yml` with the same tag for
     the real publish, choose `npm_dist_tag` (`beta` default, `latest` only when
     you intentionally want direct stable publish), keep it the same as the
     preflight run, and pass the successful npm `preflight_run_id`.
 15. Wait for `npm-release` approval from `@soloclaw/openclaw-release-managers`.
 16. If the stable release was published to `beta`, start
-    `.github/workflows/openclaw-npm-release.yml` again after beta validation
+    `.github/workflows/soloclaw-npm-release.yml` again after beta validation
     passes with the same stable tag, `promote_beta_to_latest=true`,
     `preflight_only=false`, empty `preflight_run_id`, and `npm_dist_tag=beta`,
     then verify `latest` now points at that version.
 17. If the stable release was published directly to `latest` and `beta` should
-    follow it, start `.github/workflows/openclaw-npm-release.yml` again with
+    follow it, start `.github/workflows/soloclaw-npm-release.yml` again with
     the same stable tag, `sync_stable_dist_tags=true`,
     `promote_beta_to_latest=false`, `preflight_only=false`, empty
     `preflight_run_id`, and `npm_dist_tag=latest`, then verify both `latest`

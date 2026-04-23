@@ -2,7 +2,7 @@ import type { ChildProcess } from "node:child_process";
 import { EventEmitter } from "node:events";
 import process from "node:process";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { SOLOCLAW_CLI_ENV_VALUE } from "../infra/openclaw-exec-env.js";
+import { SOLOCLAW_CLI_ENV_VALUE } from "../infra/soloclaw-exec-env.js";
 
 const spawnMock = vi.hoisted(() => vi.fn());
 

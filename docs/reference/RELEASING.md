@@ -45,9 +45,9 @@ OpenClaw has three public release lanes:
   `OpenClaw Release Checks`
 - Cross-OS install and upgrade runtime validation is dispatched from the
   private caller workflow
-  `openclaw/releases-private/.github/workflows/openclaw-cross-os-release-checks.yml`,
+  `openclaw/releases-private/.github/workflows/soloclaw-cross-os-release-checks.yml`,
   which invokes the reusable public workflow
-  `.github/workflows/openclaw-cross-os-release-checks-reusable.yml`
+  `.github/workflows/soloclaw-cross-os-release-checks-reusable.yml`
 - This split is intentional: keep the real npm release path short,
   deterministic, and artifact-focused, while slower live checks stay in their
   own lane so they do not stall or block publish
@@ -69,10 +69,10 @@ OpenClaw has three public release lanes:
   `SOLOCLAW_LIVE_TEST=1 SOLOCLAW_LIVE_CACHE_TEST=1 pnpm test:live:cache`
   using both `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` workflow secrets
 - npm release preflight no longer waits on the separate release checks lane
-- Run `RELEASE_TAG=vYYYY.M.D node --import tsx scripts/openclaw-npm-release-check.ts`
+- Run `RELEASE_TAG=vYYYY.M.D node --import tsx scripts/soloclaw-npm-release-check.ts`
   (or the matching beta/correction tag) before approval
 - After npm publish, run
-  `node --import tsx scripts/openclaw-npm-postpublish-verify.ts YYYY.M.D`
+  `node --import tsx scripts/soloclaw-npm-postpublish-verify.ts YYYY.M.D`
   (or the matching beta/correction version) to verify the published registry
   install path in a fresh temp prefix
 - Maintainer release automation now uses preflight-then-promote:
@@ -168,10 +168,10 @@ documented and operator-visible.
 
 ## Public references
 
-- [`.github/workflows/openclaw-npm-release.yml`](https://github.com/openclaw/openclaw/blob/main/.github/workflows/openclaw-npm-release.yml)
+- [`.github/workflows/soloclaw-npm-release.yml`](https://github.com/openclaw/openclaw/blob/main/.github/workflows/soloclaw-npm-release.yml)
 - [`.github/workflows/openclaw-release-checks.yml`](https://github.com/openclaw/openclaw/blob/main/.github/workflows/openclaw-release-checks.yml)
-- [`.github/workflows/openclaw-cross-os-release-checks-reusable.yml`](https://github.com/openclaw/openclaw/blob/main/.github/workflows/openclaw-cross-os-release-checks-reusable.yml)
-- [`scripts/openclaw-npm-release-check.ts`](https://github.com/openclaw/openclaw/blob/main/scripts/openclaw-npm-release-check.ts)
+- [`.github/workflows/soloclaw-cross-os-release-checks-reusable.yml`](https://github.com/openclaw/openclaw/blob/main/.github/workflows/soloclaw-cross-os-release-checks-reusable.yml)
+- [`scripts/soloclaw-npm-release-check.ts`](https://github.com/openclaw/openclaw/blob/main/scripts/soloclaw-npm-release-check.ts)
 - [`scripts/package-mac-dist.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/package-mac-dist.sh)
 - [`scripts/make_appcast.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/make_appcast.sh)
 

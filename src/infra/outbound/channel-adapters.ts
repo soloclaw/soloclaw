@@ -3,7 +3,7 @@ import type {
   ChannelId,
   ChannelStructuredComponents,
 } from "../../channels/plugins/types.public.js";
-import type { OpenClawConfig } from "../../config/types.openclaw.js";
+import type { OpenClawConfig } from "../../config/types.soloclaw.js";
 
 export type CrossContextComponentsBuilder = (message: string) => ChannelStructuredComponents;
 

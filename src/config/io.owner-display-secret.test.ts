@@ -3,7 +3,7 @@ import {
   type OwnerDisplaySecretPersistState,
   persistGeneratedOwnerDisplaySecret,
 } from "./io.owner-display-secret.js";
-import type { OpenClawConfig } from "./types.openclaw.js";
+import type { OpenClawConfig } from "./types.soloclaw.js";
 
 function createState(): OwnerDisplaySecretPersistState {
   return {

@@ -12,7 +12,7 @@ import {
   sanitizeHostExecEnvWithDiagnostics,
   sanitizeSystemRunEnvOverrides,
 } from "./host-env-security.js";
-import { SOLOCLAW_CLI_ENV_VALUE } from "./openclaw-exec-env.js";
+import { SOLOCLAW_CLI_ENV_VALUE } from "./soloclaw-exec-env.js";
 
 function findSystemCommandPath(command: string) {
   if (process.platform === "win32") {

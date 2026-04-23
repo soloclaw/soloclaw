@@ -1,5 +1,5 @@
 import type { MarkdownTableMode } from "./types.base.js";
-import type { OpenClawConfig } from "./types.openclaw.js";
+import type { OpenClawConfig } from "./types.soloclaw.js";
 
 export type ResolveMarkdownTableModeParams = {
   cfg?: Partial<OpenClawConfig>;

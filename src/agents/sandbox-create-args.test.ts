@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { SOLOCLAW_CLI_ENV_VALUE } from "../infra/openclaw-exec-env.js";
+import { SOLOCLAW_CLI_ENV_VALUE } from "../infra/soloclaw-exec-env.js";
 import { buildSandboxCreateArgs } from "./sandbox/docker.js";
 import type { SandboxDockerConfig } from "./sandbox/types.js";
 

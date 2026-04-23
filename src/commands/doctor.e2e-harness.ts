@@ -344,7 +344,7 @@ vi.mock("soloclaw/plugin-sdk/runtime-env", () => ({
   }),
 }));
 
-vi.mock("../infra/openclaw-root.js", () => ({
+vi.mock("../infra/soloclaw-root.js", () => ({
   resolveOpenClawPackageRoot,
   resolveOpenClawPackageRootSync: vi.fn(() => "/tmp/openclaw"),
 }));
