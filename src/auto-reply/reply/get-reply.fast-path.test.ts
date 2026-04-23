@@ -72,7 +72,7 @@ describe("getReplyFromConfig fast test bootstrap", () => {
   });
 
   beforeEach(() => {
-    vi.stubEnv("OPENCLAW_TEST_FAST", "1");
+    vi.stubEnv("SOLOCLAW_TEST_FAST", "1");
     mocks.ensureAgentWorkspace.mockReset();
     mocks.initSessionState.mockReset();
     mocks.resolveReplyDirectives.mockReset();
@@ -138,7 +138,7 @@ describe("getReplyFromConfig fast test bootstrap", () => {
   });
 
   it("still merges partial config overrides against loadConfig()", async () => {
-    vi.stubEnv("OPENCLAW_ALLOW_SLOW_REPLY_TESTS", "1");
+    vi.stubEnv("SOLOCLAW_ALLOW_SLOW_REPLY_TESTS", "1");
     vi.mocked(loadConfigMock).mockReturnValue({
       channels: {
         telegram: {

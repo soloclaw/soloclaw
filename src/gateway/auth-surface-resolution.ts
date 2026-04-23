@@ -79,8 +79,8 @@ export async function resolveGatewayProbeSurfaceAuth(params: {
     return {};
   }
 
-  const envToken = trimToUndefined(env.OPENCLAW_GATEWAY_TOKEN);
-  const envPassword = trimToUndefined(env.OPENCLAW_GATEWAY_PASSWORD);
+  const envToken = trimToUndefined(env.SOLOCLAW_GATEWAY_TOKEN);
+  const envPassword = trimToUndefined(env.SOLOCLAW_GATEWAY_PASSWORD);
 
   if (authMode === "token") {
     const token = await resolveGatewayCredential({
@@ -155,8 +155,8 @@ export async function resolveGatewayInteractiveSurfaceAuth(params: {
   const diagnostics: string[] = [];
   const explicitToken = trimToUndefined(params.explicitAuth?.token);
   const explicitPassword = trimToUndefined(params.explicitAuth?.password);
-  const envToken = trimToUndefined(env.OPENCLAW_GATEWAY_TOKEN);
-  const envPassword = trimToUndefined(env.OPENCLAW_GATEWAY_PASSWORD);
+  const envToken = trimToUndefined(env.SOLOCLAW_GATEWAY_TOKEN);
+  const envPassword = trimToUndefined(env.SOLOCLAW_GATEWAY_PASSWORD);
 
   if (params.surface === "remote") {
     const remoteToken = explicitToken

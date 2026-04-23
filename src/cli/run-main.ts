@@ -160,7 +160,7 @@ export async function runCli(argv: string[] = process.argv) {
     applyCliProfileEnv({ profile: parsedProfile.profile });
   }
   const containerTargetName =
-    parsedContainer.container ?? normalizeOptionalString(process.env.OPENCLAW_CONTAINER) ?? null;
+    parsedContainer.container ?? normalizeOptionalString(process.env.SOLOCLAW_CONTAINER) ?? null;
   if (containerTargetName && parsedProfile.profile) {
     throw new Error("--container cannot be combined with --profile/--dev");
   }

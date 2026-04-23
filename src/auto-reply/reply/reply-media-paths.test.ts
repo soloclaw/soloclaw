@@ -281,7 +281,7 @@ describe("createReplyMediaPathNormalizer", () => {
   });
 
   it("keeps managed generated media under the shared media root", async () => {
-    vi.stubEnv("OPENCLAW_STATE_DIR", "/Users/peter/.soloclaw");
+    vi.stubEnv("SOLOCLAW_STATE_DIR", "/Users/peter/.soloclaw");
     const normalize = createReplyMediaPathNormalizer({
       cfg: {},
       sessionKey: "session-key",

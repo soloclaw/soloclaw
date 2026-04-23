@@ -360,8 +360,8 @@ describe("stageBundledPluginRuntime", () => {
 
     const env = {
       ...process.env,
-      OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
-      OPENCLAW_BUNDLED_PLUGINS_DIR: runtimeExtensionsDir,
+      SOLOCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+      SOLOCLAW_BUNDLED_PLUGINS_DIR: runtimeExtensionsDir,
     };
     const discovery = discoverOpenClawPlugins({
       env,

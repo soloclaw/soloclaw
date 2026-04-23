@@ -188,9 +188,9 @@ describe("security audit extension tool reachability findings", () => {
     "USERPROFILE",
     "HOMEDRIVE",
     "HOMEPATH",
-    "OPENCLAW_HOME",
-    "OPENCLAW_STATE_DIR",
-    "OPENCLAW_BUNDLED_PLUGINS_DIR",
+    "SOLOCLAW_HOME",
+    "SOLOCLAW_STATE_DIR",
+    "SOLOCLAW_BUNDLED_PLUGINS_DIR",
   ] as const;
   const previousPathResolutionEnv: Partial<Record<(typeof pathResolutionEnvKeys)[number], string>> =
     {};
@@ -207,7 +207,7 @@ describe("security audit extension tool reachability findings", () => {
     const vitestModule = await import("vitest");
     fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-security-extensions-"));
     isolatedHome = path.join(fixtureRoot, "home");
-    const isolatedEnv = createPathResolutionEnv(isolatedHome, { OPENCLAW_HOME: isolatedHome });
+    const isolatedEnv = createPathResolutionEnv(isolatedHome, { SOLOCLAW_HOME: isolatedHome });
     for (const key of pathResolutionEnvKeys) {
       previousPathResolutionEnv[key] = process.env[key];
       const value = isolatedEnv[key];

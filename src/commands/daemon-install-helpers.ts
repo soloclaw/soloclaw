@@ -28,7 +28,7 @@ export type GatewayInstallPlan = {
   environment: Record<string, string | undefined>;
 };
 
-const MANAGED_SERVICE_ENV_KEYS_VAR = "OPENCLAW_SERVICE_MANAGED_ENV_KEYS";
+const MANAGED_SERVICE_ENV_KEYS_VAR = "SOLOCLAW_SERVICE_MANAGED_ENV_KEYS";
 
 let daemonInstallAuthProfileSourceRuntimePromise:
   | Promise<typeof import("./daemon-install-auth-profiles-source.runtime.js")>
@@ -193,7 +193,7 @@ function collectPreservedExistingServiceEnvVars(
       upper === "HOME" ||
       upper === "PATH" ||
       upper === "TMPDIR" ||
-      upper.startsWith("OPENCLAW_")
+      upper.startsWith("SOLOCLAW_")
     ) {
       continue;
     }
@@ -290,7 +290,7 @@ export async function buildGatewayInstallPlan(params: {
     port: params.port,
     launchdLabel:
       process.platform === "darwin"
-        ? resolveGatewayLaunchAgentLabel(params.env.OPENCLAW_PROFILE)
+        ? resolveGatewayLaunchAgentLabel(params.env.SOLOCLAW_PROFILE)
         : undefined,
     extraPathDirs: resolveDaemonNodeBinDir(nodePath),
   });

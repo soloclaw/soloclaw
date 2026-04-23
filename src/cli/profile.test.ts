@@ -102,30 +102,30 @@ describe("applyCliProfileEnv", () => {
       homedir: () => "/home/peter",
     });
     const expectedStateDir = path.join(path.resolve("/home/peter"), ".soloclaw-dev");
-    expect(env.OPENCLAW_PROFILE).toBe("dev");
-    expect(env.OPENCLAW_STATE_DIR).toBe(expectedStateDir);
-    expect(env.OPENCLAW_CONFIG_PATH).toBe(path.join(expectedStateDir, "soloclaw.json"));
-    expect(env.OPENCLAW_GATEWAY_PORT).toBe("19001");
+    expect(env.SOLOCLAW_PROFILE).toBe("dev");
+    expect(env.SOLOCLAW_STATE_DIR).toBe(expectedStateDir);
+    expect(env.SOLOCLAW_CONFIG_PATH).toBe(path.join(expectedStateDir, "soloclaw.json"));
+    expect(env.SOLOCLAW_GATEWAY_PORT).toBe("19001");
   });
 
   it("does not override explicit env values", () => {
     const env: Record<string, string | undefined> = {
-      OPENCLAW_STATE_DIR: "/custom",
-      OPENCLAW_GATEWAY_PORT: "19099",
+      SOLOCLAW_STATE_DIR: "/custom",
+      SOLOCLAW_GATEWAY_PORT: "19099",
     };
     applyCliProfileEnv({
       profile: "dev",
       env,
       homedir: () => "/home/peter",
     });
-    expect(env.OPENCLAW_STATE_DIR).toBe("/custom");
-    expect(env.OPENCLAW_GATEWAY_PORT).toBe("19099");
-    expect(env.OPENCLAW_CONFIG_PATH).toBe(path.join("/custom", "soloclaw.json"));
+    expect(env.SOLOCLAW_STATE_DIR).toBe("/custom");
+    expect(env.SOLOCLAW_GATEWAY_PORT).toBe("19099");
+    expect(env.SOLOCLAW_CONFIG_PATH).toBe(path.join("/custom", "soloclaw.json"));
   });
 
-  it("uses OPENCLAW_HOME when deriving profile state dir", () => {
+  it("uses SOLOCLAW_HOME when deriving profile state dir", () => {
     const env: Record<string, string | undefined> = {
-      OPENCLAW_HOME: "/srv/openclaw-home",
+      SOLOCLAW_HOME: "/srv/openclaw-home",
       HOME: "/home/other",
     };
     applyCliProfileEnv({
@@ -135,8 +135,8 @@ describe("applyCliProfileEnv", () => {
     });
 
     const resolvedHome = path.resolve("/srv/openclaw-home");
-    expect(env.OPENCLAW_STATE_DIR).toBe(path.join(resolvedHome, ".soloclaw-work"));
-    expect(env.OPENCLAW_CONFIG_PATH).toBe(
+    expect(env.SOLOCLAW_STATE_DIR).toBe(path.join(resolvedHome, ".soloclaw-work"));
+    expect(env.SOLOCLAW_CONFIG_PATH).toBe(
       path.join(resolvedHome, ".soloclaw-work", "soloclaw.json"),
     );
   });
@@ -153,31 +153,31 @@ describe("formatCliCommand", () => {
     {
       name: "profile is default",
       cmd: "soloclaw doctor --fix",
-      env: { OPENCLAW_PROFILE: "default" },
+      env: { SOLOCLAW_PROFILE: "default" },
       expected: "soloclaw doctor --fix",
     },
     {
       name: "profile is Default (case-insensitive)",
       cmd: "soloclaw doctor --fix",
-      env: { OPENCLAW_PROFILE: "Default" },
+      env: { SOLOCLAW_PROFILE: "Default" },
       expected: "soloclaw doctor --fix",
     },
     {
       name: "profile is invalid",
       cmd: "soloclaw doctor --fix",
-      env: { OPENCLAW_PROFILE: "bad profile" },
+      env: { SOLOCLAW_PROFILE: "bad profile" },
       expected: "soloclaw doctor --fix",
     },
     {
       name: "--profile is already present",
       cmd: "soloclaw --profile work doctor --fix",
-      env: { OPENCLAW_PROFILE: "work" },
+      env: { SOLOCLAW_PROFILE: "work" },
       expected: "soloclaw --profile work doctor --fix",
     },
     {
       name: "--dev is already present",
       cmd: "soloclaw --dev doctor",
-      env: { OPENCLAW_PROFILE: "dev" },
+      env: { SOLOCLAW_PROFILE: "dev" },
       expected: "soloclaw --dev doctor",
     },
   ])("returns command unchanged when $name", ({ cmd, env, expected }) => {
@@ -185,39 +185,39 @@ describe("formatCliCommand", () => {
   });
 
   it("inserts --profile flag when profile is set", () => {
-    expect(formatCliCommand("soloclaw doctor --fix", { OPENCLAW_PROFILE: "work" })).toBe(
+    expect(formatCliCommand("soloclaw doctor --fix", { SOLOCLAW_PROFILE: "work" })).toBe(
       "soloclaw --profile work doctor --fix",
     );
   });
 
   it("trims whitespace from profile", () => {
-    expect(formatCliCommand("soloclaw doctor --fix", { OPENCLAW_PROFILE: "  jbopenclaw  " })).toBe(
+    expect(formatCliCommand("soloclaw doctor --fix", { SOLOCLAW_PROFILE: "  jbopenclaw  " })).toBe(
       "soloclaw --profile jbsoloclaw doctor --fix",
     );
   });
 
   it("handles command with no args after openclaw", () => {
-    expect(formatCliCommand("openclaw", { OPENCLAW_PROFILE: "test" })).toBe(
+    expect(formatCliCommand("openclaw", { SOLOCLAW_PROFILE: "test" })).toBe(
       "soloclaw --profile test",
     );
   });
 
   it("handles pnpm wrapper", () => {
-    expect(formatCliCommand("pnpm soloclaw doctor", { OPENCLAW_PROFILE: "work" })).toBe(
+    expect(formatCliCommand("pnpm soloclaw doctor", { SOLOCLAW_PROFILE: "work" })).toBe(
       "pnpm soloclaw --profile work doctor",
     );
   });
 
   it("inserts --container when a container hint is set", () => {
     expect(
-      formatCliCommand("soloclaw gateway status --deep", { OPENCLAW_CONTAINER_HINT: "demo" }),
+      formatCliCommand("soloclaw gateway status --deep", { SOLOCLAW_CONTAINER_HINT: "demo" }),
     ).toBe("soloclaw --container demo gateway status --deep");
   });
 
   it("ignores unsafe container hints", () => {
     expect(
       formatCliCommand("soloclaw gateway status --deep", {
-        OPENCLAW_CONTAINER_HINT: "demo; rm -rf /",
+        SOLOCLAW_CONTAINER_HINT: "demo; rm -rf /",
       }),
     ).toBe("soloclaw gateway status --deep");
   });
@@ -225,18 +225,18 @@ describe("formatCliCommand", () => {
   it("preserves both --container and --profile hints", () => {
     expect(
       formatCliCommand("soloclaw doctor", {
-        OPENCLAW_CONTAINER_HINT: "demo",
-        OPENCLAW_PROFILE: "work",
+        SOLOCLAW_CONTAINER_HINT: "demo",
+        SOLOCLAW_PROFILE: "work",
       }),
     ).toBe("soloclaw --container demo doctor");
   });
 
   it("does not prepend --container for update commands", () => {
-    expect(formatCliCommand("soloclaw update", { OPENCLAW_CONTAINER_HINT: "demo" })).toBe(
+    expect(formatCliCommand("soloclaw update", { SOLOCLAW_CONTAINER_HINT: "demo" })).toBe(
       "soloclaw update",
     );
     expect(
-      formatCliCommand("pnpm soloclaw update --channel beta", { OPENCLAW_CONTAINER_HINT: "demo" }),
+      formatCliCommand("pnpm soloclaw update --channel beta", { SOLOCLAW_CONTAINER_HINT: "demo" }),
     ).toBe("pnpm soloclaw update --channel beta");
   });
 });

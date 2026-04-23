@@ -34,8 +34,8 @@ let activeMcpLoopbackServerPromise: Promise<McpLoopbackServer> | null = null;
 
 function shouldLogMcpLoopbackTraffic(): boolean {
   return (
-    isTruthyEnvValue(process.env.OPENCLAW_CLI_BACKEND_LOG_OUTPUT) ||
-    isTruthyEnvValue(process.env.OPENCLAW_LIVE_CLI_BACKEND_DEBUG)
+    isTruthyEnvValue(process.env.SOLOCLAW_CLI_BACKEND_LOG_OUTPUT) ||
+    isTruthyEnvValue(process.env.SOLOCLAW_LIVE_CLI_BACKEND_DEBUG)
   );
 }
 

@@ -25,14 +25,14 @@ import {
 import { renderCatFacePngBase64 } from "./live-image-probe.js";
 
 const LIVE = isLiveTestEnabled();
-const CODEX_HARNESS_LIVE = isTruthyEnvValue(process.env.OPENCLAW_LIVE_CODEX_HARNESS);
-const CODEX_HARNESS_DEBUG = isTruthyEnvValue(process.env.OPENCLAW_LIVE_CODEX_HARNESS_DEBUG);
+const CODEX_HARNESS_LIVE = isTruthyEnvValue(process.env.SOLOCLAW_LIVE_CODEX_HARNESS);
+const CODEX_HARNESS_DEBUG = isTruthyEnvValue(process.env.SOLOCLAW_LIVE_CODEX_HARNESS_DEBUG);
 const CODEX_HARNESS_IMAGE_PROBE = isTruthyEnvValue(
-  process.env.OPENCLAW_LIVE_CODEX_HARNESS_IMAGE_PROBE,
+  process.env.SOLOCLAW_LIVE_CODEX_HARNESS_IMAGE_PROBE,
 );
-const CODEX_HARNESS_MCP_PROBE = isTruthyEnvValue(process.env.OPENCLAW_LIVE_CODEX_HARNESS_MCP_PROBE);
+const CODEX_HARNESS_MCP_PROBE = isTruthyEnvValue(process.env.SOLOCLAW_LIVE_CODEX_HARNESS_MCP_PROBE);
 const CODEX_HARNESS_AUTH_MODE =
-  process.env.OPENCLAW_LIVE_CODEX_HARNESS_AUTH === "api-key" ? "api-key" : "codex-auth";
+  process.env.SOLOCLAW_LIVE_CODEX_HARNESS_AUTH === "api-key" ? "api-key" : "codex-auth";
 const describeLive = LIVE && CODEX_HARNESS_LIVE ? describe : describe.skip;
 const describeDisabled = LIVE && !CODEX_HARNESS_LIVE ? describe : describe.skip;
 const CODEX_HARNESS_TIMEOUT_MS = 420_000;
@@ -63,32 +63,32 @@ function logCodexLiveStep(step: string, details?: Record<string, unknown>): void
 
 function snapshotEnv(): EnvSnapshot {
   return {
-    agentRuntime: process.env.OPENCLAW_AGENT_RUNTIME,
-    configPath: process.env.OPENCLAW_CONFIG_PATH,
-    gatewayToken: process.env.OPENCLAW_GATEWAY_TOKEN,
+    agentRuntime: process.env.SOLOCLAW_AGENT_RUNTIME,
+    configPath: process.env.SOLOCLAW_CONFIG_PATH,
+    gatewayToken: process.env.SOLOCLAW_GATEWAY_TOKEN,
     openaiApiKey: process.env.OPENAI_API_KEY,
     openaiBaseUrl: process.env.OPENAI_BASE_URL,
-    skipBrowserControl: process.env.OPENCLAW_SKIP_BROWSER_CONTROL_SERVER,
-    skipCanvas: process.env.OPENCLAW_SKIP_CANVAS_HOST,
-    skipChannels: process.env.OPENCLAW_SKIP_CHANNELS,
-    skipCron: process.env.OPENCLAW_SKIP_CRON,
-    skipGmail: process.env.OPENCLAW_SKIP_GMAIL_WATCHER,
-    stateDir: process.env.OPENCLAW_STATE_DIR,
+    skipBrowserControl: process.env.SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER,
+    skipCanvas: process.env.SOLOCLAW_SKIP_CANVAS_HOST,
+    skipChannels: process.env.SOLOCLAW_SKIP_CHANNELS,
+    skipCron: process.env.SOLOCLAW_SKIP_CRON,
+    skipGmail: process.env.SOLOCLAW_SKIP_GMAIL_WATCHER,
+    stateDir: process.env.SOLOCLAW_STATE_DIR,
   };
 }
 
 function restoreEnv(snapshot: EnvSnapshot): void {
-  restoreEnvVar("OPENCLAW_AGENT_RUNTIME", snapshot.agentRuntime);
-  restoreEnvVar("OPENCLAW_CONFIG_PATH", snapshot.configPath);
-  restoreEnvVar("OPENCLAW_GATEWAY_TOKEN", snapshot.gatewayToken);
+  restoreEnvVar("SOLOCLAW_AGENT_RUNTIME", snapshot.agentRuntime);
+  restoreEnvVar("SOLOCLAW_CONFIG_PATH", snapshot.configPath);
+  restoreEnvVar("SOLOCLAW_GATEWAY_TOKEN", snapshot.gatewayToken);
   restoreEnvVar("OPENAI_API_KEY", snapshot.openaiApiKey);
   restoreEnvVar("OPENAI_BASE_URL", snapshot.openaiBaseUrl);
-  restoreEnvVar("OPENCLAW_SKIP_BROWSER_CONTROL_SERVER", snapshot.skipBrowserControl);
-  restoreEnvVar("OPENCLAW_SKIP_CANVAS_HOST", snapshot.skipCanvas);
-  restoreEnvVar("OPENCLAW_SKIP_CHANNELS", snapshot.skipChannels);
-  restoreEnvVar("OPENCLAW_SKIP_CRON", snapshot.skipCron);
-  restoreEnvVar("OPENCLAW_SKIP_GMAIL_WATCHER", snapshot.skipGmail);
-  restoreEnvVar("OPENCLAW_STATE_DIR", snapshot.stateDir);
+  restoreEnvVar("SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER", snapshot.skipBrowserControl);
+  restoreEnvVar("SOLOCLAW_SKIP_CANVAS_HOST", snapshot.skipCanvas);
+  restoreEnvVar("SOLOCLAW_SKIP_CHANNELS", snapshot.skipChannels);
+  restoreEnvVar("SOLOCLAW_SKIP_CRON", snapshot.skipCron);
+  restoreEnvVar("SOLOCLAW_SKIP_GMAIL_WATCHER", snapshot.skipGmail);
+  restoreEnvVar("SOLOCLAW_STATE_DIR", snapshot.stateDir);
 }
 
 function restoreEnvVar(name: string, value: string | undefined): void {
@@ -422,7 +422,7 @@ describeLive("gateway live (Codex harness)", () => {
   it(
     "runs gateway agent turns through the plugin-owned Codex app-server harness",
     async () => {
-      const modelKey = process.env.OPENCLAW_LIVE_CODEX_HARNESS_MODEL ?? DEFAULT_CODEX_MODEL;
+      const modelKey = process.env.SOLOCLAW_LIVE_CODEX_HARNESS_MODEL ?? DEFAULT_CODEX_MODEL;
       const { clearRuntimeConfigSnapshot } = await import("../config/config.js");
       const { startGatewayServer } = await import("./server.js");
 
@@ -435,8 +435,8 @@ describeLive("gateway live (Codex harness)", () => {
       const port = await getFreeGatewayPort();
 
       clearRuntimeConfigSnapshot();
-      process.env.OPENCLAW_AGENT_RUNTIME = "codex";
-      process.env.OPENCLAW_AGENT_HARNESS_FALLBACK = "none";
+      process.env.SOLOCLAW_AGENT_RUNTIME = "codex";
+      process.env.SOLOCLAW_AGENT_HARNESS_FALLBACK = "none";
       // Keep the runtime fixed on the plugin-owned Codex app-server harness.
       // CI can opt into API-key auth to avoid stale OAuth refresh secrets,
       // while local maintainer runs can continue exercising staged ~/.codex auth.
@@ -448,14 +448,14 @@ describeLive("gateway live (Codex harness)", () => {
       } else if (!process.env.OPENAI_BASE_URL?.trim()) {
         delete process.env.OPENAI_BASE_URL;
       }
-      process.env.OPENCLAW_CONFIG_PATH = configPath;
-      process.env.OPENCLAW_GATEWAY_TOKEN = token;
-      process.env.OPENCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
-      process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
-      process.env.OPENCLAW_SKIP_CHANNELS = "1";
-      process.env.OPENCLAW_SKIP_CRON = "1";
-      process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.SOLOCLAW_CONFIG_PATH = configPath;
+      process.env.SOLOCLAW_GATEWAY_TOKEN = token;
+      process.env.SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
+      process.env.SOLOCLAW_SKIP_CANVAS_HOST = "1";
+      process.env.SOLOCLAW_SKIP_CHANNELS = "1";
+      process.env.SOLOCLAW_SKIP_CRON = "1";
+      process.env.SOLOCLAW_SKIP_GMAIL_WATCHER = "1";
+      process.env.SOLOCLAW_STATE_DIR = stateDir;
 
       await fs.mkdir(stateDir, { recursive: true });
       await writeLiveGatewayConfig({ configPath, modelKey, port, token, workspace });

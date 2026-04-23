@@ -254,7 +254,7 @@ OpenClaw keeps one combined live cache regression gate for repeated prefixes, to
 Run the narrow live gate with:
 
 ```sh
-OPENCLAW_LIVE_TEST=1 OPENCLAW_LIVE_CACHE_TEST=1 pnpm test:live:cache
+SOLOCLAW_LIVE_TEST=1 SOLOCLAW_LIVE_CACHE_TEST=1 pnpm test:live:cache
 ```
 
 The baseline file stores the most recent observed live numbers plus the provider-specific regression floors used by the test.
@@ -307,18 +307,18 @@ diagnostics:
 
 Defaults:
 
-- `filePath`: `$OPENCLAW_STATE_DIR/logs/cache-trace.jsonl`
+- `filePath`: `$SOLOCLAW_STATE_DIR/logs/cache-trace.jsonl`
 - `includeMessages`: `true`
 - `includePrompt`: `true`
 - `includeSystem`: `true`
 
 ### Env toggles (one-off debugging)
 
-- `OPENCLAW_CACHE_TRACE=1` enables cache tracing.
-- `OPENCLAW_CACHE_TRACE_FILE=/path/to/cache-trace.jsonl` overrides output path.
-- `OPENCLAW_CACHE_TRACE_MESSAGES=0|1` toggles full message payload capture.
-- `OPENCLAW_CACHE_TRACE_PROMPT=0|1` toggles prompt text capture.
-- `OPENCLAW_CACHE_TRACE_SYSTEM=0|1` toggles system prompt capture.
+- `SOLOCLAW_CACHE_TRACE=1` enables cache tracing.
+- `SOLOCLAW_CACHE_TRACE_FILE=/path/to/cache-trace.jsonl` overrides output path.
+- `SOLOCLAW_CACHE_TRACE_MESSAGES=0|1` toggles full message payload capture.
+- `SOLOCLAW_CACHE_TRACE_PROMPT=0|1` toggles prompt text capture.
+- `SOLOCLAW_CACHE_TRACE_SYSTEM=0|1` toggles system prompt capture.
 
 ### What to inspect
 

@@ -177,8 +177,8 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
 
     - Open `http://127.0.0.1:18789/`.
     - If it asks for shared-secret auth, paste the configured token or password into Control UI settings.
-    - Token source: `gateway.auth.token` (or `OPENCLAW_GATEWAY_TOKEN`).
-    - Password source: `gateway.auth.password` (or `OPENCLAW_GATEWAY_PASSWORD`).
+    - Token source: `gateway.auth.token` (or `SOLOCLAW_GATEWAY_TOKEN`).
+    - Password source: `gateway.auth.password` (or `SOLOCLAW_GATEWAY_PASSWORD`).
     - If no shared secret is configured yet, generate a token with `soloclaw doctor --generate-gateway-token`.
 
     **Not on localhost:**
@@ -280,7 +280,7 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
     state) as long as you copy **both** locations:
 
     1. Install OpenClaw on the new machine.
-    2. Copy `$OPENCLAW_STATE_DIR` (default: `~/.soloclaw`) from the old machine.
+    2. Copy `$SOLOCLAW_STATE_DIR` (default: `~/.soloclaw`) from the old machine.
     3. Copy your workspace (default: `~/.soloclaw/workspace`).
     4. Run `soloclaw doctor` and restart the Gateway service.
 
@@ -1076,7 +1076,7 @@ for usage/billing and raise limits as needed.
 
     Checklist:
 
-    - Confirm cron is enabled (`cron.enabled`) and `OPENCLAW_SKIP_CRON` is not set.
+    - Confirm cron is enabled (`cron.enabled`) and `SOLOCLAW_SKIP_CRON` is not set.
     - Check the Gateway is running 24/7 (no sleep/restarts).
     - Verify timezone settings for the job (`--tz` vs host timezone).
 
@@ -1280,8 +1280,8 @@ for usage/billing and raise limits as needed.
     The default image is security-first and runs as the `node` user, so it does not
     include system packages, Homebrew, or bundled browsers. For a fuller setup:
 
-    - Persist `/home/node` with `OPENCLAW_HOME_VOLUME` so caches survive.
-    - Bake system deps into the image with `OPENCLAW_DOCKER_APT_PACKAGES`.
+    - Persist `/home/node` with `SOLOCLAW_HOME_VOLUME` so caches survive.
+    - Bake system deps into the image with `SOLOCLAW_DOCKER_APT_PACKAGES`.
     - Install Playwright browsers via the bundled CLI:
       `node /app/node_modules/playwright-core/cli.js install chromium`
     - Set `PLAYWRIGHT_BROWSERS_PATH` and ensure the path is persisted.
@@ -1387,19 +1387,19 @@ for usage/billing and raise limits as needed.
   </Accordion>
 
   <Accordion title="Where does OpenClaw store its data?">
-    Everything lives under `$OPENCLAW_STATE_DIR` (default: `~/.soloclaw`):
+    Everything lives under `$SOLOCLAW_STATE_DIR` (default: `~/.soloclaw`):
 
     | Path                                                            | Purpose                                                            |
     | --------------------------------------------------------------- | ------------------------------------------------------------------ |
-    | `$OPENCLAW_STATE_DIR/soloclaw.json`                             | Main config (JSON5)                                                |
-    | `$OPENCLAW_STATE_DIR/credentials/oauth.json`                    | Legacy OAuth import (copied into auth profiles on first use)       |
-    | `$OPENCLAW_STATE_DIR/agents/<agentId>/agent/auth-profiles.json` | Auth profiles (OAuth, API keys, and optional `keyRef`/`tokenRef`)  |
-    | `$OPENCLAW_STATE_DIR/secrets.json`                              | Optional file-backed secret payload for `file` SecretRef providers |
-    | `$OPENCLAW_STATE_DIR/agents/<agentId>/agent/auth.json`          | Legacy compatibility file (static `api_key` entries scrubbed)      |
-    | `$OPENCLAW_STATE_DIR/credentials/`                              | Provider state (e.g. `whatsapp/<accountId>/creds.json`)            |
-    | `$OPENCLAW_STATE_DIR/agents/`                                   | Per-agent state (agentDir + sessions)                              |
-    | `$OPENCLAW_STATE_DIR/agents/<agentId>/sessions/`                | Conversation history & state (per agent)                           |
-    | `$OPENCLAW_STATE_DIR/agents/<agentId>/sessions/sessions.json`   | Session metadata (per agent)                                       |
+    | `$SOLOCLAW_STATE_DIR/soloclaw.json`                             | Main config (JSON5)                                                |
+    | `$SOLOCLAW_STATE_DIR/credentials/oauth.json`                    | Legacy OAuth import (copied into auth profiles on first use)       |
+    | `$SOLOCLAW_STATE_DIR/agents/<agentId>/agent/auth-profiles.json` | Auth profiles (OAuth, API keys, and optional `keyRef`/`tokenRef`)  |
+    | `$SOLOCLAW_STATE_DIR/secrets.json`                              | Optional file-backed secret payload for `file` SecretRef providers |
+    | `$SOLOCLAW_STATE_DIR/agents/<agentId>/agent/auth.json`          | Legacy compatibility file (static `api_key` entries scrubbed)      |
+    | `$SOLOCLAW_STATE_DIR/credentials/`                              | Provider state (e.g. `whatsapp/<accountId>/creds.json`)            |
+    | `$SOLOCLAW_STATE_DIR/agents/`                                   | Per-agent state (agentDir + sessions)                              |
+    | `$SOLOCLAW_STATE_DIR/agents/<agentId>/sessions/`                | Conversation history & state (per agent)                           |
+    | `$SOLOCLAW_STATE_DIR/agents/<agentId>/sessions/sessions.json`   | Session metadata (per agent)                                       |
 
     Legacy single-agent path: `~/.soloclaw/agent/*` (migrated by `soloclaw doctor`).
 
@@ -1484,10 +1484,10 @@ for usage/billing and raise limits as needed.
 
 <AccordionGroup>
   <Accordion title="What format is the config? Where is it?">
-    OpenClaw reads an optional **JSON5** config from `$OPENCLAW_CONFIG_PATH` (default: `~/.soloclaw/soloclaw.json`):
+    OpenClaw reads an optional **JSON5** config from `$SOLOCLAW_CONFIG_PATH` (default: `~/.soloclaw/soloclaw.json`):
 
     ```
-    $OPENCLAW_CONFIG_PATH
+    $SOLOCLAW_CONFIG_PATH
     ```
 
     If the file is missing, it uses safe-ish defaults (including a default workspace of `~/.soloclaw/workspace`).
@@ -1516,7 +1516,7 @@ for usage/billing and raise limits as needed.
 
     - `gateway.remote.token` / `.password` do **not** enable local gateway auth by themselves.
     - Local call paths can use `gateway.remote.*` as fallback only when `gateway.auth.*` is unset.
-    - For password auth, set `gateway.auth.mode: "password"` plus `gateway.auth.password` (or `OPENCLAW_GATEWAY_PASSWORD`) instead.
+    - For password auth, set `gateway.auth.mode: "password"` plus `gateway.auth.password` (or `SOLOCLAW_GATEWAY_PASSWORD`) instead.
     - If `gateway.auth.token` / `gateway.auth.password` is explicitly configured via SecretRef and unresolved, resolution fails closed (no remote fallback masking).
     - Shared-secret Control UI setups authenticate via `connect.params.auth.token` or `connect.params.auth.password` (stored in app/UI settings). Identity-bearing modes such as Tailscale Serve or `trusted-proxy` use request headers instead. Avoid putting shared secrets in URLs.
     - With `gateway.auth.mode: "trusted-proxy"`, same-host loopback reverse proxies still do **not** satisfy trusted-proxy auth. The trusted proxy must be a configured non-loopback source.
@@ -1554,7 +1554,7 @@ for usage/billing and raise limits as needed.
     - `off`: hides tagline text but keeps the banner title/version line.
     - `default`: uses `All your chats, one OpenClaw.` every time.
     - `random`: rotating funny/seasonal taglines (default behavior).
-    - If you want no banner at all, set env `OPENCLAW_HIDE_BANNER=1`.
+    - If you want no banner at all, set env `SOLOCLAW_HIDE_BANNER=1`.
 
   </Accordion>
 
@@ -1900,7 +1900,7 @@ for usage/billing and raise limits as needed.
     OpenClaw reads env vars from the parent process (shell, launchd/systemd, CI, etc.) and additionally loads:
 
     - `.env` from the current working directory
-    - a global fallback `.env` from `~/.soloclaw/.env` (aka `$OPENCLAW_STATE_DIR/.env`)
+    - a global fallback `.env` from `~/.soloclaw/.env` (aka `$SOLOCLAW_STATE_DIR/.env`)
 
     Neither `.env` file overrides existing env vars.
 
@@ -1937,7 +1937,7 @@ for usage/billing and raise limits as needed.
     ```
 
     This runs your login shell and imports only missing expected keys (never overrides). Env var equivalents:
-    `OPENCLAW_LOAD_SHELL_ENV=1`, `OPENCLAW_SHELL_ENV_TIMEOUT_MS=15000`.
+    `SOLOCLAW_LOAD_SHELL_ENV=1`, `SOLOCLAW_SHELL_ENV_TIMEOUT_MS=15000`.
 
   </Accordion>
 
@@ -2042,7 +2042,7 @@ for usage/billing and raise limits as needed.
     Notes:
 
     - Onboarding also offers **Reset** if it sees an existing config. See [Onboarding (CLI)](/start/wizard).
-    - If you used profiles (`--profile` / `OPENCLAW_PROFILE`), reset each state dir (defaults are `~/.soloclaw-<profile>`).
+    - If you used profiles (`--profile` / `SOLOCLAW_PROFILE`), reset each state dir (defaults are `~/.soloclaw-<profile>`).
     - Dev reset: `soloclaw gateway --dev --reset` (dev-only; wipes dev config + credentials + sessions + workspace).
 
   </Accordion>
@@ -2723,7 +2723,7 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
     Precedence:
 
     ```
-    --port > OPENCLAW_GATEWAY_PORT > gateway.port > default 18789
+    --port > SOLOCLAW_GATEWAY_PORT > gateway.port > default 18789
     ```
 
   </Accordion>
@@ -2740,7 +2740,7 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
   </Accordion>
 
   <Accordion title='Why does soloclaw gateway status show "Config (cli)" and "Config (service)" different?'>
-    You're editing one config file while the service is running another (often a `--profile` / `OPENCLAW_STATE_DIR` mismatch).
+    You're editing one config file while the service is running another (often a `--profile` / `SOLOCLAW_STATE_DIR` mismatch).
 
     Fix:
 
@@ -2799,7 +2799,7 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
     - Fastest: `soloclaw dashboard` (prints + copies the dashboard URL, tries to open; shows SSH hint if headless).
     - If you don't have a token yet: `soloclaw doctor --generate-gateway-token`.
     - If remote, tunnel first: `ssh -N -L 18789:127.0.0.1:18789 user@host` then open `http://127.0.0.1:18789/`.
-    - Shared-secret mode: set `gateway.auth.token` / `OPENCLAW_GATEWAY_TOKEN` or `gateway.auth.password` / `OPENCLAW_GATEWAY_PASSWORD`, then paste the matching secret in Control UI settings.
+    - Shared-secret mode: set `gateway.auth.token` / `SOLOCLAW_GATEWAY_TOKEN` or `gateway.auth.password` / `SOLOCLAW_GATEWAY_PASSWORD`, then paste the matching secret in Control UI settings.
     - Tailscale Serve mode: make sure `gateway.auth.allowTailscale` is enabled and you are opening the Serve URL, not a raw loopback/tailnet URL that bypasses Tailscale identity headers.
     - Trusted-proxy mode: make sure you are coming through the configured non-loopback identity-aware proxy, not a same-host loopback proxy or raw gateway URL.
     - If mismatch persists after the one retry, rotate/re-approve the paired device token:
@@ -2829,8 +2829,8 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
 
     Yes, but you must isolate:
 
-    - `OPENCLAW_CONFIG_PATH` (per-instance config)
-    - `OPENCLAW_STATE_DIR` (per-instance state)
+    - `SOLOCLAW_CONFIG_PATH` (per-instance config)
+    - `SOLOCLAW_STATE_DIR` (per-instance state)
     - `agents.defaults.workspace` (workspace isolation)
     - `gateway.port` (unique ports)
 
@@ -2893,7 +2893,7 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
 
     Service/supervisor logs (when the gateway runs via launchd/systemd):
 
-    - macOS: `$OPENCLAW_STATE_DIR/logs/gateway.log` and `gateway.err.log` (default: `~/.soloclaw/logs/...`; profiles use `~/.soloclaw-<profile>/logs/...`)
+    - macOS: `$SOLOCLAW_STATE_DIR/logs/gateway.log` and `gateway.err.log` (default: `~/.soloclaw/logs/...`; profiles use `~/.soloclaw-<profile>/logs/...`)
     - Linux: `journalctl --user -u openclaw-gateway[-<profile>].service -n 200 --no-pager`
     - Windows: `schtasks /Query /TN "OpenClaw Gateway (<profile>)" /V /FO LIST`
 

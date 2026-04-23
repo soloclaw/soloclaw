@@ -167,11 +167,11 @@ sequences (e.g. spaces become `\032`).
 
 ## Disabling / configuration
 
-- `OPENCLAW_DISABLE_BONJOUR=1` disables advertising (legacy: `OPENCLAW_DISABLE_BONJOUR`).
+- `SOLOCLAW_DISABLE_BONJOUR=1` disables advertising (legacy: `SOLOCLAW_DISABLE_BONJOUR`).
 - `gateway.bind` in `~/.soloclaw/soloclaw.json` controls the Gateway bind mode.
-- `OPENCLAW_SSH_PORT` overrides the SSH port when `sshPort` is advertised (legacy: `OPENCLAW_SSH_PORT`).
-- `OPENCLAW_TAILNET_DNS` publishes a MagicDNS hint in TXT (legacy: `OPENCLAW_TAILNET_DNS`).
-- `OPENCLAW_CLI_PATH` overrides the advertised CLI path (legacy: `OPENCLAW_CLI_PATH`).
+- `SOLOCLAW_SSH_PORT` overrides the SSH port when `sshPort` is advertised (legacy: `SOLOCLAW_SSH_PORT`).
+- `SOLOCLAW_TAILNET_DNS` publishes a MagicDNS hint in TXT (legacy: `SOLOCLAW_TAILNET_DNS`).
+- `SOLOCLAW_CLI_PATH` overrides the advertised CLI path (legacy: `SOLOCLAW_CLI_PATH`).
 
 ## Related docs
 

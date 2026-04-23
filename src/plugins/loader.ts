@@ -232,7 +232,7 @@ export function clearPluginLoaderCache(): void {
 const defaultLogger = () => createSubsystemLogger("plugins");
 
 function shouldProfilePluginLoader(): boolean {
-  return process.env.OPENCLAW_PLUGIN_LOAD_PROFILE === "1";
+  return process.env.SOLOCLAW_PLUGIN_LOAD_PROFILE === "1";
 }
 
 function profilePluginLoaderSync<T>(params: {
@@ -1089,7 +1089,7 @@ function recordPluginError(params: {
   diagnosticMessagePrefix: string;
 }) {
   const errorText =
-    process.env.OPENCLAW_PLUGIN_LOADER_DEBUG_STACKS === "1" &&
+    process.env.SOLOCLAW_PLUGIN_LOADER_DEBUG_STACKS === "1" &&
     params.error instanceof Error &&
     typeof params.error.stack === "string"
       ? params.error.stack

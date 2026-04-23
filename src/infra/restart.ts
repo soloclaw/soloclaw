@@ -300,8 +300,8 @@ export function triggerOpenClawRestart(): RestartAttempt {
   const tried: string[] = [];
 
   const label =
-    process.env.OPENCLAW_LAUNCHD_LABEL ||
-    resolveGatewayLaunchAgentLabel(process.env.OPENCLAW_PROFILE);
+    process.env.SOLOCLAW_LAUNCHD_LABEL ||
+    resolveGatewayLaunchAgentLabel(process.env.SOLOCLAW_PROFILE);
   const uid = typeof process.getuid === "function" ? process.getuid() : undefined;
   const domain = uid !== undefined ? `gui/${uid}` : "gui/501";
   const target = `${domain}/${label}`;

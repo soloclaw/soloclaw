@@ -24,7 +24,7 @@ inside a sandbox workspace under `~/.soloclaw/sandboxes`, not your host workspac
 ## Default location
 
 - Default: `~/.soloclaw/workspace`
-- If `OPENCLAW_PROFILE` is set and not `"default"`, the default becomes
+- If `SOLOCLAW_PROFILE` is set and not `"default"`, the default becomes
   `~/.soloclaw/workspace-<profile>`.
 - Override in `~/.soloclaw/soloclaw.json`:
 

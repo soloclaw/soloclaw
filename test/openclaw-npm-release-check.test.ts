@@ -188,7 +188,7 @@ describe("shouldSkipPackedTarballValidation", () => {
   it("accepts truthy values for metadata-only validation", () => {
     expect(
       shouldSkipPackedTarballValidation({
-        OPENCLAW_NPM_RELEASE_SKIP_PACK_CHECK: "1",
+        SOLOCLAW_NPM_RELEASE_SKIP_PACK_CHECK: "1",
       }),
     ).toBe(true);
   });
@@ -196,7 +196,7 @@ describe("shouldSkipPackedTarballValidation", () => {
   it("treats false-like values as disabled", () => {
     expect(
       shouldSkipPackedTarballValidation({
-        OPENCLAW_NPM_RELEASE_SKIP_PACK_CHECK: "false",
+        SOLOCLAW_NPM_RELEASE_SKIP_PACK_CHECK: "false",
       }),
     ).toBe(false);
   });

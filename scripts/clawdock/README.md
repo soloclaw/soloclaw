@@ -153,7 +153,7 @@ The Docker setup uses three config files on the host. The container never stores
 
 | File                        | Purpose                                          | Examples                                                            |
 | --------------------------- | ------------------------------------------------ | ------------------------------------------------------------------- |
-| `<project>/.env`            | **Docker infra** — image, ports, gateway token   | `OPENCLAW_GATEWAY_TOKEN`, `OPENCLAW_IMAGE`, `OPENCLAW_GATEWAY_PORT` |
+| `<project>/.env`            | **Docker infra** — image, ports, gateway token   | `SOLOCLAW_GATEWAY_TOKEN`, `SOLOCLAW_IMAGE`, `SOLOCLAW_GATEWAY_PORT` |
 | `~/.soloclaw/.env`          | **Secrets** — API keys and bot tokens            | `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `TELEGRAM_BOT_TOKEN`         |
 | `~/.soloclaw/soloclaw.json` | **Behavior config** — models, channels, policies | Model selection, WhatsApp allowlists, agent settings                |
 
@@ -181,8 +181,8 @@ See `.env.example` for all supported keys.
 
 The `Dockerfile` supports two optional build args:
 
-- `OPENCLAW_DOCKER_APT_PACKAGES` — extra apt packages to install (e.g. `ffmpeg`)
-- `OPENCLAW_INSTALL_BROWSER=1` — pre-install Chromium for browser automation (adds ~300MB, but skips the 60-90s Playwright install on each container start)
+- `SOLOCLAW_DOCKER_APT_PACKAGES` — extra apt packages to install (e.g. `ffmpeg`)
+- `SOLOCLAW_INSTALL_BROWSER=1` — pre-install Chromium for browser automation (adds ~300MB, but skips the 60-90s Playwright install on each container start)
 
 ### How It Works in Docker
 
@@ -190,8 +190,8 @@ The `Dockerfile` supports two optional build args:
 
 ```yaml
 volumes:
-  - ${OPENCLAW_CONFIG_DIR}:/home/node/.soloclaw
-  - ${OPENCLAW_WORKSPACE_DIR}:/home/node/.soloclaw/workspace
+  - ${SOLOCLAW_CONFIG_DIR}:/home/node/.soloclaw
+  - ${SOLOCLAW_WORKSPACE_DIR}:/home/node/.soloclaw/workspace
 ```
 
 This means:
@@ -214,13 +214,13 @@ TELEGRAM_BOT_TOKEN=123456:ABCDEF...
 ### Example `<project>/.env`
 
 ```bash
-OPENCLAW_CONFIG_DIR=/Users/you/.soloclaw
-OPENCLAW_WORKSPACE_DIR=/Users/you/.soloclaw/workspace
-OPENCLAW_GATEWAY_PORT=18789
-OPENCLAW_BRIDGE_PORT=18790
-OPENCLAW_GATEWAY_BIND=lan
-OPENCLAW_GATEWAY_TOKEN=<generated-by-docker-setup>
-OPENCLAW_IMAGE=openclaw:local
+SOLOCLAW_CONFIG_DIR=/Users/you/.soloclaw
+SOLOCLAW_WORKSPACE_DIR=/Users/you/.soloclaw/workspace
+SOLOCLAW_GATEWAY_PORT=18789
+SOLOCLAW_BRIDGE_PORT=18790
+SOLOCLAW_GATEWAY_BIND=lan
+SOLOCLAW_GATEWAY_TOKEN=<generated-by-docker-setup>
+SOLOCLAW_IMAGE=openclaw:local
 ```
 
 ### Env Precedence
@@ -231,7 +231,7 @@ OpenClaw loads env vars in this order (highest wins, never overrides existing):
 2. **`.env` in CWD** — project root `.env` (Docker infra vars)
 3. **`~/.soloclaw/.env`** — global secrets (API keys, bot tokens)
 4. **`soloclaw.json` `env` block** — inline vars, applied only if still missing
-5. **Shell env import** — optional login-shell scrape (`OPENCLAW_LOAD_SHELL_ENV=1`)
+5. **Shell env import** — optional login-shell scrape (`SOLOCLAW_LOAD_SHELL_ENV=1`)
 
 ## Common Workflows
 

@@ -12,7 +12,7 @@ const contractIncludePatterns = [
 export function loadContractsIncludePatternsFromEnv(
   env: Record<string, string | undefined> = process.env,
 ): string[] | null {
-  return loadPatternListFromEnv("OPENCLAW_VITEST_INCLUDE_FILE", env);
+  return loadPatternListFromEnv("SOLOCLAW_VITEST_INCLUDE_FILE", env);
 }
 
 export function createContractsVitestConfig(

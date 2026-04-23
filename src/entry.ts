@@ -3,7 +3,10 @@ import { spawn } from "node:child_process";
 import { enableCompileCache } from "node:module";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
+import { migrateOpenClawEnvVars } from "./infra/env-compat.js";
 import { isRootHelpInvocation, isRootVersionInvocation } from "./cli/argv.js";
+
+migrateOpenClawEnvVars();
 import { parseCliContainerArgs, resolveCliContainerTarget } from "./cli/container-target.js";
 import { applyCliProfileEnv, parseCliProfileArgs } from "./cli/profile.js";
 
@@ -58,7 +61,7 @@ if (
   }
 
   if (shouldForceReadOnlyAuthStore(process.argv)) {
-    process.env.OPENCLAW_AUTH_STORE_READONLY = "1";
+    process.env.SOLOCLAW_AUTH_STORE_READONLY = "1";
   }
 
   if (process.argv.includes("--no-color")) {

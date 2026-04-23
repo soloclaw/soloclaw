@@ -735,7 +735,7 @@ describe("runCliAgent spawn path", () => {
 
   it("can preserve selected clearEnv keys for live CLI backend probes", async () => {
     try {
-      process.env.OPENCLAW_LIVE_CLI_BACKEND_PRESERVE_ENV = '["SAFE_CLEAR"]';
+      process.env.SOLOCLAW_LIVE_CLI_BACKEND_PRESERVE_ENV = '["SAFE_CLEAR"]';
       process.env.SAFE_CLEAR = "from-base";
       mockSuccessfulCliRun();
       await executePreparedCliRun(
@@ -756,7 +756,7 @@ describe("runCliAgent spawn path", () => {
       expect(input.env?.SAFE_CLEAR).toBe("from-base");
       expect(input.env?.SAFE_DROP).toBeUndefined();
     } finally {
-      delete process.env.OPENCLAW_LIVE_CLI_BACKEND_PRESERVE_ENV;
+      delete process.env.SOLOCLAW_LIVE_CLI_BACKEND_PRESERVE_ENV;
       delete process.env.SAFE_CLEAR;
     }
   });

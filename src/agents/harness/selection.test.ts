@@ -20,21 +20,21 @@ vi.mock("./builtin-pi.js", () => ({
   }),
 }));
 
-const originalRuntime = process.env.OPENCLAW_AGENT_RUNTIME;
-const originalHarnessFallback = process.env.OPENCLAW_AGENT_HARNESS_FALLBACK;
+const originalRuntime = process.env.SOLOCLAW_AGENT_RUNTIME;
+const originalHarnessFallback = process.env.SOLOCLAW_AGENT_HARNESS_FALLBACK;
 
 afterEach(() => {
   clearAgentHarnesses();
   piRunAttempt.mockClear();
   if (originalRuntime == null) {
-    delete process.env.OPENCLAW_AGENT_RUNTIME;
+    delete process.env.SOLOCLAW_AGENT_RUNTIME;
   } else {
-    process.env.OPENCLAW_AGENT_RUNTIME = originalRuntime;
+    process.env.SOLOCLAW_AGENT_RUNTIME = originalRuntime;
   }
   if (originalHarnessFallback == null) {
-    delete process.env.OPENCLAW_AGENT_HARNESS_FALLBACK;
+    delete process.env.SOLOCLAW_AGENT_HARNESS_FALLBACK;
   } else {
-    process.env.OPENCLAW_AGENT_HARNESS_FALLBACK = originalHarnessFallback;
+    process.env.SOLOCLAW_AGENT_HARNESS_FALLBACK = originalHarnessFallback;
   }
 });
 
@@ -97,7 +97,7 @@ function registerFailingCodexHarness(): void {
 
 describe("runAgentHarnessAttemptWithFallback", () => {
   it("falls back to the PI harness when a forced plugin harness is unavailable", async () => {
-    process.env.OPENCLAW_AGENT_RUNTIME = "codex";
+    process.env.SOLOCLAW_AGENT_RUNTIME = "codex";
 
     const result = await runAgentHarnessAttemptWithFallback(createAttemptParams());
 
@@ -106,7 +106,7 @@ describe("runAgentHarnessAttemptWithFallback", () => {
   });
 
   it("falls back to the PI harness in auto mode when the selected plugin harness fails", async () => {
-    process.env.OPENCLAW_AGENT_RUNTIME = "auto";
+    process.env.SOLOCLAW_AGENT_RUNTIME = "auto";
     registerFailingCodexHarness();
 
     const result = await runAgentHarnessAttemptWithFallback(createAttemptParams());
@@ -116,7 +116,7 @@ describe("runAgentHarnessAttemptWithFallback", () => {
   });
 
   it("surfaces a forced plugin harness failure instead of replaying through PI", async () => {
-    process.env.OPENCLAW_AGENT_RUNTIME = "codex";
+    process.env.SOLOCLAW_AGENT_RUNTIME = "codex";
     registerFailingCodexHarness();
 
     await expect(runAgentHarnessAttemptWithFallback(createAttemptParams())).rejects.toThrow(
@@ -126,7 +126,7 @@ describe("runAgentHarnessAttemptWithFallback", () => {
   });
 
   it("disables PI retry fallback when auto-selected harness fails and fallback is none", async () => {
-    process.env.OPENCLAW_AGENT_RUNTIME = "auto";
+    process.env.SOLOCLAW_AGENT_RUNTIME = "auto";
     registerFailingCodexHarness();
 
     await expect(
@@ -138,8 +138,8 @@ describe("runAgentHarnessAttemptWithFallback", () => {
   });
 
   it("honors env fallback override over config fallback", async () => {
-    process.env.OPENCLAW_AGENT_RUNTIME = "auto";
-    process.env.OPENCLAW_AGENT_HARNESS_FALLBACK = "none";
+    process.env.SOLOCLAW_AGENT_RUNTIME = "auto";
+    process.env.SOLOCLAW_AGENT_HARNESS_FALLBACK = "none";
     registerFailingCodexHarness();
 
     await expect(runAgentHarnessAttemptWithFallback(createAttemptParams())).rejects.toThrow(

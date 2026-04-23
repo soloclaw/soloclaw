@@ -107,8 +107,8 @@ function storeWith(profileId: string, cred: OAuthCredential): AuthProfileStore {
 
 describe("OAuth credential adoption is identity-gated", () => {
   const envSnapshot = captureEnv([
-    "OPENCLAW_STATE_DIR",
-    "OPENCLAW_AGENT_DIR",
+    "SOLOCLAW_STATE_DIR",
+    "SOLOCLAW_AGENT_DIR",
     "PI_CODING_AGENT_DIR",
   ]);
   let tempRoot = "";
@@ -122,9 +122,9 @@ describe("OAuth credential adoption is identity-gated", () => {
     formatProviderAuthProfileApiKeyWithPluginMock.mockReturnValue(undefined);
     clearRuntimeAuthProfileStoreSnapshots();
     tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-oauth-adopt-identity-"));
-    process.env.OPENCLAW_STATE_DIR = tempRoot;
+    process.env.SOLOCLAW_STATE_DIR = tempRoot;
     mainAgentDir = path.join(tempRoot, "agents", "main", "agent");
-    process.env.OPENCLAW_AGENT_DIR = mainAgentDir;
+    process.env.SOLOCLAW_AGENT_DIR = mainAgentDir;
     process.env.PI_CODING_AGENT_DIR = mainAgentDir;
     await fs.mkdir(mainAgentDir, { recursive: true });
     await loadOAuthModuleForTest();

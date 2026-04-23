@@ -541,7 +541,7 @@ describe("plugin sdk alias helpers", () => {
       "utf-8",
     );
 
-    const subpaths = withEnv({ OPENCLAW_ENABLE_PRIVATE_QA_CLI: "1" }, () =>
+    const subpaths = withEnv({ SOLOCLAW_ENABLE_PRIVATE_QA_CLI: "1" }, () =>
       listPluginSdkExportedSubpaths({
         modulePath: path.join(fixture.root, "src", "plugins", "loader.ts"),
       }),
@@ -572,7 +572,7 @@ describe("plugin sdk alias helpers", () => {
       }),
     ).toEqual(["core"]);
 
-    const privateSubpaths = withEnv({ OPENCLAW_ENABLE_PRIVATE_QA_CLI: "1" }, () =>
+    const privateSubpaths = withEnv({ SOLOCLAW_ENABLE_PRIVATE_QA_CLI: "1" }, () =>
       listPluginSdkExportedSubpaths({
         modulePath: path.join(fixture.root, "src", "plugins", "loader.ts"),
       }),
@@ -667,7 +667,7 @@ describe("plugin sdk alias helpers", () => {
       bundledPluginFile("qa-matrix", "src/index.ts"),
     );
 
-    const aliases = withEnv({ OPENCLAW_ENABLE_PRIVATE_QA_CLI: "1", NODE_ENV: undefined }, () =>
+    const aliases = withEnv({ SOLOCLAW_ENABLE_PRIVATE_QA_CLI: "1", NODE_ENV: undefined }, () =>
       buildPluginLoaderAliasMap(sourcePluginEntry),
     );
 

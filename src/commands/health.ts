@@ -37,7 +37,7 @@ export type {
 const DEFAULT_TIMEOUT_MS = 10_000;
 
 const debugHealth = (...args: unknown[]) => {
-  if (isTruthyEnvValue(process.env.OPENCLAW_DEBUG_HEALTH)) {
+  if (isTruthyEnvValue(process.env.SOLOCLAW_DEBUG_HEALTH)) {
     console.warn("[health:debug]", ...args);
   }
 };
@@ -409,7 +409,7 @@ export async function healthCommand(
   if (opts.json) {
     writeRuntimeJson(runtime, summary);
   } else {
-    const debugEnabled = isTruthyEnvValue(process.env.OPENCLAW_DEBUG_HEALTH);
+    const debugEnabled = isTruthyEnvValue(process.env.SOLOCLAW_DEBUG_HEALTH);
     const rich = isRich();
     if (opts.verbose) {
       const details = buildGatewayConnectionDetails({ config: cfg });

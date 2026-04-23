@@ -38,7 +38,7 @@ export function buildGatewayRuntimeHints(
     }
   })();
   if (runtime.cachedLabel && platform === "darwin") {
-    const label = resolveGatewayLaunchAgentLabel(env.OPENCLAW_PROFILE);
+    const label = resolveGatewayLaunchAgentLabel(env.SOLOCLAW_PROFILE);
     hints.push(
       `LaunchAgent label cached but plist missing. Clear with: launchctl bootout gui/$UID/${label}`,
     );
@@ -60,8 +60,8 @@ export function buildGatewayRuntimeHints(
       ...buildPlatformRuntimeLogHints({
         platform,
         env,
-        systemdServiceName: resolveGatewaySystemdServiceName(env.OPENCLAW_PROFILE),
-        windowsTaskName: resolveGatewayWindowsTaskName(env.OPENCLAW_PROFILE),
+        systemdServiceName: resolveGatewaySystemdServiceName(env.SOLOCLAW_PROFILE),
+        windowsTaskName: resolveGatewayWindowsTaskName(env.SOLOCLAW_PROFILE),
       }),
     );
   }

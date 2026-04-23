@@ -29,11 +29,11 @@ function createProviderRuntimeSmokeContext(): {
   workspaceDir: string;
 } {
   const env = { ...process.env };
-  delete env.OPENCLAW_BUNDLED_PLUGINS_DIR;
-  delete env.OPENCLAW_SKIP_PROVIDERS;
-  delete env.OPENCLAW_SKIP_CHANNELS;
-  delete env.OPENCLAW_SKIP_CRON;
-  delete env.OPENCLAW_TEST_MINIMAL_GATEWAY;
+  delete env.SOLOCLAW_BUNDLED_PLUGINS_DIR;
+  delete env.SOLOCLAW_SKIP_PROVIDERS;
+  delete env.SOLOCLAW_SKIP_CHANNELS;
+  delete env.SOLOCLAW_SKIP_CRON;
+  delete env.SOLOCLAW_TEST_MINIMAL_GATEWAY;
   return {
     config: {},
     env,

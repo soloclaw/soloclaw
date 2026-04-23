@@ -19,7 +19,7 @@ approvals, media delivery, and the visible transcript mirror.
 
 The harness is off by default. It is selected only when the `codex` plugin is
 enabled and the resolved model is a `codex/*` model, or when you explicitly
-force `embeddedHarness.runtime: "codex"` or `OPENCLAW_AGENT_RUNTIME=codex`.
+force `embeddedHarness.runtime: "codex"` or `SOLOCLAW_AGENT_RUNTIME=codex`.
 If you never configure `codex/*`, existing PI, OpenAI, Anthropic, Gemini, local,
 and custom-provider runs keep their current behavior.
 
@@ -159,8 +159,8 @@ the Codex harness:
 Environment override:
 
 ```bash
-OPENCLAW_AGENT_RUNTIME=codex \
-OPENCLAW_AGENT_HARNESS_FALLBACK=none \
+SOLOCLAW_AGENT_RUNTIME=codex \
+SOLOCLAW_AGENT_HARNESS_FALLBACK=none \
 soloclaw gateway run
 ```
 
@@ -325,11 +325,11 @@ Supported `appServer` fields:
 The older environment variables still work as fallbacks for local testing when
 the matching config field is unset:
 
-- `OPENCLAW_CODEX_APP_SERVER_BIN`
-- `OPENCLAW_CODEX_APP_SERVER_ARGS`
-- `OPENCLAW_CODEX_APP_SERVER_APPROVAL_POLICY`
-- `OPENCLAW_CODEX_APP_SERVER_SANDBOX`
-- `OPENCLAW_CODEX_APP_SERVER_GUARDIAN=1`
+- `SOLOCLAW_CODEX_APP_SERVER_BIN`
+- `SOLOCLAW_CODEX_APP_SERVER_ARGS`
+- `SOLOCLAW_CODEX_APP_SERVER_APPROVAL_POLICY`
+- `SOLOCLAW_CODEX_APP_SERVER_SANDBOX`
+- `SOLOCLAW_CODEX_APP_SERVER_GUARDIAN=1`
 
 Config is preferred for repeatable deployments.
 
@@ -467,7 +467,7 @@ understanding continue to use the matching provider/model settings such as
 set a `codex/*` model ref, or check whether `plugins.allow` excludes `codex`.
 
 **OpenClaw falls back to PI:** set `embeddedHarness.fallback: "none"` or
-`OPENCLAW_AGENT_HARNESS_FALLBACK=none` while testing.
+`SOLOCLAW_AGENT_HARNESS_FALLBACK=none` while testing.
 
 **The app-server is rejected:** upgrade Codex so the app-server handshake
 reports version `0.118.0` or newer.

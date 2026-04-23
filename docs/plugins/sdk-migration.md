@@ -3,8 +3,8 @@ title: "Plugin SDK Migration"
 sidebarTitle: "Migrate to SDK"
 summary: "Migrate from the legacy backwards-compatibility layer to the modern plugin SDK"
 read_when:
-  - You see the OPENCLAW_PLUGIN_SDK_COMPAT_DEPRECATED warning
-  - You see the OPENCLAW_EXTENSION_API_DEPRECATED warning
+  - You see the SOLOCLAW_PLUGIN_SDK_COMPAT_DEPRECATED warning
+  - You see the SOLOCLAW_EXTENSION_API_DEPRECATED warning
   - You are updating a plugin to the modern plugin architecture
   - You maintain an external OpenClaw plugin
 ---
@@ -387,8 +387,8 @@ before the next major release.
 Set these environment variables while you work on migrating:
 
 ```bash
-OPENCLAW_SUPPRESS_PLUGIN_SDK_COMPAT_WARNING=1 soloclaw gateway run
-OPENCLAW_SUPPRESS_EXTENSION_API_WARNING=1 soloclaw gateway run
+SOLOCLAW_SUPPRESS_PLUGIN_SDK_COMPAT_WARNING=1 soloclaw gateway run
+SOLOCLAW_SUPPRESS_EXTENSION_API_WARNING=1 soloclaw gateway run
 ```
 
 This is a temporary escape hatch, not a permanent solution.

@@ -129,7 +129,7 @@
 - Type-check/build: `pnpm build`
 - TypeScript checks: `pnpm tsgo`
 - Lint/format: `pnpm check`
-- Local agent/dev shells default to host-aware `OPENCLAW_LOCAL_CHECK=1` behavior for `pnpm tsgo` and `pnpm lint`; set `OPENCLAW_LOCAL_CHECK_MODE=throttled` to force the lower-memory profile, `OPENCLAW_LOCAL_CHECK_MODE=full` to keep lock-only behavior, or `OPENCLAW_LOCAL_CHECK=0` in CI/shared runs.
+- Local agent/dev shells default to host-aware `SOLOCLAW_LOCAL_CHECK=1` behavior for `pnpm tsgo` and `pnpm lint`; set `SOLOCLAW_LOCAL_CHECK_MODE=throttled` to force the lower-memory profile, `SOLOCLAW_LOCAL_CHECK_MODE=full` to keep lock-only behavior, or `SOLOCLAW_LOCAL_CHECK=0` in CI/shared runs.
 - Format check: `pnpm format:check` (oxfmt --check)
 - Format fix: `pnpm format` or `pnpm format:fix` (oxfmt --write)
 - Terminology:
@@ -222,10 +222,10 @@
 - Agents MUST NOT modify baseline, inventory, ignore, snapshot, or expected-failure files to silence failing checks without explicit approval in this chat.
 - For targeted/local debugging, use the native root-project entrypoint: `pnpm test <path-or-filter> [vitest args...]` (for example `pnpm test src/commands/onboard-search.test.ts -t "shows registered plugin providers"`); do not default to raw `pnpm vitest run ...` because it bypasses the repo's default config/profile/pool routing.
 - Do not set test workers above 16; tried already.
-- Vitest now defaults to native root-project `threads`, with hard `forks` exceptions for `gateway`, `agents`, and `commands`. Keep new pool changes explicit and justified; use `OPENCLAW_VITEST_POOL=forks` for full local fork debugging.
-- If local Vitest runs cause memory pressure, the default worker budget now derives from host capabilities (CPU, memory band, current load). For a conservative explicit override during land/gate runs, use `OPENCLAW_VITEST_MAX_WORKERS=1 pnpm test`.
-- Live tests (real keys): `OPENCLAW_LIVE_TEST=1 pnpm test:live` (OpenClaw-only) or `LIVE=1 pnpm test:live` (includes provider live tests). Docker: `pnpm test:docker:live-models`, `pnpm test:docker:live-gateway`. Onboarding Docker E2E: `pnpm test:docker:onboard`.
-- `pnpm test:live` defaults quiet now. Keep `[live]` progress; suppress profile/gateway chatter. Full logs: `OPENCLAW_LIVE_TEST_QUIET=0 pnpm test:live`.
+- Vitest now defaults to native root-project `threads`, with hard `forks` exceptions for `gateway`, `agents`, and `commands`. Keep new pool changes explicit and justified; use `SOLOCLAW_VITEST_POOL=forks` for full local fork debugging.
+- If local Vitest runs cause memory pressure, the default worker budget now derives from host capabilities (CPU, memory band, current load). For a conservative explicit override during land/gate runs, use `SOLOCLAW_VITEST_MAX_WORKERS=1 pnpm test`.
+- Live tests (real keys): `SOLOCLAW_LIVE_TEST=1 pnpm test:live` (OpenClaw-only) or `LIVE=1 pnpm test:live` (includes provider live tests). Docker: `pnpm test:docker:live-models`, `pnpm test:docker:live-gateway`. Onboarding Docker E2E: `pnpm test:docker:onboard`.
+- `pnpm test:live` defaults quiet now. Keep `[live]` progress; suppress profile/gateway chatter. Full logs: `SOLOCLAW_LIVE_TEST_QUIET=0 pnpm test:live`.
 - Full kit + what’s covered: `docs/help/testing.md`.
 - Changelog: user-facing changes only; no internal/meta notes (version alignment, appcast reminders, release process).
 - Changelog placement: in the active version block, append new entries to the end of the target section (`### Changes` or `### Fixes`); do not insert new entries at the top of a section.

@@ -469,8 +469,8 @@ describe("update-cli", () => {
       expect.objectContaining({
         stdio: "inherit",
         env: expect.objectContaining({
-          OPENCLAW_UPDATE_POST_CORE: "1",
-          OPENCLAW_UPDATE_POST_CORE_CHANNEL: "dev",
+          SOLOCLAW_UPDATE_POST_CORE: "1",
+          SOLOCLAW_UPDATE_POST_CORE_CHANNEL: "dev",
         }),
       }),
     );
@@ -527,8 +527,8 @@ describe("update-cli", () => {
   it("post-core resume mode skips the core update and only runs post-update tasks", async () => {
     await withEnvAsync(
       {
-        OPENCLAW_UPDATE_POST_CORE: "1",
-        OPENCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
+        SOLOCLAW_UPDATE_POST_CORE: "1",
+        SOLOCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
       },
       async () => {
         await updateCommand({ restart: false });
@@ -770,11 +770,11 @@ describe("update-cli", () => {
       expectedSpec: "github:openclaw/openclaw#main",
     },
     {
-      name: "OPENCLAW_UPDATE_PACKAGE_SPEC override",
+      name: "SOLOCLAW_UPDATE_PACKAGE_SPEC override",
       run: async () => {
         mockPackageInstallStatus(createCaseDir("openclaw-update"));
         await withEnvAsync(
-          { OPENCLAW_UPDATE_PACKAGE_SPEC: "http://10.211.55.2:8138/openclaw-next.tgz" },
+          { SOLOCLAW_UPDATE_PACKAGE_SPEC: "http://10.211.55.2:8138/openclaw-next.tgz" },
           async () => {
             await updateCommand({ yes: true, tag: "latest" });
           },
@@ -1269,8 +1269,8 @@ describe("update-cli", () => {
       invoke: async () => {
         await withEnvAsync(
           {
-            OPENCLAW_STATE_DIR: "./state",
-            OPENCLAW_CONFIG_PATH: "./config/soloclaw.json",
+            SOLOCLAW_STATE_DIR: "./state",
+            SOLOCLAW_CONFIG_PATH: "./config/soloclaw.json",
           },
           async () => {
             await updateCommand({});
@@ -1281,8 +1281,8 @@ describe("update-cli", () => {
         expect.objectContaining({
           cwd: root,
           env: expect.objectContaining({
-            OPENCLAW_STATE_DIR: path.resolve("./state"),
-            OPENCLAW_CONFIG_PATH: path.resolve("./config/soloclaw.json"),
+            SOLOCLAW_STATE_DIR: path.resolve("./state"),
+            SOLOCLAW_CONFIG_PATH: path.resolve("./config/soloclaw.json"),
           }),
           timeoutMs: 60_000,
         }),
@@ -1313,7 +1313,7 @@ describe("update-cli", () => {
         try {
           await withEnvAsync(
             {
-              OPENCLAW_STATE_DIR: "./state",
+              SOLOCLAW_STATE_DIR: "./state",
             },
             async () => {
               await updateCommand({});
@@ -1329,7 +1329,7 @@ describe("update-cli", () => {
         expect.objectContaining({
           cwd: expect.any(String),
           env: expect.objectContaining({
-            OPENCLAW_STATE_DIR: path.resolve(context?.originalCwd ?? process.cwd(), "./state"),
+            SOLOCLAW_STATE_DIR: path.resolve(context?.originalCwd ?? process.cwd(), "./state"),
           }),
           timeoutMs: 60_000,
         }),
@@ -1356,7 +1356,7 @@ describe("update-cli", () => {
   it("updateCommand continues after doctor sub-step and clears update flag", async () => {
     const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0);
     try {
-      await withEnvAsync({ OPENCLAW_UPDATE_IN_PROGRESS: undefined }, async () => {
+      await withEnvAsync({ SOLOCLAW_UPDATE_IN_PROGRESS: undefined }, async () => {
         vi.mocked(runGatewayUpdate).mockResolvedValue(makeOkUpdateResult());
         vi.mocked(runDaemonRestart).mockResolvedValue(true);
         vi.mocked(doctorCommand).mockResolvedValue(undefined);
@@ -1368,7 +1368,7 @@ describe("update-cli", () => {
           defaultRuntime,
           expect.objectContaining({ nonInteractive: true }),
         );
-        expect(process.env.OPENCLAW_UPDATE_IN_PROGRESS).toBeUndefined();
+        expect(process.env.SOLOCLAW_UPDATE_IN_PROGRESS).toBeUndefined();
 
         const logLines = vi.mocked(defaultRuntime.log).mock.calls.map((call) => String(call[0]));
         expect(
@@ -1457,7 +1457,7 @@ describe("update-cli", () => {
 
   it("updateWizardCommand offers dev checkout and forwards selections", async () => {
     const tempDir = createCaseDir("openclaw-update-wizard");
-    await withEnvAsync({ OPENCLAW_GIT_DIR: tempDir }, async () => {
+    await withEnvAsync({ SOLOCLAW_GIT_DIR: tempDir }, async () => {
       setTty(true);
 
       vi.mocked(checkUpdateStatus).mockResolvedValue({
@@ -1489,7 +1489,7 @@ describe("update-cli", () => {
 
   it("uses ~/openclaw as the default dev checkout directory", async () => {
     const homedirSpy = vi.spyOn(os, "homedir").mockReturnValue("/tmp/oc-home");
-    await withEnvAsync({ OPENCLAW_GIT_DIR: undefined }, async () => {
+    await withEnvAsync({ SOLOCLAW_GIT_DIR: undefined }, async () => {
       expect(resolveGitInstallDir()).toBe(path.posix.join("/tmp/oc-home", "openclaw"));
     });
     homedirSpy.mockRestore();

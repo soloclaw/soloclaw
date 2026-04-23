@@ -18,7 +18,7 @@ installReplyRuntimeMocks(agentMocks);
 
 describe("getReplyFromConfig fast-path runtime", () => {
   beforeEach(async () => {
-    vi.stubEnv("OPENCLAW_TEST_FAST", "1");
+    vi.stubEnv("SOLOCLAW_TEST_FAST", "1");
     resetReplyRuntimeMocks(agentMocks);
     ({ getReplyFromConfig } = await loadReplyModuleForTest({ cacheKey: import.meta.url }));
   });

@@ -13,7 +13,7 @@ type GuidanceCase = {
 const CASES: GuidanceCase[] = [
   {
     file: "skills/session-logs/SKILL.md",
-    required: ["OPENCLAW_STATE_DIR"],
+    required: ["SOLOCLAW_STATE_DIR"],
     forbidden: [
       "for f in ~/.soloclaw/agents/<agentId>/sessions/*.jsonl",
       'rg -l "phrase" ~/.soloclaw/agents/<agentId>/sessions/*.jsonl',
@@ -22,24 +22,24 @@ const CASES: GuidanceCase[] = [
   },
   {
     file: "skills/gh-issues/SKILL.md",
-    required: ["OPENCLAW_CONFIG_PATH"],
+    required: ["SOLOCLAW_CONFIG_PATH"],
     forbidden: ["cat ~/.soloclaw/soloclaw.json"],
   },
   {
     file: "skills/canvas/SKILL.md",
-    required: ["OPENCLAW_CONFIG_PATH"],
+    required: ["SOLOCLAW_CONFIG_PATH"],
     forbidden: ["cat ~/.soloclaw/soloclaw.json"],
   },
   {
     file: "skills/openai-whisper-api/SKILL.md",
-    required: ["OPENCLAW_CONFIG_PATH"],
+    required: ["SOLOCLAW_CONFIG_PATH"],
   },
   {
     file: "skills/sherpa-onnx-tts/SKILL.md",
     required: [
-      "OPENCLAW_STATE_DIR",
-      "OPENCLAW_CONFIG_PATH",
-      'STATE_DIR="${OPENCLAW_STATE_DIR:-$HOME/.soloclaw}"',
+      "SOLOCLAW_STATE_DIR",
+      "SOLOCLAW_CONFIG_PATH",
+      'STATE_DIR="${SOLOCLAW_STATE_DIR:-$HOME/.soloclaw}"',
     ],
     forbidden: [
       'SHERPA_ONNX_RUNTIME_DIR: "~/.soloclaw/tools/sherpa-onnx-tts/runtime"',
@@ -49,7 +49,7 @@ const CASES: GuidanceCase[] = [
   },
   {
     file: "skills/coding-agent/SKILL.md",
-    required: ["OPENCLAW_STATE_DIR"],
+    required: ["SOLOCLAW_STATE_DIR"],
     forbidden: ["NEVER start Codex in ~/.soloclaw/"],
   },
 ];

@@ -53,7 +53,7 @@ function buildCtx(overrides: Partial<MsgContext> = {}): MsgContext {
 describe("getReplyFromConfig configOverride", () => {
   beforeEach(async () => {
     await loadGetReplyRuntimeForTest();
-    vi.stubEnv("OPENCLAW_ALLOW_SLOW_REPLY_TESTS", "1");
+    vi.stubEnv("SOLOCLAW_ALLOW_SLOW_REPLY_TESTS", "1");
     mocks.resolveReplyDirectives.mockReset();
     mocks.initSessionState.mockReset();
     vi.mocked(loadConfigMock).mockReset();

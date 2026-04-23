@@ -109,8 +109,8 @@ function createExpiredOauthStore(params: {
 
 describe("resolveApiKeyForProfile openai-codex refresh fallback", () => {
   const envSnapshot = captureEnv([
-    "OPENCLAW_STATE_DIR",
-    "OPENCLAW_AGENT_DIR",
+    "SOLOCLAW_STATE_DIR",
+    "SOLOCLAW_AGENT_DIR",
     "PI_CODING_AGENT_DIR",
   ]);
   let tempRoot = "";
@@ -140,8 +140,8 @@ describe("resolveApiKeyForProfile openai-codex refresh fallback", () => {
     tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-codex-refresh-fallback-"));
     agentDir = path.join(tempRoot, "agents", "main", "agent");
     await fs.mkdir(agentDir, { recursive: true });
-    process.env.OPENCLAW_STATE_DIR = tempRoot;
-    process.env.OPENCLAW_AGENT_DIR = agentDir;
+    process.env.SOLOCLAW_STATE_DIR = tempRoot;
+    process.env.SOLOCLAW_AGENT_DIR = agentDir;
     process.env.PI_CODING_AGENT_DIR = agentDir;
   });
 

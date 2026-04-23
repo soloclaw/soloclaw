@@ -26,7 +26,7 @@ describe("backup commands", () => {
   async function resetTempHome() {
     await fs.rm(tempHome.home, { recursive: true, force: true });
     await fs.mkdir(path.join(tempHome.home, ".soloclaw"), { recursive: true });
-    delete process.env.OPENCLAW_CONFIG_PATH;
+    delete process.env.SOLOCLAW_CONFIG_PATH;
   }
 
   beforeAll(async () => {
@@ -62,7 +62,7 @@ describe("backup commands", () => {
   async function withInvalidWorkspaceBackupConfig<T>(fn: (runtime: RuntimeEnv) => Promise<T>) {
     const stateDir = path.join(tempHome.home, ".soloclaw");
     const configPath = path.join(tempHome.home, "custom-config.json");
-    process.env.OPENCLAW_CONFIG_PATH = configPath;
+    process.env.SOLOCLAW_CONFIG_PATH = configPath;
     await fs.writeFile(path.join(stateDir, "soloclaw.json"), JSON.stringify({}), "utf8");
     await fs.writeFile(configPath, '{"agents": { defaults: { workspace: ', "utf8");
     const runtime = createBackupTestRuntime();
@@ -70,7 +70,7 @@ describe("backup commands", () => {
     try {
       return await fn(runtime);
     } finally {
-      delete process.env.OPENCLAW_CONFIG_PATH;
+      delete process.env.SOLOCLAW_CONFIG_PATH;
     }
   }
 
@@ -148,7 +148,7 @@ describe("backup commands", () => {
     let capturedEntryPaths: string[] = [];
     let capturedOnWriteEntry: ((entry: { path: string }) => void) | null = null;
     try {
-      process.env.OPENCLAW_CONFIG_PATH = configPath;
+      process.env.SOLOCLAW_CONFIG_PATH = configPath;
       await fs.writeFile(
         configPath,
         JSON.stringify({
@@ -247,7 +247,7 @@ describe("backup commands", () => {
         ),
       );
     } finally {
-      delete process.env.OPENCLAW_CONFIG_PATH;
+      delete process.env.SOLOCLAW_CONFIG_PATH;
       await fs.rm(externalWorkspace, { recursive: true, force: true });
       await fs.rm(backupDir, { recursive: true, force: true });
     }

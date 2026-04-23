@@ -17,19 +17,19 @@ function shellEscape(value: string): string {
 }
 
 function resolveSystemdUnit(env: NodeJS.ProcessEnv): string {
-  const override = normalizeOptionalString(env.OPENCLAW_SYSTEMD_UNIT);
+  const override = normalizeOptionalString(env.SOLOCLAW_SYSTEMD_UNIT);
   if (override) {
     return override.endsWith(".service") ? override : `${override}.service`;
   }
-  return `${resolveGatewaySystemdServiceName(env.OPENCLAW_PROFILE)}.service`;
+  return `${resolveGatewaySystemdServiceName(env.SOLOCLAW_PROFILE)}.service`;
 }
 
 function resolveLaunchdLabel(env: NodeJS.ProcessEnv): string {
-  const override = normalizeOptionalString(env.OPENCLAW_LAUNCHD_LABEL);
+  const override = normalizeOptionalString(env.SOLOCLAW_LAUNCHD_LABEL);
   if (override) {
     return override;
   }
-  return resolveGatewayLaunchAgentLabel(env.OPENCLAW_PROFILE);
+  return resolveGatewayLaunchAgentLabel(env.SOLOCLAW_PROFILE);
 }
 
 /**

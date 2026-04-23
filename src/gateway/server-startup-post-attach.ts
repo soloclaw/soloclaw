@@ -167,8 +167,8 @@ export async function startGatewaySidecars(params: {
   }
 
   const skipChannels =
-    isTruthyEnvValue(process.env.OPENCLAW_SKIP_CHANNELS) ||
-    isTruthyEnvValue(process.env.OPENCLAW_SKIP_PROVIDERS);
+    isTruthyEnvValue(process.env.SOLOCLAW_SKIP_CHANNELS) ||
+    isTruthyEnvValue(process.env.SOLOCLAW_SKIP_PROVIDERS);
   if (!skipChannels) {
     try {
       await prewarmConfiguredPrimaryModel({
@@ -181,7 +181,7 @@ export async function startGatewaySidecars(params: {
     }
   } else {
     params.logChannels.info(
-      "skipping channel start (OPENCLAW_SKIP_CHANNELS=1 or OPENCLAW_SKIP_PROVIDERS=1)",
+      "skipping channel start (SOLOCLAW_SKIP_CHANNELS=1 or SOLOCLAW_SKIP_PROVIDERS=1)",
     );
   }
 

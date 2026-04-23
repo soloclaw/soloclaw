@@ -102,7 +102,7 @@ describe("config io write", () => {
     },
   );
 
-  it("keeps writes inside an OPENCLAW_STATE_DIR override even when the real home config exists", async () => {
+  it("keeps writes inside an SOLOCLAW_STATE_DIR override even when the real home config exists", async () => {
     await withSuiteHome(async (home) => {
       const liveConfigPath = path.join(home, ".soloclaw", "soloclaw.json");
       await fs.mkdir(path.dirname(liveConfigPath), { recursive: true });
@@ -113,7 +113,7 @@ describe("config io write", () => {
       );
 
       const overrideDir = path.join(home, "isolated-state");
-      const env = { OPENCLAW_STATE_DIR: overrideDir } as NodeJS.ProcessEnv;
+      const env = { SOLOCLAW_STATE_DIR: overrideDir } as NodeJS.ProcessEnv;
       const io = createConfigIO({
         env,
         homedir: () => home,

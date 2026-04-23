@@ -433,7 +433,7 @@ gateway:
   allowRealIpFallback: false
   auth:
     mode: password
-    password: ${OPENCLAW_GATEWAY_PASSWORD}
+    password: ${SOLOCLAW_GATEWAY_PASSWORD}
 ```
 
 When `trustedProxies` is configured, the Gateway uses `X-Forwarded-For` to determine the client IP. `X-Real-IP` is ignored by default unless `gateway.allowRealIpFallback: true` is explicitly set.
@@ -757,7 +757,7 @@ Keep config + state private on the gateway host:
 The Gateway multiplexes **WebSocket + HTTP** on a single port:
 
 - Default: `18789`
-- Config/flags/env: `gateway.port`, `--port`, `OPENCLAW_GATEWAY_PORT`
+- Config/flags/env: `gateway.port`, `--port`, `SOLOCLAW_GATEWAY_PORT`
 
 This HTTP surface includes the Control UI and the canvas host:
 
@@ -871,7 +871,7 @@ The Gateway broadcasts its presence via mDNS (`_openclaw-gw._tcp` on port 5353) 
    }
    ```
 
-4. **Environment variable** (alternative): set `OPENCLAW_DISABLE_BONJOUR=1` to disable mDNS without config changes.
+4. **Environment variable** (alternative): set `SOLOCLAW_DISABLE_BONJOUR=1` to disable mDNS without config changes.
 
 In minimal mode, the Gateway still broadcasts enough for device discovery (`role`, `gatewayPort`, `transport`) but omits `cliPath` and `sshPort`. Apps that need CLI path information can fetch it via the authenticated WebSocket connection instead.
 
@@ -903,7 +903,7 @@ If `gateway.auth.token` / `gateway.auth.password` is explicitly configured via
 SecretRef and unresolved, resolution fails closed (no remote fallback masking).
 Optional: pin remote TLS with `gateway.remote.tlsFingerprint` when using `wss://`.
 Plaintext `ws://` is loopback-only by default. For trusted private-network
-paths, set `OPENCLAW_ALLOW_INSECURE_PRIVATE_WS=1` on the client process as break-glass.
+paths, set `SOLOCLAW_ALLOW_INSECURE_PRIVATE_WS=1` on the client process as break-glass.
 
 Local device pairing:
 
@@ -917,12 +917,12 @@ Local device pairing:
 Auth modes:
 
 - `gateway.auth.mode: "token"`: shared bearer token (recommended for most setups).
-- `gateway.auth.mode: "password"`: password auth (prefer setting via env: `OPENCLAW_GATEWAY_PASSWORD`).
+- `gateway.auth.mode: "password"`: password auth (prefer setting via env: `SOLOCLAW_GATEWAY_PASSWORD`).
 - `gateway.auth.mode: "trusted-proxy"`: trust an identity-aware reverse proxy to authenticate users and pass identity via headers (see [Trusted Proxy Auth](/gateway/trusted-proxy-auth)).
 
 Rotation checklist (token/password):
 
-1. Generate/set a new secret (`gateway.auth.token` or `OPENCLAW_GATEWAY_PASSWORD`).
+1. Generate/set a new secret (`gateway.auth.token` or `SOLOCLAW_GATEWAY_PASSWORD`).
 2. Restart the Gateway (or restart the macOS app if it supervises the Gateway).
 3. Update any remote clients (`gateway.remote.token` / `.password` on machines that call into the Gateway).
 4. Verify you can no longer connect with the old credentials.
@@ -992,7 +992,7 @@ Avoid:
 
 ### 0.7) Secrets on disk (sensitive data)
 
-Assume anything under `~/.soloclaw/` (or `$OPENCLAW_STATE_DIR/`) may contain secrets or private data:
+Assume anything under `~/.soloclaw/` (or `$SOLOCLAW_STATE_DIR/`) may contain secrets or private data:
 
 - `soloclaw.json`: config may include tokens (gateway, remote gateway), provider settings, and allowlists.
 - `credentials/**`: channel credentials (example: WhatsApp creds), pairing allowlists, legacy OAuth imports.
@@ -1305,7 +1305,7 @@ If your AI does something bad:
 
 ### Rotate (assume compromise if secrets leaked)
 
-1. Rotate Gateway auth (`gateway.auth.token` / `OPENCLAW_GATEWAY_PASSWORD`) and restart.
+1. Rotate Gateway auth (`gateway.auth.token` / `SOLOCLAW_GATEWAY_PASSWORD`) and restart.
 2. Rotate remote client secrets (`gateway.remote.token` / `.password`) on any machine that can call the Gateway.
 3. Rotate provider/API credentials (WhatsApp creds, Slack/Discord tokens, model/API keys in `auth-profiles.json`, and encrypted secrets payload values when used).
 

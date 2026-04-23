@@ -359,8 +359,8 @@ export function registerControlUiAndPairingSuite(): void {
     };
     testState.gatewayAuth = { mode: "token", token: "secret" };
     await writeTrustedProxyControlUiConfig({ allowInsecureAuth: true });
-    const prevToken = process.env.OPENCLAW_GATEWAY_TOKEN;
-    process.env.OPENCLAW_GATEWAY_TOKEN = "secret";
+    const prevToken = process.env.SOLOCLAW_GATEWAY_TOKEN;
+    process.env.SOLOCLAW_GATEWAY_TOKEN = "secret";
     try {
       await withControlUiGatewayServer(async ({ port }) => {
         const ws = new WebSocket(`ws://127.0.0.1:${port}`, {
@@ -416,8 +416,8 @@ export function registerControlUiAndPairingSuite(): void {
   test("allows control ui auth bypasses when device auth is disabled", async () => {
     testState.gatewayControlUi = { dangerouslyDisableDeviceAuth: true };
     testState.gatewayAuth = { mode: "token", token: "secret" };
-    const prevToken = process.env.OPENCLAW_GATEWAY_TOKEN;
-    process.env.OPENCLAW_GATEWAY_TOKEN = "secret";
+    const prevToken = process.env.SOLOCLAW_GATEWAY_TOKEN;
+    process.env.SOLOCLAW_GATEWAY_TOKEN = "secret";
     try {
       await withControlUiGatewayServer(async ({ port }) => {
         const staleDeviceWs = await openWs(port, { origin: originForPort(port) });
@@ -1319,9 +1319,9 @@ export function registerControlUiAndPairingSuite(): void {
     ws2.close();
     await server.close();
     if (prevToken === undefined) {
-      delete process.env.OPENCLAW_GATEWAY_TOKEN;
+      delete process.env.SOLOCLAW_GATEWAY_TOKEN;
     } else {
-      process.env.OPENCLAW_GATEWAY_TOKEN = prevToken;
+      process.env.SOLOCLAW_GATEWAY_TOKEN = prevToken;
     }
   });
 

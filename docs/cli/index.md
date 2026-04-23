@@ -1707,8 +1707,8 @@ Subcommands:
 
 Auth notes:
 
-- `node` resolves gateway auth from env/config (no `--token`/`--password` flags): `OPENCLAW_GATEWAY_TOKEN` / `OPENCLAW_GATEWAY_PASSWORD`, then `gateway.auth.*`. In local mode, node host intentionally ignores `gateway.remote.*`; in `gateway.mode=remote`, `gateway.remote.*` participates per remote precedence rules.
-- Node-host auth resolution only honors `OPENCLAW_GATEWAY_*` env vars.
+- `node` resolves gateway auth from env/config (no `--token`/`--password` flags): `SOLOCLAW_GATEWAY_TOKEN` / `SOLOCLAW_GATEWAY_PASSWORD`, then `gateway.auth.*`. In local mode, node host intentionally ignores `gateway.remote.*`; in `gateway.mode=remote`, `gateway.remote.*` participates per remote precedence rules.
+- Node-host auth resolution only honors `SOLOCLAW_GATEWAY_*` env vars.
 
 ## Nodes
 

@@ -66,7 +66,7 @@ OpenClaw has three public release lanes:
   runners, while the non-mutating validation path can use the larger
   Blacksmith Linux runners
 - That workflow runs
-  `OPENCLAW_LIVE_TEST=1 OPENCLAW_LIVE_CACHE_TEST=1 pnpm test:live:cache`
+  `SOLOCLAW_LIVE_TEST=1 SOLOCLAW_LIVE_CACHE_TEST=1 pnpm test:live:cache`
   using both `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` workflow secrets
 - npm release preflight no longer waits on the separate release checks lane
 - Run `RELEASE_TAG=vYYYY.M.D node --import tsx scripts/openclaw-npm-release-check.ts`

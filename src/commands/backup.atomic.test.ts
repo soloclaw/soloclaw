@@ -18,7 +18,7 @@ describe("backupCreateCommand atomic archive write", () => {
   async function resetTempHome() {
     await fs.rm(tempHome.home, { recursive: true, force: true });
     await fs.mkdir(path.join(tempHome.home, ".soloclaw"), { recursive: true });
-    delete process.env.OPENCLAW_CONFIG_PATH;
+    delete process.env.SOLOCLAW_CONFIG_PATH;
   }
 
   beforeAll(async () => {

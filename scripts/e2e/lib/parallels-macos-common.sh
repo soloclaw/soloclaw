@@ -63,13 +63,13 @@ parallels_macos_desktop_user_exec_with_secret_file() {
   wrapper='#!/bin/bash
 set -e
 cleanup() {
-  rm -f "${OPENCLAW_WRAPPER_FILE:-}"
+  rm -f "${SOLOCLAW_WRAPPER_FILE:-}"
 }
 trap cleanup EXIT
-if [ -n "${OPENCLAW_SECRET_ENV_NAME:-}" ] && [ -n "${OPENCLAW_SECRET_FILE:-}" ] && [ -f "$OPENCLAW_SECRET_FILE" ]; then
-  secret_value="$(cat "$OPENCLAW_SECRET_FILE")"
-  rm -f "$OPENCLAW_SECRET_FILE"
-  export "${OPENCLAW_SECRET_ENV_NAME}=${secret_value}"
+if [ -n "${SOLOCLAW_SECRET_ENV_NAME:-}" ] && [ -n "${SOLOCLAW_SECRET_FILE:-}" ] && [ -f "$SOLOCLAW_SECRET_FILE" ]; then
+  secret_value="$(cat "$SOLOCLAW_SECRET_FILE")"
+  rm -f "$SOLOCLAW_SECRET_FILE"
+  export "${SOLOCLAW_SECRET_ENV_NAME}=${secret_value}"
 fi
 "$@"
 '
@@ -85,9 +85,9 @@ fi
   if [[ "$user_flag" == "current-user" ]]; then
     prlctl exec "$vm_name" --current-user /usr/bin/env \
       "PATH=$path_value" \
-      "OPENCLAW_SECRET_ENV_NAME=$api_key_env" \
-      "OPENCLAW_SECRET_FILE=$secret_path" \
-      "OPENCLAW_WRAPPER_FILE=$wrapper_path" \
+      "SOLOCLAW_SECRET_ENV_NAME=$api_key_env" \
+      "SOLOCLAW_SECRET_FILE=$secret_path" \
+      "SOLOCLAW_WRAPPER_FILE=$wrapper_path" \
       /bin/bash "$wrapper_path" "$@"
     return
   fi
@@ -97,9 +97,9 @@ fi
     "USER=$user_name" \
     "LOGNAME=$user_name" \
     "PATH=$path_value" \
-    "OPENCLAW_SECRET_ENV_NAME=$api_key_env" \
-    "OPENCLAW_SECRET_FILE=$secret_path" \
-    "OPENCLAW_WRAPPER_FILE=$wrapper_path" \
+    "SOLOCLAW_SECRET_ENV_NAME=$api_key_env" \
+    "SOLOCLAW_SECRET_FILE=$secret_path" \
+    "SOLOCLAW_WRAPPER_FILE=$wrapper_path" \
     /bin/bash "$wrapper_path" "$@"
 }
 

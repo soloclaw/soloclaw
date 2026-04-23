@@ -45,11 +45,11 @@ for env_key in \
   MINIMAX_API_KEY \
   OPENCODE_API_KEY \
   OPENCODE_ZEN_API_KEY \
-  OPENCLAW_LIVE_BROWSER_CDP_URL \
-  OPENCLAW_LIVE_SETUP_TOKEN \
-  OPENCLAW_LIVE_SETUP_TOKEN_MODEL \
-  OPENCLAW_LIVE_SETUP_TOKEN_PROFILE \
-  OPENCLAW_LIVE_SETUP_TOKEN_VALUE \
+  SOLOCLAW_LIVE_BROWSER_CDP_URL \
+  SOLOCLAW_LIVE_SETUP_TOKEN \
+  SOLOCLAW_LIVE_SETUP_TOKEN_MODEL \
+  SOLOCLAW_LIVE_SETUP_TOKEN_PROFILE \
+  SOLOCLAW_LIVE_SETUP_TOKEN_VALUE \
   GEMINI_API_KEY \
   GOOGLE_API_KEY \
   OPENROUTER_API_KEY \
@@ -69,16 +69,16 @@ do
   append_profile_env "$env_key"
 done
 
-write_secret_file "$HOME/.codex/auth.json" OPENCLAW_CODEX_AUTH_JSON
-write_secret_file "$HOME/.codex/config.toml" OPENCLAW_CODEX_CONFIG_TOML
-write_secret_file "$HOME/.claude.json" OPENCLAW_CLAUDE_JSON
-write_secret_file "$HOME/.claude/.credentials.json" OPENCLAW_CLAUDE_CREDENTIALS_JSON
-write_secret_file "$HOME/.claude/settings.json" OPENCLAW_CLAUDE_SETTINGS_JSON
-write_secret_file "$HOME/.claude/settings.local.json" OPENCLAW_CLAUDE_SETTINGS_LOCAL_JSON
-write_secret_file "$HOME/.gemini/settings.json" OPENCLAW_GEMINI_SETTINGS_JSON
+write_secret_file "$HOME/.codex/auth.json" SOLOCLAW_CODEX_AUTH_JSON
+write_secret_file "$HOME/.codex/config.toml" SOLOCLAW_CODEX_CONFIG_TOML
+write_secret_file "$HOME/.claude.json" SOLOCLAW_CLAUDE_JSON
+write_secret_file "$HOME/.claude/.credentials.json" SOLOCLAW_CLAUDE_CREDENTIALS_JSON
+write_secret_file "$HOME/.claude/settings.json" SOLOCLAW_CLAUDE_SETTINGS_JSON
+write_secret_file "$HOME/.claude/settings.local.json" SOLOCLAW_CLAUDE_SETTINGS_LOCAL_JSON
+write_secret_file "$HOME/.gemini/settings.json" SOLOCLAW_GEMINI_SETTINGS_JSON
 
 if [[ -n "${GITHUB_ENV:-}" ]]; then
   {
-    echo "OPENCLAW_PROFILE_FILE=$profile_path"
+    echo "SOLOCLAW_PROFILE_FILE=$profile_path"
   } >>"$GITHUB_ENV"
 fi

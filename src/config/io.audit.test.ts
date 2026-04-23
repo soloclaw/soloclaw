@@ -74,7 +74,7 @@ describe("config io audit helpers", () => {
       {
         HOME: "undefined",
         USERPROFILE: "null",
-        OPENCLAW_HOME: "undefined",
+        SOLOCLAW_HOME: "undefined",
       } as NodeJS.ProcessEnv,
       () => home,
     );
@@ -99,9 +99,9 @@ describe("config io audit helpers", () => {
     const base = createConfigWriteAuditRecordBase({
       configPath: "/tmp/soloclaw.json",
       env: {
-        OPENCLAW_WATCH_MODE: "1",
-        OPENCLAW_WATCH_SESSION: "watch-session-1",
-        OPENCLAW_WATCH_COMMAND: "gateway --force",
+        SOLOCLAW_WATCH_MODE: "1",
+        SOLOCLAW_WATCH_SESSION: "watch-session-1",
+        SOLOCLAW_WATCH_COMMAND: "gateway --force",
       } as NodeJS.ProcessEnv,
       existsBefore: true,
       previousHash: "prev-hash",

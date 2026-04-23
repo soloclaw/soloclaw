@@ -50,10 +50,10 @@ function loadCoverageRegistryEntries(): SecretRegistryEntry[] {
 }
 
 const COVERAGE_REGISTRY_ENTRIES = loadCoverageRegistryEntries();
-const DEBUG_COVERAGE_BATCHES = process.env.OPENCLAW_DEBUG_RUNTIME_COVERAGE === "1";
+const DEBUG_COVERAGE_BATCHES = process.env.SOLOCLAW_DEBUG_RUNTIME_COVERAGE === "1";
 const COVERAGE_LOADABLE_PLUGIN_ORIGINS =
   buildCoverageLoadablePluginOrigins(COVERAGE_REGISTRY_ENTRIES);
-const PLUGIN_OWNED_OPENCLAW_COVERAGE_EXCLUSIONS = new Set([
+const PLUGIN_OWNED_SOLOCLAW_COVERAGE_EXCLUSIONS = new Set([
   "channels.googlechat.accounts.*.serviceAccount",
   "tools.web.fetch.firecrawl.apiKey",
 ]);
@@ -519,14 +519,14 @@ describe("secrets runtime target coverage", () => {
     const entries = COVERAGE_REGISTRY_ENTRIES.filter(
       (entry) =>
         entry.configFile === "soloclaw.json" &&
-        !PLUGIN_OWNED_OPENCLAW_COVERAGE_EXCLUSIONS.has(entry.id),
+        !PLUGIN_OWNED_SOLOCLAW_COVERAGE_EXCLUSIONS.has(entry.id),
     );
     for (const batch of buildCoverageBatches(entries)) {
       logCoverageBatch("soloclaw.json", batch);
       const config = {} as OpenClawConfig;
       const env: Record<string, string> = {};
       for (const [index, entry] of batch.entries()) {
-        const envId = `OPENCLAW_SECRET_TARGET_${entry.id}`;
+        const envId = `SOLOCLAW_SECRET_TARGET_${entry.id}`;
         const runtimeEnvId = resolveCoverageEnvId(entry, envId);
         const expectedValue = `resolved-${entry.id}`;
         const wildcardToken = resolveCoverageWildcardToken(index);
@@ -562,7 +562,7 @@ describe("secrets runtime target coverage", () => {
         profiles: {},
       };
       for (const [index, entry] of batch.entries()) {
-        const envId = `OPENCLAW_AUTH_SECRET_TARGET_${entry.id}`;
+        const envId = `SOLOCLAW_AUTH_SECRET_TARGET_${entry.id}`;
         env[envId] = `resolved-${entry.id}`;
         applyAuthStoreTarget(authStore, entry, envId, resolveCoverageWildcardToken(index));
       }

@@ -589,7 +589,7 @@ install_latest_release() {
     version_args=(--version "$INSTALL_VERSION")
   fi
   guest_exec curl -fsSL "$INSTALL_URL" -o /tmp/openclaw-install.sh
-  guest_exec /usr/bin/env OPENCLAW_NO_ONBOARD=1 bash /tmp/openclaw-install.sh "${version_args[@]}" --no-onboard
+  guest_exec /usr/bin/env SOLOCLAW_NO_ONBOARD=1 bash /tmp/openclaw-install.sh "${version_args[@]}" --no-onboard
   guest_exec openclaw --version
 }
 
@@ -704,7 +704,7 @@ start_gateway_background() {
   cmd="$(cat <<EOF
 pkill -f "soloclaw gateway run" >/dev/null 2>&1 || true
 rm -f /tmp/openclaw-parallels-linux-gateway.log
-setsid sh -lc 'exec env OPENCLAW_HOME=/root OPENCLAW_STATE_DIR=/root/.soloclaw OPENCLAW_CONFIG_PATH=/root/.soloclaw/soloclaw.json ${API_KEY_ENV}=${api_key_value_q} soloclaw gateway run --bind loopback --port 18789 --force >/tmp/openclaw-parallels-linux-gateway.log 2>&1' >/dev/null 2>&1 < /dev/null &
+setsid sh -lc 'exec env SOLOCLAW_HOME=/root SOLOCLAW_STATE_DIR=/root/.soloclaw SOLOCLAW_CONFIG_PATH=/root/.soloclaw/soloclaw.json ${API_KEY_ENV}=${api_key_value_q} soloclaw gateway run --bind loopback --port 18789 --force >/tmp/openclaw-parallels-linux-gateway.log 2>&1' >/dev/null 2>&1 < /dev/null &
 EOF
 )"
   guest_exec bash -lc "$cmd"

@@ -158,7 +158,7 @@ describe("loadBundledEntryExportSync", () => {
       }),
     ).toBe(42);
 
-    vi.stubEnv("OPENCLAW_DISABLE_BUNDLED_ENTRY_SOURCE_FALLBACK", "1");
+    vi.stubEnv("SOLOCLAW_DISABLE_BUNDLED_ENTRY_SOURCE_FALLBACK", "1");
 
     expect(() =>
       loadBundledEntryExportSync<number>(pathToFileURL(importerPath).href, {

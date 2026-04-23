@@ -28,13 +28,13 @@ import {
 import { discoverAuthStorage, discoverModels } from "./pi-model-discovery.js";
 
 const LIVE = isLiveTestEnabled();
-const DIRECT_ENABLED = Boolean(process.env.OPENCLAW_LIVE_MODELS?.trim());
+const DIRECT_ENABLED = Boolean(process.env.SOLOCLAW_LIVE_MODELS?.trim());
 const REQUIRE_PROFILE_KEYS = isLiveProfileKeyModeEnabled();
 const LIVE_CREDENTIAL_PRECEDENCE = REQUIRE_PROFILE_KEYS ? "profile-first" : "env-first";
-const LIVE_HEARTBEAT_MS = Math.max(1_000, toInt(process.env.OPENCLAW_LIVE_HEARTBEAT_MS, 30_000));
+const LIVE_HEARTBEAT_MS = Math.max(1_000, toInt(process.env.SOLOCLAW_LIVE_HEARTBEAT_MS, 30_000));
 const LIVE_SETUP_TIMEOUT_MS = Math.max(
   1_000,
-  toInt(process.env.OPENCLAW_LIVE_SETUP_TIMEOUT_MS, 45_000),
+  toInt(process.env.SOLOCLAW_LIVE_SETUP_TIMEOUT_MS, 45_000),
 );
 
 const describeLive = LIVE ? describe : describe.skip;
@@ -430,7 +430,7 @@ describeLive("live models (profile keys)", () => {
       );
       if (!DIRECT_ENABLED) {
         logProgress(
-          "[live-models] skipping (set OPENCLAW_LIVE_MODELS=modern|all|<list>; all=modern)",
+          "[live-models] skipping (set SOLOCLAW_LIVE_MODELS=modern|all|<list>; all=modern)",
         );
         return;
       }
@@ -448,15 +448,15 @@ describeLive("live models (profile keys)", () => {
         "[live-models] load model registry",
       );
 
-      const rawModels = process.env.OPENCLAW_LIVE_MODELS?.trim();
+      const rawModels = process.env.SOLOCLAW_LIVE_MODELS?.trim();
       const useModern = rawModels === "modern" || rawModels === "all";
       const useExplicit = Boolean(rawModels) && !useModern;
       const filter = useExplicit ? parseModelFilter(rawModels) : null;
       const allowNotFoundSkip = useModern;
-      const providers = parseProviderFilter(process.env.OPENCLAW_LIVE_PROVIDERS);
-      const perModelTimeoutMs = toInt(process.env.OPENCLAW_LIVE_MODEL_TIMEOUT_MS, 30_000);
+      const providers = parseProviderFilter(process.env.SOLOCLAW_LIVE_PROVIDERS);
+      const perModelTimeoutMs = toInt(process.env.SOLOCLAW_LIVE_MODEL_TIMEOUT_MS, 30_000);
       const maxModels = resolveHighSignalLiveModelLimit({
-        rawMaxModels: process.env.OPENCLAW_LIVE_MAX_MODELS,
+        rawMaxModels: process.env.SOLOCLAW_LIVE_MAX_MODELS,
         useExplicitModels: useExplicit,
       });
       const targetMatcher = createLiveTargetMatcher({
@@ -533,7 +533,7 @@ describeLive("live models (profile keys)", () => {
       logProgress(`[live-models] selection=${useExplicit ? "explicit" : "high-signal"}`);
       if (selectedCandidates.length < candidates.length) {
         logProgress(
-          `[live-models] capped to ${selectedCandidates.length}/${candidates.length} via OPENCLAW_LIVE_MAX_MODELS=${maxModels}`,
+          `[live-models] capped to ${selectedCandidates.length}/${candidates.length} via SOLOCLAW_LIVE_MAX_MODELS=${maxModels}`,
         );
       }
       logProgress(`[live-models] running ${selectedCandidates.length} models`);

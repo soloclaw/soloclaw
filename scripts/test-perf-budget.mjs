@@ -7,9 +7,9 @@ function parseArgs(argv) {
     argv,
     {
       config: "test/vitest/vitest.unit.config.ts",
-      maxWallMs: readEnvNumber("OPENCLAW_TEST_PERF_MAX_WALL_MS"),
-      baselineWallMs: readEnvNumber("OPENCLAW_TEST_PERF_BASELINE_WALL_MS"),
-      maxRegressionPct: readEnvNumber("OPENCLAW_TEST_PERF_MAX_REGRESSION_PCT") ?? 10,
+      maxWallMs: readEnvNumber("SOLOCLAW_TEST_PERF_MAX_WALL_MS"),
+      baselineWallMs: readEnvNumber("SOLOCLAW_TEST_PERF_BASELINE_WALL_MS"),
+      maxRegressionPct: readEnvNumber("SOLOCLAW_TEST_PERF_MAX_REGRESSION_PCT") ?? 10,
     },
     [
       stringFlag("--config", "config"),

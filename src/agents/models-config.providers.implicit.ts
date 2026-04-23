@@ -54,11 +54,11 @@ type ImplicitProviderContext = ImplicitProviderParams & {
 
 function resolveLiveProviderCatalogTimeoutMs(env: NodeJS.ProcessEnv): number | null {
   const live =
-    env.OPENCLAW_LIVE_TEST === "1" || env.OPENCLAW_LIVE_GATEWAY === "1" || env.LIVE === "1";
+    env.SOLOCLAW_LIVE_TEST === "1" || env.SOLOCLAW_LIVE_GATEWAY === "1" || env.LIVE === "1";
   if (!live) {
     return null;
   }
-  const raw = env.OPENCLAW_LIVE_PROVIDER_DISCOVERY_TIMEOUT_MS?.trim();
+  const raw = env.SOLOCLAW_LIVE_PROVIDER_DISCOVERY_TIMEOUT_MS?.trim();
   if (!raw) {
     return 15_000;
   }
@@ -72,7 +72,7 @@ function resolveProviderDiscoveryFilter(params: {
   env: NodeJS.ProcessEnv;
 }): string[] | undefined {
   const { config, workspaceDir, env } = params;
-  const testRaw = env.OPENCLAW_TEST_ONLY_PROVIDER_PLUGIN_IDS?.trim();
+  const testRaw = env.SOLOCLAW_TEST_ONLY_PROVIDER_PLUGIN_IDS?.trim();
   if (testRaw) {
     const ids = testRaw
       .split(",")
@@ -81,13 +81,13 @@ function resolveProviderDiscoveryFilter(params: {
     return ids.length > 0 ? [...new Set(ids)] : undefined;
   }
   const live =
-    env.OPENCLAW_LIVE_TEST === "1" || env.OPENCLAW_LIVE_GATEWAY === "1" || env.LIVE === "1";
+    env.SOLOCLAW_LIVE_TEST === "1" || env.SOLOCLAW_LIVE_GATEWAY === "1" || env.LIVE === "1";
   if (!live) {
     return undefined;
   }
   const rawValues = [
-    env.OPENCLAW_LIVE_PROVIDERS?.trim(),
-    env.OPENCLAW_LIVE_GATEWAY_PROVIDERS?.trim(),
+    env.SOLOCLAW_LIVE_PROVIDERS?.trim(),
+    env.SOLOCLAW_LIVE_GATEWAY_PROVIDERS?.trim(),
   ].filter((value): value is string => Boolean(value && value !== "all"));
   if (rawValues.length === 0) {
     return undefined;

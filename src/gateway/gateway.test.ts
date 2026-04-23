@@ -25,16 +25,16 @@ const GATEWAY_E2E_TIMEOUT_MS = 90_000;
 let gatewayTestSeq = 0;
 const GATEWAY_TEST_ENV_KEYS = [
   "HOME",
-  "OPENCLAW_STATE_DIR",
-  "OPENCLAW_CONFIG_PATH",
-  "OPENCLAW_GATEWAY_TOKEN",
-  "OPENCLAW_SKIP_CHANNELS",
-  "OPENCLAW_SKIP_GMAIL_WATCHER",
-  "OPENCLAW_SKIP_CRON",
-  "OPENCLAW_SKIP_CANVAS_HOST",
-  "OPENCLAW_SKIP_BROWSER_CONTROL_SERVER",
-  "OPENCLAW_SKIP_PROVIDERS",
-  "OPENCLAW_BUNDLED_PLUGINS_DIR",
+  "SOLOCLAW_STATE_DIR",
+  "SOLOCLAW_CONFIG_PATH",
+  "SOLOCLAW_GATEWAY_TOKEN",
+  "SOLOCLAW_SKIP_CHANNELS",
+  "SOLOCLAW_SKIP_GMAIL_WATCHER",
+  "SOLOCLAW_SKIP_CRON",
+  "SOLOCLAW_SKIP_CANVAS_HOST",
+  "SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER",
+  "SOLOCLAW_SKIP_PROVIDERS",
+  "SOLOCLAW_BUNDLED_PLUGINS_DIR",
 ] as const;
 
 function nextGatewayId(prefix: string): string {
@@ -88,28 +88,28 @@ async function readCounterWithRetry(filePath: string): Promise<number> {
 async function setupGatewayTempHome(params: { prefix: string; minimalGateway?: boolean }) {
   const envSnapshot = captureEnv([
     ...GATEWAY_TEST_ENV_KEYS,
-    ...(params.minimalGateway ? (["OPENCLAW_TEST_MINIMAL_GATEWAY"] as const) : []),
+    ...(params.minimalGateway ? (["SOLOCLAW_TEST_MINIMAL_GATEWAY"] as const) : []),
   ]);
 
   const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), params.prefix));
   process.env.HOME = tempHome;
-  process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".soloclaw");
-  delete process.env.OPENCLAW_CONFIG_PATH;
-  process.env.OPENCLAW_SKIP_CHANNELS = "1";
-  process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";
-  process.env.OPENCLAW_SKIP_CRON = "1";
-  process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
-  process.env.OPENCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
-  process.env.OPENCLAW_SKIP_PROVIDERS = "1";
+  process.env.SOLOCLAW_STATE_DIR = path.join(tempHome, ".soloclaw");
+  delete process.env.SOLOCLAW_CONFIG_PATH;
+  process.env.SOLOCLAW_SKIP_CHANNELS = "1";
+  process.env.SOLOCLAW_SKIP_GMAIL_WATCHER = "1";
+  process.env.SOLOCLAW_SKIP_CRON = "1";
+  process.env.SOLOCLAW_SKIP_CANVAS_HOST = "1";
+  process.env.SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
+  process.env.SOLOCLAW_SKIP_PROVIDERS = "1";
   if (params.minimalGateway) {
-    process.env.OPENCLAW_TEST_MINIMAL_GATEWAY = "1";
+    process.env.SOLOCLAW_TEST_MINIMAL_GATEWAY = "1";
   } else {
-    delete process.env.OPENCLAW_TEST_MINIMAL_GATEWAY;
+    delete process.env.SOLOCLAW_TEST_MINIMAL_GATEWAY;
   }
 
   const workspaceDir = path.join(tempHome, "openclaw");
   await fs.mkdir(workspaceDir, { recursive: true });
-  process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = await createEmptyBundledPluginsDir(tempHome);
+  process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR = await createEmptyBundledPluginsDir(tempHome);
   return { envSnapshot, tempHome, workspaceDir };
 }
 
@@ -147,7 +147,7 @@ describe("gateway e2e", () => {
       });
 
       const token = nextGatewayId("test-token");
-      process.env.OPENCLAW_GATEWAY_TOKEN = token;
+      process.env.SOLOCLAW_GATEWAY_TOKEN = token;
 
       const configDir = path.join(tempHome, ".soloclaw");
       await fs.mkdir(configDir, { recursive: true });
@@ -226,7 +226,7 @@ describe("gateway e2e", () => {
       });
 
       const token = nextGatewayId("http-tools-token");
-      process.env.OPENCLAW_GATEWAY_TOKEN = token;
+      process.env.SOLOCLAW_GATEWAY_TOKEN = token;
       const registerCountPath = path.join(tempHome, "workspace-plugin-register-count.txt");
       await writeWorkspacePlugin({
         workspaceDir,
@@ -260,7 +260,7 @@ module.exports = {
         gateway: { auth: { token } },
       };
       await fs.writeFile(configPath, `${JSON.stringify(cfg, null, 2)}\n`);
-      process.env.OPENCLAW_CONFIG_PATH = configPath;
+      process.env.SOLOCLAW_CONFIG_PATH = configPath;
 
       const port = await getFreeGatewayPort();
       const server = await startGatewayServer(port, {
@@ -308,33 +308,33 @@ module.exports = {
     async () => {
       const envSnapshot = captureEnv([
         "HOME",
-        "OPENCLAW_STATE_DIR",
-        "OPENCLAW_CONFIG_PATH",
-        "OPENCLAW_GATEWAY_TOKEN",
-        "OPENCLAW_SKIP_CHANNELS",
-        "OPENCLAW_SKIP_GMAIL_WATCHER",
-        "OPENCLAW_SKIP_CRON",
-        "OPENCLAW_SKIP_CANVAS_HOST",
-        "OPENCLAW_SKIP_BROWSER_CONTROL_SERVER",
-        "OPENCLAW_SKIP_PROVIDERS",
-        "OPENCLAW_BUNDLED_PLUGINS_DIR",
-        "OPENCLAW_TEST_MINIMAL_GATEWAY",
+        "SOLOCLAW_STATE_DIR",
+        "SOLOCLAW_CONFIG_PATH",
+        "SOLOCLAW_GATEWAY_TOKEN",
+        "SOLOCLAW_SKIP_CHANNELS",
+        "SOLOCLAW_SKIP_GMAIL_WATCHER",
+        "SOLOCLAW_SKIP_CRON",
+        "SOLOCLAW_SKIP_CANVAS_HOST",
+        "SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER",
+        "SOLOCLAW_SKIP_PROVIDERS",
+        "SOLOCLAW_BUNDLED_PLUGINS_DIR",
+        "SOLOCLAW_TEST_MINIMAL_GATEWAY",
       ]);
 
-      process.env.OPENCLAW_SKIP_CHANNELS = "1";
-      process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";
-      process.env.OPENCLAW_SKIP_CRON = "1";
-      process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
-      process.env.OPENCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
-      process.env.OPENCLAW_SKIP_PROVIDERS = "1";
-      process.env.OPENCLAW_TEST_MINIMAL_GATEWAY = "1";
-      delete process.env.OPENCLAW_GATEWAY_TOKEN;
+      process.env.SOLOCLAW_SKIP_CHANNELS = "1";
+      process.env.SOLOCLAW_SKIP_GMAIL_WATCHER = "1";
+      process.env.SOLOCLAW_SKIP_CRON = "1";
+      process.env.SOLOCLAW_SKIP_CANVAS_HOST = "1";
+      process.env.SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
+      process.env.SOLOCLAW_SKIP_PROVIDERS = "1";
+      process.env.SOLOCLAW_TEST_MINIMAL_GATEWAY = "1";
+      delete process.env.SOLOCLAW_GATEWAY_TOKEN;
 
       const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-wizard-home-"));
       process.env.HOME = tempHome;
-      process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = await createEmptyBundledPluginsDir(tempHome);
-      delete process.env.OPENCLAW_STATE_DIR;
-      delete process.env.OPENCLAW_CONFIG_PATH;
+      process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR = await createEmptyBundledPluginsDir(tempHome);
+      delete process.env.SOLOCLAW_STATE_DIR;
+      delete process.env.SOLOCLAW_CONFIG_PATH;
 
       const wizardToken = nextGatewayId("wiz-token");
       const port = await getFreeGatewayPort();
@@ -442,17 +442,17 @@ module.exports = {
     async () => {
       const envSnapshot = captureEnv([
         "HOME",
-        "OPENCLAW_STATE_DIR",
-        "OPENCLAW_CONFIG_PATH",
-        "OPENCLAW_GATEWAY_TOKEN",
-        "OPENCLAW_SKIP_CHANNELS",
-        "OPENCLAW_SKIP_GMAIL_WATCHER",
-        "OPENCLAW_SKIP_CRON",
-        "OPENCLAW_SKIP_CANVAS_HOST",
-        "OPENCLAW_SKIP_BROWSER_CONTROL_SERVER",
-        "OPENCLAW_SKIP_PROVIDERS",
-        "OPENCLAW_BUNDLED_PLUGINS_DIR",
-        "OPENCLAW_TEST_MINIMAL_GATEWAY",
+        "SOLOCLAW_STATE_DIR",
+        "SOLOCLAW_CONFIG_PATH",
+        "SOLOCLAW_GATEWAY_TOKEN",
+        "SOLOCLAW_SKIP_CHANNELS",
+        "SOLOCLAW_SKIP_GMAIL_WATCHER",
+        "SOLOCLAW_SKIP_CRON",
+        "SOLOCLAW_SKIP_CANVAS_HOST",
+        "SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER",
+        "SOLOCLAW_SKIP_PROVIDERS",
+        "SOLOCLAW_BUNDLED_PLUGINS_DIR",
+        "SOLOCLAW_TEST_MINIMAL_GATEWAY",
         "DISCORD_BOT_TOKEN",
       ]);
 
@@ -460,20 +460,20 @@ module.exports = {
       const configPath = path.join(tempHome, ".soloclaw", "soloclaw.json");
       const bundledPluginsDir = path.join(tempHome, "openclaw-test-no-bundled-extensions");
       process.env.HOME = tempHome;
-      process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".soloclaw");
-      process.env.OPENCLAW_CONFIG_PATH = configPath;
-      process.env.OPENCLAW_SKIP_CHANNELS = "1";
-      process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";
-      process.env.OPENCLAW_SKIP_CRON = "1";
-      process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
-      process.env.OPENCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
-      process.env.OPENCLAW_SKIP_PROVIDERS = "1";
-      process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = bundledPluginsDir;
-      process.env.OPENCLAW_TEST_MINIMAL_GATEWAY = "1";
+      process.env.SOLOCLAW_STATE_DIR = path.join(tempHome, ".soloclaw");
+      process.env.SOLOCLAW_CONFIG_PATH = configPath;
+      process.env.SOLOCLAW_SKIP_CHANNELS = "1";
+      process.env.SOLOCLAW_SKIP_GMAIL_WATCHER = "1";
+      process.env.SOLOCLAW_SKIP_CRON = "1";
+      process.env.SOLOCLAW_SKIP_CANVAS_HOST = "1";
+      process.env.SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
+      process.env.SOLOCLAW_SKIP_PROVIDERS = "1";
+      process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR = bundledPluginsDir;
+      process.env.SOLOCLAW_TEST_MINIMAL_GATEWAY = "1";
       process.env.DISCORD_BOT_TOKEN = "discord-test-token";
 
       const token = nextGatewayId("minimal-token");
-      process.env.OPENCLAW_GATEWAY_TOKEN = token;
+      process.env.SOLOCLAW_GATEWAY_TOKEN = token;
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.mkdir(bundledPluginsDir, { recursive: true });
       await fs.writeFile(

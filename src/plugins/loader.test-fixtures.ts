@@ -32,7 +32,7 @@ export function mkdirSafe(dir: string) {
 
 const fixtureRoot = mkdtempSafe(path.join(os.tmpdir(), "openclaw-plugin-"));
 let tempDirIndex = 0;
-const prevBundledDir = process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
+const prevBundledDir = process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR;
 
 export const EMPTY_PLUGIN_SCHEMA = {
   type: "object",
@@ -100,7 +100,7 @@ export function writePlugin(params: {
 }
 
 export function useNoBundledPlugins() {
-  process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = "/nonexistent/bundled/plugins";
+  process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR = "/nonexistent/bundled/plugins";
 }
 
 export function loadBundleFixture(params: {
@@ -114,7 +114,7 @@ export function loadBundleFixture(params: {
   const stateDir = makeTempDir();
   const bundleRoot = path.join(workspaceDir, ".soloclaw", "extensions", params.pluginId);
   params.build(bundleRoot);
-  return withEnv({ OPENCLAW_STATE_DIR: stateDir, ...params.env }, () =>
+  return withEnv({ SOLOCLAW_STATE_DIR: stateDir, ...params.env }, () =>
     loadOpenClawPlugins({
       workspaceDir,
       onlyPluginIds: params.onlyPluginIds ?? [params.pluginId],
@@ -139,9 +139,9 @@ export function resetPluginLoaderTestStateForTest() {
   resetPluginRuntimeStateForTest();
   resetDiagnosticEventsForTest();
   if (prevBundledDir === undefined) {
-    delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
+    delete process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR;
   } else {
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = prevBundledDir;
+    process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR = prevBundledDir;
   }
 }
 

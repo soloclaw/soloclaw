@@ -208,16 +208,16 @@ export async function startGatewayServer(
   opts: GatewayServerOptions = {},
 ): Promise<GatewayServer> {
   const minimalTestGateway =
-    isVitestRuntimeEnv() && process.env.OPENCLAW_TEST_MINIMAL_GATEWAY === "1";
+    isVitestRuntimeEnv() && process.env.SOLOCLAW_TEST_MINIMAL_GATEWAY === "1";
 
   // Ensure all default port derivations (browser/canvas) see the actual runtime port.
-  process.env.OPENCLAW_GATEWAY_PORT = String(port);
+  process.env.SOLOCLAW_GATEWAY_PORT = String(port);
   logAcceptedEnvOption({
-    key: "OPENCLAW_RAW_STREAM",
+    key: "SOLOCLAW_RAW_STREAM",
     description: "raw stream logging enabled",
   });
   logAcceptedEnvOption({
-    key: "OPENCLAW_RAW_STREAM_PATH",
+    key: "SOLOCLAW_RAW_STREAM_PATH",
     description: "raw stream log path override",
   });
 

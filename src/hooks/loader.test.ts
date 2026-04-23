@@ -35,8 +35,8 @@ describe("loader", () => {
     await fs.mkdir(tmpDir, { recursive: true });
 
     // Disable bundled hooks during tests by setting env var to non-existent directory
-    envSnapshot = captureEnv(["OPENCLAW_BUNDLED_HOOKS_DIR"]);
-    process.env.OPENCLAW_BUNDLED_HOOKS_DIR = "/nonexistent/bundled/hooks";
+    envSnapshot = captureEnv(["SOLOCLAW_BUNDLED_HOOKS_DIR"]);
+    process.env.SOLOCLAW_BUNDLED_HOOKS_DIR = "/nonexistent/bundled/hooks";
     setLoggerOverride({ level: "silent", consoleLevel: "error" });
     loggingState.rawConsole = {
       log: vi.fn(),

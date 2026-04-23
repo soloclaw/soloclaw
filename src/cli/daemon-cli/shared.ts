@@ -106,11 +106,11 @@ export function pickProbeHostForBind(
 }
 
 const SAFE_DAEMON_ENV_KEYS = [
-  "OPENCLAW_PROFILE",
-  "OPENCLAW_STATE_DIR",
-  "OPENCLAW_CONFIG_PATH",
-  "OPENCLAW_GATEWAY_PORT",
-  "OPENCLAW_NIX_MODE",
+  "SOLOCLAW_PROFILE",
+  "SOLOCLAW_STATE_DIR",
+  "SOLOCLAW_CONFIG_PATH",
+  "SOLOCLAW_GATEWAY_PORT",
+  "SOLOCLAW_NIX_MODE",
 ];
 
 export function filterDaemonEnv(env: Record<string, string> | undefined): Record<string, string> {
@@ -167,8 +167,8 @@ export function renderRuntimeHints(
     hints.push(
       ...buildPlatformRuntimeLogHints({
         env,
-        systemdServiceName: resolveGatewaySystemdServiceName(env.OPENCLAW_PROFILE),
-        windowsTaskName: resolveGatewayWindowsTaskName(env.OPENCLAW_PROFILE),
+        systemdServiceName: resolveGatewaySystemdServiceName(env.SOLOCLAW_PROFILE),
+        windowsTaskName: resolveGatewayWindowsTaskName(env.SOLOCLAW_PROFILE),
       }),
     );
   }
@@ -176,7 +176,7 @@ export function renderRuntimeHints(
 }
 
 export function renderGatewayServiceStartHints(env: NodeJS.ProcessEnv = process.env): string[] {
-  const profile = env.OPENCLAW_PROFILE;
+  const profile = env.SOLOCLAW_PROFILE;
   const container = resolveDaemonContainerContext(env);
   const hints = buildPlatformServiceStartHints({
     installCommand: formatCliCommand("soloclaw gateway install", env),

@@ -12,8 +12,8 @@ Most setups should use one Gateway because a single Gateway can handle multiple 
 
 ## Isolation checklist (required)
 
-- `OPENCLAW_CONFIG_PATH` — per-instance config file
-- `OPENCLAW_STATE_DIR` — per-instance sessions, creds, caches
+- `SOLOCLAW_CONFIG_PATH` — per-instance config file
+- `SOLOCLAW_STATE_DIR` — per-instance sessions, creds, caches
 - `agents.defaults.workspace` — per-instance workspace root
 - `gateway.port` (or `--port`) — unique per instance
 - Derived ports (browser/canvas) must not overlap
@@ -22,7 +22,7 @@ If these are shared, you will hit config races and port conflicts.
 
 ## Recommended: profiles (`--profile`)
 
-Profiles auto-scope `OPENCLAW_STATE_DIR` + `OPENCLAW_CONFIG_PATH` and suffix service names.
+Profiles auto-scope `SOLOCLAW_STATE_DIR` + `SOLOCLAW_CONFIG_PATH` and suffix service names.
 
 ```bash
 # main
@@ -76,7 +76,7 @@ openclaw --profile rescue gateway install
 
 ## Port mapping (derived)
 
-Base port = `gateway.port` (or `OPENCLAW_GATEWAY_PORT` / `--port`).
+Base port = `gateway.port` (or `SOLOCLAW_GATEWAY_PORT` / `--port`).
 
 - browser control service port = base + 2 (loopback only)
 - canvas host is served on the Gateway HTTP server (same port as `gateway.port`)
@@ -94,12 +94,12 @@ If you override any of these in config or env, you must keep them unique per ins
 ## Manual env example
 
 ```bash
-OPENCLAW_CONFIG_PATH=~/.soloclaw/main.json \
-OPENCLAW_STATE_DIR=~/.soloclaw-main \
+SOLOCLAW_CONFIG_PATH=~/.soloclaw/main.json \
+SOLOCLAW_STATE_DIR=~/.soloclaw-main \
 soloclaw gateway --port 18789
 
-OPENCLAW_CONFIG_PATH=~/.soloclaw/rescue.json \
-OPENCLAW_STATE_DIR=~/.soloclaw-rescue \
+SOLOCLAW_CONFIG_PATH=~/.soloclaw/rescue.json \
+SOLOCLAW_STATE_DIR=~/.soloclaw-rescue \
 soloclaw gateway --port 19001
 ```
 

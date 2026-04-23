@@ -8,14 +8,14 @@ IMAGE_NAME="openclaw-openwebui-e2e"
 OPENWEBUI_IMAGE="${OPENWEBUI_IMAGE:-ghcr.io/open-webui/open-webui:v0.8.10}"
 # Keep the default on a broadly available non-reasoning OpenAI model for
 # Open WebUI compatibility smoke. Callers can still override this explicitly.
-MODEL="${OPENCLAW_OPENWEBUI_MODEL:-openai/gpt-4.1-mini}"
+MODEL="${SOLOCLAW_OPENWEBUI_MODEL:-openai/gpt-4.1-mini}"
 PROMPT_NONCE="OPENWEBUI_DOCKER_E2E_$(date +%s)_$$"
-PROMPT="${OPENCLAW_OPENWEBUI_PROMPT:-Reply with exactly this token and nothing else: ${PROMPT_NONCE}}"
-PORT="${OPENCLAW_OPENWEBUI_GATEWAY_PORT:-18789}"
-WEBUI_PORT="${OPENCLAW_OPENWEBUI_PORT:-8080}"
+PROMPT="${SOLOCLAW_OPENWEBUI_PROMPT:-Reply with exactly this token and nothing else: ${PROMPT_NONCE}}"
+PORT="${SOLOCLAW_OPENWEBUI_GATEWAY_PORT:-18789}"
+WEBUI_PORT="${SOLOCLAW_OPENWEBUI_PORT:-8080}"
 TOKEN="openwebui-e2e-$(date +%s)-$$"
-ADMIN_EMAIL="${OPENCLAW_OPENWEBUI_ADMIN_EMAIL:-openwebui-e2e@example.com}"
-ADMIN_PASSWORD="${OPENCLAW_OPENWEBUI_ADMIN_PASSWORD:-OpenWebUI-E2E-Password-$(date +%s)-$$}"
+ADMIN_EMAIL="${SOLOCLAW_OPENWEBUI_ADMIN_EMAIL:-openwebui-e2e@example.com}"
+ADMIN_PASSWORD="${SOLOCLAW_OPENWEBUI_ADMIN_PASSWORD:-OpenWebUI-E2E-Password-$(date +%s)-$$}"
 NET_NAME="openclaw-openwebui-e2e-$$"
 GW_NAME="openclaw-openwebui-gateway-$$"
 OW_NAME="openclaw-openwebui-$$"
@@ -53,8 +53,8 @@ echo "Starting gateway container..."
 docker run -d \
   --name "$GW_NAME" \
   --network "$NET_NAME" \
-  -e "OPENCLAW_GATEWAY_TOKEN=$TOKEN" \
-  -e "OPENCLAW_OPENWEBUI_MODEL=$MODEL" \
+  -e "SOLOCLAW_GATEWAY_TOKEN=$TOKEN" \
+  -e "SOLOCLAW_OPENWEBUI_MODEL=$MODEL" \
   -e OPENAI_API_KEY \
   ${OPENAI_BASE_URL_VALUE:+-e OPENAI_BASE_URL} \
   "$IMAGE_NAME" \
@@ -65,11 +65,11 @@ docker run -d \
 
     openai_api_key="${OPENAI_API_KEY:?OPENAI_API_KEY required}"
     batch_file="$(mktemp /tmp/openclaw-openwebui-config.XXXXXX.json)"
-    OPENCLAW_CONFIG_BATCH_PATH="$batch_file" node - <<'"'"'NODE'"'"' "$openai_api_key"
+    SOLOCLAW_CONFIG_BATCH_PATH="$batch_file" node - <<'"'"'NODE'"'"' "$openai_api_key"
 const fs = require("node:fs");
 
 const openaiApiKey = process.argv[2];
-const batchPath = process.env.OPENCLAW_CONFIG_BATCH_PATH;
+const batchPath = process.env.SOLOCLAW_CONFIG_BATCH_PATH;
 const entries = [
   { path: "models.providers.openai.apiKey", value: openaiApiKey },
   {
@@ -81,9 +81,9 @@ const entries = [
   { path: "gateway.mode", value: "local" },
   { path: "gateway.bind", value: "lan" },
   { path: "gateway.auth.mode", value: "token" },
-  { path: "gateway.auth.token", value: process.env.OPENCLAW_GATEWAY_TOKEN },
+  { path: "gateway.auth.token", value: process.env.SOLOCLAW_GATEWAY_TOKEN },
   { path: "gateway.http.endpoints.chatCompletions.enabled", value: true },
-  { path: "agents.defaults.model.primary", value: process.env.OPENCLAW_OPENWEBUI_MODEL },
+  { path: "agents.defaults.model.primary", value: process.env.SOLOCLAW_OPENWEBUI_MODEL },
 ];
 fs.writeFileSync(batchPath, `${JSON.stringify(entries, null, 2)}\n`, "utf8");
 NODE

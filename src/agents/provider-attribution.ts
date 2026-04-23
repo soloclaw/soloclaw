@@ -110,8 +110,8 @@ export type ProviderRequestCapabilities = ProviderRequestPolicyResolution & {
   compatibilityFamily?: ProviderRequestCompatibilityFamily;
 };
 
-const OPENCLAW_ATTRIBUTION_PRODUCT = "OpenClaw";
-const OPENCLAW_ATTRIBUTION_ORIGINATOR = "openclaw";
+const SOLOCLAW_ATTRIBUTION_PRODUCT = "OpenClaw";
+const SOLOCLAW_ATTRIBUTION_ORIGINATOR = "openclaw";
 
 const LOCAL_ENDPOINT_HOSTS = new Set(["localhost", "127.0.0.1", "::1", "[::1]"]);
 const MOONSHOT_NATIVE_BASE_URLS = new Set([
@@ -133,7 +133,7 @@ const OPENAI_RESPONSES_PROVIDERS = new Set(["openai", "azure-openai", "azure-ope
 const MOONSHOT_COMPAT_PROVIDERS = new Set(["moonshot", "kimi"]);
 
 function formatOpenClawUserAgent(version: string): string {
-  return `${OPENCLAW_ATTRIBUTION_ORIGINATOR}/${version}`;
+  return `${SOLOCLAW_ATTRIBUTION_ORIGINATOR}/${version}`;
 }
 
 function tryParseHostname(value: string): string | undefined {
@@ -330,7 +330,7 @@ export function resolveProviderAttributionIdentity(
   env: RuntimeVersionEnv = process.env as RuntimeVersionEnv,
 ): ProviderAttributionIdentity {
   return {
-    product: OPENCLAW_ATTRIBUTION_PRODUCT,
+    product: SOLOCLAW_ATTRIBUTION_PRODUCT,
     version: resolveRuntimeServiceVersion(env),
   };
 }
@@ -368,7 +368,7 @@ function buildOpenAIAttributionPolicy(
       "OpenAI native traffic supports hidden originator/User-Agent attribution. Verified against the Codex wire contract.",
     ...identity,
     headers: {
-      originator: OPENCLAW_ATTRIBUTION_ORIGINATOR,
+      originator: SOLOCLAW_ATTRIBUTION_ORIGINATOR,
       version: identity.version,
       "User-Agent": formatOpenClawUserAgent(identity.version),
     },
@@ -388,7 +388,7 @@ function buildOpenAICodexAttributionPolicy(
       "OpenAI Codex ChatGPT-backed traffic supports the same hidden originator/User-Agent attribution contract.",
     ...identity,
     headers: {
-      originator: OPENCLAW_ATTRIBUTION_ORIGINATOR,
+      originator: SOLOCLAW_ATTRIBUTION_ORIGINATOR,
       version: identity.version,
       "User-Agent": formatOpenClawUserAgent(identity.version),
     },

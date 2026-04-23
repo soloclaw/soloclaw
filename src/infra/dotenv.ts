@@ -25,44 +25,44 @@ const BLOCKED_WORKSPACE_DOTENV_KEYS = new Set([
   "NO_PROXY",
   "OPENAI_API_KEY",
   "OPENAI_API_KEYS",
-  "OPENCLAW_AGENT_DIR",
-  "OPENCLAW_ALLOW_INSECURE_PRIVATE_WS",
-  "OPENCLAW_ALLOW_PROJECT_LOCAL_BIN",
-  "OPENCLAW_BROWSER_EXECUTABLE_PATH",
-  "OPENCLAW_BROWSER_CONTROL_MODULE",
-  "OPENCLAW_BUNDLED_HOOKS_DIR",
-  "OPENCLAW_BUNDLED_PLUGINS_DIR",
-  "OPENCLAW_BUNDLED_SKILLS_DIR",
-  "OPENCLAW_CACHE_TRACE",
-  "OPENCLAW_CACHE_TRACE_FILE",
-  "OPENCLAW_CACHE_TRACE_MESSAGES",
-  "OPENCLAW_CACHE_TRACE_PROMPT",
-  "OPENCLAW_CACHE_TRACE_SYSTEM",
-  "OPENCLAW_CONFIG_PATH",
-  "OPENCLAW_GATEWAY_PASSWORD",
-  "OPENCLAW_GATEWAY_PORT",
-  "OPENCLAW_GATEWAY_SECRET",
-  "OPENCLAW_GATEWAY_TOKEN",
-  "OPENCLAW_GATEWAY_URL",
-  "OPENCLAW_HOME",
-  "OPENCLAW_LIVE_ANTHROPIC_KEY",
-  "OPENCLAW_LIVE_ANTHROPIC_KEYS",
-  "OPENCLAW_LIVE_GEMINI_KEY",
-  "OPENCLAW_LIVE_OPENAI_KEY",
-  "OPENCLAW_MPM_CATALOG_PATHS",
-  "OPENCLAW_NODE_EXEC_FALLBACK",
-  "OPENCLAW_NODE_EXEC_HOST",
-  "OPENCLAW_OAUTH_DIR",
-  "OPENCLAW_PINNED_PYTHON",
-  "OPENCLAW_PINNED_WRITE_PYTHON",
-  "OPENCLAW_PLUGIN_CATALOG_PATHS",
-  "OPENCLAW_PROFILE",
-  "OPENCLAW_RAW_STREAM",
-  "OPENCLAW_RAW_STREAM_PATH",
-  "OPENCLAW_SHOW_SECRETS",
-  "OPENCLAW_SKIP_BROWSER_CONTROL_SERVER",
-  "OPENCLAW_STATE_DIR",
-  "OPENCLAW_TEST_TAILSCALE_BINARY",
+  "SOLOCLAW_AGENT_DIR",
+  "SOLOCLAW_ALLOW_INSECURE_PRIVATE_WS",
+  "SOLOCLAW_ALLOW_PROJECT_LOCAL_BIN",
+  "SOLOCLAW_BROWSER_EXECUTABLE_PATH",
+  "SOLOCLAW_BROWSER_CONTROL_MODULE",
+  "SOLOCLAW_BUNDLED_HOOKS_DIR",
+  "SOLOCLAW_BUNDLED_PLUGINS_DIR",
+  "SOLOCLAW_BUNDLED_SKILLS_DIR",
+  "SOLOCLAW_CACHE_TRACE",
+  "SOLOCLAW_CACHE_TRACE_FILE",
+  "SOLOCLAW_CACHE_TRACE_MESSAGES",
+  "SOLOCLAW_CACHE_TRACE_PROMPT",
+  "SOLOCLAW_CACHE_TRACE_SYSTEM",
+  "SOLOCLAW_CONFIG_PATH",
+  "SOLOCLAW_GATEWAY_PASSWORD",
+  "SOLOCLAW_GATEWAY_PORT",
+  "SOLOCLAW_GATEWAY_SECRET",
+  "SOLOCLAW_GATEWAY_TOKEN",
+  "SOLOCLAW_GATEWAY_URL",
+  "SOLOCLAW_HOME",
+  "SOLOCLAW_LIVE_ANTHROPIC_KEY",
+  "SOLOCLAW_LIVE_ANTHROPIC_KEYS",
+  "SOLOCLAW_LIVE_GEMINI_KEY",
+  "SOLOCLAW_LIVE_OPENAI_KEY",
+  "SOLOCLAW_MPM_CATALOG_PATHS",
+  "SOLOCLAW_NODE_EXEC_FALLBACK",
+  "SOLOCLAW_NODE_EXEC_HOST",
+  "SOLOCLAW_OAUTH_DIR",
+  "SOLOCLAW_PINNED_PYTHON",
+  "SOLOCLAW_PINNED_WRITE_PYTHON",
+  "SOLOCLAW_PLUGIN_CATALOG_PATHS",
+  "SOLOCLAW_PROFILE",
+  "SOLOCLAW_RAW_STREAM",
+  "SOLOCLAW_RAW_STREAM_PATH",
+  "SOLOCLAW_SHOW_SECRETS",
+  "SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER",
+  "SOLOCLAW_STATE_DIR",
+  "SOLOCLAW_TEST_TAILSCALE_BINARY",
   "PI_CODING_AGENT_DIR",
   "PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH",
   "UV_PYTHON",
@@ -74,10 +74,10 @@ const BLOCKED_WORKSPACE_DOTENV_PREFIXES = [
   "ANTHROPIC_API_KEY_",
   "CLAWHUB_",
   "OPENAI_API_KEY_",
-  "OPENCLAW_CLAWHUB_",
-  "OPENCLAW_DISABLE_",
-  "OPENCLAW_SKIP_",
-  "OPENCLAW_UPDATE_",
+  "SOLOCLAW_CLAWHUB_",
+  "SOLOCLAW_DISABLE_",
+  "SOLOCLAW_SKIP_",
+  "SOLOCLAW_UPDATE_",
 ];
 
 function shouldBlockWorkspaceRuntimeDotEnvKey(key: string): boolean {
@@ -85,7 +85,7 @@ function shouldBlockWorkspaceRuntimeDotEnvKey(key: string): boolean {
 }
 
 function shouldBlockRuntimeDotEnvKey(key: string): boolean {
-  // The global ~/.soloclaw/.env (or OPENCLAW_STATE_DIR/.env) is a trusted
+  // The global ~/.soloclaw/.env (or SOLOCLAW_STATE_DIR/.env) is a trusted
   // operator-controlled runtime surface. Workspace .env is untrusted and gets
   // the strict blocklist, but the trusted global fallback is allowed to set
   // runtime vars like proxy/base-url/auth values.
@@ -240,7 +240,7 @@ export function loadGlobalRuntimeDotEnvFiles(opts?: { quiet?: boolean; stateEnvP
     ".env",
   );
   const hasExplicitNonDefaultStateDir =
-    process.env.OPENCLAW_STATE_DIR?.trim() !== undefined &&
+    process.env.SOLOCLAW_STATE_DIR?.trim() !== undefined &&
     path.resolve(stateEnvPath) !== path.resolve(defaultStateEnvPath);
   const parsedFiles = [
     readDotEnvFile({
@@ -272,7 +272,7 @@ export function loadDotEnv(opts?: { quiet?: boolean }) {
   const cwdEnvPath = path.join(process.cwd(), ".env");
   loadWorkspaceDotEnvFile(cwdEnvPath, { quiet });
 
-  // Then load global fallback: ~/.soloclaw/.env (or OPENCLAW_STATE_DIR/.env),
+  // Then load global fallback: ~/.soloclaw/.env (or SOLOCLAW_STATE_DIR/.env),
   // without overriding any env vars already present.
   loadGlobalRuntimeDotEnvFiles({ quiet });
 }

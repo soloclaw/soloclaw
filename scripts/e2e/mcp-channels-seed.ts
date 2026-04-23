@@ -25,9 +25,9 @@ const DOCKER_OPENAI_MODEL: ModelDefinitionConfig = {
 };
 
 async function main() {
-  const stateDir = process.env.OPENCLAW_STATE_DIR?.trim() || path.join(os.homedir(), ".soloclaw");
+  const stateDir = process.env.SOLOCLAW_STATE_DIR?.trim() || path.join(os.homedir(), ".soloclaw");
   const configPath =
-    process.env.OPENCLAW_CONFIG_PATH?.trim() || path.join(stateDir, "soloclaw.json");
+    process.env.SOLOCLAW_CONFIG_PATH?.trim() || path.join(stateDir, "soloclaw.json");
   const sessionsDir = path.join(stateDir, "agents", "main", "sessions");
   const sessionFile = path.join(sessionsDir, "sess-main.jsonl");
   const storePath = path.join(sessionsDir, "sessions.json");

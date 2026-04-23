@@ -268,7 +268,7 @@ This writes `hooks.gmail` config, enables the Gmail preset, and uses Tailscale F
 
 ### Gateway auto-start
 
-When `hooks.enabled=true` and `hooks.gmail.account` is set, the Gateway starts `gog gmail watch serve` on boot and auto-renews the watch. Set `OPENCLAW_SKIP_GMAIL_WATCHER=1` to opt out.
+When `hooks.enabled=true` and `hooks.gmail.account` is set, the Gateway starts `gog gmail watch serve` on boot and auto-renews the watch. Set `SOLOCLAW_SKIP_GMAIL_WATCHER=1` to opt out.
 
 ### Manual one-time setup
 
@@ -368,7 +368,7 @@ Model override note:
 }
 ```
 
-Disable cron: `cron.enabled: false` or `OPENCLAW_SKIP_CRON=1`.
+Disable cron: `cron.enabled: false` or `SOLOCLAW_SKIP_CRON=1`.
 
 **One-shot retry**: transient errors (rate limit, overload, network, server error) retry up to 3 times with exponential backoff. Permanent errors disable immediately.
 
@@ -393,7 +393,7 @@ soloclaw doctor
 
 ### Cron not firing
 
-- Check `cron.enabled` and `OPENCLAW_SKIP_CRON` env var.
+- Check `cron.enabled` and `SOLOCLAW_SKIP_CRON` env var.
 - Confirm the Gateway is running continuously.
 - For `cron` schedules, verify timezone (`--tz`) vs the host timezone.
 - `reason: not-due` in run output means manual run was checked with `soloclaw cron run <jobId> --due` and the job was not due yet.

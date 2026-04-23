@@ -17,15 +17,15 @@ export async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise
     return await withTempHomeBase(fn, {
       prefix: "openclaw-config-",
       env: {
-        OPENCLAW_CONFIG_PATH: undefined,
-        OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-        OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
-        OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE: undefined,
-        OPENCLAW_DISABLE_PLUGIN_MANIFEST_CACHE: undefined,
-        OPENCLAW_PLUGIN_CATALOG_PATHS: undefined,
-        OPENCLAW_MPM_CATALOG_PATHS: undefined,
-        OPENCLAW_PLUGIN_DISCOVERY_CACHE_MS: undefined,
-        OPENCLAW_PLUGIN_MANIFEST_CACHE_MS: undefined,
+        SOLOCLAW_CONFIG_PATH: undefined,
+        SOLOCLAW_BUNDLED_PLUGINS_DIR: undefined,
+        SOLOCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+        SOLOCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE: undefined,
+        SOLOCLAW_DISABLE_PLUGIN_MANIFEST_CACHE: undefined,
+        SOLOCLAW_PLUGIN_CATALOG_PATHS: undefined,
+        SOLOCLAW_MPM_CATALOG_PATHS: undefined,
+        SOLOCLAW_PLUGIN_DISCOVERY_CACHE_MS: undefined,
+        SOLOCLAW_PLUGIN_MANIFEST_CACHE_MS: undefined,
       },
     });
   } finally {
@@ -47,9 +47,9 @@ export async function writeStateDirDotEnv(
     stateDir?: string;
   },
 ): Promise<{ dotEnvPath: string; stateDir: string }> {
-  const stateDir = params?.stateDir ?? params?.env?.OPENCLAW_STATE_DIR?.trim();
+  const stateDir = params?.stateDir ?? params?.env?.SOLOCLAW_STATE_DIR?.trim();
   if (!stateDir) {
-    throw new Error("Expected OPENCLAW_STATE_DIR or explicit stateDir for .env test setup");
+    throw new Error("Expected SOLOCLAW_STATE_DIR or explicit stateDir for .env test setup");
   }
   const dotEnvPath = path.join(stateDir, ".env");
   await fs.mkdir(path.dirname(dotEnvPath), { recursive: true });

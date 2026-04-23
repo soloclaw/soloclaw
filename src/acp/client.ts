@@ -197,7 +197,7 @@ export function resolveAcpClientSpawnEnv(
   options: AcpClientSpawnEnvOptions = {},
 ): NodeJS.ProcessEnv {
   const env = omitEnvKeysCaseInsensitive(baseEnv, options.stripKeys ?? []);
-  env.OPENCLAW_SHELL = "acp-client";
+  env.SOLOCLAW_SHELL = "acp-client";
   return env;
 }
 

@@ -8,10 +8,10 @@ import { installProcessWarningFilter } from "./process-warning-filter.mjs";
 
 installProcessWarningFilter();
 
-process.env.OPENCLAW_DISABLE_BUNDLED_ENTRY_SOURCE_FALLBACK ??= "1";
+process.env.SOLOCLAW_DISABLE_BUNDLED_ENTRY_SOURCE_FALLBACK ??= "1";
 
 function parseArgs(argv) {
-  let packageRoot = process.env.OPENCLAW_BUNDLED_CHANNEL_SMOKE_ROOT;
+  let packageRoot = process.env.SOLOCLAW_BUNDLED_CHANNEL_SMOKE_ROOT;
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === "--package-root") {
@@ -34,7 +34,7 @@ function parseArgs(argv) {
 
 const { packageRoot } = parseArgs(process.argv.slice(2));
 const distExtensionsRoot = path.join(packageRoot, "dist", "extensions");
-const installedLayoutEnv = "OPENCLAW_BUNDLED_CHANNEL_SMOKE_INSTALLED_LAYOUT";
+const installedLayoutEnv = "SOLOCLAW_BUNDLED_CHANNEL_SMOKE_INSTALLED_LAYOUT";
 
 function packageRootLooksInstalled(root) {
   return root.replaceAll("\\", "/").endsWith("/node_modules/openclaw");
