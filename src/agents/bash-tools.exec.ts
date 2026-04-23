@@ -1371,7 +1371,8 @@ export function createExecTool(
           `[security-monitor] Blocked command (${securityAssessment.level}): ${params.command} — ${securityAssessment.reasons.join(", ")}`,
         );
         throw new Error(
-          `Command blocked by security monitor (risk: ${securityAssessment.level}). Reasons: ${securityAssessment.reasons.join("; ")}`,
+          `Command blocked by security monitor (risk: ${securityAssessment.level}). ${securityAssessment.reasons.join("; ")}. ` +
+          `For safety, this command cannot be executed by the AI agent. Please run it manually in your terminal if needed.`,
         );
       }
 
