@@ -14,6 +14,7 @@ Based on [OpenClaw](https://github.com/openclaw/openclaw).
 - **Completely free** — runs entirely on your machine with well-tested open-source models. No API keys, no subscriptions, no cloud dependency.
 - **Self-extending** — need a new capability? Just ask. SoloClaw installs skills on demand from natural language requests.
 - **Continuously learning** — remembers your preferences, learns from conversations, and gets better over time through workspace memory.
+- **Safe by design** — built-in security monitor blocks dangerous commands before they execute. SoloClaw will never delete your files, format your drive, or damage your system — it asks you to run risky commands manually instead.
 
 ## Install
 
