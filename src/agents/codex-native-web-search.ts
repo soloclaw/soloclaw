@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import { isRecord } from "../utils.js";
 import { ensureAuthProfileStore, listProfilesForProvider } from "./auth-profiles.js";
 import { resolveCodexNativeWebSearchConfig } from "./codex-native-web-search.shared.js";

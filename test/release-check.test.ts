@@ -143,7 +143,7 @@ describe("bundled plugin root runtime mirrors", () => {
   });
 
   it("derives required root mirrors from built root dist imports", () => {
-    const tempRoot = mkdtempSync(join(tmpdir(), "openclaw-root-mirror-"));
+    const tempRoot = mkdtempSync(join(tmpdir(), "soloclaw-root-mirror-"));
 
     try {
       const distDir = join(tempRoot, "dist");

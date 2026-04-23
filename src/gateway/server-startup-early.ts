@@ -1,6 +1,6 @@
 import { registerSkillsChangeListener } from "../agents/skills/refresh.js";
 import type { GatewayTailscaleMode } from "../config/types.gateway.js";
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import { getMachineDisplayName } from "../infra/machine-name.js";
 import {
   primeRemoteSkillsCache,

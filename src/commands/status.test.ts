@@ -650,7 +650,7 @@ vi.mock("../gateway/call.js", () => ({
 vi.mock("../gateway/agent-list.js", () => ({
   listGatewayAgentsBasic: mocks.listGatewayAgentsBasic,
 }));
-vi.mock("../infra/openclaw-root.js", () => ({
+vi.mock("../infra/soloclaw-root.js", () => ({
   resolveOpenClawPackageRoot: vi.fn().mockResolvedValue("/tmp/openclaw"),
   resolveOpenClawPackageRootSync: vi.fn(() => "/tmp/openclaw"),
 }));

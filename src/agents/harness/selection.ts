@@ -1,5 +1,5 @@
 import type { AgentEmbeddedHarnessConfig } from "../../config/types.agents-shared.js";
-import type { OpenClawConfig } from "../../config/types.openclaw.js";
+import type { OpenClawConfig } from "../../config/types.soloclaw.js";
 import { createSubsystemLogger } from "../../logging/subsystem.js";
 import { normalizeAgentId } from "../../routing/session-key.js";
 import { listAgentEntries, resolveSessionAgentIds } from "../agent-scope.js";

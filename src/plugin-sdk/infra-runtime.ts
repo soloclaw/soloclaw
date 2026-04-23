@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import {
   drainPendingDeliveries as coreDrainPendingDeliveries,
   type DeliverFn,
@@ -110,7 +110,7 @@ export * from "../infra/secret-file.js";
 export * from "../infra/secure-random.js";
 export * from "../infra/system-events.js";
 export * from "../infra/system-message.ts";
-export * from "../infra/tmp-openclaw-dir.js";
+export * from "../infra/tmp-soloclaw-dir.js";
 export * from "../infra/transport-ready.js";
 export * from "../utils/fetch-timeout.js";
 export { createRuntimeOutboundDelegates } from "../channels/plugins/runtime-forwarders.js";

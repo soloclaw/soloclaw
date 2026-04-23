@@ -1,5 +1,5 @@
 import { modelKey } from "../agents/model-selection.js";
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import type { SecretInput } from "../config/types.secrets.js";
 import { ensureApiKeyFromEnvOrPrompt } from "../plugins/provider-auth-input.js";
 import { OLLAMA_DEFAULT_BASE_URL } from "../plugins/provider-model-defaults.js";

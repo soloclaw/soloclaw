@@ -97,7 +97,7 @@ describe("createScopedVitestConfig", () => {
     expect(normalizeConfigPath(config.test?.runner)).toBe("test/non-isolated-runner.ts");
     expect(normalizeConfigPaths(config.test?.setupFiles)).toEqual([
       "test/setup.ts",
-      "test/setup-openclaw-runtime.ts",
+      "test/setup-soloclaw-runtime.ts",
     ]);
   });
 
@@ -160,7 +160,7 @@ describe("createScopedVitestConfig", () => {
     expect(normalizeConfigPaths(config.test?.setupFiles)).toEqual([
       "test/setup.ts",
       "test/setup.extensions.ts",
-      "test/setup-openclaw-runtime.ts",
+      "test/setup-soloclaw-runtime.ts",
     ]);
   });
 
@@ -259,7 +259,7 @@ describe("scoped vitest configs", () => {
     expect(normalizeConfigPaths(defaultRuntimeConfig.test?.setupFiles)).toEqual(["test/setup.ts"]);
     expect(normalizeConfigPaths(defaultPluginSdkConfig.test?.setupFiles)).toEqual([
       "test/setup.ts",
-      "test/setup-openclaw-runtime.ts",
+      "test/setup-soloclaw-runtime.ts",
     ]);
   });
 
@@ -457,12 +457,12 @@ describe("scoped vitest configs", () => {
     expect(normalizeConfigPaths(defaultExtensionsConfig.test?.setupFiles)).toEqual([
       "test/setup.ts",
       "test/setup.extensions.ts",
-      "test/setup-openclaw-runtime.ts",
+      "test/setup-soloclaw-runtime.ts",
     ]);
     expect(normalizeConfigPaths(defaultExtensionTelegramConfig.test?.setupFiles)).toEqual([
       "test/setup.ts",
       "test/setup.extensions.ts",
-      "test/setup-openclaw-runtime.ts",
+      "test/setup-soloclaw-runtime.ts",
     ]);
   });
 

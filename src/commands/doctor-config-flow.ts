@@ -2,7 +2,7 @@ import { formatCliCommand } from "../cli/command-format.js";
 import { findLegacyConfigIssues } from "../config/legacy.js";
 import { CONFIG_PATH } from "../config/paths.js";
 import { applyPluginAutoEnable } from "../config/plugin-auto-enable.js";
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import {
   collectRelevantDoctorPluginIds,
   listPluginDoctorLegacyConfigRules,

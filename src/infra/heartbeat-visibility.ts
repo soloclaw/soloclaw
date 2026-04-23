@@ -1,5 +1,5 @@
 import type { ChannelHeartbeatVisibilityConfig } from "../config/types.channels.js";
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import type { GatewayMessageChannel } from "../utils/message-channel.js";
 
 export type ResolvedHeartbeatVisibility = {

@@ -32,9 +32,9 @@ vi.mock("../../config/sessions.js", () => ({
   },
 }));
 
-vi.mock("../../infra/openclaw-root.js", async () => {
-  const actual = await vi.importActual<typeof import("../../infra/openclaw-root.js")>(
-    "../../infra/openclaw-root.js",
+vi.mock("../../infra/soloclaw-root.js", async () => {
+  const actual = await vi.importActual<typeof import("../../infra/soloclaw-root.js")>(
+    "../../infra/soloclaw-root.js",
   );
   return {
     ...actual,

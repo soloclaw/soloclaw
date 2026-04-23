@@ -1,5 +1,5 @@
 import type { HookInstallRecord } from "../config/types.hooks.js";
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 
 export type HookInstallUpdate = HookInstallRecord & { hookId: string };
 

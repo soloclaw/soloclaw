@@ -1,5 +1,5 @@
 import { isDeepStrictEqual } from "node:util";
-import type { OpenClawConfig } from "../../../config/types.openclaw.js";
+import type { OpenClawConfig } from "../../../config/types.soloclaw.js";
 import { applyLegacyDoctorMigrations } from "./legacy-config-compat.js";
 import { normalizeRuntimeCompatibilityConfigValues } from "./legacy-config-runtime-migrate.js";
 

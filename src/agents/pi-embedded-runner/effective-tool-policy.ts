@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/types.openclaw.js";
+import type { OpenClawConfig } from "../../config/types.soloclaw.js";
 import { getPluginToolMeta } from "../../plugins/tools.js";
 import { isSubagentSessionKey } from "../../routing/session-key.js";
 import {

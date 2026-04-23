@@ -142,7 +142,7 @@ vi.mock("../model-auth.js", () => ({
   },
 }));
 
-vi.mock("../openclaw-tools.js", async () => {
+vi.mock("../soloclaw-tools.js", async () => {
   const { createImageTool } = await import("./image-tool.js");
   return {
     createOpenClawTools: vi.fn((options?: MockOpenClawToolsOptions) => {

@@ -5,7 +5,7 @@ import {
 } from "../agents/plugin-text-transforms.js";
 import type { ProviderSystemPromptContribution } from "../agents/system-prompt-contribution.js";
 import type { ModelProviderConfig } from "../config/types.js";
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import { normalizeOptionalString } from "../shared/string-coerce.js";
 import {
   __testing as providerHookRuntimeTesting,

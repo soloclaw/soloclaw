@@ -7,8 +7,8 @@ import type { ImageContent } from "@mariozechner/pi-ai";
 import { KeyedAsyncQueue } from "soloclaw/plugin-sdk/keyed-async-queue";
 import type { ThinkLevel } from "../../auto-reply/thinking.js";
 import type { CliBackendConfig } from "../../config/types.js";
-import type { OpenClawConfig } from "../../config/types.openclaw.js";
-import { resolvePreferredOpenClawTmpDir } from "../../infra/tmp-openclaw-dir.js";
+import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import { resolvePreferredOpenClawTmpDir } from "../../infra/tmp-soloclaw-dir.js";
 import { MAX_IMAGE_BYTES } from "../../media/constants.js";
 import { extensionForMime } from "../../media/mime.js";
 import {

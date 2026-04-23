@@ -3,7 +3,7 @@ import type { OpenClawConfig } from "../config/types.js";
 import {
   POSIX_SOLOCLAW_TMP_DIR,
   resolvePreferredOpenClawTmpDir,
-} from "../infra/tmp-openclaw-dir.js";
+} from "../infra/tmp-soloclaw-dir.js";
 
 const LOG_PREFIX = "openclaw";
 const LOG_SUFFIX = ".log";

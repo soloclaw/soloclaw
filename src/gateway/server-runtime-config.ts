@@ -3,7 +3,7 @@ import type {
   GatewayBindMode,
   GatewayTailscaleConfig,
 } from "../config/config.js";
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import {
   assertGatewayAuthConfigured,
   type ResolvedGatewayAuth,

@@ -5,7 +5,7 @@ import type { ChannelPlugin } from "../channels/plugins/types.plugin.js";
 import { createConfigIO } from "../config/config.js";
 import { collectIncludePathsRecursive } from "../config/includes-scan.js";
 import { resolveConfigPath, resolveOAuthDir, resolveStateDir } from "../config/paths.js";
-import type { OpenClawConfig } from "../config/types.openclaw.js";
+import type { OpenClawConfig } from "../config/types.soloclaw.js";
 import { normalizeAgentId } from "../routing/session-key.js";
 
 export type SecurityFixChmodAction = {
