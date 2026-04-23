@@ -2,6 +2,7 @@ import path from "node:path";
 import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import { analyzeShellCommand } from "../infra/exec-approvals-analysis.js";
 import { type ExecHost, loadExecApprovals, maxAsk, minSecurity } from "../infra/exec-approvals.js";
+import { assessCommandRisk } from "../infra/security-monitor.js";
 import { resolveExecSafeBinRuntimePolicy } from "../infra/exec-safe-bin-runtime-policy.js";
 import { SafeOpenError, readFileWithinRoot } from "../infra/fs-safe.js";
 import { sanitizeHostExecEnvWithDiagnostics } from "../infra/host-env-security.js";
@@ -1362,6 +1363,17 @@ export function createExecTool(
 
       if (!params.command) {
         throw new Error("Provide a command to start.");
+      }
+
+      const securityAssessment = assessCommandRisk(params.command);
+      if (securityAssessment.blocked) {
+        logInfo(
+          `[security-monitor] Blocked command (${securityAssessment.level}): ${params.command} — ${securityAssessment.reasons.join(", ")}`,
+        );
+        throw new Error(
+          `Command blocked by security monitor (risk: ${securityAssessment.level}). ${securityAssessment.reasons.join("; ")}. ` +
+          `For safety, this command cannot be executed by the AI agent. Please run it manually in your terminal if needed.`,
+        );
       }
 
       const maxOutput = DEFAULT_MAX_OUTPUT;

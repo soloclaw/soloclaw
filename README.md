@@ -4,16 +4,17 @@
     <img src="docs/assets/soloclaw-logo.png" alt="SoloClaw" width="500">
 </p>
 
-A personal AI that runs on your computer. One command to install, zero configuration.
+Your personal AI — free, safe, and gets smarter over time. No cloud, no API keys, no risk.
 
 Based on [OpenClaw](https://github.com/openclaw/openclaw).
 
 ## Why SoloClaw
 
-- **Zero friction** — one command to install, no configuration, no maintenance. It just works.
-- **Completely free** — runs entirely on your machine with well-tested open-source models. No API keys, no subscriptions, no cloud dependency.
-- **Self-extending** — need a new capability? Just ask. SoloClaw installs skills on demand from natural language requests.
-- **Continuously learning** — remembers your preferences, learns from conversations, and gets better over time through workspace memory.
+- **Just works** — one command to install. No accounts, no configuration, no maintenance.
+- **100% free** — well-tested open-source models run entirely on your machine. No API keys, no subscriptions, no data leaving your computer.
+- **Safe by default** — a built-in security monitor blocks dangerous commands before they execute. SoloClaw never deletes your files or damages your system.
+- **Grows with you** — ask for new capabilities and SoloClaw installs them. It remembers your preferences and gets smarter with every conversation.
+- **Private** — everything stays local. Your conversations, files, and data never touch a cloud server.
 
 ## Install
 
