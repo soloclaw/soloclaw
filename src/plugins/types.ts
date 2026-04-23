@@ -22,7 +22,7 @@ import type { ChannelPlugin } from "../channels/plugins/types.plugin.js";
 import type { ChannelId } from "../channels/plugins/types.public.js";
 import type { ModelProviderConfig } from "../config/types.js";
 import type { ModelCompatConfig } from "../config/types.models.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import type { OperatorScope } from "../gateway/operator-scopes.js";
 import type { GatewayRequestHandler } from "../gateway/server-methods/types.js";
 import type { InternalHookHandler } from "../hooks/internal-hook-types.js";
@@ -110,10 +110,10 @@ import type {
 } from "./provider-thinking.types.js";
 import type { PluginRuntime } from "./runtime/types.js";
 import type {
-  OpenClawPluginHookOptions,
-  OpenClawPluginToolContext,
-  OpenClawPluginToolFactory,
-  OpenClawPluginToolOptions,
+  SoloClawPluginHookOptions,
+  SoloClawPluginToolContext,
+  SoloClawPluginToolFactory,
+  SoloClawPluginToolOptions,
 } from "./tool-types.js";
 import type { WebFetchProviderPlugin, WebSearchProviderPlugin } from "./web-provider-types.js";
 
@@ -126,10 +126,10 @@ export type {
   PluginFormat,
 } from "./manifest-types.js";
 export type {
-  OpenClawPluginHookOptions,
-  OpenClawPluginToolContext,
-  OpenClawPluginToolFactory,
-  OpenClawPluginToolOptions,
+  SoloClawPluginHookOptions,
+  SoloClawPluginToolContext,
+  SoloClawPluginToolFactory,
+  SoloClawPluginToolOptions,
 } from "./tool-types.js";
 export type { AnyAgentTool } from "../agents/tools/common.js";
 export type { AgentHarness } from "../agents/harness/types.js";
@@ -202,7 +202,7 @@ export type PluginConfigValidation =
  * function, or both. `uiHints` and `jsonSchema` are optional extras for docs,
  * forms, and config UIs.
  */
-export type OpenClawPluginConfigSchema = {
+export type SoloClawPluginConfigSchema = {
   safeParse?: (value: unknown) => {
     success: boolean;
     data?: unknown;
@@ -228,14 +228,14 @@ export type ProviderAuthResult = {
    * `models.providers.<id>` entries, default aliases, or agent model helpers.
    * The caller still persists auth-profile bindings separately.
    */
-  configPatch?: Partial<OpenClawConfig>;
+  configPatch?: Partial<SoloClawConfig>;
   defaultModel?: string;
   notes?: string[];
 };
 
 /** Interactive auth context passed to provider login/setup methods. */
 export type ProviderAuthContext = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   env?: NodeJS.ProcessEnv;
   agentDir?: string;
   workspaceDir?: string;
@@ -299,8 +299,8 @@ export type ProviderNonInteractiveApiKeyCredentialParams = {
 
 export type ProviderAuthMethodNonInteractiveContext = {
   authChoice: string;
-  config: OpenClawConfig;
-  baseConfig: OpenClawConfig;
+  config: SoloClawConfig;
+  baseConfig: SoloClawConfig;
   opts: ProviderAuthOptionBag;
   runtime: RuntimeEnv;
   agentDir?: string;
@@ -329,13 +329,13 @@ export type ProviderAuthMethod = {
   run: (ctx: ProviderAuthContext) => Promise<ProviderAuthResult>;
   runNonInteractive?: (
     ctx: ProviderAuthMethodNonInteractiveContext,
-  ) => Promise<OpenClawConfig | null>;
+  ) => Promise<SoloClawConfig | null>;
 };
 
 export type ProviderCatalogOrder = "simple" | "profile" | "paired" | "late";
 
 export type ProviderCatalogContext = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   env: NodeJS.ProcessEnv;
@@ -384,7 +384,7 @@ export type ProviderRuntimeProviderConfig = {
  * belong in `prepareDynamicModel`.
  */
 export type ProviderResolveDynamicModelContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   provider: string;
@@ -403,7 +403,7 @@ export type ProviderResolveDynamicModelContext = {
 export type ProviderPrepareDynamicModelContext = ProviderResolveDynamicModelContext;
 
 export type ProviderPreferRuntimeResolvedModelContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   provider: string;
@@ -418,7 +418,7 @@ export type ProviderPreferRuntimeResolvedModelContext = {
  * patch provider-specific compat bits.
  */
 export type ProviderNormalizeResolvedModelContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   provider: string;
@@ -463,7 +463,7 @@ export type ProviderNormalizeTransportContext = {
  * for the request.
  */
 export type ProviderPrepareRuntimeAuthContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   env: NodeJS.ProcessEnv;
@@ -507,7 +507,7 @@ export type ProviderPreparedRuntimeAuth = {
  * token blob, read a legacy credential file, or pick between aliases).
  */
 export type ProviderResolveUsageAuthContext = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   env: NodeJS.ProcessEnv;
@@ -539,7 +539,7 @@ export type ProviderResolvedUsageAuth = {
  * owns the provider-specific HTTP request + response normalization.
  */
 export type ProviderFetchUsageSnapshotContext = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   env: NodeJS.ProcessEnv;
@@ -558,7 +558,7 @@ export type ProviderFetchUsageSnapshotContext = {
  * migrations or other provider-owned auth-store cleanup guidance.
  */
 export type ProviderAuthDoctorHintContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   store: AuthProfileStore;
   provider: string;
   profileId?: string;
@@ -572,7 +572,7 @@ export type ProviderAuthDoctorHintContext = {
  * into the merged `extraParams` object. Return the full next extraParams object.
  */
 export type ProviderPrepareExtraParamsContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   provider: string;
@@ -629,7 +629,7 @@ export type ProviderReplayPolicy = {
  * behavior and should stay with the provider plugin instead of core tables.
  */
 export type ProviderReplayPolicyContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   env?: NodeJS.ProcessEnv;
@@ -706,7 +706,7 @@ export type ProviderReasoningOutputModeContext = ProviderReplayPolicyContext;
  * as a wrapper around `streamSimple`).
  */
 export type ProviderCreateStreamFnContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   provider: string;
@@ -812,7 +812,7 @@ export type PluginEmbeddingProvider = {
  * plugin instead of the core memory switchboard.
  */
 export type ProviderCreateEmbeddingProviderContext = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   provider: string;
@@ -830,7 +830,7 @@ export type ProviderCreateEmbeddingProviderContext = {
 /**
  * Provider-owned prompt-cache eligibility.
  *
- * Return `true` or `false` to override OpenClaw's built-in provider cache TTL
+ * Return `true` or `false` to override SoloClaw's built-in provider cache TTL
  * detection for this provider. Return `undefined` to fall back to core rules.
  */
 export type ProviderCacheTtlEligibilityContext = {
@@ -847,7 +847,7 @@ export type ProviderCacheTtlEligibilityContext = {
  * "No API key found" error.
  */
 export type ProviderBuildMissingAuthMessageContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   env: NodeJS.ProcessEnv;
@@ -863,7 +863,7 @@ export type ProviderBuildMissingAuthMessageContext = {
  * error.
  */
 export type ProviderBuildUnknownModelHintContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   env: NodeJS.ProcessEnv;
@@ -880,7 +880,7 @@ export type ProviderBuildUnknownModelHintContext = {
  * resolution, model listing, and catalog loading.
  */
 export type ProviderBuiltInModelSuppressionContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   env: NodeJS.ProcessEnv;
@@ -919,7 +919,7 @@ export type ProviderModernModelPolicyContext = {
  * upstream registry has not caught up yet.
  */
 export type ProviderAugmentModelCatalogContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   env: NodeJS.ProcessEnv;
@@ -1015,7 +1015,7 @@ export type ProviderOAuthProfileIdRepair = {
 };
 
 export type ProviderModelSelectedContext = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   model: string;
   prompter: WizardPrompter;
   agentDir?: string;
@@ -1023,14 +1023,14 @@ export type ProviderModelSelectedContext = {
 };
 
 export type ProviderDeferSyntheticProfileAuthContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   provider: string;
   providerConfig?: ModelProviderConfig;
   resolvedApiKey?: string;
 };
 
 export type ProviderSystemPromptContributionContext = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentDir?: string;
   workspaceDir?: string;
   provider: string;
@@ -1350,7 +1350,7 @@ export type ProviderPlugin = {
    * Provider-owned missing-auth message override.
    *
    * Return a custom message when the provider wants a more specific recovery
-   * hint than OpenClaw's generic auth-store guidance.
+   * hint than SoloClaw's generic auth-store guidance.
    */
   buildMissingAuthMessage?: (
     ctx: ProviderBuildMissingAuthMessageContext,
@@ -1359,7 +1359,7 @@ export type ProviderPlugin = {
    * Provider-owned unknown-model hint override.
    *
    * Return a suffix when the provider wants a more specific recovery hint than
-   * OpenClaw's generic `Unknown model` error after catalog/runtime lookup
+   * SoloClaw's generic `Unknown model` error after catalog/runtime lookup
    * fails.
    */
   buildUnknownModelHint?: (ctx: ProviderBuildUnknownModelHintContext) => string | null | undefined;
@@ -1414,7 +1414,7 @@ export type ProviderPlugin = {
    * Provider-owned system-prompt contribution.
    *
    * Use this when a provider/model family needs cache-aware prompt tuning
-   * without replacing the full OpenClaw-owned system prompt.
+   * without replacing the full SoloClaw-owned system prompt.
    */
   resolveSystemPromptContribution?: (
     ctx: ProviderSystemPromptContributionContext,
@@ -1443,7 +1443,7 @@ export type ProviderPlugin = {
    */
   applyConfigDefaults?: (
     ctx: ProviderApplyConfigDefaultsContext,
-  ) => OpenClawConfig | null | undefined;
+  ) => SoloClawConfig | null | undefined;
   /**
    * Provider-owned "modern model" matcher used by live profile/smoke filters.
    *
@@ -1491,7 +1491,7 @@ export type ProviderPlugin = {
    *
    * Return a multiline repair hint when OAuth refresh fails and the provider
    * wants to steer users toward a specific auth-profile migration or recovery
-   * path. Return nothing to keep OpenClaw's generic error text.
+   * path. Return nothing to keep SoloClaw's generic error text.
    */
   buildAuthDoctorHint?: (
     ctx: ProviderAuthDoctorHintContext,
@@ -1629,7 +1629,7 @@ export type ImageGenerationProviderPlugin = ImageGenerationProvider;
 export type VideoGenerationProviderPlugin = VideoGenerationProvider;
 export type MusicGenerationProviderPlugin = MusicGenerationProvider;
 
-export type OpenClawPluginGatewayMethod = {
+export type SoloClawPluginGatewayMethod = {
   method: string;
   handler: GatewayRequestHandler;
 };
@@ -1663,7 +1663,7 @@ export type PluginCommandContext = {
   /** The full normalized command body */
   commandBody: string;
   /** Current SoloClaw configuration */
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   /** Raw "From" value (channel-scoped id) */
   from?: string;
   /** Raw "To" value (channel-scoped id) */
@@ -1696,7 +1696,7 @@ export type PluginCommandHandler = (
 /**
  * Definition for a plugin-registered command.
  */
-export type OpenClawPluginCommandDefinition = {
+export type SoloClawPluginCommandDefinition = {
   /** Command name without leading slash (e.g., "tts") */
   name: string;
   /**
@@ -1743,32 +1743,32 @@ export type PluginInteractiveRegistration<
 
 export type PluginInteractiveHandlerRegistration = PluginInteractiveRegistration;
 
-export type OpenClawPluginHttpRouteAuth = "gateway" | "plugin";
-export type OpenClawPluginHttpRouteMatch = "exact" | "prefix";
-export type OpenClawPluginGatewayRuntimeScopeSurface = "write-default" | "trusted-operator";
+export type SoloClawPluginHttpRouteAuth = "gateway" | "plugin";
+export type SoloClawPluginHttpRouteMatch = "exact" | "prefix";
+export type SoloClawPluginGatewayRuntimeScopeSurface = "write-default" | "trusted-operator";
 
-export type OpenClawPluginHttpRouteHandler = (
+export type SoloClawPluginHttpRouteHandler = (
   req: IncomingMessage,
   res: ServerResponse,
 ) => Promise<boolean | void> | boolean | void;
 
-export type OpenClawPluginHttpRouteParams = {
+export type SoloClawPluginHttpRouteParams = {
   path: string;
-  handler: OpenClawPluginHttpRouteHandler;
-  auth: OpenClawPluginHttpRouteAuth;
-  match?: OpenClawPluginHttpRouteMatch;
-  gatewayRuntimeScopeSurface?: OpenClawPluginGatewayRuntimeScopeSurface;
+  handler: SoloClawPluginHttpRouteHandler;
+  auth: SoloClawPluginHttpRouteAuth;
+  match?: SoloClawPluginHttpRouteMatch;
+  gatewayRuntimeScopeSurface?: SoloClawPluginGatewayRuntimeScopeSurface;
   replaceExisting?: boolean;
 };
 
-export type OpenClawPluginCliContext = {
+export type SoloClawPluginCliContext = {
   program: Command;
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   workspaceDir?: string;
   logger: PluginLogger;
 };
 
-export type OpenClawPluginCliRegistrar = (ctx: OpenClawPluginCliContext) => void | Promise<void>;
+export type SoloClawPluginCliRegistrar = (ctx: SoloClawPluginCliContext) => void | Promise<void>;
 
 /**
  * Top-level CLI metadata for plugin-owned commands.
@@ -1778,84 +1778,84 @@ export type OpenClawPluginCliRegistrar = (ctx: OpenClawPluginCliContext) => void
  * advertising it at the root CLI level, provide descriptors that cover every
  * top-level command root registered by that plugin CLI surface.
  */
-export type OpenClawPluginCliCommandDescriptor = {
+export type SoloClawPluginCliCommandDescriptor = {
   name: string;
   description: string;
   hasSubcommands: boolean;
 };
 
-export type OpenClawPluginReloadRegistration = {
+export type SoloClawPluginReloadRegistration = {
   restartPrefixes?: string[];
   hotPrefixes?: string[];
   noopPrefixes?: string[];
 };
 
-export type OpenClawPluginNodeHostCommand = {
+export type SoloClawPluginNodeHostCommand = {
   command: string;
   cap?: string;
   handle: (paramsJSON?: string | null) => Promise<string>;
 };
 
-export type OpenClawPluginSecurityAuditContext = {
-  config: OpenClawConfig;
-  sourceConfig: OpenClawConfig;
+export type SoloClawPluginSecurityAuditContext = {
+  config: SoloClawConfig;
+  sourceConfig: SoloClawConfig;
   env: NodeJS.ProcessEnv;
   stateDir: string;
   configPath: string;
 };
 
-export type OpenClawPluginSecurityAuditCollector = (
-  ctx: OpenClawPluginSecurityAuditContext,
+export type SoloClawPluginSecurityAuditCollector = (
+  ctx: SoloClawPluginSecurityAuditContext,
 ) => SecurityAuditFinding[] | Promise<SecurityAuditFinding[]>;
 
 /** Context passed to long-lived plugin services. */
-export type OpenClawPluginServiceContext = {
-  config: OpenClawConfig;
+export type SoloClawPluginServiceContext = {
+  config: SoloClawConfig;
   workspaceDir?: string;
   stateDir: string;
   logger: PluginLogger;
 };
 
 /** Background service registered by a plugin during `register(api)`. */
-export type OpenClawPluginService = {
+export type SoloClawPluginService = {
   id: string;
-  start: (ctx: OpenClawPluginServiceContext) => void | Promise<void>;
-  stop?: (ctx: OpenClawPluginServiceContext) => void | Promise<void>;
+  start: (ctx: SoloClawPluginServiceContext) => void | Promise<void>;
+  stop?: (ctx: SoloClawPluginServiceContext) => void | Promise<void>;
 };
 
-export type OpenClawPluginChannelRegistration = {
+export type SoloClawPluginChannelRegistration = {
   plugin: ChannelPlugin;
 };
 
 /** Module-level plugin definition loaded from a native plugin entry file. */
-export type OpenClawPluginDefinition = {
+export type SoloClawPluginDefinition = {
   id?: string;
   name?: string;
   description?: string;
   version?: string;
   kind?: PluginKind | PluginKind[];
-  configSchema?: OpenClawPluginConfigSchema;
-  reload?: OpenClawPluginReloadRegistration;
-  nodeHostCommands?: OpenClawPluginNodeHostCommand[];
-  securityAuditCollectors?: OpenClawPluginSecurityAuditCollector[];
-  register?: (api: OpenClawPluginApi) => void;
-  activate?: (api: OpenClawPluginApi) => void;
+  configSchema?: SoloClawPluginConfigSchema;
+  reload?: SoloClawPluginReloadRegistration;
+  nodeHostCommands?: SoloClawPluginNodeHostCommand[];
+  securityAuditCollectors?: SoloClawPluginSecurityAuditCollector[];
+  register?: (api: SoloClawPluginApi) => void;
+  activate?: (api: SoloClawPluginApi) => void;
 };
 
-export type OpenClawPluginModule = OpenClawPluginDefinition | ((api: OpenClawPluginApi) => void);
+export type SoloClawPluginModule = SoloClawPluginDefinition | ((api: SoloClawPluginApi) => void);
 
 export type PluginRegistrationMode = "full" | "setup-only" | "setup-runtime" | "cli-metadata";
 
-export type PluginConfigMigration = (config: OpenClawConfig) =>
+export type PluginConfigMigration = (config: SoloClawConfig) =>
   | {
-      config: OpenClawConfig;
+      config: SoloClawConfig;
       changes: string[];
     }
   | null
   | undefined;
 
 export type PluginSetupAutoEnableContext = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   env: NodeJS.ProcessEnv;
 };
 
@@ -1864,7 +1864,7 @@ export type PluginSetupAutoEnableProbe = (
 ) => string | string[] | null | undefined;
 
 /** Main registration API injected into native plugin entry files. */
-export type OpenClawPluginApi = {
+export type SoloClawPluginApi = {
   id: string;
   name: string;
   version?: string;
@@ -1872,7 +1872,7 @@ export type OpenClawPluginApi = {
   source: string;
   rootDir?: string;
   registrationMode: PluginRegistrationMode;
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   pluginConfig?: Record<string, unknown>;
   /**
    * In-process runtime helpers for trusted native plugins.
@@ -1883,17 +1883,17 @@ export type OpenClawPluginApi = {
   runtime: PluginRuntime;
   logger: PluginLogger;
   registerTool: (
-    tool: AnyAgentTool | OpenClawPluginToolFactory,
-    opts?: OpenClawPluginToolOptions,
+    tool: AnyAgentTool | SoloClawPluginToolFactory,
+    opts?: SoloClawPluginToolOptions,
   ) => void;
   registerHook: (
     events: string | string[],
     handler: InternalHookHandler,
-    opts?: OpenClawPluginHookOptions,
+    opts?: SoloClawPluginHookOptions,
   ) => void;
-  registerHttpRoute: (params: OpenClawPluginHttpRouteParams) => void;
+  registerHttpRoute: (params: SoloClawPluginHttpRouteParams) => void;
   /** Register a native messaging channel plugin (channel capability). */
-  registerChannel: (registration: OpenClawPluginChannelRegistration | ChannelPlugin) => void;
+  registerChannel: (registration: SoloClawPluginChannelRegistration | ChannelPlugin) => void;
   /**
    * Register a gateway RPC method for this plugin.
    *
@@ -1907,7 +1907,7 @@ export type OpenClawPluginApi = {
     opts?: { scope?: OperatorScope },
   ) => void;
   registerCli: (
-    registrar: OpenClawPluginCliRegistrar,
+    registrar: SoloClawPluginCliRegistrar,
     opts?: {
       /** Explicit top-level command roots owned by this registrar. */
       commands?: string[];
@@ -1918,13 +1918,13 @@ export type OpenClawPluginApi = {
        * the plugin registrar lazy in the normal root CLI path. Command-only
        * registrations stay on the eager compatibility path.
        */
-      descriptors?: OpenClawPluginCliCommandDescriptor[];
+      descriptors?: SoloClawPluginCliCommandDescriptor[];
     },
   ) => void;
-  registerReload: (registration: OpenClawPluginReloadRegistration) => void;
-  registerNodeHostCommand: (command: OpenClawPluginNodeHostCommand) => void;
-  registerSecurityAuditCollector: (collector: OpenClawPluginSecurityAuditCollector) => void;
-  registerService: (service: OpenClawPluginService) => void;
+  registerReload: (registration: SoloClawPluginReloadRegistration) => void;
+  registerNodeHostCommand: (command: SoloClawPluginNodeHostCommand) => void;
+  registerSecurityAuditCollector: (collector: SoloClawPluginSecurityAuditCollector) => void;
+  registerService: (service: SoloClawPluginService) => void;
   /** Register a text-only CLI backend used by the local CLI runner. */
   registerCliBackend: (backend: CliBackendPlugin) => void;
   /** Register plugin-owned prompt/message compatibility text transforms. */
@@ -1962,7 +1962,7 @@ export type OpenClawPluginApi = {
    * Plugin commands are processed before built-in commands and before agent invocation.
    * Use this for simple state-toggling or status commands that don't need AI reasoning.
    */
-  registerCommand: (command: OpenClawPluginCommandDefinition) => void;
+  registerCommand: (command: SoloClawPluginCommandDefinition) => void;
   /** Register a context engine implementation (exclusive slot - only one active at a time). */
   registerContextEngine: (
     id: string,

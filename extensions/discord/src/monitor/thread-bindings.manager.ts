@@ -10,7 +10,7 @@ import {
 import { normalizeAccountId, resolveAgentIdFromSessionKey } from "soloclaw/plugin-sdk/routing";
 import {
   getRuntimeConfigSnapshot,
-  type OpenClawConfig,
+  type SoloClawConfig,
 } from "soloclaw/plugin-sdk/runtime-config-snapshot";
 import { logVerbose } from "soloclaw/plugin-sdk/runtime-env";
 import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
@@ -176,7 +176,7 @@ export function createThreadBindingManager(
   params: {
     accountId?: string;
     token?: string;
-    cfg?: OpenClawConfig;
+    cfg?: SoloClawConfig;
     persist?: boolean;
     enableSweeper?: boolean;
     idleTimeoutMs?: number;

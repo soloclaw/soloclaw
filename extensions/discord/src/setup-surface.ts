@@ -1,6 +1,6 @@
 import {
   type ChannelSetupWizard,
-  type OpenClawConfig,
+  type SoloClawConfig,
   type WizardPrompter,
 } from "soloclaw/plugin-sdk/setup-runtime";
 import { formatDocsLink } from "soloclaw/plugin-sdk/setup-tools";
@@ -43,10 +43,10 @@ async function resolveDiscordAllowFromEntries(params: { token?: string; entries:
 }
 
 async function promptDiscordAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   prompter: WizardPrompter;
   accountId?: string;
-}): Promise<OpenClawConfig> {
+}): Promise<SoloClawConfig> {
   return await promptLegacyChannelAllowFromForAccount({
     cfg: params.cfg,
     channel,
@@ -89,7 +89,7 @@ async function promptDiscordAllowFrom(params: {
 }
 
 async function resolveDiscordGroupAllowlist(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId: string;
   credentialValues: { token?: string };
   entries: string[];

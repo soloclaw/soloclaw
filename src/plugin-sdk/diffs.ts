@@ -2,12 +2,12 @@
 // Keep this list additive and scoped to the bundled diffs surface.
 
 export { definePluginEntry } from "./plugin-entry.js";
-export type { OpenClawConfig } from "../config/config.js";
-export { resolvePreferredOpenClawTmpDir } from "../infra/tmp-soloclaw-dir.js";
+export type { SoloClawConfig } from "../config/config.js";
+export { resolvePreferredSoloClawTmpDir } from "../infra/tmp-soloclaw-dir.js";
 export type {
   AnyAgentTool,
-  OpenClawPluginApi,
-  OpenClawPluginConfigSchema,
-  OpenClawPluginToolContext,
+  SoloClawPluginApi,
+  SoloClawPluginConfigSchema,
+  SoloClawPluginToolContext,
   PluginLogger,
 } from "../plugins/types.js";

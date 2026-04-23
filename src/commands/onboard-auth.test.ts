@@ -27,7 +27,7 @@ const providerEnvVarsById = vi.hoisted(
 );
 
 vi.mock("../agents/agent-paths.js", () => ({
-  resolveOpenClawAgentDir: () => process.env.SOLOCLAW_AGENT_DIR ?? "/tmp/openclaw-agent",
+  resolveSoloClawAgentDir: () => process.env.SOLOCLAW_AGENT_DIR ?? "/tmp/openclaw-agent",
 }));
 
 vi.mock("../config/paths.js", () => ({

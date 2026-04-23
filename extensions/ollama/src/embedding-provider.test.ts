@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/provider-auth";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/provider-auth";
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 const { fetchWithSsrFGuardMock } = vi.hoisted(() => ({
@@ -45,7 +45,7 @@ describe("ollama embedding provider", () => {
     const fetchMock = mockEmbeddingFetch([3, 4]);
 
     const { provider } = await createOllamaEmbeddingProvider({
-      config: {} as OpenClawConfig,
+      config: {} as SoloClawConfig,
       provider: "ollama",
       model: "nomic-embed-text",
       fallback: "none",
@@ -75,7 +75,7 @@ describe("ollama embedding provider", () => {
             },
           },
         },
-      } as unknown as OpenClawConfig,
+      } as unknown as SoloClawConfig,
       provider: "ollama",
       model: "",
       fallback: "none",
@@ -99,7 +99,7 @@ describe("ollama embedding provider", () => {
   it("fails fast when memory-search remote apiKey is an unresolved SecretRef", async () => {
     await expect(
       createOllamaEmbeddingProvider({
-        config: {} as OpenClawConfig,
+        config: {} as SoloClawConfig,
         provider: "ollama",
         model: "nomic-embed-text",
         fallback: "none",
@@ -126,7 +126,7 @@ describe("ollama embedding provider", () => {
             },
           },
         },
-      } as unknown as OpenClawConfig,
+      } as unknown as SoloClawConfig,
       provider: "ollama",
       model: "nomic-embed-text",
       fallback: "none",

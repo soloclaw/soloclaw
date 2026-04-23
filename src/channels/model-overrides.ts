@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import {
   parseRawSessionConversationRef,
   parseThreadSessionSuffix,
@@ -31,7 +31,7 @@ export type ChannelModelOverride = {
 type ChannelModelByChannelConfig = Record<string, Record<string, string>>;
 
 type ChannelModelOverrideParams = {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   channel?: string | null;
   groupId?: string | null;
   groupChatType?: string | null;

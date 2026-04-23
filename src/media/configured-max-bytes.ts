@@ -1,8 +1,8 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 
 const MB = 1024 * 1024;
 
-export function resolveConfiguredMediaMaxBytes(cfg?: OpenClawConfig): number | undefined {
+export function resolveConfiguredMediaMaxBytes(cfg?: SoloClawConfig): number | undefined {
   const configured = cfg?.agents?.defaults?.mediaMaxMb;
   if (typeof configured === "number" && Number.isFinite(configured) && configured > 0) {
     return Math.floor(configured * MB);

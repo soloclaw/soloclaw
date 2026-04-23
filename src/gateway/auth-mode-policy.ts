@@ -1,10 +1,10 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { hasConfiguredSecretInput } from "../config/types.secrets.js";
 
 export const EXPLICIT_GATEWAY_AUTH_MODE_REQUIRED_ERROR =
   "Invalid config: gateway.auth.token and gateway.auth.password are both configured, but gateway.auth.mode is unset. Set gateway.auth.mode to token or password.";
 
-export function hasAmbiguousGatewayAuthModeConfig(cfg: OpenClawConfig): boolean {
+export function hasAmbiguousGatewayAuthModeConfig(cfg: SoloClawConfig): boolean {
   const auth = cfg.gateway?.auth;
   if (!auth) {
     return false;
@@ -18,7 +18,7 @@ export function hasAmbiguousGatewayAuthModeConfig(cfg: OpenClawConfig): boolean 
   return tokenConfigured && passwordConfigured;
 }
 
-export function assertExplicitGatewayAuthModeWhenBothConfigured(cfg: OpenClawConfig): void {
+export function assertExplicitGatewayAuthModeWhenBothConfigured(cfg: SoloClawConfig): void {
   if (!hasAmbiguousGatewayAuthModeConfig(cfg)) {
     return;
   }

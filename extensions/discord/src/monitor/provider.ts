@@ -21,7 +21,7 @@ import {
   resolveNativeCommandsEnabled,
   resolveNativeSkillsEnabled,
 } from "soloclaw/plugin-sdk/config-runtime";
-import type { OpenClawConfig, ReplyToMode } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig, ReplyToMode } from "soloclaw/plugin-sdk/config-runtime";
 import { loadConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { createConnectedChannelStatusPatch } from "soloclaw/plugin-sdk/gateway-runtime";
 import { getPluginCommandSpecs } from "soloclaw/plugin-sdk/plugin-runtime";
@@ -94,7 +94,7 @@ import { formatThreadBindingDurationLabel } from "./thread-bindings.messages.js"
 export type MonitorDiscordOpts = {
   token?: string;
   accountId?: string;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   runtime?: RuntimeEnv;
   channelRuntime?: ChannelRuntimeSurface;
   abortSignal?: AbortSignal;
@@ -244,7 +244,7 @@ function classifyAcpStatusProbeError(params: {
 }
 
 async function probeDiscordAcpBindingHealth(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   sessionKey: string;
   storedState?: "idle" | "running" | "error";
   lastActivityAt?: number;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { SoloClawConfig } from "../config/config.js";
 import { createConfigRuntimeEnv } from "../config/env-vars.js";
 import { unsetEnv, withTempEnv } from "./models-config.e2e-harness.js";
 import { resolveProvidersForModelsJsonWithDeps } from "./models-config.plan.js";
@@ -27,7 +27,7 @@ function createImplicitOpenRouterProvider(): ProviderConfig {
 }
 
 async function resolveProvidersForConfigEnvTest(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   onResolveImplicitProviders: (env: NodeJS.ProcessEnv) => void;
 }) {
   const env = createConfigRuntimeEnv(params.cfg);
@@ -52,7 +52,7 @@ describe("models-config", () => {
   it("uses config env.vars entries for implicit provider discovery without mutating process.env", async () => {
     await withTempEnv(["OPENROUTER_API_KEY", TEST_ENV_VAR], async () => {
       unsetEnv(["OPENROUTER_API_KEY", TEST_ENV_VAR]);
-      const cfg: OpenClawConfig = {
+      const cfg: SoloClawConfig = {
         models: { providers: {} },
         env: {
           vars: {
@@ -82,7 +82,7 @@ describe("models-config", () => {
     await withTempEnv(["OPENROUTER_API_KEY", TEST_ENV_VAR], async () => {
       process.env.OPENROUTER_API_KEY = "from-host"; // pragma: allowlist secret
       process.env[TEST_ENV_VAR] = "from-host";
-      const cfg: OpenClawConfig = {
+      const cfg: SoloClawConfig = {
         models: { providers: {} },
         env: {
           vars: {

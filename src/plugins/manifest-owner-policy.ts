@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { normalizePluginsConfig, resolveEffectivePluginActivationState } from "./config-state.js";
 import type { PluginManifestRecord } from "./manifest-registry.js";
 
@@ -49,7 +49,7 @@ export function passesManifestOwnerBasePolicy(params: {
 export function isActivatedManifestOwner(params: {
   plugin: OwnerPlugin;
   normalizedConfig: NormalizedPluginsConfig;
-  rootConfig?: OpenClawConfig;
+  rootConfig?: SoloClawConfig;
 }): boolean {
   return resolveEffectivePluginActivationState({
     id: params.plugin.id,

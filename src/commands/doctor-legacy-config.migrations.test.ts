@@ -2,11 +2,11 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { SoloClawConfig } from "../config/config.js";
 import { normalizeCompatibilityConfigValues } from "./doctor-legacy-config.js";
 
 vi.mock("../plugins/setup-registry.js", () => ({
-  runPluginSetupConfigMigrations: ({ config }: { config: OpenClawConfig }) => ({
+  runPluginSetupConfigMigrations: ({ config }: { config: SoloClawConfig }) => ({
     config,
     changes: [],
   }),
@@ -41,7 +41,7 @@ vi.mock("../plugins/manifest-registry.js", () => ({
 }));
 
 vi.mock("./doctor/shared/channel-legacy-config-migrate.js", () => ({
-  applyChannelDoctorCompatibilityMigrations: (cfg: OpenClawConfig) => ({
+  applyChannelDoctorCompatibilityMigrations: (cfg: SoloClawConfig) => ({
     next: cfg,
     changes: [],
   }),
@@ -156,7 +156,7 @@ describe("normalizeCompatibilityConfigValues", () => {
           allowedHostnames: ["localhost"],
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     expect(
       (res.config.browser?.ssrfPolicy as Record<string, unknown> | undefined)?.allowPrivateNetwork,
@@ -176,7 +176,7 @@ describe("normalizeCompatibilityConfigValues", () => {
           dangerouslyAllowPrivateNetwork: false,
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     expect(
       (res.config.browser?.ssrfPolicy as Record<string, unknown> | undefined)?.allowPrivateNetwork,
@@ -423,7 +423,7 @@ describe("normalizeCompatibilityConfigValues", () => {
           },
         },
       },
-    } as OpenClawConfig);
+    } as SoloClawConfig);
 
     expect(res.config.plugins?.entries?.firecrawl).toEqual({
       enabled: true,
@@ -451,7 +451,7 @@ describe("normalizeCompatibilityConfigValues", () => {
           },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     expect(res.config.talk).toEqual({
       provider: "elevenlabs",

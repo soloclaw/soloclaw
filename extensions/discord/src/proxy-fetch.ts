@@ -1,5 +1,5 @@
 import { isIP } from "node:net";
-import { type OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { type SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { makeProxyFetch } from "soloclaw/plugin-sdk/infra-runtime";
 import { danger } from "soloclaw/plugin-sdk/runtime-env";
 import type { RuntimeEnv } from "soloclaw/plugin-sdk/runtime-env";
@@ -8,7 +8,7 @@ import type { ResolvedDiscordAccount } from "./accounts.js";
 
 export function resolveDiscordProxyUrl(
   account: Pick<ResolvedDiscordAccount, "config">,
-  cfg?: OpenClawConfig,
+  cfg?: SoloClawConfig,
 ): string | undefined {
   const accountProxy = account.config.proxy?.trim();
   if (accountProxy) {
@@ -31,7 +31,7 @@ export function resolveDiscordProxyFetchByUrl(
 
 export function resolveDiscordProxyFetchForAccount(
   account: Pick<ResolvedDiscordAccount, "config">,
-  cfg?: OpenClawConfig,
+  cfg?: SoloClawConfig,
   runtime?: Pick<RuntimeEnv, "error">,
 ): typeof fetch | undefined {
   return resolveDiscordProxyFetchByUrl(resolveDiscordProxyUrl(account, cfg), runtime);

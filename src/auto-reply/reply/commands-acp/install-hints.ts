@@ -1,13 +1,13 @@
 import { existsSync } from "node:fs";
 import path from "node:path";
-import type { OpenClawConfig } from "../../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../../config/types.soloclaw.js";
 import { resolveBundledPluginInstallCommandHint } from "../../../plugins/bundled-sources.js";
 import {
   normalizeOptionalLowercaseString,
   normalizeOptionalString,
 } from "../../../shared/string-coerce.js";
 
-export function resolveAcpInstallCommandHint(cfg: OpenClawConfig): string {
+export function resolveAcpInstallCommandHint(cfg: SoloClawConfig): string {
   const configured = normalizeOptionalString(cfg.acp?.runtime?.installCommand);
   if (configured) {
     return configured;

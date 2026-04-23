@@ -5,7 +5,7 @@ import {
   patchChannelConfigForAccount,
   promptResolvedAllowFrom,
   splitSetupEntries,
-  type OpenClawConfig,
+  type SoloClawConfig,
   type WizardPrompter,
 } from "soloclaw/plugin-sdk/setup-runtime";
 import { formatCliCommand, formatDocsLink } from "soloclaw/plugin-sdk/setup-tools";
@@ -75,7 +75,7 @@ export async function resolveTelegramAllowFromEntries(params: {
 }
 
 export async function promptTelegramAllowFromForAccount(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   prompter: WizardPrompter;
   accountId?: string;
 }) {

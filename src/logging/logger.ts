@@ -1,10 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import { Logger as TsLogger } from "tslog";
-import type { OpenClawConfig } from "../config/types.js";
+import type { SoloClawConfig } from "../config/types.js";
 import {
   POSIX_SOLOCLAW_TMP_DIR,
-  resolvePreferredOpenClawTmpDir,
+  resolvePreferredSoloClawTmpDir,
 } from "../infra/tmp-soloclaw-dir.js";
 import { readLoggingConfig, shouldSkipMutatingLoggingConfigRead } from "./config.js";
 import { resolveEnvLogLevelOverride } from "./env-log-level.js";
@@ -32,7 +32,7 @@ function canUseNodeFs(): boolean {
 }
 
 function resolveDefaultLogDir(): string {
-  return canUseNodeFs() ? resolvePreferredOpenClawTmpDir() : POSIX_SOLOCLAW_TMP_DIR;
+  return canUseNodeFs() ? resolvePreferredSoloClawTmpDir() : POSIX_SOLOCLAW_TMP_DIR;
 }
 
 function resolveDefaultLogFile(defaultLogDir: string): string {
@@ -106,13 +106,13 @@ function resolveSettings(): ResolvedSettings {
     };
   }
 
-  let cfg: OpenClawConfig["logging"] | undefined =
+  let cfg: SoloClawConfig["logging"] | undefined =
     (loggingState.overrideSettings as LoggerSettings | null) ?? readLoggingConfig();
   if (!cfg && !shouldSkipMutatingLoggingConfigRead()) {
     try {
       const loaded = requireConfig?.("../config/config.js") as
         | {
-            loadConfig?: () => OpenClawConfig;
+            loadConfig?: () => SoloClawConfig;
           }
         | undefined;
       cfg = loaded?.loadConfig?.().logging;

@@ -12,7 +12,7 @@ import type {
 import { createAssistantMessageEventStream, streamSimple } from "@mariozechner/pi-ai";
 import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
 import type {
-  OpenClawConfig,
+  SoloClawConfig,
   ProviderRuntimeModel,
   ProviderWrapStreamFnContext,
 } from "soloclaw/plugin-sdk/plugin-entry";
@@ -56,7 +56,7 @@ export function resolveOllamaBaseUrlForRun(params: {
 }
 
 export function resolveConfiguredOllamaProviderConfig(params: {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   providerId?: string;
 }) {
   const providerId = params.providerId?.trim();
@@ -116,7 +116,7 @@ export function isOllamaCompatProvider(model: {
 }
 
 export function resolveOllamaCompatNumCtxEnabled(params: {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   providerId?: string;
 }): boolean {
   return resolveConfiguredOllamaProviderConfig(params)?.injectNumCtxForOpenAICompat ?? true;
@@ -124,7 +124,7 @@ export function resolveOllamaCompatNumCtxEnabled(params: {
 
 export function shouldInjectOllamaCompatNumCtx(params: {
   model: { api?: string; provider?: string; baseUrl?: string };
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   providerId?: string;
 }): boolean {
   if (params.model.api !== "openai-completions") {

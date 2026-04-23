@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import {
-  planOpenClawModelsJson,
-  planOpenClawModelsJsonWithDeps,
+  planSoloClawModelsJson,
+  planSoloClawModelsJsonWithDeps,
   type ResolveImplicitProvidersForModelsJson,
 } from "./models-config.plan.js";
 import type { ProviderConfig } from "./models-config.providers.secrets.js";
@@ -46,7 +46,7 @@ describe("models-config", () => {
   });
 
   it("does not override explicit github-copilot provider config", async () => {
-    const plan = await planOpenClawModelsJson({
+    const plan = await planSoloClawModelsJson({
       cfg: {
         models: {
           providers: {
@@ -84,7 +84,7 @@ describe("models-config", () => {
       },
     );
 
-    const plan = await planOpenClawModelsJsonWithDeps(
+    const plan = await planSoloClawModelsJsonWithDeps(
       {
         cfg: {
           models: {
@@ -144,7 +144,7 @@ describe("models-config", () => {
       2,
     )}\n`;
 
-    const plan = await planOpenClawModelsJsonWithDeps(
+    const plan = await planSoloClawModelsJsonWithDeps(
       {
         cfg: {
           models: {
@@ -229,7 +229,7 @@ function createCopilotImplicitResolver(
 }
 
 async function planCopilotWithImplicitProvider(params: { provider: ProviderConfig }) {
-  return await planOpenClawModelsJsonWithDeps(
+  return await planSoloClawModelsJsonWithDeps(
     {
       cfg: { models: { providers: {} } },
       agentDir: "/tmp/openclaw-agent",

@@ -23,7 +23,7 @@ import {
   assertLiveImageProbeReply,
   buildLiveCronProbeMessage,
   createLiveCronProbeSpec,
-  runOpenClawCliJson,
+  runSoloClawCliJson,
 } from "./live-agent-probes.js";
 import { renderCatFacePngBase64 } from "./live-image-probe.js";
 import { startGatewayServer } from "./server.js";
@@ -843,7 +843,7 @@ describeLive("gateway live (ACP bind)", () => {
         if (!cronJobId) {
           throw new Error(`acp cron cli verify did not create job ${cronProbe.name}`);
         }
-        await runOpenClawCliJson(
+        await runSoloClawCliJson(
           ["cron", "rm", cronJobId, "--json", "--url", `ws://127.0.0.1:${port}`, "--token", token],
           process.env,
         );

@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import type { ChannelLegacyStateMigrationPlan } from "soloclaw/plugin-sdk/channel-contract";
 import { resolveChannelAllowFromPath } from "soloclaw/plugin-sdk/channel-pairing-paths";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { resolveDefaultTelegramAccountId } from "./account-selection.js";
 
 function fileExists(pathValue: string): boolean {
@@ -13,7 +13,7 @@ function fileExists(pathValue: string): boolean {
 }
 
 export function detectTelegramLegacyStateMigrations(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   env: NodeJS.ProcessEnv;
 }): ChannelLegacyStateMigrationPlan[] {
   const legacyPath = resolveChannelAllowFromPath("telegram", params.env);

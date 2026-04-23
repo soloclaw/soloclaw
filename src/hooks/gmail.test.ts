@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { type OpenClawConfig, DEFAULT_GATEWAY_PORT } from "../config/config.js";
+import { type SoloClawConfig, DEFAULT_GATEWAY_PORT } from "../config/config.js";
 import {
   buildDefaultHookUrl,
   buildGogWatchServeLogArgs,
@@ -17,11 +17,11 @@ const baseConfig = {
       pushToken: "push-token",
     },
   },
-} satisfies OpenClawConfig;
+} satisfies SoloClawConfig;
 
 describe("gmail hook config", () => {
   function resolveWithGmailOverrides(
-    overrides: Partial<NonNullable<OpenClawConfig["hooks"]>["gmail"]>,
+    overrides: Partial<NonNullable<SoloClawConfig["hooks"]>["gmail"]>,
   ) {
     return resolveGmailHookRuntimeConfig(
       {

@@ -66,7 +66,7 @@ const legacyUpdateCompatPackPaths = new Set([
 ]);
 const forbiddenPrefixes = [
   "dist-runtime/",
-  "dist/OpenClaw.app/",
+  "dist/SoloClaw.app/",
   "dist/extensions/qa-lab/",
   "dist/plugin-sdk/extensions/qa-lab/",
   "dist/plugin-sdk/qa-lab.",

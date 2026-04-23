@@ -7,8 +7,8 @@ import type { ImageContent } from "@mariozechner/pi-ai";
 import { KeyedAsyncQueue } from "soloclaw/plugin-sdk/keyed-async-queue";
 import type { ThinkLevel } from "../../auto-reply/thinking.js";
 import type { CliBackendConfig } from "../../config/types.js";
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
-import { resolvePreferredOpenClawTmpDir } from "../../infra/tmp-soloclaw-dir.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
+import { resolvePreferredSoloClawTmpDir } from "../../infra/tmp-soloclaw-dir.js";
 import { MAX_IMAGE_BYTES } from "../../media/constants.js";
 import { extensionForMime } from "../../media/mime.js";
 import {
@@ -65,7 +65,7 @@ export function resolveCliRunQueueKey(params: {
 
 export function buildSystemPrompt(params: {
   workspaceDir: string;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   defaultThinkLevel?: ThinkLevel;
   extraSystemPrompt?: string;
   ownerNumbers?: string[];
@@ -205,14 +205,14 @@ function resolveCliImagePath(image: ImageContent): string {
     .update("\0")
     .update(image.data)
     .digest("hex");
-  return path.join(resolvePreferredOpenClawTmpDir(), "openclaw-cli-images", `${digest}${ext}`);
+  return path.join(resolvePreferredSoloClawTmpDir(), "openclaw-cli-images", `${digest}${ext}`);
 }
 
 function resolveCliImageRoot(params: { backend: CliBackendConfig; workspaceDir: string }): string {
   if (params.backend.imagePathScope === "workspace") {
     return path.join(params.workspaceDir, ".soloclaw-cli-images");
   }
-  return path.join(resolvePreferredOpenClawTmpDir(), "openclaw-cli-images");
+  return path.join(resolvePreferredSoloClawTmpDir(), "openclaw-cli-images");
 }
 
 export function appendImagePathsToPrompt(prompt: string, paths: string[], prefix = ""): string {
@@ -294,7 +294,7 @@ export async function writeCliSystemPromptFile(params: {
     return { cleanup: async () => {} };
   }
   const tempDir = await fs.mkdtemp(
-    path.join(resolvePreferredOpenClawTmpDir(), "openclaw-cli-system-prompt-"),
+    path.join(resolvePreferredSoloClawTmpDir(), "openclaw-cli-system-prompt-"),
   );
   const filePath = path.join(tempDir, "system-prompt.md");
   await fs.writeFile(filePath, stripSystemPromptCacheBoundary(params.systemPrompt), {

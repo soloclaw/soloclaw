@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import {
   deriveLastRoutePolicy,
   resolveAgentRoute,
@@ -22,7 +22,7 @@ export function buildDiscordRoutePeer(params: {
 }
 
 export function resolveDiscordConversationRoute(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId?: string | null;
   guildId?: string | null;
   memberRoleIds?: string[];
@@ -43,7 +43,7 @@ export function resolveDiscordConversationRoute(params: {
 }
 
 export function resolveDiscordBoundConversationRoute(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId?: string | null;
   guildId?: string | null;
   memberRoleIds?: string[];

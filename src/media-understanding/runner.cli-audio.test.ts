@@ -1,5 +1,5 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/types.js";
+import type { SoloClawConfig } from "../config/types.js";
 import { withAudioFixture } from "./runner.test-utils.js";
 
 const runExecMock = vi.hoisted(() => vi.fn());
@@ -45,7 +45,7 @@ describe("media-understanding CLI audio entry", () => {
               },
             },
           },
-        } as OpenClawConfig,
+        } as SoloClawConfig,
         ctx,
         attachmentIndex: 0,
         cache,

@@ -613,7 +613,7 @@ async function classifyItem(
         {
           role: "system",
           content:
-            "You classify GitHub issues and pull requests for OpenClaw. Respond with JSON only, no extra text.",
+            "You classify GitHub issues and pull requests for SoloClaw. Respond with JSON only, no extra text.",
         },
         {
           role: "user",

@@ -1,12 +1,12 @@
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
-import { loadOpenClawPlugins } from "../loader.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
+import { loadSoloClawPlugins } from "../loader.js";
 import { hasExplicitPluginIdScope } from "../plugin-scope.js";
 import type { PluginRegistry } from "../registry.js";
 import { buildPluginRuntimeLoadOptions, resolvePluginRuntimeLoadContext } from "./load-context.js";
 
 export function loadPluginMetadataRegistrySnapshot(options?: {
-  config?: OpenClawConfig;
-  activationSourceConfig?: OpenClawConfig;
+  config?: SoloClawConfig;
+  activationSourceConfig?: SoloClawConfig;
   env?: NodeJS.ProcessEnv;
   workspaceDir?: string;
   onlyPluginIds?: string[];
@@ -14,7 +14,7 @@ export function loadPluginMetadataRegistrySnapshot(options?: {
 }): PluginRegistry {
   const context = resolvePluginRuntimeLoadContext(options);
 
-  return loadOpenClawPlugins(
+  return loadSoloClawPlugins(
     buildPluginRuntimeLoadOptions(context, {
       throwOnLoadError: true,
       cache: false,

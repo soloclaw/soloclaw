@@ -60,7 +60,7 @@ function restoreSharedTestHomeAfterEnvUnstub(testHomeRaw: string | undefined): v
   process.env.XDG_CACHE_HOME = path.join(testHome, ".cache");
 }
 
-export default class OpenClawNonIsolatedRunner extends TestRunner {
+export default class SoloClawNonIsolatedRunner extends TestRunner {
   override onCollectStart(file: { filepath: string }) {
     super.onCollectStart(file);
     restoreSharedTestHomeAfterEnvUnstub(getSharedTestHome());

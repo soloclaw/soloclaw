@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { isLiveTestEnabled } from "../agents/live-test-helpers.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { SoloClawConfig } from "../config/config.js";
 import type { DeviceIdentity } from "../infra/device-identity.js";
 import { isTruthyEnvValue } from "../infra/env.js";
 import type { GatewayClient } from "./client.js";
@@ -19,7 +19,7 @@ import {
   assertLiveImageProbeReply,
   buildLiveCronProbeMessage,
   createLiveCronProbeSpec,
-  runOpenClawCliJson,
+  runSoloClawCliJson,
   type CronListJob,
 } from "./live-agent-probes.js";
 import { renderCatFacePngBase64 } from "./live-image-probe.js";
@@ -231,7 +231,7 @@ async function writeLiveGatewayConfig(params: {
   token: string;
   workspace: string;
 }): Promise<void> {
-  const cfg: OpenClawConfig = {
+  const cfg: SoloClawConfig = {
     gateway: {
       mode: "local",
       port: params.port,
@@ -402,7 +402,7 @@ async function verifyCodexCronMcpProbe(params: {
     expectedSessionKey: params.sessionKey,
   });
   if (createdJob.id) {
-    await runOpenClawCliJson(
+    await runSoloClawCliJson(
       [
         "cron",
         "rm",

@@ -1,7 +1,7 @@
 export { definePluginEntry } from "soloclaw/plugin-sdk/core";
 export type {
   AnyAgentTool,
-  OpenClawPluginApi,
-  OpenClawPluginToolContext,
-  OpenClawPluginToolFactory,
+  SoloClawPluginApi,
+  SoloClawPluginToolContext,
+  SoloClawPluginToolFactory,
 } from "soloclaw/plugin-sdk/core";

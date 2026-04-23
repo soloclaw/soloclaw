@@ -1,5 +1,5 @@
 import { resolveProviderAuthAliasMap } from "../agents/provider-auth-aliases.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { loadPluginManifestRegistry } from "../plugins/manifest-registry.js";
 import type { PluginManifestRecord } from "../plugins/manifest-registry.js";
 import { hasKind } from "../plugins/slots.js";
@@ -19,13 +19,13 @@ const CORE_PROVIDER_SETUP_ENV_VAR_OVERRIDES = {
 } as const;
 
 export type ProviderEnvVarLookupParams = {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   workspaceDir?: string;
   env?: NodeJS.ProcessEnv;
   includeUntrustedWorkspacePlugins?: boolean;
 };
 
-type PluginEntriesConfig = NonNullable<NonNullable<OpenClawConfig["plugins"]>["entries"]>;
+type PluginEntriesConfig = NonNullable<NonNullable<SoloClawConfig["plugins"]>["entries"]>;
 
 function normalizePluginConfigId(id: unknown): string {
   return normalizeOptionalLowercaseString(id) ?? "";
@@ -55,7 +55,7 @@ function findPluginEntry(
 
 function isWorkspacePluginTrustedForProviderEnvVars(
   plugin: PluginManifestRecord,
-  config: OpenClawConfig | undefined,
+  config: SoloClawConfig | undefined,
 ): boolean {
   const pluginsConfig = config?.plugins;
   if (pluginsConfig?.enabled === false) {

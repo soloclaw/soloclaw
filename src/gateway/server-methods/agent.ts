@@ -23,7 +23,7 @@ import {
   type SessionEntry,
   updateSessionStore,
 } from "../../config/sessions.js";
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import { registerAgentRunContext } from "../../infra/agent-events.js";
 import {
   resolveAgentDeliveryPlan,
@@ -132,7 +132,7 @@ async function runSessionResetFromAgent(params: {
 }
 
 function resolveSessionRuntimeWorkspace(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   sessionKey: string;
   sessionEntry?: SessionEntry;
   spawnedBy?: string;
@@ -522,7 +522,7 @@ export const agentHandlers: GatewayRequestHandlers = {
     let resolvedSessionId = normalizeOptionalString(request.sessionId);
     let sessionEntry: SessionEntry | undefined;
     let bestEffortDeliver = requestedBestEffortDeliver ?? false;
-    let cfgForAgent: OpenClawConfig | undefined;
+    let cfgForAgent: SoloClawConfig | undefined;
     let resolvedSessionKey = requestedSessionKey;
     let isNewSession = false;
     let skipTimestampInjection = false;

@@ -4,7 +4,7 @@ import type { IncomingMessage } from "node:http";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { resolvePreferredOpenClawTmpDir } from "../infra/tmp-soloclaw-dir.js";
+import { resolvePreferredSoloClawTmpDir } from "../infra/tmp-soloclaw-dir.js";
 import type { ResolvedGatewayAuth } from "./auth.js";
 import { CONTROL_UI_BOOTSTRAP_CONFIG_PATH } from "./control-ui-contract.js";
 import {
@@ -131,7 +131,7 @@ describe("handleControlUiHttpRequest", () => {
     prefix: string;
     fn: (tmpRoot: string) => Promise<T>;
   }) {
-    const tmpRoot = await fs.mkdtemp(path.join(resolvePreferredOpenClawTmpDir(), params.prefix));
+    const tmpRoot = await fs.mkdtemp(path.join(resolvePreferredSoloClawTmpDir(), params.prefix));
     try {
       return await params.fn(tmpRoot);
     } finally {
@@ -185,7 +185,7 @@ describe("handleControlUiHttpRequest", () => {
         const filePath = path.join(tmpRoot, "photo.png");
         await fs.writeFile(filePath, Buffer.from("not-a-real-png"));
         const { res, handled } = await runAssistantMediaRequest({
-          url: `/__openclaw__/assistant-media?source=${encodeURIComponent(filePath)}&token=test-token`,
+          url: `/__soloclaw__/assistant-media?source=${encodeURIComponent(filePath)}&token=test-token`,
           method: "GET",
           auth: { mode: "token", token: "test-token", allowTailscale: false },
         });
@@ -201,7 +201,7 @@ describe("handleControlUiHttpRequest", () => {
       const filePath = path.join(tmp, "photo.png");
       await fs.writeFile(filePath, Buffer.from("not-a-real-png"));
       const { res, handled, end } = await runAssistantMediaRequest({
-        url: `/__openclaw__/assistant-media?source=${encodeURIComponent(filePath)}&token=test-token`,
+        url: `/__soloclaw__/assistant-media?source=${encodeURIComponent(filePath)}&token=test-token`,
         method: "GET",
         auth: { mode: "token", token: "test-token", allowTailscale: false },
       });
@@ -218,7 +218,7 @@ describe("handleControlUiHttpRequest", () => {
         const filePath = path.join(tmpRoot, "photo.png");
         await fs.writeFile(filePath, Buffer.from("not-a-real-png"));
         const { res, handled, end } = await runAssistantMediaRequest({
-          url: `/__openclaw__/assistant-media?meta=1&source=${encodeURIComponent(filePath)}&token=test-token`,
+          url: `/__soloclaw__/assistant-media?meta=1&source=${encodeURIComponent(filePath)}&token=test-token`,
           method: "GET",
           auth: { mode: "token", token: "test-token", allowTailscale: false },
         });
@@ -231,7 +231,7 @@ describe("handleControlUiHttpRequest", () => {
 
   it("reports assistant local media availability failures with a reason", async () => {
     const { res, handled, end } = await runAssistantMediaRequest({
-      url: `/__openclaw__/assistant-media?meta=1&source=${encodeURIComponent("/Users/test/Documents/private.pdf")}&token=test-token`,
+      url: `/__soloclaw__/assistant-media?meta=1&source=${encodeURIComponent("/Users/test/Documents/private.pdf")}&token=test-token`,
       method: "GET",
       auth: { mode: "token", token: "test-token", allowTailscale: false },
     });
@@ -251,7 +251,7 @@ describe("handleControlUiHttpRequest", () => {
         const filePath = path.join(tmpRoot, "photo.png");
         await fs.writeFile(filePath, Buffer.from("not-a-real-png"));
         const { res, handled, end } = await runAssistantMediaRequest({
-          url: `/__openclaw__/assistant-media?source=${encodeURIComponent(filePath)}`,
+          url: `/__soloclaw__/assistant-media?source=${encodeURIComponent(filePath)}`,
           method: "GET",
           auth: { mode: "token", token: "test-token", allowTailscale: false },
         });
@@ -269,7 +269,7 @@ describe("handleControlUiHttpRequest", () => {
         const filePath = path.join(tmpRoot, "photo.png");
         await fs.writeFile(filePath, Buffer.from("not-a-real-png"));
         const { res, handled, end } = await runAssistantMediaRequest({
-          url: `/__openclaw__/assistant-media?source=${encodeURIComponent(filePath)}`,
+          url: `/__soloclaw__/assistant-media?source=${encodeURIComponent(filePath)}`,
           method: "GET",
           auth: {
             mode: "trusted-proxy",
@@ -301,7 +301,7 @@ describe("handleControlUiHttpRequest", () => {
         const filePath = path.join(tmpRoot, "photo.png");
         await fs.writeFile(filePath, Buffer.from("not-a-real-png"));
         const { res, handled, end } = await runAssistantMediaRequest({
-          url: `/__openclaw__/assistant-media?source=${encodeURIComponent(filePath)}`,
+          url: `/__soloclaw__/assistant-media?source=${encodeURIComponent(filePath)}`,
           method: "GET",
           auth: {
             mode: "trusted-proxy",
@@ -339,7 +339,7 @@ describe("handleControlUiHttpRequest", () => {
         const filePath = path.join(tmpRoot, "photo.png");
         await fs.writeFile(filePath, Buffer.from("not-a-real-png"));
         const { res, handled, end } = await runAssistantMediaRequest({
-          url: `/__openclaw__/assistant-media?meta=1&source=${encodeURIComponent(filePath)}`,
+          url: `/__soloclaw__/assistant-media?meta=1&source=${encodeURIComponent(filePath)}`,
           method: "GET",
           auth: {
             mode: "trusted-proxy",

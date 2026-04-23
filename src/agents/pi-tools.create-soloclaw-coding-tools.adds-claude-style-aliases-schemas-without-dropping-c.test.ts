@@ -11,11 +11,11 @@ import {
 import "./test-helpers/fast-bash-tools.js";
 import "./test-helpers/fast-coding-tools.js";
 import "./test-helpers/fast-soloclaw-tools.js";
-import { createOpenClawCodingTools } from "./pi-tools.js";
+import { createSoloClawCodingTools } from "./pi-tools.js";
 
-describe("createOpenClawCodingTools", () => {
+describe("createSoloClawCodingTools", () => {
   it("does not expose provider-specific message tools", () => {
-    const tools = createOpenClawCodingTools({ messageProvider: "discord" });
+    const tools = createSoloClawCodingTools({ messageProvider: "discord" });
     const names = new Set(tools.map((tool) => tool.name));
     expect(names.has("discord")).toBe(false);
     expect(names.has("slack")).toBe(false);
@@ -24,7 +24,7 @@ describe("createOpenClawCodingTools", () => {
   });
 
   it("filters session tools for sub-agent sessions by default", () => {
-    const tools = createOpenClawCodingTools({
+    const tools = createSoloClawCodingTools({
       sessionKey: "agent:main:subagent:test",
     });
     const names = new Set(tools.map((tool) => tool.name));
@@ -60,7 +60,7 @@ describe("createOpenClawCodingTools", () => {
       "utf-8",
     );
 
-    const tools = createOpenClawCodingTools({
+    const tools = createSoloClawCodingTools({
       sessionKey: "agent:main:subagent:flat",
       config: {
         session: {
@@ -83,7 +83,7 @@ describe("createOpenClawCodingTools", () => {
   });
 
   it("supports allow-only sub-agent tool policy", () => {
-    const tools = createOpenClawCodingTools({
+    const tools = createSoloClawCodingTools({
       sessionKey: "agent:main:subagent:test",
       config: {
         tools: {
@@ -99,7 +99,7 @@ describe("createOpenClawCodingTools", () => {
   });
 
   it("applies tool profiles before allow/deny policies", () => {
-    const tools = createOpenClawCodingTools({
+    const tools = createSoloClawCodingTools({
       config: { tools: { profile: "messaging" } },
     });
     const names = new Set(tools.map((tool) => tool.name));
@@ -111,7 +111,7 @@ describe("createOpenClawCodingTools", () => {
   });
 
   it("expands group shorthands in global tool policy", () => {
-    const tools = createOpenClawCodingTools({
+    const tools = createSoloClawCodingTools({
       config: { tools: { allow: ["group:fs"] } },
     });
     const names = new Set(tools.map((tool) => tool.name));
@@ -123,7 +123,7 @@ describe("createOpenClawCodingTools", () => {
   });
 
   it("expands group shorthands in global tool deny policy", () => {
-    const tools = createOpenClawCodingTools({
+    const tools = createSoloClawCodingTools({
       config: { tools: { deny: ["group:fs"] } },
     });
     const names = new Set(tools.map((tool) => tool.name));
@@ -134,7 +134,7 @@ describe("createOpenClawCodingTools", () => {
   });
 
   it("lets agent profiles override global profiles", () => {
-    const tools = createOpenClawCodingTools({
+    const tools = createSoloClawCodingTools({
       sessionKey: "agent:work:main",
       config: {
         tools: { profile: "coding" },
@@ -150,7 +150,7 @@ describe("createOpenClawCodingTools", () => {
   });
 
   it("removes unsupported JSON Schema keywords for Cloud Code Assist API compatibility", () => {
-    const googleTools = createOpenClawCodingTools({
+    const googleTools = createSoloClawCodingTools({
       modelProvider: "google",
       senderIsOwner: true,
     });
@@ -165,7 +165,7 @@ describe("createOpenClawCodingTools", () => {
   });
 
   it("applies xai model compat for direct Grok tool cleanup", () => {
-    const xaiTools = createOpenClawCodingTools({
+    const xaiTools = createSoloClawCodingTools({
       modelProvider: "xai",
       modelCompat: applyXaiModelCompat({ compat: {} }).compat,
       senderIsOwner: true,

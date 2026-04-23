@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { promisify } from "node:util";
-import { writeConfigFile, type OpenClawConfig } from "../config/config.js";
+import { writeConfigFile, type SoloClawConfig } from "../config/config.js";
 import { resolveGatewayPort, resolveIsNixMode } from "../config/paths.js";
 import { resolveSecretInputRef } from "../config/types.secrets.js";
 import {
@@ -151,7 +151,7 @@ async function cleanupLegacyDarwinServices(
 }
 
 export async function maybeRepairGatewayServiceConfig(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   mode: "local" | "remote",
   runtime: RuntimeEnv,
   prompter: DoctorPrompter,
@@ -302,7 +302,7 @@ export async function maybeRepairGatewayServiceConfig(
     !configuredGatewayToken &&
     gatewayTokenForRepair
   ) {
-    const nextCfg: OpenClawConfig = {
+    const nextCfg: SoloClawConfig = {
       ...cfg,
       gateway: {
         ...cfg.gateway,

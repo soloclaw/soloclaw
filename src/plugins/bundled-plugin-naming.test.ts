@@ -6,7 +6,7 @@ type PluginManifestShape = {
   id?: unknown;
 };
 
-type OpenClawPackageShape = {
+type SoloClawPackageShape = {
   name?: unknown;
   openclaw?: {
     install?: {
@@ -65,7 +65,7 @@ function readBundledPluginRecords(): BundledPluginRecord[] {
       }
 
       const manifest = readJsonFile<PluginManifestShape>(manifestPath);
-      const pkg = readJsonFile<OpenClawPackageShape>(packagePath);
+      const pkg = readJsonFile<SoloClawPackageShape>(packagePath);
       const manifestId = normalizeText(manifest.id);
       const packageName = normalizeText(pkg.name);
       if (!manifestId || !packageName) {

@@ -4,7 +4,7 @@ import type {
   ChannelOutboundAdapter,
   ChannelPlugin,
 } from "../src/channels/plugins/types.js";
-import type { OpenClawConfig } from "../src/config/config.js";
+import type { SoloClawConfig } from "../src/config/config.js";
 import type { OutboundSendDeps } from "../src/infra/outbound/deliver.js";
 import type { PluginRegistry } from "../src/plugins/registry.js";
 import { installSharedTestSetup } from "./setup.shared.js";
@@ -145,7 +145,7 @@ function createTestRegistryForSetup(
 }
 
 function resolveSlackStubReplyToMode(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   chatType?: string | null;
 }): "off" | "first" | "all" {
   const entry = (
@@ -215,7 +215,7 @@ const createStubPlugin = (params: {
   deliveryMode?: ChannelOutboundAdapter["deliveryMode"];
   preferSessionLookupForAnnounceTarget?: boolean;
   resolveReplyToMode?: (params: {
-    cfg: OpenClawConfig;
+    cfg: SoloClawConfig;
     accountId?: string | null;
     chatType?: string | null;
   }) => "off" | "first" | "all";
@@ -237,7 +237,7 @@ const createStubPlugin = (params: {
       }
     : undefined,
   config: {
-    listAccountIds: (cfg: OpenClawConfig) => {
+    listAccountIds: (cfg: SoloClawConfig) => {
       const channels = cfg.channels as Record<string, unknown> | undefined;
       const entry = channels?.[params.id];
       if (!entry || typeof entry !== "object") {
@@ -247,7 +247,7 @@ const createStubPlugin = (params: {
       const ids = accounts ? Object.keys(accounts).filter(Boolean) : [];
       return ids.length > 0 ? ids : ["default"];
     },
-    resolveAccount: (cfg: OpenClawConfig, accountId?: string | null) => {
+    resolveAccount: (cfg: SoloClawConfig, accountId?: string | null) => {
       const channels = cfg.channels as Record<string, unknown> | undefined;
       const entry = channels?.[params.id];
       if (!entry || typeof entry !== "object") {
@@ -257,7 +257,7 @@ const createStubPlugin = (params: {
       const match = accountId ? accounts?.[accountId] : undefined;
       return (match && typeof match === "object") || typeof match === "string" ? match : entry;
     },
-    isConfigured: async (_account, cfg: OpenClawConfig) => {
+    isConfigured: async (_account, cfg: SoloClawConfig) => {
       const channels = cfg.channels as Record<string, unknown> | undefined;
       return Boolean(channels?.[params.id]);
     },

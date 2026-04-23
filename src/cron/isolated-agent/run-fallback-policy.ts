@@ -1,9 +1,9 @@
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import type { CronJob } from "../types.js";
 import { resolveEffectiveModelFallbacks } from "./run-execution.runtime.js";
 
 export function resolveCronFallbacksOverride(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   job: CronJob;
   agentId: string;
 }): string[] | undefined {

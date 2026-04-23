@@ -1,5 +1,5 @@
 import { ChannelType } from "discord-api-types/v10";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   createMockCommandInteraction,
@@ -51,7 +51,7 @@ function createInteraction(params?: {
   });
 }
 
-function createConfig(params?: { requireMention?: boolean }): OpenClawConfig {
+function createConfig(params?: { requireMention?: boolean }): SoloClawConfig {
   return {
     commands: {
       useAccessGroups: false,
@@ -72,10 +72,10 @@ function createConfig(params?: { requireMention?: boolean }): OpenClawConfig {
         },
       },
     },
-  } as OpenClawConfig;
+  } as SoloClawConfig;
 }
 
-async function createStatusCommand(cfg: OpenClawConfig) {
+async function createStatusCommand(cfg: SoloClawConfig) {
   return createDiscordNativeCommand({
     command: {
       name: "status",
@@ -119,7 +119,7 @@ function setDefaultRouteState() {
 }
 
 function firstStatusCall(): {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   sessionKey: string;
   channel: string;
   isGroup: boolean;
@@ -130,7 +130,7 @@ function firstStatusCall(): {
     throw new Error("expected resolveDirectStatusReplyForSession to be called");
   }
   return call as {
-    cfg: OpenClawConfig;
+    cfg: SoloClawConfig;
     sessionKey: string;
     channel: string;
     isGroup: boolean;

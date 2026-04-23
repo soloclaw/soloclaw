@@ -28,7 +28,7 @@ import {
   type SessionEntry,
   type SessionScope,
 } from "../../config/sessions/types.js";
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import type { TtsAutoMode } from "../../config/types.tts.js";
 import { getSessionBindingService } from "../../infra/outbound/session-binding-service.js";
 import { deliverSessionMaintenanceWarning } from "../../infra/session-maintenance-warning.js";
@@ -92,7 +92,7 @@ function resolveExplicitSessionEndReason(
 }
 
 function resolveSessionDefaultAccountId(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   channelRaw?: string;
   accountIdRaw?: string;
   persistedLastAccountId?: string;
@@ -156,7 +156,7 @@ export type SessionInitResult = {
 
 function isResetAuthorizedForContext(params: {
   ctx: MsgContext;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   commandAuthorized: boolean;
 }): boolean {
   const auth = resolveCommandAuthorization(params);
@@ -178,7 +178,7 @@ function isResetAuthorizedForContext(params: {
 }
 
 function resolveSessionConversationBindingContext(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   ctx: MsgContext,
 ): {
   channel: string;
@@ -204,7 +204,7 @@ function resolveSessionConversationBindingContext(
 }
 
 function resolveBoundConversationSessionKey(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   ctx: MsgContext;
   bindingContext?: {
     channel: string;
@@ -237,7 +237,7 @@ function resolveBoundConversationSessionKey(params: {
 
 export async function initSessionState(params: {
   ctx: MsgContext;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   commandAuthorized: boolean;
 }): Promise<SessionInitResult> {
   const { ctx, cfg, commandAuthorized } = params;

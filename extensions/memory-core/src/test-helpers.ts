@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { resolvePreferredOpenClawTmpDir } from "soloclaw/plugin-sdk/temp-path";
+import { resolvePreferredSoloClawTmpDir } from "soloclaw/plugin-sdk/temp-path";
 import { afterAll, beforeAll } from "vitest";
 
 export function createMemoryCoreTestHarness() {
@@ -9,7 +9,7 @@ export function createMemoryCoreTestHarness() {
 
   beforeAll(async () => {
     fixtureRoot = await fs.mkdtemp(
-      path.join(resolvePreferredOpenClawTmpDir(), "memory-core-test-fixtures-"),
+      path.join(resolvePreferredSoloClawTmpDir(), "memory-core-test-fixtures-"),
     );
   });
 

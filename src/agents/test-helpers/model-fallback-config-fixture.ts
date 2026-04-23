@@ -1,6 +1,6 @@
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 
-export function makeModelFallbackCfg(overrides: Partial<OpenClawConfig> = {}): OpenClawConfig {
+export function makeModelFallbackCfg(overrides: Partial<SoloClawConfig> = {}): SoloClawConfig {
   return {
     agents: {
       defaults: {
@@ -11,5 +11,5 @@ export function makeModelFallbackCfg(overrides: Partial<OpenClawConfig> = {}): O
       },
     },
     ...overrides,
-  } as OpenClawConfig;
+  } as SoloClawConfig;
 }

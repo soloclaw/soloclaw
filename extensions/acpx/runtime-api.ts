@@ -19,10 +19,10 @@ export type {
   AcpSessionUpdateTag,
 } from "soloclaw/plugin-sdk/acp-runtime";
 export type {
-  OpenClawPluginApi,
-  OpenClawPluginConfigSchema,
-  OpenClawPluginService,
-  OpenClawPluginServiceContext,
+  SoloClawPluginApi,
+  SoloClawPluginConfigSchema,
+  SoloClawPluginService,
+  SoloClawPluginServiceContext,
   PluginLogger,
 } from "soloclaw/plugin-sdk/core";
 export type {

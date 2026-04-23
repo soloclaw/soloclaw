@@ -13,7 +13,7 @@ vi.mock("soloclaw/plugin-sdk/config-runtime", async () => {
   };
 });
 
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import {
   getSessionBindingService,
   registerSessionBindingAdapter,
@@ -49,7 +49,7 @@ const baseCfg = {
       },
     },
   },
-} satisfies OpenClawConfig;
+} satisfies SoloClawConfig;
 
 function createDmClient(channelId: string): DiscordClient {
   return {

@@ -73,7 +73,7 @@ function writeJsonFile(targetPath, value) {
   fs.writeFileSync(targetPath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
-function removeStaleOpenClawSelfReference(sourcePluginNodeModulesDir, repoRoot) {
+function removeStaleSoloClawSelfReference(sourcePluginNodeModulesDir, repoRoot) {
   if (!fs.existsSync(sourcePluginNodeModulesDir)) {
     return;
   }
@@ -94,7 +94,7 @@ function removeStaleOpenClawSelfReference(sourcePluginNodeModulesDir, repoRoot) 
   }
 }
 
-function ensureOpenClawExtensionAlias(params) {
+function ensureSoloClawExtensionAlias(params) {
   const pluginSdkDir = path.join(params.repoRoot, "dist", "plugin-sdk");
   if (!fs.existsSync(pluginSdkDir)) {
     return;
@@ -195,7 +195,7 @@ function linkPluginNodeModules(params) {
   if (!fs.existsSync(params.sourcePluginNodeModulesDir)) {
     return;
   }
-  removeStaleOpenClawSelfReference(params.sourcePluginNodeModulesDir, params.repoRoot);
+  removeStaleSoloClawSelfReference(params.sourcePluginNodeModulesDir, params.repoRoot);
   ensureSymlink(
     params.sourcePluginNodeModulesDir,
     runtimeNodeModulesDir,
@@ -218,7 +218,7 @@ export function stageBundledPluginRuntime(params = {}) {
 
   removePathIfExists(runtimeRoot);
   fs.mkdirSync(runtimeExtensionsRoot, { recursive: true });
-  ensureOpenClawExtensionAlias({ repoRoot, distExtensionsRoot });
+  ensureSoloClawExtensionAlias({ repoRoot, distExtensionsRoot });
 
   for (const dirent of fs.readdirSync(distExtensionsRoot, { withFileTypes: true })) {
     if (!dirent.isDirectory() || dirent.name === "node_modules") {

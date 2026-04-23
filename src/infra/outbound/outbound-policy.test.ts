@@ -2,7 +2,7 @@ import { Container, Separator, TextDisplay } from "@buape/carbon";
 import { beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { vi } from "vitest";
 import type { ChannelMessageActionName } from "../../channels/plugins/types.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { SoloClawConfig } from "../../config/config.js";
 
 let applyCrossContextDecoration: typeof import("./outbound-policy.js").applyCrossContextDecoration;
 let buildCrossContextDecoration: typeof import("./outbound-policy.js").buildCrossContextDecoration;
@@ -73,16 +73,16 @@ const slackConfig = {
       appToken: "xapp-test",
     },
   },
-} as OpenClawConfig;
+} as SoloClawConfig;
 
 const discordConfig = {
   channels: {
     discord: {},
   },
-} as OpenClawConfig;
+} as SoloClawConfig;
 
 function expectCrossContextPolicyResult(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   channel: string;
   action: "send" | "upload-file";
   to: string;
@@ -129,7 +129,7 @@ describe("outbound policy helpers", () => {
         tools: {
           message: { crossContext: { allowAcrossProviders: true } },
         },
-      } as OpenClawConfig,
+      } as SoloClawConfig,
       channel: "telegram",
       action: "send" as const,
       to: "telegram:@ops",
@@ -152,7 +152,7 @@ describe("outbound policy helpers", () => {
         tools: {
           message: { crossContext: { allowWithinProvider: false } },
         },
-      } as OpenClawConfig,
+      } as SoloClawConfig,
       channel: "slack",
       action: "send" as const,
       to: "C999",
@@ -166,7 +166,7 @@ describe("outbound policy helpers", () => {
         tools: {
           message: { crossContext: { allowWithinProvider: false } },
         },
-      } as OpenClawConfig,
+      } as SoloClawConfig,
       channel: "slack",
       action: "upload-file" as const,
       to: "C999",

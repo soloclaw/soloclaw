@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { serializePayload, type MessagePayloadObject, type RequestClient } from "@buape/carbon";
 import { ChannelType, Routes } from "discord-api-types/v10";
-import { loadConfig, type OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { loadConfig, type SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { resolveMarkdownTableMode } from "soloclaw/plugin-sdk/config-runtime";
 import { recordChannelActivity } from "soloclaw/plugin-sdk/infra-runtime";
 import { maxBytesForKind } from "soloclaw/plugin-sdk/media-runtime";
@@ -12,7 +12,7 @@ import { unlinkIfExists } from "soloclaw/plugin-sdk/media-runtime";
 import type { PollInput } from "soloclaw/plugin-sdk/media-runtime";
 import { resolveChunkMode } from "soloclaw/plugin-sdk/reply-chunking";
 import type { RetryConfig } from "soloclaw/plugin-sdk/retry-runtime";
-import { resolvePreferredOpenClawTmpDir } from "soloclaw/plugin-sdk/temp-path";
+import { resolvePreferredSoloClawTmpDir } from "soloclaw/plugin-sdk/temp-path";
 import { convertMarkdownTables, normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { loadWebMediaRaw } from "soloclaw/plugin-sdk/web-media";
 import { resolveDiscordAccount } from "./accounts.js";
@@ -45,7 +45,7 @@ import {
 } from "./voice-message.js";
 
 type DiscordSendOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: SoloClawConfig;
   token?: string;
   accountId?: string;
   mediaUrl?: string;
@@ -327,7 +327,7 @@ export async function sendMessageDiscord(
 }
 
 type DiscordWebhookSendOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: SoloClawConfig;
   webhookId: string;
   webhookToken: string;
   accountId?: string;
@@ -496,7 +496,7 @@ async function resolveDiscordStructuredSendContext(
 }
 
 type VoiceMessageOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: SoloClawConfig;
   token?: string;
   accountId?: string;
   verbose?: boolean;
@@ -513,7 +513,7 @@ async function materializeVoiceMessageInput(mediaUrl: string): Promise<{ filePat
   const extFromName = media.fileName ? path.extname(media.fileName) : "";
   const extFromMime = media.contentType ? extensionForMime(media.contentType) : "";
   const ext = extFromName || extFromMime || ".bin";
-  const tempDir = resolvePreferredOpenClawTmpDir();
+  const tempDir = resolvePreferredSoloClawTmpDir();
   const filePath = path.join(tempDir, `voice-src-${crypto.randomUUID()}${ext}`);
   await fs.writeFile(filePath, media.buffer, { mode: 0o600 });
   return { filePath };

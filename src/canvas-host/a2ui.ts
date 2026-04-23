@@ -6,11 +6,11 @@ import { detectMime } from "../media/mime.js";
 import { lowercasePreservingWhitespace } from "../shared/string-coerce.js";
 import { resolveFileWithinRoot } from "./file-resolver.js";
 
-export const A2UI_PATH = "/__openclaw__/a2ui";
+export const A2UI_PATH = "/__soloclaw__/a2ui";
 
-export const CANVAS_HOST_PATH = "/__openclaw__/canvas";
+export const CANVAS_HOST_PATH = "/__soloclaw__/canvas";
 
-export const CANVAS_WS_PATH = "/__openclaw__/ws";
+export const CANVAS_WS_PATH = "/__soloclaw__/ws";
 
 let cachedA2uiRootReal: string | null | undefined;
 let resolvingA2uiRoot: Promise<string | null> | null = null;
@@ -115,8 +115,8 @@ export function injectCanvasLiveReload(html: string): string {
     return postToNode({ userAction: action });
   }
   globalThis.SoloClaw = globalThis.SoloClaw ?? {};
-  globalThis.OpenClaw.postMessage = postToNode;
-  globalThis.OpenClaw.sendUserAction = sendUserAction;
+  globalThis.SoloClaw.postMessage = postToNode;
+  globalThis.SoloClaw.sendUserAction = sendUserAction;
   globalThis.soloclawPostMessage = postToNode;
   globalThis.soloclawSendUserAction = sendUserAction;
 

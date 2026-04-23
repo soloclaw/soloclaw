@@ -1,4 +1,4 @@
-export type { OpenClawConfig } from "soloclaw/plugin-sdk/memory-core";
+export type { SoloClawConfig } from "soloclaw/plugin-sdk/memory-core";
 export type {
   MemoryEmbeddingProbeResult,
   MemoryProviderStatus,

@@ -2,7 +2,7 @@ import type { RunOptions } from "@grammyjs/runner";
 import { CHANNEL_APPROVAL_NATIVE_RUNTIME_CONTEXT_CAPABILITY } from "soloclaw/plugin-sdk/approval-handler-adapter-runtime";
 import { registerChannelRuntimeContext } from "soloclaw/plugin-sdk/channel-runtime-context";
 import { resolveAgentMaxConcurrent } from "soloclaw/plugin-sdk/config-runtime";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { loadConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { waitForAbortSignal } from "soloclaw/plugin-sdk/runtime-env";
 import { registerUnhandledRejectionHandler } from "soloclaw/plugin-sdk/runtime-env";
@@ -21,7 +21,7 @@ import { makeProxyFetch } from "./proxy.js";
 
 export type { MonitorTelegramOpts } from "./monitor.types.js";
 
-export function createTelegramRunnerOptions(cfg: OpenClawConfig): RunOptions<unknown> {
+export function createTelegramRunnerOptions(cfg: SoloClawConfig): RunOptions<unknown> {
   return {
     sink: {
       concurrency: resolveAgentMaxConcurrent(cfg),

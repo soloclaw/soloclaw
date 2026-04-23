@@ -113,7 +113,7 @@ describe("message-normalizer", () => {
             surface: "assistant_message",
             render: "url",
             viewId: "cv_status",
-            url: "/__openclaw__/canvas/documents/cv_status/index.html",
+            url: "/__soloclaw__/canvas/documents/cv_status/index.html",
             title: "Status",
             preferredHeight: 320,
           },

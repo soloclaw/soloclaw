@@ -1,4 +1,4 @@
-import type { OpenClawConfig, ReplyToMode } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig, ReplyToMode } from "soloclaw/plugin-sdk/config-runtime";
 import type { RuntimeEnv } from "soloclaw/plugin-sdk/runtime-env";
 import type { TelegramBotDeps } from "./bot-deps.js";
 import type { TelegramTransport } from "./fetch.js";
@@ -13,7 +13,7 @@ export type TelegramBotOptions = {
   mediaMaxMb?: number;
   replyToMode?: ReplyToMode;
   proxyFetch?: typeof fetch;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   /** Signal to abort in-flight Telegram API fetch requests (e.g. getUpdates) on shutdown. */
   fetchAbortSignal?: AbortSignal;
   updateOffset?: {

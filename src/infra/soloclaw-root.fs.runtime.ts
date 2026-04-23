@@ -1,2 +1,2 @@
-export { default as openClawRootFsSync } from "node:fs";
-export { default as openClawRootFs } from "node:fs/promises";
+export { default as soloClawRootFsSync } from "node:fs";
+export { default as soloClawRootFs } from "node:fs/promises";

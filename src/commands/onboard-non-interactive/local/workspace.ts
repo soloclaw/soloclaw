@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../../config/types.soloclaw.js";
 import { resolveUserPath } from "../../../utils.js";
 import type { OnboardOptions } from "../../onboard-types.js";
 
@@ -8,7 +8,7 @@ function migrateWorkspacePath(workspace: string): string {
 
 export function resolveNonInteractiveWorkspaceDir(params: {
   opts: OnboardOptions;
-  baseConfig: OpenClawConfig;
+  baseConfig: SoloClawConfig;
   defaultWorkspaceDir: string;
 }) {
   const raw = (

@@ -19,7 +19,7 @@ vi.mock("./node-require.js", () => ({
 }));
 
 let originalTestFileLog: string | undefined;
-let originalOpenClawLogLevel: string | undefined;
+let originalSoloClawLogLevel: string | undefined;
 let logging: typeof import("../logging.js");
 
 beforeAll(async () => {
@@ -28,7 +28,7 @@ beforeAll(async () => {
 
 beforeEach(() => {
   originalTestFileLog = process.env.SOLOCLAW_TEST_FILE_LOG;
-  originalOpenClawLogLevel = process.env.SOLOCLAW_LOG_LEVEL;
+  originalSoloClawLogLevel = process.env.SOLOCLAW_LOG_LEVEL;
   delete process.env.SOLOCLAW_TEST_FILE_LOG;
   delete process.env.SOLOCLAW_LOG_LEVEL;
   readLoggingConfigMock.mockClear();
@@ -45,10 +45,10 @@ afterEach(() => {
   } else {
     process.env.SOLOCLAW_TEST_FILE_LOG = originalTestFileLog;
   }
-  if (originalOpenClawLogLevel === undefined) {
+  if (originalSoloClawLogLevel === undefined) {
     delete process.env.SOLOCLAW_LOG_LEVEL;
   } else {
-    process.env.SOLOCLAW_LOG_LEVEL = originalOpenClawLogLevel;
+    process.env.SOLOCLAW_LOG_LEVEL = originalSoloClawLogLevel;
   }
   logging.resetLogger();
   logging.setLoggerOverride(null);

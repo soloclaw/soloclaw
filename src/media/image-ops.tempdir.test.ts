@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { resolvePreferredOpenClawTmpDir } from "../infra/tmp-soloclaw-dir.js";
+import { resolvePreferredSoloClawTmpDir } from "../infra/tmp-soloclaw-dir.js";
 import { getImageMetadata } from "./image-ops.js";
 
 describe("image-ops temp dir", () => {
@@ -22,7 +22,7 @@ describe("image-ops temp dir", () => {
   });
 
   it("creates sips temp dirs under the secured SoloClaw tmp root", async () => {
-    const secureRoot = resolvePreferredOpenClawTmpDir();
+    const secureRoot = resolvePreferredSoloClawTmpDir();
 
     await getImageMetadata(Buffer.from("image"));
 

@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import type { OpenClawConfig } from "../../../src/config/config.js";
+import type { SoloClawConfig } from "../../../src/config/config.js";
 import type {
   ProviderPlugin,
   WebFetchProviderPlugin,
@@ -154,13 +154,13 @@ export function installWebFetchProviderContractSuite(params: {
     expect(provider.getCredentialValue(fetchConfigTarget)).toEqual(credentialValue);
 
     if (provider.setConfiguredCredentialValue && provider.getConfiguredCredentialValue) {
-      const configTarget = {} as OpenClawConfig;
+      const configTarget = {} as SoloClawConfig;
       provider.setConfiguredCredentialValue(configTarget, credentialValue);
       expect(provider.getConfiguredCredentialValue(configTarget)).toEqual(credentialValue);
     }
 
     if (provider.applySelectionConfig && params.pluginId) {
-      const applied = provider.applySelectionConfig({} as OpenClawConfig);
+      const applied = provider.applySelectionConfig({} as SoloClawConfig);
       expect(applied.plugins?.entries?.[params.pluginId]?.enabled).toBe(true);
     }
 

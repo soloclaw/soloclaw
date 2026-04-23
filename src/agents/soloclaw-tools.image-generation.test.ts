@@ -1,6 +1,6 @@
-import { describeOpenClawGenerationToolRegistration } from "./soloclaw-tools.generation.test-support.js";
+import { describeSoloClawGenerationToolRegistration } from "./soloclaw-tools.generation.test-support.js";
 
-describeOpenClawGenerationToolRegistration({
+describeSoloClawGenerationToolRegistration({
   suiteName: "soloclaw tools image generation registration",
   toolName: "image_generate",
   toolLabel: "an image-generation tool",

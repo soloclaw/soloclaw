@@ -38,7 +38,7 @@ vi.mock("../../infra/soloclaw-root.js", async () => {
   );
   return {
     ...actual,
-    resolveOpenClawPackageRoot: async () => "/tmp/openclaw",
+    resolveSoloClawPackageRoot: async () => "/tmp/openclaw",
   };
 });
 

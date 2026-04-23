@@ -1,5 +1,5 @@
 import { doesApprovalRequestMatchChannelAccount } from "soloclaw/plugin-sdk/approval-native-runtime";
-import type { DiscordExecApprovalConfig, OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { DiscordExecApprovalConfig, SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import type { ExecApprovalRequest, PluginApprovalRequest } from "soloclaw/plugin-sdk/infra-runtime";
 import { resolveDiscordAccount } from "./accounts.js";
 import {
@@ -11,7 +11,7 @@ import { getDiscordExecApprovalApprovers } from "./exec-approvals.js";
 type ApprovalRequest = ExecApprovalRequest | PluginApprovalRequest;
 
 export function shouldHandleDiscordApprovalRequest(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId?: string | null;
   request: ApprovalRequest;
   configOverride?: DiscordExecApprovalConfig | null;

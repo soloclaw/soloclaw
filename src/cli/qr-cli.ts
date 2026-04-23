@@ -1,6 +1,6 @@
 import type { Command } from "commander";
 import { loadConfig } from "../config/config.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { hasConfiguredSecretInput } from "../config/types.secrets.js";
 import { trimToUndefined } from "../gateway/credentials.js";
 import { resolveRequiredConfiguredSecretRefInputString } from "../gateway/resolve-configured-secret-input-string.js";
@@ -37,7 +37,7 @@ async function renderQrAscii(data: string): Promise<string> {
   });
 }
 
-function readDevicePairPublicUrlFromConfig(cfg: OpenClawConfig): string | undefined {
+function readDevicePairPublicUrlFromConfig(cfg: SoloClawConfig): string | undefined {
   const value = cfg.plugins?.entries?.["device-pair"]?.config?.["publicUrl"];
   if (typeof value !== "string") {
     return undefined;
@@ -47,7 +47,7 @@ function readDevicePairPublicUrlFromConfig(cfg: OpenClawConfig): string | undefi
 }
 
 function shouldResolveLocalGatewayPasswordSecret(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   env: NodeJS.ProcessEnv,
 ): boolean {
   if (trimToUndefined(env.SOLOCLAW_GATEWAY_PASSWORD)) {
@@ -68,7 +68,7 @@ function shouldResolveLocalGatewayPasswordSecret(
   return !envToken && !configTokenConfigured;
 }
 
-async function resolveLocalGatewayPasswordSecretIfNeeded(cfg: OpenClawConfig): Promise<void> {
+async function resolveLocalGatewayPasswordSecretIfNeeded(cfg: SoloClawConfig): Promise<void> {
   const resolvedPassword = await resolveRequiredConfiguredSecretRefInputString({
     config: cfg,
     env: process.env,

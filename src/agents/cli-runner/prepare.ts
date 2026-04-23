@@ -39,9 +39,9 @@ const prepareDeps = {
   getActiveMcpLoopbackRuntime,
   ensureMcpLoopbackServer,
   createMcpLoopbackServerConfig,
-  resolveOpenClawDocsPath: async (
-    params: Parameters<typeof import("../docs-path.js").resolveOpenClawDocsPath>[0],
-  ) => (await import("../docs-path.js")).resolveOpenClawDocsPath(params),
+  resolveSoloClawDocsPath: async (
+    params: Parameters<typeof import("../docs-path.js").resolveSoloClawDocsPath>[0],
+  ) => (await import("../docs-path.js")).resolveSoloClawDocsPath(params),
 };
 
 export function setCliRunnerPrepareTestDeps(overrides: Partial<typeof prepareDeps>): void {
@@ -170,7 +170,7 @@ export async function prepareCliRunContext(
     agentId: sessionAgentId,
     defaultAgentId,
   });
-  const docsPath = await prepareDeps.resolveOpenClawDocsPath({
+  const docsPath = await prepareDeps.resolveSoloClawDocsPath({
     workspaceDir,
     argv1: process.argv[1],
     cwd: process.cwd(),

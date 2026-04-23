@@ -3,7 +3,7 @@ import {
   jsonResult,
   readNumberParam,
   readStringParam,
-  type OpenClawConfig,
+  type SoloClawConfig,
 } from "soloclaw/plugin-sdk/memory-core-host-runtime-core";
 import type {
   MemorySearchResult,
@@ -86,7 +86,7 @@ function isActiveMemorySessionKey(sessionKey?: string): boolean {
 }
 
 function resolveActiveMemoryQmdSearchModeOverride(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   sessionKey?: string,
 ): "search" | "vsearch" | "query" | undefined {
   if (!isActiveMemorySessionKey(sessionKey)) {
@@ -178,7 +178,7 @@ async function executeMemoryReadResult<T>(params: {
 }
 
 export function createMemorySearchTool(options: {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentSessionKey?: string;
 }) {
   return createMemoryTool({
@@ -319,7 +319,7 @@ export function createMemorySearchTool(options: {
 }
 
 export function createMemoryGetTool(options: {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentSessionKey?: string;
 }) {
   return createMemoryTool({

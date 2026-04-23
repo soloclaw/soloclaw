@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { trimToUndefined, type ExplicitGatewayAuth } from "./credentials.js";
 
 export function hasExplicitGatewayConnectionAuth(auth?: ExplicitGatewayAuth): boolean {
@@ -6,7 +6,7 @@ export function hasExplicitGatewayConnectionAuth(auth?: ExplicitGatewayAuth): bo
 }
 
 export function canSkipGatewayConfigLoad(params: {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   urlOverride?: string;
   explicitAuth?: ExplicitGatewayAuth;
 }): boolean {

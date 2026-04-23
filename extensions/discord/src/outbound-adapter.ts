@@ -3,7 +3,7 @@ import {
   type ChannelOutboundAdapter,
   createAttachedChannelResultAdapter,
 } from "soloclaw/plugin-sdk/channel-send-result";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import {
   resolveOutboundSendDep,
   type OutboundIdentity,
@@ -99,7 +99,7 @@ function resolveDiscordWebhookIdentity(params: {
 }
 
 async function maybeSendDiscordWebhookText(params: {
-  cfg?: OpenClawConfig;
+  cfg?: SoloClawConfig;
   text: string;
   threadId?: string | number | null;
   accountId?: string | null;

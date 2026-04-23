@@ -4,12 +4,12 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 import { CommanderError } from "commander";
 import { resolveStateDir } from "../config/paths.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { normalizeEnv } from "../infra/env.js";
 import { formatUncaughtError } from "../infra/errors.js";
 import { isMainModule } from "../infra/is-main.js";
 import { ensureGlobalUndiciEnvProxyDispatcher } from "../infra/net/undici-global-dispatcher.js";
-import { ensureOpenClawCliOnPath } from "../infra/path-env.js";
+import { ensureSoloClawCliOnPath } from "../infra/path-env.js";
 import { assertSupportedRuntime } from "../infra/runtime-guard.js";
 import { enableConsoleCapture } from "../logging.js";
 import type { PluginManifestCommandAliasRegistry } from "../plugins/manifest-command-aliases.js";
@@ -72,7 +72,7 @@ export function shouldUseRootHelpFastPath(argv: string[]): boolean {
 
 export function resolveMissingPluginCommandMessage(
   pluginId: string,
-  config?: OpenClawConfig,
+  config?: SoloClawConfig,
   options?: { registry?: PluginManifestCommandAliasRegistry },
 ): string | null {
   const normalizedPluginId = normalizeLowercaseStringOrEmpty(pluginId);
@@ -186,7 +186,7 @@ export async function runCli(argv: string[] = process.argv) {
   ensureGlobalUndiciEnvProxyDispatcher();
   maybeWarnAboutDebugProxyCoverage();
   if (shouldEnsureCliPath(normalizedArgv)) {
-    ensureOpenClawCliOnPath();
+    ensureSoloClawCliOnPath();
   }
 
   // Enforce the minimum supported runtime before doing any work.

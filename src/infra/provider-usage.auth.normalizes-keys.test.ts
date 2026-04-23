@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { NON_ENV_SECRETREF_MARKER } from "../agents/model-auth-markers.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { SoloClawConfig } from "../config/config.js";
 import type { ModelDefinitionConfig } from "../config/types.models.js";
 import { createSuiteTempRootTracker } from "../test-helpers/temp-dir.js";
 
@@ -406,7 +406,7 @@ describe("resolveProviderAuths key normalization", () => {
             },
           },
         },
-      } satisfies OpenClawConfig;
+      } satisfies SoloClawConfig;
       await writeConfig(home, config);
 
       return await resolveProviderAuths({
@@ -422,7 +422,7 @@ describe("resolveProviderAuths key normalization", () => {
     providers: Parameters<typeof resolveProviderAuths>[0]["providers"];
     expected: Awaited<ReturnType<typeof resolveProviderAuths>>;
     env?: Record<string, string | undefined>;
-    config?: OpenClawConfig;
+    config?: SoloClawConfig;
     setup?: (home: string) => Promise<void>;
   }) {
     await withSuiteHome(async (home) => {
@@ -588,7 +588,7 @@ describe("resolveProviderAuths key normalization", () => {
           },
         },
       },
-    } satisfies OpenClawConfig;
+    } satisfies SoloClawConfig;
     await expectResolvedAuthsFromSuiteHome({
       providers: ["zai", "minimax", "xiaomi"],
       setup: async (home) => {
@@ -640,7 +640,7 @@ describe("resolveProviderAuths key normalization", () => {
             "anthropic:default": { provider: "anthropic", mode: "token" },
           },
         },
-      } satisfies OpenClawConfig;
+      } satisfies SoloClawConfig;
       await writeConfig(home, config);
       await writeAuthProfiles(home, {
         "anthropic:default": {

@@ -1,12 +1,12 @@
 import { definePluginEntry } from "soloclaw/plugin-sdk/plugin-entry";
-import type { AnyAgentTool, OpenClawPluginApi, OpenClawPluginToolFactory } from "./runtime-api.js";
+import type { AnyAgentTool, SoloClawPluginApi, SoloClawPluginToolFactory } from "./runtime-api.js";
 import { createLobsterTool } from "./src/lobster-tool.js";
 
 export default definePluginEntry({
   id: "lobster",
   name: "Lobster",
   description: "Optional local shell helper tools",
-  register(api: OpenClawPluginApi) {
+  register(api: SoloClawPluginApi) {
     api.registerTool(
       ((ctx) => {
         if (ctx.sandboxed) {
@@ -17,7 +17,7 @@ export default definePluginEntry({
             ? api.runtime.taskFlow.fromToolContext(ctx)
             : undefined;
         return createLobsterTool(api, { taskFlow }) as AnyAgentTool;
-      }) as OpenClawPluginToolFactory,
+      }) as SoloClawPluginToolFactory,
       { optional: true },
     );
   },

@@ -1,8 +1,8 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
 import { getMemorySearchManager, type MemoryIndexManager } from "./index.js";
 
 export async function createMemoryManagerOrThrow(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   agentId = "main",
 ): Promise<MemoryIndexManager> {
   const result = await getMemorySearchManager({ cfg, agentId });

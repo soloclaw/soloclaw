@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { SoloClawConfig } from "../../config/config.js";
 import {
   createBundleMcpTempHarness,
   createBundleProbePlugin,
@@ -53,7 +53,7 @@ describe("prepareCliBundleMcpConfig", () => {
 
       const { serverPath } = await createBundleProbePlugin(homeDir);
 
-      const config: OpenClawConfig = {
+      const config: SoloClawConfig = {
         plugins: {
           entries: {
             "bundle-probe": { enabled: true },
@@ -153,7 +153,7 @@ describe("prepareCliBundleMcpConfig", () => {
 
       await createBundleProbePlugin(homeDir);
 
-      const config: OpenClawConfig = {
+      const config: SoloClawConfig = {
         plugins: {
           entries: {
             "bundle-probe": { enabled: true },

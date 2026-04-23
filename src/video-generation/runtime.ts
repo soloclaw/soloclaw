@@ -1,6 +1,6 @@
 import { describeFailoverError, isFailoverError } from "../agents/failover-error.js";
 import type { FallbackAttempt } from "../agents/model-fallback.types.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { formatErrorMessage } from "../infra/errors.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import {
@@ -74,7 +74,7 @@ function validateProviderOptionsAgainstDeclaration(params: {
   return undefined;
 }
 
-function buildNoVideoGenerationModelConfiguredMessage(cfg: OpenClawConfig): string {
+function buildNoVideoGenerationModelConfiguredMessage(cfg: SoloClawConfig): string {
   return buildNoCapabilityModelConfiguredMessage({
     capabilityLabel: "video-generation",
     modelConfigKey: "videoGenerationModel",
@@ -82,7 +82,7 @@ function buildNoVideoGenerationModelConfiguredMessage(cfg: OpenClawConfig): stri
   });
 }
 
-export function listRuntimeVideoGenerationProviders(params?: { config?: OpenClawConfig }) {
+export function listRuntimeVideoGenerationProviders(params?: { config?: SoloClawConfig }) {
   return listVideoGenerationProviders(params?.config);
 }
 

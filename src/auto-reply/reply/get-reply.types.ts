@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import type { GetReplyOptions } from "../get-reply-options.types.js";
 import type { ReplyPayload } from "../reply-payload.js";
 import type { MsgContext } from "../templating.js";
@@ -6,5 +6,5 @@ import type { MsgContext } from "../templating.js";
 export type GetReplyFromConfig = (
   ctx: MsgContext,
   opts?: GetReplyOptions,
-  configOverride?: OpenClawConfig,
+  configOverride?: SoloClawConfig,
 ) => Promise<ReplyPayload | ReplyPayload[] | undefined>;

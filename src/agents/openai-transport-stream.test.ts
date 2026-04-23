@@ -896,18 +896,18 @@ describe("openai transport stream", () => {
       } as never,
       { sessionId: "session-123" } as never,
       {
-        openclaw_session_id: "session-123",
-        openclaw_turn_id: "turn-123",
-        openclaw_turn_attempt: "1",
-        openclaw_transport: "stream",
+        soloclaw_session_id: "session-123",
+        soloclaw_turn_id: "turn-123",
+        soloclaw_turn_attempt: "1",
+        soloclaw_transport: "stream",
       },
     ) as { metadata?: Record<string, string> };
 
     expect(params.metadata).toMatchObject({
-      openclaw_session_id: "session-123",
-      openclaw_turn_id: "turn-123",
-      openclaw_turn_attempt: "1",
-      openclaw_transport: "stream",
+      soloclaw_session_id: "session-123",
+      soloclaw_turn_id: "turn-123",
+      soloclaw_turn_attempt: "1",
+      soloclaw_transport: "stream",
     });
   });
 

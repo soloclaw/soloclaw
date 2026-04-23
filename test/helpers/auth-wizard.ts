@@ -74,7 +74,7 @@ export function createAuthTestLifecycle(envKeys: string[]): AuthTestLifecycle {
   };
 }
 
-export function requireOpenClawAgentDir(): string {
+export function requireSoloClawAgentDir(): string {
   const agentDir = process.env.SOLOCLAW_AGENT_DIR;
   if (!agentDir) {
     throw new Error("SOLOCLAW_AGENT_DIR not set");

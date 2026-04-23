@@ -21,7 +21,7 @@ import type {
 } from "../auto-reply/thinking.js";
 import { toAgentModelListLike } from "../config/model-input.js";
 import type { SessionEntry, SessionScope } from "../config/sessions.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import {
   formatUsageWindowSummary,
   loadProviderUsageSummary,
@@ -40,7 +40,7 @@ import {
 } from "../tasks/task-status.js";
 
 export type BuildStatusTextParams = {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   sessionEntry?: SessionEntry;
   sessionKey: string;
   parentSessionKey?: string;

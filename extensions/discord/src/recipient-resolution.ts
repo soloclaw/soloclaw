@@ -1,4 +1,4 @@
-import { loadConfig, type OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { loadConfig, type SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { resolveDiscordAccount } from "./accounts.js";
 import { parseAndResolveDiscordTarget } from "./target-resolver.js";
 
@@ -15,7 +15,7 @@ type DiscordRecipient =
 export async function parseAndResolveRecipient(
   raw: string,
   accountId?: string,
-  cfg?: OpenClawConfig,
+  cfg?: SoloClawConfig,
 ): Promise<DiscordRecipient> {
   const resolvedCfg = cfg ?? loadConfig();
   const accountInfo = resolveDiscordAccount({ cfg: resolvedCfg, accountId });

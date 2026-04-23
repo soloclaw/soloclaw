@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "./types.soloclaw.js";
+import type { SoloClawConfig } from "./types.soloclaw.js";
 
 export type OwnerDisplaySecretPersistState = {
   pendingByPath: Map<string, string>;
@@ -7,16 +7,16 @@ export type OwnerDisplaySecretPersistState = {
 };
 
 export function persistGeneratedOwnerDisplaySecret(params: {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   configPath: string;
   generatedSecret?: string;
   logger: Pick<typeof console, "warn">;
   state: OwnerDisplaySecretPersistState;
   persistConfig: (
-    config: OpenClawConfig,
+    config: SoloClawConfig,
     options: { expectedConfigPath: string },
   ) => Promise<unknown>;
-}): OpenClawConfig {
+}): SoloClawConfig {
   const { config, configPath, generatedSecret, logger, state, persistConfig } = params;
   if (!generatedSecret) {
     state.pendingByPath.delete(configPath);

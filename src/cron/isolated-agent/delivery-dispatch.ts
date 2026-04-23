@@ -11,7 +11,7 @@ import {
   resolveAgentMainSessionKey,
   resolveMainSessionKey,
 } from "../../config/sessions/main-session.js";
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import { sleepWithAbort } from "../../infra/backoff.js";
 import { formatErrorMessage } from "../../infra/errors.js";
 import type { OutboundDeliveryResult } from "../../infra/outbound/deliver.js";
@@ -96,8 +96,8 @@ export function resolveCronDeliveryBestEffort(job: CronJob): boolean {
 export type SuccessfulDeliveryTarget = Extract<DeliveryTargetResolution, { ok: true }>;
 
 type DispatchCronDeliveryParams = {
-  cfg: OpenClawConfig;
-  cfgWithAgentDefaults: OpenClawConfig;
+  cfg: SoloClawConfig;
+  cfgWithAgentDefaults: SoloClawConfig;
   deps: CliDeps;
   job: CronJob;
   agentId: string;
@@ -318,7 +318,7 @@ function shouldQueueCronAwareness(job: CronJob, deliveryBestEffort: boolean): bo
 }
 
 function resolveCronAwarenessMainSessionKey(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId: string;
 }): string {
   return params.cfg.session?.scope === "global"
@@ -327,7 +327,7 @@ function resolveCronAwarenessMainSessionKey(params: {
 }
 
 async function queueCronAwarenessSystemEvent(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   jobId: string;
   agentId: string;
   deliveryIdempotencyKey: string;

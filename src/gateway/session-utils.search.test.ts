@@ -6,14 +6,14 @@ import {
   addSubagentRunForTests,
   resetSubagentRegistryForTests,
 } from "../agents/subagent-registry.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { SoloClawConfig } from "../config/config.js";
 import type { SessionEntry } from "../config/sessions.js";
 import { listSessionsFromStore } from "./session-utils.js";
 
 function createModelDefaultsConfig(params: {
   primary: string;
   models?: Record<string, Record<string, never>>;
-}): OpenClawConfig {
+}): SoloClawConfig {
   return {
     agents: {
       defaults: {
@@ -21,12 +21,12 @@ function createModelDefaultsConfig(params: {
         models: params.models,
       },
     },
-  } as OpenClawConfig;
+  } as SoloClawConfig;
 }
 
 function createLegacyRuntimeListConfig(
   models?: Record<string, Record<string, never>>,
-): OpenClawConfig {
+): SoloClawConfig {
   return createModelDefaultsConfig({
     primary: "google-gemini-cli/gemini-3-pro-preview",
     ...(models ? { models } : {}),
@@ -85,7 +85,7 @@ function withTranscriptStoreFixture<T>(params: {
   }
 }
 
-function createAnthropicContext1mConfig(): OpenClawConfig {
+function createAnthropicContext1mConfig(): SoloClawConfig {
   return {
     session: { mainKey: "main" },
     agents: {
@@ -96,11 +96,11 @@ function createAnthropicContext1mConfig(): OpenClawConfig {
         },
       },
     },
-  } as unknown as OpenClawConfig;
+  } as unknown as SoloClawConfig;
 }
 
 function listSingleSession(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   storePath: string;
   key: string;
   entry: SessionEntry;
@@ -123,7 +123,7 @@ describe("listSessionsFromStore search", () => {
   const baseCfg = {
     session: { mainKey: "main" },
     agents: { list: [{ id: "main", default: true }] },
-  } as OpenClawConfig;
+  } as SoloClawConfig;
 
   const makeStore = (): Record<string, SessionEntry> => ({
     "agent:main:work-project": {
@@ -304,7 +304,7 @@ describe("listSessionsFromStore search", () => {
           },
         },
       },
-    } as unknown as OpenClawConfig;
+    } as unknown as SoloClawConfig;
     const result = listSessionsFromStore({
       cfg,
       storePath: "/tmp/sessions.json",
@@ -376,7 +376,7 @@ describe("listSessionsFromStore search", () => {
           },
         },
       },
-    } as unknown as OpenClawConfig;
+    } as unknown as SoloClawConfig;
     const result = listSessionsFromStore({
       cfg,
       storePath: "/tmp/sessions.json",
@@ -624,7 +624,7 @@ describe("listSessionsFromStore search", () => {
             agents: {
               list: [{ id: "main", default: true }],
             },
-          } as unknown as OpenClawConfig,
+          } as unknown as SoloClawConfig,
           storePath,
           key: "agent:main:main",
           entry: {

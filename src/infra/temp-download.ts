@@ -1,9 +1,9 @@
 import crypto from "node:crypto";
 import { mkdtemp, rm } from "node:fs/promises";
 import path from "node:path";
-import { resolvePreferredOpenClawTmpDir } from "./tmp-soloclaw-dir.js";
+import { resolvePreferredSoloClawTmpDir } from "./tmp-soloclaw-dir.js";
 
-export { resolvePreferredOpenClawTmpDir } from "./tmp-soloclaw-dir.js";
+export { resolvePreferredSoloClawTmpDir } from "./tmp-soloclaw-dir.js";
 
 export type TempDownloadTarget = {
   dir: string;
@@ -33,7 +33,7 @@ export function sanitizeTempFileName(fileName: string): string {
 }
 
 function resolveTempRoot(tmpDir?: string): string {
-  return tmpDir ?? resolvePreferredOpenClawTmpDir();
+  return tmpDir ?? resolvePreferredSoloClawTmpDir();
 }
 
 function isNodeErrorWithCode(err: unknown, code: string): boolean {

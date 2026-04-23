@@ -14,7 +14,7 @@ import {
 } from "./docker.js";
 
 function resolveConfiguredDockerRuntimeImage(params: {
-  config: CreateSandboxBackendParams["cfg"] | import("../../config/config.js").OpenClawConfig;
+  config: CreateSandboxBackendParams["cfg"] | import("../../config/config.js").SoloClawConfig;
   agentId?: string;
   configLabelKind?: string;
 }): string {

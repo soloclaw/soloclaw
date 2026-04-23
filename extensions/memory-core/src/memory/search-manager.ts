@@ -4,7 +4,7 @@ import {
   createSubsystemLogger,
   resolveAgentWorkspaceDir,
   resolveGlobalSingleton,
-  type OpenClawConfig,
+  type SoloClawConfig,
 } from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
 import { checkQmdBinaryAvailability } from "soloclaw/plugin-sdk/memory-core-host-engine-qmd";
 import {
@@ -46,7 +46,7 @@ export type MemorySearchManagerResult = {
 };
 
 export async function getMemorySearchManager(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId: string;
   purpose?: "default" | "status";
 }): Promise<MemorySearchManagerResult> {
@@ -127,7 +127,7 @@ export async function getMemorySearchManager(params: {
 }
 
 async function getBuiltinMemorySearchManager(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId: string;
   purpose?: "default" | "status";
 }): Promise<MemorySearchManagerResult> {

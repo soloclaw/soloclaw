@@ -5,7 +5,7 @@ import {
   clearRuntimeConfigSnapshot,
   setRuntimeConfigSnapshot,
 } from "../config/runtime-snapshot.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { clearPluginDiscoveryCache } from "../plugins/discovery.js";
 import { clearPluginManifestRegistryCache } from "../plugins/manifest-registry.js";
 import { withPathResolutionEnv } from "../test-utils/env.js";
@@ -252,7 +252,7 @@ describe("buildWorkspaceSkillCommandSpecs", () => {
           "compound-bundle": { enabled: true },
         },
       },
-    } satisfies OpenClawConfig;
+    } satisfies SoloClawConfig;
 
     // Prime plugin discovery before the bundle exists so command loading proves
     // it sees the current filesystem state instead of a stale cached snapshot.
@@ -568,7 +568,7 @@ describe("applySkillEnvOverrides", () => {
       primaryEnv: "ENV_KEY",
       requires: { env: ["ENV_KEY"] },
     });
-    const sourceConfig: OpenClawConfig = {
+    const sourceConfig: SoloClawConfig = {
       skills: {
         entries: {
           "env-skill": {
@@ -581,7 +581,7 @@ describe("applySkillEnvOverrides", () => {
         },
       },
     };
-    const runtimeConfig: OpenClawConfig = {
+    const runtimeConfig: SoloClawConfig = {
       skills: {
         entries: {
           "env-skill": {
@@ -612,7 +612,7 @@ describe("applySkillEnvOverrides", () => {
       primaryEnv: "ENV_KEY",
       requires: { env: ["ENV_KEY"] },
     });
-    const sourceConfig: OpenClawConfig = {
+    const sourceConfig: SoloClawConfig = {
       skills: {
         entries: {
           "env-skill": {
@@ -625,7 +625,7 @@ describe("applySkillEnvOverrides", () => {
         },
       },
     };
-    const callerConfig: OpenClawConfig = {
+    const callerConfig: SoloClawConfig = {
       skills: {
         entries: {
           "env-skill": {

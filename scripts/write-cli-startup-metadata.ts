@@ -4,7 +4,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import type { RootHelpRenderOptions } from "../src/cli/program/root-help.js";
-import type { OpenClawConfig } from "../src/config/config.js";
+import type { SoloClawConfig } from "../src/config/config.js";
 
 function dedupe(values: string[]): string[] {
   const seen = new Set<string>();
@@ -147,7 +147,7 @@ function createIsolatedRootHelpRenderContext(
     SOLOCLAW_PLUGIN_MANIFEST_CACHE_MS: "0",
     SOLOCLAW_STATE_DIR: stateDir,
   };
-  const config: OpenClawConfig = {
+  const config: SoloClawConfig = {
     agents: {
       defaults: {
         workspace: workspaceDir,

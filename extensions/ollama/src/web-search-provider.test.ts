@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { createOllamaWebSearchProvider as createContractOllamaWebSearchProvider } from "../web-search-contract-api.js";
 import {
@@ -20,11 +20,11 @@ type OllamaProviderConfigOverride = Partial<{
   apiKey: string;
   baseUrl: string;
   models: NonNullable<
-    NonNullable<NonNullable<OpenClawConfig["models"]>["providers"]>[string]
+    NonNullable<NonNullable<SoloClawConfig["models"]>["providers"]>[string]
   >["models"];
 }>;
 
-function createOllamaConfig(provider: OllamaProviderConfigOverride = {}): OpenClawConfig {
+function createOllamaConfig(provider: OllamaProviderConfigOverride = {}): SoloClawConfig {
   return {
     models: {
       providers: {
@@ -39,7 +39,7 @@ function createOllamaConfig(provider: OllamaProviderConfigOverride = {}): OpenCl
   };
 }
 
-function createOllamaConfigWithWebSearchBaseUrl(baseUrl: string): OpenClawConfig {
+function createOllamaConfigWithWebSearchBaseUrl(baseUrl: string): SoloClawConfig {
   return {
     ...createOllamaConfig(),
     plugins: {
@@ -132,7 +132,7 @@ describe("ollama web search provider", () => {
         JSON.stringify({
           results: [
             {
-              title: "OpenClaw",
+              title: "SoloClaw",
               url: "https://soloclaw.ai/docs",
               content: "Gateway docs and setup details",
             },

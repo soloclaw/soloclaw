@@ -7,7 +7,7 @@ import {
 import { resolveMemorySearchConfig } from "../agents/memory-search.js";
 import { resolveApiKeyForProvider } from "../agents/model-auth.js";
 import { formatCliCommand } from "../cli/command-format.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { formatErrorMessage } from "../infra/errors.js";
 import { DEFAULT_LOCAL_MODEL } from "../memory-host-sdk/engine-embeddings.js";
 import { checkQmdBinaryAvailability } from "../memory-host-sdk/engine-qmd.js";
@@ -46,7 +46,7 @@ type RuntimeMemoryAuditContext = {
 };
 
 async function resolveRuntimeMemoryAuditContext(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
 ): Promise<RuntimeMemoryAuditContext | null> {
   const agentId = resolveDefaultAgentId(cfg);
   const result = await getActiveMemorySearchManager({
@@ -107,7 +107,7 @@ function buildDreamingArtifactIssueNote(audit: DreamingArtifactsAuditSummary): s
   ].join("\n");
 }
 
-export async function noteMemoryRecallHealth(cfg: OpenClawConfig): Promise<void> {
+export async function noteMemoryRecallHealth(cfg: SoloClawConfig): Promise<void> {
   try {
     const context = await resolveRuntimeMemoryAuditContext(cfg);
     const workspaceDir = context?.workspaceDir?.trim();
@@ -139,7 +139,7 @@ export async function noteMemoryRecallHealth(cfg: OpenClawConfig): Promise<void>
 }
 
 export async function maybeRepairMemoryRecallHealth(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   prompter: DoctorPrompter;
 }): Promise<void> {
   try {
@@ -221,7 +221,7 @@ export async function maybeRepairMemoryRecallHealth(params: {
  * the configured `qmd` binary is available.
  */
 export async function noteMemorySearchHealth(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   opts?: {
     gatewayMemoryProbe?: {
       checked: boolean;
@@ -447,7 +447,7 @@ function hasLocalEmbeddings(local: { modelPath?: string }, useDefaultFallback = 
 
 async function hasApiKeyForProvider(
   provider: string,
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   agentDir: string,
 ): Promise<boolean> {
   const metadata = getBuiltinMemoryEmbeddingProviderDoctorMetadata(provider);

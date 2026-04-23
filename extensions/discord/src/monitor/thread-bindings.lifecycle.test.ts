@@ -5,7 +5,7 @@ import { ChannelType } from "discord-api-types/v10";
 import {
   clearRuntimeConfigSnapshot,
   setRuntimeConfigSnapshot,
-  type OpenClawConfig,
+  type SoloClawConfig,
 } from "soloclaw/plugin-sdk/config-runtime";
 import { getSessionBindingService } from "soloclaw/plugin-sdk/conversation-runtime";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -833,7 +833,7 @@ describe("thread binding lifecycle", () => {
   it("passes manager token when resolving parent channels for auto-bind", async () => {
     const cfg = {
       channels: { discord: { token: "tok" } },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     createThreadBindingManager({
       accountId: "runtime",
       token: "runtime-token",
@@ -886,10 +886,10 @@ describe("thread binding lifecycle", () => {
   it("uses the active runtime snapshot cfg for manager operations", async () => {
     const startupCfg = {
       channels: { discord: { token: "startup-token" } },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     const refreshedCfg = {
       channels: { discord: { token: "refreshed-token" } },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     const manager = createThreadBindingManager({
       accountId: "runtime",
       token: "runtime-token",
@@ -1200,7 +1200,7 @@ describe("thread binding lifecycle", () => {
     });
 
     const result = await reconcileAcpThreadBindingsOnStartup({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       accountId: "default",
     });
 
@@ -1244,7 +1244,7 @@ describe("thread binding lifecycle", () => {
     hoisted.readAcpSessionEntry.mockReturnValue({
       sessionKey: "agent:codex:acp:uncertain",
       storeSessionKey: "agent:codex:acp:uncertain",
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       storePath: "/tmp/mock-sessions.json",
       storeReadFailed: true,
       entry: undefined,
@@ -1252,7 +1252,7 @@ describe("thread binding lifecycle", () => {
     });
 
     const result = await reconcileAcpThreadBindingsOnStartup({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       accountId: "default",
     });
 
@@ -1291,7 +1291,7 @@ describe("thread binding lifecycle", () => {
     hoisted.readAcpSessionEntry.mockReturnValue(null);
 
     const result = await reconcileAcpThreadBindingsOnStartup({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       accountId: "default",
     });
 
@@ -1340,7 +1340,7 @@ describe("thread binding lifecycle", () => {
     });
 
     const result = await reconcileAcpThreadBindingsOnStartup({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       accountId: "default",
       healthProbe: async () => ({ status: "stale", reason: "status-timeout-running-stale" }),
     });
@@ -1384,7 +1384,7 @@ describe("thread binding lifecycle", () => {
     });
 
     const result = await reconcileAcpThreadBindingsOnStartup({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       accountId: "default",
       healthProbe: async () => ({ status: "uncertain", reason: "status-timeout" }),
     });
@@ -1432,7 +1432,7 @@ describe("thread binding lifecycle", () => {
     });
 
     const result = await reconcileAcpThreadBindingsOnStartup({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       accountId: "default",
     });
 
@@ -1498,7 +1498,7 @@ describe("thread binding lifecycle", () => {
     let secondProbeStartedBeforeFirstResolved = false;
 
     const reconcilePromise = reconcileAcpThreadBindingsOnStartup({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       accountId: "default",
       healthProbe: async () => {
         probeCallCount += 1;
@@ -1570,7 +1570,7 @@ describe("thread binding lifecycle", () => {
     });
 
     const reconcilePromise = reconcileAcpThreadBindingsOnStartup({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       accountId: "default",
       healthProbe: async () => {
         probeCalls += 1;

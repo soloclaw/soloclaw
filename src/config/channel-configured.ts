@@ -5,10 +5,10 @@ import {
   hasMeaningfulChannelConfigShallow,
   resolveChannelConfigRecord,
 } from "./channel-configured-shared.js";
-import type { OpenClawConfig } from "./types.soloclaw.js";
+import type { SoloClawConfig } from "./types.soloclaw.js";
 
 export function isChannelConfigured(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   channelId: string,
   env: NodeJS.ProcessEnv = process.env,
 ): boolean {

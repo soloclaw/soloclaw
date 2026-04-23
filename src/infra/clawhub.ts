@@ -19,7 +19,7 @@ export type ClawHubPackageChannel = "official" | "community" | "private";
 // Keep aligned with @soloclaw/plugin-package-contract ExternalPluginCompatibility.
 export type ClawHubPackageCompatibility = {
   pluginApiRange?: string;
-  builtWithOpenClawVersion?: string;
+  builtWithSoloClawVersion?: string;
   pluginSdkVersion?: string;
   minGatewayVersion?: string;
 };

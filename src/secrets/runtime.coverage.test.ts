@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { beforeAll, describe, expect, it } from "vitest";
 import type { AuthProfileStore } from "../agents/auth-profiles.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { SoloClawConfig } from "../config/config.js";
 import type { PluginOrigin } from "../plugins/types.js";
 import { getPath, setPathCreateStrict } from "./path-utils.js";
 import { canonicalizeSecretTargetCoverageId } from "./target-registry-test-helpers.js";
@@ -234,8 +234,8 @@ function batchUsesRuntimeWebToolsOnly(batch: readonly SecretRegistryEntry[]): bo
   );
 }
 
-function applyConfigForOpenClawTarget(
-  config: OpenClawConfig,
+function applyConfigForSoloClawTarget(
+  config: SoloClawConfig,
   entry: SecretRegistryEntry,
   envId: string,
   wildcardToken: string,
@@ -409,7 +409,7 @@ function applyAuthStoreTarget(
 }
 
 async function prepareConfigCoverageSnapshot(params: {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   env: NodeJS.ProcessEnv;
   loadablePluginOrigins?: ReadonlyMap<string, PluginOrigin>;
   includeRuntimeWebTools?: boolean;
@@ -462,7 +462,7 @@ async function prepareConfigCoverageSnapshot(params: {
 }
 
 async function prepareAuthCoverageSnapshot(params: {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   env: NodeJS.ProcessEnv;
   agentDirs: string[];
   loadAuthStore: (agentDir?: string) => AuthProfileStore;
@@ -523,7 +523,7 @@ describe("secrets runtime target coverage", () => {
     );
     for (const batch of buildCoverageBatches(entries)) {
       logCoverageBatch("soloclaw.json", batch);
-      const config = {} as OpenClawConfig;
+      const config = {} as SoloClawConfig;
       const env: Record<string, string> = {};
       for (const [index, entry] of batch.entries()) {
         const envId = `SOLOCLAW_SECRET_TARGET_${entry.id}`;
@@ -531,7 +531,7 @@ describe("secrets runtime target coverage", () => {
         const expectedValue = `resolved-${entry.id}`;
         const wildcardToken = resolveCoverageWildcardToken(index);
         env[runtimeEnvId] = expectedValue;
-        applyConfigForOpenClawTarget(config, entry, envId, wildcardToken);
+        applyConfigForSoloClawTarget(config, entry, envId, wildcardToken);
       }
       const snapshot = await prepareConfigCoverageSnapshot({
         config,
@@ -567,7 +567,7 @@ describe("secrets runtime target coverage", () => {
         applyAuthStoreTarget(authStore, entry, envId, resolveCoverageWildcardToken(index));
       }
       const snapshot = await prepareAuthCoverageSnapshot({
-        config: {} as OpenClawConfig,
+        config: {} as SoloClawConfig,
         env,
         agentDirs: ["/tmp/openclaw-agent-main"],
         loadAuthStore: () => authStore,

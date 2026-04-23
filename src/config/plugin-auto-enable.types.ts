@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "./types.soloclaw.js";
+import type { SoloClawConfig } from "./types.soloclaw.js";
 
 export type PluginAutoEnableCandidate =
   | {
@@ -45,7 +45,7 @@ export type PluginAutoEnableCandidate =
     };
 
 export type PluginAutoEnableResult = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   changes: string[];
   autoEnabledReasons: Record<string, string[]>;
 };

@@ -3,7 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { SubagentRunRecord } from "../../agents/subagent-registry.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { SoloClawConfig } from "../../config/config.js";
 import {
   __testing as abortTesting,
   getAbortMemory,
@@ -98,7 +98,7 @@ describe("abort detection", () => {
       ...(typeof params?.commandsTextEnabled === "boolean"
         ? { commands: { text: params.commandsTextEnabled } }
         : {}),
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     if (params?.sessionIdsByKey) {
       await writeSessionStore(storePath, params.sessionIdsByKey, params.nowMs);
     }
@@ -106,7 +106,7 @@ describe("abort detection", () => {
   }
 
   async function runStopCommand(params: {
-    cfg: OpenClawConfig;
+    cfg: SoloClawConfig;
     sessionKey: string;
     from: string;
     to: string;
@@ -134,7 +134,7 @@ describe("abort detection", () => {
 
   function enqueueQueuedFollowupRun(params: {
     root: string;
-    cfg: OpenClawConfig;
+    cfg: SoloClawConfig;
     sessionId: string;
     sessionKey: string;
   }) {
@@ -271,8 +271,8 @@ describe("abort detection", () => {
     expect(isAbortRequestText("stopp")).toBe(true);
     expect(isAbortRequestText("pare")).toBe(true);
     expect(isAbortRequestText(" توقف ")).toBe(true);
-    expect(isAbortRequestText("/stop@openclaw_bot", { botUsername: "openclaw_bot" })).toBe(true);
-    expect(isAbortRequestText("/Stop@openclaw_bot", { botUsername: "openclaw_bot" })).toBe(true);
+    expect(isAbortRequestText("/stop@soloclaw_bot", { botUsername: "soloclaw_bot" })).toBe(true);
+    expect(isAbortRequestText("/Stop@soloclaw_bot", { botUsername: "soloclaw_bot" })).toBe(true);
 
     expect(isAbortRequestText("/status")).toBe(false);
     expect(isAbortRequestText("do not do that")).toBe(true);
@@ -842,7 +842,7 @@ describe("abort detection", () => {
     });
 
     const result = stopSubagentsForRequester({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       requesterSessionKey: oldParentKey,
     });
 

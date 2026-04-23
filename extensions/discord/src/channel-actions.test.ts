@@ -1,6 +1,6 @@
 import { Type } from "@sinclair/typebox";
 import type { ChannelMessageActionContext } from "soloclaw/plugin-sdk/channel-contract";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { withEnv } from "soloclaw/plugin-sdk/testing";
 import { describe, expect, it, vi } from "vitest";
 
@@ -24,7 +24,7 @@ describe("discordMessageActions", () => {
               enabled: true,
             },
           },
-        } as OpenClawConfig,
+        } as SoloClawConfig,
       });
 
       expect(discovery).toEqual({
@@ -50,7 +50,7 @@ describe("discordMessageActions", () => {
             },
           },
         },
-      } as OpenClawConfig,
+      } as SoloClawConfig,
     });
 
     expect(discovery?.capabilities).toEqual(["interactive", "components"]);
@@ -82,7 +82,7 @@ describe("discordMessageActions", () => {
           },
         },
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     const defaultDiscovery = discordMessageActions.describeMessageTool?.({
       cfg,
@@ -109,7 +109,7 @@ describe("discordMessageActions", () => {
             token: "Bot token-main",
           },
         },
-      } as OpenClawConfig,
+      } as SoloClawConfig,
     });
     const schema = discovery?.schema;
     if (!schema || Array.isArray(schema)) {
@@ -146,7 +146,7 @@ describe("discordMessageActions", () => {
           token: "Bot token-main",
         },
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     const toolContext: ChannelMessageActionContext["toolContext"] = {
       currentChannelProvider: "discord",
     };

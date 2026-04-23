@@ -6,7 +6,7 @@ import {
   modelSupportsVision,
 } from "soloclaw/plugin-sdk/agent-runtime";
 import { resolveDefaultModelForAgent } from "soloclaw/plugin-sdk/agent-runtime";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { resolveAutoImageModel } from "soloclaw/plugin-sdk/media-runtime";
 import {
   resolveAutoMediaKeyProviders,
@@ -29,7 +29,7 @@ const STICKER_DESCRIPTION_PROMPT =
 
 export interface DescribeStickerParams {
   imagePath: string;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentDir?: string;
   agentId?: string;
 }

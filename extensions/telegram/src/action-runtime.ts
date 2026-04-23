@@ -10,7 +10,7 @@ import {
   resolvePollMaxSelections,
   resolveReactionMessageId,
 } from "soloclaw/plugin-sdk/channel-actions";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import {
   normalizeOptionalLowercaseString,
   normalizeOptionalString,
@@ -202,7 +202,7 @@ function readTelegramSendContent(params: {
 
 export async function handleTelegramAction(
   params: Record<string, unknown>,
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   options?: {
     mediaLocalRoots?: readonly string[];
     mediaReadFile?: (filePath: string) => Promise<Buffer>;

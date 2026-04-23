@@ -6,7 +6,7 @@ import {
   type MemoryCorpusGetResult,
   type MemoryCorpusSearchResult,
   type AnyAgentTool,
-  type OpenClawConfig,
+  type SoloClawConfig,
 } from "soloclaw/plugin-sdk/memory-core-host-runtime-core";
 import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
 
@@ -41,7 +41,7 @@ export const MemoryGetSchema = Type.Object({
 });
 
 export function resolveMemoryToolContext(options: {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   agentSessionKey?: string;
 }) {
   const cfg = options.config;
@@ -59,7 +59,7 @@ export function resolveMemoryToolContext(options: {
 }
 
 export async function getMemoryManagerContext(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId: string;
 }): Promise<
   | {
@@ -73,7 +73,7 @@ export async function getMemoryManagerContext(params: {
 }
 
 export async function getMemoryManagerContextWithPurpose(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId: string;
   purpose?: "default" | "status";
 }): Promise<
@@ -95,14 +95,14 @@ export async function getMemoryManagerContextWithPurpose(params: {
 
 export function createMemoryTool(params: {
   options: {
-    config?: OpenClawConfig;
+    config?: SoloClawConfig;
     agentSessionKey?: string;
   };
   label: string;
   name: string;
   description: string;
   parameters: typeof MemorySearchSchema | typeof MemoryGetSchema;
-  execute: (ctx: { cfg: OpenClawConfig; agentId: string }) => AnyAgentTool["execute"];
+  execute: (ctx: { cfg: SoloClawConfig; agentId: string }) => AnyAgentTool["execute"];
 }): AnyAgentTool | null {
   const ctx = resolveMemoryToolContext(params.options);
   if (!ctx) {

@@ -48,8 +48,8 @@ export const PLUGIN_INSTALL_ERROR_CODE = {
   INVALID_MIN_HOST_VERSION: "invalid_min_host_version",
   UNKNOWN_HOST_VERSION: "unknown_host_version",
   INCOMPATIBLE_HOST_VERSION: "incompatible_host_version",
-  MISSING_SOLOCLAW_EXTENSIONS: "missing_openclaw_extensions",
-  EMPTY_SOLOCLAW_EXTENSIONS: "empty_openclaw_extensions",
+  MISSING_SOLOCLAW_EXTENSIONS: "missing_soloclaw_extensions",
+  EMPTY_SOLOCLAW_EXTENSIONS: "empty_soloclaw_extensions",
   NPM_PACKAGE_NOT_FOUND: "npm_package_not_found",
   PLUGIN_ID_MISMATCH: "plugin_id_mismatch",
   SECURITY_SCAN_BLOCKED: "security_scan_blocked",
@@ -151,7 +151,7 @@ function matchesExpectedPluginId(params: {
   );
 }
 
-function ensureOpenClawExtensions(params: { manifest: PackageManifest }):
+function ensureSoloClawExtensions(params: { manifest: PackageManifest }):
   | {
       ok: true;
       entries: string[];
@@ -602,7 +602,7 @@ async function detectNativePackageInstallSource(packageDir: string): Promise<boo
 
   try {
     const manifest = await runtime.readJsonFile<PackageManifest>(manifestPath);
-    return ensureOpenClawExtensions({ manifest }).ok;
+    return ensureSoloClawExtensions({ manifest }).ok;
   } catch {
     return false;
   }
@@ -631,7 +631,7 @@ async function installPluginFromPackageDir(
     return { ok: false, error: `invalid package.json: ${String(err)}` };
   }
 
-  const extensionsResult = ensureOpenClawExtensions({
+  const extensionsResult = ensureSoloClawExtensions({
     manifest,
   });
   if (!extensionsResult.ok) {

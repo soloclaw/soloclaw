@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { SoloClawConfig } from "../config/config.js";
 import { withTempDir } from "../test-helpers/temp-dir.js";
 import { migrateOrphanedSessionKeys } from "./state-migrations.js";
 
@@ -35,7 +35,7 @@ describe("migrateOrphanedSessionKeys", () => {
       const cfg = {
         session: { mainKey: "work" },
         agents: { list: [{ id: "ops", default: true }] },
-      } as OpenClawConfig;
+      } as SoloClawConfig;
 
       const result = await migrateOrphanedSessionKeys({
         cfg,
@@ -61,7 +61,7 @@ describe("migrateOrphanedSessionKeys", () => {
       const cfg = {
         session: { mainKey: "work" },
         agents: { list: [{ id: "ops", default: true }] },
-      } as OpenClawConfig;
+      } as SoloClawConfig;
 
       await migrateOrphanedSessionKeys({
         cfg,
@@ -84,7 +84,7 @@ describe("migrateOrphanedSessionKeys", () => {
       const cfg = {
         session: { mainKey: "work" },
         agents: { list: [{ id: "ops", default: true }] },
-      } as OpenClawConfig;
+      } as SoloClawConfig;
 
       const result = await migrateOrphanedSessionKeys({
         cfg,
@@ -101,7 +101,7 @@ describe("migrateOrphanedSessionKeys", () => {
       const cfg = {
         session: { mainKey: "work" },
         agents: { list: [{ id: "ops", default: true }] },
-      } as OpenClawConfig;
+      } as SoloClawConfig;
 
       const result = await migrateOrphanedSessionKeys({
         cfg,
@@ -123,7 +123,7 @@ describe("migrateOrphanedSessionKeys", () => {
       const cfg = {
         session: { mainKey: "work" },
         agents: { list: [{ id: "ops", default: true }] },
-      } as OpenClawConfig;
+      } as SoloClawConfig;
 
       const env = { SOLOCLAW_STATE_DIR: stateDir };
       await migrateOrphanedSessionKeys({ cfg, env });
@@ -148,7 +148,7 @@ describe("migrateOrphanedSessionKeys", () => {
       const cfg = {
         session: { mainKey: "work", store: sharedStorePath },
         agents: { list: [{ id: "main" }, { id: "ops", default: true }] },
-      } as OpenClawConfig;
+      } as SoloClawConfig;
 
       await migrateOrphanedSessionKeys({
         cfg,
@@ -178,7 +178,7 @@ describe("migrateOrphanedSessionKeys", () => {
       const cfg = {
         session: { mainKey: "work", store: sharedStorePath },
         agents: { list: [{ id: "main" }, { id: "ops", default: true }] },
-      } as OpenClawConfig;
+      } as SoloClawConfig;
 
       await migrateOrphanedSessionKeys({
         cfg,
@@ -200,7 +200,7 @@ describe("migrateOrphanedSessionKeys", () => {
         "agent:main:main": { sessionId: "abc-123", updatedAt: 1000 },
       });
 
-      const cfg = {} as OpenClawConfig;
+      const cfg = {} as SoloClawConfig;
 
       const result = await migrateOrphanedSessionKeys({
         cfg,

@@ -1,5 +1,5 @@
 import type { ChannelHeartbeatVisibilityConfig } from "../config/types.channels.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import type { GatewayMessageChannel } from "../utils/message-channel.js";
 
 export type ResolvedHeartbeatVisibility = {
@@ -20,7 +20,7 @@ const DEFAULT_VISIBILITY: ResolvedHeartbeatVisibility = {
  * For webchat, uses channels.defaults.heartbeat since webchat doesn't have per-channel config.
  */
 export function resolveHeartbeatVisibility(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   channel: GatewayMessageChannel;
   accountId?: string;
 }): ResolvedHeartbeatVisibility {

@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 import { promises as fs } from "node:fs";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import type { SubagentLifecycleHookRunner } from "../plugins/hooks.js";
 import { isValidAgentId, normalizeAgentId, parseAgentSessionKey } from "../routing/session-key.js";
 import {
@@ -176,7 +176,7 @@ function loadSubagentConfig() {
 }
 
 async function persistInitialChildSessionRuntimeModel(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   childSessionKey: string;
   resolvedModel?: string;
 }): Promise<string | undefined> {

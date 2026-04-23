@@ -1,25 +1,25 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { loadConfig, type OpenClawConfig } from "../config/config.js";
+import { loadConfig, type SoloClawConfig } from "../config/config.js";
 import { VERSION } from "../version.js";
-import { OpenClawChannelBridge } from "./channel-bridge.js";
+import { SoloClawChannelBridge } from "./channel-bridge.js";
 import { ClaudePermissionRequestSchema, type ClaudeChannelMode } from "./channel-shared.js";
 import { getChannelMcpCapabilities, registerChannelMcpTools } from "./channel-tools.js";
 
-export { OpenClawChannelBridge } from "./channel-bridge.js";
+export { SoloClawChannelBridge } from "./channel-bridge.js";
 
-export type OpenClawMcpServeOptions = {
+export type SoloClawMcpServeOptions = {
   gatewayUrl?: string;
   gatewayToken?: string;
   gatewayPassword?: string;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   claudeChannelMode?: ClaudeChannelMode;
   verbose?: boolean;
 };
 
-export async function createOpenClawChannelMcpServer(opts: OpenClawMcpServeOptions = {}): Promise<{
+export async function createSoloClawChannelMcpServer(opts: SoloClawMcpServeOptions = {}): Promise<{
   server: McpServer;
-  bridge: OpenClawChannelBridge;
+  bridge: SoloClawChannelBridge;
   start: () => Promise<void>;
   close: () => Promise<void>;
 }> {
@@ -30,7 +30,7 @@ export async function createOpenClawChannelMcpServer(opts: OpenClawMcpServeOptio
     { name: "soloclaw", version: VERSION },
     capabilities ? { capabilities } : undefined,
   );
-  const bridge = new OpenClawChannelBridge(cfg, {
+  const bridge = new SoloClawChannelBridge(cfg, {
     gatewayUrl: opts.gatewayUrl,
     gatewayToken: opts.gatewayToken,
     gatewayPassword: opts.gatewayPassword,
@@ -62,8 +62,8 @@ export async function createOpenClawChannelMcpServer(opts: OpenClawMcpServeOptio
   };
 }
 
-export async function serveOpenClawChannelMcp(opts: OpenClawMcpServeOptions = {}): Promise<void> {
-  const { server, start, close } = await createOpenClawChannelMcpServer(opts);
+export async function serveSoloClawChannelMcp(opts: SoloClawMcpServeOptions = {}): Promise<void> {
+  const { server, start, close } = await createSoloClawChannelMcpServer(opts);
   const transport = new StdioServerTransport();
 
   let shuttingDown = false;

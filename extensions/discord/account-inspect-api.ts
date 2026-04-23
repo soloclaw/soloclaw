@@ -1,6 +1,6 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { inspectDiscordAccount } from "./src/account-inspect.js";
 
-export function inspectDiscordReadOnlyAccount(cfg: OpenClawConfig, accountId?: string | null) {
+export function inspectDiscordReadOnlyAccount(cfg: SoloClawConfig, accountId?: string | null) {
   return inspectDiscordAccount({ cfg, accountId });
 }

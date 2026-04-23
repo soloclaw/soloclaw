@@ -1,5 +1,5 @@
 import path from "node:path";
-import { resolvePreferredOpenClawTmpDir, type OpenClawPluginApi } from "../api.js";
+import { resolvePreferredSoloClawTmpDir, type SoloClawPluginApi } from "../api.js";
 import {
   resolveDiffsPluginDefaults,
   resolveDiffsPluginSecurity,
@@ -10,12 +10,12 @@ import { DIFFS_AGENT_GUIDANCE } from "./prompt-guidance.js";
 import { DiffArtifactStore } from "./store.js";
 import { createDiffsTool } from "./tool.js";
 
-export function registerDiffsPlugin(api: OpenClawPluginApi): void {
+export function registerDiffsPlugin(api: SoloClawPluginApi): void {
   const defaults = resolveDiffsPluginDefaults(api.pluginConfig);
   const security = resolveDiffsPluginSecurity(api.pluginConfig);
   const viewerBaseUrl = resolveDiffsPluginViewerBaseUrl(api.pluginConfig);
   const store = new DiffArtifactStore({
-    rootDir: path.join(resolvePreferredOpenClawTmpDir(), "openclaw-diffs"),
+    rootDir: path.join(resolvePreferredSoloClawTmpDir(), "openclaw-diffs"),
     logger: api.logger,
   });
 

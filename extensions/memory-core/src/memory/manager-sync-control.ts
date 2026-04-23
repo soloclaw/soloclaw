@@ -2,7 +2,7 @@ import type { DatabaseSync } from "node:sqlite";
 import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
 import {
   createSubsystemLogger,
-  type OpenClawConfig,
+  type SoloClawConfig,
 } from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
 import type { MemorySyncProgressUpdate } from "soloclaw/plugin-sdk/memory-core-host-engine-storage";
 
@@ -169,7 +169,7 @@ export function enqueueMemoryTargetedSessionSync(
 export function _createMemorySyncControlConfigForTests(
   workspaceDir: string,
   indexPath: string,
-): OpenClawConfig {
+): SoloClawConfig {
   return {
     agents: {
       defaults: {
@@ -185,5 +185,5 @@ export function _createMemorySyncControlConfigForTests(
       },
       list: [{ id: "main", default: true }],
     },
-  } as OpenClawConfig;
+  } as SoloClawConfig;
 }

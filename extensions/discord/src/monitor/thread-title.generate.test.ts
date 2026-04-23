@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import * as agentRuntimeModule from "soloclaw/plugin-sdk/simple-completion-runtime";
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -76,7 +76,7 @@ describe("generateThreadTitle", () => {
           model: "openrouter/anthropic/claude-sonnet-4-5@work",
         },
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     await generateThreadTitle({
       cfg,
@@ -92,7 +92,7 @@ describe("generateThreadTitle", () => {
   });
 
   it("passes model override refs into shared model prep", async () => {
-    const cfg = {} as OpenClawConfig;
+    const cfg = {} as SoloClawConfig;
     await generateThreadTitle({
       cfg,
       agentId: "main",
@@ -114,7 +114,7 @@ describe("generateThreadTitle", () => {
     } as Awaited<ReturnType<typeof agentRuntimeModule.prepareSimpleCompletionModelForAgent>>);
 
     const result = await generateThreadTitle({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       agentId: "main",
       messageText: "Need a thread title.",
     });
@@ -134,7 +134,7 @@ describe("generateThreadTitle", () => {
     } as Awaited<ReturnType<typeof agentRuntimeModule.prepareSimpleCompletionModelForAgent>>);
 
     const result = await generateThreadTitle({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       agentId: "main",
       messageText: "Need a thread title.",
     });
@@ -145,7 +145,7 @@ describe("generateThreadTitle", () => {
 
   it("builds contextual prompt and forwards completion options", async () => {
     const result = await generateThreadTitle({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       agentId: "main",
       messageText: "Summarize deployment blockers and owner follow-ups.",
       channelName: "release-status",
@@ -186,7 +186,7 @@ describe("generateThreadTitle", () => {
     );
 
     const result = await generateThreadTitle({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
       agentId: "main",
       messageText: "Generate title.",
     });

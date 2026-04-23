@@ -19,7 +19,7 @@ import { resolveDefaultAgentWorkspaceDir } from "../../agents/workspace.js";
 import { formatCliCommand } from "../../cli/command-format.js";
 import { parseDurationMs } from "../../cli/parse-duration.js";
 import { logConfigUpdated } from "../../config/logging.js";
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import { applyAuthProfileConfig } from "../../plugins/provider-auth-helpers.js";
 import { resolvePluginProviders } from "../../plugins/providers.runtime.js";
 import type {
@@ -83,7 +83,7 @@ function resolveDefaultTokenProfileId(provider: string): string {
 }
 
 type ResolvedModelsAuthContext = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   agentDir: string;
   workspaceDir: string;
   providers: ProviderPlugin[];
@@ -280,7 +280,7 @@ async function persistProviderAuthResult(params: {
 }
 
 async function runProviderAuthMethod(params: {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   agentDir: string;
   workspaceDir: string;
   provider: ProviderPlugin;
@@ -427,7 +427,7 @@ export async function modelsAuthPasteTokenCommand(
   logConfigUpdated(runtime);
   runtime.log(`Auth profile: ${profileId} (${provider}/token)`);
   if (provider === "anthropic") {
-    runtime.log("Anthropic setup-token auth is supported in OpenClaw.");
+    runtime.log("Anthropic setup-token auth is supported in SoloClaw.");
     runtime.log("SoloClaw prefers Claude CLI reuse when it is available on the host.");
     runtime.log("Anthropic staff told us this SoloClaw path is allowed again.");
   }

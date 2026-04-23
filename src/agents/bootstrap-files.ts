@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import type { AgentContextInjection } from "../config/types.agent-defaults.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { normalizeOptionalString } from "../shared/string-coerce.js";
 import { resolveSessionAgentIds } from "./agent-scope.js";
 import { getOrLoadBootstrapFiles } from "./bootstrap-cache.js";
@@ -50,7 +50,7 @@ export function _resetBootstrapWarningCacheForTest(): void {
   bootstrapWarningOrder.length = 0;
 }
 
-export function resolveContextInjectionMode(config?: OpenClawConfig): AgentContextInjection {
+export function resolveContextInjectionMode(config?: SoloClawConfig): AgentContextInjection {
   return config?.agents?.defaults?.contextInjection ?? "always";
 }
 
@@ -180,7 +180,7 @@ function applyContextModeFilter(params: {
 }
 
 function shouldExcludeHeartbeatBootstrapFile(params: {
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   sessionKey?: string;
   sessionId?: string;
   agentId?: string;
@@ -216,7 +216,7 @@ function filterHeartbeatBootstrapFile(
 
 export async function resolveBootstrapFilesForRun(params: {
   workspaceDir: string;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   sessionKey?: string;
   sessionId?: string;
   agentId?: string;
@@ -254,7 +254,7 @@ export async function resolveBootstrapFilesForRun(params: {
 
 export async function resolveBootstrapContextForRun(params: {
   workspaceDir: string;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   sessionKey?: string;
   sessionId?: string;
   agentId?: string;

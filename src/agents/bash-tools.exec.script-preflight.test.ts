@@ -520,7 +520,7 @@ describe("exec interpreter heuristics ReDoS guard", () => {
     // Simulate a heredoc with HTML content after a VAR= assignment. Keep the
     // command parser check direct so no shell process timing hides regex cost.
     const htmlBlock = '<section style="padding: 30px 20px; font-family: Arial;">'.repeat(50);
-    const command = `ACCESS_TOKEN=$(__openclaw_missing_redos_guard__)\ncat > /tmp/out.html << 'EOF'\n${htmlBlock}\nEOF`;
+    const command = `ACCESS_TOKEN=$(__soloclaw_missing_redos_guard__)\ncat > /tmp/out.html << 'EOF'\n${htmlBlock}\nEOF`;
 
     const start = Date.now();
     await validateExecScriptPreflight({ command, workdir: process.cwd() });

@@ -668,7 +668,7 @@ async function runUpgradeLane(params) {
       "--timeout",
       String(updateStepTimeoutSeconds()),
     ];
-    await runOpenClaw({
+    await runSoloClaw({
       lane,
       env: updateEnv,
       args: updateArgs,
@@ -677,7 +677,7 @@ async function runUpgradeLane(params) {
     });
 
     logLanePhase(lane, "update-status");
-    await runOpenClaw({
+    await runSoloClaw({
       lane,
       env,
       args: ["update", "status", "--json"],
@@ -961,7 +961,7 @@ async function runDevUpdateSuite(params) {
     const updatedShell = await verifyFreshShellCommand({
       lane,
       env,
-      expectedNeedle: "OpenClaw",
+      expectedNeedle: "SoloClaw",
       logPath: join(params.logsDir, "dev-update-shell.log"),
     });
 
@@ -2209,7 +2209,7 @@ function ensureLocalNpmShim(lane) {
 
 async function runOnboard(params) {
   await withAllocatedGatewayPort(params.lane, async () => {
-    await runOpenClaw({
+    await runSoloClaw({
       lane: params.lane,
       env: params.env,
       args: [
@@ -2341,7 +2341,7 @@ async function waitForGateway(params) {
   while (Date.now() < deadline) {
     let result;
     try {
-      result = await runOpenClaw({
+      result = await runSoloClaw({
         lane: params.lane,
         env: params.env,
         args: statusArgs,
@@ -2366,7 +2366,7 @@ function gatewayReadyDeadlineMs() {
 }
 
 async function resolveGatewayStatusArgs(lane, env, logPath) {
-  const help = await runOpenClaw({
+  const help = await runSoloClaw({
     lane,
     env,
     args: ["gateway", "status", "--help"],
@@ -2381,7 +2381,7 @@ async function resolveGatewayStatusArgs(lane, env, logPath) {
 }
 
 async function runModelsSet(params) {
-  await runOpenClaw({
+  await runSoloClaw({
     lane: params.lane,
     env: params.env,
     args: ["models", "set", params.providerConfig.model],
@@ -2392,7 +2392,7 @@ async function runModelsSet(params) {
 
 async function runAgentTurn(params) {
   const sessionId = `cross-os-release-check-${params.label}-${Date.now()}`;
-  const result = await runOpenClaw({
+  const result = await runSoloClaw({
     lane: params.lane,
     env: params.env,
     args: [
@@ -2549,7 +2549,7 @@ async function runCleanup(cleanupFns) {
   }
 }
 
-async function runOpenClaw(params) {
+async function runSoloClaw(params) {
   return runCommand(process.execPath, [installedEntryPath(params.lane.prefixDir), ...params.args], {
     cwd: params.lane.homeDir,
     env: params.env,

@@ -8,7 +8,7 @@ import {
 } from "@buape/carbon";
 import type { GatewayPlugin } from "@buape/carbon/gateway";
 import { VoicePlugin } from "@buape/carbon/voice";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { isDangerousNameMatchingEnabled } from "soloclaw/plugin-sdk/config-runtime";
 import { danger } from "soloclaw/plugin-sdk/runtime-env";
 import type { RuntimeEnv } from "soloclaw/plugin-sdk/runtime-env";
@@ -232,7 +232,7 @@ export async function fetchDiscordBotIdentity(params: {
 }
 
 export function registerDiscordMonitorListeners(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   client: Pick<Client, "listeners">;
   accountId: string;
   discordConfig: DiscordListenerConfig;

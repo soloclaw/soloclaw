@@ -4,10 +4,10 @@ import {
   modelSupportsVision,
   resolveDefaultModelForAgent,
 } from "soloclaw/plugin-sdk/agent-runtime";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 
 export async function resolveStickerVisionSupportRuntime(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId?: string;
 }): Promise<boolean> {
   const catalog = await loadModelCatalog({ config: params.cfg });

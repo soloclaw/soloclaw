@@ -4,7 +4,7 @@ import { resolveSessionAgentId } from "../../agents/agent-scope.js";
 import { resolvePathFromInput, toRelativeWorkspacePath } from "../../agents/path-policy.js";
 import { assertMediaNotDataUrl, resolveSandboxedMediaSource } from "../../agents/sandbox-paths.js";
 import { ensureSandboxWorkspaceForSession } from "../../agents/sandbox.js";
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import { logVerbose } from "../../globals.js";
 import { isPassThroughRemoteMediaSource } from "../../media/media-source-url.js";
 import { resolveOutboundAttachmentFromUrl } from "../../media/outbound-attachment.js";
@@ -48,7 +48,7 @@ function getPayloadMediaList(payload: ReplyPayload): string[] {
 }
 
 function resolveReplyMediaMaxBytes(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   channel?: string;
   accountId?: string;
 }): number {
@@ -80,7 +80,7 @@ function resolveReplyMediaMaxBytes(params: {
 }
 
 export function createReplyMediaPathNormalizer(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   sessionKey?: string;
   workspaceDir: string;
   messageProvider?: string;

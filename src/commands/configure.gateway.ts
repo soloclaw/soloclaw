@@ -1,5 +1,5 @@
 import { resolveGatewayPort } from "../config/config.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { isValidEnvSecretRefId, type SecretInput } from "../config/types.secrets.js";
 import {
   maybeAddTailnetOriginToControlUiAllowedOrigins,
@@ -27,10 +27,10 @@ type GatewayAuthChoice = "token" | "password" | "trusted-proxy";
 type GatewayTokenInputMode = "plaintext" | "ref";
 
 export async function promptGatewayConfig(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   runtime: RuntimeEnv,
 ): Promise<{
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   port: number;
   token?: string;
 }> {

@@ -1,6 +1,6 @@
 import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
 import type {
-  OpenClawConfig,
+  SoloClawConfig,
   SecretInput,
   SecretInputMode,
 } from "soloclaw/plugin-sdk/provider-auth";
@@ -44,7 +44,7 @@ type OllamaSetupOptions = {
 };
 
 type OllamaSetupResult = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   credential: SecretInput;
   credentialMode?: SecretInputMode;
 };
@@ -299,7 +299,7 @@ async function pullOllamaModelNonInteractive(
 }
 
 async function promptForOllamaCloudCredential(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   env?: NodeJS.ProcessEnv;
   opts?: Record<string, unknown>;
   prompter: WizardPrompter;
@@ -373,12 +373,12 @@ function mergeUniqueModelNames(...groups: string[][]): string[] {
 }
 
 function applyOllamaProviderConfig(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   baseUrl: string,
   modelNames: string[],
   discoveredModelsByName?: Map<string, OllamaModelWithContext>,
   apiKey: SecretInput = "OLLAMA_API_KEY",
-): OpenClawConfig {
+): SoloClawConfig {
   return {
     ...cfg,
     models: {
@@ -438,7 +438,7 @@ async function resolveHostBackedSuggestedModelNames(params: {
 }
 
 async function promptAndConfigureHostBackedOllama(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   mode: HostBackedOllamaInteractiveMode;
   prompter: WizardPrompter;
 }): Promise<OllamaSetupResult> {
@@ -496,7 +496,7 @@ export async function buildOllamaProvider(
 }
 
 export async function promptAndConfigureOllama(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   env?: NodeJS.ProcessEnv;
   opts?: Record<string, unknown>;
   prompter: WizardPrompter;
@@ -544,11 +544,11 @@ export async function promptAndConfigureOllama(params: {
 }
 
 export async function configureOllamaNonInteractive(params: {
-  nextConfig: OpenClawConfig;
+  nextConfig: SoloClawConfig;
   opts: OllamaSetupOptions;
   runtime: RuntimeEnv;
   agentDir?: string;
-}): Promise<OpenClawConfig> {
+}): Promise<SoloClawConfig> {
   const baseUrl = resolveOllamaApiBase(
     (params.opts.customBaseUrl?.trim() || OLLAMA_DEFAULT_BASE_URL).replace(/\/+$/, ""),
   );
@@ -632,7 +632,7 @@ export async function configureOllamaNonInteractive(params: {
 }
 
 export async function ensureOllamaModelPulled(params: {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   model: string;
   prompter: WizardPrompter;
 }): Promise<void> {

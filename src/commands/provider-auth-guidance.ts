@@ -1,6 +1,6 @@
 import { normalizeProviderId } from "../agents/model-selection.js";
 import { formatCliCommand } from "../cli/command-format.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { resolvePluginProviders } from "../plugins/providers.runtime.js";
 
 function matchesProviderId(
@@ -19,7 +19,7 @@ function matchesProviderId(
 
 export function resolveProviderAuthLoginCommand(params: {
   provider: string;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   workspaceDir?: string;
   env?: NodeJS.ProcessEnv;
 }): string | undefined {
@@ -37,7 +37,7 @@ export function resolveProviderAuthLoginCommand(params: {
 
 export function buildProviderAuthRecoveryHint(params: {
   provider: string;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   workspaceDir?: string;
   env?: NodeJS.ProcessEnv;
   includeConfigure?: boolean;

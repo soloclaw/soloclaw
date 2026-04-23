@@ -81,7 +81,7 @@ describe("resolveApiKeyForProfile fallback to main agent", () => {
     await fs.mkdir(mainAgentDir, { recursive: true });
     await fs.mkdir(secondaryAgentDir, { recursive: true });
 
-    // Set environment variables so resolveOpenClawAgentDir() returns mainAgentDir
+    // Set environment variables so resolveSoloClawAgentDir() returns mainAgentDir
     process.env.SOLOCLAW_STATE_DIR = tmpDir;
     process.env.SOLOCLAW_AGENT_DIR = mainAgentDir;
     process.env.PI_CODING_AGENT_DIR = mainAgentDir;

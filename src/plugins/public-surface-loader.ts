@@ -122,7 +122,7 @@ function getSharedBundledPublicSurfaceJiti(modulePath: string, tryNative: boolea
   if (
     !isBundledPluginExtensionPath({
       modulePath,
-      openClawPackageRoot: SOLOCLAW_PACKAGE_ROOT,
+      soloClawPackageRoot: SOLOCLAW_PACKAGE_ROOT,
       ...(bundledPluginsDir ? { bundledPluginsDir } : {}),
     })
   ) {

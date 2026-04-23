@@ -221,7 +221,7 @@ ${theme.muted("Docs:")} ${formatDocsLink("/cli/agent", "docs.soloclaw.ai/cli/age
         `
 ${theme.heading("Examples:")}
 ${formatHelpExamples([
-  ['soloclaw agents set-identity --agent main --name "OpenClaw" --emoji "🦞"', "Set name + emoji."],
+  ['soloclaw agents set-identity --agent main --name "SoloClaw" --emoji "🦞"', "Set name + emoji."],
   ["soloclaw agents set-identity --agent main --avatar avatars/openclaw.png", "Set avatar path."],
   [
     "soloclaw agents set-identity --workspace ~/.soloclaw/workspace --from-identity",

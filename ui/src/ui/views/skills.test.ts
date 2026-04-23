@@ -140,7 +140,7 @@ describe("renderSkills", () => {
               score: 0.95,
               slug: "github",
               displayName: "GitHub",
-              summary: "GitHub integration for OpenClaw",
+              summary: "GitHub integration for SoloClaw",
               version: "1.2.3",
             },
           ],
@@ -154,7 +154,7 @@ describe("renderSkills", () => {
 
     let text = normalizeText(container);
     expect(text).toContain("GitHub");
-    expect(text).toContain("GitHub integration for OpenClaw");
+    expect(text).toContain("GitHub integration for SoloClaw");
     expect(text).toContain("v1.2.3");
 
     container.querySelector<HTMLElement>(".list-item")?.click();
@@ -180,7 +180,7 @@ describe("renderSkills", () => {
             skill: {
               slug: "github",
               displayName: "GitHub",
-              summary: "GitHub integration for OpenClaw",
+              summary: "GitHub integration for SoloClaw",
               createdAt: 1_700_000_000,
               updatedAt: 1_700_000_100,
             },
@@ -193,7 +193,7 @@ describe("renderSkills", () => {
               os: ["macos", "linux"],
             },
             owner: {
-              displayName: "OpenClaw",
+              displayName: "SoloClaw",
               handle: "soloclaw",
             },
           },

@@ -15,10 +15,10 @@ import {
   revokeDeviceBootstrapToken,
   resolveGatewayBindUrl,
   resolveGatewayPort,
-  resolvePreferredOpenClawTmpDir,
+  resolvePreferredSoloClawTmpDir,
   runPluginCommandWithTimeout,
   resolveTailnetHostWithRunner,
-  type OpenClawPluginApi,
+  type SoloClawPluginApi,
 } from "./api.js";
 import {
   armPairNotifyOnce,
@@ -42,7 +42,7 @@ async function renderQrDataUrl(data: string): Promise<string> {
 
 async function writeQrPngTempFile(data: string): Promise<string> {
   const pngBase64 = await renderQrPngBase64(data);
-  const tmpRoot = resolvePreferredOpenClawTmpDir();
+  const tmpRoot = resolvePreferredSoloClawTmpDir();
   const qrDir = await mkdtemp(path.join(tmpRoot, "device-pair-qr-"));
   const filePath = path.join(qrDir, "pair-qr.png");
   await writeFile(filePath, Buffer.from(pngBase64, "base64"));
@@ -173,7 +173,7 @@ function parseNormalizedGatewayUrl(raw: string): string | null {
 }
 
 function resolveScheme(
-  cfg: OpenClawPluginApi["config"],
+  cfg: SoloClawPluginApi["config"],
   opts?: { forceSecure?: boolean },
 ): "ws" | "wss" {
   if (opts?.forceSecure) {
@@ -263,7 +263,7 @@ async function resolveTailnetHost(): Promise<string | null> {
   );
 }
 
-function resolveAuthLabel(cfg: OpenClawPluginApi["config"]): ResolveAuthLabelResult {
+function resolveAuthLabel(cfg: SoloClawPluginApi["config"]): ResolveAuthLabelResult {
   const mode = cfg.gateway?.auth?.mode;
   const token =
     pickFirstDefined([process.env.SOLOCLAW_GATEWAY_TOKEN, cfg.gateway?.auth?.token]) ?? undefined;
@@ -307,7 +307,7 @@ function resolveRequiredAuthLabel(
     : { error: "Gateway auth is set to password, but no password is configured." };
 }
 
-async function resolveGatewayUrl(api: OpenClawPluginApi): Promise<ResolveUrlResult> {
+async function resolveGatewayUrl(api: SoloClawPluginApi): Promise<ResolveUrlResult> {
   const cfg = api.config;
   const pluginCfg = (api.pluginConfig ?? {}) as DevicePairPluginConfig;
   const scheme = resolveScheme(cfg);
@@ -521,7 +521,7 @@ async function issueSetupPayload(url: string): Promise<SetupPayload> {
 }
 
 async function sendQrPngToSupportedChannel(params: {
-  api: OpenClawPluginApi;
+  api: SoloClawPluginApi;
   ctx: QrCommandContext;
   target: string;
   caption: string;
@@ -556,7 +556,7 @@ export default definePluginEntry({
   id: "device-pair",
   name: "Device Pair",
   description: "QR/bootstrap pairing helpers for SoloClaw devices",
-  register(api: OpenClawPluginApi) {
+  register(api: SoloClawPluginApi) {
     registerPairingNotifierService(api);
 
     api.registerCommand({

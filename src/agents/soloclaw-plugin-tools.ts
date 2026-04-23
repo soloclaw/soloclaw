@@ -1,15 +1,15 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { resolvePluginTools } from "../plugins/tools.js";
 import { getActiveSecretsRuntimeSnapshot } from "../secrets/runtime.js";
 import { normalizeDeliveryContext } from "../utils/delivery-context.js";
 import {
-  resolveOpenClawPluginToolInputs,
-  type OpenClawPluginToolOptions,
+  resolveSoloClawPluginToolInputs,
+  type SoloClawPluginToolOptions,
 } from "./soloclaw-tools.plugin-context.js";
 import { applyPluginToolDeliveryDefaults } from "./plugin-tool-delivery-defaults.js";
 import type { AnyAgentTool } from "./tools/common.js";
 
-type ResolveOpenClawPluginToolsOptions = OpenClawPluginToolOptions & {
+type ResolveSoloClawPluginToolsOptions = SoloClawPluginToolOptions & {
   pluginToolAllowlist?: string[];
   currentChannelId?: string;
   currentThreadTs?: string;
@@ -24,9 +24,9 @@ type ResolveOpenClawPluginToolsOptions = OpenClawPluginToolOptions & {
   disablePluginTools?: boolean;
 };
 
-export function resolveOpenClawPluginToolsForOptions(params: {
-  options?: ResolveOpenClawPluginToolsOptions;
-  resolvedConfig?: OpenClawConfig;
+export function resolveSoloClawPluginToolsForOptions(params: {
+  options?: ResolveSoloClawPluginToolsOptions;
+  resolvedConfig?: SoloClawConfig;
   existingToolNames?: Set<string>;
 }): AnyAgentTool[] {
   if (params.options?.disablePluginTools) {
@@ -42,7 +42,7 @@ export function resolveOpenClawPluginToolsForOptions(params: {
   });
 
   const pluginTools = resolvePluginTools({
-    ...resolveOpenClawPluginToolInputs({
+    ...resolveSoloClawPluginToolInputs({
       options: params.options,
       resolvedConfig: params.resolvedConfig,
       runtimeConfig: runtimeSnapshot?.config,

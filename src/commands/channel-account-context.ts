@@ -1,7 +1,7 @@
 import { resolveChannelDefaultAccountId } from "../channels/plugins/helpers.js";
 import type { ChannelPlugin } from "../channels/plugins/types.plugin.js";
 import { inspectReadOnlyChannelAccount } from "../channels/read-only-account-inspect.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { formatErrorMessage } from "../infra/errors.js";
 import { isRecord } from "../utils.js";
 
@@ -41,7 +41,7 @@ function formatContextDiagnostic(params: {
 
 export async function resolveDefaultChannelAccountContext(
   plugin: ChannelPlugin,
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   options?: { mode?: ChannelAccountContextMode; commandName?: string },
 ): Promise<ChannelDefaultAccountContext> {
   const mode = options?.mode ?? "strict";

@@ -13,14 +13,14 @@ export type {
 } from "soloclaw/plugin-sdk/channel-contract";
 export type {
   ChannelPlugin,
-  OpenClawPluginApi,
+  SoloClawPluginApi,
   PluginRuntime,
 } from "soloclaw/plugin-sdk/channel-plugin-common";
 export type {
   DiscordAccountConfig,
   DiscordActionConfig,
   DiscordConfig,
-  OpenClawConfig,
+  SoloClawConfig,
 } from "soloclaw/plugin-sdk/config-runtime";
 export {
   jsonResult,

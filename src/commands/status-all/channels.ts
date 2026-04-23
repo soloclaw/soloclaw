@@ -17,7 +17,7 @@ import type {
   ChannelPlugin,
 } from "../../channels/plugins/types.public.js";
 import { inspectReadOnlyChannelAccount } from "../../channels/read-only-account-inspect.js";
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import { asRecord } from "../../shared/record-coerce.js";
 import { normalizeOptionalString } from "../../shared/string-coerce.js";
 import {
@@ -41,8 +41,8 @@ type ChannelAccountRow = ChannelAccountTokenSummaryRow & {
 
 type ResolvedChannelAccountRowParams = {
   plugin: ChannelPlugin;
-  cfg: OpenClawConfig;
-  sourceConfig: OpenClawConfig;
+  cfg: SoloClawConfig;
+  sourceConfig: SoloClawConfig;
   accountId: string;
 };
 
@@ -60,7 +60,7 @@ function existsSyncMaybe(p: string | undefined): boolean | null {
 
 async function inspectChannelAccount(
   plugin: ChannelPlugin,
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   accountId: string,
 ) {
   return (
@@ -127,7 +127,7 @@ const formatAccountLabel = (params: { accountId: string; name?: string }) => {
 
 const buildAccountNotes = (params: {
   plugin: ChannelPlugin;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   entry: ChannelAccountRow;
 }) => {
   const { plugin, cfg, entry } = params;
@@ -227,8 +227,8 @@ function collectMissingPaths(accounts: ChannelAccountRow[]): string[] {
 // `status --all` channels table.
 // Keep this generic: channel-specific rules belong in the channel plugin.
 export async function buildChannelsTable(
-  cfg: OpenClawConfig,
-  opts?: { showSecrets?: boolean; sourceConfig?: OpenClawConfig },
+  cfg: SoloClawConfig,
+  opts?: { showSecrets?: boolean; sourceConfig?: SoloClawConfig },
 ): Promise<{
   rows: ChannelRow[];
   details: Array<{

@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { SoloClawConfig } from "../config/config.js";
 import type { DeviceIdentity } from "../infra/device-identity.js";
 import { captureEnv } from "../test-utils/env.js";
 import { GATEWAY_CLIENT_MODES, GATEWAY_CLIENT_NAMES } from "../utils/message-channel.js";
@@ -137,9 +137,9 @@ function resetGatewayCallMocks() {
   closeCode = 1006;
   closeReason = "";
   helloMethods = ["health", "secrets.resolve"];
-  const loadConfigForTests = loadConfig as unknown as () => OpenClawConfig;
+  const loadConfigForTests = loadConfig as unknown as () => SoloClawConfig;
   const resolveGatewayPortForTests = resolveGatewayPort as unknown as (
-    cfg?: OpenClawConfig,
+    cfg?: SoloClawConfig,
     env?: NodeJS.ProcessEnv,
   ) => number;
   __testing.setDepsForTests({
@@ -362,7 +362,7 @@ describe("callGateway url resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
     resolveGatewayPort.mockReturnValue(18789);
     pickPrimaryTailnetIPv4.mockReturnValue(undefined);
     process.env.SOLOCLAW_GATEWAY_URL = "wss://gateway-in-container.internal:9443/ws";
@@ -502,10 +502,10 @@ describe("callGateway url resolution", () => {
           },
           stop() {},
         }) as never,
-      loadConfig: loadConfig as unknown as () => OpenClawConfig,
+      loadConfig: loadConfig as unknown as () => SoloClawConfig,
       loadOrCreateDeviceIdentity: () => deviceIdentityState.value,
       resolveGatewayPort: resolveGatewayPort as unknown as (
-        cfg?: OpenClawConfig,
+        cfg?: SoloClawConfig,
         env?: NodeJS.ProcessEnv,
       ) => number,
     });
@@ -978,7 +978,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await callGateway({ method: "health" });
 
@@ -1001,7 +1001,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await callGateway({ method: "health" });
 
@@ -1024,7 +1024,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await callGateway({ method: "health" });
 
@@ -1047,7 +1047,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await callGateway({ method: "health" });
 
@@ -1074,7 +1074,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await expect(callGateway({ method: "health" })).rejects.toThrow("gateway.auth.token");
   });
@@ -1096,7 +1096,7 @@ describe("callGateway password resolution", () => {
             default: { source: "env" },
           },
         },
-      } as unknown as OpenClawConfig);
+      } as unknown as SoloClawConfig);
 
       await callGateway({ method: "health" });
 
@@ -1124,7 +1124,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await callGateway({ method: "health" });
 
@@ -1148,7 +1148,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await callGateway({ method: "health" });
 
@@ -1172,7 +1172,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await callGateway({ method: "health" });
 
@@ -1196,7 +1196,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await callGateway({ method: "health" });
 
@@ -1222,7 +1222,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await callGateway({ method: "health" });
 
@@ -1247,7 +1247,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await callGateway({ method: "health" });
 
@@ -1272,7 +1272,7 @@ describe("callGateway password resolution", () => {
           default: { source: "env" },
         },
       },
-    } as unknown as OpenClawConfig);
+    } as unknown as SoloClawConfig);
 
     await callGateway({ method: "health" });
 
@@ -1299,7 +1299,7 @@ describe("callGateway password resolution", () => {
             default: { source: "env" },
           },
         },
-      } as unknown as OpenClawConfig);
+      } as unknown as SoloClawConfig);
 
       await callGateway({ method: "health" });
 

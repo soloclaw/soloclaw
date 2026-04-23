@@ -48,17 +48,17 @@ describe("formatSystemRunAllowlistMissMessage", () => {
 
 describe("handleSystemRunInvoke mac app exec host routing", () => {
   let sharedFixtureRoot = "";
-  let sharedOpenClawHome = "";
+  let sharedSoloClawHome = "";
   let sharedRuntimeBinDir = "";
   let sharedFixtureId = 0;
-  let previousOpenClawHome: string | undefined;
+  let previousSoloClawHome: string | undefined;
   const sharedRuntimeBins = new Set<string>();
 
   beforeAll(() => {
     sharedFixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-node-host-fixtures-"));
-    sharedOpenClawHome = path.join(sharedFixtureRoot, "openclaw-home");
+    sharedSoloClawHome = path.join(sharedFixtureRoot, "openclaw-home");
     sharedRuntimeBinDir = path.join(sharedFixtureRoot, "bin");
-    fs.mkdirSync(sharedOpenClawHome, { recursive: true });
+    fs.mkdirSync(sharedSoloClawHome, { recursive: true });
     fs.mkdirSync(sharedRuntimeBinDir, { recursive: true });
   });
 
@@ -75,18 +75,18 @@ describe("handleSystemRunInvoke mac app exec host routing", () => {
   }
 
   beforeEach(() => {
-    previousOpenClawHome = process.env.SOLOCLAW_HOME;
-    process.env.SOLOCLAW_HOME = sharedOpenClawHome;
+    previousSoloClawHome = process.env.SOLOCLAW_HOME;
+    process.env.SOLOCLAW_HOME = sharedSoloClawHome;
     fs.rmSync(resolveExecApprovalsPath(), { force: true });
     clearRuntimeConfigSnapshot();
   });
 
   afterEach(() => {
     clearRuntimeConfigSnapshot();
-    if (previousOpenClawHome === undefined) {
+    if (previousSoloClawHome === undefined) {
       delete process.env.SOLOCLAW_HOME;
     } else {
-      process.env.SOLOCLAW_HOME = previousOpenClawHome;
+      process.env.SOLOCLAW_HOME = previousSoloClawHome;
     }
   });
 
@@ -273,17 +273,17 @@ describe("handleSystemRunInvoke mac app exec host routing", () => {
     approvals: Parameters<typeof saveExecApprovals>[0];
     run: (ctx: { tempHome: string }) => Promise<T>;
   }): Promise<T> {
-    const tempHome = sharedOpenClawHome;
-    const previousOpenClawHome = process.env.SOLOCLAW_HOME;
+    const tempHome = sharedSoloClawHome;
+    const previousSoloClawHome = process.env.SOLOCLAW_HOME;
     process.env.SOLOCLAW_HOME = tempHome;
     saveExecApprovals(params.approvals);
     try {
       return await params.run({ tempHome });
     } finally {
-      if (previousOpenClawHome === undefined) {
+      if (previousSoloClawHome === undefined) {
         delete process.env.SOLOCLAW_HOME;
       } else {
-        process.env.SOLOCLAW_HOME = previousOpenClawHome;
+        process.env.SOLOCLAW_HOME = previousSoloClawHome;
       }
     }
   }

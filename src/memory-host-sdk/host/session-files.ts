@@ -204,7 +204,7 @@ function collectRawSessionText(content: unknown): string | null {
 }
 
 /**
- * Strip OpenClaw-injected inbound metadata envelopes from a raw text block.
+ * Strip SoloClaw-injected inbound metadata envelopes from a raw text block.
  *
  * User-role messages arriving from external channels (Telegram, Discord,
  * Slack, …) are stored with a multi-line prefix containing Conversation info,

@@ -110,7 +110,7 @@ export type ProviderRequestCapabilities = ProviderRequestPolicyResolution & {
   compatibilityFamily?: ProviderRequestCompatibilityFamily;
 };
 
-const SOLOCLAW_ATTRIBUTION_PRODUCT = "OpenClaw";
+const SOLOCLAW_ATTRIBUTION_PRODUCT = "SoloClaw";
 const SOLOCLAW_ATTRIBUTION_ORIGINATOR = "soloclaw";
 
 const LOCAL_ENDPOINT_HOSTS = new Set(["localhost", "127.0.0.1", "::1", "[::1]"]);
@@ -132,7 +132,7 @@ const OPENAI_RESPONSES_APIS = new Set([
 const OPENAI_RESPONSES_PROVIDERS = new Set(["openai", "azure-openai", "azure-openai-responses"]);
 const MOONSHOT_COMPAT_PROVIDERS = new Set(["moonshot", "kimi"]);
 
-function formatOpenClawUserAgent(version: string): string {
+function formatSoloClawUserAgent(version: string): string {
   return `${SOLOCLAW_ATTRIBUTION_ORIGINATOR}/${version}`;
 }
 
@@ -370,7 +370,7 @@ function buildOpenAIAttributionPolicy(
     headers: {
       originator: SOLOCLAW_ATTRIBUTION_ORIGINATOR,
       version: identity.version,
-      "User-Agent": formatOpenClawUserAgent(identity.version),
+      "User-Agent": formatSoloClawUserAgent(identity.version),
     },
   };
 }
@@ -390,7 +390,7 @@ function buildOpenAICodexAttributionPolicy(
     headers: {
       originator: SOLOCLAW_ATTRIBUTION_ORIGINATOR,
       version: identity.version,
-      "User-Agent": formatOpenClawUserAgent(identity.version),
+      "User-Agent": formatSoloClawUserAgent(identity.version),
     },
   };
 }

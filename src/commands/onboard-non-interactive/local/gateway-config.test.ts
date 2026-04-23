@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../../config/types.soloclaw.js";
 import type { OnboardOptions } from "../../onboard-types.js";
 import { applyNonInteractiveGatewayConfig } from "./gateway-config.js";
 
@@ -61,7 +61,7 @@ describe("applyNonInteractiveGatewayConfig token resolution chain", () => {
   it("preserves existing plaintext gateway.auth.token when no flag or env override is provided", () => {
     const nextConfig = {
       gateway: { auth: { mode: "token", token: "existing-user-token" } },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     const result = applyNonInteractiveGatewayConfig({
       nextConfig,
@@ -80,7 +80,7 @@ describe("applyNonInteractiveGatewayConfig token resolution chain", () => {
     process.env.SOLOCLAW_GATEWAY_TOKEN = "stale-env-token";
     const nextConfig = {
       gateway: { auth: { mode: "token", token: "existing-user-token" } },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     const result = applyNonInteractiveGatewayConfig({
       nextConfig,
@@ -96,7 +96,7 @@ describe("applyNonInteractiveGatewayConfig token resolution chain", () => {
   it("prefers --gateway-token flag over existing plaintext token", () => {
     const nextConfig = {
       gateway: { auth: { mode: "token", token: "existing-user-token" } },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     const result = applyNonInteractiveGatewayConfig({
       nextConfig,
@@ -113,7 +113,7 @@ describe("applyNonInteractiveGatewayConfig token resolution chain", () => {
     process.env.SOLOCLAW_GATEWAY_TOKEN = "env-token";
 
     const result = applyNonInteractiveGatewayConfig({
-      nextConfig: {} as OpenClawConfig,
+      nextConfig: {} as SoloClawConfig,
       opts: baseOpts,
       runtime: createRuntime() as never,
       defaultPort: 18789,
@@ -125,7 +125,7 @@ describe("applyNonInteractiveGatewayConfig token resolution chain", () => {
 
   it("generates a random token only when flag, env, and existing config are all empty", () => {
     const result = applyNonInteractiveGatewayConfig({
-      nextConfig: {} as OpenClawConfig,
+      nextConfig: {} as SoloClawConfig,
       opts: baseOpts,
       runtime: createRuntime() as never,
       defaultPort: 18789,
@@ -140,7 +140,7 @@ describe("applyNonInteractiveGatewayConfig token resolution chain", () => {
   it("preserves an existing SecretRef when no flag or env override is provided", () => {
     const nextConfig = {
       gateway: { auth: { mode: "token", token: SAMPLE_SECRET_REF } },
-    } as unknown as OpenClawConfig;
+    } as unknown as SoloClawConfig;
 
     const result = applyNonInteractiveGatewayConfig({
       nextConfig,
@@ -158,7 +158,7 @@ describe("applyNonInteractiveGatewayConfig token resolution chain", () => {
     process.env.SOLOCLAW_GATEWAY_TOKEN = "stale-env-token";
     const nextConfig = {
       gateway: { auth: { mode: "token", token: SAMPLE_SECRET_REF } },
-    } as unknown as OpenClawConfig;
+    } as unknown as SoloClawConfig;
 
     const result = applyNonInteractiveGatewayConfig({
       nextConfig,
@@ -175,7 +175,7 @@ describe("applyNonInteractiveGatewayConfig token resolution chain", () => {
     process.env[SAMPLE_SECRET_REF.id] = "resolved-secret-value";
     const nextConfig = {
       gateway: { auth: { mode: "token", token: SAMPLE_SECRET_REF } },
-    } as unknown as OpenClawConfig;
+    } as unknown as SoloClawConfig;
 
     const result = applyNonInteractiveGatewayConfig({
       nextConfig,
@@ -191,7 +191,7 @@ describe("applyNonInteractiveGatewayConfig token resolution chain", () => {
   it("overrides an existing SecretRef when --gateway-token flag is provided", () => {
     const nextConfig = {
       gateway: { auth: { mode: "token", token: SAMPLE_SECRET_REF } },
-    } as unknown as OpenClawConfig;
+    } as unknown as SoloClawConfig;
 
     const result = applyNonInteractiveGatewayConfig({
       nextConfig,
@@ -210,7 +210,7 @@ describe("applyNonInteractiveGatewayConfig token resolution chain", () => {
     try {
       const nextConfig = {
         gateway: { auth: { mode: "token", token: SAMPLE_SECRET_REF } },
-      } as unknown as OpenClawConfig;
+      } as unknown as SoloClawConfig;
 
       const result = applyNonInteractiveGatewayConfig({
         nextConfig,
@@ -232,7 +232,7 @@ describe("applyNonInteractiveGatewayConfig token resolution chain", () => {
     const runtime = createRuntime();
 
     const result = applyNonInteractiveGatewayConfig({
-      nextConfig: {} as OpenClawConfig,
+      nextConfig: {} as SoloClawConfig,
       opts: { gatewayTokenRefEnv: "MISSING_GATEWAY_TOKEN_ENV" } as OnboardOptions,
       runtime: runtime as never,
       defaultPort: 18789,

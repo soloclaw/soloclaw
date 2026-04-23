@@ -1,7 +1,7 @@
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 
 export function buildEmbeddedMessageActionDiscoveryInput(params: {
-  cfg?: OpenClawConfig;
+  cfg?: SoloClawConfig;
   channel: string;
   currentChannelId?: string | null;
   currentThreadTs?: string | null;

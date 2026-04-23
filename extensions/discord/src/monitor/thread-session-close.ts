@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { resolveStorePath, updateSessionStore } from "soloclaw/plugin-sdk/config-runtime";
 import { normalizeOptionalLowercaseString } from "soloclaw/plugin-sdk/text-runtime";
 
@@ -12,7 +12,7 @@ import { normalizeOptionalLowercaseString } from "soloclaw/plugin-sdk/text-runti
  * any on-disk transcript history.
  */
 export async function closeDiscordThreadSessions(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId: string;
   threadId: string;
 }): Promise<number> {

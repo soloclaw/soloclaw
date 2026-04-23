@@ -1,7 +1,7 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 
 export type CancelAcpSessionAdmin = (params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   sessionKey: string;
   reason: string;
 }) => Promise<void>;
@@ -16,7 +16,7 @@ export type KillSubagentRunAdminResult = {
 };
 
 export type KillSubagentRunAdmin = (params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   sessionKey: string;
 }) => Promise<KillSubagentRunAdminResult>;
 

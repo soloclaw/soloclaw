@@ -1,7 +1,7 @@
 import { isRecord } from "../utils.js";
 import { readSourceConfigSnapshot } from "./io.js";
 import { replaceConfigFile } from "./mutate.js";
-import type { OpenClawConfig } from "./types.soloclaw.js";
+import type { SoloClawConfig } from "./types.soloclaw.js";
 import { validateConfigObjectWithPlugins } from "./validation.js";
 
 export type ConfigMcpServers = Record<string, Record<string, unknown>>;
@@ -10,7 +10,7 @@ type ConfigMcpReadResult =
   | {
       ok: true;
       path: string;
-      config: OpenClawConfig;
+      config: SoloClawConfig;
       mcpServers: ConfigMcpServers;
       baseHash?: string;
     }
@@ -20,7 +20,7 @@ type ConfigMcpWriteResult =
   | {
       ok: true;
       path: string;
-      config: OpenClawConfig;
+      config: SoloClawConfig;
       mcpServers: ConfigMcpServers;
       removed?: boolean;
     }

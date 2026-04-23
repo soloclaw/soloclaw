@@ -6,7 +6,7 @@ import { resolveSessionTranscriptPath, resolveStorePath } from "../../config/ses
 import { resolveSessionKey } from "../../config/sessions/session-key.js";
 import { loadSessionStore } from "../../config/sessions/store.js";
 import type { SessionEntry, SessionScope } from "../../config/sessions/types.js";
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import {
   normalizeOptionalLowercaseString,
   normalizeOptionalString,
@@ -20,7 +20,7 @@ import type { SessionInitResult } from "./session.js";
 const COMPLETE_REPLY_CONFIG_SYMBOL = Symbol.for("openclaw.reply.complete-config");
 const FULL_REPLY_RUNTIME_SYMBOL = Symbol.for("openclaw.reply.full-runtime");
 
-type ReplyConfigWithMarker = OpenClawConfig & {
+type ReplyConfigWithMarker = SoloClawConfig & {
   [COMPLETE_REPLY_CONFIG_SYMBOL]?: true;
   [FULL_REPLY_RUNTIME_SYMBOL]?: true;
 };
@@ -56,7 +56,7 @@ function markReplyConfigRuntimeMode(
   });
 }
 
-export function markCompleteReplyConfig<T extends OpenClawConfig>(
+export function markCompleteReplyConfig<T extends SoloClawConfig>(
   config: T,
   options?: { runtimeMode?: "fast" | "full" },
 ): T {
@@ -69,15 +69,15 @@ export function markCompleteReplyConfig<T extends OpenClawConfig>(
   return config;
 }
 
-export function withFastReplyConfig<T extends OpenClawConfig>(config: T): T {
+export function withFastReplyConfig<T extends SoloClawConfig>(config: T): T {
   return markCompleteReplyConfig(config, { runtimeMode: "fast" });
 }
 
-export function withFullRuntimeReplyConfig<T extends OpenClawConfig>(config: T): T {
+export function withFullRuntimeReplyConfig<T extends SoloClawConfig>(config: T): T {
   return markCompleteReplyConfig(config, { runtimeMode: "full" });
 }
 
-export function isCompleteReplyConfig(config: unknown): config is OpenClawConfig {
+export function isCompleteReplyConfig(config: unknown): config is SoloClawConfig {
   return Boolean(
     config &&
     typeof config === "object" &&
@@ -94,10 +94,10 @@ export function usesFullReplyRuntime(config: unknown): boolean {
 }
 
 export function resolveGetReplyConfig(params: {
-  loadConfig: () => OpenClawConfig;
+  loadConfig: () => SoloClawConfig;
   isFastTestEnv: boolean;
-  configOverride?: OpenClawConfig;
-}): OpenClawConfig {
+  configOverride?: SoloClawConfig;
+}): SoloClawConfig {
   const { configOverride } = params;
   if (configOverride == null) {
     return params.loadConfig();
@@ -110,12 +110,12 @@ export function resolveGetReplyConfig(params: {
   if (params.isFastTestEnv && isCompleteReplyConfig(configOverride)) {
     return configOverride;
   }
-  return applyMergePatch(params.loadConfig(), configOverride) as OpenClawConfig;
+  return applyMergePatch(params.loadConfig(), configOverride) as SoloClawConfig;
 }
 
 export function shouldUseReplyFastTestBootstrap(params: {
   isFastTestEnv: boolean;
-  configOverride?: OpenClawConfig;
+  configOverride?: SoloClawConfig;
 }): boolean {
   return (
     params.isFastTestEnv &&
@@ -125,7 +125,7 @@ export function shouldUseReplyFastTestBootstrap(params: {
 }
 
 export function shouldUseReplyFastTestRuntime(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   isFastTestEnv: boolean;
 }): boolean {
   return (
@@ -153,7 +153,7 @@ export function shouldUseReplyFastDirectiveExecution(params: {
 
 export function buildFastReplyCommandContext(params: {
   ctx: MsgContext;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId?: string;
   sessionKey?: string;
   isGroup: boolean;
@@ -186,7 +186,7 @@ export function buildFastReplyCommandContext(params: {
 }
 
 export function shouldHandleFastReplyTextCommands(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   commandSource?: string;
 }): boolean {
   return params.commandSource === "native" || params.cfg.commands?.text !== false;
@@ -194,7 +194,7 @@ export function shouldHandleFastReplyTextCommands(params: {
 
 export function initFastReplySessionState(params: {
   ctx: MsgContext;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId: string;
   commandAuthorized: boolean;
   workspaceDir: string;

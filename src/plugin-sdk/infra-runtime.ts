@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import {
   drainPendingDeliveries as coreDrainPendingDeliveries,
   type DeliverFn,
@@ -43,7 +43,7 @@ export async function drainPendingDeliveries(opts: DrainPendingDeliveriesOptions
  */
 export async function drainReconnectQueue(opts: {
   accountId: string;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   log: RecoveryLogger;
   stateDir?: string;
   deliver?: DeliverFn;

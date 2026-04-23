@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { SoloClawConfig } from "../config/config.js";
 import { setLoggerOverride } from "../logging/logger.js";
 import { loggingState } from "../logging/state.js";
 import { stripAnsi } from "../terminal/ansi.js";
@@ -86,9 +86,9 @@ describe("loader", () => {
   }
 
   function withLegacyInternalHookHandlers(
-    config: OpenClawConfig,
+    config: SoloClawConfig,
     handlers?: Array<{ event: string; module: string; export?: string }>,
-  ): OpenClawConfig {
+  ): SoloClawConfig {
     if (!handlers) {
       return config;
     }
@@ -101,12 +101,12 @@ describe("loader", () => {
           handlers,
         },
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
   }
 
   function createEnabledHooksConfig(
     handlers?: Array<{ event: string; module: string; export?: string }>,
-  ): OpenClawConfig {
+  ): SoloClawConfig {
     return withLegacyInternalHookHandlers(
       {
         hooks: {
@@ -141,7 +141,7 @@ describe("loader", () => {
         },
       ]);
 
-    const expectNoCommandHookRegistration = async (cfg: OpenClawConfig) => {
+    const expectNoCommandHookRegistration = async (cfg: SoloClawConfig) => {
       const count = await loadInternalHooks(cfg, tmpDir);
       expect(count).toBe(0);
       expect(getRegisteredEventKeys()).not.toContain("command:new");
@@ -155,7 +155,7 @@ describe("loader", () => {
               enabled: false,
             },
           },
-        } satisfies OpenClawConfig,
+        } satisfies SoloClawConfig,
         withLegacyInternalHookHandlers(
           {
             hooks: {
@@ -163,7 +163,7 @@ describe("loader", () => {
                 enabled: false,
               },
             },
-          } satisfies OpenClawConfig,
+          } satisfies SoloClawConfig,
           [],
         ),
       ]) {
@@ -177,9 +177,9 @@ describe("loader", () => {
       // With no discoverable hooks in the temp dir (bundled dir is overridden
       // to /nonexistent), this returns 0 but does NOT bail at the guard.
       for (const cfg of [
-        {} satisfies OpenClawConfig,
-        { hooks: {} } satisfies OpenClawConfig,
-        { hooks: { internal: {} } } satisfies OpenClawConfig,
+        {} satisfies SoloClawConfig,
+        { hooks: {} } satisfies SoloClawConfig,
+        { hooks: { internal: {} } } satisfies SoloClawConfig,
       ]) {
         const count = await loadInternalHooks(cfg, tmpDir);
         expect(count).toBe(0);

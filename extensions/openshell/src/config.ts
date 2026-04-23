@@ -1,5 +1,5 @@
 import path from "node:path";
-import { buildPluginConfigSchema, type OpenClawPluginConfigSchema } from "soloclaw/plugin-sdk/core";
+import { buildPluginConfigSchema, type SoloClawPluginConfigSchema } from "soloclaw/plugin-sdk/core";
 import { z } from "soloclaw/plugin-sdk/zod";
 
 export type OpenShellPluginConfig = {
@@ -128,7 +128,7 @@ export function normalizeOpenShellRemotePath(
   return normalized;
 }
 
-export function createOpenShellPluginConfigSchema(): OpenClawPluginConfigSchema {
+export function createOpenShellPluginConfigSchema(): SoloClawPluginConfigSchema {
   return buildPluginConfigSchema(OpenShellPluginConfigSchema, {
     safeParse(value) {
       if (value === undefined) {

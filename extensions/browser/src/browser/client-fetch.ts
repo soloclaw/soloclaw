@@ -108,7 +108,7 @@ function isRateLimitStatus(status: number): boolean {
 function resolveBrowserFetchOperatorHint(url: string): string {
   const isLocal = !isAbsoluteHttp(url);
   return isLocal
-    ? `Restart the SoloClaw gateway (OpenClaw.app menubar, or \`${formatCliCommand("soloclaw gateway")}\`).`
+    ? `Restart the SoloClaw gateway (SoloClaw.app menubar, or \`${formatCliCommand("soloclaw gateway")}\`).`
     : "If this is a sandboxed session, ensure the sandbox browser is running.";
 }
 

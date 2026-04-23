@@ -1,15 +1,15 @@
-import type { OpenClawPluginApi } from "soloclaw/plugin-sdk/plugin-runtime";
+import type { SoloClawPluginApi } from "soloclaw/plugin-sdk/plugin-runtime";
 
-type TestPluginApiInput = Partial<OpenClawPluginApi>;
+type TestPluginApiInput = Partial<SoloClawPluginApi>;
 
-export function createTestPluginApi(api: TestPluginApiInput = {}): OpenClawPluginApi {
+export function createTestPluginApi(api: TestPluginApiInput = {}): SoloClawPluginApi {
   return {
     id: "test-plugin",
     name: "test-plugin",
     source: "test",
     registrationMode: "full",
     config: {},
-    runtime: {} as OpenClawPluginApi["runtime"],
+    runtime: {} as SoloClawPluginApi["runtime"],
     logger: { info() {}, warn() {}, error() {}, debug() {} },
     registerTool() {},
     registerHook() {},

@@ -262,7 +262,7 @@ describe("buildAgentSystemPrompt", () => {
     expect(prompt).toContain("Use `[embed ...]` only in Control UI/webchat sessions");
     expect(prompt).toContain('[embed ref="cv_123" title="Status" height="320" /]');
     expect(prompt).toContain(
-      '[embed url="/__openclaw__/canvas/documents/cv_123/index.html" title="Status" height="320" /]',
+      '[embed url="/__soloclaw__/canvas/documents/cv_123/index.html" title="Status" height="320" /]',
     );
     expect(prompt).toContain(
       "Never use local filesystem paths or `file://...` URLs in `[embed ...]`.",

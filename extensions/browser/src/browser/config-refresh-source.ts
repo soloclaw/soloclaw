@@ -1,5 +1,5 @@
-import { createConfigIO, getRuntimeConfigSnapshot, type OpenClawConfig } from "../config/config.js";
+import { createConfigIO, getRuntimeConfigSnapshot, type SoloClawConfig } from "../config/config.js";
 
-export function loadBrowserConfigForRuntimeRefresh(): OpenClawConfig {
+export function loadBrowserConfigForRuntimeRefresh(): SoloClawConfig {
   return getRuntimeConfigSnapshot() ?? createConfigIO().loadConfig();
 }

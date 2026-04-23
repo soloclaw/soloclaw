@@ -124,7 +124,7 @@ describe("augmentChatHistoryWithCanvasBlocks", () => {
       view: {
         backend: "canvas",
         id: "cv_user_text",
-        url: "/__openclaw__/canvas/documents/cv_user_text/index.html",
+        url: "/__soloclaw__/canvas/documents/cv_user_text/index.html",
         title: "User pasted preview",
         preferred_height: 240,
       },

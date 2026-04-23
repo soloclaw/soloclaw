@@ -1,5 +1,5 @@
 import type { AgentAcpBinding, AgentBinding, AgentRouteBinding } from "./types.agents.js";
-import type { OpenClawConfig } from "./types.soloclaw.js";
+import type { SoloClawConfig } from "./types.soloclaw.js";
 
 export type ConfiguredBindingRule = AgentBinding;
 
@@ -15,14 +15,14 @@ export function isAcpBinding(binding: AgentBinding): binding is AgentAcpBinding 
   return normalizeBindingType(binding) === "acp";
 }
 
-export function listConfiguredBindings(cfg: OpenClawConfig): AgentBinding[] {
+export function listConfiguredBindings(cfg: SoloClawConfig): AgentBinding[] {
   return Array.isArray(cfg.bindings) ? cfg.bindings : [];
 }
 
-export function listRouteBindings(cfg: OpenClawConfig): AgentRouteBinding[] {
+export function listRouteBindings(cfg: SoloClawConfig): AgentRouteBinding[] {
   return listConfiguredBindings(cfg).filter(isRouteBinding);
 }
 
-export function listAcpBindings(cfg: OpenClawConfig): AgentAcpBinding[] {
+export function listAcpBindings(cfg: SoloClawConfig): AgentAcpBinding[] {
   return listConfiguredBindings(cfg).filter(isAcpBinding);
 }

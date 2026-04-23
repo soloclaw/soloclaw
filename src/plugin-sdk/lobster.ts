@@ -4,7 +4,7 @@
 export { definePluginEntry } from "./plugin-entry.js";
 export type {
   AnyAgentTool,
-  OpenClawPluginApi,
-  OpenClawPluginToolContext,
-  OpenClawPluginToolFactory,
+  SoloClawPluginApi,
+  SoloClawPluginToolContext,
+  SoloClawPluginToolFactory,
 } from "../plugins/types.js";

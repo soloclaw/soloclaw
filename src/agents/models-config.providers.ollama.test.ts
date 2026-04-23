@@ -2,7 +2,7 @@ import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { SoloClawConfig } from "../config/config.js";
 import type { ModelDefinitionConfig } from "../config/types.models.js";
 import {
   normalizePluginDiscoveryResult,
@@ -66,7 +66,7 @@ describe("Ollama provider", () => {
   }
 
   async function runOllamaCatalog(params: {
-    config?: OpenClawConfig;
+    config?: SoloClawConfig;
     env?: NodeJS.ProcessEnv;
   }): Promise<ProviderConfig | undefined> {
     const provider = loadOllamaCatalogProvider();

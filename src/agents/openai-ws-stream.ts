@@ -467,10 +467,10 @@ function resolveNativeOpenAITransportTurnState(params: {
       "x-openclaw-turn-attempt": attempt,
     },
     metadata: {
-      openclaw_session_id: sessionHeaders["x-openclaw-session-id"] ?? "",
-      openclaw_turn_id: turnId,
-      openclaw_turn_attempt: attempt,
-      openclaw_transport: params.transport,
+      soloclaw_session_id: sessionHeaders["x-openclaw-session-id"] ?? "",
+      soloclaw_turn_id: turnId,
+      soloclaw_turn_attempt: attempt,
+      soloclaw_transport: params.transport,
     },
   };
 }

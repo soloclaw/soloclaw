@@ -106,10 +106,10 @@ export {
   wrapExternalContent,
 } from "soloclaw/plugin-sdk/browser-security-runtime";
 export type { AnyAgentTool, NodeListNode } from "soloclaw/plugin-sdk/browser-setup-tools";
-export type { OpenClawConfig } from "soloclaw/plugin-sdk/browser-config-runtime";
+export type { SoloClawConfig } from "soloclaw/plugin-sdk/browser-config-runtime";
 export type {
   GatewayRequestHandlers,
   GatewayRpcOpts,
   NodeSession,
-  OpenClawPluginService,
+  SoloClawPluginService,
 } from "soloclaw/plugin-sdk/browser-node-runtime";

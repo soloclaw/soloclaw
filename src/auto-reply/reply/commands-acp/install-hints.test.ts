@@ -1,10 +1,10 @@
 import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../../config/config.js";
+import type { SoloClawConfig } from "../../../config/config.js";
 import { resolveAcpInstallCommandHint } from "./install-hints.js";
 
-function withAcpConfig(acp: OpenClawConfig["acp"]): OpenClawConfig {
-  return { acp } as OpenClawConfig;
+function withAcpConfig(acp: SoloClawConfig["acp"]): SoloClawConfig {
+  return { acp } as SoloClawConfig;
 }
 
 afterEach(() => {

@@ -1,4 +1,4 @@
-import type { OpenClawPluginSecurityAuditContext } from "soloclaw/plugin-sdk/plugin-entry";
+import type { SoloClawPluginSecurityAuditContext } from "soloclaw/plugin-sdk/plugin-entry";
 import { hasConfiguredSecretInput } from "soloclaw/plugin-sdk/secret-input";
 import { formatCliCommand } from "soloclaw/plugin-sdk/setup-tools";
 import { isPrivateNetworkOptInEnabled, isPrivateIpAddress } from "soloclaw/plugin-sdk/ssrf-policy";
@@ -18,7 +18,7 @@ function isTrustedPrivateHostname(hostname: string): boolean {
   return normalized.length > 0 && BLOCKED_HOSTNAMES.has(normalized);
 }
 
-export function collectBrowserSecurityAuditFindings(ctx: OpenClawPluginSecurityAuditContext) {
+export function collectBrowserSecurityAuditFindings(ctx: SoloClawPluginSecurityAuditContext) {
   const findings: Array<{
     checkId: string;
     severity: "warn" | "critical";

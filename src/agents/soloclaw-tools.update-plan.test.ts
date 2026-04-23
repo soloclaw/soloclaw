@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
-import { isUpdatePlanToolEnabledForOpenClawTools } from "./soloclaw-tools.registration.js";
+import type { SoloClawConfig } from "../config/config.js";
+import { isUpdatePlanToolEnabledForSoloClawTools } from "./soloclaw-tools.registration.js";
 import { createUpdatePlanTool } from "./tools/update-plan-tool.js";
 
 describe("soloclaw-tools update_plan gating", () => {
   it("keeps update_plan disabled by default", () => {
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
-        config: {} as OpenClawConfig,
+      isUpdatePlanToolEnabledForSoloClawTools({
+        config: {} as SoloClawConfig,
       }),
     ).toBe(false);
   });
@@ -19,10 +19,10 @@ describe("soloclaw-tools update_plan gating", () => {
           planTool: true,
         },
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config,
       }),
     ).toBe(true);
@@ -39,10 +39,10 @@ describe("soloclaw-tools update_plan gating", () => {
       agents: {
         list: [{ id: "main" }],
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentSessionKey: "agent:main:main",
         modelProvider: "openai",
@@ -50,7 +50,7 @@ describe("soloclaw-tools update_plan gating", () => {
       }),
     ).toBe(true);
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentSessionKey: "agent:main:main",
         modelProvider: "openai-codex",
@@ -71,10 +71,10 @@ describe("soloclaw-tools update_plan gating", () => {
         },
         list: [{ id: "main" }],
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentSessionKey: "agent:main:main",
         modelProvider: "openai",
@@ -88,10 +88,10 @@ describe("soloclaw-tools update_plan gating", () => {
       agents: {
         list: [{ id: "main" }],
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentSessionKey: "agent:main:main",
         modelProvider: "anthropic",
@@ -99,7 +99,7 @@ describe("soloclaw-tools update_plan gating", () => {
       }),
     ).toBe(false);
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentSessionKey: "agent:main:main",
         modelProvider: "openai",
@@ -118,10 +118,10 @@ describe("soloclaw-tools update_plan gating", () => {
         },
         list: [{ id: "main" }],
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentSessionKey: "agent:main:main",
         modelProvider: "openai",
@@ -140,10 +140,10 @@ describe("soloclaw-tools update_plan gating", () => {
         },
         list: [{ id: "main" }],
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentSessionKey: "agent:main:main",
         modelProvider: "anthropic",
@@ -151,7 +151,7 @@ describe("soloclaw-tools update_plan gating", () => {
       }),
     ).toBe(false);
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentSessionKey: "agent:main:main",
         modelProvider: "openai",
@@ -175,10 +175,10 @@ describe("soloclaw-tools update_plan gating", () => {
         },
         list: [{ id: "main" }],
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentSessionKey: "agent:main:main",
         modelProvider: "openai",
@@ -205,10 +205,10 @@ describe("soloclaw-tools update_plan gating", () => {
           },
         ],
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentId: "research",
         modelProvider: "openai",
@@ -237,10 +237,10 @@ describe("soloclaw-tools update_plan gating", () => {
           },
         ],
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentId: "main",
         modelProvider: "openai",
@@ -248,7 +248,7 @@ describe("soloclaw-tools update_plan gating", () => {
       }),
     ).toBe(false);
     expect(
-      isUpdatePlanToolEnabledForOpenClawTools({
+      isUpdatePlanToolEnabledForSoloClawTools({
         config: cfg,
         agentId: "research",
         modelProvider: "openai",

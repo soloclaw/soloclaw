@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { SoloClawConfig } from "../../config/config.js";
 import type { SessionEntry } from "../../config/sessions.js";
 import { loadSessionStore } from "../../config/sessions.js";
 import type { EmbeddedPiRunResult } from "../pi-embedded.js";
@@ -45,7 +45,7 @@ describe("updateSessionStoreAfterAgentRun", () => {
             },
           },
         },
-      } as OpenClawConfig;
+      } as SoloClawConfig;
       const sessionKey = "agent:main:explicit:test-claude-cli";
       const sessionId = "test-openclaw-session";
       const sessionStore: Record<string, SessionEntry> = {

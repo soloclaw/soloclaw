@@ -1,5 +1,5 @@
 import { type ChannelDoctorAdapter } from "soloclaw/plugin-sdk/channel-contract";
-import { type OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { type SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { collectProviderDangerousNameMatchingScopes } from "soloclaw/plugin-sdk/runtime-doctor";
 import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { normalizeCompatibilityConfig as normalizeDiscordCompatibilityConfig } from "./doctor-contract.js";
@@ -25,7 +25,7 @@ function sanitizeForLog(value: string): string {
 }
 
 function collectDiscordAccountScopes(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
 ): Array<{ prefix: string; account: Record<string, unknown> }> {
   const scopes: Array<{ prefix: string; account: Record<string, unknown> }> = [];
   const discord = asObjectRecord(cfg.channels?.discord);
@@ -102,7 +102,7 @@ function collectDiscordIdLists(
   return refs;
 }
 
-export function scanDiscordNumericIdEntries(cfg: OpenClawConfig): DiscordNumericIdHit[] {
+export function scanDiscordNumericIdEntries(cfg: SoloClawConfig): DiscordNumericIdHit[] {
   const hits: DiscordNumericIdHit[] = [];
   const scanList = (pathLabel: string, list: unknown) => {
     if (!Array.isArray(list)) {
@@ -175,9 +175,9 @@ export function collectDiscordNumericIdWarnings(params: {
 }
 
 export function maybeRepairDiscordNumericIds(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   doctorFixCommand: string,
-): { config: OpenClawConfig; changes: string[]; warnings?: string[] } {
+): { config: SoloClawConfig; changes: string[]; warnings?: string[] } {
   const hits = scanDiscordNumericIdEntries(cfg);
   if (hits.length === 0) {
     return { config: cfg, changes: [] };
@@ -235,7 +235,7 @@ export function maybeRepairDiscordNumericIds(
   };
 }
 
-function collectDiscordMutableAllowlistWarnings(cfg: OpenClawConfig): string[] {
+function collectDiscordMutableAllowlistWarnings(cfg: SoloClawConfig): string[] {
   const hits: Array<{ path: string; entry: string }> = [];
   const addHits = (pathLabel: string, list: unknown) => {
     if (!Array.isArray(list)) {

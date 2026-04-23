@@ -618,7 +618,7 @@ function renderReplyPill(replyTarget: NormalizedMessage["replyTarget"]) {
 
 function isLocalAssistantAttachmentSource(source: string): boolean {
   const trimmed = source.trim();
-  if (/^\/(?:__openclaw__|media)\//.test(trimmed)) {
+  if (/^\/(?:__soloclaw__|media)\//.test(trimmed)) {
     return false;
   }
   return (
@@ -722,7 +722,7 @@ function buildAssistantAttachmentUrl(
   if (normalizedToken) {
     params.set("token", normalizedToken);
   }
-  return `${normalizedBasePath}/__openclaw__/assistant-media?${params.toString()}`;
+  return `${normalizedBasePath}/__soloclaw__/assistant-media?${params.toString()}`;
 }
 
 function buildAssistantAttachmentMetaUrl(

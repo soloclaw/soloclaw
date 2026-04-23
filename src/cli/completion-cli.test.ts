@@ -25,9 +25,9 @@ describe("completion-cli", () => {
   it("generates zsh functions for nested subcommands", () => {
     const script = getCompletionScript("zsh", createCompletionProgram());
 
-    expect(script).toContain("_openclaw_gateway()");
-    expect(script).toContain("(status) _openclaw_gateway_status ;;");
-    expect(script).toContain("(restart) _openclaw_gateway_restart ;;");
+    expect(script).toContain("_soloclaw_gateway()");
+    expect(script).toContain("(status) _soloclaw_gateway_status ;;");
+    expect(script).toContain("(restart) _soloclaw_gateway_restart ;;");
     expect(script).toContain("--force[Force the action]");
   });
 
@@ -59,12 +59,12 @@ describe("completion-cli", () => {
           `
             source ${JSON.stringify(scriptPath)}
             [[ -z "\${_comps[soloclaw]-}" ]] || exit 10
-            [[ "\${precmd_functions[(r)_openclaw_register_completion]}" = "_openclaw_register_completion" ]] || exit 11
+            [[ "\${precmd_functions[(r)_soloclaw_register_completion]}" = "_soloclaw_register_completion" ]] || exit 11
             autoload -Uz compinit
             compinit -C
-            _openclaw_register_completion
-            [[ -z "\${precmd_functions[(r)_openclaw_register_completion]}" ]] || exit 12
-            [[ "\${_comps[soloclaw]-}" = "_openclaw_root_completion" ]]
+            _soloclaw_register_completion
+            [[ -z "\${precmd_functions[(r)_soloclaw_register_completion]}" ]] || exit 12
+            [[ "\${_comps[soloclaw]-}" = "_soloclaw_root_completion" ]]
           `,
         ],
         {

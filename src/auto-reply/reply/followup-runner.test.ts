@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { SoloClawConfig } from "../../config/config.js";
 import type { SessionEntry } from "../../config/sessions/types.js";
 import type { FollowupRun, QueueSettings } from "./queue.js";
 
@@ -447,7 +447,7 @@ function createAsyncReplySpy() {
 
 describe("createFollowupRunner runtime config", () => {
   it("uses the active runtime snapshot for queued embedded followup runs", async () => {
-    const sourceConfig: OpenClawConfig = {
+    const sourceConfig: SoloClawConfig = {
       models: {
         providers: {
           openai: {
@@ -462,7 +462,7 @@ describe("createFollowupRunner runtime config", () => {
         },
       },
     };
-    const runtimeConfig: OpenClawConfig = {
+    const runtimeConfig: SoloClawConfig = {
       models: {
         providers: {
           openai: {
@@ -504,7 +504,7 @@ describe("createFollowupRunner runtime config", () => {
   });
 
   it("resolves queued embedded followups before preflight helpers read config", async () => {
-    const sourceConfig: OpenClawConfig = {
+    const sourceConfig: SoloClawConfig = {
       skills: {
         entries: {
           whisper: {
@@ -517,7 +517,7 @@ describe("createFollowupRunner runtime config", () => {
         },
       },
     };
-    const runtimeConfig: OpenClawConfig = {
+    const runtimeConfig: SoloClawConfig = {
       skills: {
         entries: {
           whisper: {
@@ -571,7 +571,7 @@ describe("createFollowupRunner runtime config", () => {
       payloads: [],
       meta: {},
     });
-    const sourceConfig: OpenClawConfig = {};
+    const sourceConfig: SoloClawConfig = {};
     const runner = createFollowupRunner({
       typing: createMockTypingController(),
       typingMode: "instant",
@@ -1230,7 +1230,7 @@ describe("createFollowupRunner messaging tool dedupe", () => {
                   },
                 },
               },
-            } as OpenClawConfig,
+            } as SoloClawConfig,
           },
         }),
       ),

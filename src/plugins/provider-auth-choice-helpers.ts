@@ -1,5 +1,5 @@
 import { normalizeProviderId } from "../agents/model-selection.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import {
   normalizeLowercaseStringOrEmpty,
   normalizeOptionalLowercaseString,
@@ -63,7 +63,7 @@ export function mergeConfigPatch<T>(base: T, patch: unknown): T {
   return next as T;
 }
 
-export function applyProviderAuthConfigPatch(cfg: OpenClawConfig, patch: unknown): OpenClawConfig {
+export function applyProviderAuthConfigPatch(cfg: SoloClawConfig, patch: unknown): SoloClawConfig {
   const merged = mergeConfigPatch(cfg, patch);
   if (!isPlainRecord(patch)) {
     return merged;
@@ -83,14 +83,14 @@ export function applyProviderAuthConfigPatch(cfg: OpenClawConfig, patch: unknown
         ...merged.agents?.defaults,
         // Provider auth migrations can intentionally replace the exact allowlist.
         models: patchModels as NonNullable<
-          NonNullable<OpenClawConfig["agents"]>["defaults"]
+          NonNullable<SoloClawConfig["agents"]>["defaults"]
         >["models"],
       },
     },
   };
 }
 
-export function applyDefaultModel(cfg: OpenClawConfig, model: string): OpenClawConfig {
+export function applyDefaultModel(cfg: SoloClawConfig, model: string): SoloClawConfig {
   const models = { ...cfg.agents?.defaults?.models };
   models[model] = models[model] ?? {};
 

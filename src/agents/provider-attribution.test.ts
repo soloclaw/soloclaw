@@ -18,7 +18,7 @@ describe("provider attribution", () => {
     });
 
     expect(identity).toEqual({
-      product: "OpenClaw",
+      product: "SoloClaw",
       version: "2026.3.99",
     });
   });
@@ -35,11 +35,11 @@ describe("provider attribution", () => {
       hook: "request-headers",
       docsUrl: "https://openrouter.ai/docs/app-attribution",
       reviewNote: "Documented app attribution headers. Verified in SoloClaw runtime wrapper.",
-      product: "OpenClaw",
+      product: "SoloClaw",
       version: "2026.3.22",
       headers: {
         "HTTP-Referer": "https://soloclaw.ai",
-        "X-OpenRouter-Title": "OpenClaw",
+        "X-OpenRouter-Title": "SoloClaw",
         "X-OpenRouter-Categories": "cli-agent",
       },
     });
@@ -52,7 +52,7 @@ describe("provider attribution", () => {
       }),
     ).toEqual({
       "HTTP-Referer": "https://soloclaw.ai",
-      "X-OpenRouter-Title": "OpenClaw",
+      "X-OpenRouter-Title": "SoloClaw",
       "X-OpenRouter-Categories": "cli-agent",
     });
   });
@@ -65,7 +65,7 @@ describe("provider attribution", () => {
       hook: "request-headers",
       reviewNote:
         "OpenAI native traffic supports hidden originator/User-Agent attribution. Verified against the Codex wire contract.",
-      product: "OpenClaw",
+      product: "SoloClaw",
       version: "2026.3.22",
       headers: {
         originator: "soloclaw",
@@ -90,7 +90,7 @@ describe("provider attribution", () => {
       hook: "request-headers",
       reviewNote:
         "OpenAI Codex ChatGPT-backed traffic supports the same hidden originator/User-Agent attribution contract.",
-      product: "OpenClaw",
+      product: "SoloClaw",
       version: "2026.3.22",
       headers: {
         originator: "soloclaw",

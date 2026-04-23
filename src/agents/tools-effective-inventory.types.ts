@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 
 export type EffectiveToolSource = "core" | "plugin" | "channel";
 
@@ -26,7 +26,7 @@ export type EffectiveToolInventoryResult = {
 };
 
 export type ResolveEffectiveToolInventoryParams = {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId?: string;
   sessionKey?: string;
   workspaceDir?: string;

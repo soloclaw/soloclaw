@@ -3067,7 +3067,7 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
       },
       "eventQueue.listenerTimeout": {
         label: "Discord EventQueue Listener Timeout (ms)",
-        help: "Canonical Discord listener timeout control in ms for gateway normalization/enqueue handlers. Default is 120000 in OpenClaw; set per account via channels.discord.accounts.<id>.eventQueue.listenerTimeout.",
+        help: "Canonical Discord listener timeout control in ms for gateway normalization/enqueue handlers. Default is 120000 in SoloClaw; set per account via channels.discord.accounts.<id>.eventQueue.listenerTimeout.",
       },
       "eventQueue.maxQueueSize": {
         label: "Discord EventQueue Max Queue Size",
@@ -6263,7 +6263,7 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     uiHints: {
       "": {
         label: "IRC",
-        help: "IRC channel provider configuration and compatibility settings for classic IRC transport workflows. Use this section when bridging legacy chat infrastructure into OpenClaw.",
+        help: "IRC channel provider configuration and compatibility settings for classic IRC transport workflows. Use this section when bridging legacy chat infrastructure into SoloClaw.",
       },
       dmPolicy: {
         label: "IRC DM Policy",

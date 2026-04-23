@@ -8,15 +8,15 @@ const originalGetBuiltinModule = (
 ).getBuiltinModule;
 
 async function importBrowserSafeLogger(params?: {
-  resolvePreferredOpenClawTmpDir?: ReturnType<typeof vi.fn>;
+  resolvePreferredSoloClawTmpDir?: ReturnType<typeof vi.fn>;
 }): Promise<{
   module: LoggerModule;
-  resolvePreferredOpenClawTmpDir: ReturnType<typeof vi.fn>;
+  resolvePreferredSoloClawTmpDir: ReturnType<typeof vi.fn>;
 }> {
-  const resolvePreferredOpenClawTmpDir =
-    params?.resolvePreferredOpenClawTmpDir ??
+  const resolvePreferredSoloClawTmpDir =
+    params?.resolvePreferredSoloClawTmpDir ??
     vi.fn(() => {
-      throw new Error("resolvePreferredOpenClawTmpDir should not run during browser-safe import");
+      throw new Error("resolvePreferredSoloClawTmpDir should not run during browser-safe import");
     });
 
   vi.doMock("../infra/tmp-soloclaw-dir.js", async () => {
@@ -25,7 +25,7 @@ async function importBrowserSafeLogger(params?: {
     );
     return {
       ...actual,
-      resolvePreferredOpenClawTmpDir,
+      resolvePreferredSoloClawTmpDir,
     };
   });
 
@@ -38,7 +38,7 @@ async function importBrowserSafeLogger(params?: {
     import.meta.url,
     "./logger.js?scope=browser-safe",
   );
-  return { module, resolvePreferredOpenClawTmpDir };
+  return { module, resolvePreferredSoloClawTmpDir };
 }
 
 describe("logging/logger browser-safe import", () => {
@@ -51,15 +51,15 @@ describe("logging/logger browser-safe import", () => {
   });
 
   it("does not resolve the preferred temp dir at import time when node fs is unavailable", async () => {
-    const { module, resolvePreferredOpenClawTmpDir } = await importBrowserSafeLogger();
+    const { module, resolvePreferredSoloClawTmpDir } = await importBrowserSafeLogger();
 
-    expect(resolvePreferredOpenClawTmpDir).not.toHaveBeenCalled();
+    expect(resolvePreferredSoloClawTmpDir).not.toHaveBeenCalled();
     expect(module.DEFAULT_LOG_DIR).toBe("/tmp/openclaw");
     expect(module.DEFAULT_LOG_FILE).toBe("/tmp/soloclaw/soloclaw.log");
   });
 
   it("disables file logging when imported in a browser-like environment", async () => {
-    const { module, resolvePreferredOpenClawTmpDir } = await importBrowserSafeLogger();
+    const { module, resolvePreferredSoloClawTmpDir } = await importBrowserSafeLogger();
 
     expect(module.getResolvedLoggerSettings()).toMatchObject({
       level: "silent",
@@ -67,6 +67,6 @@ describe("logging/logger browser-safe import", () => {
     });
     expect(module.isFileLogLevelEnabled("info")).toBe(false);
     expect(() => module.getLogger().info("browser-safe")).not.toThrow();
-    expect(resolvePreferredOpenClawTmpDir).not.toHaveBeenCalled();
+    expect(resolvePreferredSoloClawTmpDir).not.toHaveBeenCalled();
   });
 });

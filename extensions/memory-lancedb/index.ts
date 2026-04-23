@@ -12,7 +12,7 @@ import { Type } from "@sinclair/typebox";
 import OpenAI from "openai";
 import { ensureGlobalUndiciEnvProxyDispatcher } from "soloclaw/plugin-sdk/runtime-env";
 import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
-import { definePluginEntry, type OpenClawPluginApi } from "./api.js";
+import { definePluginEntry, type SoloClawPluginApi } from "./api.js";
 import {
   DEFAULT_CAPTURE_MAX_CHARS,
   MEMORY_CATEGORIES,
@@ -293,7 +293,7 @@ export default definePluginEntry({
   kind: "memory" as const,
   configSchema: memoryConfigSchema,
 
-  register(api: OpenClawPluginApi) {
+  register(api: SoloClawPluginApi) {
     const cfg = memoryConfigSchema.parse(api.pluginConfig);
     const dbPath = cfg.dbPath!;
     const resolvedDbPath = dbPath.includes("://") ? dbPath : api.resolvePath(dbPath);

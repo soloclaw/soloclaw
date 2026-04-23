@@ -70,7 +70,7 @@ function createThreadBinding(
 }
 
 function createPreflightArgs(params: {
-  cfg: import("soloclaw/plugin-sdk/config-runtime").OpenClawConfig;
+  cfg: import("soloclaw/plugin-sdk/config-runtime").SoloClawConfig;
   discordConfig: DiscordConfig;
   data: DiscordMessageEvent;
   client: DiscordClient;
@@ -162,7 +162,7 @@ async function runGuildPreflight(params: {
   guildId: string;
   message: import("@buape/carbon").Message;
   discordConfig: DiscordConfig;
-  cfg?: import("soloclaw/plugin-sdk/config-runtime").OpenClawConfig;
+  cfg?: import("soloclaw/plugin-sdk/config-runtime").SoloClawConfig;
   guildEntries?: Parameters<typeof preflightDiscordMessage>[0]["guildEntries"];
   includeGuildObject?: boolean;
 }) {
@@ -294,7 +294,7 @@ describe("preflightDiscordMessage", () => {
       author: {
         id: "relay-bot-1",
         bot: true,
-        username: "OpenClaw",
+        username: "SoloClaw",
       },
     });
 
@@ -536,7 +536,7 @@ describe("preflightDiscordMessage", () => {
       createPreflightArgs({
         cfg: {
           ...DEFAULT_PREFLIGHT_CFG,
-        } as import("soloclaw/plugin-sdk/config-runtime").OpenClawConfig,
+        } as import("soloclaw/plugin-sdk/config-runtime").SoloClawConfig,
         discordConfig: {
           allowBots: true,
         } as DiscordConfig,
@@ -914,7 +914,7 @@ describe("preflightDiscordMessage", () => {
               mentionPatterns: ["soloclaw"],
             },
           },
-        } as import("soloclaw/plugin-sdk/config-runtime").OpenClawConfig,
+        } as import("soloclaw/plugin-sdk/config-runtime").SoloClawConfig,
         discordConfig: {} as DiscordConfig,
         data: createGuildEvent({
           channelId,
@@ -982,7 +982,7 @@ describe("preflightDiscordMessage", () => {
               mentionPatterns: ["soloclaw"],
             },
           },
-        } as import("soloclaw/plugin-sdk/config-runtime").OpenClawConfig,
+        } as import("soloclaw/plugin-sdk/config-runtime").SoloClawConfig,
         discordConfig: {} as DiscordConfig,
         data: createGuildEvent({
           channelId,

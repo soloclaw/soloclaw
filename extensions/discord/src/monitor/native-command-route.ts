@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import * as conversationRuntime from "soloclaw/plugin-sdk/conversation-binding-runtime";
 import type { ResolvedAgentRoute } from "soloclaw/plugin-sdk/routing";
 import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
@@ -27,7 +27,7 @@ export type DiscordNativeInteractionRouteState = {
 };
 
 export async function resolveDiscordNativeInteractionRouteState(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId: string;
   guildId?: string;
   memberRoleIds?: string[];
