@@ -505,7 +505,7 @@ export async function runNodeMain(params = {}) {
       if (!shouldSkipCleanWatchRuntimeSync(deps) && !syncRuntimeArtifacts(deps)) {
         return await closeRunNodeOutputTee(deps, 1);
       }
-      exitCode = await runOpenClaw(deps);
+      exitCode = await runSoloClaw(deps);
       return await closeRunNodeOutputTee(deps, exitCode);
     }
 
@@ -534,7 +534,7 @@ export async function runNodeMain(params = {}) {
       return await closeRunNodeOutputTee(deps, 1);
     }
     writeBuildStamp(deps);
-    exitCode = await runOpenClaw(deps);
+    exitCode = await runSoloClaw(deps);
     return await closeRunNodeOutputTee(deps, exitCode);
   } catch (error) {
     await closeRunNodeOutputTee(deps, 1);
