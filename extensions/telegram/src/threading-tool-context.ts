@@ -2,7 +2,7 @@ import type {
   ChannelThreadingContext,
   ChannelThreadingToolContext,
 } from "soloclaw/plugin-sdk/channel-contract";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { parseTelegramTarget } from "./targets.js";
 
@@ -19,7 +19,7 @@ function resolveTelegramToolContextThreadId(context: ChannelThreadingContext): s
 }
 
 export function buildTelegramThreadingToolContext(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId?: string | null;
   context: ChannelThreadingContext;
   hasRepliedRef?: { value: boolean };

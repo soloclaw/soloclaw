@@ -41,8 +41,8 @@ describe("path-resolve helpers (direct-import coverage attribution)", () => {
     expect(path.basename(resolved)).toMatch(/auth-profiles/);
   });
 
-  it("resolveAuthStorePath falls back to resolveOpenClawAgentDir when agentDir is omitted", () => {
-    // Omitting agentDir exercises the `agentDir ?? resolveOpenClawAgentDir()`
+  it("resolveAuthStorePath falls back to resolveSoloClawAgentDir when agentDir is omitted", () => {
+    // Omitting agentDir exercises the `agentDir ?? resolveSoloClawAgentDir()`
     // nullish branch. With SOLOCLAW_STATE_DIR set to our tempdir, the
     // resolved path must live under it.
     const resolved = resolveAuthStorePath();

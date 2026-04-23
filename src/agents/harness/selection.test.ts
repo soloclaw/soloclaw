@@ -1,6 +1,6 @@
 import type { Api, Model } from "@mariozechner/pi-ai";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { SoloClawConfig } from "../../config/config.js";
 import type {
   EmbeddedRunAttemptParams,
   EmbeddedRunAttemptResult,
@@ -38,7 +38,7 @@ afterEach(() => {
   }
 });
 
-function createAttemptParams(config?: OpenClawConfig): EmbeddedRunAttemptParams {
+function createAttemptParams(config?: SoloClawConfig): EmbeddedRunAttemptParams {
   return {
     prompt: "hello",
     sessionId: "session-1",
@@ -162,7 +162,7 @@ describe("selectAgentHarness", () => {
   });
 
   it("allows per-agent embedded harness policy overrides", () => {
-    const config: OpenClawConfig = {
+    const config: SoloClawConfig = {
       agents: {
         defaults: { embeddedHarness: { fallback: "pi" } },
         list: [

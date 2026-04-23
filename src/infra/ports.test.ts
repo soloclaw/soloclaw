@@ -81,7 +81,7 @@ describe("ports helpers", () => {
     expect(runtime.exit).toHaveBeenCalledWith(1);
   });
 
-  it("prints an OpenClaw-specific hint when port details look like another SoloClaw instance", async () => {
+  it("prints an SoloClaw-specific hint when port details look like another SoloClaw instance", async () => {
     const runtime = {
       error: vi.fn(),
       log: vi.fn(),

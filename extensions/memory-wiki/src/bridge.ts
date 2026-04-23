@@ -5,7 +5,7 @@ import {
   listActiveMemoryPublicArtifacts,
   type MemoryPluginPublicArtifact,
 } from "soloclaw/plugin-sdk/memory-host-core";
-import type { OpenClawConfig } from "../api.js";
+import type { SoloClawConfig } from "../api.js";
 import type { ResolvedMemoryWikiConfig } from "./config.js";
 import { appendMemoryWikiLog } from "./log.js";
 import {
@@ -201,7 +201,7 @@ async function writeBridgeSourcePage(params: {
 
 export async function syncMemoryWikiBridgeSources(params: {
   config: ResolvedMemoryWikiConfig;
-  appConfig?: OpenClawConfig;
+  appConfig?: SoloClawConfig;
 }): Promise<BridgeMemoryWikiResult> {
   await initializeMemoryWikiVault(params.config);
   if (

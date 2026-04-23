@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { buildOpenClawChromeLaunchArgs } from "./chrome.js";
+import { buildSoloClawChromeLaunchArgs } from "./chrome.js";
 
 describe("browser chrome launch args", () => {
   it("does not force an about:blank tab at startup", () => {
-    const args = buildOpenClawChromeLaunchArgs({
+    const args = buildSoloClawChromeLaunchArgs({
       resolved: {
         enabled: true,
         controlPort: 18791,

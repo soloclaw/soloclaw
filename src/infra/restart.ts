@@ -290,7 +290,7 @@ function formatSpawnDetail(result: {
   return "unknown error";
 }
 
-export function triggerOpenClawRestart(): RestartAttempt {
+export function triggerSoloClawRestart(): RestartAttempt {
   if (process.env.VITEST || process.env.NODE_ENV === "test") {
     return { ok: true, method: "supervisor", detail: "test mode" };
   }

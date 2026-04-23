@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { SoloClawConfig } from "../../config/config.js";
 import type { ProviderPlugin } from "../../plugins/types.js";
 import type { RuntimeEnv } from "../../runtime.js";
 
@@ -41,7 +41,7 @@ vi.mock("../../agents/auth-profiles/usage.js", () => ({
 
 vi.mock("../../plugins/provider-auth-helpers.js", () => ({
   applyAuthProfileConfig: (
-    cfg: OpenClawConfig,
+    cfg: SoloClawConfig,
     params: {
       profileId: string;
       provider: string;
@@ -49,7 +49,7 @@ vi.mock("../../plugins/provider-auth-helpers.js", () => ({
       email?: string;
       displayName?: string;
     },
-  ): OpenClawConfig => ({
+  ): SoloClawConfig => ({
     ...cfg,
     auth: {
       ...cfg.auth,
@@ -154,7 +154,7 @@ vi.mock("../provider-auth-helpers.js", () => {
         null
       );
     }),
-    applyProviderAuthConfigPatch: vi.fn((cfg: OpenClawConfig, patch: unknown) => {
+    applyProviderAuthConfigPatch: vi.fn((cfg: SoloClawConfig, patch: unknown) => {
       const merged = mergePatch(cfg, patch);
       const patchModels = (patch as { agents?: { defaults?: { models?: unknown } } })?.agents
         ?.defaults?.models;
@@ -171,7 +171,7 @@ vi.mock("../provider-auth-helpers.js", () => {
           }
         : merged;
     }),
-    applyDefaultModel: vi.fn((cfg: OpenClawConfig, model: string) => ({
+    applyDefaultModel: vi.fn((cfg: SoloClawConfig, model: string) => ({
       ...cfg,
       agents: {
         ...cfg.agents,
@@ -244,8 +244,8 @@ function createProvider(params: {
 
 describe("modelsAuthLoginCommand", () => {
   let restoreStdin: (() => void) | null = null;
-  let currentConfig: OpenClawConfig;
-  let lastUpdatedConfig: OpenClawConfig | null;
+  let currentConfig: SoloClawConfig;
+  let lastUpdatedConfig: SoloClawConfig | null;
   let runProviderAuth: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
@@ -269,7 +269,7 @@ describe("modelsAuthLoginCommand", () => {
     mocks.isRemoteEnvironment.mockReturnValue(false);
     mocks.loadValidConfigOrThrow.mockImplementation(async () => currentConfig);
     mocks.updateConfig.mockImplementation(
-      async (mutator: (cfg: OpenClawConfig) => OpenClawConfig) => {
+      async (mutator: (cfg: SoloClawConfig) => SoloClawConfig) => {
         lastUpdatedConfig = mutator(currentConfig);
         currentConfig = lastUpdatedConfig;
         return lastUpdatedConfig;
@@ -632,7 +632,7 @@ describe("modelsAuthLoginCommand", () => {
       agentDir: "/tmp/openclaw/agents/main",
     });
     expect(runtime.log).toHaveBeenCalledWith(
-      "Anthropic setup-token auth is supported in OpenClaw.",
+      "Anthropic setup-token auth is supported in SoloClaw.",
     );
     expect(runtime.log).toHaveBeenCalledWith(
       "SoloClaw prefers Claude CLI reuse when it is available on the host.",

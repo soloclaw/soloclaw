@@ -65,7 +65,7 @@ vi.mock("../agents/soloclaw-tools.js", () => {
     },
   ];
   return {
-    createOpenClawTools: () => tools,
+    createSoloClawTools: () => tools,
   };
 });
 

@@ -28,7 +28,7 @@ let resolveExecApprovalsSocketPath: ExecApprovalsModule["resolveExecApprovalsSoc
 let saveExecApprovals: ExecApprovalsModule["saveExecApprovals"];
 
 const tempDirs: string[] = [];
-const originalOpenClawHome = process.env.SOLOCLAW_HOME;
+const originalSoloClawHome = process.env.SOLOCLAW_HOME;
 
 beforeAll(async () => {
   ({
@@ -54,10 +54,10 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.restoreAllMocks();
-  if (originalOpenClawHome === undefined) {
+  if (originalSoloClawHome === undefined) {
     delete process.env.SOLOCLAW_HOME;
   } else {
-    process.env.SOLOCLAW_HOME = originalOpenClawHome;
+    process.env.SOLOCLAW_HOME = originalSoloClawHome;
   }
   for (const dir of tempDirs.splice(0)) {
     fs.rmSync(dir, { recursive: true, force: true });

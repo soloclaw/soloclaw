@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 
 const runEmbeddedPiAgentMock = vi.fn();
 
@@ -27,7 +27,7 @@ describe("generateSlugViaLLM", () => {
   it("keeps the helper default timeout when no agent timeout is configured", async () => {
     await generateSlugViaLLM({
       sessionContent: "hello",
-      cfg: {} as OpenClawConfig,
+      cfg: {} as SoloClawConfig,
     });
 
     expect(runEmbeddedPiAgentMock).toHaveBeenCalledOnce();
@@ -47,7 +47,7 @@ describe("generateSlugViaLLM", () => {
             timeoutSeconds: 500,
           },
         },
-      } as OpenClawConfig,
+      } as SoloClawConfig,
     });
 
     expect(runEmbeddedPiAgentMock).toHaveBeenCalledOnce();

@@ -7,7 +7,7 @@ import {
   resolveWriteEnvSnapshotForPath,
   unsetPathForWrite,
 } from "./io.write-prepare.js";
-import type { OpenClawConfig } from "./types.js";
+import type { SoloClawConfig } from "./types.js";
 
 describe("config io write prepare", () => {
   it("persists caller changes onto resolved config without leaking runtime defaults", () => {
@@ -62,10 +62,10 @@ describe("config io write prepare", () => {
   });
 
   it("does not mutate caller config when unsetting existing config objects", () => {
-    const input: OpenClawConfig = {
+    const input: SoloClawConfig = {
       gateway: { mode: "local" },
       commands: { ownerDisplay: "hash" },
-    } satisfies OpenClawConfig;
+    } satisfies SoloClawConfig;
 
     const next = unsetPathForWrite(input, ["commands", "ownerDisplay"]);
 
@@ -77,10 +77,10 @@ describe("config io write prepare", () => {
   });
 
   it("keeps caller arrays immutable when unsetting array entries", () => {
-    const input: OpenClawConfig = {
+    const input: SoloClawConfig = {
       gateway: { mode: "local" },
       tools: { alsoAllow: ["exec", "fetch", "read"] },
-    } satisfies OpenClawConfig;
+    } satisfies SoloClawConfig;
 
     const next = unsetPathForWrite(input, ["tools", "alsoAllow", "1"]);
 
@@ -92,10 +92,10 @@ describe("config io write prepare", () => {
   });
 
   it("treats missing unset paths as no-op without mutating caller config", () => {
-    const input: OpenClawConfig = {
+    const input: SoloClawConfig = {
       gateway: { mode: "local" },
       commands: { ownerDisplay: "hash" },
-    } satisfies OpenClawConfig;
+    } satisfies SoloClawConfig;
 
     const next = unsetPathForWrite(input, ["commands", "missingKey"]);
 
@@ -108,10 +108,10 @@ describe("config io write prepare", () => {
   });
 
   it("ignores blocked prototype-key unset path segments", () => {
-    const input: OpenClawConfig = {
+    const input: SoloClawConfig = {
       gateway: { mode: "local" },
       commands: { ownerDisplay: "hash" },
-    } satisfies OpenClawConfig;
+    } satisfies SoloClawConfig;
 
     const blocked = [
       ["commands", "__proto__"],
@@ -279,9 +279,9 @@ describe("config io write prepare", () => {
           password: "test-password",
         },
       },
-    } satisfies OpenClawConfig;
+    } satisfies SoloClawConfig;
 
-    const runtimeConfig: OpenClawConfig = {
+    const runtimeConfig: SoloClawConfig = {
       gateway: { port: 18789 },
       channels: {
         bluebubbles: {
@@ -290,9 +290,9 @@ describe("config io write prepare", () => {
           enrichGroupParticipantsFromContacts: true,
         },
       },
-    } satisfies OpenClawConfig;
+    } satisfies SoloClawConfig;
 
-    const nextConfig: OpenClawConfig = structuredClone(runtimeConfig);
+    const nextConfig: SoloClawConfig = structuredClone(runtimeConfig);
     nextConfig.gateway = {
       ...nextConfig.gateway,
       auth: { mode: "token" },
@@ -316,7 +316,7 @@ describe("config io write prepare", () => {
   });
 
   it("does not reintroduce legacy nested dm.policy defaults in the persisted candidate", () => {
-    const sourceConfig: OpenClawConfig = {
+    const sourceConfig: SoloClawConfig = {
       channels: {
         discord: {
           dmPolicy: "pairing",
@@ -328,7 +328,7 @@ describe("config io write prepare", () => {
         },
       },
       gateway: { port: 18789 },
-    } satisfies OpenClawConfig;
+    } satisfies SoloClawConfig;
 
     const nextConfig = structuredClone(sourceConfig);
     delete (nextConfig.channels?.discord?.dm as { enabled?: boolean; policy?: string } | undefined)
@@ -382,9 +382,9 @@ describe("config io write prepare", () => {
           },
         },
       },
-    } satisfies OpenClawConfig;
+    } satisfies SoloClawConfig;
 
-    const nextConfig: OpenClawConfig = {
+    const nextConfig: SoloClawConfig = {
       ...structuredClone(sourceConfig),
       gateway: {
         auth: { mode: "token" },

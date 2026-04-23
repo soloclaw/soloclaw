@@ -4,14 +4,14 @@ import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const loadBundledPluginPublicSurfaceModuleSync = vi.hoisted(() => vi.fn());
-const resolveOpenClawPackageRootSync = vi.hoisted(() => vi.fn());
+const resolveSoloClawPackageRootSync = vi.hoisted(() => vi.fn());
 
 vi.mock("./facade-runtime.js", () => ({
   loadBundledPluginPublicSurfaceModuleSync,
 }));
 
 vi.mock("../infra/soloclaw-root.js", () => ({
-  resolveOpenClawPackageRootSync,
+  resolveSoloClawPackageRootSync,
 }));
 
 describe("plugin-sdk qa-runtime", () => {
@@ -20,7 +20,7 @@ describe("plugin-sdk qa-runtime", () => {
 
   beforeEach(() => {
     loadBundledPluginPublicSurfaceModuleSync.mockReset();
-    resolveOpenClawPackageRootSync.mockReset().mockReturnValue(null);
+    resolveSoloClawPackageRootSync.mockReset().mockReturnValue(null);
     delete process.env.SOLOCLAW_ENABLE_PRIVATE_QA_CLI;
   });
 
@@ -66,7 +66,7 @@ describe("plugin-sdk qa-runtime", () => {
     fs.mkdirSync(path.join(sourceRoot, "extensions"), { recursive: true });
     fs.writeFileSync(path.join(sourceRoot, ".git"), "gitdir: /tmp/mock\n", "utf8");
     process.env.SOLOCLAW_ENABLE_PRIVATE_QA_CLI = "1";
-    resolveOpenClawPackageRootSync.mockReturnValue(sourceRoot);
+    resolveSoloClawPackageRootSync.mockReturnValue(sourceRoot);
 
     const runtimeSurface = {
       defaultQaRuntimeModelForMode: vi.fn(),

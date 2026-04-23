@@ -1,14 +1,14 @@
-import type { OpenClawConfig } from "../../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../../config/types.soloclaw.js";
 
 export type DoctorConfigMutationState = {
-  cfg: OpenClawConfig;
-  candidate: OpenClawConfig;
+  cfg: SoloClawConfig;
+  candidate: SoloClawConfig;
   pendingChanges: boolean;
   fixHints: string[];
 };
 
 export type DoctorConfigMutationResult = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   changes: string[];
 };
 

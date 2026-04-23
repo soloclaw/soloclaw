@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { resolveHomeRelativePath, resolveRequiredHomeDir } from "../infra/home-dir.js";
-import type { OpenClawConfig } from "./types.js";
+import type { SoloClawConfig } from "./types.js";
 
 /**
  * Nix mode detection: When SOLOCLAW_NIX_MODE=1, the gateway is running under Nix.
@@ -283,7 +283,7 @@ function parseGatewayPortEnvValue(raw: string | undefined): number | null {
 }
 
 export function resolveGatewayPort(
-  cfg?: OpenClawConfig,
+  cfg?: SoloClawConfig,
   env: NodeJS.ProcessEnv = process.env,
 ): number {
   const envRaw = env.SOLOCLAW_GATEWAY_PORT?.trim();

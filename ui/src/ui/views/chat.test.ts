@@ -73,7 +73,7 @@ function createProps(overrides: Partial<ChatProps> = {}): ChatProps {
     error: null,
     sessions: createSessions(),
     focusMode: false,
-    assistantName: "OpenClaw",
+    assistantName: "SoloClaw",
     assistantAvatar: null,
     localMediaPreviewRoots: [],
     onRefresh: () => undefined,
@@ -115,7 +115,7 @@ function renderAssistantMessage(
     renderMessageGroup(group, {
       showReasoning: true,
       showToolCalls: true,
-      assistantName: "OpenClaw",
+      assistantName: "SoloClaw",
       assistantAvatar: null,
       ...opts,
     }),
@@ -688,7 +688,7 @@ describe("chat view", () => {
                   view: {
                     backend: "canvas",
                     id: `cv_inline_${params.suffix}`,
-                    url: `/__openclaw__/canvas/documents/cv_inline_${params.suffix}/index.html`,
+                    url: `/__soloclaw__/canvas/documents/cv_inline_${params.suffix}/index.html`,
                     title: "Inline demo",
                     preferred_height: 360,
                   },
@@ -710,7 +710,7 @@ describe("chat view", () => {
     expect(iframe).not.toBeNull();
     expect(iframe?.getAttribute("sandbox")).toBe("allow-scripts");
     expect(iframe?.getAttribute("src")).toBe(
-      "/__openclaw__/canvas/documents/cv_inline_default/index.html",
+      "/__soloclaw__/canvas/documents/cv_inline_default/index.html",
     );
     expect(container.textContent).toContain("Inline canvas result.");
     expect(container.textContent).toContain("Inline demo");
@@ -747,7 +747,7 @@ describe("chat view", () => {
                 view: {
                   backend: "canvas",
                   id: "cv_inline_visible",
-                  url: "/__openclaw__/canvas/documents/cv_inline_visible/index.html",
+                  url: "/__soloclaw__/canvas/documents/cv_inline_visible/index.html",
                   title: "Inline demo",
                   preferred_height: 360,
                 },
@@ -804,7 +804,7 @@ describe("chat view", () => {
                 view: {
                   backend: "canvas",
                   id: "cv_nearest_turn",
-                  url: "/__openclaw__/canvas/documents/cv_nearest_turn/index.html",
+                  url: "/__soloclaw__/canvas/documents/cv_nearest_turn/index.html",
                   title: "Nearest turn demo",
                   preferred_height: 320,
                 },
@@ -858,7 +858,7 @@ describe("chat view", () => {
                   view: {
                     backend: "canvas",
                     id: "cv_generic_inline",
-                    url: "/__openclaw__/canvas/documents/cv_generic_inline/index.html",
+                    url: "/__soloclaw__/canvas/documents/cv_generic_inline/index.html",
                     title: "Inline generic preview",
                     preferred_height: 420,
                   },
@@ -987,7 +987,7 @@ describe("chat view", () => {
     await flushAssistantAttachmentAvailabilityChecks();
 
     expect(fetchMock).toHaveBeenCalledWith(
-      "/openclaw/__openclaw__/assistant-media?source=%2Ftmp%2Fopenclaw%2Ftest+image.png&token=session-token&meta=1",
+      "/openclaw/__soloclaw__/assistant-media?source=%2Ftmp%2Fopenclaw%2Ftest+image.png&token=session-token&meta=1",
       expect.objectContaining({ credentials: "same-origin", method: "GET" }),
     );
 
@@ -996,10 +996,10 @@ describe("chat view", () => {
       ".chat-assistant-attachment-card__link",
     );
     expect(image?.getAttribute("src")).toBe(
-      "/openclaw/__openclaw__/assistant-media?source=%2Ftmp%2Fopenclaw%2Ftest+image.png&token=session-token",
+      "/openclaw/__soloclaw__/assistant-media?source=%2Ftmp%2Fopenclaw%2Ftest+image.png&token=session-token",
     );
     expect(docLink?.getAttribute("href")).toBe(
-      "/openclaw/__openclaw__/assistant-media?source=%2Ftmp%2Fopenclaw%2Ftest-doc.pdf&token=session-token",
+      "/openclaw/__soloclaw__/assistant-media?source=%2Ftmp%2Fopenclaw%2Ftest-doc.pdf&token=session-token",
     );
     expect(container.textContent).not.toContain("test image.png");
     vi.unstubAllGlobals();
@@ -1047,12 +1047,12 @@ describe("chat view", () => {
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(fetchMock).toHaveBeenNthCalledWith(
       1,
-      "/openclaw/__openclaw__/assistant-media?source=%2Ftmp%2Fopenclaw%2Ftest+image.png&meta=1",
+      "/openclaw/__soloclaw__/assistant-media?source=%2Ftmp%2Fopenclaw%2Ftest+image.png&meta=1",
       expect.objectContaining({ credentials: "same-origin", method: "GET" }),
     );
     expect(fetchMock).toHaveBeenNthCalledWith(
       2,
-      "/openclaw/__openclaw__/assistant-media?source=%2Ftmp%2Fopenclaw%2Ftest+image.png&token=fresh-token&meta=1",
+      "/openclaw/__soloclaw__/assistant-media?source=%2Ftmp%2Fopenclaw%2Ftest+image.png&token=fresh-token&meta=1",
       expect.objectContaining({ credentials: "same-origin", method: "GET" }),
     );
     expect(container.querySelector(".chat-message-image")).not.toBeNull();
@@ -1069,7 +1069,7 @@ describe("chat view", () => {
         id: "assistant-same-origin-media-inline",
         role: "assistant",
         content:
-          "Inline\nMEDIA:/media/inbound/test-image.png\nMEDIA:/__openclaw__/media/test-doc.pdf",
+          "Inline\nMEDIA:/media/inbound/test-image.png\nMEDIA:/__soloclaw__/media/test-doc.pdf",
         timestamp: Date.now(),
       },
       {
@@ -1084,7 +1084,7 @@ describe("chat view", () => {
       ".chat-assistant-attachment-card__link",
     );
     expect(image?.getAttribute("src")).toBe("/media/inbound/test-image.png");
-    expect(docLink?.getAttribute("href")).toBe("/__openclaw__/media/test-doc.pdf");
+    expect(docLink?.getAttribute("href")).toBe("/__soloclaw__/media/test-doc.pdf");
     expect(container.textContent).not.toContain("Unavailable");
   });
 
@@ -1152,7 +1152,7 @@ describe("chat view", () => {
           timestamp: Date.now(),
         },
         expectedUrl:
-          "/openclaw/__openclaw__/assistant-media?source=%2FC%3A%2Ftmp%2Fopenclaw%2Ftest%2520image.png&meta=1",
+          "/openclaw/__soloclaw__/assistant-media?source=%2FC%3A%2Ftmp%2Fopenclaw%2Ftest%2520image.png&meta=1",
       }),
       renderCase({
         roots: ["c:\\users\\test\\pictures"],
@@ -1163,7 +1163,7 @@ describe("chat view", () => {
           timestamp: Date.now(),
         },
         expectedUrl:
-          "/openclaw/__openclaw__/assistant-media?source=C%3A%5CUsers%5CTest%5CPictures%5Ctest+image.png&meta=1",
+          "/openclaw/__soloclaw__/assistant-media?source=C%3A%5CUsers%5CTest%5CPictures%5Ctest+image.png&meta=1",
       }),
       renderCase({
         roots: ["/Users/test/Pictures"],
@@ -1185,7 +1185,7 @@ describe("chat view", () => {
           timestamp: Date.now(),
         }),
         expectedUrl:
-          "/openclaw/__openclaw__/assistant-media?source=%7E%2FPictures%2Ftest+image.png&meta=1",
+          "/openclaw/__soloclaw__/assistant-media?source=%7E%2FPictures%2Ftest+image.png&meta=1",
       }),
     ];
 
@@ -1270,7 +1270,7 @@ describe("chat view", () => {
               render: "url",
               viewId: "cv_inline_scoped",
               title: "Scoped preview",
-              url: "/__openclaw__/canvas/documents/cv_inline_scoped/index.html",
+              url: "/__soloclaw__/canvas/documents/cv_inline_scoped/index.html",
               preferredHeight: 320,
             },
           },
@@ -1278,13 +1278,13 @@ describe("chat view", () => {
         timestamp: Date.now(),
       },
       {
-        canvasHostUrl: "http://127.0.0.1:19003/__openclaw__/cap/cap_123",
+        canvasHostUrl: "http://127.0.0.1:19003/__soloclaw__/cap/cap_123",
       },
     );
 
     const iframe = container.querySelector(".chat-tool-card__preview-frame");
     expect(iframe?.getAttribute("src")).toBe(
-      "http://127.0.0.1:19003/__openclaw__/cap/cap_123/__openclaw__/canvas/documents/cv_inline_scoped/index.html",
+      "http://127.0.0.1:19003/__soloclaw__/cap/cap_123/__soloclaw__/canvas/documents/cv_inline_scoped/index.html",
     );
   });
 
@@ -1323,7 +1323,7 @@ describe("chat view", () => {
                     view: {
                       backend: "canvas",
                       id: "cv_canvas_live_history",
-                      url: "/__openclaw__/canvas/documents/cv_canvas_live_history/index.html",
+                      url: "/__soloclaw__/canvas/documents/cv_canvas_live_history/index.html",
                       title: "Live history preview",
                       preferred_height: 420,
                     },
@@ -1349,7 +1349,7 @@ describe("chat view", () => {
                     render: "url",
                     viewId: "cv_canvas_live_history",
                     title: "Live history preview",
-                    url: "/__openclaw__/canvas/documents/cv_canvas_live_history/index.html",
+                    url: "/__soloclaw__/canvas/documents/cv_canvas_live_history/index.html",
                     preferredHeight: 420,
                   },
                   rawText: JSON.stringify({
@@ -1357,7 +1357,7 @@ describe("chat view", () => {
                     view: {
                       backend: "canvas",
                       id: "cv_canvas_live_history",
-                      url: "/__openclaw__/canvas/documents/cv_canvas_live_history/index.html",
+                      url: "/__soloclaw__/canvas/documents/cv_canvas_live_history/index.html",
                     },
                     presentation: {
                       target: "assistant_message",
@@ -1417,7 +1417,7 @@ describe("chat view", () => {
                     view: {
                       backend: "canvas",
                       id: "cv_streamed_artifact",
-                      url: "/__openclaw__/canvas/documents/cv_streamed_artifact/index.html",
+                      url: "/__soloclaw__/canvas/documents/cv_streamed_artifact/index.html",
                       title: "Streamed demo",
                       preferred_height: 320,
                     },

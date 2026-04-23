@@ -39,7 +39,7 @@ const coreTools = [
 ];
 
 vi.mock("../soloclaw-tools.js", () => ({
-  createOpenClawTools: () => coreTools.map((tool) => ({ ...tool })),
+  createSoloClawTools: () => coreTools.map((tool) => ({ ...tool })),
   __testing: {
     setDepsForTest: () => {},
   },

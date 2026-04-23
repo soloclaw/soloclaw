@@ -8,7 +8,7 @@ import {
   ThreadUpdateListener,
   type User,
 } from "@buape/carbon";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { enqueueSystemEvent } from "soloclaw/plugin-sdk/infra-runtime";
 import { resolveAgentRoute } from "soloclaw/plugin-sdk/routing";
 import {
@@ -732,7 +732,7 @@ type ThreadUpdateEvent = Parameters<ThreadUpdateListener["handle"]>[0];
 
 export class DiscordThreadUpdateListener extends ThreadUpdateListener {
   constructor(
-    private cfg: OpenClawConfig,
+    private cfg: SoloClawConfig,
     private accountId: string,
     private logger?: Logger,
   ) {

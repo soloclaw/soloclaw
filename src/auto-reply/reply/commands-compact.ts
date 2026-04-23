@@ -1,5 +1,5 @@
 import { resolveAgentDir, resolveSessionAgentId } from "../../agents/agent-scope.js";
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import { logVerbose } from "../../globals.js";
 import {
   normalizeLowercaseStringOrEmpty,
@@ -12,7 +12,7 @@ import { stripMentions, stripStructuralPrefixes } from "./mentions.js";
 function extractCompactInstructions(params: {
   rawBody?: string;
   ctx: import("../templating.js").MsgContext;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId?: string;
   isGroup: boolean;
 }): string | undefined {

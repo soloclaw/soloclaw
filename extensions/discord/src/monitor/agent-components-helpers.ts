@@ -11,7 +11,7 @@ import {
 import { ChannelType } from "discord-api-types/v10";
 import { createChannelPairingChallengeIssuer } from "soloclaw/plugin-sdk/channel-pairing";
 import { resolveCommandAuthorizedFromAuthorizers } from "soloclaw/plugin-sdk/command-auth-native";
-import type { DiscordAccountConfig, OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { DiscordAccountConfig, SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { isDangerousNameMatchingEnabled } from "soloclaw/plugin-sdk/dangerous-name-runtime";
 import { resolveAgentRoute } from "soloclaw/plugin-sdk/routing";
 import { logVerbose } from "soloclaw/plugin-sdk/runtime-env";
@@ -67,7 +67,7 @@ export type DiscordChannelContext = {
 };
 
 export type AgentComponentContext = {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId: string;
   discordConfig?: DiscordAccountConfig;
   runtime?: import("soloclaw/plugin-sdk/runtime-env").RuntimeEnv;

@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import type { DatabaseSync } from "node:sqlite";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { openMemoryDatabaseAtPath } from "./manager-db.js";
 import {
@@ -53,7 +53,7 @@ describe("memory manager readonly recovery", () => {
     };
   }
 
-  function _createMemoryConfig(): OpenClawConfig {
+  function _createMemoryConfig(): SoloClawConfig {
     return _createMemorySyncControlConfigForTests(workspaceDir, indexPath);
   }
 

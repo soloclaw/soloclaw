@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import type { TelegramGroupConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { normalizeAccountId } from "soloclaw/plugin-sdk/routing";
 import { normalizeLowercaseStringOrEmpty } from "soloclaw/plugin-sdk/text-runtime";
@@ -14,7 +14,7 @@ export type TelegramGroupMigrationResult = {
 };
 
 function resolveAccountGroups(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   accountId?: string | null,
 ): { groups?: TelegramGroups } {
   if (!accountId) {
@@ -58,7 +58,7 @@ export function migrateTelegramGroupsInPlace(
 }
 
 export function migrateTelegramGroupConfig(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId?: string | null;
   oldChatId: string;
   newChatId: string;

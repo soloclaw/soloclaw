@@ -15,7 +15,7 @@ function makeRepoRoot(prefix: string): string {
   return makeTrackedTempDir(prefix, tempDirs);
 }
 
-function createOpenClawRoot(params: {
+function createSoloClawRoot(params: {
   prefix: string;
   hasExtensions?: boolean;
   hasSrc?: boolean;
@@ -242,7 +242,7 @@ describe("resolveBundledPluginsDir", () => {
       },
     ],
   ] as const)("%s", (_name, layout, expectation) => {
-    const repoRoot = createOpenClawRoot(layout);
+    const repoRoot = createSoloClawRoot(layout);
     if (expectation.expectedRelativeDir === path.join("dist-runtime", "extensions")) {
       seedBundledPluginTree(repoRoot, path.join("dist", "extensions"));
       seedBundledPluginTree(repoRoot, path.join("dist-runtime", "extensions"));
@@ -258,7 +258,7 @@ describe("resolveBundledPluginsDir", () => {
   });
 
   it("falls back to source extensions when dist trees exist but do not contain real plugin manifests", () => {
-    const repoRoot = createOpenClawRoot({
+    const repoRoot = createSoloClawRoot({
       prefix: "openclaw-bundled-dir-incomplete-built-",
       hasExtensions: true,
       hasSrc: true,
@@ -278,7 +278,7 @@ describe("resolveBundledPluginsDir", () => {
   });
 
   it("returns a stable empty bundled plugin directory when bundled plugins are disabled", () => {
-    const repoRoot = createOpenClawRoot({
+    const repoRoot = createSoloClawRoot({
       prefix: "openclaw-bundled-dir-disabled-",
       hasExtensions: true,
       hasSrc: true,
@@ -300,12 +300,12 @@ describe("resolveBundledPluginsDir", () => {
     {
       name: "prefers the running CLI package root over an unrelated cwd checkout",
       createScenario: () => {
-        const installedRoot = createOpenClawRoot({
+        const installedRoot = createSoloClawRoot({
           prefix: "openclaw-bundled-dir-installed-",
           hasDistExtensions: true,
         });
         seedBundledPluginTree(installedRoot, path.join("dist", "extensions"));
-        const cwdRepoRoot = createOpenClawRoot({
+        const cwdRepoRoot = createSoloClawRoot({
           prefix: "openclaw-bundled-dir-cwd-",
           hasExtensions: true,
           hasSrc: true,
@@ -321,7 +321,7 @@ describe("resolveBundledPluginsDir", () => {
     {
       name: "falls back to the running installed package when the override path is stale",
       createScenario: () => {
-        const installedRoot = createOpenClawRoot({
+        const installedRoot = createSoloClawRoot({
           prefix: "openclaw-bundled-dir-override-",
           hasDistExtensions: true,
         });

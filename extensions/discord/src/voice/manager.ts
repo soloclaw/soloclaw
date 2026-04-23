@@ -13,7 +13,7 @@ import {
   resolveTtsPrefsPath,
   type ResolvedTtsConfig,
 } from "soloclaw/plugin-sdk/agent-runtime";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import type { DiscordAccountConfig, TtsConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { resolveAgentRoute } from "soloclaw/plugin-sdk/routing";
 import { logVerbose, shouldLogVerbose } from "soloclaw/plugin-sdk/runtime-env";
@@ -21,7 +21,7 @@ import { createSubsystemLogger } from "soloclaw/plugin-sdk/runtime-env";
 import type { RuntimeEnv } from "soloclaw/plugin-sdk/runtime-env";
 import { parseTtsDirectives } from "soloclaw/plugin-sdk/speech";
 import { formatErrorMessage } from "soloclaw/plugin-sdk/ssrf-runtime";
-import { resolvePreferredOpenClawTmpDir } from "soloclaw/plugin-sdk/temp-path";
+import { resolvePreferredSoloClawTmpDir } from "soloclaw/plugin-sdk/temp-path";
 import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { formatMention } from "../mentions.js";
 import { normalizeDiscordSlug, resolveDiscordOwnerAccess } from "../monitor/allow-list.js";
@@ -127,8 +127,8 @@ function mergeTtsConfig(base: TtsConfig, override?: TtsConfig): TtsConfig {
   };
 }
 
-function resolveVoiceTtsConfig(params: { cfg: OpenClawConfig; override?: TtsConfig }): {
-  cfg: OpenClawConfig;
+function resolveVoiceTtsConfig(params: { cfg: SoloClawConfig; override?: TtsConfig }): {
+  cfg: SoloClawConfig;
   resolved: ResolvedTtsConfig;
 } {
   if (!params.override) {
@@ -276,7 +276,7 @@ function estimateDurationSeconds(pcm: Buffer): number {
 }
 
 async function writeWavFile(pcm: Buffer): Promise<{ path: string; durationSeconds: number }> {
-  const tempDir = await fs.mkdtemp(path.join(resolvePreferredOpenClawTmpDir(), "discord-voice-"));
+  const tempDir = await fs.mkdtemp(path.join(resolvePreferredSoloClawTmpDir(), "discord-voice-"));
   const filePath = path.join(tempDir, `segment-${randomUUID()}.wav`);
   const wav = buildWavBuffer(pcm);
   await fs.writeFile(filePath, wav);
@@ -296,7 +296,7 @@ function scheduleTempCleanup(tempDir: string, delayMs: number = 30 * 60 * 1000):
 }
 
 async function transcribeAudio(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId: string;
   filePath: string;
 }): Promise<string | undefined> {
@@ -330,7 +330,7 @@ export class DiscordVoiceManager {
   constructor(
     private params: {
       client: Client;
-      cfg: OpenClawConfig;
+      cfg: SoloClawConfig;
       discordConfig: DiscordAccountConfig;
       accountId: string;
       runtime: RuntimeEnv;

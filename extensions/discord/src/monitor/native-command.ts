@@ -19,7 +19,7 @@ import {
   resolveNativeCommandSessionTargets,
 } from "soloclaw/plugin-sdk/command-auth-native";
 import { resolveDirectStatusReplyForSession } from "soloclaw/plugin-sdk/command-status-runtime";
-import type { OpenClawConfig, loadConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig, loadConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { buildPairingReply } from "soloclaw/plugin-sdk/conversation-runtime";
 import { isDangerousNameMatchingEnabled } from "soloclaw/plugin-sdk/dangerous-name-runtime";
 import { getAgentScopedMediaLocalRoots } from "soloclaw/plugin-sdk/media-runtime";
@@ -86,7 +86,7 @@ import { resolveDiscordSenderIdentity } from "./sender-identity.js";
 import type { ThreadBindingManager } from "./thread-bindings.js";
 import { resolveDiscordThreadParentInfo } from "./threading.js";
 
-type DiscordConfig = NonNullable<OpenClawConfig["channels"]>["discord"];
+type DiscordConfig = NonNullable<SoloClawConfig["channels"]>["discord"];
 const log = createSubsystemLogger("discord/native-command");
 // Discord application command and option descriptions are limited to 1-100 chars.
 // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure
@@ -154,7 +154,7 @@ function resolveDiscordCommandLogLabel(command: ChatCommandDefinition): string {
 }
 
 function resolveDiscordNativeCommandAllowlistAccess(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId?: string | null;
   sender: { id: string; name?: string; tag?: string };
   chatType: "direct" | "group" | "thread" | "channel";

@@ -1,8 +1,8 @@
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
-import { POSIX_SOLOCLAW_TMP_DIR, resolvePreferredOpenClawTmpDir } from "./tmp-soloclaw-dir.js";
+import { POSIX_SOLOCLAW_TMP_DIR, resolvePreferredSoloClawTmpDir } from "./tmp-soloclaw-dir.js";
 
-type TmpDirOptions = NonNullable<Parameters<typeof resolvePreferredOpenClawTmpDir>[0]>;
+type TmpDirOptions = NonNullable<Parameters<typeof resolvePreferredSoloClawTmpDir>[0]>;
 
 function fallbackTmp(uid = 501) {
   return path.join("/var/fallback", `openclaw-${uid}`);
@@ -51,7 +51,7 @@ function resolveWithReadOnlyTmpFallback(params: {
   chmodSync?: NonNullable<TmpDirOptions["chmodSync"]>;
   warn?: NonNullable<TmpDirOptions["warn"]>;
 }) {
-  return resolvePreferredOpenClawTmpDir({
+  return resolvePreferredSoloClawTmpDir({
     accessSync: readOnlyTmpAccessSync(),
     lstatSync: vi.fn((target: string) => {
       if (target === POSIX_SOLOCLAW_TMP_DIR) {
@@ -130,7 +130,7 @@ function resolveWithMocks(params: {
   const mkdirSync = vi.fn();
   const getuid = vi.fn(() => uid);
   const tmpdir = vi.fn(() => params.tmpdirPath ?? "/var/fallback");
-  const resolved = resolvePreferredOpenClawTmpDir({
+  const resolved = resolvePreferredSoloClawTmpDir({
     accessSync,
     chmodSync,
     lstatSync: wrappedLstatSync,
@@ -142,7 +142,7 @@ function resolveWithMocks(params: {
   return { resolved, accessSync, lstatSync: wrappedLstatSync, mkdirSync, tmpdir };
 }
 
-describe("resolvePreferredOpenClawTmpDir", () => {
+describe("resolvePreferredSoloClawTmpDir", () => {
   it("prefers /tmp/openclaw when it already exists and is writable", () => {
     const lstatSync: NonNullable<TmpDirOptions["lstatSync"]> = vi.fn(() => ({
       isDirectory: () => true,
@@ -303,7 +303,7 @@ describe("resolvePreferredOpenClawTmpDir", () => {
     const tmpdirPath = "/var/fallback";
     const fallbackPath = path.join(tmpdirPath, "soloclaw");
 
-    const resolved = resolvePreferredOpenClawTmpDir({
+    const resolved = resolvePreferredSoloClawTmpDir({
       accessSync: vi.fn((target: string) => {
         if (target === "/tmp") {
           throw new Error("read-only");
@@ -396,7 +396,7 @@ describe("resolvePreferredOpenClawTmpDir", () => {
 
   it("throws when the fallback directory cannot be created", () => {
     expect(() =>
-      resolvePreferredOpenClawTmpDir({
+      resolvePreferredSoloClawTmpDir({
         accessSync: readOnlyTmpAccessSync(),
         lstatSync: vi.fn((target: string) => {
           if (target === POSIX_SOLOCLAW_TMP_DIR || target === fallbackTmp()) {

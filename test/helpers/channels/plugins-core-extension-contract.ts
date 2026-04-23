@@ -4,7 +4,7 @@ import type {
   BaseTokenResolution,
   ChannelDirectoryEntry,
 } from "../../../src/channels/plugins/types.js";
-import type { OpenClawConfig } from "../../../src/config/config.js";
+import type { SoloClawConfig } from "../../../src/config/config.js";
 import { resolveRelativeBundledPluginPublicModuleId } from "../../../src/test-utils/bundled-plugin-public-surface.js";
 import { withEnvAsync } from "../../../src/test-utils/env.js";
 
@@ -46,13 +46,13 @@ function getTelegramDirectoryContractApi(): Promise<TelegramDirectoryContractApi
 }
 
 type DirectoryListFn = (params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId?: string;
   query?: string | null;
   limit?: number | null;
 }) => Promise<ChannelDirectoryEntry[]>;
 
-async function listDirectoryEntriesWithDefaults(listFn: DirectoryListFn, cfg: OpenClawConfig) {
+async function listDirectoryEntriesWithDefaults(listFn: DirectoryListFn, cfg: SoloClawConfig) {
   return await listFn({
     cfg,
     accountId: "default",
@@ -63,7 +63,7 @@ async function listDirectoryEntriesWithDefaults(listFn: DirectoryListFn, cfg: Op
 
 async function expectDirectoryIds(
   listFn: DirectoryListFn,
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   expected: string[],
   options?: { sorted?: boolean },
 ) {
@@ -104,7 +104,7 @@ export function describeDiscordPluginsCoreExtensionContract() {
             },
           },
         },
-      } as unknown as OpenClawConfig;
+      } as unknown as SoloClawConfig;
 
       await expectDirectoryIds(
         listDiscordDirectoryPeersFromConfig,
@@ -144,7 +144,7 @@ export function describeDiscordPluginsCoreExtensionContract() {
             },
           },
         },
-      } as unknown as OpenClawConfig;
+      } as unknown as SoloClawConfig;
 
       await expectDirectoryIds(listDiscordDirectoryPeersFromConfig, cfg, ["user:111"]);
       await expectDirectoryIds(listDiscordDirectoryGroupsFromConfig, cfg, ["channel:555"]);
@@ -167,7 +167,7 @@ export function describeDiscordPluginsCoreExtensionContract() {
             },
           },
         },
-      } as unknown as OpenClawConfig;
+      } as unknown as SoloClawConfig;
 
       const groups = await listDiscordDirectoryGroupsFromConfig({
         cfg,
@@ -202,7 +202,7 @@ export function describeTelegramPluginsCoreExtensionContract() {
             groups: { "-1001": {}, "*": {} },
           },
         },
-      } as unknown as OpenClawConfig;
+      } as unknown as SoloClawConfig;
 
       await expectDirectoryIds(
         listTelegramDirectoryPeersFromConfig,
@@ -233,7 +233,7 @@ export function describeTelegramPluginsCoreExtensionContract() {
               },
             },
           },
-        } as unknown as OpenClawConfig;
+        } as unknown as SoloClawConfig;
 
         await expectDirectoryIds(listTelegramDirectoryPeersFromConfig, cfg, ["@alice"]);
         await expectDirectoryIds(listTelegramDirectoryGroupsFromConfig, cfg, ["-1001"]);
@@ -256,7 +256,7 @@ export function describeTelegramPluginsCoreExtensionContract() {
             groups: { "-1001": {} },
           },
         },
-      } as unknown as OpenClawConfig;
+      } as unknown as SoloClawConfig;
 
       await expectDirectoryIds(listTelegramDirectoryPeersFromConfig, cfg, ["@alice"]);
       await expectDirectoryIds(listTelegramDirectoryGroupsFromConfig, cfg, ["-1001"]);
@@ -271,7 +271,7 @@ export function describeTelegramPluginsCoreExtensionContract() {
             groups: { "-1001": {}, "-1002": {}, "-2001": {} },
           },
         },
-      } as unknown as OpenClawConfig;
+      } as unknown as SoloClawConfig;
 
       const groups = await listTelegramDirectoryGroupsFromConfig({
         cfg,

@@ -1,4 +1,4 @@
-import type { OpenClawPluginApi } from "soloclaw/plugin-sdk/channel-plugin-common";
+import type { SoloClawPluginApi } from "soloclaw/plugin-sdk/channel-plugin-common";
 import {
   normalizeOptionalLowercaseString,
   normalizeOptionalStringifiedId,
@@ -76,7 +76,7 @@ function normalizeThreadBindingTargetKind(raw?: string): ThreadBindingTargetKind
   return undefined;
 }
 
-function resolveThreadBindingFlags(api: OpenClawPluginApi, accountId?: string) {
+function resolveThreadBindingFlags(api: SoloClawPluginApi, accountId?: string) {
   const account = resolveDiscordAccount({
     cfg: api.config,
     accountId,
@@ -98,7 +98,7 @@ function resolveThreadBindingFlags(api: OpenClawPluginApi, accountId?: string) {
 }
 
 export async function handleDiscordSubagentSpawning(
-  api: OpenClawPluginApi,
+  api: SoloClawPluginApi,
   event: DiscordSubagentSpawningEvent,
 ): Promise<DiscordSubagentSpawningResult> {
   if (!event.threadRequested) {
@@ -213,7 +213,7 @@ export function handleDiscordSubagentDeliveryTarget(
   };
 }
 
-export function registerDiscordSubagentHooks(api: OpenClawPluginApi) {
+export function registerDiscordSubagentHooks(api: SoloClawPluginApi) {
   api.on("subagent_spawning", (event) => handleDiscordSubagentSpawning(api, event));
   api.on("subagent_ended", (event) => handleDiscordSubagentEnded(event));
   api.on("subagent_delivery_target", (event) => handleDiscordSubagentDeliveryTarget(event));

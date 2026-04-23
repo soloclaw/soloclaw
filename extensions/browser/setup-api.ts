@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/plugin-entry";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/plugin-entry";
 import { definePluginEntry } from "soloclaw/plugin-sdk/plugin-entry";
 import { normalizeOptionalLowercaseString } from "soloclaw/plugin-sdk/text-runtime";
 import { isRecord } from "./src/record-shared.js";
@@ -16,7 +16,7 @@ function toolPolicyReferencesBrowser(value: unknown): boolean {
   );
 }
 
-function hasBrowserToolReference(config: OpenClawConfig): boolean {
+function hasBrowserToolReference(config: SoloClawConfig): boolean {
   if (toolPolicyReferencesBrowser(config.tools)) {
     return true;
   }

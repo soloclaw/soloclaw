@@ -456,7 +456,7 @@ describe("provider request config", () => {
 
     expect(resolved).toEqual({
       "HTTP-Referer": "https://soloclaw.ai",
-      "X-OpenRouter-Title": "OpenClaw",
+      "X-OpenRouter-Title": "SoloClaw",
       "X-OpenRouter-Categories": "cli-agent",
       "X-Custom": "1",
     });

@@ -5,7 +5,7 @@ import type { ChannelPlugin } from "../channels/plugins/types.plugin.js";
 import { createConfigIO } from "../config/config.js";
 import { collectIncludePathsRecursive } from "../config/includes-scan.js";
 import { resolveConfigPath, resolveOAuthDir, resolveStateDir } from "../config/paths.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { normalizeAgentId } from "../routing/session-key.js";
 
 export type SecurityFixChmodAction = {
@@ -103,14 +103,14 @@ async function safeChmod(params: {
 }
 
 function setGroupPolicyAllowlist(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   channel: string;
   changes: string[];
 }): void {
   if (!params.cfg.channels) {
     return;
   }
-  const section = params.cfg.channels[params.channel as keyof OpenClawConfig["channels"]] as
+  const section = params.cfg.channels[params.channel as keyof SoloClawConfig["channels"]] as
     | Record<string, unknown>
     | undefined;
   if (!section || typeof section !== "object") {
@@ -144,8 +144,8 @@ function setGroupPolicyAllowlist(params: {
   }
 }
 
-function applyConfigFixes(params: { cfg: OpenClawConfig; env: NodeJS.ProcessEnv }): {
-  cfg: OpenClawConfig;
+function applyConfigFixes(params: { cfg: SoloClawConfig; env: NodeJS.ProcessEnv }): {
+  cfg: SoloClawConfig;
   changes: string[];
 } {
   const next = structuredClone(params.cfg ?? {});
@@ -164,11 +164,11 @@ function applyConfigFixes(params: { cfg: OpenClawConfig; env: NodeJS.ProcessEnv 
 }
 
 export async function applySecurityFixConfigMutations(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   env: NodeJS.ProcessEnv;
   channelPlugins?: ChannelPlugin[];
 }): Promise<{
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   changes: string[];
 }> {
   const fixed = applyConfigFixes({ cfg: params.cfg, env: params.env });
@@ -184,7 +184,7 @@ export async function applySecurityFixConfigMutations(params: {
 }
 
 async function collectChannelSecurityConfigFixMutation(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   env: NodeJS.ProcessEnv;
   channelPlugins?: ChannelPlugin[];
 }) {
@@ -225,7 +225,7 @@ export async function collectSecurityPermissionTargets(params: {
   env: NodeJS.ProcessEnv;
   stateDir: string;
   configPath: string;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   includePaths?: readonly string[];
 }): Promise<SecurityPermissionTarget[]> {
   const targets: SecurityPermissionTarget[] = [

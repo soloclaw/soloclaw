@@ -761,7 +761,7 @@ describe("plugin sdk alias helpers", () => {
     // resolve to the fixture root — only the moduleUrl hint can bridge the gap.
     // Pass "" for argv1: undefined would trigger the STARTUP_ARGV1 default (the vitest
     // runner binary, inside the openclaw repo), which resolves before moduleUrl is checked.
-    // An empty string is falsy so resolveTrustedOpenClawRootFromArgvHint returns null,
+    // An empty string is falsy so resolveTrustedSoloClawRootFromArgvHint returns null,
     // meaning only the moduleUrl hint can bridge the gap.
     const aliases = withCwd(externalPluginRoot, () =>
       withEnv({ NODE_ENV: undefined }, () =>
@@ -946,19 +946,19 @@ describe("plugin sdk alias helpers", () => {
     expect(
       isBundledPluginExtensionPath({
         modulePath: "/repo/extensions/demo/api.js",
-        openClawPackageRoot: "/repo",
+        soloClawPackageRoot: "/repo",
       }),
     ).toBe(true);
     expect(
       isBundledPluginExtensionPath({
         modulePath: "/repo/dist/extensions/demo/api.js",
-        openClawPackageRoot: "/repo",
+        soloClawPackageRoot: "/repo",
       }),
     ).toBe(true);
     expect(
       isBundledPluginExtensionPath({
         modulePath: "/repo/vendor/demo/api.js",
-        openClawPackageRoot: "/repo",
+        soloClawPackageRoot: "/repo",
       }),
     ).toBe(false);
   });

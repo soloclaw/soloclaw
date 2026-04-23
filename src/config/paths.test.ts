@@ -102,7 +102,7 @@ describe("gateway port resolution", () => {
 });
 
 describe("state + config path candidates", () => {
-  function expectOpenClawHomeDefaults(env: NodeJS.ProcessEnv): void {
+  function expectSoloClawHomeDefaults(env: NodeJS.ProcessEnv): void {
     const configuredHome = env.SOLOCLAW_HOME;
     if (!configuredHome) {
       throw new Error("SOLOCLAW_HOME must be set for this assertion helper");
@@ -126,7 +126,7 @@ describe("state + config path candidates", () => {
     const env = {
       SOLOCLAW_HOME: "/srv/openclaw-home",
     } as NodeJS.ProcessEnv;
-    expectOpenClawHomeDefaults(env);
+    expectSoloClawHomeDefaults(env);
   });
 
   it("prefers SOLOCLAW_HOME over HOME for default state/config locations", () => {
@@ -134,7 +134,7 @@ describe("state + config path candidates", () => {
       SOLOCLAW_HOME: "/srv/openclaw-home",
       HOME: "/home/other",
     } as NodeJS.ProcessEnv;
-    expectOpenClawHomeDefaults(env);
+    expectSoloClawHomeDefaults(env);
   });
 
   it("orders default config candidates in a stable order", () => {

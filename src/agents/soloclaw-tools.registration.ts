@@ -1,15 +1,15 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { isStrictAgenticExecutionContractActive } from "./execution-contract.js";
 import type { AnyAgentTool } from "./tools/common.js";
 
-export function collectPresentOpenClawTools(
+export function collectPresentSoloClawTools(
   candidates: readonly (AnyAgentTool | null | undefined)[],
 ): AnyAgentTool[] {
   return candidates.filter((tool): tool is AnyAgentTool => tool !== null && tool !== undefined);
 }
 
-export function isUpdatePlanToolEnabledForOpenClawTools(params: {
-  config?: OpenClawConfig;
+export function isUpdatePlanToolEnabledForSoloClawTools(params: {
+  config?: SoloClawConfig;
   agentSessionKey?: string;
   agentId?: string | null;
   modelProvider?: string;

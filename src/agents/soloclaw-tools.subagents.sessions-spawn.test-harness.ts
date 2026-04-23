@@ -9,7 +9,7 @@ type CaptureSubagentCompletionReply =
 type RunSubagentAnnounceFlow = (typeof import("./subagent-announce.js"))["runSubagentAnnounceFlow"];
 type CreateSessionsSpawnTool =
   (typeof import("./tools/sessions-spawn-tool.js"))["createSessionsSpawnTool"];
-export type CreateOpenClawToolsOpts = Parameters<CreateSessionsSpawnTool>[0];
+export type CreateSoloClawToolsOpts = Parameters<CreateSessionsSpawnTool>[0];
 export type GatewayRequest = { method?: string; params?: unknown };
 export type AgentWaitCall = { runId?: string; timeoutMs?: number };
 type SessionsSpawnGatewayMockOptions = {
@@ -142,7 +142,7 @@ export function setSessionsSpawnAnnounceFlowOverride(next: RunSubagentAnnounceFl
   hoisted.state.runSubagentAnnounceFlowOverride = next;
 }
 
-export async function getSessionsSpawnTool(opts: CreateOpenClawToolsOpts) {
+export async function getSessionsSpawnTool(opts: CreateSoloClawToolsOpts) {
   const [{ __testing: subagentSpawnTesting }, { __testing: subagentRegistryTesting }] =
     await Promise.all([import("./subagent-spawn.js"), import("./subagent-registry.js")]);
   subagentSpawnTesting.setDepsForTest({

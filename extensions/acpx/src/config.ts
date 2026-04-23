@@ -66,7 +66,7 @@ function resolveRepoAcpxPluginRoot(currentRoot: string): string | null {
   return isAcpxPluginRoot(workspaceRoot) ? workspaceRoot : null;
 }
 
-function resolveAcpxPluginRootFromOpenClawLayout(moduleUrl: string): string | null {
+function resolveAcpxPluginRootFromSoloClawLayout(moduleUrl: string): string | null {
   let cursor = path.dirname(fileURLToPath(moduleUrl));
   for (let i = 0; i < 5; i += 1) {
     const candidates = [
@@ -96,7 +96,7 @@ export function resolveAcpxPluginRoot(moduleUrl: string = import.meta.url): stri
     resolveRepoAcpxPluginRoot(resolvedRoot) ??
     // Shared dist/dist-runtime chunks can load this module outside the plugin tree.
     // Scan common SoloClaw layouts before falling back to the nearest path guess.
-    resolveAcpxPluginRootFromOpenClawLayout(moduleUrl) ??
+    resolveAcpxPluginRootFromSoloClawLayout(moduleUrl) ??
     resolvedRoot
   );
 }
@@ -139,7 +139,7 @@ function parseAcpxPluginConfig(value: unknown): ParseResult {
   };
 }
 
-function resolveOpenClawRoot(currentRoot: string): string {
+function resolveSoloClawRoot(currentRoot: string): string {
   if (
     path.basename(currentRoot) === "acpx" &&
     path.basename(path.dirname(currentRoot)) === "extensions"
@@ -157,15 +157,15 @@ export function resolvePluginToolsMcpServerConfig(
   moduleUrl: string = import.meta.url,
 ): McpServerConfig {
   const pluginRoot = resolveAcpxPluginRoot(moduleUrl);
-  const openClawRoot = resolveOpenClawRoot(pluginRoot);
-  const distEntry = path.join(openClawRoot, "dist", "mcp", "plugin-tools-serve.js");
+  const soloClawRoot = resolveSoloClawRoot(pluginRoot);
+  const distEntry = path.join(soloClawRoot, "dist", "mcp", "plugin-tools-serve.js");
   if (fs.existsSync(distEntry)) {
     return {
       command: process.execPath,
       args: [distEntry],
     };
   }
-  const sourceEntry = path.join(openClawRoot, "src", "mcp", "plugin-tools-serve.ts");
+  const sourceEntry = path.join(soloClawRoot, "src", "mcp", "plugin-tools-serve.ts");
   return {
     command: process.execPath,
     args: ["--import", "tsx", sourceEntry],

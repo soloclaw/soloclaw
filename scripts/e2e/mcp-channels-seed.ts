@@ -4,7 +4,7 @@ import path from "node:path";
 import {
   applyProviderConfigWithDefaultModelPreset,
   type ModelDefinitionConfig,
-  type OpenClawConfig,
+  type SoloClawConfig,
 } from "../../src/plugin-sdk/provider-onboard.ts";
 
 const DOCKER_OPENAI_MODEL_REF = "openai/gpt-5.4";
@@ -44,7 +44,7 @@ async function main() {
           enabled: false,
         },
       },
-    } satisfies OpenClawConfig,
+    } satisfies SoloClawConfig,
     {
       providerId: "openai",
       api: "openai-responses",

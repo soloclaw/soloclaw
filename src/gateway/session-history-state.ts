@@ -2,7 +2,7 @@ import {
   DEFAULT_CHAT_HISTORY_TEXT_MAX_CHARS,
   sanitizeChatHistoryMessages,
 } from "./server-methods/chat.js";
-import { attachOpenClawTranscriptMeta, readSessionMessages } from "./session-utils.js";
+import { attachSoloClawTranscriptMeta, readSessionMessages } from "./session-utils.js";
 
 type SessionHistoryTranscriptMeta = {
   seq?: number;
@@ -174,7 +174,7 @@ export class SessionHistorySseState {
       return null;
     }
     this.rawTranscriptSeq += 1;
-    const nextMessage = attachOpenClawTranscriptMeta(update.message, {
+    const nextMessage = attachSoloClawTranscriptMeta(update.message, {
       ...(typeof update.messageId === "string" ? { id: update.messageId } : {}),
       seq: this.rawTranscriptSeq,
     });

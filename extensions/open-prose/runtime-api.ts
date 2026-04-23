@@ -1,2 +1,2 @@
 export { definePluginEntry } from "soloclaw/plugin-sdk/plugin-entry";
-export type { OpenClawPluginApi } from "soloclaw/plugin-sdk/core";
+export type { SoloClawPluginApi } from "soloclaw/plugin-sdk/core";

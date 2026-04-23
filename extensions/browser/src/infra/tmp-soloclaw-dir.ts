@@ -1,1 +1,1 @@
-export { resolvePreferredOpenClawTmpDir } from "soloclaw/plugin-sdk/temp-path";
+export { resolvePreferredSoloClawTmpDir } from "soloclaw/plugin-sdk/temp-path";

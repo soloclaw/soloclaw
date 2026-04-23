@@ -55,7 +55,7 @@ describe("proxy stream wrappers", () => {
       {
         headers: {
           "HTTP-Referer": "https://soloclaw.ai",
-          "X-OpenRouter-Title": "OpenClaw",
+          "X-OpenRouter-Title": "SoloClaw",
           "X-OpenRouter-Categories": "cli-agent",
           "X-Custom": "1",
         },

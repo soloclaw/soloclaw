@@ -3,7 +3,7 @@ import { definePluginEntry } from "soloclaw/plugin-sdk/plugin-entry";
 export default definePluginEntry({
   id: "memory-wiki",
   name: "Memory Wiki",
-  description: "Persistent wiki compiler and Obsidian-friendly knowledge vault for OpenClaw.",
+  description: "Persistent wiki compiler and Obsidian-friendly knowledge vault for SoloClaw.",
   register(api) {
     api.registerCli(
       async ({ program, config: appConfig }) => {

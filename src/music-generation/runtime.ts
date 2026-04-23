@@ -1,6 +1,6 @@
 import { describeFailoverError, isFailoverError } from "../agents/failover-error.js";
 import type { FallbackAttempt } from "../agents/model-fallback.types.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { formatErrorMessage } from "../infra/errors.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import {
@@ -19,7 +19,7 @@ const log = createSubsystemLogger("music-generation");
 
 export type { GenerateMusicParams, GenerateMusicRuntimeResult } from "./runtime-types.js";
 
-export function listRuntimeMusicGenerationProviders(params?: { config?: OpenClawConfig }) {
+export function listRuntimeMusicGenerationProviders(params?: { config?: SoloClawConfig }) {
   return listMusicGenerationProviders(params?.config);
 }
 

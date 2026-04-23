@@ -68,7 +68,7 @@ export const confirm = vi.fn().mockResolvedValue(true) as unknown as MockFn;
 export const select = vi.fn().mockResolvedValue("node") as unknown as MockFn;
 export const note = vi.fn() as unknown as MockFn;
 export const writeConfigFile = vi.fn().mockResolvedValue(undefined) as unknown as MockFn;
-export const resolveOpenClawPackageRoot = vi.fn().mockResolvedValue(null) as unknown as MockFn;
+export const resolveSoloClawPackageRoot = vi.fn().mockResolvedValue(null) as unknown as MockFn;
 export const runGatewayUpdate = vi
   .fn()
   .mockResolvedValue(createGatewayUpdateResult()) as unknown as MockFn;
@@ -251,7 +251,7 @@ vi.mock("../agents/skills-status.js", () => ({
 
 vi.mock("../plugins/loader.js", () => ({
   isPluginRegistryLoadInFlight: () => false,
-  loadOpenClawPlugins: () => createEmptyPluginRegistry(),
+  loadSoloClawPlugins: () => createEmptyPluginRegistry(),
   resolveRuntimePluginRegistry: () => null,
 }));
 
@@ -345,8 +345,8 @@ vi.mock("soloclaw/plugin-sdk/runtime-env", () => ({
 }));
 
 vi.mock("../infra/soloclaw-root.js", () => ({
-  resolveOpenClawPackageRoot,
-  resolveOpenClawPackageRootSync: vi.fn(() => "/tmp/openclaw"),
+  resolveSoloClawPackageRoot,
+  resolveSoloClawPackageRootSync: vi.fn(() => "/tmp/openclaw"),
 }));
 
 vi.mock("../infra/update-runner.js", () => ({
@@ -527,7 +527,7 @@ beforeEach(() => {
 
   readConfigFileSnapshot.mockReset();
   writeConfigFile.mockReset().mockResolvedValue(undefined);
-  resolveOpenClawPackageRoot.mockReset().mockResolvedValue(null);
+  resolveSoloClawPackageRoot.mockReset().mockResolvedValue(null);
   runGatewayUpdate.mockReset().mockResolvedValue(createGatewayUpdateResult());
   listPluginDoctorLegacyConfigRules.mockReset().mockReturnValue([]);
   runDoctorHealthContributions.mockReset().mockImplementation(defaultRunDoctorHealthContributions);

@@ -1,8 +1,8 @@
 import path from "node:path";
-import type { OpenClawConfig } from "../config/types.js";
+import type { SoloClawConfig } from "../config/types.js";
 import {
   POSIX_SOLOCLAW_TMP_DIR,
-  resolvePreferredOpenClawTmpDir,
+  resolvePreferredSoloClawTmpDir,
 } from "../infra/tmp-soloclaw-dir.js";
 
 const LOG_PREFIX = "soloclaw";
@@ -32,10 +32,10 @@ function formatLocalDate(date: Date): string {
 }
 
 export function resolveDefaultRollingLogFile(date = new Date()): string {
-  const logDir = canUseNodeFs() ? resolvePreferredOpenClawTmpDir() : POSIX_SOLOCLAW_TMP_DIR;
+  const logDir = canUseNodeFs() ? resolvePreferredSoloClawTmpDir() : POSIX_SOLOCLAW_TMP_DIR;
   return path.join(logDir, `${LOG_PREFIX}-${formatLocalDate(date)}${LOG_SUFFIX}`);
 }
 
-export function resolveConfiguredLogFilePath(config?: OpenClawConfig | null): string {
+export function resolveConfiguredLogFilePath(config?: SoloClawConfig | null): string {
   return config?.logging?.file ?? resolveDefaultRollingLogFile();
 }

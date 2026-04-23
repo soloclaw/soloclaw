@@ -121,7 +121,7 @@ describe("env test utils", () => {
   it("createPathResolutionEnv clears leaked path overrides before applying explicit ones", () => {
     const homeDir = path.join(path.sep, "tmp", "openclaw-home");
     const resolvedHomeDir = path.resolve(homeDir);
-    const previousOpenClawHome = process.env.SOLOCLAW_HOME;
+    const previousSoloClawHome = process.env.SOLOCLAW_HOME;
     const previousStateDir = process.env.SOLOCLAW_STATE_DIR;
     const previousBundledDir = process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR;
     process.env.SOLOCLAW_HOME = "/srv/openclaw-home";
@@ -138,7 +138,7 @@ describe("env test utils", () => {
       expect(env.SOLOCLAW_BUNDLED_PLUGINS_DIR).toBeUndefined();
       expect(env.SOLOCLAW_STATE_DIR).toBe("~/state");
     } finally {
-      restoreEnvKey("SOLOCLAW_HOME", previousOpenClawHome);
+      restoreEnvKey("SOLOCLAW_HOME", previousSoloClawHome);
       restoreEnvKey("SOLOCLAW_STATE_DIR", previousStateDir);
       restoreEnvKey("SOLOCLAW_BUNDLED_PLUGINS_DIR", previousBundledDir);
     }
@@ -147,7 +147,7 @@ describe("env test utils", () => {
   it("withPathResolutionEnv only applies the explicit path env inside the callback", () => {
     const homeDir = path.join(path.sep, "tmp", "openclaw-home");
     const resolvedHomeDir = path.resolve(homeDir);
-    const previousOpenClawHome = process.env.SOLOCLAW_HOME;
+    const previousSoloClawHome = process.env.SOLOCLAW_HOME;
     process.env.SOLOCLAW_HOME = "/srv/openclaw-home";
 
     try {
@@ -156,7 +156,7 @@ describe("env test utils", () => {
         { SOLOCLAW_BUNDLED_PLUGINS_DIR: "~/bundled" },
         (env) => ({
           processHome: process.env.HOME,
-          processOpenClawHome: process.env.SOLOCLAW_HOME,
+          processSoloClawHome: process.env.SOLOCLAW_HOME,
           processBundledDir: process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR,
           envBundledDir: env.SOLOCLAW_BUNDLED_PLUGINS_DIR,
         }),
@@ -164,13 +164,13 @@ describe("env test utils", () => {
 
       expect(seen).toEqual({
         processHome: resolvedHomeDir,
-        processOpenClawHome: undefined,
+        processSoloClawHome: undefined,
         processBundledDir: "~/bundled",
         envBundledDir: "~/bundled",
       });
       expect(process.env.SOLOCLAW_HOME).toBe("/srv/openclaw-home");
     } finally {
-      restoreEnvKey("SOLOCLAW_HOME", previousOpenClawHome);
+      restoreEnvKey("SOLOCLAW_HOME", previousSoloClawHome);
     }
   });
 });

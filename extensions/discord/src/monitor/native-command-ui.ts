@@ -24,7 +24,7 @@ import {
   type CommandArgValues,
   type CommandArgs,
 } from "soloclaw/plugin-sdk/command-auth";
-import type { OpenClawConfig, loadConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig, loadConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { loadSessionStore, resolveStorePath } from "soloclaw/plugin-sdk/config-runtime";
 import type { ResolvedAgentRoute } from "soloclaw/plugin-sdk/routing";
 import { logVerbose } from "soloclaw/plugin-sdk/runtime-env";
@@ -54,7 +54,7 @@ import { resolveDiscordNativeInteractionRouteState } from "./native-command-rout
 import type { ThreadBindingManager } from "./thread-bindings.js";
 import { resolveDiscordThreadParentInfo } from "./threading.js";
 
-type DiscordConfig = NonNullable<OpenClawConfig["channels"]>["discord"];
+type DiscordConfig = NonNullable<SoloClawConfig["channels"]>["discord"];
 
 const DISCORD_COMMAND_ARG_CUSTOM_ID_KEY = "cmdarg";
 

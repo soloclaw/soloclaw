@@ -201,9 +201,9 @@ describe("toSanitizedMarkdownHtml", () => {
     });
 
     it("does NOT rewrite explicit markdown links with CJK display text", () => {
-      const html = toSanitizedMarkdownHtml("[OpenClaw中文](https://docs.soloclaw.ai)");
+      const html = toSanitizedMarkdownHtml("[SoloClaw中文](https://docs.soloclaw.ai)");
       expect(html).toContain('href="https://docs.soloclaw.ai"');
-      expect(html).toContain("OpenClaw中文</a>");
+      expect(html).toContain("SoloClaw中文</a>");
     });
 
     it("preserves mailto: scheme when trimming CJK from email links", () => {

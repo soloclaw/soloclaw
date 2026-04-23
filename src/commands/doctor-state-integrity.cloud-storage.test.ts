@@ -12,7 +12,7 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "Mobile Documents",
       "com~apple~CloudDocs",
-      "OpenClaw",
+      "SoloClaw",
       ".soloclaw",
     );
 
@@ -28,7 +28,7 @@ describe("detectMacCloudSyncedStateDir", () => {
   });
 
   it("detects state dir under Library/CloudStorage", () => {
-    const stateDir = path.join(home, "Library", "CloudStorage", "Dropbox", "OpenClaw", ".soloclaw");
+    const stateDir = path.join(home, "Library", "CloudStorage", "Dropbox", "SoloClaw", ".soloclaw");
 
     const result = detectMacCloudSyncedStateDir(stateDir, {
       platform: "darwin",
@@ -48,7 +48,7 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "CloudStorage",
       "OneDrive-Personal",
-      "OpenClaw",
+      "SoloClaw",
       ".soloclaw",
     );
 
@@ -70,7 +70,7 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "CloudStorage",
       "OneDrive-Personal",
-      "OpenClaw",
+      "SoloClaw",
       ".soloclaw",
     );
     const resolvedLocalPath = path.join(home, ".soloclaw");
@@ -86,7 +86,7 @@ describe("detectMacCloudSyncedStateDir", () => {
 
   it("anchors cloud detection to OS homedir when SOLOCLAW_HOME is overridden", () => {
     const stateDir = path.join(home, "Library", "CloudStorage", "iCloud Drive", ".soloclaw");
-    const originalOpenClawHome = process.env.SOLOCLAW_HOME;
+    const originalSoloClawHome = process.env.SOLOCLAW_HOME;
     process.env.SOLOCLAW_HOME = "/tmp/openclaw-home-override";
     const homedirSpy = vi.spyOn(os, "homedir").mockReturnValue(home);
     try {
@@ -100,10 +100,10 @@ describe("detectMacCloudSyncedStateDir", () => {
       });
     } finally {
       homedirSpy.mockRestore();
-      if (originalOpenClawHome === undefined) {
+      if (originalSoloClawHome === undefined) {
         delete process.env.SOLOCLAW_HOME;
       } else {
-        process.env.SOLOCLAW_HOME = originalOpenClawHome;
+        process.env.SOLOCLAW_HOME = originalSoloClawHome;
       }
     }
   });
@@ -114,7 +114,7 @@ describe("detectMacCloudSyncedStateDir", () => {
       "Library",
       "Mobile Documents",
       "com~apple~CloudDocs",
-      "OpenClaw",
+      "SoloClaw",
       ".soloclaw",
     );
 

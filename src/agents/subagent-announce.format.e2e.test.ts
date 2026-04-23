@@ -3,7 +3,7 @@ import { SILENT_REPLY_TOKEN } from "../auto-reply/tokens.js";
 import {
   clearRuntimeConfigSnapshot,
   setRuntimeConfigSnapshot,
-  type OpenClawConfig,
+  type SoloClawConfig,
 } from "../config/config.js";
 import * as configSessions from "../config/sessions.js";
 import type { SessionEntry } from "../config/sessions/types.js";
@@ -126,7 +126,7 @@ const chatHistoryMock = vi.fn(async (_sessionKey?: string) => ({
   messages: [] as Array<unknown>,
 }));
 let sessionStore: SessionStoreFixture = {};
-let configOverride: OpenClawConfig = {
+let configOverride: SoloClawConfig = {
   session: {
     mainKey: "main",
     scope: "per-sender",
@@ -148,7 +148,7 @@ async function getSingleAgentCallParams() {
   return call?.params ?? {};
 }
 
-function setConfigOverride(next: OpenClawConfig): void {
+function setConfigOverride(next: SoloClawConfig): void {
   configOverride = next;
   setRuntimeConfigSnapshot(configOverride);
 }

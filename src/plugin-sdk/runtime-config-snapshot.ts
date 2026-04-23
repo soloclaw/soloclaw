@@ -1,2 +1,2 @@
 export { getRuntimeConfigSnapshot } from "../config/runtime-snapshot.js";
-export type { OpenClawConfig } from "../config/types.js";
+export type { SoloClawConfig } from "../config/types.js";

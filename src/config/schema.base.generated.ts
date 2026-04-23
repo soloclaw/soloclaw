@@ -67,7 +67,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
             },
             title: "Environment Variable Overrides",
             description:
-              "Explicit key/value environment variable overrides merged into runtime process environment for OpenClaw. Use this for deterministic env configuration instead of relying only on shell profile side effects.",
+              "Explicit key/value environment variable overrides merged into runtime process environment for SoloClaw. Use this for deterministic env configuration instead of relying only on shell profile side effects.",
           },
         },
         additionalProperties: {
@@ -20429,7 +20429,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
         additionalProperties: false,
         title: "Hooks",
         description:
-          "Inbound webhook automation surface for mapping external events into wake or agent actions in OpenClaw. Keep this locked down with explicit token/session/agent controls before exposing it beyond trusted networks.",
+          "Inbound webhook automation surface for mapping external events into wake or agent actions in SoloClaw. Keep this locked down with explicit token/session/agent controls before exposing it beyond trusted networks.",
       },
       web: {
         type: "object",
@@ -20804,7 +20804,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
                 type: "boolean",
                 title: "Allow External Control UI Embed URLs",
                 description:
-                  "DANGEROUS toggle that allows hosted embeds to load absolute external http(s) URLs. Keep this off unless your Control UI intentionally embeds trusted third-party pages; hosted /__openclaw__/canvas and /__openclaw__/a2ui documents do not need it.",
+                  "DANGEROUS toggle that allows hosted embeds to load absolute external http(s) URLs. Keep this off unless your Control UI intentionally embeds trusted third-party pages; hosted /__soloclaw__/canvas and /__soloclaw__/a2ui documents do not need it.",
               },
               allowedOrigins: {
                 type: "array",
@@ -22215,7 +22215,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
         additionalProperties: false,
         title: "MCP",
         description:
-          "Global MCP server definitions managed by OpenClaw. Embedded Pi and other runtime adapters can consume these servers without storing them inside Pi-owned project settings.",
+          "Global MCP server definitions managed by SoloClaw. Embedded Pi and other runtime adapters can consume these servers without storing them inside Pi-owned project settings.",
       },
       skills: {
         type: "object",
@@ -22715,7 +22715,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
     },
     required: ["commands"],
     additionalProperties: false,
-    title: "OpenClawConfig",
+    title: "SoloClawConfig",
   },
   uiHints: {
     wizard: {
@@ -22834,7 +22834,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
       label: "Hooks",
       group: "Hooks",
       order: 110,
-      help: "Inbound webhook automation surface for mapping external events into wake or agent actions in OpenClaw. Keep this locked down with explicit token/session/agent controls before exposing it beyond trusted networks.",
+      help: "Inbound webhook automation surface for mapping external events into wake or agent actions in SoloClaw. Keep this locked down with explicit token/session/agent controls before exposing it beyond trusted networks.",
       tags: ["advanced"],
     },
     ui: {
@@ -22934,7 +22934,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
     },
     "env.vars": {
       label: "Environment Variable Overrides",
-      help: "Explicit key/value environment variable overrides merged into runtime process environment for OpenClaw. Use this for deterministic env configuration instead of relying only on shell profile side effects.",
+      help: "Explicit key/value environment variable overrides merged into runtime process environment for SoloClaw. Use this for deterministic env configuration instead of relying only on shell profile side effects.",
       tags: ["advanced"],
     },
     "wizard.lastRunAt": {
@@ -24365,7 +24365,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
     },
     "gateway.controlUi.allowExternalEmbedUrls": {
       label: "Allow External Control UI Embed URLs",
-      help: "DANGEROUS toggle that allows hosted embeds to load absolute external http(s) URLs. Keep this off unless your Control UI intentionally embeds trusted third-party pages; hosted /__openclaw__/canvas and /__openclaw__/a2ui documents do not need it.",
+      help: "DANGEROUS toggle that allows hosted embeds to load absolute external http(s) URLs. Keep this off unless your Control UI intentionally embeds trusted third-party pages; hosted /__soloclaw__/canvas and /__soloclaw__/a2ui documents do not need it.",
       tags: ["security", "access", "network", "advanced"],
     },
     "gateway.controlUi.allowedOrigins": {
@@ -25898,7 +25898,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA: BaseConfigSchemaResponse = {
     },
     mcp: {
       label: "MCP",
-      help: "Global MCP server definitions managed by OpenClaw. Embedded Pi and other runtime adapters can consume these servers without storing them inside Pi-owned project settings.",
+      help: "Global MCP server definitions managed by SoloClaw. Embedded Pi and other runtime adapters can consume these servers without storing them inside Pi-owned project settings.",
       tags: ["advanced"],
     },
     "mcp.servers": {

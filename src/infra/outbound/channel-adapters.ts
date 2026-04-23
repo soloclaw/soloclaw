@@ -3,14 +3,14 @@ import type {
   ChannelId,
   ChannelStructuredComponents,
 } from "../../channels/plugins/types.public.js";
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 
 export type CrossContextComponentsBuilder = (message: string) => ChannelStructuredComponents;
 
 export type CrossContextComponentsFactory = (params: {
   originLabel: string;
   message: string;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId?: string | null;
 }) => ChannelStructuredComponents;
 

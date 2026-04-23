@@ -17,7 +17,7 @@ import {
 } from "../../../src/auto-reply/reply/inbound-meta.js";
 import type { TemplateContext } from "../../../src/auto-reply/templating.js";
 import { SILENT_REPLY_TOKEN } from "../../../src/auto-reply/tokens.js";
-import type { OpenClawConfig } from "../../../src/config/config.js";
+import type { SoloClawConfig } from "../../../src/config/config.js";
 import { makeTempWorkspace, writeWorkspaceFile } from "../../../src/test-helpers/workspace.js";
 
 export type PromptScenarioTurn = {
@@ -121,7 +121,7 @@ function buildAutoReplySystemPrompt(params: {
     params.includeGroupChatContext ? buildGroupChatContext({ sessionCtx: params.sessionCtx }) : "",
     params.includeGroupIntro
       ? buildGroupIntro({
-          cfg: {} as OpenClawConfig,
+          cfg: {} as SoloClawConfig,
           sessionCtx: params.sessionCtx,
           defaultActivation: "mention",
           silentToken: SILENT_REPLY_TOKEN,
@@ -469,7 +469,7 @@ async function createBootstrapWarningScenario(workspaceDir: string): Promise<Pro
         bootstrapTotalMaxChars: 2_200,
       },
     },
-  } satisfies OpenClawConfig;
+  } satisfies SoloClawConfig;
   const largeAgents = "# AGENTS.md\n\n" + "Rules.\n".repeat(5_000);
   const largeTools = "# TOOLS.md\n\n" + "Notes.\n".repeat(3_000);
   await writeWorkspaceFile({ dir: workspaceDir, name: "AGENTS.md", content: largeAgents });

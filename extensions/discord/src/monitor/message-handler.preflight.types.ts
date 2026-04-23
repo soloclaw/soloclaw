@@ -21,7 +21,7 @@ export type DiscordMessageEvent = import("./listeners.js").DiscordMessageEvent;
 type DiscordMessagePreflightSharedFields = {
   cfg: LoadedConfig;
   discordConfig: NonNullable<
-    import("soloclaw/plugin-sdk/config-runtime").OpenClawConfig["channels"]
+    import("soloclaw/plugin-sdk/config-runtime").SoloClawConfig["channels"]
   >["discord"];
   accountId: string;
   token: string;

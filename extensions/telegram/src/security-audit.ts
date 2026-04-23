@@ -1,6 +1,6 @@
 import { readChannelAllowFromStore } from "soloclaw/plugin-sdk/conversation-runtime";
 import { resolveNativeSkillsEnabled } from "soloclaw/plugin-sdk/native-command-config-runtime";
-import type { OpenClawConfig } from "../runtime-api.js";
+import type { SoloClawConfig } from "../runtime-api.js";
 import type { ResolvedTelegramAccount } from "./accounts.js";
 import { isNumericTelegramSenderUserId, normalizeTelegramAllowFromEntry } from "./allow-from.js";
 
@@ -25,7 +25,7 @@ function collectInvalidTelegramAllowFromEntries(params: { entries: unknown; targ
 }
 
 export async function collectTelegramSecurityAuditFindings(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId?: string | null;
   account: ResolvedTelegramAccount;
 }) {

@@ -2,7 +2,7 @@ import {
   type ChannelDoctorAdapter,
   type ChannelDoctorEmptyAllowlistAccountContext,
 } from "soloclaw/plugin-sdk/channel-contract";
-import { type OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import { type SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { formatErrorMessage } from "soloclaw/plugin-sdk/error-runtime";
 import { normalizeOptionalString } from "soloclaw/plugin-sdk/text-runtime";
 import { inspectTelegramAccount } from "./account-inspect.js";
@@ -39,7 +39,7 @@ function hasAllowFromEntries(values?: DoctorAllowFromList): boolean {
 }
 
 function collectTelegramAccountScopes(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
 ): Array<{ prefix: string; account: Record<string, unknown> }> {
   const scopes: Array<{ prefix: string; account: Record<string, unknown> }> = [];
   const telegram = asObjectRecord((cfg.channels as Record<string, unknown> | undefined)?.telegram);
@@ -102,7 +102,7 @@ function collectTelegramAllowFromLists(
 }
 
 export function scanTelegramInvalidAllowFromEntries(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
 ): TelegramAllowFromInvalidHit[] {
   const hits: TelegramAllowFromInvalidHit[] = [];
   const scanList = (pathLabel: string, list: unknown) => {
@@ -140,8 +140,8 @@ export function collectTelegramInvalidAllowFromWarnings(params: {
   ];
 }
 
-export async function maybeRepairTelegramAllowFromUsernames(cfg: OpenClawConfig): Promise<{
-  config: OpenClawConfig;
+export async function maybeRepairTelegramAllowFromUsernames(cfg: SoloClawConfig): Promise<{
+  config: SoloClawConfig;
   changes: string[];
 }> {
   const hits = scanTelegramInvalidAllowFromEntries(cfg);

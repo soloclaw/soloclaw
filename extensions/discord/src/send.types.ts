@@ -1,5 +1,5 @@
 import type { RequestClient } from "@buape/carbon";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import type { RetryConfig } from "soloclaw/plugin-sdk/retry-runtime";
 
 export class DiscordSendError extends Error {
@@ -30,12 +30,12 @@ export type DiscordSendResult = {
 };
 
 export type DiscordRuntimeAccountContext = {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId: string;
 };
 
 export type DiscordReactOpts = {
-  cfg?: OpenClawConfig;
+  cfg?: SoloClawConfig;
   accountId?: string;
   token?: string;
   rest?: RequestClient;

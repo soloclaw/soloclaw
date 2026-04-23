@@ -74,7 +74,7 @@ export type {
   GroupToolPolicyConfig,
   MarkdownConfig,
   MarkdownTableMode,
-  OpenClawConfig,
+  SoloClawConfig,
   ReplyToMode,
   SignalReactionNotificationMode,
   SlackAccountConfig,

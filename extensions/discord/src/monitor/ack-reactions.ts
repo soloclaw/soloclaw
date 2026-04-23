@@ -4,7 +4,7 @@ import {
   logAckFailure,
   type StatusReactionAdapter,
 } from "soloclaw/plugin-sdk/channel-feedback";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { logVerbose } from "soloclaw/plugin-sdk/runtime-env";
 import { createDiscordRuntimeAccountContext } from "../client.js";
 import { reactMessageDiscord, removeReactionDiscord } from "../send.js";
@@ -12,7 +12,7 @@ import type { DiscordReactionRuntimeContext } from "../send.types.js";
 
 export function createDiscordAckReactionContext(params: {
   rest: RequestClient;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId: string;
 }): DiscordReactionRuntimeContext {
   return {

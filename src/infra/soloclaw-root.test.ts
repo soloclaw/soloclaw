@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 type FakeFsEntry = { kind: "file"; content: string } | { kind: "dir" };
 
-const VITEST_FS_BASE = path.join(path.parse(process.cwd()).root, "__openclaw_vitest__");
+const VITEST_FS_BASE = path.join(path.parse(process.cwd()).root, "__soloclaw_vitest__");
 const FIXTURE_BASE = path.join(VITEST_FS_BASE, "soloclaw-root");
 
 const state = vi.hoisted(() => ({
@@ -32,9 +32,9 @@ function setPackageRoot(root: string, name = "soloclaw") {
 }
 
 function expectResolvedPackageRoot(
-  syncResolver: typeof import("./soloclaw-root.js").resolveOpenClawPackageRootSync,
-  asyncResolver: typeof import("./soloclaw-root.js").resolveOpenClawPackageRoot,
-  opts: Parameters<typeof import("./soloclaw-root.js").resolveOpenClawPackageRootSync>[0],
+  syncResolver: typeof import("./soloclaw-root.js").resolveSoloClawPackageRootSync,
+  asyncResolver: typeof import("./soloclaw-root.js").resolveSoloClawPackageRoot,
+  opts: Parameters<typeof import("./soloclaw-root.js").resolveSoloClawPackageRootSync>[0],
   expected: string | null,
 ) {
   expect(syncResolver(opts)).toBe(expected);
@@ -101,13 +101,13 @@ const mockFsPromisesModule = () => {
 };
 
 vi.mock("./soloclaw-root.fs.runtime.js", () => ({
-  openClawRootFsSync: mockFsModule(),
-  openClawRootFs: mockFsPromisesModule(),
+  soloClawRootFsSync: mockFsModule(),
+  soloClawRootFs: mockFsPromisesModule(),
 }));
 
-describe("resolveOpenClawPackageRoot", () => {
-  let resolveOpenClawPackageRoot: typeof import("./soloclaw-root.js").resolveOpenClawPackageRoot;
-  let resolveOpenClawPackageRootSync: typeof import("./soloclaw-root.js").resolveOpenClawPackageRootSync;
+describe("resolveSoloClawPackageRoot", () => {
+  let resolveSoloClawPackageRoot: typeof import("./soloclaw-root.js").resolveSoloClawPackageRoot;
+  let resolveSoloClawPackageRootSync: typeof import("./soloclaw-root.js").resolveSoloClawPackageRootSync;
 
   beforeEach(() => {
     state.entries.clear();
@@ -117,7 +117,7 @@ describe("resolveOpenClawPackageRoot", () => {
 
   beforeEach(async () => {
     vi.resetModules();
-    ({ resolveOpenClawPackageRoot, resolveOpenClawPackageRootSync } =
+    ({ resolveSoloClawPackageRoot, resolveSoloClawPackageRootSync } =
       await import("./soloclaw-root.js"));
   });
 
@@ -224,8 +224,8 @@ describe("resolveOpenClawPackageRoot", () => {
   ])("$name", async ({ setup }) => {
     const { opts, expected } = setup();
     await expectResolvedPackageRoot(
-      resolveOpenClawPackageRootSync,
-      resolveOpenClawPackageRoot,
+      resolveSoloClawPackageRootSync,
+      resolveSoloClawPackageRoot,
       opts,
       expected,
     );

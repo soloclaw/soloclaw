@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 
 export type MediaUnderstandingKind =
   | "audio.transcription"
@@ -137,7 +137,7 @@ export type ImageDescriptionRequest = {
   profile?: string;
   preferredProfile?: string;
   agentDir: string;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   model: string;
   provider: string;
 };
@@ -158,7 +158,7 @@ export type ImagesDescriptionRequest = {
   profile?: string;
   preferredProfile?: string;
   agentDir: string;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
 };
 
 export type ImageDescriptionResult = {

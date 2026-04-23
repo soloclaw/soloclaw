@@ -1,6 +1,6 @@
-import { describeOpenClawGenerationToolRegistration } from "./soloclaw-tools.generation.test-support.js";
+import { describeSoloClawGenerationToolRegistration } from "./soloclaw-tools.generation.test-support.js";
 
-describeOpenClawGenerationToolRegistration({
+describeSoloClawGenerationToolRegistration({
   suiteName: "soloclaw tools video generation registration",
   toolName: "video_generate",
   toolLabel: "a video-generation tool",

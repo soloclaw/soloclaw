@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { resolveProviderModernModelRef } from "../plugins/provider-runtime.js";
 import { resolveOwningPluginIdsForProvider } from "../plugins/providers.js";
 import { normalizeLowercaseStringOrEmpty } from "../shared/string-coerce.js";
@@ -103,7 +103,7 @@ export function isHighSignalLiveModelRef(ref: ModelRef): boolean {
 function sharesOwningPlugin(params: {
   left: string;
   right: string;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   workspaceDir?: string;
   env?: NodeJS.ProcessEnv;
   ownerCache: Map<string, readonly string[]>;
@@ -134,7 +134,7 @@ export function shouldExcludeProviderFromDefaultHighSignalLiveSweep(params: {
   provider?: string | null;
   useExplicitModels: boolean;
   providerFilter?: ReadonlySet<string> | null;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   workspaceDir?: string;
   env?: NodeJS.ProcessEnv;
 }): boolean {

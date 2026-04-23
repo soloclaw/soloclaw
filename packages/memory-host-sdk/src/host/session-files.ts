@@ -90,7 +90,7 @@ function collectRawSessionText(content: unknown): string | null {
 }
 
 /**
- * Strip OpenClaw-injected inbound metadata envelopes from a raw text block
+ * Strip SoloClaw-injected inbound metadata envelopes from a raw text block
  * on user-role messages before normalization. See the authoritative
  * implementation in `src/memory-host-sdk/host/session-files.ts` for the
  * full rationale; duplicated here to keep this parallel copy bug-free.

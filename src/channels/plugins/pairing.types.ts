@@ -1,11 +1,11 @@
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import type { RuntimeEnv } from "../../runtime.js";
 
 export type ChannelPairingAdapter = {
   idLabel: string;
   normalizeAllowEntry?: (entry: string) => string;
   notifyApproval?: (params: {
-    cfg: OpenClawConfig;
+    cfg: SoloClawConfig;
     id: string;
     accountId?: string;
     runtime?: RuntimeEnv;

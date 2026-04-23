@@ -3,7 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { ChannelPlugin } from "../../channels/plugins/types.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { SoloClawConfig } from "../../config/config.js";
 import { formatAllowFromLowercase } from "../../plugin-sdk/allow-from.js";
 import {
   buildDmGroupAccountAllowlistAdapter,
@@ -59,7 +59,7 @@ function normalizeTelegramAllowFromEntries(values: Array<string | number>): stri
 }
 
 function resolveTelegramTestAccount(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   accountId?: string | null,
 ): TelegramTestSectionConfig {
   const section = cfg.channels?.telegram as TelegramTestSectionConfig | undefined;
@@ -225,7 +225,7 @@ async function readJsonFile<T>(filePath: string): Promise<T> {
 
 function buildAllowlistParams(
   commandBody: string,
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   ctxOverrides?: {
     Provider?: string;
     Surface?: string;
@@ -265,7 +265,7 @@ describe("handleAllowlistCommand", () => {
     const cfg = {
       commands: { text: true },
       channels: { telegram: { allowFrom: ["123", "@Alice"] } },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     const result = await handleAllowlistCommand(
       buildAllowlistParams("/allowlist list dm", cfg),
       true,
@@ -301,12 +301,12 @@ describe("handleAllowlistCommand", () => {
               const params = buildAllowlistParams("/allowlist add dm 789", {
                 commands: { text: true, config: true },
                 channels: { telegram: { allowFrom: ["123"] } },
-              } as OpenClawConfig);
+              } as SoloClawConfig);
               params.command.senderIsOwner = true;
               const result = await handleAllowlistCommand(params, true);
 
               expect(result?.shouldContinue, "default account").toBe(false);
-              const written = await readJsonFile<OpenClawConfig>(configPath);
+              const written = await readJsonFile<SoloClawConfig>(configPath);
               expect(written.channels?.telegram?.allowFrom, "default account").toEqual([
                 "123",
                 "789",
@@ -340,7 +340,7 @@ describe("handleAllowlistCommand", () => {
             {
               commands: { text: true, config: true },
               channels: { telegram: { accounts: { work: { allowFrom: ["123"] } } } },
-            } as OpenClawConfig,
+            } as SoloClawConfig,
             { AccountId: "work" },
           );
           params.command.senderIsOwner = true;
@@ -371,7 +371,7 @@ describe("handleAllowlistCommand", () => {
             ...telegramAllowlistTestPlugin,
             config: {
               ...telegramAllowlistTestPlugin.config,
-              defaultAccountId: (cfg: OpenClawConfig) =>
+              defaultAccountId: (cfg: SoloClawConfig) =>
                 (cfg.channels?.telegram as TelegramTestSectionConfig | undefined)?.defaultAccount ??
                 DEFAULT_ACCOUNT_ID,
             },
@@ -388,7 +388,7 @@ describe("handleAllowlistCommand", () => {
           accounts: { work: { allowFrom: ["123"] } },
         },
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     readChannelAllowFromStoreMock.mockResolvedValueOnce([]);
 
     const result = await handleAllowlistCommand(
@@ -416,7 +416,7 @@ describe("handleAllowlistCommand", () => {
           },
         },
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     readConfigFileSnapshotMock.mockResolvedValueOnce({
       valid: true,
       parsed: structuredClone(cfg),
@@ -444,7 +444,7 @@ describe("handleAllowlistCommand", () => {
             ...telegramAllowlistTestPlugin,
             config: {
               ...telegramAllowlistTestPlugin.config,
-              defaultAccountId: (cfg: OpenClawConfig) =>
+              defaultAccountId: (cfg: SoloClawConfig) =>
                 (cfg.channels?.telegram as TelegramTestSectionConfig | undefined)?.defaultAccount ??
                 DEFAULT_ACCOUNT_ID,
             },
@@ -465,7 +465,7 @@ describe("handleAllowlistCommand", () => {
           },
         },
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     readConfigFileSnapshotMock.mockResolvedValueOnce({
       valid: true,
       parsed: structuredClone(cfg),
@@ -494,7 +494,7 @@ describe("handleAllowlistCommand", () => {
         telegram: { allowFrom: ["*"], configWrites: true },
         discord: { allowFrom: ["owner-discord-id"], configWrites: true },
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     const params = buildAllowlistParams(
       "/allowlist add dm --channel discord attacker-discord-id",
       cfg,
@@ -521,7 +521,7 @@ describe("handleAllowlistCommand", () => {
       channels: {
         telegram: { allowFrom: ["*"], configWrites: true },
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     const params = buildAllowlistParams("/allowlist add dm --channel unknown attacker-id", cfg, {
       Provider: "telegram",
       Surface: "telegram",
@@ -552,7 +552,7 @@ describe("handleAllowlistCommand", () => {
     const cfg = {
       commands: { text: true, config: true },
       channels: { telegram: { allowFrom: ["123"] } },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     const params = buildAllowlistParams("/allowlist remove dm --store 789", cfg);
     params.command.senderIsOwner = true;
     const result = await handleAllowlistCommand(params, true);
@@ -575,7 +575,7 @@ describe("handleAllowlistCommand", () => {
     const cfg = {
       commands: { text: true, config: true },
       channels: { telegram: { allowFrom: ["123"] } },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
     const params = buildAllowlistParams("/allowlist add dm --account __proto__ 789", cfg);
     params.command.senderIsOwner = true;
     const result = await handleAllowlistCommand(params, true);
@@ -627,7 +627,7 @@ describe("handleAllowlistCommand", () => {
               configWrites: true,
             },
           },
-        } as OpenClawConfig;
+        } as SoloClawConfig;
 
         const params = buildAllowlistParams(`/allowlist remove dm ${testCase.removeId}`, cfg, {
           Provider: testCase.provider,
@@ -637,7 +637,7 @@ describe("handleAllowlistCommand", () => {
         const result = await handleAllowlistCommand(params, true);
 
         expect(result?.shouldContinue).toBe(false);
-        const written = await readJsonFile<OpenClawConfig>(configPath);
+        const written = await readJsonFile<SoloClawConfig>(configPath);
         const channelConfig = written.channels?.[testCase.provider];
         expect(channelConfig?.allowFrom).toEqual(testCase.expectedAllowFrom);
         expect(channelConfig?.dm?.allowFrom).toBeUndefined();

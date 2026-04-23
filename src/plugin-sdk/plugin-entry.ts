@@ -1,22 +1,22 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { emptyPluginConfigSchema } from "../plugins/config-schema.js";
 import type { ProviderRuntimeModel } from "../plugins/provider-runtime-model.types.js";
 import type {
   AnyAgentTool,
   AgentHarness,
   MediaUnderstandingProviderPlugin,
-  OpenClawPluginApi,
-  OpenClawPluginCommandDefinition,
-  OpenClawPluginConfigSchema,
-  OpenClawPluginDefinition,
-  OpenClawPluginNodeHostCommand,
-  OpenClawPluginReloadRegistration,
-  OpenClawPluginSecurityAuditCollector,
-  OpenClawPluginSecurityAuditContext,
-  OpenClawPluginService,
-  OpenClawPluginServiceContext,
-  OpenClawPluginToolContext,
-  OpenClawPluginToolFactory,
+  SoloClawPluginApi,
+  SoloClawPluginCommandDefinition,
+  SoloClawPluginConfigSchema,
+  SoloClawPluginDefinition,
+  SoloClawPluginNodeHostCommand,
+  SoloClawPluginReloadRegistration,
+  SoloClawPluginSecurityAuditCollector,
+  SoloClawPluginSecurityAuditContext,
+  SoloClawPluginService,
+  SoloClawPluginServiceContext,
+  SoloClawPluginToolContext,
+  SoloClawPluginToolFactory,
   PluginLogger,
   ProviderAugmentModelCatalogContext,
   ProviderAuthContext,
@@ -76,15 +76,15 @@ export type {
   AnyAgentTool,
   AgentHarness,
   MediaUnderstandingProviderPlugin,
-  OpenClawPluginApi,
-  OpenClawPluginNodeHostCommand,
-  OpenClawPluginReloadRegistration,
-  OpenClawPluginSecurityAuditCollector,
-  OpenClawPluginSecurityAuditContext,
-  OpenClawPluginToolContext,
-  OpenClawPluginToolFactory,
+  SoloClawPluginApi,
+  SoloClawPluginNodeHostCommand,
+  SoloClawPluginReloadRegistration,
+  SoloClawPluginSecurityAuditCollector,
+  SoloClawPluginSecurityAuditContext,
+  SoloClawPluginToolContext,
+  SoloClawPluginToolFactory,
   PluginCommandContext,
-  OpenClawPluginConfigSchema,
+  SoloClawPluginConfigSchema,
   ProviderDiscoveryContext,
   ProviderCatalogContext,
   ProviderCatalogResult,
@@ -130,19 +130,19 @@ export type {
   ProviderValidateReplayTurnsContext,
   ProviderWebSocketSessionPolicy,
   ProviderWrapStreamFnContext,
-  OpenClawPluginService,
-  OpenClawPluginServiceContext,
+  SoloClawPluginService,
+  SoloClawPluginServiceContext,
   ProviderAuthContext,
   ProviderAuthDoctorHintContext,
   ProviderAuthMethodNonInteractiveContext,
   ProviderAuthMethod,
   ProviderAuthResult,
-  OpenClawPluginCommandDefinition,
-  OpenClawPluginDefinition,
+  SoloClawPluginCommandDefinition,
+  SoloClawPluginDefinition,
   PluginLogger,
 };
 export type { ProviderRuntimeModel } from "../plugins/provider-runtime-model.types.js";
-export type { OpenClawConfig };
+export type { SoloClawConfig };
 
 export { buildPluginConfigSchema, emptyPluginConfigSchema } from "../plugins/config-schema.js";
 
@@ -151,12 +151,12 @@ type DefinePluginEntryOptions = {
   id: string;
   name: string;
   description: string;
-  kind?: OpenClawPluginDefinition["kind"];
-  configSchema?: OpenClawPluginConfigSchema | (() => OpenClawPluginConfigSchema);
-  reload?: OpenClawPluginDefinition["reload"];
-  nodeHostCommands?: OpenClawPluginDefinition["nodeHostCommands"];
-  securityAuditCollectors?: OpenClawPluginDefinition["securityAuditCollectors"];
-  register: (api: OpenClawPluginApi) => void;
+  kind?: SoloClawPluginDefinition["kind"];
+  configSchema?: SoloClawPluginConfigSchema | (() => SoloClawPluginConfigSchema);
+  reload?: SoloClawPluginDefinition["reload"];
+  nodeHostCommands?: SoloClawPluginDefinition["nodeHostCommands"];
+  securityAuditCollectors?: SoloClawPluginDefinition["securityAuditCollectors"];
+  register: (api: SoloClawPluginApi) => void;
 };
 
 /** Normalized object shape that SoloClaw loads from a plugin entry module. */
@@ -164,10 +164,10 @@ type DefinedPluginEntry = {
   id: string;
   name: string;
   description: string;
-  configSchema: OpenClawPluginConfigSchema;
-  register: NonNullable<OpenClawPluginDefinition["register"]>;
+  configSchema: SoloClawPluginConfigSchema;
+  register: NonNullable<SoloClawPluginDefinition["register"]>;
 } & Pick<
-  OpenClawPluginDefinition,
+  SoloClawPluginDefinition,
   "kind" | "reload" | "nodeHostCommands" | "securityAuditCollectors"
 >;
 

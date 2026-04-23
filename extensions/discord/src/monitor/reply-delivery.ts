@@ -1,6 +1,6 @@
 import type { RequestClient } from "@buape/carbon";
 import { resolveAgentAvatar } from "soloclaw/plugin-sdk/agent-runtime";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import type { MarkdownTableMode, ReplyToMode } from "soloclaw/plugin-sdk/config-runtime";
 import type { ChunkMode } from "soloclaw/plugin-sdk/reply-chunking";
 import type { ReplyPayload } from "soloclaw/plugin-sdk/reply-dispatch-runtime";
@@ -89,7 +89,7 @@ async function sendWithRetry(
 
 async function sendDiscordMediaOnly(params: {
   target: string;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   token: string;
   rest?: RequestClient;
   mediaUrl: string;
@@ -115,7 +115,7 @@ async function sendDiscordMediaOnly(params: {
 
 async function sendDiscordMediaBatch(params: {
   target: string;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   token: string;
   rest?: RequestClient;
   mediaUrls: string[];
@@ -144,7 +144,7 @@ async function sendDiscordMediaBatch(params: {
 }
 
 async function sendDiscordPayloadText(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   target: string;
   text: string;
   token: string;
@@ -251,7 +251,7 @@ function createPayloadReplyToResolver(params: {
 }
 
 function resolveBindingPersona(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   binding: DiscordThreadBindingLookupRecord | undefined,
 ): {
   username?: string;
@@ -276,7 +276,7 @@ function resolveBindingPersona(
 }
 
 async function sendDiscordChunkWithFallback(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   target: string;
   text: string;
   token: string;
@@ -353,7 +353,7 @@ async function sendDiscordChunkWithFallback(params: {
 }
 
 export async function deliverDiscordReply(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   replies: ReplyPayload[];
   target: string;
   token: string;

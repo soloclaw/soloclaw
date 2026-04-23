@@ -1,7 +1,7 @@
 import path from "node:path";
-import type { BrowserConfig, BrowserProfileConfig, OpenClawConfig } from "../config/config.js";
+import type { BrowserConfig, BrowserProfileConfig, SoloClawConfig } from "../config/config.js";
 import type { SsrFPolicy } from "../infra/net/ssrf.js";
-import { resolvePreferredOpenClawTmpDir } from "../infra/tmp-soloclaw-dir.js";
+import { resolvePreferredSoloClawTmpDir } from "../infra/tmp-soloclaw-dir.js";
 import { loadBundledPluginPublicSurfaceModuleSync } from "./facade-loader.js";
 
 export const DEFAULT_SOLOCLAW_BROWSER_ENABLED = true;
@@ -10,7 +10,7 @@ export const DEFAULT_SOLOCLAW_BROWSER_COLOR = "#FF4500";
 export const DEFAULT_SOLOCLAW_BROWSER_PROFILE_NAME = "soloclaw";
 export const DEFAULT_BROWSER_DEFAULT_PROFILE_NAME = "soloclaw";
 export const DEFAULT_AI_SNAPSHOT_MAX_CHARS = 80_000;
-export const DEFAULT_UPLOAD_DIR = path.join(resolvePreferredOpenClawTmpDir(), "uploads");
+export const DEFAULT_UPLOAD_DIR = path.join(resolvePreferredSoloClawTmpDir(), "uploads");
 
 export type ResolvedBrowserConfig = {
   enabled: boolean;
@@ -49,7 +49,7 @@ export type ResolvedBrowserProfile = {
 type BrowserProfilesSurface = {
   resolveBrowserConfig: (
     cfg: BrowserConfig | undefined,
-    rootConfig?: OpenClawConfig,
+    rootConfig?: SoloClawConfig,
   ) => ResolvedBrowserConfig;
   resolveProfile: (
     resolved: ResolvedBrowserConfig,
@@ -71,7 +71,7 @@ function loadBrowserProfilesSurface(): BrowserProfilesSurface {
 
 export function resolveBrowserConfig(
   cfg: BrowserConfig | undefined,
-  rootConfig?: OpenClawConfig,
+  rootConfig?: SoloClawConfig,
 ): ResolvedBrowserConfig {
   return loadBrowserProfilesSurface().resolveBrowserConfig(cfg, rootConfig);
 }

@@ -5,7 +5,7 @@ import {
   readBrowserVersion,
   resolveGoogleChromeExecutableForPlatform,
 } from "./browser/chrome.executables.js";
-import type { OpenClawConfig } from "./config/config.js";
+import type { SoloClawConfig } from "./config/config.js";
 import { asRecord } from "./record-shared.js";
 
 const CHROME_MCP_MIN_MAJOR = 144;
@@ -20,7 +20,7 @@ type ExistingSessionProfile = {
   userDataDir?: string;
 };
 
-function collectChromeMcpProfiles(cfg: OpenClawConfig): ExistingSessionProfile[] {
+function collectChromeMcpProfiles(cfg: SoloClawConfig): ExistingSessionProfile[] {
   const browser = asRecord(cfg.browser);
   if (!browser) {
     return [];
@@ -52,7 +52,7 @@ function collectChromeMcpProfiles(cfg: OpenClawConfig): ExistingSessionProfile[]
 }
 
 export async function noteChromeMcpBrowserReadiness(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   deps?: {
     platform?: NodeJS.Platform;
     noteFn?: typeof note;

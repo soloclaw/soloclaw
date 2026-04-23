@@ -1,7 +1,7 @@
 import {
   startLazyPluginServiceModule,
   type LazyPluginServiceHandle,
-  type OpenClawPluginService,
+  type SoloClawPluginService,
 } from "soloclaw/plugin-sdk/browser-node-runtime";
 
 type BrowserControlHandle = LazyPluginServiceHandle | null;
@@ -15,7 +15,7 @@ function validateBrowserControlOverrideSpecifier(specifier: string): string {
   return trimmed;
 }
 
-export function createBrowserPluginService(): OpenClawPluginService {
+export function createBrowserPluginService(): SoloClawPluginService {
   let handle: BrowserControlHandle = null;
 
   return {

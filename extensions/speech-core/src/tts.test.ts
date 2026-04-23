@@ -1,6 +1,6 @@
 import { rmSync } from "node:fs";
 import path from "node:path";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import type { ReplyPayload } from "soloclaw/plugin-sdk/reply-payload";
 import type { SpeechProviderPlugin, SpeechSynthesisRequest } from "soloclaw/plugin-sdk/speech-core";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -54,7 +54,7 @@ const { _test, maybeApplyTtsToPayload } = await import("./tts.js");
 
 const nativeVoiceNoteChannels = ["discord", "feishu", "matrix", "telegram", "whatsapp"] as const;
 
-function createTtsConfig(prefsName: string): OpenClawConfig {
+function createTtsConfig(prefsName: string): SoloClawConfig {
   return {
     messages: {
       tts: {

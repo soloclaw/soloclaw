@@ -12,7 +12,7 @@ export type {
   ImageGenerationResult,
   ImageGenerationSourceImage,
 } from "../image-generation/types.js";
-export type { OpenClawConfig } from "../config/types.soloclaw.js";
+export type { SoloClawConfig } from "../config/types.soloclaw.js";
 
 export { describeFailoverError, isFailoverError } from "../agents/failover-error.js";
 export {

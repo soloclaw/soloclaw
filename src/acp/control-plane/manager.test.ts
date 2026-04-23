@@ -1,7 +1,7 @@
 import { setTimeout as scheduleNativeTimeout } from "node:timers";
 import { setTimeout as sleep } from "node:timers/promises";
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { SoloClawConfig } from "../../config/config.js";
 import type { AcpSessionRuntimeOptions, SessionAcpMeta } from "../../config/sessions/types.js";
 import { resetHeartbeatWakeStateForTests } from "../../infra/heartbeat-wake.js";
 import { resetSystemEventsForTest } from "../../infra/system-events.js";
@@ -287,7 +287,7 @@ describe("AcpSessionManager", () => {
       ...baseCfg,
       session: { mainKey: "main" },
       agents: { list: [{ id: "main", default: true }] },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     await manager.runTurn({
       cfg,
@@ -549,7 +549,7 @@ describe("AcpSessionManager", () => {
             timeoutSeconds: 1,
           },
         },
-      } as OpenClawConfig;
+      } as SoloClawConfig;
 
       const first = manager.runTurn({
         cfg,
@@ -652,7 +652,7 @@ describe("AcpSessionManager", () => {
             timeoutSeconds: 1,
           },
         },
-      } as OpenClawConfig;
+      } as SoloClawConfig;
 
       const first = manager.runTurn({
         cfg,
@@ -1232,7 +1232,7 @@ describe("AcpSessionManager", () => {
         ...baseCfg.acp,
         maxConcurrentSessions: 1,
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     const manager = new AcpSessionManager();
     await manager.runTurn({
@@ -1274,7 +1274,7 @@ describe("AcpSessionManager", () => {
         ...baseCfg.acp,
         maxConcurrentSessions: 1,
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     const manager = new AcpSessionManager();
     await manager.initializeSession({
@@ -1323,7 +1323,7 @@ describe("AcpSessionManager", () => {
         ...baseCfg.acp,
         maxConcurrentSessions: 1,
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     const manager = new AcpSessionManager();
     await manager.runTurn({
@@ -1378,7 +1378,7 @@ describe("AcpSessionManager", () => {
         ...baseCfg.acp,
         maxConcurrentSessions: 1,
       },
-    } as OpenClawConfig;
+    } as SoloClawConfig;
 
     const manager = new AcpSessionManager();
     await manager.runTurn({
@@ -1673,7 +1673,7 @@ describe("AcpSessionManager", () => {
             ttlMinutes: 0.01,
           },
         },
-      } as OpenClawConfig;
+      } as SoloClawConfig;
 
       const manager = new AcpSessionManager();
       await manager.runTurn({

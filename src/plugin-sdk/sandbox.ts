@@ -19,7 +19,7 @@ export type {
   SshSandboxSession,
   SshSandboxSettings,
 } from "../agents/sandbox.js";
-export type { OpenClawConfig } from "../config/config.js";
+export type { SoloClawConfig } from "../config/config.js";
 
 export {
   buildExecRemoteCommand,
@@ -47,4 +47,4 @@ export {
   type PluginCommandRunOptions,
   type PluginCommandRunResult,
 } from "./run-command.js";
-export { resolvePreferredOpenClawTmpDir } from "../infra/tmp-soloclaw-dir.js";
+export { resolvePreferredSoloClawTmpDir } from "../infra/tmp-soloclaw-dir.js";

@@ -1,11 +1,11 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { normalizeDeliveryContext } from "../utils/delivery-context.js";
 import type { GatewayMessageChannel } from "../utils/message-channel.js";
 import { resolveAgentWorkspaceDir, resolveSessionAgentId } from "./agent-scope.js";
 import type { ToolFsPolicy } from "./tool-fs-policy.js";
 import { resolveWorkspaceRoot } from "./workspace-dir.js";
 
-export type OpenClawPluginToolOptions = {
+export type SoloClawPluginToolOptions = {
   agentSessionKey?: string;
   agentChannel?: GatewayMessageChannel;
   agentAccountId?: string;
@@ -13,7 +13,7 @@ export type OpenClawPluginToolOptions = {
   agentThreadId?: string | number;
   agentDir?: string;
   workspaceDir?: string;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   fsPolicy?: ToolFsPolicy;
   requesterSenderId?: string | null;
   senderIsOwner?: boolean;
@@ -24,10 +24,10 @@ export type OpenClawPluginToolOptions = {
   allowGatewaySubagentBinding?: boolean;
 };
 
-export function resolveOpenClawPluginToolInputs(params: {
-  options?: OpenClawPluginToolOptions;
-  resolvedConfig?: OpenClawConfig;
-  runtimeConfig?: OpenClawConfig;
+export function resolveSoloClawPluginToolInputs(params: {
+  options?: SoloClawPluginToolOptions;
+  resolvedConfig?: SoloClawConfig;
+  runtimeConfig?: SoloClawConfig;
 }) {
   const { options, resolvedConfig, runtimeConfig } = params;
   const sessionAgentId = resolveSessionAgentId({

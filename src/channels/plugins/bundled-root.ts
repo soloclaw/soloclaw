@@ -1,10 +1,10 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { resolveOpenClawPackageRootSync } from "../../infra/soloclaw-root.js";
+import { resolveSoloClawPackageRootSync } from "../../infra/soloclaw-root.js";
 import { resolveBundledPluginsDir } from "../../plugins/bundled-dir.js";
 
 const SOLOCLAW_PACKAGE_ROOT =
-  resolveOpenClawPackageRootSync({
+  resolveSoloClawPackageRootSync({
     argv1: process.argv[1],
     cwd: process.cwd(),
     moduleUrl: import.meta.url.startsWith("file:") ? import.meta.url : undefined,

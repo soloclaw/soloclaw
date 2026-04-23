@@ -1,1 +1,1 @@
-export { resolvePreferredOpenClawTmpDir } from "../../infra/tmp-soloclaw-dir.js";
+export { resolvePreferredSoloClawTmpDir } from "../../infra/tmp-soloclaw-dir.js";

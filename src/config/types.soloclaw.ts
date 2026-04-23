@@ -29,7 +29,7 @@ import type { SecretsConfig } from "./types.secrets.js";
 import type { SkillsConfig } from "./types.skills.js";
 import type { ToolsConfig } from "./types.tools.js";
 
-export type OpenClawConfig = {
+export type SoloClawConfig = {
   meta?: {
     /** Last SoloClaw version that wrote this config. */
     lastTouchedVersion?: string;
@@ -124,10 +124,10 @@ export type OpenClawConfig = {
   mcp?: McpConfig;
 };
 
-declare const openClawConfigStateBrand: unique symbol;
+declare const soloClawConfigStateBrand: unique symbol;
 
-type BrandedConfigState<TState extends string> = OpenClawConfig & {
-  readonly [openClawConfigStateBrand]?: TState;
+type BrandedConfigState<TState extends string> = SoloClawConfig & {
+  readonly [soloClawConfigStateBrand]?: TState;
 };
 
 export type SourceConfig = BrandedConfigState<"source">;

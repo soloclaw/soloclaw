@@ -9,12 +9,12 @@ describe("shared/assistant-identity-values", () => {
   });
 
   it("trims values and preserves strings within the limit", () => {
-    expect(coerceIdentityValue("  SoloClaw  ", 20)).toBe("OpenClaw");
-    expect(coerceIdentityValue("  SoloClaw  ", 8)).toBe("OpenClaw");
+    expect(coerceIdentityValue("  SoloClaw  ", 20)).toBe("SoloClaw");
+    expect(coerceIdentityValue("  SoloClaw  ", 8)).toBe("SoloClaw");
   });
 
   it("truncates overlong trimmed values at the exact limit", () => {
-    expect(coerceIdentityValue("  SoloClaw Assistant  ", 8)).toBe("OpenClaw");
+    expect(coerceIdentityValue("  SoloClaw Assistant  ", 8)).toBe("SoloClaw");
   });
 
   it("returns an empty string when truncating to a zero-length limit", () => {

@@ -603,7 +603,7 @@ export function buildBuiltinChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "restart",
       nativeName: "restart",
-      description: "Restart OpenClaw.",
+      description: "Restart SoloClaw.",
       textAlias: "/restart",
       category: "tools",
       tier: "power",

@@ -7,14 +7,14 @@ export {
   revokeDeviceBootstrapToken,
   type DeviceBootstrapProfile,
 } from "soloclaw/plugin-sdk/device-bootstrap";
-export { definePluginEntry, type OpenClawPluginApi } from "soloclaw/plugin-sdk/plugin-entry";
+export { definePluginEntry, type SoloClawPluginApi } from "soloclaw/plugin-sdk/plugin-entry";
 export {
   resolveGatewayBindUrl,
   resolveGatewayPort,
   resolveTailnetHostWithRunner,
 } from "soloclaw/plugin-sdk/core";
 export {
-  resolvePreferredOpenClawTmpDir,
+  resolvePreferredSoloClawTmpDir,
   runPluginCommandWithTimeout,
 } from "soloclaw/plugin-sdk/sandbox";
 export { renderQrPngBase64 } from "./qr-image.js";

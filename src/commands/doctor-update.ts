@@ -7,7 +7,7 @@ import { normalizeLowercaseStringOrEmpty } from "../shared/string-coerce.js";
 import { note } from "../terminal/note.js";
 import type { DoctorOptions } from "./doctor-prompter.js";
 
-async function detectOpenClawGitCheckout(root: string): Promise<"git" | "not-git" | "unknown"> {
+async function detectSoloClawGitCheckout(root: string): Promise<"git" | "not-git" | "unknown"> {
   const res = await runCommandWithTimeout(["git", "-C", root, "rev-parse", "--show-toplevel"], {
     timeoutMs: 5000,
   }).catch(() => null);
@@ -43,7 +43,7 @@ export async function maybeOfferUpdateBeforeDoctor(params: {
     return { updated: false };
   }
 
-  const git = await detectOpenClawGitCheckout(params.root);
+  const git = await detectSoloClawGitCheckout(params.root);
   if (git === "git") {
     const shouldUpdate = await params.confirm({
       message: "Update SoloClaw from git before running doctor?",

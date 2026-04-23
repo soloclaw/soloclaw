@@ -39,16 +39,16 @@ function resolveInstallerVersionCases(params: {
     [
       "-c",
       `${versionHelperSource}
-for openclaw_bin in "\${@:3}"; do
-  SOLOCLAW_BIN="$openclaw_bin"
-  resolve_openclaw_version
+for soloclaw_bin in "\${@:3}"; do
+  SOLOCLAW_BIN="$soloclaw_bin"
+  resolve_soloclaw_version
 done
 (
   cd "$2"
   FAKE_SOLOCLAW_BIN="\${@:1:1}" bash -s <<'SOLOCLAW_STDIN_INSTALLER'
 ${versionHelperSource}
 SOLOCLAW_BIN="$FAKE_SOLOCLAW_BIN"
-resolve_openclaw_version
+resolve_soloclaw_version
 SOLOCLAW_STDIN_INSTALLER
 )`,
       "openclaw-version-test",
@@ -91,7 +91,7 @@ describe("install.sh version resolution", () => {
       fs.writeFileSync(
         hostileHelper,
         `#!/usr/bin/env bash
-extract_openclaw_semver() {
+extract_soloclaw_semver() {
   printf '%s' 'poisoned'
 }
 `,

@@ -1,12 +1,12 @@
 import {
   normalizeAccountId,
   resolveAccountEntry,
-  type OpenClawConfig,
+  type SoloClawConfig,
 } from "soloclaw/plugin-sdk/account-core";
 import type { TelegramAccountConfig } from "soloclaw/plugin-sdk/config-runtime";
 
 export function resolveTelegramAccountConfig(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   accountId: string,
 ): TelegramAccountConfig | undefined {
   const normalized = normalizeAccountId(accountId);
@@ -14,7 +14,7 @@ export function resolveTelegramAccountConfig(
 }
 
 export function mergeTelegramAccountConfig(
-  cfg: OpenClawConfig,
+  cfg: SoloClawConfig,
   accountId: string,
 ): TelegramAccountConfig {
   const {

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { SpawnSubagentResult } from "../../agents/subagent-spawn.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { SoloClawConfig } from "../../config/config.js";
 import type { SessionEntry } from "../../config/sessions/types.js";
 import { handleSubagentsSpawnAction } from "./commands-subagents/action-spawn.js";
 import type { HandleCommandsParams } from "./commands-types.js";
@@ -31,10 +31,10 @@ function forbiddenResult(error: string): SpawnSubagentResult {
 
 const baseCfg = {
   session: { mainKey: "main", scope: "per-sender" },
-} satisfies OpenClawConfig;
+} satisfies SoloClawConfig;
 
 function buildContext(params?: {
-  cfg?: OpenClawConfig;
+  cfg?: SoloClawConfig;
   requesterKey?: string;
   restTokens?: string[];
   commandTo?: string | undefined;

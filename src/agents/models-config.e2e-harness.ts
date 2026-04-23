@@ -3,7 +3,7 @@ import path from "node:path";
 import { afterEach, beforeEach, vi } from "vitest";
 import { withTempHome as withTempHomeBase } from "../../test/helpers/temp-home.js";
 import { clearConfigCache, clearRuntimeConfigSnapshot } from "../config/config.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import { resolveBundledPluginsDir } from "../plugins/bundled-dir.js";
 import { resetPluginLoaderTestStateForTest } from "../plugins/loader.test-fixtures.js";
 import { resetProviderRuntimeHookCacheForTest } from "../plugins/provider-runtime.js";
@@ -27,7 +27,7 @@ export function installModelsConfigTestHooks(opts?: {
   resetProviderRuntimeHookCache?: boolean;
 }) {
   let previousHome: string | undefined;
-  let previousOpenClawAgentDir: string | undefined;
+  let previousSoloClawAgentDir: string | undefined;
   let previousPiCodingAgentDir: string | undefined;
   const originalFetch = globalThis.fetch;
   const shouldResetPluginLoaderState = opts?.resetPluginLoaderState !== false;
@@ -35,7 +35,7 @@ export function installModelsConfigTestHooks(opts?: {
 
   beforeEach(() => {
     previousHome = process.env.HOME;
-    previousOpenClawAgentDir = process.env.SOLOCLAW_AGENT_DIR;
+    previousSoloClawAgentDir = process.env.SOLOCLAW_AGENT_DIR;
     previousPiCodingAgentDir = process.env.PI_CODING_AGENT_DIR;
     delete process.env.SOLOCLAW_AGENT_DIR;
     delete process.env.PI_CODING_AGENT_DIR;
@@ -52,10 +52,10 @@ export function installModelsConfigTestHooks(opts?: {
 
   afterEach(() => {
     process.env.HOME = previousHome;
-    if (previousOpenClawAgentDir === undefined) {
+    if (previousSoloClawAgentDir === undefined) {
       delete process.env.SOLOCLAW_AGENT_DIR;
     } else {
-      process.env.SOLOCLAW_AGENT_DIR = previousOpenClawAgentDir;
+      process.env.SOLOCLAW_AGENT_DIR = previousSoloClawAgentDir;
     }
     if (previousPiCodingAgentDir === undefined) {
       delete process.env.PI_CODING_AGENT_DIR;
@@ -303,7 +303,7 @@ async function inferAuthProfileProviderIds(agentDir?: string): Promise<string[]>
 
 async function inferImplicitProviderTestPluginIds(params: {
   agentDir?: string;
-  config?: OpenClawConfig;
+  config?: SoloClawConfig;
   explicitProviders?: Record<string, unknown> | null;
   env: NodeJS.ProcessEnv;
   workspaceDir?: string;
@@ -393,7 +393,7 @@ export async function resolveImplicitProvidersForTest(
   });
 }
 
-export const CUSTOM_PROXY_MODELS_CONFIG: OpenClawConfig = {
+export const CUSTOM_PROXY_MODELS_CONFIG: SoloClawConfig = {
   models: {
     providers: {
       "custom-proxy": {

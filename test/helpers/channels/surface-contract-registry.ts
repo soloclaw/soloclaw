@@ -4,7 +4,7 @@ import {
   setBundledChannelRuntime,
 } from "../../../src/channels/plugins/bundled.js";
 import type { ChannelPlugin } from "../../../src/channels/plugins/types.js";
-import type { OpenClawConfig } from "../../../src/config/config.js";
+import type { SoloClawConfig } from "../../../src/config/config.js";
 import { channelPluginSurfaceKeys, type ChannelPluginSurface } from "./manifest.js";
 
 function buildBundledPluginModuleId(pluginId: string, artifactBasename: string): string {
@@ -37,7 +37,7 @@ type DirectoryContractEntry = {
   id: string;
   plugin: Pick<ChannelPlugin, "id" | "directory">;
   coverage: "lookups" | "presence";
-  cfg?: OpenClawConfig;
+  cfg?: SoloClawConfig;
   accountId?: string;
 };
 

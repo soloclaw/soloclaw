@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import type { CliBackendPlugin } from "./cli-backend.types.js";
 
 export type SetupPluginLogger = {
@@ -15,21 +15,21 @@ export type SetupProviderPlugin = {
   resolveConfigApiKey?: (params: {
     provider: string;
     env?: NodeJS.ProcessEnv;
-    cfg?: OpenClawConfig;
+    cfg?: SoloClawConfig;
     workspaceDir?: string;
   }) => string | null | undefined;
 };
 
-export type SetupPluginConfigMigration = (config: OpenClawConfig) =>
+export type SetupPluginConfigMigration = (config: SoloClawConfig) =>
   | {
-      config: OpenClawConfig;
+      config: SoloClawConfig;
       changes: string[];
     }
   | null
   | undefined;
 
 export type SetupPluginAutoEnableContext = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   env: NodeJS.ProcessEnv;
 };
 
@@ -45,7 +45,7 @@ export type SetupOnlyPluginApi = {
   source: string;
   rootDir?: string;
   registrationMode: "setup-only";
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   pluginConfig?: Record<string, unknown>;
   runtime: Record<string, never>;
   logger: SetupPluginLogger;

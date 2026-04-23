@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/provider-auth";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/provider-auth";
 import { normalizeOptionalSecretInput } from "soloclaw/plugin-sdk/provider-auth";
 import { resolveEnvApiKey } from "soloclaw/plugin-sdk/provider-auth-runtime";
 import {
@@ -21,7 +21,7 @@ export type OllamaEmbeddingProvider = {
 };
 
 type OllamaEmbeddingOptions = {
-  config: OpenClawConfig;
+  config: SoloClawConfig;
   agentDir?: string;
   provider?: string;
   remote?: {

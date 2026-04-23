@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { afterAll, afterEach, describe, expect, it } from "vitest";
-import { loadOpenClawPluginCliRegistry, loadOpenClawPlugins } from "./loader.js";
+import { loadSoloClawPluginCliRegistry, loadSoloClawPlugins } from "./loader.js";
 import {
   cleanupPluginLoaderFixturesForTest,
   EMPTY_PLUGIN_SCHEMA,
@@ -47,7 +47,7 @@ describe("plugin loader CLI metadata", () => {
     });
 
     const warnings: string[] = [];
-    const registry = await loadOpenClawPluginCliRegistry({
+    const registry = await loadSoloClawPluginCliRegistry({
       env: { ...process.env, SOLOCLAW_STATE_DIR: stateDir },
       logger: {
         info: () => {},
@@ -109,7 +109,7 @@ describe("plugin loader CLI metadata", () => {
       "utf-8",
     );
 
-    const registry = await loadOpenClawPluginCliRegistry({
+    const registry = await loadSoloClawPluginCliRegistry({
       config: {
         plugins: {
           load: { paths: [plugin.file] },
@@ -218,7 +218,7 @@ module.exports = {
       "utf-8",
     );
 
-    const registry = await loadOpenClawPluginCliRegistry({
+    const registry = await loadSoloClawPluginCliRegistry({
       config: {
         plugins: {
           load: { paths: [pluginDir] },
@@ -280,7 +280,7 @@ module.exports = {
       "utf-8",
     );
 
-    const registry = await loadOpenClawPluginCliRegistry({
+    const registry = await loadSoloClawPluginCliRegistry({
       config: {
         plugins: {
           allow: ["bundled-skip-channel"],
@@ -367,7 +367,7 @@ module.exports = {
       "utf-8",
     );
 
-    const registry = await loadOpenClawPluginCliRegistry({
+    const registry = await loadSoloClawPluginCliRegistry({
       config: {
         plugins: {
           allow: ["bundled-cli-channel"],
@@ -431,7 +431,7 @@ module.exports = {
       "utf-8",
     );
 
-    const registry = await loadOpenClawPluginCliRegistry({
+    const registry = await loadSoloClawPluginCliRegistry({
       config: {
         plugins: {
           allow: ["bundled-skip-provider"],
@@ -532,7 +532,7 @@ module.exports = {
       "utf-8",
     );
 
-    const registry = loadOpenClawPlugins({
+    const registry = loadSoloClawPlugins({
       cache: false,
       config: {
         plugins: {
@@ -571,7 +571,7 @@ module.exports = {
 };`,
     });
 
-    const registry = await loadOpenClawPluginCliRegistry({
+    const registry = await loadSoloClawPluginCliRegistry({
       config: {
         plugins: {
           load: { paths: [plugin.file] },
@@ -622,7 +622,7 @@ module.exports = {
       "utf-8",
     );
 
-    const registry = await loadOpenClawPluginCliRegistry({
+    const registry = await loadSoloClawPluginCliRegistry({
       config: {
         plugins: {
           load: { paths: [plugin.file] },
@@ -662,7 +662,7 @@ module.exports = {
 };`,
     });
 
-    const registry = await loadOpenClawPluginCliRegistry({
+    const registry = await loadSoloClawPluginCliRegistry({
       config: {
         plugins: {
           load: { paths: [plugin.file] },

@@ -1,5 +1,5 @@
 import { resolveThinkingDefaultForModel } from "../auto-reply/thinking.shared.js";
-import type { OpenClawConfig } from "../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../config/types.soloclaw.js";
 import {
   normalizeLowercaseStringOrEmpty,
   normalizeOptionalLowercaseString,
@@ -11,7 +11,7 @@ import { normalizeModelSelection } from "./model-selection-resolve.js";
 type ThinkLevel = "off" | "minimal" | "low" | "medium" | "high" | "xhigh" | "adaptive";
 
 export function resolveThinkingDefault(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   provider: string;
   model: string;
   catalog?: ModelCatalogEntry[];

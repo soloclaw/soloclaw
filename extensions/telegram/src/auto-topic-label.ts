@@ -1,5 +1,5 @@
 import type {
-  OpenClawConfig,
+  SoloClawConfig,
   TelegramAccountConfig,
   TelegramDirectConfig,
 } from "soloclaw/plugin-sdk/config-runtime";
@@ -28,7 +28,7 @@ export function resolveAutoTopicLabelConfig(
 export async function generateTelegramTopicLabel(params: {
   userMessage: string;
   prompt: string;
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   agentId?: string;
   agentDir?: string;
 }): Promise<string | null> {

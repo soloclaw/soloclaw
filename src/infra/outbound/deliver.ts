@@ -12,7 +12,7 @@ import type {
   ChannelOutboundContext,
 } from "../../channels/plugins/types.adapters.js";
 import { resolveMirroredTranscriptText } from "../../config/sessions/transcript-mirror.js";
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 import { fireAndForgetHook } from "../../hooks/fire-and-forget.js";
 import { createInternalHookEvent, triggerInternalHook } from "../../hooks/internal-hooks.js";
 import {
@@ -123,7 +123,7 @@ type ChannelHandler = {
 };
 
 type ChannelHandlerParams = {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   channel: Exclude<OutboundChannel, "none">;
   to: string;
   accountId?: string;
@@ -269,7 +269,7 @@ function createChannelOutboundContextBase(
 const isAbortError = (err: unknown): boolean => err instanceof Error && err.name === "AbortError";
 
 type DeliverOutboundPayloadsCoreParams = {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   channel: Exclude<OutboundChannel, "none">;
   to: string;
   accountId?: string;

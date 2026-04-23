@@ -1,5 +1,5 @@
 import type {
-  OpenClawConfig,
+  SoloClawConfig,
   ResolvedMemorySearchConfig,
 } from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
 import {
@@ -68,7 +68,7 @@ export function applyMemoryFallbackProviderState(params: {
 }
 
 export function resolveMemoryFallbackProviderRequest(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   settings: ResolvedMemorySearchConfig;
   currentProviderId: string | null;
 }): {

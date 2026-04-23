@@ -1,8 +1,8 @@
-import type { OpenClawConfig } from "../../config/types.soloclaw.js";
+import type { SoloClawConfig } from "../../config/types.soloclaw.js";
 
 export function createPerSenderSessionConfig(
-  overrides: Partial<NonNullable<OpenClawConfig["session"]>> = {},
-): NonNullable<OpenClawConfig["session"]> {
+  overrides: Partial<NonNullable<SoloClawConfig["session"]>> = {},
+): NonNullable<SoloClawConfig["session"]> {
   return {
     mainKey: "main",
     scope: "per-sender",

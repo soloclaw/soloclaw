@@ -1,15 +1,15 @@
 import { describe, expect, it } from "vitest";
 import {
-  ensureOpenClawExecMarkerOnProcess,
-  markOpenClawExecEnv,
+  ensureSoloClawExecMarkerOnProcess,
+  markSoloClawExecEnv,
   SOLOCLAW_CLI_ENV_VALUE,
   SOLOCLAW_CLI_ENV_VAR,
 } from "./soloclaw-exec-env.js";
 
-describe("markOpenClawExecEnv", () => {
+describe("markSoloClawExecEnv", () => {
   it("returns a cloned env object with the exec marker set", () => {
     const env = { PATH: "/usr/bin", SOLOCLAW_CLI: "0" };
-    const marked = markOpenClawExecEnv(env);
+    const marked = markSoloClawExecEnv(env);
 
     expect(marked).toEqual({
       PATH: "/usr/bin",
@@ -20,7 +20,7 @@ describe("markOpenClawExecEnv", () => {
   });
 });
 
-describe("ensureOpenClawExecMarkerOnProcess", () => {
+describe("ensureSoloClawExecMarkerOnProcess", () => {
   it.each([
     {
       name: "mutates and returns the provided process env",
@@ -31,7 +31,7 @@ describe("ensureOpenClawExecMarkerOnProcess", () => {
       env: { PATH: "/usr/bin", [SOLOCLAW_CLI_ENV_VAR]: "0" } as NodeJS.ProcessEnv,
     },
   ])("$name", ({ env }) => {
-    expect(ensureOpenClawExecMarkerOnProcess(env)).toBe(env);
+    expect(ensureSoloClawExecMarkerOnProcess(env)).toBe(env);
     expect(env[SOLOCLAW_CLI_ENV_VAR]).toBe(SOLOCLAW_CLI_ENV_VALUE);
   });
 
@@ -40,7 +40,7 @@ describe("ensureOpenClawExecMarkerOnProcess", () => {
     delete process.env[SOLOCLAW_CLI_ENV_VAR];
 
     try {
-      expect(ensureOpenClawExecMarkerOnProcess()).toBe(process.env);
+      expect(ensureSoloClawExecMarkerOnProcess()).toBe(process.env);
       expect(process.env[SOLOCLAW_CLI_ENV_VAR]).toBe(SOLOCLAW_CLI_ENV_VALUE);
     } finally {
       if (previous === undefined) {

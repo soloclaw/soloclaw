@@ -1,4 +1,4 @@
-import type { OpenClawPluginApi } from "soloclaw/plugin-sdk/core";
+import type { SoloClawPluginApi } from "soloclaw/plugin-sdk/core";
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   getRequiredHookHandler,
@@ -60,7 +60,7 @@ function registerHandlersForTest(
     },
   },
 ) {
-  return registerHookHandlersForTest<OpenClawPluginApi>({
+  return registerHookHandlersForTest<SoloClawPluginApi>({
     config,
     register: registerDiscordSubagentHooks,
   });

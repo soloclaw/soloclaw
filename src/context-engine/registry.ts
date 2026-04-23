@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/types.js";
+import type { SoloClawConfig } from "../config/types.js";
 import { defaultSlotIdForKey } from "../plugins/slots.js";
 import { resolveGlobalSingleton } from "../shared/global-singleton.js";
 import { sanitizeForLog } from "../terminal/ansi.js";
@@ -464,7 +464,7 @@ function describeResolvedContextEngineContractError(
  * violation) are logged and silently replaced by the default engine.
  * Throws only when the default engine itself cannot be resolved.
  */
-export async function resolveContextEngine(config?: OpenClawConfig): Promise<ContextEngine> {
+export async function resolveContextEngine(config?: SoloClawConfig): Promise<ContextEngine> {
   const slotValue = config?.plugins?.slots?.contextEngine;
   const engineId =
     typeof slotValue === "string" && slotValue.trim()

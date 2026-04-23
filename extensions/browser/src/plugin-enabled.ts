@@ -1,10 +1,10 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/browser-config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/browser-config-runtime";
 import {
   normalizePluginsConfig,
   resolveEffectiveEnableState,
 } from "soloclaw/plugin-sdk/browser-config-runtime";
 
-export function isDefaultBrowserPluginEnabled(cfg: OpenClawConfig): boolean {
+export function isDefaultBrowserPluginEnabled(cfg: SoloClawConfig): boolean {
   return resolveEffectiveEnableState({
     id: "browser",
     origin: "bundled",

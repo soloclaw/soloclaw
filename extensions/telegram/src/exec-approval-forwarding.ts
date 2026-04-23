@@ -3,13 +3,13 @@ import {
   resolveExecApprovalRequestAllowedDecisions,
   resolveExecApprovalCommandDisplay,
 } from "soloclaw/plugin-sdk/approval-reply-runtime";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import type { ExecApprovalRequest } from "soloclaw/plugin-sdk/infra-runtime";
 import { normalizeMessageChannel } from "soloclaw/plugin-sdk/routing";
 import { isTelegramExecApprovalClientEnabled } from "./exec-approvals.js";
 
 export function shouldSuppressTelegramExecApprovalForwardingFallback(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   target: { channel: string; accountId?: string | null };
   request: ExecApprovalRequest;
 }): boolean {

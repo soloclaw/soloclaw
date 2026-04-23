@@ -16,7 +16,7 @@ import {
   resolveAgentDir,
   resolveSessionTranscriptsDirForAgent,
   resolveUserPath,
-  type OpenClawConfig,
+  type SoloClawConfig,
   type ResolvedMemorySearchConfig,
 } from "soloclaw/plugin-sdk/memory-core-host-engine-foundation";
 import {
@@ -122,7 +122,7 @@ export function runDetachedMemorySync(sync: () => Promise<void>, reason: "interv
 }
 
 export abstract class MemoryManagerSyncOps {
-  protected abstract readonly cfg: OpenClawConfig;
+  protected abstract readonly cfg: SoloClawConfig;
   protected abstract readonly agentId: string;
   protected abstract readonly workspaceDir: string;
   protected abstract readonly settings: ResolvedMemorySearchConfig;

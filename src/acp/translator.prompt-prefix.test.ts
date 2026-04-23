@@ -55,7 +55,7 @@ describe("acp prompt cwd prefix", () => {
 
   async function runPromptWithCwd(cwd: string) {
     const pinnedHome = os.homedir();
-    const previousOpenClawHome = process.env.SOLOCLAW_HOME;
+    const previousSoloClawHome = process.env.SOLOCLAW_HOME;
     const previousHome = process.env.HOME;
     delete process.env.SOLOCLAW_HOME;
     process.env.HOME = pinnedHome;
@@ -63,10 +63,10 @@ describe("acp prompt cwd prefix", () => {
     try {
       return await runPromptAndCaptureRequest({ cwd, prefixCwd: true });
     } finally {
-      if (previousOpenClawHome === undefined) {
+      if (previousSoloClawHome === undefined) {
         delete process.env.SOLOCLAW_HOME;
       } else {
-        process.env.SOLOCLAW_HOME = previousOpenClawHome;
+        process.env.SOLOCLAW_HOME = previousSoloClawHome;
       }
       if (previousHome === undefined) {
         delete process.env.HOME;
@@ -107,7 +107,7 @@ describe("acp prompt cwd prefix", () => {
           kind: "external_user",
           originSessionId: TEST_SESSION_ID,
           sourceChannel: "acp",
-          sourceTool: "openclaw_acp",
+          sourceTool: "soloclaw_acp",
         },
         systemProvenanceReceipt: undefined,
       }),
@@ -124,7 +124,7 @@ describe("acp prompt cwd prefix", () => {
           kind: "external_user",
           originSessionId: TEST_SESSION_ID,
           sourceChannel: "acp",
-          sourceTool: "openclaw_acp",
+          sourceTool: "soloclaw_acp",
         },
         systemProvenanceReceipt: expect.stringContaining("[Source Receipt]"),
       }),
@@ -188,7 +188,7 @@ describe("acp prompt cwd prefix", () => {
           kind: "external_user",
           originSessionId: TEST_SESSION_ID,
           sourceChannel: "acp",
-          sourceTool: "openclaw_acp",
+          sourceTool: "soloclaw_acp",
         },
         systemProvenanceReceipt: expect.stringContaining("[Source Receipt]"),
       }),

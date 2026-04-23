@@ -3,7 +3,7 @@ import { resolveStateDir } from "../config/paths.js";
 import { DEFAULT_AGENT_ID } from "../routing/session-key.js";
 import { resolveUserPath } from "../utils.js";
 
-export function resolveOpenClawAgentDir(env: NodeJS.ProcessEnv = process.env): string {
+export function resolveSoloClawAgentDir(env: NodeJS.ProcessEnv = process.env): string {
   const override = env.SOLOCLAW_AGENT_DIR?.trim() || env.PI_CODING_AGENT_DIR?.trim();
   if (override) {
     return resolveUserPath(override, env);
@@ -12,8 +12,8 @@ export function resolveOpenClawAgentDir(env: NodeJS.ProcessEnv = process.env): s
   return resolveUserPath(defaultAgentDir, env);
 }
 
-export function ensureOpenClawAgentEnv(): string {
-  const dir = resolveOpenClawAgentDir();
+export function ensureSoloClawAgentEnv(): string {
+  const dir = resolveSoloClawAgentDir();
   if (!process.env.SOLOCLAW_AGENT_DIR) {
     process.env.SOLOCLAW_AGENT_DIR = dir;
   }

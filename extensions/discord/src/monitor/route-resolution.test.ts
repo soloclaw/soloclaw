@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import type { ResolvedAgentRoute } from "soloclaw/plugin-sdk/routing";
 import { describe, expect, it } from "vitest";
 import {
@@ -11,7 +11,7 @@ import {
 function buildWorkerBindingConfig(peer: {
   kind: "channel" | "direct";
   id: string;
-}): OpenClawConfig {
+}): SoloClawConfig {
   return {
     agents: {
       list: [{ id: "worker" }],

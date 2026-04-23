@@ -3,7 +3,7 @@ import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import { collectDiscordSecurityAuditFindings } from "../../test/helpers/channels/security-audit-contract.js";
 import type { ChannelPlugin } from "../channels/plugins/types.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { SoloClawConfig } from "../config/config.js";
 import { withChannelSecurityStateDir } from "./audit-channel-security.test-helpers.js";
 import { collectChannelSecurityFindings } from "./audit-channel.js";
 
@@ -101,7 +101,7 @@ describe("security audit discord allowlists", () => {
             },
           },
         },
-      } satisfies OpenClawConfig,
+      } satisfies SoloClawConfig,
       expectNameBasedSeverity: "warn",
       detailIncludes: [
         "channels.discord.allowFrom:Alice#1234",
@@ -122,7 +122,7 @@ describe("security audit discord allowlists", () => {
             allowFrom: ["Alice#1234"],
           },
         },
-      } satisfies OpenClawConfig,
+      } satisfies SoloClawConfig,
       expectNameBasedSeverity: "info",
       detailIncludes: ["out-of-scope"],
       expectFindingMatch: {
@@ -146,7 +146,7 @@ describe("security audit discord allowlists", () => {
             },
           },
         },
-      } satisfies OpenClawConfig,
+      } satisfies SoloClawConfig,
       expectNoNameBasedFinding: true,
       expectFindingMatch: {
         checkId: "channels.discord.allowFrom.dangerous_name_matching_enabled",
@@ -173,7 +173,7 @@ describe("security audit discord allowlists", () => {
             },
           },
         },
-      } satisfies OpenClawConfig,
+      } satisfies SoloClawConfig,
       expectNameBasedSeverity: "warn",
       detailIncludes: ["channels.discord.accounts.beta.allowFrom:Alice#1234"],
     },
@@ -203,7 +203,7 @@ describe("security audit discord allowlists", () => {
             },
           },
         },
-      } satisfies OpenClawConfig,
+      } satisfies SoloClawConfig,
       expectNoNameBasedFinding: true,
     },
   ])("$name", async (testCase) => {
@@ -254,7 +254,7 @@ describe("security audit discord allowlists", () => {
 
   it("does not treat prototype properties as explicit Discord account config paths", async () => {
     await withChannelSecurityStateDir(async () => {
-      const cfg: OpenClawConfig = {
+      const cfg: SoloClawConfig = {
         channels: {
           discord: {
             enabled: true,

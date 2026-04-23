@@ -7,7 +7,7 @@ import {
 } from "soloclaw/plugin-sdk/channel-config-helpers";
 import { createChannelPluginBase, type ChannelPlugin } from "soloclaw/plugin-sdk/channel-core";
 import { getChatChannelMeta } from "soloclaw/plugin-sdk/channel-plugin-common";
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import { DEFAULT_ACCOUNT_ID } from "soloclaw/plugin-sdk/routing";
 import { inspectTelegramAccount } from "./account-inspect.js";
 import {
@@ -30,7 +30,7 @@ import { namedAccountPromotionKeys, singleAccountKeysToMove } from "./setup-cont
 export const TELEGRAM_CHANNEL = "telegram" as const;
 
 export function findTelegramTokenOwnerAccountId(params: {
-  cfg: OpenClawConfig;
+  cfg: SoloClawConfig;
   accountId: string;
 }): string | null {
   const normalizedAccountId = normalizeAccountId(params.accountId);
@@ -77,7 +77,7 @@ export function formatDuplicateTelegramTokenReason(params: {
  *
  * See: https://github.com/soloclaw/soloclaw/issues/53876
  */
-function isBlockedByMultiBotGuard(cfg: OpenClawConfig, accountId: string): boolean {
+function isBlockedByMultiBotGuard(cfg: SoloClawConfig, accountId: string): boolean {
   if (normalizeAccountId(accountId) === DEFAULT_ACCOUNT_ID) {
     return false;
   }

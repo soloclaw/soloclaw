@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "soloclaw/plugin-sdk/config-runtime";
+import type { SoloClawConfig } from "soloclaw/plugin-sdk/config-runtime";
 import {
   normalizeResolvedSecretInputString,
   normalizeSecretInput,
@@ -49,7 +49,7 @@ function normalizeBaseUrl(value: string | undefined): string | undefined {
 }
 
 export function resolveSearxngWebSearchConfig(
-  config?: OpenClawConfig,
+  config?: SoloClawConfig,
 ): SearxngPluginConfig["webSearch"] | undefined {
   const pluginConfig = config?.plugins?.entries?.searxng?.config as SearxngPluginConfig | undefined;
   const webSearch = pluginConfig?.webSearch;
@@ -60,7 +60,7 @@ export function resolveSearxngWebSearchConfig(
 }
 
 export function resolveSearxngBaseUrl(
-  config?: OpenClawConfig,
+  config?: SoloClawConfig,
   env: NodeJS.ProcessEnv = process.env,
 ): string | undefined {
   const webSearch = resolveSearxngWebSearchConfig(config);
@@ -76,10 +76,10 @@ export function resolveSearxngBaseUrl(
   );
 }
 
-export function resolveSearxngCategories(config?: OpenClawConfig): string | undefined {
+export function resolveSearxngCategories(config?: SoloClawConfig): string | undefined {
   return normalizeTrimmedString(resolveSearxngWebSearchConfig(config)?.categories);
 }
 
-export function resolveSearxngLanguage(config?: OpenClawConfig): string | undefined {
+export function resolveSearxngLanguage(config?: SoloClawConfig): string | undefined {
   return normalizeTrimmedString(resolveSearxngWebSearchConfig(config)?.language);
 }

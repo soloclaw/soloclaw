@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { afterAll, afterEach, describe, expect, it } from "vitest";
 import { withEnv } from "../test-utils/env.js";
-import { loadOpenClawPlugins } from "./loader.js";
+import { loadSoloClawPlugins } from "./loader.js";
 import {
   cleanupPluginLoaderFixturesForTest,
   loadBundleFixture,
@@ -13,7 +13,7 @@ import {
 } from "./loader.test-fixtures.js";
 
 function expectNoUnwiredBundleDiagnostic(
-  registry: ReturnType<typeof loadOpenClawPlugins>,
+  registry: ReturnType<typeof loadSoloClawPlugins>,
   pluginId: string,
 ) {
   expect(
@@ -56,7 +56,7 @@ describe("bundle plugins", () => {
     );
 
     const registry = withEnv({ SOLOCLAW_STATE_DIR: stateDir }, () =>
-      loadOpenClawPlugins({
+      loadSoloClawPlugins({
         workspaceDir,
         onlyPluginIds: ["sample-bundle"],
         config: {
