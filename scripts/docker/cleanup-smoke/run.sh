@@ -3,8 +3,8 @@ set -euo pipefail
 
 cd /repo
 
-export OPENCLAW_STATE_DIR="/tmp/openclaw-test"
-export OPENCLAW_CONFIG_PATH="${OPENCLAW_STATE_DIR}/soloclaw.json"
+export SOLOCLAW_STATE_DIR="/tmp/openclaw-test"
+export SOLOCLAW_CONFIG_PATH="${SOLOCLAW_STATE_DIR}/soloclaw.json"
 
 echo "==> Build"
 if ! pnpm build >/tmp/openclaw-cleanup-build.log 2>&1; then
@@ -13,11 +13,11 @@ if ! pnpm build >/tmp/openclaw-cleanup-build.log 2>&1; then
 fi
 
 echo "==> Seed state"
-mkdir -p "${OPENCLAW_STATE_DIR}/credentials"
-mkdir -p "${OPENCLAW_STATE_DIR}/agents/main/sessions"
-echo '{}' >"${OPENCLAW_CONFIG_PATH}"
-echo 'creds' >"${OPENCLAW_STATE_DIR}/credentials/marker.txt"
-echo 'session' >"${OPENCLAW_STATE_DIR}/agents/main/sessions/sessions.json"
+mkdir -p "${SOLOCLAW_STATE_DIR}/credentials"
+mkdir -p "${SOLOCLAW_STATE_DIR}/agents/main/sessions"
+echo '{}' >"${SOLOCLAW_CONFIG_PATH}"
+echo 'creds' >"${SOLOCLAW_STATE_DIR}/credentials/marker.txt"
+echo 'session' >"${SOLOCLAW_STATE_DIR}/agents/main/sessions/sessions.json"
 
 echo "==> Reset (config+creds+sessions)"
 if ! pnpm soloclaw reset --scope config+creds+sessions --yes --non-interactive >/tmp/openclaw-cleanup-reset.log 2>&1; then
@@ -25,13 +25,13 @@ if ! pnpm soloclaw reset --scope config+creds+sessions --yes --non-interactive >
   exit 1
 fi
 
-test ! -f "${OPENCLAW_CONFIG_PATH}"
-test ! -d "${OPENCLAW_STATE_DIR}/credentials"
-test ! -d "${OPENCLAW_STATE_DIR}/agents/main/sessions"
+test ! -f "${SOLOCLAW_CONFIG_PATH}"
+test ! -d "${SOLOCLAW_STATE_DIR}/credentials"
+test ! -d "${SOLOCLAW_STATE_DIR}/agents/main/sessions"
 
 echo "==> Recreate minimal config"
-mkdir -p "${OPENCLAW_STATE_DIR}/credentials"
-echo '{}' >"${OPENCLAW_CONFIG_PATH}"
+mkdir -p "${SOLOCLAW_STATE_DIR}/credentials"
+echo '{}' >"${SOLOCLAW_CONFIG_PATH}"
 
 echo "==> Uninstall (state only)"
 if ! pnpm soloclaw uninstall --state --yes --non-interactive >/tmp/openclaw-cleanup-uninstall.log 2>&1; then
@@ -39,6 +39,6 @@ if ! pnpm soloclaw uninstall --state --yes --non-interactive >/tmp/openclaw-clea
   exit 1
 fi
 
-test ! -d "${OPENCLAW_STATE_DIR}"
+test ! -d "${SOLOCLAW_STATE_DIR}"
 
 echo "OK"

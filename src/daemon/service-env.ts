@@ -266,20 +266,20 @@ export function buildServiceEnvironment(params: {
     extraPathDirs,
     params.execPath,
   );
-  const profile = env.OPENCLAW_PROFILE;
+  const profile = env.SOLOCLAW_PROFILE;
   const resolvedLaunchdLabel =
     launchdLabel || (platform === "darwin" ? resolveGatewayLaunchAgentLabel(profile) : undefined);
   const systemdUnit = `${resolveGatewaySystemdServiceName(profile)}.service`;
   return {
     ...buildCommonServiceEnvironment(env, sharedEnv),
-    OPENCLAW_PROFILE: profile,
-    OPENCLAW_GATEWAY_PORT: String(port),
-    OPENCLAW_LAUNCHD_LABEL: resolvedLaunchdLabel,
-    OPENCLAW_SYSTEMD_UNIT: systemdUnit,
-    OPENCLAW_WINDOWS_TASK_NAME: resolveGatewayWindowsTaskName(profile),
-    OPENCLAW_SERVICE_MARKER: GATEWAY_SERVICE_MARKER,
-    OPENCLAW_SERVICE_KIND: GATEWAY_SERVICE_KIND,
-    OPENCLAW_SERVICE_VERSION: VERSION,
+    SOLOCLAW_PROFILE: profile,
+    SOLOCLAW_GATEWAY_PORT: String(port),
+    SOLOCLAW_LAUNCHD_LABEL: resolvedLaunchdLabel,
+    SOLOCLAW_SYSTEMD_UNIT: systemdUnit,
+    SOLOCLAW_WINDOWS_TASK_NAME: resolveGatewayWindowsTaskName(profile),
+    SOLOCLAW_SERVICE_MARKER: GATEWAY_SERVICE_MARKER,
+    SOLOCLAW_SERVICE_KIND: GATEWAY_SERVICE_KIND,
+    SOLOCLAW_SERVICE_VERSION: VERSION,
   };
 }
 
@@ -297,18 +297,18 @@ export function buildNodeServiceEnvironment(params: {
     extraPathDirs,
     params.execPath,
   );
-  const gatewayToken = normalizeOptionalString(env.OPENCLAW_GATEWAY_TOKEN);
+  const gatewayToken = normalizeOptionalString(env.SOLOCLAW_GATEWAY_TOKEN);
   return {
     ...buildCommonServiceEnvironment(env, sharedEnv),
-    OPENCLAW_GATEWAY_TOKEN: gatewayToken,
-    OPENCLAW_LAUNCHD_LABEL: resolveNodeLaunchAgentLabel(),
-    OPENCLAW_SYSTEMD_UNIT: resolveNodeSystemdServiceName(),
-    OPENCLAW_WINDOWS_TASK_NAME: resolveNodeWindowsTaskName(),
-    OPENCLAW_TASK_SCRIPT_NAME: NODE_WINDOWS_TASK_SCRIPT_NAME,
-    OPENCLAW_LOG_PREFIX: "node",
-    OPENCLAW_SERVICE_MARKER: NODE_SERVICE_MARKER,
-    OPENCLAW_SERVICE_KIND: NODE_SERVICE_KIND,
-    OPENCLAW_SERVICE_VERSION: VERSION,
+    SOLOCLAW_GATEWAY_TOKEN: gatewayToken,
+    SOLOCLAW_LAUNCHD_LABEL: resolveNodeLaunchAgentLabel(),
+    SOLOCLAW_SYSTEMD_UNIT: resolveNodeSystemdServiceName(),
+    SOLOCLAW_WINDOWS_TASK_NAME: resolveNodeWindowsTaskName(),
+    SOLOCLAW_TASK_SCRIPT_NAME: NODE_WINDOWS_TASK_SCRIPT_NAME,
+    SOLOCLAW_LOG_PREFIX: "node",
+    SOLOCLAW_SERVICE_MARKER: NODE_SERVICE_MARKER,
+    SOLOCLAW_SERVICE_KIND: NODE_SERVICE_KIND,
+    SOLOCLAW_SERVICE_VERSION: VERSION,
   };
 }
 
@@ -322,8 +322,8 @@ function buildCommonServiceEnvironment(
     ...sharedEnv.proxyEnv,
     NODE_EXTRA_CA_CERTS: sharedEnv.nodeCaCerts,
     NODE_USE_SYSTEM_CA: sharedEnv.nodeUseSystemCa,
-    OPENCLAW_STATE_DIR: sharedEnv.stateDir,
-    OPENCLAW_CONFIG_PATH: sharedEnv.configPath,
+    SOLOCLAW_STATE_DIR: sharedEnv.stateDir,
+    SOLOCLAW_CONFIG_PATH: sharedEnv.configPath,
   };
   if (sharedEnv.minimalPath) {
     serviceEnv.PATH = sharedEnv.minimalPath;
@@ -337,8 +337,8 @@ function resolveSharedServiceEnvironmentFields(
   extraPathDirs: string[] | undefined,
   execPath?: string,
 ): SharedServiceEnvironmentFields {
-  const stateDir = env.OPENCLAW_STATE_DIR;
-  const configPath = env.OPENCLAW_CONFIG_PATH;
+  const stateDir = env.SOLOCLAW_STATE_DIR;
+  const configPath = env.SOLOCLAW_CONFIG_PATH;
   // Keep a usable temp directory for supervised services even when the host env omits TMPDIR.
   const tmpDir = env.TMPDIR?.trim() || os.tmpdir();
   const proxyEnv = readServiceProxyEnvironment(env);

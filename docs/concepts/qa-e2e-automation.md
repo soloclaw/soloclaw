@@ -65,7 +65,7 @@ the child config scoped to the transport under test, so Matrix runs without
 `qa-channel` in the child config. It writes the structured report artifacts and
 a combined stdout/stderr log into the selected Matrix QA output directory. To
 capture the outer `scripts/run-node.mjs` build/launcher output too, set
-`OPENCLAW_RUN_NODE_OUTPUT_LOG=<path>` to a repo-local log file.
+`SOLOCLAW_RUN_NODE_OUTPUT_LOG=<path>` to a repo-local log file.
 
 For a transport-real Telegram smoke lane, run:
 
@@ -74,9 +74,9 @@ pnpm soloclaw qa telegram
 ```
 
 That lane targets one real private Telegram group instead of provisioning a
-disposable server. It requires `OPENCLAW_QA_TELEGRAM_GROUP_ID`,
-`OPENCLAW_QA_TELEGRAM_DRIVER_BOT_TOKEN`, and
-`OPENCLAW_QA_TELEGRAM_SUT_BOT_TOKEN`, plus two distinct bots in the same
+disposable server. It requires `SOLOCLAW_QA_TELEGRAM_GROUP_ID`,
+`SOLOCLAW_QA_TELEGRAM_DRIVER_BOT_TOKEN`, and
+`SOLOCLAW_QA_TELEGRAM_SUT_BOT_TOKEN`, plus two distinct bots in the same
 private group. The SUT bot must have a Telegram username, and bot-to-bot
 observation works best when both bots have Bot-to-Bot Communication Mode
 enabled in `@BotFather`.

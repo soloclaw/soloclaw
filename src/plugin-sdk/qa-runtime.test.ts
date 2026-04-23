@@ -16,12 +16,12 @@ vi.mock("../infra/openclaw-root.js", () => ({
 
 describe("plugin-sdk qa-runtime", () => {
   const tempDirs: string[] = [];
-  const originalPrivateQaCli = process.env.OPENCLAW_ENABLE_PRIVATE_QA_CLI;
+  const originalPrivateQaCli = process.env.SOLOCLAW_ENABLE_PRIVATE_QA_CLI;
 
   beforeEach(() => {
     loadBundledPluginPublicSurfaceModuleSync.mockReset();
     resolveOpenClawPackageRootSync.mockReset().mockReturnValue(null);
-    delete process.env.OPENCLAW_ENABLE_PRIVATE_QA_CLI;
+    delete process.env.SOLOCLAW_ENABLE_PRIVATE_QA_CLI;
   });
 
   afterEach(() => {
@@ -29,9 +29,9 @@ describe("plugin-sdk qa-runtime", () => {
       fs.rmSync(dir, { recursive: true, force: true });
     }
     if (originalPrivateQaCli === undefined) {
-      delete process.env.OPENCLAW_ENABLE_PRIVATE_QA_CLI;
+      delete process.env.SOLOCLAW_ENABLE_PRIVATE_QA_CLI;
     } else {
-      process.env.OPENCLAW_ENABLE_PRIVATE_QA_CLI = originalPrivateQaCli;
+      process.env.SOLOCLAW_ENABLE_PRIVATE_QA_CLI = originalPrivateQaCli;
     }
   });
 
@@ -65,7 +65,7 @@ describe("plugin-sdk qa-runtime", () => {
     fs.mkdirSync(path.join(sourceRoot, "src"), { recursive: true });
     fs.mkdirSync(path.join(sourceRoot, "extensions"), { recursive: true });
     fs.writeFileSync(path.join(sourceRoot, ".git"), "gitdir: /tmp/mock\n", "utf8");
-    process.env.OPENCLAW_ENABLE_PRIVATE_QA_CLI = "1";
+    process.env.SOLOCLAW_ENABLE_PRIVATE_QA_CLI = "1";
     resolveOpenClawPackageRootSync.mockReturnValue(sourceRoot);
 
     const runtimeSurface = {
@@ -81,8 +81,8 @@ describe("plugin-sdk qa-runtime", () => {
       dirName: "qa-lab",
       artifactBasename: "runtime-api.js",
       env: expect.objectContaining({
-        OPENCLAW_ENABLE_PRIVATE_QA_CLI: "1",
-        OPENCLAW_BUNDLED_PLUGINS_DIR: path.join(sourceRoot, "extensions"),
+        SOLOCLAW_ENABLE_PRIVATE_QA_CLI: "1",
+        SOLOCLAW_BUNDLED_PLUGINS_DIR: path.join(sourceRoot, "extensions"),
       }),
     });
   });

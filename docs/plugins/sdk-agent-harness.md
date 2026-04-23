@@ -87,16 +87,16 @@ export default definePluginEntry({
 
 OpenClaw chooses a harness after provider/model resolution:
 
-1. `OPENCLAW_AGENT_RUNTIME=<id>` forces a registered harness with that id.
-2. `OPENCLAW_AGENT_RUNTIME=pi` forces the built-in PI harness.
-3. `OPENCLAW_AGENT_RUNTIME=auto` asks registered harnesses if they support the
+1. `SOLOCLAW_AGENT_RUNTIME=<id>` forces a registered harness with that id.
+2. `SOLOCLAW_AGENT_RUNTIME=pi` forces the built-in PI harness.
+3. `SOLOCLAW_AGENT_RUNTIME=auto` asks registered harnesses if they support the
    resolved provider/model.
 4. If no registered harness matches, OpenClaw uses PI unless PI fallback is
    disabled.
 
 Forced plugin harness failures surface as run failures. In `auto` mode,
 OpenClaw may fall back to PI when the selected plugin harness fails before a
-turn has produced side effects. Set `OPENCLAW_AGENT_HARNESS_FALLBACK=none` or
+turn has produced side effects. Set `SOLOCLAW_AGENT_HARNESS_FALLBACK=none` or
 `embeddedHarness.fallback: "none"` to make that fallback a hard failure instead.
 
 The bundled Codex plugin registers `codex` as its harness id. Core treats that
@@ -161,7 +161,7 @@ plugin harness fails before producing output, OpenClaw falls back to PI.
 
 Set `fallback: "none"` when you need to prove that a plugin harness is the only
 runtime being exercised. This disables automatic PI fallback; it does not block
-an explicit `runtime: "pi"` or `OPENCLAW_AGENT_RUNTIME=pi`.
+an explicit `runtime: "pi"` or `SOLOCLAW_AGENT_RUNTIME=pi`.
 
 For Codex-only embedded runs:
 
@@ -221,13 +221,13 @@ Per-agent overrides use the same shape:
 }
 ```
 
-`OPENCLAW_AGENT_RUNTIME` still overrides the configured runtime. Use
-`OPENCLAW_AGENT_HARNESS_FALLBACK=none` to disable PI fallback from the
+`SOLOCLAW_AGENT_RUNTIME` still overrides the configured runtime. Use
+`SOLOCLAW_AGENT_HARNESS_FALLBACK=none` to disable PI fallback from the
 environment.
 
 ```bash
-OPENCLAW_AGENT_RUNTIME=codex \
-OPENCLAW_AGENT_HARNESS_FALLBACK=none \
+SOLOCLAW_AGENT_RUNTIME=codex \
+SOLOCLAW_AGENT_HARNESS_FALLBACK=none \
 soloclaw gateway run
 ```
 

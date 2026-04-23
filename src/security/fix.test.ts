@@ -32,8 +32,8 @@ describe("security fix", () => {
 
   const createFixEnv = (stateDir: string, configPath: string) => ({
     ...process.env,
-    OPENCLAW_STATE_DIR: stateDir,
-    OPENCLAW_CONFIG_PATH: configPath,
+    SOLOCLAW_STATE_DIR: stateDir,
+    SOLOCLAW_CONFIG_PATH: configPath,
   });
 
   const createWhatsAppConfigFixTestPlugin = (storeAllowFrom: string[]): ChannelPlugin => ({

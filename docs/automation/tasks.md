@@ -276,7 +276,7 @@ remains. This keeps the status card focused on what matters right now.
 Task records persist in SQLite at:
 
 ```
-$OPENCLAW_STATE_DIR/tasks/runs.sqlite
+$SOLOCLAW_STATE_DIR/tasks/runs.sqlite
 ```
 
 The registry loads into memory at gateway start and syncs writes to SQLite for durability across restarts.

@@ -4,13 +4,13 @@
 const shouldWarnExtensionApiImport =
   process.env.VITEST !== "true" &&
   process.env.NODE_ENV !== "test" &&
-  process.env.OPENCLAW_SUPPRESS_EXTENSION_API_WARNING !== "1";
+  process.env.SOLOCLAW_SUPPRESS_EXTENSION_API_WARNING !== "1";
 
 if (shouldWarnExtensionApiImport) {
   process.emitWarning(
     "soloclaw/extension-api is deprecated. Migrate to api.runtime.agent.* or focused soloclaw/plugin-sdk/<subpath> imports. See https://docs.soloclaw.ai/plugins/sdk-migration",
     {
-      code: "OPENCLAW_EXTENSION_API_DEPRECATED",
+      code: "SOLOCLAW_EXTENSION_API_DEPRECATED",
       detail:
         "This compatibility bridge is temporary. Bundled plugins should use the injected plugin runtime instead of importing host-side agent helpers directly. Migration guide: https://docs.soloclaw.ai/plugins/sdk-migration",
     },

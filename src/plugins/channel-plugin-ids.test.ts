@@ -428,7 +428,7 @@ describe("resolveGatewayStartupPluginIds", () => {
       config: createStartupConfig({
         enabledPluginIds: ["codex"],
       }),
-      env: { OPENCLAW_AGENT_RUNTIME: "codex" },
+      env: { SOLOCLAW_AGENT_RUNTIME: "codex" },
       expected: ["demo-channel", "browser", "codex"],
     });
   });

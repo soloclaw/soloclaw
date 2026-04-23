@@ -230,8 +230,8 @@ export async function prepareGatewayStartupConfig(params: {
 
 function pruneSkippedStartupSecretSurfaces(config: OpenClawConfig): OpenClawConfig {
   const skipChannels =
-    isTruthyEnvValue(process.env.OPENCLAW_SKIP_CHANNELS) ||
-    isTruthyEnvValue(process.env.OPENCLAW_SKIP_PROVIDERS);
+    isTruthyEnvValue(process.env.SOLOCLAW_SKIP_CHANNELS) ||
+    isTruthyEnvValue(process.env.SOLOCLAW_SKIP_PROVIDERS);
   if (!skipChannels || !config.channels) {
     return config;
   }

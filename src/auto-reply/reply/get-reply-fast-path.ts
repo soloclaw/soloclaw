@@ -27,7 +27,7 @@ type ReplyConfigWithMarker = OpenClawConfig & {
 
 function isSlowReplyTestAllowed(env: NodeJS.ProcessEnv = process.env): boolean {
   return (
-    env.OPENCLAW_ALLOW_SLOW_REPLY_TESTS === "1" || env.OPENCLAW_STRICT_FAST_REPLY_CONFIG === "0"
+    env.SOLOCLAW_ALLOW_SLOW_REPLY_TESTS === "1" || env.SOLOCLAW_STRICT_FAST_REPLY_CONFIG === "0"
   );
 }
 
@@ -104,7 +104,7 @@ export function resolveGetReplyConfig(params: {
   }
   if (params.isFastTestEnv && !isCompleteReplyConfig(configOverride) && !isSlowReplyTestAllowed()) {
     throw new Error(
-      "Fast reply tests must pass with withFastReplyConfig()/markCompleteReplyConfig(); set OPENCLAW_ALLOW_SLOW_REPLY_TESTS=1 to opt out.",
+      "Fast reply tests must pass with withFastReplyConfig()/markCompleteReplyConfig(); set SOLOCLAW_ALLOW_SLOW_REPLY_TESTS=1 to opt out.",
     );
   }
   if (params.isFastTestEnv && isCompleteReplyConfig(configOverride)) {

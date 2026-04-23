@@ -23,7 +23,7 @@ export type { AgentApprovalEventData } from "../infra/agent-events.js";
 export type { ExecApprovalDecision } from "../infra/exec-approvals.js";
 export type { NormalizedUsage } from "../agents/usage.js";
 
-export { VERSION as OPENCLAW_VERSION } from "../version.js";
+export { VERSION as SOLOCLAW_VERSION } from "../version.js";
 export { formatErrorMessage } from "../infra/errors.js";
 export { log as embeddedAgentLog } from "../agents/pi-embedded-runner/logger.js";
 export { resolveEmbeddedAgentRuntime } from "../agents/pi-embedded-runner/runtime.js";

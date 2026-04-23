@@ -227,7 +227,7 @@ function runPackedBundledChannelEntrySmoke(): void {
         stdio: "inherit",
         env: {
           ...process.env,
-          OPENCLAW_DISABLE_BUNDLED_ENTRY_SOURCE_FALLBACK: "1",
+          SOLOCLAW_DISABLE_BUNDLED_ENTRY_SOURCE_FALLBACK: "1",
         },
       },
     );
@@ -244,9 +244,9 @@ function runPackedBundledChannelEntrySmoke(): void {
         env: {
           ...process.env,
           HOME: homeDir,
-          OPENCLAW_STATE_DIR: stateDir,
-          OPENCLAW_SUPPRESS_NOTES: "1",
-          OPENCLAW_DISABLE_BUNDLED_ENTRY_SOURCE_FALLBACK: "1",
+          SOLOCLAW_STATE_DIR: stateDir,
+          SOLOCLAW_SUPPRESS_NOTES: "1",
+          SOLOCLAW_DISABLE_BUNDLED_ENTRY_SOURCE_FALLBACK: "1",
         },
       },
     );

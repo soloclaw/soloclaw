@@ -702,7 +702,7 @@ describe("installPluginFromArchive", () => {
       return;
     }
     expect(result.error).toContain("openclaw.extensions");
-    expect(result.code).toBe(PLUGIN_INSTALL_ERROR_CODE.MISSING_OPENCLAW_EXTENSIONS);
+    expect(result.code).toBe(PLUGIN_INSTALL_ERROR_CODE.MISSING_SOLOCLAW_EXTENSIONS);
   });
 
   it("rejects legacy plugin package shape when openclaw.extensions is missing", async () => {
@@ -734,7 +734,7 @@ describe("installPluginFromArchive", () => {
     if (!result.ok) {
       expect(result.error).toContain("package.json missing openclaw.extensions");
       expect(result.error).toContain("update the plugin package");
-      expect(result.code).toBe(PLUGIN_INSTALL_ERROR_CODE.MISSING_OPENCLAW_EXTENSIONS);
+      expect(result.code).toBe(PLUGIN_INSTALL_ERROR_CODE.MISSING_SOLOCLAW_EXTENSIONS);
       return;
     }
     expect.unreachable("expected install to fail without openclaw.extensions");
@@ -1268,7 +1268,7 @@ describe("installPluginFromArchive", () => {
   });
 
   it("fails package installs when manifest traversal exceeds the directory cap", async () => {
-    vi.stubEnv("OPENCLAW_INSTALL_SCAN_MAX_DIRECTORIES", "4");
+    vi.stubEnv("SOLOCLAW_INSTALL_SCAN_MAX_DIRECTORIES", "4");
 
     const { pluginDir, extensionsDir } = setupPluginInstallDirs();
     fs.writeFileSync(
@@ -1296,7 +1296,7 @@ describe("installPluginFromArchive", () => {
   });
 
   it("fails package installs when manifest traversal exceeds the depth cap", async () => {
-    vi.stubEnv("OPENCLAW_INSTALL_SCAN_MAX_DEPTH", "2");
+    vi.stubEnv("SOLOCLAW_INSTALL_SCAN_MAX_DEPTH", "2");
 
     const { pluginDir, extensionsDir } = setupPluginInstallDirs();
     fs.writeFileSync(

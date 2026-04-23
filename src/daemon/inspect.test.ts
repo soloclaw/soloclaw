@@ -14,9 +14,9 @@ Wants=network-online.target
 [Service]
 ExecStart=/usr/bin/node /home/openclaw/.npm-global/lib/node_modules/openclaw/dist/entry.js gateway --port 18789
 Restart=always
-Environment=OPENCLAW_SERVICE_MARKER=openclaw
-Environment=OPENCLAW_SERVICE_KIND=gateway
-Environment=OPENCLAW_SERVICE_VERSION=2026.3.8
+Environment=SOLOCLAW_SERVICE_MARKER=openclaw
+Environment=SOLOCLAW_SERVICE_KIND=gateway
+Environment=SOLOCLAW_SERVICE_VERSION=2026.3.8
 
 [Install]
 WantedBy=default.target

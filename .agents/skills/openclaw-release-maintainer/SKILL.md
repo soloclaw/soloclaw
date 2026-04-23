@@ -73,7 +73,7 @@ pnpm test:install:smoke
 For a non-root smoke path:
 
 ```bash
-  OPENCLAW_INSTALL_SMOKE_SKIP_NONROOT=1 pnpm test:install:smoke
+  SOLOCLAW_INSTALL_SMOKE_SKIP_NONROOT=1 pnpm test:install:smoke
 ```
 
 After npm publish, run:
@@ -96,11 +96,11 @@ node --import tsx scripts/openclaw-npm-postpublish-verify.ts <published-version>
 - Use `pnpm test:live:media video` for bounded video-provider smoke when video
   generation is in release scope. The default video smoke skips `fal`, runs one
   text-to-video attempt per provider with a one-second lobster prompt, and caps
-  each provider operation with `OPENCLAW_LIVE_VIDEO_GENERATION_TIMEOUT_MS`
+  each provider operation with `SOLOCLAW_LIVE_VIDEO_GENERATION_TIMEOUT_MS`
   (`180000` by default).
 - Run `pnpm test:live:media video --video-providers fal` only when FAL-specific
   proof is required. Its queue latency can dominate release time.
-- Set `OPENCLAW_LIVE_VIDEO_GENERATION_FULL_MODES=1` only when intentionally
+- Set `SOLOCLAW_LIVE_VIDEO_GENERATION_FULL_MODES=1` only when intentionally
   validating the slower image-to-video and video-to-video transform lanes.
 
 ## Check all relevant release builds
@@ -111,10 +111,10 @@ node --import tsx scripts/openclaw-npm-postpublish-verify.ts <published-version>
   - `pnpm build`
   - `pnpm ui:build`
   - `pnpm release:check`
-  - `OPENCLAW_INSTALL_SMOKE_SKIP_NONROOT=1 pnpm test:install:smoke`
+  - `SOLOCLAW_INSTALL_SMOKE_SKIP_NONROOT=1 pnpm test:install:smoke`
 - Check all release-related build surfaces touched by the release, not only the npm package.
 - For beta-style full e2e batteries, hard-cap top-level long lanes instead of letting them run indefinitely. Use host `timeout --foreground`/`gtimeout --foreground` caps such as:
-  - `45m` for `OPENCLAW_INSTALL_SMOKE_SKIP_NONROOT=1 pnpm test:install:smoke`
+  - `45m` for `SOLOCLAW_INSTALL_SMOKE_SKIP_NONROOT=1 pnpm test:install:smoke`
   - `90m` for `pnpm test:docker:all`
   - Parallels caps from the `openclaw-parallels-smoke` skill
     If a lane hits its cap, stop and inspect/fix the affected lane before continuing; do not continue to wait on the same process.
@@ -194,7 +194,7 @@ node --import tsx scripts/openclaw-npm-postpublish-verify.ts <published-version>
   promotion.
 - Real private mac publish uploads the packaged `.zip`, `.dmg`, and
   `.dSYM.zip` assets to the existing GitHub release in `openclaw/openclaw`
-  automatically when `OPENCLAW_PUBLIC_REPO_RELEASE_TOKEN` is present in the
+  automatically when `SOLOCLAW_PUBLIC_REPO_RELEASE_TOKEN` is present in the
   private repo `mac-release` environment.
 - For stable releases, the agent must also download the signed
   `macos-appcast-<tag>` artifact from the successful private mac workflow and

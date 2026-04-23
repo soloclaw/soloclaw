@@ -225,14 +225,14 @@ describe("exec approvals", () => {
   beforeEach(async () => {
     previousHome = process.env.HOME;
     previousUserProfile = process.env.USERPROFILE;
-    previousBundledPluginsDir = process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
-    previousDisableBundledPlugins = process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
+    previousBundledPluginsDir = process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR;
+    previousDisableBundledPlugins = process.env.SOLOCLAW_DISABLE_BUNDLED_PLUGINS;
     const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-"));
     process.env.HOME = tempDir;
     // Windows uses USERPROFILE for os.homedir()
     process.env.USERPROFILE = tempDir;
-    delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
-    process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS = "1";
+    delete process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR;
+    process.env.SOLOCLAW_DISABLE_BUNDLED_PLUGINS = "1";
     vi.mocked(callGatewayTool).mockReset();
     vi.mocked(sendMessage).mockClear();
   });
@@ -252,14 +252,14 @@ describe("exec approvals", () => {
       process.env.USERPROFILE = previousUserProfile;
     }
     if (previousBundledPluginsDir === undefined) {
-      delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
+      delete process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR;
     } else {
-      process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = previousBundledPluginsDir;
+      process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR = previousBundledPluginsDir;
     }
     if (previousDisableBundledPlugins === undefined) {
-      delete process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
+      delete process.env.SOLOCLAW_DISABLE_BUNDLED_PLUGINS;
     } else {
-      process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS = previousDisableBundledPlugins;
+      process.env.SOLOCLAW_DISABLE_BUNDLED_PLUGINS = previousDisableBundledPlugins;
     }
   });
 

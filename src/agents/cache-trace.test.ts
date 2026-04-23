@@ -123,7 +123,7 @@ describe("createCacheTrace", () => {
         },
       },
       env: {
-        OPENCLAW_CACHE_TRACE: "0",
+        SOLOCLAW_CACHE_TRACE: "0",
       },
       writer: {
         filePath: "memory",

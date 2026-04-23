@@ -191,8 +191,8 @@ describe("getApiKeyForModel", () => {
       const agentDir = path.join(tempDir, "agent");
       await withEnvAsync(
         {
-          OPENCLAW_STATE_DIR: tempDir,
-          OPENCLAW_AGENT_DIR: agentDir,
+          SOLOCLAW_STATE_DIR: tempDir,
+          SOLOCLAW_AGENT_DIR: agentDir,
           PI_CODING_AGENT_DIR: agentDir,
         },
         async () => {
@@ -223,14 +223,14 @@ describe("getApiKeyForModel", () => {
             api: "openai-codex-responses",
           } as Model<Api>;
 
-          const store = ensureAuthProfileStore(process.env.OPENCLAW_AGENT_DIR, {
+          const store = ensureAuthProfileStore(process.env.SOLOCLAW_AGENT_DIR, {
             allowKeychainPrompt: false,
           });
           const apiKey = await getApiKeyForModel({
             model,
             profileId: "openai-codex:default",
             store,
-            agentDir: process.env.OPENCLAW_AGENT_DIR,
+            agentDir: process.env.SOLOCLAW_AGENT_DIR,
           });
           expect(apiKey.apiKey).toBe(oauthFixture.access);
         },
@@ -248,8 +248,8 @@ describe("getApiKeyForModel", () => {
       await withEnvAsync(
         {
           OPENAI_API_KEY: undefined,
-          OPENCLAW_STATE_DIR: tempDir,
-          OPENCLAW_AGENT_DIR: agentDir,
+          SOLOCLAW_STATE_DIR: tempDir,
+          SOLOCLAW_AGENT_DIR: agentDir,
           PI_CODING_AGENT_DIR: agentDir,
         },
         async () => {

@@ -140,9 +140,9 @@ openclaw dashboard
 <Accordion title="Advanced: environment variables">
   If you run OpenClaw as a service account or want custom paths:
 
-- `OPENCLAW_HOME` — home directory for internal path resolution
-- `OPENCLAW_STATE_DIR` — override the state directory
-- `OPENCLAW_CONFIG_PATH` — override the config file path
+- `SOLOCLAW_HOME` — home directory for internal path resolution
+- `SOLOCLAW_STATE_DIR` — override the state directory
+- `SOLOCLAW_CONFIG_PATH` — override the config file path
 
 Full reference: [Environment variables](/help/environment).
 </Accordion>

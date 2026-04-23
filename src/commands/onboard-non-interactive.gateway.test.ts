@@ -42,13 +42,13 @@ let waitForGatewayReachableMock:
   | undefined;
 
 function resolveTestConfigPath() {
-  const override = process.env.OPENCLAW_CONFIG_PATH?.trim();
+  const override = process.env.SOLOCLAW_CONFIG_PATH?.trim();
   if (override) {
     return override;
   }
-  const stateDir = process.env.OPENCLAW_STATE_DIR?.trim();
+  const stateDir = process.env.SOLOCLAW_STATE_DIR?.trim();
   if (!stateDir) {
-    throw new Error("OPENCLAW_STATE_DIR must be set before config IO in this test");
+    throw new Error("SOLOCLAW_STATE_DIR must be set before config IO in this test");
   }
   return path.join(stateDir, "soloclaw.json");
 }
@@ -258,8 +258,8 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
       throw new Error("temp home not initialized");
     }
     const stateDir = await fs.mkdtemp(path.join(tempHome, prefix));
-    process.env.OPENCLAW_STATE_DIR = stateDir;
-    delete process.env.OPENCLAW_CONFIG_PATH;
+    process.env.SOLOCLAW_STATE_DIR = stateDir;
+    delete process.env.SOLOCLAW_CONFIG_PATH;
     return stateDir;
   };
   const withStateDir = async (
@@ -276,23 +276,23 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
   beforeAll(async () => {
     envSnapshot = captureEnv([
       "HOME",
-      "OPENCLAW_STATE_DIR",
-      "OPENCLAW_CONFIG_PATH",
-      "OPENCLAW_SKIP_CHANNELS",
-      "OPENCLAW_SKIP_GMAIL_WATCHER",
-      "OPENCLAW_SKIP_CRON",
-      "OPENCLAW_SKIP_CANVAS_HOST",
-      "OPENCLAW_SKIP_BROWSER_CONTROL_SERVER",
-      "OPENCLAW_GATEWAY_TOKEN",
-      "OPENCLAW_GATEWAY_PASSWORD",
+      "SOLOCLAW_STATE_DIR",
+      "SOLOCLAW_CONFIG_PATH",
+      "SOLOCLAW_SKIP_CHANNELS",
+      "SOLOCLAW_SKIP_GMAIL_WATCHER",
+      "SOLOCLAW_SKIP_CRON",
+      "SOLOCLAW_SKIP_CANVAS_HOST",
+      "SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER",
+      "SOLOCLAW_GATEWAY_TOKEN",
+      "SOLOCLAW_GATEWAY_PASSWORD",
     ]);
-    process.env.OPENCLAW_SKIP_CHANNELS = "1";
-    process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";
-    process.env.OPENCLAW_SKIP_CRON = "1";
-    process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
-    process.env.OPENCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
-    delete process.env.OPENCLAW_GATEWAY_TOKEN;
-    delete process.env.OPENCLAW_GATEWAY_PASSWORD;
+    process.env.SOLOCLAW_SKIP_CHANNELS = "1";
+    process.env.SOLOCLAW_SKIP_GMAIL_WATCHER = "1";
+    process.env.SOLOCLAW_SKIP_CRON = "1";
+    process.env.SOLOCLAW_SKIP_CANVAS_HOST = "1";
+    process.env.SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER = "1";
+    delete process.env.SOLOCLAW_GATEWAY_TOKEN;
+    delete process.env.SOLOCLAW_GATEWAY_PASSWORD;
 
     tempHome = await makeTempWorkspace("openclaw-onboard-");
     process.env.HOME = tempHome;
@@ -478,8 +478,8 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
       return;
     }
     await withStateDir("state-lan-", async (stateDir) => {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
-      process.env.OPENCLAW_CONFIG_PATH = path.join(stateDir, "soloclaw.json");
+      process.env.SOLOCLAW_STATE_DIR = stateDir;
+      process.env.SOLOCLAW_CONFIG_PATH = path.join(stateDir, "soloclaw.json");
 
       const port = getPseudoPort(40_000);
       const workspace = path.join(stateDir, "openclaw");

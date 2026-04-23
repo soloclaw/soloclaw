@@ -20,15 +20,15 @@ afterAll(async () => {
 beforeEach(async () => {
   tmpDir = path.join(fixtureRoot, `case-${fixtureId++}`);
   await fs.mkdir(tmpDir, { recursive: true });
-  originalStateDir = process.env.OPENCLAW_STATE_DIR;
-  process.env.OPENCLAW_STATE_DIR = tmpDir;
+  originalStateDir = process.env.SOLOCLAW_STATE_DIR;
+  process.env.SOLOCLAW_STATE_DIR = tmpDir;
 });
 
 afterEach(() => {
   if (originalStateDir === undefined) {
-    delete process.env.OPENCLAW_STATE_DIR;
+    delete process.env.SOLOCLAW_STATE_DIR;
   } else {
-    process.env.OPENCLAW_STATE_DIR = originalStateDir;
+    process.env.SOLOCLAW_STATE_DIR = originalStateDir;
   }
 });
 

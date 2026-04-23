@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-INSTALL_URL="${OPENCLAW_INSTALL_URL:-https://openclaw.bot/install.sh}"
-SMOKE_MODE="${OPENCLAW_INSTALL_SMOKE_MODE:-install}"
-SMOKE_PREVIOUS_VERSION="${OPENCLAW_INSTALL_SMOKE_PREVIOUS:-}"
-SKIP_PREVIOUS="${OPENCLAW_INSTALL_SMOKE_SKIP_PREVIOUS:-0}"
+INSTALL_URL="${SOLOCLAW_INSTALL_URL:-https://openclaw.bot/install.sh}"
+SMOKE_MODE="${SOLOCLAW_INSTALL_SMOKE_MODE:-install}"
+SMOKE_PREVIOUS_VERSION="${SOLOCLAW_INSTALL_SMOKE_PREVIOUS:-}"
+SKIP_PREVIOUS="${SOLOCLAW_INSTALL_SMOKE_SKIP_PREVIOUS:-0}"
 DEFAULT_PACKAGE="openclaw"
-PACKAGE_NAME="${OPENCLAW_INSTALL_PACKAGE:-$DEFAULT_PACKAGE}"
-FRESH_VERSION="${OPENCLAW_INSTALL_FRESH_VERSION:-}"
-FRESH_TAG_URL="${OPENCLAW_INSTALL_FRESH_TAG_URL:-}"
-UPDATE_BASELINE_VERSION="${OPENCLAW_INSTALL_UPDATE_BASELINE:-2026.4.10}"
-UPDATE_BASELINE_TAG_URL="${OPENCLAW_INSTALL_UPDATE_BASELINE_TAG_URL:-}"
-UPDATE_EXPECT_VERSION="${OPENCLAW_INSTALL_UPDATE_EXPECT_VERSION:-}"
-UPDATE_TAG_URL="${OPENCLAW_INSTALL_UPDATE_TAG_URL:-}"
-HEARTBEAT_INTERVAL="${OPENCLAW_INSTALL_SMOKE_HEARTBEAT_INTERVAL:-60}"
-INSTALL_COMMAND_TIMEOUT="${OPENCLAW_INSTALL_SMOKE_COMMAND_TIMEOUT:-300}"
+PACKAGE_NAME="${SOLOCLAW_INSTALL_PACKAGE:-$DEFAULT_PACKAGE}"
+FRESH_VERSION="${SOLOCLAW_INSTALL_FRESH_VERSION:-}"
+FRESH_TAG_URL="${SOLOCLAW_INSTALL_FRESH_TAG_URL:-}"
+UPDATE_BASELINE_VERSION="${SOLOCLAW_INSTALL_UPDATE_BASELINE:-2026.4.10}"
+UPDATE_BASELINE_TAG_URL="${SOLOCLAW_INSTALL_UPDATE_BASELINE_TAG_URL:-}"
+UPDATE_EXPECT_VERSION="${SOLOCLAW_INSTALL_UPDATE_EXPECT_VERSION:-}"
+UPDATE_TAG_URL="${SOLOCLAW_INSTALL_UPDATE_TAG_URL:-}"
+HEARTBEAT_INTERVAL="${SOLOCLAW_INSTALL_SMOKE_HEARTBEAT_INTERVAL:-60}"
+INSTALL_COMMAND_TIMEOUT="${SOLOCLAW_INSTALL_SMOKE_COMMAND_TIMEOUT:-300}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # shellcheck source=../install-sh-common/cli-verify.sh
@@ -132,15 +132,15 @@ run_install_smoke() {
     print_install_audit "fresh install"
 
     echo "==> Verify installed version"
-    if [[ -n "${OPENCLAW_INSTALL_LATEST_OUT:-}" ]]; then
+    if [[ -n "${SOLOCLAW_INSTALL_LATEST_OUT:-}" ]]; then
       # Non-root installer smoke uses the public install script path, which
       # resolves npm "latest" rather than this host-served candidate tarball.
       local latest_npm_version
       latest_npm_version="$(quiet_npm view "$PACKAGE_NAME" version 2>/dev/null || true)"
       if [[ -n "$latest_npm_version" ]]; then
-        printf "%s" "$latest_npm_version" > "${OPENCLAW_INSTALL_LATEST_OUT:-}"
+        printf "%s" "$latest_npm_version" > "${SOLOCLAW_INSTALL_LATEST_OUT:-}"
       else
-        printf "%s" "$FRESH_VERSION" > "${OPENCLAW_INSTALL_LATEST_OUT:-}"
+        printf "%s" "$FRESH_VERSION" > "${SOLOCLAW_INSTALL_LATEST_OUT:-}"
       fi
     fi
     verify_installed_cli "$PACKAGE_NAME" "$FRESH_VERSION"
@@ -187,7 +187,7 @@ NODE
   echo "package=$PACKAGE_NAME latest=$LATEST_VERSION previous=$PREVIOUS_VERSION"
 
   if [[ "$SKIP_PREVIOUS" == "1" ]]; then
-    echo "==> Skip preinstall previous (OPENCLAW_INSTALL_SMOKE_SKIP_PREVIOUS=1)"
+    echo "==> Skip preinstall previous (SOLOCLAW_INSTALL_SMOKE_SKIP_PREVIOUS=1)"
   else
     echo "==> Preinstall previous (forces installer upgrade path)"
     npm_install_global "preinstall previous release" "${PACKAGE_NAME}@${PREVIOUS_VERSION}"
@@ -198,8 +198,8 @@ NODE
   curl -fsSL "$INSTALL_URL" | bash -s -- --no-prompt
 
   echo "==> Verify installed version"
-  if [[ -n "${OPENCLAW_INSTALL_LATEST_OUT:-}" ]]; then
-    printf "%s" "$LATEST_VERSION" > "${OPENCLAW_INSTALL_LATEST_OUT:-}"
+  if [[ -n "${SOLOCLAW_INSTALL_LATEST_OUT:-}" ]]; then
+    printf "%s" "$LATEST_VERSION" > "${SOLOCLAW_INSTALL_LATEST_OUT:-}"
   fi
   verify_installed_cli "$PACKAGE_NAME" "$LATEST_VERSION"
 
@@ -208,11 +208,11 @@ NODE
 
 run_update_smoke() {
   if [[ -z "$UPDATE_EXPECT_VERSION" ]]; then
-    echo "ERROR: OPENCLAW_INSTALL_UPDATE_EXPECT_VERSION is required for update mode" >&2
+    echo "ERROR: SOLOCLAW_INSTALL_UPDATE_EXPECT_VERSION is required for update mode" >&2
     return 1
   fi
   if [[ -z "$UPDATE_TAG_URL" ]]; then
-    echo "ERROR: OPENCLAW_INSTALL_UPDATE_TAG_URL is required for update mode" >&2
+    echo "ERROR: SOLOCLAW_INSTALL_UPDATE_TAG_URL is required for update mode" >&2
     return 1
   fi
 
@@ -297,11 +297,11 @@ NODE
 
 run_npm_global_smoke() {
   if [[ -z "$UPDATE_EXPECT_VERSION" ]]; then
-    echo "ERROR: OPENCLAW_INSTALL_UPDATE_EXPECT_VERSION is required for npm-global mode" >&2
+    echo "ERROR: SOLOCLAW_INSTALL_UPDATE_EXPECT_VERSION is required for npm-global mode" >&2
     return 1
   fi
   if [[ -z "$UPDATE_TAG_URL" ]]; then
-    echo "ERROR: OPENCLAW_INSTALL_UPDATE_TAG_URL is required for npm-global mode" >&2
+    echo "ERROR: SOLOCLAW_INSTALL_UPDATE_TAG_URL is required for npm-global mode" >&2
     return 1
   fi
 
@@ -339,7 +339,7 @@ case "$SMOKE_MODE" in
     run_npm_global_smoke
     ;;
   *)
-    echo "ERROR: unsupported OPENCLAW_INSTALL_SMOKE_MODE=$SMOKE_MODE" >&2
+    echo "ERROR: unsupported SOLOCLAW_INSTALL_SMOKE_MODE=$SMOKE_MODE" >&2
     exit 1
     ;;
 esac

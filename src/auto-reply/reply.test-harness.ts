@@ -125,8 +125,8 @@ type HomeEnvSnapshot = {
   USERPROFILE: string | undefined;
   HOMEDRIVE: string | undefined;
   HOMEPATH: string | undefined;
-  OPENCLAW_STATE_DIR: string | undefined;
-  OPENCLAW_AGENT_DIR: string | undefined;
+  SOLOCLAW_STATE_DIR: string | undefined;
+  SOLOCLAW_AGENT_DIR: string | undefined;
   PI_CODING_AGENT_DIR: string | undefined;
 };
 
@@ -136,8 +136,8 @@ function snapshotHomeEnv(): HomeEnvSnapshot {
     USERPROFILE: process.env.USERPROFILE,
     HOMEDRIVE: process.env.HOMEDRIVE,
     HOMEPATH: process.env.HOMEPATH,
-    OPENCLAW_STATE_DIR: process.env.OPENCLAW_STATE_DIR,
-    OPENCLAW_AGENT_DIR: process.env.OPENCLAW_AGENT_DIR,
+    SOLOCLAW_STATE_DIR: process.env.SOLOCLAW_STATE_DIR,
+    SOLOCLAW_AGENT_DIR: process.env.SOLOCLAW_AGENT_DIR,
     PI_CODING_AGENT_DIR: process.env.PI_CODING_AGENT_DIR,
   };
 }
@@ -173,8 +173,8 @@ export function createTempHomeHarness(options: { prefix: string; beforeEachCase?
     const envSnapshot = snapshotHomeEnv();
     process.env.HOME = home;
     process.env.USERPROFILE = home;
-    process.env.OPENCLAW_STATE_DIR = path.join(home, ".soloclaw");
-    process.env.OPENCLAW_AGENT_DIR = path.join(home, ".soloclaw", "agent");
+    process.env.SOLOCLAW_STATE_DIR = path.join(home, ".soloclaw");
+    process.env.SOLOCLAW_AGENT_DIR = path.join(home, ".soloclaw", "agent");
     process.env.PI_CODING_AGENT_DIR = path.join(home, ".soloclaw", "agent");
 
     if (process.platform === "win32") {

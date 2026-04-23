@@ -20,44 +20,44 @@ describe("gateway handshake timeouts", () => {
     expect(clampConnectChallengeTimeoutMs(20_000)).toBe(MAX_CONNECT_CHALLENGE_TIMEOUT_MS);
   });
 
-  test("prefers OPENCLAW_HANDSHAKE_TIMEOUT_MS and falls back on the test-only env", () => {
+  test("prefers SOLOCLAW_HANDSHAKE_TIMEOUT_MS and falls back on the test-only env", () => {
     expect(
       getPreauthHandshakeTimeoutMsFromEnv({
-        OPENCLAW_HANDSHAKE_TIMEOUT_MS: "75",
-        OPENCLAW_TEST_HANDSHAKE_TIMEOUT_MS: "20",
+        SOLOCLAW_HANDSHAKE_TIMEOUT_MS: "75",
+        SOLOCLAW_TEST_HANDSHAKE_TIMEOUT_MS: "20",
       }),
     ).toBe(75);
     expect(
       getPreauthHandshakeTimeoutMsFromEnv({
-        OPENCLAW_HANDSHAKE_TIMEOUT_MS: "",
-        OPENCLAW_TEST_HANDSHAKE_TIMEOUT_MS: "20",
+        SOLOCLAW_HANDSHAKE_TIMEOUT_MS: "",
+        SOLOCLAW_TEST_HANDSHAKE_TIMEOUT_MS: "20",
         VITEST: "1",
       }),
     ).toBe(20);
   });
 
-  test("getConnectChallengeTimeoutMsFromEnv reads OPENCLAW_CONNECT_CHALLENGE_TIMEOUT_MS", () => {
+  test("getConnectChallengeTimeoutMsFromEnv reads SOLOCLAW_CONNECT_CHALLENGE_TIMEOUT_MS", () => {
     expect(getConnectChallengeTimeoutMsFromEnv({})).toBeUndefined();
     expect(
-      getConnectChallengeTimeoutMsFromEnv({ OPENCLAW_CONNECT_CHALLENGE_TIMEOUT_MS: "15000" }),
+      getConnectChallengeTimeoutMsFromEnv({ SOLOCLAW_CONNECT_CHALLENGE_TIMEOUT_MS: "15000" }),
     ).toBe(15_000);
     expect(
-      getConnectChallengeTimeoutMsFromEnv({ OPENCLAW_CONNECT_CHALLENGE_TIMEOUT_MS: "garbage" }),
+      getConnectChallengeTimeoutMsFromEnv({ SOLOCLAW_CONNECT_CHALLENGE_TIMEOUT_MS: "garbage" }),
     ).toBeUndefined();
   });
 
   test("resolveConnectChallengeTimeoutMs falls back to env override", () => {
-    const original = process.env.OPENCLAW_CONNECT_CHALLENGE_TIMEOUT_MS;
+    const original = process.env.SOLOCLAW_CONNECT_CHALLENGE_TIMEOUT_MS;
     try {
-      process.env.OPENCLAW_CONNECT_CHALLENGE_TIMEOUT_MS = "5000";
+      process.env.SOLOCLAW_CONNECT_CHALLENGE_TIMEOUT_MS = "5000";
       expect(resolveConnectChallengeTimeoutMs()).toBe(5_000);
       // Explicit value still takes precedence over env
       expect(resolveConnectChallengeTimeoutMs(3_000)).toBe(3_000);
     } finally {
       if (original === undefined) {
-        delete process.env.OPENCLAW_CONNECT_CHALLENGE_TIMEOUT_MS;
+        delete process.env.SOLOCLAW_CONNECT_CHALLENGE_TIMEOUT_MS;
       } else {
-        process.env.OPENCLAW_CONNECT_CHALLENGE_TIMEOUT_MS = original;
+        process.env.SOLOCLAW_CONNECT_CHALLENGE_TIMEOUT_MS = original;
       }
     }
   });

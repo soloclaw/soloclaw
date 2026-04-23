@@ -1111,9 +1111,9 @@ vi.mock("./doctor-config-preflight.js", async () => {
 
   function resolveConfigPath() {
     const stateDir =
-      process.env.OPENCLAW_STATE_DIR ||
+      process.env.SOLOCLAW_STATE_DIR ||
       (process.env.HOME ? path.join(process.env.HOME, ".soloclaw") : "");
-    return process.env.OPENCLAW_CONFIG_PATH || path.join(stateDir, "soloclaw.json");
+    return process.env.SOLOCLAW_CONFIG_PATH || path.join(stateDir, "soloclaw.json");
   }
 
   function normalizeDiscordStreamingCompat(cfg: Record<string, unknown>): Record<string, unknown> {

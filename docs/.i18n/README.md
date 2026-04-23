@@ -67,6 +67,6 @@ Fields:
 ## Operational notes
 
 - Sync metadata is written to `.soloclaw-sync/source.json` in the publish repo.
-- Source repo secret: `OPENCLAW_DOCS_SYNC_TOKEN`
-- Publish repo secret: `OPENCLAW_DOCS_I18N_OPENAI_API_KEY`
+- Source repo secret: `SOLOCLAW_DOCS_SYNC_TOKEN`
+- Publish repo secret: `SOLOCLAW_DOCS_I18N_OPENAI_API_KEY`
 - If locale output looks stale, check the matching `Translate <locale>` workflow in `openclaw/docs` first.

@@ -39,7 +39,7 @@ describe("migrateOrphanedSessionKeys", () => {
 
       const result = await migrateOrphanedSessionKeys({
         cfg,
-        env: { OPENCLAW_STATE_DIR: stateDir },
+        env: { SOLOCLAW_STATE_DIR: stateDir },
       });
 
       expect(result.changes.length).toBeGreaterThan(0);
@@ -65,7 +65,7 @@ describe("migrateOrphanedSessionKeys", () => {
 
       await migrateOrphanedSessionKeys({
         cfg,
-        env: { OPENCLAW_STATE_DIR: stateDir },
+        env: { SOLOCLAW_STATE_DIR: stateDir },
       });
 
       const store = readStore(storePath);
@@ -88,7 +88,7 @@ describe("migrateOrphanedSessionKeys", () => {
 
       const result = await migrateOrphanedSessionKeys({
         cfg,
-        env: { OPENCLAW_STATE_DIR: stateDir },
+        env: { SOLOCLAW_STATE_DIR: stateDir },
       });
 
       expect(result.changes).toHaveLength(0);
@@ -105,7 +105,7 @@ describe("migrateOrphanedSessionKeys", () => {
 
       const result = await migrateOrphanedSessionKeys({
         cfg,
-        env: { OPENCLAW_STATE_DIR: stateDir },
+        env: { SOLOCLAW_STATE_DIR: stateDir },
       });
 
       expect(result.changes).toHaveLength(0);
@@ -125,7 +125,7 @@ describe("migrateOrphanedSessionKeys", () => {
         agents: { list: [{ id: "ops", default: true }] },
       } as OpenClawConfig;
 
-      const env = { OPENCLAW_STATE_DIR: stateDir };
+      const env = { SOLOCLAW_STATE_DIR: stateDir };
       await migrateOrphanedSessionKeys({ cfg, env });
       const result2 = await migrateOrphanedSessionKeys({ cfg, env });
 
@@ -152,7 +152,7 @@ describe("migrateOrphanedSessionKeys", () => {
 
       await migrateOrphanedSessionKeys({
         cfg,
-        env: { OPENCLAW_STATE_DIR: stateDir },
+        env: { SOLOCLAW_STATE_DIR: stateDir },
       });
 
       const store = readStore(sharedStorePath);
@@ -182,7 +182,7 @@ describe("migrateOrphanedSessionKeys", () => {
 
       await migrateOrphanedSessionKeys({
         cfg,
-        env: { OPENCLAW_STATE_DIR: stateDir },
+        env: { SOLOCLAW_STATE_DIR: stateDir },
       });
 
       const store = readStore(sharedStorePath);
@@ -204,7 +204,7 @@ describe("migrateOrphanedSessionKeys", () => {
 
       const result = await migrateOrphanedSessionKeys({
         cfg,
-        env: { OPENCLAW_STATE_DIR: stateDir },
+        env: { SOLOCLAW_STATE_DIR: stateDir },
       });
 
       expect(result.changes).toHaveLength(0);

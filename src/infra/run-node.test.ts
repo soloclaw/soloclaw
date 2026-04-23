@@ -209,7 +209,7 @@ async function runStatusCommand(params: {
     args: ["status"],
     env: {
       ...process.env,
-      OPENCLAW_RUNNER_LOG: "0",
+      SOLOCLAW_RUNNER_LOG: "0",
       ...params.env,
     },
     spawn: params.spawn,
@@ -232,7 +232,7 @@ async function runQaCommand(params: {
     args: ["qa", "suite", "--transport", "qa-channel", "--provider-mode", "mock-openai"],
     env: {
       ...process.env,
-      OPENCLAW_RUNNER_LOG: "0",
+      SOLOCLAW_RUNNER_LOG: "0",
       ...params.env,
     },
     spawn: params.spawn,
@@ -280,8 +280,8 @@ describe("run-node script", () => {
           args: ["--version"],
           env: {
             ...process.env,
-            OPENCLAW_FORCE_BUILD: "1",
-            OPENCLAW_RUNNER_LOG: "0",
+            SOLOCLAW_FORCE_BUILD: "1",
+            SOLOCLAW_RUNNER_LOG: "0",
           },
           spawn,
           execPath: process.execPath,
@@ -328,7 +328,7 @@ describe("run-node script", () => {
       const exitCode = await runStatusCommand({
         tmp,
         spawn,
-        env: { OPENCLAW_FORCE_BUILD: "1" },
+        env: { SOLOCLAW_FORCE_BUILD: "1" },
       });
 
       expect(exitCode).toBe(0);
@@ -380,9 +380,9 @@ describe("run-node script", () => {
         args: ["status"],
         env: {
           ...process.env,
-          OPENCLAW_FORCE_BUILD: "1",
-          OPENCLAW_RUNNER_LOG: "1",
-          OPENCLAW_RUN_NODE_OUTPUT_LOG: outputPath,
+          SOLOCLAW_FORCE_BUILD: "1",
+          SOLOCLAW_RUNNER_LOG: "1",
+          SOLOCLAW_RUN_NODE_OUTPUT_LOG: outputPath,
         },
         spawn,
         stderr: mutedStream,
@@ -396,7 +396,7 @@ describe("run-node script", () => {
       await expect(fs.readFile(outputPath, "utf-8")).resolves.toContain("child stderr\n");
       await expect(fs.readFile(outputPath, "utf-8")).resolves.toContain("[openclaw]");
       expect(spawnCalls.at(-1)?.args).toEqual(["soloclaw.mjs", "status"]);
-      expect(spawnCalls.at(-1)?.env.OPENCLAW_RUN_NODE_OUTPUT_LOG).toBe(outputPath);
+      expect(spawnCalls.at(-1)?.env.SOLOCLAW_RUN_NODE_OUTPUT_LOG).toBe(outputPath);
       expect(spawnCalls.at(-1)?.stdio).toEqual(["inherit", "pipe", "pipe"]);
     });
   });
@@ -420,8 +420,8 @@ describe("run-node script", () => {
         args: ["status"],
         env: {
           ...process.env,
-          OPENCLAW_RUNNER_LOG: "0",
-          OPENCLAW_RUN_NODE_OUTPUT_LOG: outputPath,
+          SOLOCLAW_RUNNER_LOG: "0",
+          SOLOCLAW_RUN_NODE_OUTPUT_LOG: outputPath,
         },
         spawn,
         stderr: mutedStream,
@@ -453,7 +453,7 @@ describe("run-node script", () => {
         args: ["qa", "matrix"],
         env: {
           ...process.env,
-          OPENCLAW_RUNNER_LOG: "0",
+          SOLOCLAW_RUNNER_LOG: "0",
         },
         spawn,
         stderr: mutedStream,
@@ -465,7 +465,7 @@ describe("run-node script", () => {
       expect(exitCode).toBe(0);
       const childArgs = spawnCalls.at(-1)?.args ?? [];
       expect(childArgs).toEqual(["soloclaw.mjs", "qa", "matrix"]);
-      expect(spawnCalls.at(-1)?.env.OPENCLAW_RUN_NODE_OUTPUT_LOG).toBeUndefined();
+      expect(spawnCalls.at(-1)?.env.SOLOCLAW_RUN_NODE_OUTPUT_LOG).toBeUndefined();
     });
   });
 
@@ -577,7 +577,7 @@ describe("run-node script", () => {
 
       const requirement = resolveBuildRequirement(
         createBuildRequirementDeps(tmp, {
-          env: { OPENCLAW_BUILD_PRIVATE_QA: "1" },
+          env: { SOLOCLAW_BUILD_PRIVATE_QA: "1" },
           gitHead: "abc123\n",
           gitStatus: "",
         }),
@@ -609,7 +609,7 @@ describe("run-node script", () => {
         tmp,
         spawn,
         spawnSync,
-        env: { OPENCLAW_WATCH_MODE: "1" },
+        env: { SOLOCLAW_WATCH_MODE: "1" },
         runRuntimePostBuild,
       });
 
@@ -633,8 +633,8 @@ describe("run-node script", () => {
         args: ["status"],
         env: {
           ...process.env,
-          OPENCLAW_FORCE_BUILD: "1",
-          OPENCLAW_RUNNER_LOG: "0",
+          SOLOCLAW_FORCE_BUILD: "1",
+          SOLOCLAW_RUNNER_LOG: "0",
         },
         spawn,
         execPath: process.execPath,
@@ -686,7 +686,7 @@ describe("run-node script", () => {
         args: ["status"],
         env: {
           ...process.env,
-          OPENCLAW_RUNNER_LOG: "0",
+          SOLOCLAW_RUNNER_LOG: "0",
         },
         process: fakeProcess,
         spawn,

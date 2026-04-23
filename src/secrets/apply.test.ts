@@ -79,8 +79,8 @@ async function createApplyFixture(): Promise<ApplyFixture> {
   return {
     ...paths,
     env: {
-      OPENCLAW_STATE_DIR: paths.stateDir,
-      OPENCLAW_CONFIG_PATH: paths.configPath,
+      SOLOCLAW_STATE_DIR: paths.stateDir,
+      SOLOCLAW_CONFIG_PATH: paths.configPath,
       OPENAI_API_KEY: "sk-live-env", // pragma: allowlist secret
     },
   };

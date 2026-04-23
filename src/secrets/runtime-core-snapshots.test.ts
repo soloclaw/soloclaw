@@ -40,14 +40,14 @@ type SecretsRuntimeEnvSnapshot = ReturnType<typeof captureEnv>;
 
 function beginSecretsRuntimeIsolationForTest(): SecretsRuntimeEnvSnapshot {
   const envSnapshot = captureEnv([
-    "OPENCLAW_BUNDLED_PLUGINS_DIR",
-    "OPENCLAW_DISABLE_BUNDLED_PLUGINS",
-    "OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE",
-    "OPENCLAW_VERSION",
+    "SOLOCLAW_BUNDLED_PLUGINS_DIR",
+    "SOLOCLAW_DISABLE_BUNDLED_PLUGINS",
+    "SOLOCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE",
+    "SOLOCLAW_VERSION",
   ]);
-  delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
-  process.env.OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE = "1";
-  delete process.env.OPENCLAW_VERSION;
+  delete process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR;
+  process.env.SOLOCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE = "1";
+  delete process.env.SOLOCLAW_VERSION;
   return envSnapshot;
 }
 
@@ -77,9 +77,9 @@ describe("secrets runtime snapshot core lanes", () => {
   async function prepareOpenAiRuntimeSnapshot(params?: { includeAuthStoreRefs?: boolean }) {
     return withEnvAsync(
       {
-        OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-        OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE: "1",
-        OPENCLAW_VERSION: undefined,
+        SOLOCLAW_BUNDLED_PLUGINS_DIR: undefined,
+        SOLOCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE: "1",
+        SOLOCLAW_VERSION: undefined,
       },
       async () =>
         prepareSecretsRuntimeSnapshot({

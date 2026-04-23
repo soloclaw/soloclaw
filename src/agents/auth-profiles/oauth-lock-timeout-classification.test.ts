@@ -105,8 +105,8 @@ function createLockTimeoutError(lockPath: string): FileLockTimeoutError {
 
 describe("OAuth refresh lock timeout classification", () => {
   const envSnapshot = captureEnv([
-    "OPENCLAW_STATE_DIR",
-    "OPENCLAW_AGENT_DIR",
+    "SOLOCLAW_STATE_DIR",
+    "SOLOCLAW_AGENT_DIR",
     "PI_CODING_AGENT_DIR",
   ]);
   let tempRoot = "";
@@ -119,9 +119,9 @@ describe("OAuth refresh lock timeout classification", () => {
     );
     clearRuntimeAuthProfileStoreSnapshots();
     tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-oauth-lock-timeout-"));
-    process.env.OPENCLAW_STATE_DIR = tempRoot;
+    process.env.SOLOCLAW_STATE_DIR = tempRoot;
     agentDir = path.join(tempRoot, "agents", "main", "agent");
-    process.env.OPENCLAW_AGENT_DIR = agentDir;
+    process.env.SOLOCLAW_AGENT_DIR = agentDir;
     process.env.PI_CODING_AGENT_DIR = agentDir;
     await fs.mkdir(agentDir, { recursive: true });
     await loadOAuthModuleForTest();

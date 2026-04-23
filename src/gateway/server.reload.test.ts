@@ -243,13 +243,13 @@ describe("gateway hot reload", () => {
   let prevOpenAiApiKey: string | undefined;
 
   beforeEach(() => {
-    prevSkipChannels = process.env.OPENCLAW_SKIP_CHANNELS;
-    prevSkipGmail = process.env.OPENCLAW_SKIP_GMAIL_WATCHER;
-    prevSkipProviders = process.env.OPENCLAW_SKIP_PROVIDERS;
+    prevSkipChannels = process.env.SOLOCLAW_SKIP_CHANNELS;
+    prevSkipGmail = process.env.SOLOCLAW_SKIP_GMAIL_WATCHER;
+    prevSkipProviders = process.env.SOLOCLAW_SKIP_PROVIDERS;
     prevOpenAiApiKey = process.env.OPENAI_API_KEY;
-    process.env.OPENCLAW_SKIP_CHANNELS = "0";
-    delete process.env.OPENCLAW_SKIP_GMAIL_WATCHER;
-    delete process.env.OPENCLAW_SKIP_PROVIDERS;
+    process.env.SOLOCLAW_SKIP_CHANNELS = "0";
+    delete process.env.SOLOCLAW_SKIP_GMAIL_WATCHER;
+    delete process.env.SOLOCLAW_SKIP_PROVIDERS;
     hoisted.activeEmbeddedRunCount.value = 0;
     hoisted.totalPendingReplies.value = 0;
     hoisted.totalQueueSize.value = 0;
@@ -258,19 +258,19 @@ describe("gateway hot reload", () => {
 
   afterEach(() => {
     if (prevSkipChannels === undefined) {
-      delete process.env.OPENCLAW_SKIP_CHANNELS;
+      delete process.env.SOLOCLAW_SKIP_CHANNELS;
     } else {
-      process.env.OPENCLAW_SKIP_CHANNELS = prevSkipChannels;
+      process.env.SOLOCLAW_SKIP_CHANNELS = prevSkipChannels;
     }
     if (prevSkipGmail === undefined) {
-      delete process.env.OPENCLAW_SKIP_GMAIL_WATCHER;
+      delete process.env.SOLOCLAW_SKIP_GMAIL_WATCHER;
     } else {
-      process.env.OPENCLAW_SKIP_GMAIL_WATCHER = prevSkipGmail;
+      process.env.SOLOCLAW_SKIP_GMAIL_WATCHER = prevSkipGmail;
     }
     if (prevSkipProviders === undefined) {
-      delete process.env.OPENCLAW_SKIP_PROVIDERS;
+      delete process.env.SOLOCLAW_SKIP_PROVIDERS;
     } else {
-      process.env.OPENCLAW_SKIP_PROVIDERS = prevSkipProviders;
+      process.env.SOLOCLAW_SKIP_PROVIDERS = prevSkipProviders;
     }
     if (prevOpenAiApiKey === undefined) {
       delete process.env.OPENAI_API_KEY;
@@ -294,9 +294,9 @@ describe("gateway hot reload", () => {
   }
 
   async function writeConfigFile(config: unknown) {
-    const configPath = process.env.OPENCLAW_CONFIG_PATH;
+    const configPath = process.env.SOLOCLAW_CONFIG_PATH;
     if (!configPath) {
-      throw new Error("OPENCLAW_CONFIG_PATH is not set");
+      throw new Error("SOLOCLAW_CONFIG_PATH is not set");
     }
     await fs.writeFile(configPath, `${JSON.stringify(config, null, 2)}\n`, "utf8");
   }
@@ -373,7 +373,7 @@ describe("gateway hot reload", () => {
   async function withNonMinimalGatewayServer(
     fn: Parameters<typeof withGatewayServer>[0],
   ): ReturnType<typeof withGatewayServer> {
-    return await withEnvAsync({ OPENCLAW_TEST_MINIMAL_GATEWAY: undefined }, async () =>
+    return await withEnvAsync({ SOLOCLAW_TEST_MINIMAL_GATEWAY: undefined }, async () =>
       withGatewayServer(fn),
     );
   }
@@ -589,9 +589,9 @@ describe("gateway hot reload", () => {
   });
 
   it("keeps last-known-good auth snapshot active when gateway auth token exec reload fails", async () => {
-    const stateDir = process.env.OPENCLAW_STATE_DIR;
+    const stateDir = process.env.SOLOCLAW_STATE_DIR;
     if (!stateDir) {
-      throw new Error("OPENCLAW_STATE_DIR is not set");
+      throw new Error("SOLOCLAW_STATE_DIR is not set");
     }
     const resolverScriptPath = path.join(stateDir, "gateway-auth-token-resolver.cjs");
     const modePath = path.join(stateDir, "gateway-auth-token-resolver.mode");
@@ -643,11 +643,11 @@ process.stdin.on("end", () => {
     });
 
     const previousGatewayAuth = testState.gatewayAuth;
-    const previousGatewayTokenEnv = process.env.OPENCLAW_GATEWAY_TOKEN;
+    const previousGatewayTokenEnv = process.env.SOLOCLAW_GATEWAY_TOKEN;
     let started: Awaited<ReturnType<typeof startServerWithClient>> | undefined;
     try {
       testState.gatewayAuth = undefined;
-      delete process.env.OPENCLAW_GATEWAY_TOKEN;
+      delete process.env.SOLOCLAW_GATEWAY_TOKEN;
 
       started = await startServerWithClient();
       const { ws } = started;
@@ -682,9 +682,9 @@ process.stdin.on("end", () => {
     } finally {
       testState.gatewayAuth = previousGatewayAuth;
       if (previousGatewayTokenEnv === undefined) {
-        delete process.env.OPENCLAW_GATEWAY_TOKEN;
+        delete process.env.SOLOCLAW_GATEWAY_TOKEN;
       } else {
-        process.env.OPENCLAW_GATEWAY_TOKEN = previousGatewayTokenEnv;
+        process.env.SOLOCLAW_GATEWAY_TOKEN = previousGatewayTokenEnv;
       }
       started?.envSnapshot.restore();
       started?.ws.close();
@@ -693,9 +693,9 @@ process.stdin.on("end", () => {
   });
 
   it("uses refreshed gateway auth for new websocket connects after secrets reload", async () => {
-    const stateDir = process.env.OPENCLAW_STATE_DIR;
+    const stateDir = process.env.SOLOCLAW_STATE_DIR;
     if (!stateDir) {
-      throw new Error("OPENCLAW_STATE_DIR is not set");
+      throw new Error("SOLOCLAW_STATE_DIR is not set");
     }
     const resolverScriptPath = path.join(stateDir, "gateway-auth-refresh-resolver.cjs");
     const tokenPath = path.join(stateDir, "gateway-auth-refresh-token.txt");
@@ -748,11 +748,11 @@ process.stdin.on("end", () => {
     });
 
     const previousGatewayAuth = testState.gatewayAuth;
-    const previousGatewayTokenEnv = process.env.OPENCLAW_GATEWAY_TOKEN;
+    const previousGatewayTokenEnv = process.env.SOLOCLAW_GATEWAY_TOKEN;
     let started: Awaited<ReturnType<typeof startServerWithClient>> | undefined;
     try {
       testState.gatewayAuth = undefined;
-      delete process.env.OPENCLAW_GATEWAY_TOKEN;
+      delete process.env.SOLOCLAW_GATEWAY_TOKEN;
 
       started = await startServerWithClient();
       const { ws, port } = started;
@@ -798,9 +798,9 @@ process.stdin.on("end", () => {
     } finally {
       testState.gatewayAuth = previousGatewayAuth;
       if (previousGatewayTokenEnv === undefined) {
-        delete process.env.OPENCLAW_GATEWAY_TOKEN;
+        delete process.env.SOLOCLAW_GATEWAY_TOKEN;
       } else {
-        process.env.OPENCLAW_GATEWAY_TOKEN = previousGatewayTokenEnv;
+        process.env.SOLOCLAW_GATEWAY_TOKEN = previousGatewayTokenEnv;
       }
       started?.envSnapshot.restore();
       started?.ws.close();

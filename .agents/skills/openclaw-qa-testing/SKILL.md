@@ -35,7 +35,7 @@ Use this skill for `qa-lab` / `qa-channel` work. Repo-local QA only.
 3. For live OpenAI, use:
 
 ```bash
-OPENCLAW_LIVE_OPENAI_KEY="${OPENAI_API_KEY}" \
+SOLOCLAW_LIVE_OPENAI_KEY="${OPENAI_API_KEY}" \
 pnpm soloclaw qa suite \
   --provider-mode live-frontier \
   --model openai/gpt-5.4 \
@@ -106,7 +106,7 @@ pnpm soloclaw qa manual \
 ```
 
 - Treat the concrete Codex model name as user/config input; do not hardcode it in source, docs examples, or scenarios.
-- Live QA preserves `CODEX_HOME` so Codex CLI auth/config works while keeping `HOME` and `OPENCLAW_HOME` sandboxed.
+- Live QA preserves `CODEX_HOME` so Codex CLI auth/config works while keeping `HOME` and `SOLOCLAW_HOME` sandboxed.
 - Mock QA should scrub `CODEX_HOME`.
 - If Codex returns fallback/auth text every turn, first check `CODEX_HOME`, `~/.profile`, and gateway child logs before changing scenario assertions.
 - For model comparison, include `codex-cli/<codex-model>` as another candidate in `qa character-eval`; the report should label it as an opaque model name.

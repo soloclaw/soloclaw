@@ -124,7 +124,7 @@ Pairing state is stored under the Gateway state directory (default `~/.soloclaw`
 - `~/.soloclaw/nodes/paired.json`
 - `~/.soloclaw/nodes/pending.json`
 
-If you override `OPENCLAW_STATE_DIR`, the `nodes/` folder moves with it.
+If you override `SOLOCLAW_STATE_DIR`, the `nodes/` folder moves with it.
 
 Security notes:
 

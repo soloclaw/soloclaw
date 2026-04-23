@@ -60,7 +60,7 @@ const DEFAULT_RUNS = 5;
 const DEFAULT_WARMUP = 1;
 const DEFAULT_TIMEOUT_MS = 30_000;
 const DEFAULT_ENTRY = "soloclaw.mjs";
-const MAX_RSS_MARKER = "__OPENCLAW_MAX_RSS_KB__=";
+const MAX_RSS_MARKER = "__SOLOCLAW_MAX_RSS_KB__=";
 
 const COMMAND_CASES: readonly CommandCase[] = [
   { id: "version", name: "--version", args: ["--version"], presets: ["startup"] },
@@ -308,7 +308,7 @@ function runCase(params: {
       cwd: process.cwd(),
       env: {
         ...process.env,
-        OPENCLAW_HIDE_BANNER: "1",
+        SOLOCLAW_HIDE_BANNER: "1",
       },
       stdio: ["ignore", "ignore", "pipe"],
       encoding: "utf8",

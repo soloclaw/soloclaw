@@ -24,14 +24,14 @@ const DEFAULTS = {
 };
 
 const WATCH_GATEWAY_SKIP_ENV = {
-  OPENCLAW_DISABLE_BONJOUR: "1",
-  OPENCLAW_SKIP_ACPX_RUNTIME: "1",
-  OPENCLAW_SKIP_ACPX_RUNTIME_PROBE: "1",
-  OPENCLAW_SKIP_BROWSER_CONTROL_SERVER: "1",
-  OPENCLAW_SKIP_CANVAS_HOST: "1",
-  OPENCLAW_SKIP_CHANNELS: "1",
-  OPENCLAW_SKIP_CRON: "1",
-  OPENCLAW_SKIP_GMAIL_WATCHER: "1",
+  SOLOCLAW_DISABLE_BONJOUR: "1",
+  SOLOCLAW_SKIP_ACPX_RUNTIME: "1",
+  SOLOCLAW_SKIP_ACPX_RUNTIME_PROBE: "1",
+  SOLOCLAW_SKIP_BROWSER_CONTROL_SERVER: "1",
+  SOLOCLAW_SKIP_CANVAS_HOST: "1",
+  SOLOCLAW_SKIP_CHANNELS: "1",
+  SOLOCLAW_SKIP_CRON: "1",
+  SOLOCLAW_SKIP_GMAIL_WATCHER: "1",
 };
 
 function parseArgs(argv) {
@@ -345,15 +345,15 @@ async function allocateLoopbackPort() {
 
 function buildTimedWatchCommand(pidFilePath, timeFilePath, isolatedHomeDir, port) {
   const shellSource = [
-    'echo "$$" > "$OPENCLAW_WATCH_PID_FILE"',
-    'mkdir -p "$OPENCLAW_HOME/.soloclaw"',
-    `printf '%s\n' '{"gateway":{"controlUi":{"enabled":false}}}' > "$OPENCLAW_HOME/.soloclaw/soloclaw.json"`,
+    'echo "$$" > "$SOLOCLAW_WATCH_PID_FILE"',
+    'mkdir -p "$SOLOCLAW_HOME/.soloclaw"',
+    `printf '%s\n' '{"gateway":{"controlUi":{"enabled":false}}}' > "$SOLOCLAW_HOME/.soloclaw/soloclaw.json"`,
     `exec node scripts/watch-node.mjs gateway --force --allow-unconfigured --port ${String(port)} --token watch-regression-token`,
   ].join("\n");
   const env = {
-    OPENCLAW_WATCH_PID_FILE: pidFilePath,
+    SOLOCLAW_WATCH_PID_FILE: pidFilePath,
     HOME: isolatedHomeDir,
-    OPENCLAW_HOME: isolatedHomeDir,
+    SOLOCLAW_HOME: isolatedHomeDir,
     ...WATCH_GATEWAY_SKIP_ENV,
   };
 

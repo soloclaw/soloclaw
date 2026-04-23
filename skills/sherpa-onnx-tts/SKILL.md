@@ -63,16 +63,16 @@ Local TTS using the sherpa-onnx offline CLI.
 
 ## Install
 
-1. Download the runtime for your OS (extracts into `$OPENCLAW_STATE_DIR/tools/sherpa-onnx-tts/runtime`, default `~/.soloclaw/tools/sherpa-onnx-tts/runtime`)
-2. Download a voice model (extracts into `$OPENCLAW_STATE_DIR/tools/sherpa-onnx-tts/models`, default `~/.soloclaw/tools/sherpa-onnx-tts/models`)
+1. Download the runtime for your OS (extracts into `$SOLOCLAW_STATE_DIR/tools/sherpa-onnx-tts/runtime`, default `~/.soloclaw/tools/sherpa-onnx-tts/runtime`)
+2. Download a voice model (extracts into `$SOLOCLAW_STATE_DIR/tools/sherpa-onnx-tts/models`, default `~/.soloclaw/tools/sherpa-onnx-tts/models`)
 
 Resolve the active state directory first:
 
 ```bash
-STATE_DIR="${OPENCLAW_STATE_DIR:-$HOME/.soloclaw}"
+STATE_DIR="${SOLOCLAW_STATE_DIR:-$HOME/.soloclaw}"
 ```
 
-Then write those resolved paths into the active OpenClaw config file (`$OPENCLAW_CONFIG_PATH`, default `~/.soloclaw/soloclaw.json`):
+Then write those resolved paths into the active OpenClaw config file (`$SOLOCLAW_CONFIG_PATH`, default `~/.soloclaw/soloclaw.json`):
 
 ```json5
 {

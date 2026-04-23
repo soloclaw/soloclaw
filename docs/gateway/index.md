@@ -65,7 +65,7 @@ of live probe output.
 </Steps>
 
 <Note>
-Gateway config reload watches the active config file path (resolved from profile/state defaults, or `OPENCLAW_CONFIG_PATH` when set).
+Gateway config reload watches the active config file path (resolved from profile/state defaults, or `SOLOCLAW_CONFIG_PATH` when set).
 Default mode is `gateway.reload.mode="hybrid"`.
 After the first successful load, the running process serves the active in-memory config snapshot; successful reload swaps that snapshot atomically.
 </Note>
@@ -80,7 +80,7 @@ After the first successful load, the running process serves the active in-memory
 - Default bind mode: `loopback`.
 - Auth is required by default. Shared-secret setups use
   `gateway.auth.token` / `gateway.auth.password` (or
-  `OPENCLAW_GATEWAY_TOKEN` / `OPENCLAW_GATEWAY_PASSWORD`), and non-loopback
+  `SOLOCLAW_GATEWAY_TOKEN` / `SOLOCLAW_GATEWAY_PASSWORD`), and non-loopback
   reverse-proxy setups can use `gateway.auth.mode: "trusted-proxy"`.
 
 ## OpenAI-compatible endpoints
@@ -111,7 +111,7 @@ All of these run on the main Gateway port and use the same trusted operator auth
 
 | Setting      | Resolution order                                              |
 | ------------ | ------------------------------------------------------------- |
-| Gateway port | `--port` → `OPENCLAW_GATEWAY_PORT` → `gateway.port` → `18789` |
+| Gateway port | `--port` → `SOLOCLAW_GATEWAY_PORT` → `gateway.port` → `18789` |
 | Bind mode    | CLI/override → `gateway.bind` → `loopback`                    |
 
 ### Hot reload modes
@@ -278,15 +278,15 @@ Use multiple only for strict isolation/redundancy (for example a rescue profile)
 Checklist per instance:
 
 - Unique `gateway.port`
-- Unique `OPENCLAW_CONFIG_PATH`
-- Unique `OPENCLAW_STATE_DIR`
+- Unique `SOLOCLAW_CONFIG_PATH`
+- Unique `SOLOCLAW_STATE_DIR`
 - Unique `agents.defaults.workspace`
 
 Example:
 
 ```bash
-OPENCLAW_CONFIG_PATH=~/.soloclaw/a.json OPENCLAW_STATE_DIR=~/.soloclaw-a soloclaw gateway --port 19001
-OPENCLAW_CONFIG_PATH=~/.soloclaw/b.json OPENCLAW_STATE_DIR=~/.soloclaw-b soloclaw gateway --port 19002
+SOLOCLAW_CONFIG_PATH=~/.soloclaw/a.json SOLOCLAW_STATE_DIR=~/.soloclaw-a soloclaw gateway --port 19001
+SOLOCLAW_CONFIG_PATH=~/.soloclaw/b.json SOLOCLAW_STATE_DIR=~/.soloclaw-b soloclaw gateway --port 19002
 ```
 
 See: [Multiple gateways](/gateway/multiple-gateways).

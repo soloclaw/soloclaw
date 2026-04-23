@@ -565,10 +565,10 @@ to think of as short-lived performance caches, not persistence.
 
 Performance note:
 
-- Set `OPENCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE=1` or
-  `OPENCLAW_DISABLE_PLUGIN_MANIFEST_CACHE=1` to disable these caches.
-- Tune cache windows with `OPENCLAW_PLUGIN_DISCOVERY_CACHE_MS` and
-  `OPENCLAW_PLUGIN_MANIFEST_CACHE_MS`.
+- Set `SOLOCLAW_DISABLE_PLUGIN_DISCOVERY_CACHE=1` or
+  `SOLOCLAW_DISABLE_PLUGIN_MANIFEST_CACHE=1` to disable these caches.
+- Tune cache windows with `SOLOCLAW_PLUGIN_DISCOVERY_CACHE_MS` and
+  `SOLOCLAW_PLUGIN_MANIFEST_CACHE_MS`.
 
 ## Registry model
 
@@ -1514,7 +1514,7 @@ registry export). Drop a JSON file at one of:
 - `~/.soloclaw/mpm/catalog.json`
 - `~/.soloclaw/plugins/catalog.json`
 
-Or point `OPENCLAW_PLUGIN_CATALOG_PATHS` (or `OPENCLAW_MPM_CATALOG_PATHS`) at
+Or point `SOLOCLAW_PLUGIN_CATALOG_PATHS` (or `SOLOCLAW_MPM_CATALOG_PATHS`) at
 one or more JSON files (comma/semicolon/`PATH`-delimited). Each file should
 contain `{ "entries": [ { "name": "@scope/pkg", "openclaw": { "channel": {...}, "install": {...} } } ] }`. The parser also accepts `"packages"` or `"plugins"` as legacy aliases for the `"entries"` key.
 
