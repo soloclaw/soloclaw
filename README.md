@@ -4,7 +4,7 @@
     <img src="docs/assets/soloclaw-logo.png" alt="SoloClaw" width="500">
 </p>
 
-A personal AI that runs on your computer. One command to install, zero configuration.
+Your personal AI — free, safe, and gets smarter over time. No cloud, no API keys, no risk.
 
 Based on [OpenClaw](https://github.com/openclaw/openclaw).
 
