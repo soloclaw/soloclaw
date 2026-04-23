@@ -1,5 +1,5 @@
 ---
-summary: "Install, configure, and manage OpenClaw plugins"
+summary: "Install, configure, and manage SoloClaw plugins"
 read_when:
   - Installing or configuring plugins
   - Understanding plugin discovery and load rules
@@ -10,7 +10,7 @@ sidebarTitle: "Install and Configure"
 
 # Plugins
 
-Plugins extend OpenClaw with new capabilities: channels, model providers,
+Plugins extend SoloClaw with new capabilities: channels, model providers,
 tools, skills, speech, realtime transcription, realtime voice,
 media-understanding, image generation, video generation, web fetch, web
 search, and more. Some plugins are **core** (shipped with OpenClaw), others
@@ -65,12 +65,12 @@ reinstall path for plugins that opt into
 
 ## Plugin types
 
-OpenClaw recognizes two plugin formats:
+SoloClaw recognizes two plugin formats:
 
 | Format     | How it works                                                       | Examples                                               |
 | ---------- | ------------------------------------------------------------------ | ------------------------------------------------------ |
 | **Native** | `soloclaw.plugin.json` + runtime module; executes in-process       | Official plugins, community npm packages               |
-| **Bundle** | Codex/Claude/Cursor-compatible layout; mapped to OpenClaw features | `.codex-plugin/`, `.claude-plugin/`, `.cursor-plugin/` |
+| **Bundle** | Codex/Claude/Cursor-compatible layout; mapped to SoloClaw features | `.codex-plugin/`, `.claude-plugin/`, `.cursor-plugin/` |
 
 Both show up under `soloclaw plugins list`. See [Plugin Bundles](/plugins/bundles) for bundle details.
 
@@ -155,7 +155,7 @@ restart is usually performed automatically a moment after the config write lands
 
 ## Discovery and precedence
 
-OpenClaw scans for plugins in this order (first match wins):
+SoloClaw scans for plugins in this order (first match wins):
 
 <Steps>
   <Step title="Config paths">
@@ -301,7 +301,7 @@ export default definePluginEntry({
 });
 ```
 
-OpenClaw loads the entry object and calls `register(api)` during plugin
+SoloClaw loads the entry object and calls `register(api)` during plugin
 activation. The loader still falls back to `activate(api)` for older plugins,
 but bundled plugins and new external plugins should treat `register` as the
 public contract.

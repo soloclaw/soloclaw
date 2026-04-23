@@ -166,10 +166,10 @@ Use the `diffs` tool in `file` mode for this before and after input. After it re
 Path: README.md
 
 Before:
-OpenClaw supports plugins.
+SoloClaw supports plugins.
 
 After:
-OpenClaw supports plugins and hosted diff views.
+SoloClaw supports plugins and hosted diff views.
 ```
 
 Do both:

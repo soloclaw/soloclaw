@@ -1,4 +1,4 @@
-# OpenClaw docs i18n assets
+# SoloClaw docs i18n assets
 
 This folder stores translation config for the source docs repo.
 
@@ -9,15 +9,15 @@ Generated locale trees and live translation memory now live in the publish repo:
 
 ## Source of truth
 
-- English docs are authored in `openclaw/openclaw`.
+- English docs are authored in `soloclaw/soloclaw`.
 - The source docs tree lives under `docs/`.
 - The source repo no longer keeps committed generated locale trees such as `docs/zh-CN/**`, `docs/ja-JP/**`, `docs/es/**`, `docs/pt-BR/**`, `docs/ko/**`, `docs/de/**`, `docs/fr/**`, `docs/ar/**`, `docs/it/**`, `docs/tr/**`, `docs/uk/**`, `docs/id/**`, or `docs/pl/**`.
 
 ## End-to-end flow
 
-1. Edit English docs in `openclaw/openclaw`.
+1. Edit English docs in `soloclaw/soloclaw`.
 2. Push to `main`.
-3. `openclaw/openclaw/.github/workflows/docs-sync-publish.yml` mirrors the docs tree into `openclaw/docs`.
+3. `soloclaw/soloclaw/.github/workflows/docs-sync-publish.yml` mirrors the docs tree into `openclaw/docs`.
 4. The sync script rewrites the publish `docs/docs.json` so the generated locale picker blocks exist there even though they are no longer committed in the source repo.
 5. `openclaw/docs/.github/workflows/translate-zh-cn.yml` refreshes `docs/zh-CN/**` once a day, on demand, and after source-repo release dispatches.
 6. `openclaw/docs/.github/workflows/translate-ja-jp.yml` does the same for `docs/ja-JP/**`.

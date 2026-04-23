@@ -1155,7 +1155,7 @@ function validateConfigObjectWithPluginsBase(
           replacePluginEntryConfig(pluginId, res.value as Record<string, unknown>);
         }
       } else if (record.format === "bundle") {
-        // Compatible bundles currently expose no native OpenClaw config schema.
+        // Compatible bundles currently expose no native SoloClaw config schema.
         // Treat them as schema-less capability packs rather than failing validation.
       } else {
         issues.push({

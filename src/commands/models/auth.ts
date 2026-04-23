@@ -428,8 +428,8 @@ export async function modelsAuthPasteTokenCommand(
   runtime.log(`Auth profile: ${profileId} (${provider}/token)`);
   if (provider === "anthropic") {
     runtime.log("Anthropic setup-token auth is supported in OpenClaw.");
-    runtime.log("OpenClaw prefers Claude CLI reuse when it is available on the host.");
-    runtime.log("Anthropic staff told us this OpenClaw path is allowed again.");
+    runtime.log("SoloClaw prefers Claude CLI reuse when it is available on the host.");
+    runtime.log("Anthropic staff told us this SoloClaw path is allowed again.");
   }
 }
 

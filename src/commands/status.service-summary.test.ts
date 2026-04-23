@@ -18,7 +18,7 @@ describe("readServiceStatusSummary", () => {
     const summary = await readServiceStatusSummary(
       createService({
         isLoaded: vi.fn(async () => true),
-        readCommand: vi.fn(async () => ({ programArguments: ["openclaw", "gateway", "run"] })),
+        readCommand: vi.fn(async () => ({ programArguments: ["soloclaw", "gateway", "run"] })),
         readRuntime: vi.fn(async () => ({ status: "running" })),
       }),
       "Daemon",
@@ -65,7 +65,7 @@ describe("readServiceStatusSummary", () => {
       createService({
         isLoaded,
         readCommand: vi.fn(async () => ({
-          programArguments: ["openclaw", "gateway", "run", "--port", "18789"],
+          programArguments: ["soloclaw", "gateway", "run", "--port", "18789"],
           environment: { SOLOCLAW_GATEWAY_PORT: "18789" },
         })),
         readRuntime,

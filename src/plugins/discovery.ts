@@ -497,7 +497,7 @@ function addCandidate(params: {
     setupSource: params.setupSource,
     rootDir: resolvedRoot,
     origin: params.origin,
-    format: params.format ?? "openclaw",
+    format: params.format ?? "soloclaw",
     bundleFormat: params.bundleFormat,
     workspaceDir: params.workspaceDir,
     packageName: normalizeOptionalString(manifest?.name),
@@ -959,7 +959,7 @@ export function discoverOpenClawPlugins(params: {
       }
       const workspaceMatchesBundledRoot = resolvesToSameDirectory(workspaceRoot, roots.stock);
       if (roots.workspace && workspaceRoot && !workspaceMatchesBundledRoot) {
-        // Keep workspace auto-discovery constrained to the OpenClaw extensions root.
+        // Keep workspace auto-discovery constrained to the SoloClaw extensions root.
         // Recursively scanning the full workspace treats arbitrary project folders as
         // plugin candidates and causes noisy "plugin manifest not found" validation failures.
         discoverInDirectory({

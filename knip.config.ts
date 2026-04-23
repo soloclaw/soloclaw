@@ -114,7 +114,7 @@ const config = {
       // `index.ts` contracts, so Knip needs these convention-based entry files.
       entry: bundledPluginEntries,
       project: ["index.ts!", "src/**/*.ts!"],
-      ignoreDependencies: ["openclaw"],
+      ignoreDependencies: ["soloclaw"],
     },
   },
 } as const;

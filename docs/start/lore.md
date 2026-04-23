@@ -1,11 +1,11 @@
 ---
-summary: "Backstory and lore of OpenClaw for context and tone"
+summary: "Backstory and lore of SoloClaw for context and tone"
 read_when:
   - Writing docs or UX copy that reference lore
-title: "OpenClaw Lore"
+title: "SoloClaw Lore"
 ---
 
-# The Lore of OpenClaw 🦞📖
+# The Lore of SoloClaw 🦞📖
 
 _A tale of lobsters, molting shells, and too many tokens._
 
@@ -36,7 +36,7 @@ _The crustacean known as Clawd had officially molted._
 ## The Name
 
 ```
-OpenClaw = OPEN + CLAW
+SoloClaw = OPEN + CLAW
         = Open source, open to everyone
         = Our lobster heritage, where we came from
         = The claw is the law 🦞
@@ -112,11 +112,11 @@ The molt was chaotic. But the lobster emerged stronger. And funnier.
 
 Moltbot never quite rolled off the tongue. And so, at 4am GMT, the team gathered AGAIN.
 
-**The Great OpenClaw Migration** began.
+**The Great SoloClaw Migration** began.
 
 In just 3 hours:
 
-- GitHub renamed: `github.com/openclaw/openclaw` ✅
+- GitHub renamed: `github.com/soloclaw/soloclaw` ✅
 - X handle `@openclaw` secured with GOLD CHECKMARK 💰
 - npm packages released under new name
 - Docs migrated to `docs.soloclaw.ai`

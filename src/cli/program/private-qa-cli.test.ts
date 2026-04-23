@@ -55,7 +55,7 @@ describe("private-qa-cli", () => {
     process.env.SOLOCLAW_ENABLE_PRIVATE_QA_CLI = "1";
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-private-qa-"));
     tempDirs.push(root);
-    fs.writeFileSync(path.join(root, "package.json"), JSON.stringify({ name: "openclaw" }), "utf8");
+    fs.writeFileSync(path.join(root, "package.json"), JSON.stringify({ name: "soloclaw" }), "utf8");
     const importModule = vi.fn(async () => ({}));
 
     expect(() =>
@@ -63,7 +63,7 @@ describe("private-qa-cli", () => {
         resolvePackageRootSync: () => root,
         importModule,
       }),
-    ).toThrow("Private QA CLI is only available from an OpenClaw source checkout.");
+    ).toThrow("Private QA CLI is only available from an SoloClaw source checkout.");
     expect(importModule).not.toHaveBeenCalled();
   });
 
@@ -72,7 +72,7 @@ describe("private-qa-cli", () => {
     const importModule = vi.fn(async () => ({}));
 
     expect(() => loadPrivateQaCliModule({ importModule })).toThrow(
-      "Private QA CLI is only available from an OpenClaw source checkout.",
+      "Private QA CLI is only available from an SoloClaw source checkout.",
     );
     expect(importModule).not.toHaveBeenCalled();
   });

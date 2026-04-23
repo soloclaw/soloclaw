@@ -80,7 +80,7 @@ export type ResolvedBrowserProfile = {
   cdpIsLoopback: boolean;
   userDataDir?: string;
   color: string;
-  driver: "openclaw" | "existing-session";
+  driver: "soloclaw" | "existing-session";
   attachOnly: boolean;
 };
 
@@ -311,7 +311,7 @@ export function resolveProfile(
   let cdpHost = resolved.cdpHost;
   let cdpPort = profile.cdpPort ?? 0;
   let cdpUrl = "";
-  const driver = profile.driver === "existing-session" ? "existing-session" : "openclaw";
+  const driver = profile.driver === "existing-session" ? "existing-session" : "soloclaw";
 
   if (driver === "existing-session") {
     return {

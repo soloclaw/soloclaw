@@ -1,6 +1,6 @@
 # Repository Guidelines
 
-- Repo: https://github.com/openclaw/openclaw
+- Repo: https://github.com/soloclaw/soloclaw
 - In chat replies, file references must be repo-root relative only (example: `extensions/telegram/src/index.ts:80`); never absolute paths or `~/...`.
 - Do not edit files covered by security-focused `CODEOWNERS` rules unless a listed owner explicitly asked for the change or is already reviewing it with you. Treat those paths as restricted surfaces, not drive-by cleanup.
 
@@ -14,7 +14,7 @@
 - Plugins: live in the bundled workspace plugin tree (workspace packages). Keep plugin-only deps in the extension `package.json`; do not add them to the root `package.json` unless core uses them.
 - Plugins: install runs `npm install --omit=dev` in plugin dir; runtime deps must live in `dependencies`. Avoid `workspace:*` in `dependencies` (npm install breaks); put `openclaw` in `devDependencies` or `peerDependencies` instead (runtime resolves `soloclaw/plugin-sdk` via jiti alias).
 - Import boundaries: extension production code should treat `soloclaw/plugin-sdk/*` plus local `api.ts` / `runtime-api.ts` barrels as the public surface. Do not import core `src/**`, `src/plugin-sdk-internal/**`, or another extension's `src/**` directly.
-- Installers served from `https://openclaw.ai/*`: live in the sibling repo `../openclaw.ai` (`public/install.sh`, `public/install-cli.sh`, `public/install.ps1`).
+- Installers served from `https://soloclaw.ai/*`: live in the sibling repo `../soloclaw.ai` (`public/install.sh`, `public/install-cli.sh`, `public/install.ps1`).
 - Messaging channels: always consider **all** built-in + extension channels when refactoring shared logic (routing, allowlists, pairing, command gating, onboarding, docs).
   - Core channel docs: `docs/channels/`
   - Core channel code: `src/channels`, `src/routing`, `src/web`
@@ -273,7 +273,7 @@
 - CLI progress: use `src/cli/progress.ts` (`osc-progress` + `@clack/prompts` spinner); don’t hand-roll spinners/bars.
 - Status output: keep tables + ANSI-safe wrapping (`src/terminal/table.ts`); `status --all` = read-only/pasteable, `status --deep` = probes.
 - Gateway may run as an app-managed launchd job. Restart the gateway via the app or `soloclaw gateway restart`; inspect with `soloclaw gateway status --deep` or, for the default profile, `launchctl print gui/$UID/ai.soloclaw.gateway`. Use `scripts/restart-mac.sh` when you need to rebuild/relaunch the local macOS app itself. The app LaunchAgent uses `ai.soloclaw.mac`. **When debugging on macOS, start/stop the gateway via the app or gateway CLI, not ad-hoc tmux sessions; kill any temporary tunnels before handoff.**
-- macOS logs: use `./scripts/clawlog.sh` to query unified logs for the OpenClaw subsystem; it supports follow/tail/category filters and expects passwordless sudo for `/usr/bin/log`.
+- macOS logs: use `./scripts/clawlog.sh` to query unified logs for the SoloClaw subsystem; it supports follow/tail/category filters and expects passwordless sudo for `/usr/bin/log`.
 - If shared guardrails are available locally, review them; otherwise follow this repo's guidance.
 - SwiftUI state management (iOS/macOS): prefer the `Observation` framework (`@Observable`, `@Bindable`) over `ObservableObject`/`@StateObject`; don’t introduce new `ObservableObject` unless required for compatibility, and migrate existing usages when touching related code.
 - Connection providers: when adding a new connection, update every UI surface and docs (macOS app, web UI, mobile if applicable, onboarding/overview docs) and add matching status + configuration forms so provider lists and settings stay in sync.

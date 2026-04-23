@@ -25,7 +25,7 @@ afterEach(async () => {
 
 function seedRunningProfileState(
   state: ReturnType<typeof makeState>,
-  profileName = "openclaw",
+  profileName = "soloclaw",
 ): void {
   (state.profiles as Map<string, unknown>).set(profileName, {
     profile: { name: profileName },
@@ -83,10 +83,10 @@ async function openManagedTabWithRunningProfile(params: {
   url?: string;
 }) {
   global.fetch = withFetchPreconnect(params.fetchMock);
-  const state = makeState("openclaw");
+  const state = makeState("soloclaw");
   seedRunningProfileState(state);
   const ctx = createBrowserRouteContext({ getState: () => state });
-  const openclaw = ctx.forProfile("openclaw");
+  const openclaw = ctx.forProfile("soloclaw");
   return await openclaw.openTab(params.url ?? "http://127.0.0.1:3009");
 }
 
@@ -116,13 +116,13 @@ describe("browser server-context tab selection state", () => {
     });
 
     global.fetch = withFetchPreconnect(fetchMock);
-    const state = makeState("openclaw");
+    const state = makeState("soloclaw");
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("openclaw");
+    const openclaw = ctx.forProfile("soloclaw");
 
     const opened = await openclaw.openTab("http://127.0.0.1:8080");
     expect(opened.targetId).toBe("CREATED");
-    expect(state.profiles.get("openclaw")?.lastTargetId).toBe("CREATED");
+    expect(state.profiles.get("soloclaw")?.lastTargetId).toBe("CREATED");
     expect(createTargetViaCdp).toHaveBeenCalledWith({
       cdpUrl: "http://127.0.0.1:18800",
       url: "http://127.0.0.1:8080",
@@ -160,10 +160,10 @@ describe("browser server-context tab selection state", () => {
     });
 
     global.fetch = withFetchPreconnect(fetchMock);
-    const state = makeState("openclaw");
+    const state = makeState("soloclaw");
     state.resolved.ssrfPolicy = {};
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("openclaw");
+    const openclaw = ctx.forProfile("soloclaw");
 
     const selected = await openclaw.ensureTabAvailable();
     expect(selected.targetId).toBe("CREATED");
@@ -226,10 +226,10 @@ describe("browser server-context tab selection state", () => {
     });
 
     global.fetch = withFetchPreconnect(fetchMock);
-    const state = makeState("openclaw");
+    const state = makeState("soloclaw");
     seedRunningProfileState(state);
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("openclaw");
+    const openclaw = ctx.forProfile("soloclaw");
 
     const opened = await openclaw.openTab("http://127.0.0.1:3009");
     expect(opened.targetId).toBe("NEW");
@@ -246,10 +246,10 @@ describe("browser server-context tab selection state", () => {
     });
 
     global.fetch = withFetchPreconnect(fetchMock);
-    const state = makeState("openclaw");
+    const state = makeState("soloclaw");
     state.resolved.attachOnly = true;
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("openclaw");
+    const openclaw = ctx.forProfile("soloclaw");
 
     const opened = await openclaw.openTab("http://127.0.0.1:3009");
     expect(opened.targetId).toBe("NEW");
@@ -288,9 +288,9 @@ describe("browser server-context tab selection state", () => {
     });
 
     global.fetch = withFetchPreconnect(fetchMock);
-    const state = makeState("openclaw");
+    const state = makeState("soloclaw");
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("openclaw");
+    const openclaw = ctx.forProfile("soloclaw");
 
     await expect(openclaw.openTab("file:///etc/passwd")).rejects.toBeInstanceOf(
       InvalidBrowserNavigationUrlError,
@@ -309,10 +309,10 @@ describe("browser server-context tab selection state", () => {
       type: "page",
     });
 
-    const state = makeState("openclaw");
+    const state = makeState("soloclaw");
     state.resolved.ssrfPolicy = {};
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("openclaw");
+    const openclaw = ctx.forProfile("soloclaw");
 
     const opened = await openclaw.openTab("https://example.com");
     expect(opened.targetId).toBe("NEW");

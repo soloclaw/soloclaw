@@ -9,7 +9,7 @@ title: "Ollama Web Search"
 
 # Ollama Web Search
 
-OpenClaw supports **Ollama Web Search** as a bundled `web_search` provider.
+SoloClaw supports **Ollama Web Search** as a bundled `web_search` provider.
 It uses Ollama's experimental web-search API and returns structured results
 with titles, URLs, and snippets.
 
@@ -76,18 +76,18 @@ Optional Ollama host override:
 }
 ```
 
-If no explicit Ollama base URL is set, OpenClaw uses `http://127.0.0.1:11434`.
+If no explicit Ollama base URL is set, SoloClaw uses `http://127.0.0.1:11434`.
 
-If your Ollama host expects bearer auth, OpenClaw reuses
+If your Ollama host expects bearer auth, SoloClaw reuses
 `models.providers.ollama.apiKey` (or the matching env-backed provider auth)
 for web-search requests too.
 
 ## Notes
 
 - No web-search-specific API key field is required for this provider.
-- If the Ollama host is auth-protected, OpenClaw reuses the normal Ollama
+- If the Ollama host is auth-protected, SoloClaw reuses the normal Ollama
   provider API key when present.
-- OpenClaw warns during setup if Ollama is unreachable or not signed in, but
+- SoloClaw warns during setup if Ollama is unreachable or not signed in, but
   it does not block selection.
 - Runtime auto-detect can fall back to Ollama Web Search when no higher-priority
   credentialed provider is configured.

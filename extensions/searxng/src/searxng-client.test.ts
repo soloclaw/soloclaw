@@ -16,7 +16,7 @@ describe("searxng client", () => {
     expect(
       __testing.buildSearxngSearchUrl({
         baseUrl: "https://search.example.com/searxng",
-        query: "openclaw",
+        query: "soloclaw",
         categories: "general,news",
         language: "en",
       }),

@@ -84,7 +84,7 @@ function createEnv(
     DOCKER_STUB_LOG: sandbox.logPath,
     SOLOCLAW_GATEWAY_TOKEN: "test-token",
     SOLOCLAW_CONFIG_DIR: join(sandbox.rootDir, "config"),
-    SOLOCLAW_WORKSPACE_DIR: join(sandbox.rootDir, "openclaw"),
+    SOLOCLAW_WORKSPACE_DIR: join(sandbox.rootDir, "soloclaw"),
   };
 
   for (const [key, value] of Object.entries(overrides)) {

@@ -1,4 +1,4 @@
-# OpenClaw Codebase Patterns
+# SoloClaw Codebase Patterns
 
 **Always reuse existing code - no redundancy!**
 

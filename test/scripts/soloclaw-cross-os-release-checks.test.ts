@@ -208,9 +208,9 @@ describe("scripts/soloclaw-cross-os-release-checks", () => {
   });
 
   it("uses the published installer URLs for native installer lanes", () => {
-    expect(resolvePublishedInstallerUrl("darwin")).toBe("https://openclaw.ai/install.sh");
-    expect(resolvePublishedInstallerUrl("linux")).toBe("https://openclaw.ai/install.sh");
-    expect(resolvePublishedInstallerUrl("win32")).toBe("https://openclaw.ai/install.ps1");
+    expect(resolvePublishedInstallerUrl("darwin")).toBe("https://soloclaw.ai/install.sh");
+    expect(resolvePublishedInstallerUrl("linux")).toBe("https://soloclaw.ai/install.sh");
+    expect(resolvePublishedInstallerUrl("win32")).toBe("https://soloclaw.ai/install.ps1");
   });
 
   it("uses managed gateway services only on native Windows runners", () => {
@@ -350,13 +350,13 @@ describe("scripts/soloclaw-cross-os-release-checks", () => {
     try {
       const packageRoot =
         process.platform === "win32"
-          ? join(prefixDir, "node_modules", "openclaw")
-          : join(prefixDir, "lib", "node_modules", "openclaw");
+          ? join(prefixDir, "node_modules", "soloclaw")
+          : join(prefixDir, "lib", "node_modules", "soloclaw");
       mkdirSync(packageRoot, { recursive: true });
       writeFileSync(
         join(packageRoot, "package.json"),
         JSON.stringify({
-          name: "openclaw",
+          name: "soloclaw",
           version: "2026.4.10",
         }),
         "utf8",
@@ -374,7 +374,7 @@ describe("scripts/soloclaw-cross-os-release-checks", () => {
       writeFileSync(
         join(packageRoot, "package.json"),
         JSON.stringify({
-          name: "openclaw",
+          name: "soloclaw",
           scripts: {
             build: "pnpm build",
           },

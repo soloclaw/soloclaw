@@ -60,7 +60,7 @@ For tool call behavior, prompt for a `read` or `exec` action so you can see tool
 
 ## Clean Slate Reset
 
-State lives under the OpenClaw state directory. Default is `~/.soloclaw`. If `SOLOCLAW_STATE_DIR` is set, use that directory instead.
+State lives under the SoloClaw state directory. Default is `~/.soloclaw`. If `SOLOCLAW_STATE_DIR` is set, use that directory instead.
 
 To reset everything:
 

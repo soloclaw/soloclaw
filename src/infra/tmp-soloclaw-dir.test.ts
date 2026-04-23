@@ -283,7 +283,7 @@ describe("resolvePreferredOpenClawTmpDir", () => {
         lstatSync,
         fallbackLstatSync,
       }),
-    ).toThrow(/Unsafe fallback OpenClaw temp dir/);
+    ).toThrow(/Unsafe fallback SoloClaw temp dir/);
   });
 
   it("creates fallback directory when missing, then validates ownership and mode", () => {
@@ -301,7 +301,7 @@ describe("resolvePreferredOpenClawTmpDir", () => {
 
   it("uses an unscoped fallback suffix when process uid is unavailable", () => {
     const tmpdirPath = "/var/fallback";
-    const fallbackPath = path.join(tmpdirPath, "openclaw");
+    const fallbackPath = path.join(tmpdirPath, "soloclaw");
 
     const resolved = resolvePreferredOpenClawTmpDir({
       accessSync: vi.fn((target: string) => {
@@ -412,6 +412,6 @@ describe("resolvePreferredOpenClawTmpDir", () => {
         tmpdir: vi.fn(() => "/var/fallback"),
         warn: vi.fn(),
       }),
-    ).toThrow(/Unable to create fallback OpenClaw temp dir/);
+    ).toThrow(/Unable to create fallback SoloClaw temp dir/);
   });
 });

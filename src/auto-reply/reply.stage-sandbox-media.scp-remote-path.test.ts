@@ -48,7 +48,7 @@ function createRemoteStageParams(home: string): {
   ]);
   return {
     cfg: createSandboxMediaStageConfig(home),
-    workspaceDir: join(home, "openclaw"),
+    workspaceDir: join(home, "soloclaw"),
     sessionKey,
     remoteCacheDir: join(home, ".soloclaw", "media", "remote-cache", sessionKey),
   };

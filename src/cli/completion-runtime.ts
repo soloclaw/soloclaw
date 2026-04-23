@@ -36,7 +36,7 @@ export function resolveShellFromEnv(env: NodeJS.ProcessEnv = process.env): Compl
 function sanitizeCompletionBasename(value: string): string {
   const trimmed = value.trim();
   if (!trimmed) {
-    return "openclaw";
+    return "soloclaw";
   }
   return trimmed.replace(/[^a-zA-Z0-9._-]/g, "-");
 }
@@ -56,7 +56,7 @@ export function resolveCompletionCachePath(shell: CompletionShell, binName: stri
 /** Check if the completion cache file exists for the given shell. */
 export async function completionCacheExists(
   shell: CompletionShell,
-  binName = "openclaw",
+  binName = "soloclaw",
 ): Promise<boolean> {
   const cachePath = resolveCompletionCachePath(shell, binName);
   return pathExists(cachePath);
@@ -74,7 +74,7 @@ function formatCompletionSourceLine(
 }
 
 function isCompletionProfileHeader(line: string): boolean {
-  return line.trim() === "# OpenClaw Completion";
+  return line.trim() === "# SoloClaw Completion";
 }
 
 function isCompletionProfileLine(line: string, binName: string, cachePath: string | null): boolean {
@@ -120,7 +120,7 @@ function updateCompletionProfile(
   }
 
   const trimmed = filtered.join("\n").trimEnd();
-  const block = `# OpenClaw Completion\n${sourceLine}`;
+  const block = `# SoloClaw Completion\n${sourceLine}`;
   const next = trimmed ? `${trimmed}\n\n${block}\n` : `${block}\n`;
   return { next, changed: next !== content, hadExisting };
 }
@@ -149,7 +149,7 @@ function getShellProfilePath(shell: CompletionShell): string {
 
 export async function isCompletionInstalled(
   shell: CompletionShell,
-  binName = "openclaw",
+  binName = "soloclaw",
 ): Promise<boolean> {
   const profilePath = getShellProfilePath(shell);
 
@@ -171,7 +171,7 @@ export async function isCompletionInstalled(
  */
 export async function usesSlowDynamicCompletion(
   shell: CompletionShell,
-  binName = "openclaw",
+  binName = "soloclaw",
 ): Promise<boolean> {
   const profilePath = getShellProfilePath(shell);
 
@@ -191,7 +191,7 @@ export async function usesSlowDynamicCompletion(
   return false;
 }
 
-export async function installCompletion(shell: string, yes: boolean, binName = "openclaw") {
+export async function installCompletion(shell: string, yes: boolean, binName = "soloclaw") {
   const home = process.env.HOME || os.homedir();
   let profilePath = "";
   let sourceLine = "";

@@ -255,7 +255,7 @@ export function loadGlobalRuntimeDotEnvFiles(opts?: { quiet?: boolean; stateEnvP
         filePath: path.join(
           resolveRequiredHomeDir(process.env, os.homedir),
           ".config",
-          "openclaw",
+          "soloclaw",
           "gateway.env",
         ),
         shouldBlockKey: shouldBlockRuntimeDotEnvKey,

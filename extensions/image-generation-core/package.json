@@ -2,7 +2,7 @@
   "name": "@soloclaw/image-generation-core",
   "version": "2026.4.16",
   "private": true,
-  "description": "OpenClaw image generation runtime package",
+  "description": "SoloClaw image generation runtime package",
   "type": "module",
   "devDependencies": {
     "@soloclaw/plugin-sdk": "workspace:*",

@@ -19,14 +19,14 @@ describe("waitForever", () => {
 
 describe("shouldSkipRespawnForArgv", () => {
   it.each([
-    { argv: ["node", "openclaw", "--help"] },
-    { argv: ["node", "openclaw", "-V"] },
+    { argv: ["node", "soloclaw", "--help"] },
+    { argv: ["node", "soloclaw", "-V"] },
   ] as const)("skips respawn for argv %j", ({ argv }) => {
     expect(shouldSkipRespawnForArgv([...argv]), argv.join(" ")).toBe(true);
   });
 
   it("keeps respawn path for normal commands", () => {
-    expect(shouldSkipRespawnForArgv(["node", "openclaw", "status"])).toBe(false);
+    expect(shouldSkipRespawnForArgv(["node", "soloclaw", "status"])).toBe(false);
   });
 });
 

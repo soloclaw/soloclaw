@@ -71,7 +71,7 @@ function makeTranscriptAssistantMessage(params: {
     role: "assistant" as const,
     content: params.content ?? [{ type: "text", text: params.text }],
     api: "openai-responses",
-    provider: "openclaw",
+    provider: "soloclaw",
     model: "delivery-mirror",
     usage: {
       input: 0,

@@ -51,7 +51,7 @@ For how skills are loaded and prioritized, see [Skills](/tools/skills).
   </Step>
 
   <Step title="Load the skill">
-    Start a new session so OpenClaw picks up the skill:
+    Start a new session so SoloClaw picks up the skill:
 
     ```bash
     # From chat

@@ -4,7 +4,7 @@ import { withPathResolutionEnv } from "../test-utils/env.js";
 import { formatPluginSourceForTable, resolvePluginSourceRoots } from "./source-display.js";
 
 const PLUGIN_SOURCE_ROOTS = {
-  stock: path.resolve(path.sep, "opt", "homebrew", "lib", "node_modules", "openclaw", "extensions"),
+  stock: path.resolve(path.sep, "opt", "homebrew", "lib", "node_modules", "soloclaw", "extensions"),
   global: path.resolve(path.sep, "Users", "x", ".soloclaw", "extensions"),
   workspace: path.resolve(path.sep, "Users", "x", "ws", ".soloclaw", "extensions"),
 };

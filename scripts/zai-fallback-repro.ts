@@ -126,7 +126,7 @@ async function main() {
     "Then use the read tool to display the file contents. Reply with just the file contents.";
   const run1 = await runCommand(
     "run1",
-    ["openclaw", "agent", "--local", "--session-id", sessionId, "--message", toolPrompt],
+    ["soloclaw", "agent", "--local", "--session-id", sessionId, "--message", toolPrompt],
     envValidAnthropic,
   );
   if (run1.code !== 0) {
@@ -144,7 +144,7 @@ async function main() {
     "What is the content of zai-fallback-tool.txt? Reply with just the contents.";
   const run2 = await runCommand(
     "run2",
-    ["openclaw", "agent", "--local", "--session-id", sessionId, "--message", followupPrompt],
+    ["soloclaw", "agent", "--local", "--session-id", sessionId, "--message", followupPrompt],
     envInvalidAnthropic,
   );
 

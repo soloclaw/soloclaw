@@ -6,12 +6,12 @@ read_when:
   - You see the SOLOCLAW_PLUGIN_SDK_COMPAT_DEPRECATED warning
   - You see the SOLOCLAW_EXTENSION_API_DEPRECATED warning
   - You are updating a plugin to the modern plugin architecture
-  - You maintain an external OpenClaw plugin
+  - You maintain an external SoloClaw plugin
 ---
 
 # Plugin SDK Migration
 
-OpenClaw has moved from a broad backwards-compatibility layer to a modern plugin
+SoloClaw has moved from a broad backwards-compatibility layer to a modern plugin
 architecture with focused, documented imports. If your plugin was built before
 the new architecture, this guide helps you migrate.
 

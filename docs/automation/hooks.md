@@ -70,7 +70,7 @@ my-hook/
 name: my-hook
 description: "Short description of what this hook does"
 metadata:
-  { "openclaw": { "emoji": "🔗", "events": ["command:new"], "requires": { "bins": ["node"] } } }
+  { "soloclaw": { "emoji": "🔗", "events": ["command:new"], "requires": { "bins": ["node"] } } }
 ---
 
 # My Hook

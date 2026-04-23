@@ -43,10 +43,10 @@ Typical infer-focused skill coverage:
 
 Benefits:
 
-- Use the providers and models already configured in OpenClaw instead of wiring up one-off wrappers for each backend.
+- Use the providers and models already configured in SoloClaw instead of wiring up one-off wrappers for each backend.
 - Keep model, image, audio transcription, TTS, video, web, and embedding workflows under one command tree.
 - Use a stable `--json` output shape for scripts, automation, and agent-driven workflows.
-- Prefer a first-party OpenClaw surface when the task is fundamentally "run inference."
+- Prefer a first-party SoloClaw surface when the task is fundamentally "run inference."
 - Use the normal local path without requiring the gateway for most infer commands.
 
 ## Command tree
@@ -210,8 +210,8 @@ Notes:
 Use `web` for search and fetch workflows.
 
 ```bash
-openclaw infer web search --query "OpenClaw docs" --json
-openclaw infer web search --query "OpenClaw infer web providers" --json
+openclaw infer web search --query "SoloClaw docs" --json
+openclaw infer web search --query "SoloClaw infer web providers" --json
 openclaw infer web fetch --url https://docs.soloclaw.ai/cli/infer --json
 openclaw infer web providers --json
 ```

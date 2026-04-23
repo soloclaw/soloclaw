@@ -30,7 +30,7 @@ function createBundledWhatsAppRuntimeFixture() {
   for (const [relativePath, value] of Object.entries({
     "package.json": JSON.stringify(
       {
-        name: "openclaw",
+        name: "soloclaw",
         type: "module",
         bin: {
           openclaw: "soloclaw.mjs",

@@ -193,7 +193,7 @@ async function expectLocalJsonSetupFailure(stateDir: string, runtimeWithCapture:
       {
         nonInteractive: true,
         mode: "local",
-        workspace: path.join(stateDir, "openclaw"),
+        workspace: path.join(stateDir, "soloclaw"),
         authChoice: "skip",
         skipSkills: true,
         skipHealth: false,
@@ -210,7 +210,7 @@ function createLocalDaemonSetupOptions(stateDir: string) {
   return {
     nonInteractive: true,
     mode: "local" as const,
-    workspace: path.join(stateDir, "openclaw"),
+    workspace: path.join(stateDir, "soloclaw"),
     authChoice: "skip" as const,
     skipSkills: true,
     skipHealth: false,
@@ -320,7 +320,7 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
   it("writes gateway token auth into config", async () => {
     await withStateDir("state-noninteractive-", async (stateDir) => {
       const token = "tok_test_123";
-      const workspace = path.join(stateDir, "openclaw");
+      const workspace = path.join(stateDir, "soloclaw");
 
       await runNonInteractiveSetup(
         {
@@ -390,7 +390,7 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
           {
             nonInteractive: true,
             mode: "local",
-            workspace: path.join(stateDir, "openclaw"),
+            workspace: path.join(stateDir, "soloclaw"),
             authChoice: "skip",
             skipSkills: true,
             skipHealth: false,
@@ -482,7 +482,7 @@ describe("onboard (non-interactive): gateway and remote auth", () => {
       process.env.SOLOCLAW_CONFIG_PATH = path.join(stateDir, "soloclaw.json");
 
       const port = getPseudoPort(40_000);
-      const workspace = path.join(stateDir, "openclaw");
+      const workspace = path.join(stateDir, "soloclaw");
 
       await runNonInteractiveSetup(
         {

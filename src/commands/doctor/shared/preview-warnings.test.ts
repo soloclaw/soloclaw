@@ -232,7 +232,7 @@ describe("doctor preview warnings", () => {
   });
 
   it("includes bundled plugin load path migration warnings", async () => {
-    const packageRoot = path.resolve("app-node-modules", "openclaw");
+    const packageRoot = path.resolve("app-node-modules", "soloclaw");
     const legacyPath = path.join(packageRoot, "extensions", "feishu");
     manifestState.plugins = [manifest("feishu")];
 

@@ -489,7 +489,7 @@ describe("exec approvals policy helpers", () => {
     });
   });
 
-  it("reports askFallback from the OpenClaw default when approvals omit it", () => {
+  it("reports askFallback from the SoloClaw default when approvals omit it", () => {
     const summary = resolveExecPolicyScopeSummary({
       approvals: {
         version: 1,
@@ -501,7 +501,7 @@ describe("exec approvals policy helpers", () => {
 
     expect(summary.askFallback).toEqual({
       effective: "full",
-      source: "OpenClaw default (full)",
+      source: "SoloClaw default (full)",
     });
   });
 

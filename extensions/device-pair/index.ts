@@ -555,7 +555,7 @@ async function sendQrPngToSupportedChannel(params: {
 export default definePluginEntry({
   id: "device-pair",
   name: "Device Pair",
-  description: "QR/bootstrap pairing helpers for OpenClaw devices",
+  description: "QR/bootstrap pairing helpers for SoloClaw devices",
   register(api: OpenClawPluginApi) {
     registerPairingNotifierService(api);
 
@@ -676,7 +676,7 @@ export default definePluginEntry({
                 api,
                 ctx,
                 target,
-                caption: ["Scan this QR code with the OpenClaw iOS app:", "", ...infoLines].join(
+                caption: ["Scan this QR code with the SoloClaw iOS app:", "", ...infoLines].join(
                   "\n",
                 ),
                 qrFilePath,
@@ -724,7 +724,7 @@ export default definePluginEntry({
             }
             return {
               text: [
-                "Scan this QR code with the OpenClaw iOS app:",
+                "Scan this QR code with the SoloClaw iOS app:",
                 "",
                 formatQrInfoMarkdown({
                   payload,
@@ -733,7 +733,7 @@ export default definePluginEntry({
                   expiresAtMs: payload.expiresAtMs,
                 }),
                 "",
-                `![OpenClaw pairing QR](${qrDataUrl})`,
+                `![SoloClaw pairing QR](${qrDataUrl})`,
               ].join("\n"),
             };
           }

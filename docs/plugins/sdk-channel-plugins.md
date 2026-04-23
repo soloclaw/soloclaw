@@ -4,25 +4,25 @@ sidebarTitle: "Channel Plugins"
 summary: "Step-by-step guide to building a messaging channel plugin for OpenClaw"
 read_when:
   - You are building a new messaging channel plugin
-  - You want to connect OpenClaw to a messaging platform
+  - You want to connect SoloClaw to a messaging platform
   - You need to understand the ChannelPlugin adapter surface
 ---
 
 # Building Channel Plugins
 
-This guide walks through building a channel plugin that connects OpenClaw to a
+This guide walks through building a channel plugin that connects SoloClaw to a
 messaging platform. By the end you will have a working channel with DM security,
 pairing, reply threading, and outbound messaging.
 
 <Info>
-  If you have not built any OpenClaw plugin before, read
+  If you have not built any SoloClaw plugin before, read
   [Getting Started](/plugins/building-plugins) first for the basic package
   structure and manifest setup.
 </Info>
 
 ## How channel plugins work
 
-Channel plugins do not need their own send/edit/react tools. OpenClaw keeps one
+Channel plugins do not need their own send/edit/react tools. SoloClaw keeps one
 shared `message` tool in core. Your plugin owns:
 
 - **Config** — account resolution and setup wizard
@@ -281,13 +281,13 @@ should use `resolveInboundMentionDecision({ facts, policy })`.
       "name": "@myorg/openclaw-acme-chat",
       "version": "1.0.0",
       "type": "module",
-      "openclaw": {
+      "soloclaw": {
         "extensions": ["./index.ts"],
         "setupEntry": "./setup-entry.ts",
         "channel": {
           "id": "acme-chat",
           "label": "Acme Chat",
-          "blurb": "Connect OpenClaw to Acme Chat."
+          "blurb": "Connect SoloClaw to Acme Chat."
         }
       }
     }
@@ -496,7 +496,7 @@ should use `resolveInboundMentionDecision({ facts, policy })`.
     export default defineSetupPluginEntry(acmeChatPlugin);
     ```
 
-    OpenClaw loads this instead of the full entry when the channel is disabled
+    SoloClaw loads this instead of the full entry when the channel is disabled
     or unconfigured. It avoids pulling in heavy runtime code during setup flows.
     See [Setup and Config](/plugins/sdk-setup#setup-entry) for details.
 

@@ -4,7 +4,7 @@ description: "Inject additional workspace bootstrap files via glob/path patterns
 homepage: https://docs.soloclaw.ai/automation/hooks#bootstrap-extra-files
 metadata:
   {
-    "openclaw":
+    "soloclaw":
       {
         "emoji": "📎",
         "events": ["agent:bootstrap"],

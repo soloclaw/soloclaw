@@ -16,7 +16,7 @@ export type ExtraGatewayService = {
   label: string;
   detail: string;
   scope: "user" | "system";
-  marker?: "openclaw" | "clawdbot";
+  marker?: "soloclaw" | "clawdbot";
   legacy?: boolean;
 };
 
@@ -24,7 +24,7 @@ export type FindExtraGatewayServicesOptions = {
   deep?: boolean;
 };
 
-const EXTRA_MARKERS = ["openclaw", "clawdbot"] as const;
+const EXTRA_MARKERS = ["soloclaw", "clawdbot"] as const;
 
 export function renderGatewayServiceCleanupHints(
   env: Record<string, string | undefined> = process.env as Record<string, string | undefined>,
@@ -217,7 +217,7 @@ async function scanLaunchdDir(params: {
     if (isIgnoredLaunchdLabel(label)) {
       continue;
     }
-    if (marker === "openclaw" && isOpenClawGatewayLaunchdService(label, contents)) {
+    if (marker === "soloclaw" && isOpenClawGatewayLaunchdService(label, contents)) {
       continue;
     }
     results.push({
@@ -226,7 +226,7 @@ async function scanLaunchdDir(params: {
       detail: `plist: ${fullPath}`,
       scope: params.scope,
       marker,
-      legacy: marker !== "openclaw" || isLegacyLabel(label),
+      legacy: marker !== "soloclaw" || isLegacyLabel(label),
     });
   }
 
@@ -249,7 +249,7 @@ async function scanSystemdDir(params: {
     if (!marker) {
       continue;
     }
-    if (marker === "openclaw" && isOpenClawGatewaySystemdService(name, contents)) {
+    if (marker === "soloclaw" && isOpenClawGatewaySystemdService(name, contents)) {
       continue;
     }
     results.push({
@@ -258,7 +258,7 @@ async function scanSystemdDir(params: {
       detail: `unit: ${fullPath}`,
       scope: params.scope,
       marker,
-      legacy: marker !== "openclaw",
+      legacy: marker !== "soloclaw",
     });
   }
 

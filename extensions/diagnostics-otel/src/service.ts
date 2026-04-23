@@ -12,7 +12,7 @@ import { ATTR_SERVICE_NAME } from "@opentelemetry/semantic-conventions";
 import type { DiagnosticEventPayload, OpenClawPluginService } from "../api.js";
 import { onDiagnosticEvent, redactSensitiveText, registerLogTransport } from "../api.js";
 
-const DEFAULT_SERVICE_NAME = "openclaw";
+const DEFAULT_SERVICE_NAME = "soloclaw";
 
 function normalizeEndpoint(endpoint?: string): string | undefined {
   const trimmed = endpoint?.trim();
@@ -157,8 +157,8 @@ export function createDiagnosticsOtelService(): OpenClawPluginService {
         FATAL: 21 as SeverityNumber,
       };
 
-      const meter = metrics.getMeter("openclaw");
-      const tracer = trace.getTracer("openclaw");
+      const meter = metrics.getMeter("soloclaw");
+      const tracer = trace.getTracer("soloclaw");
 
       const tokensCounter = meter.createCounter("openclaw.tokens", {
         unit: "1",
@@ -248,7 +248,7 @@ export function createDiagnosticsOtelService(): OpenClawPluginService {
           resource,
           processors: [logProcessor],
         });
-        const otelLogger = logProvider.getLogger("openclaw");
+        const otelLogger = logProvider.getLogger("soloclaw");
 
         stopLogTransport = registerLogTransport((logObj) => {
           try {

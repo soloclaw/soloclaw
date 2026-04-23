@@ -9,7 +9,7 @@ title: "Context"
 
 # Context
 
-“Context” is **everything OpenClaw sends to the model for a run**. It is bounded by the model’s **context window** (token limit).
+“Context” is **everything SoloClaw sends to the model for a run**. It is bounded by the model’s **context window** (token limit).
 
 Beginner mental model:
 
@@ -87,7 +87,7 @@ Everything the model receives counts, including:
 - Compaction summaries and pruning artifacts.
 - Provider “wrappers” or hidden headers (not visible, still counted).
 
-## How OpenClaw builds the system prompt
+## How SoloClaw builds the system prompt
 
 The system prompt is **OpenClaw-owned** and rebuilt each run. It includes:
 
@@ -102,7 +102,7 @@ Full breakdown: [System Prompt](/concepts/system-prompt).
 
 ## Injected workspace files (Project Context)
 
-By default, OpenClaw injects a fixed set of workspace files (if present):
+By default, SoloClaw injects a fixed set of workspace files (if present):
 
 - `AGENTS.md`
 - `SOUL.md`
@@ -112,7 +112,7 @@ By default, OpenClaw injects a fixed set of workspace files (if present):
 - `HEARTBEAT.md`
 - `BOOTSTRAP.md` (first-run only)
 
-Large files are truncated per-file using `agents.defaults.bootstrapMaxChars` (default `12000` chars). OpenClaw also enforces a total bootstrap injection cap across files with `agents.defaults.bootstrapTotalMaxChars` (default `60000` chars). `/context` shows **raw vs injected** sizes and whether truncation happened.
+Large files are truncated per-file using `agents.defaults.bootstrapMaxChars` (default `12000` chars). SoloClaw also enforces a total bootstrap injection cap across files with `agents.defaults.bootstrapTotalMaxChars` (default `60000` chars). `/context` shows **raw vs injected** sizes and whether truncation happened.
 
 When truncation occurs, the runtime can inject an in-prompt warning block under Project Context. Configure this with `agents.defaults.bootstrapPromptTruncationWarning` (`off`, `once`, `always`; default `once`).
 
@@ -153,9 +153,9 @@ What persists across messages depends on the mechanism:
 
 Docs: [Session](/concepts/session), [Compaction](/concepts/compaction), [Session pruning](/concepts/session-pruning).
 
-By default, OpenClaw uses the built-in `legacy` context engine for assembly and
+By default, SoloClaw uses the built-in `legacy` context engine for assembly and
 compaction. If you install a plugin that provides `kind: "context-engine"` and
-select it with `plugins.slots.contextEngine`, OpenClaw delegates context
+select it with `plugins.slots.contextEngine`, SoloClaw delegates context
 assembly, `/compact`, and related subagent context lifecycle hooks to that
 engine instead. `ownsCompaction: false` does not auto-fallback to the legacy
 engine; the active engine must still implement `compact()` correctly. See

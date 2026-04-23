@@ -4,7 +4,7 @@ description: "Save session context to memory when /new or /reset command is issu
 homepage: https://docs.soloclaw.ai/automation/hooks#session-memory
 metadata:
   {
-    "openclaw":
+    "soloclaw":
       {
         "emoji": "💾",
         "events": ["command:new", "command:reset"],

@@ -8,30 +8,30 @@ import {
 
 describe("command-registration-policy", () => {
   it("matches primary command registration policy", () => {
-    expect(shouldRegisterPrimaryCommandOnly(["node", "openclaw", "status"])).toBe(true);
-    expect(shouldRegisterPrimaryCommandOnly(["node", "openclaw", "status", "--help"])).toBe(true);
-    expect(shouldRegisterPrimaryCommandOnly(["node", "openclaw", "-V"])).toBe(false);
-    expect(shouldRegisterPrimaryCommandOnly(["node", "openclaw", "acp", "-v"])).toBe(true);
+    expect(shouldRegisterPrimaryCommandOnly(["node", "soloclaw", "status"])).toBe(true);
+    expect(shouldRegisterPrimaryCommandOnly(["node", "soloclaw", "status", "--help"])).toBe(true);
+    expect(shouldRegisterPrimaryCommandOnly(["node", "soloclaw", "-V"])).toBe(false);
+    expect(shouldRegisterPrimaryCommandOnly(["node", "soloclaw", "acp", "-v"])).toBe(true);
   });
 
   it("matches plugin registration skip policy", () => {
     expect(
       shouldSkipPluginCommandRegistration({
-        argv: ["node", "openclaw", "--help"],
+        argv: ["node", "soloclaw", "--help"],
         primary: null,
         hasBuiltinPrimary: false,
       }),
     ).toBe(true);
     expect(
       shouldSkipPluginCommandRegistration({
-        argv: ["node", "openclaw", "config", "--help"],
+        argv: ["node", "soloclaw", "config", "--help"],
         primary: "config",
         hasBuiltinPrimary: true,
       }),
     ).toBe(true);
     expect(
       shouldSkipPluginCommandRegistration({
-        argv: ["node", "openclaw", "voicecall", "--help"],
+        argv: ["node", "soloclaw", "voicecall", "--help"],
         primary: "voicecall",
         hasBuiltinPrimary: false,
       }),
@@ -41,12 +41,12 @@ describe("command-registration-policy", () => {
   it("matches lazy subcommand registration policy", () => {
     expect(shouldEagerRegisterSubcommands({ SOLOCLAW_DISABLE_LAZY_SUBCOMMANDS: "1" })).toBe(true);
     expect(shouldEagerRegisterSubcommands({ SOLOCLAW_DISABLE_LAZY_SUBCOMMANDS: "0" })).toBe(false);
-    expect(shouldRegisterPrimarySubcommandOnly(["node", "openclaw", "acp"], {})).toBe(true);
-    expect(shouldRegisterPrimarySubcommandOnly(["node", "openclaw", "acp", "--help"], {})).toBe(
+    expect(shouldRegisterPrimarySubcommandOnly(["node", "soloclaw", "acp"], {})).toBe(true);
+    expect(shouldRegisterPrimarySubcommandOnly(["node", "soloclaw", "acp", "--help"], {})).toBe(
       true,
     );
     expect(
-      shouldRegisterPrimarySubcommandOnly(["node", "openclaw", "acp"], {
+      shouldRegisterPrimarySubcommandOnly(["node", "soloclaw", "acp"], {
         SOLOCLAW_DISABLE_LAZY_SUBCOMMANDS: "1",
       }),
     ).toBe(false);

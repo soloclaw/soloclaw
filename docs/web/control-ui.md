@@ -216,7 +216,7 @@ Paste the matching shared secret into the UI settings (sent as
 
 If you open the dashboard over plain HTTP (`http://<lan-ip>` or `http://<tailscale-ip>`),
 the browser runs in a **non-secure context** and blocks WebCrypto. By default,
-OpenClaw **blocks** Control UI connections without device identity.
+SoloClaw **blocks** Control UI connections without device identity.
 
 Documented exceptions:
 

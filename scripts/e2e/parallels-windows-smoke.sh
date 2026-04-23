@@ -9,7 +9,7 @@ API_KEY_ENV=""
 AUTH_CHOICE=""
 AUTH_KEY_FLAG=""
 MODEL_ID=""
-INSTALL_URL="https://openclaw.ai/install.ps1"
+INSTALL_URL="https://soloclaw.ai/install.ps1"
 HOST_PORT="18426"
 HOST_PORT_EXPLICIT=0
 HOST_IP=""
@@ -137,7 +137,7 @@ Options:
   --api-key-env <var>        Host env var name for provider API key.
                              Default: OPENAI_API_KEY for openai, ANTHROPIC_API_KEY for anthropic
   --openai-api-key-env <var> Alias for --api-key-env (backward compatible)
-  --install-url <url>        Installer URL for latest release. Default: https://openclaw.ai/install.ps1
+  --install-url <url>        Installer URL for latest release. Default: https://soloclaw.ai/install.ps1
   --host-port <port>         Host HTTP port for current-main tgz. Default: 18426
   --host-ip <ip>             Override Parallels host IP.
   --latest-version <ver>     Override npm latest version lookup.
@@ -742,7 +742,7 @@ import re
 import sys
 
 text = pathlib.Path(sys.argv[1]).read_text(errors="replace")
-matches = re.findall(r"OpenClaw [^\r\n]+ \([0-9a-f]{7,}\)", text)
+matches = re.findall(r"SoloClaw [^\r\n]+ \([0-9a-f]{7,}\)", text)
 print(matches[-1] if matches else "")
 PY
 }
@@ -1621,7 +1621,7 @@ try {
   $env:ComSpec = Join-Path $env:SystemRoot 'System32\cmd.exe'
   $env:npm_config_ignore_scripts = 'true'
   $openclaw = Join-Path $env:APPDATA 'npm\openclaw.cmd'
-  $gitRoot = Join-Path $env:USERPROFILE 'openclaw'
+  $gitRoot = Join-Path $env:USERPROFILE 'soloclaw'
   $gitEntry = Join-Path $gitRoot 'openclaw.mjs'
 
   Remove-Item $LogPath, $DonePath -Force -ErrorAction SilentlyContinue
@@ -2129,7 +2129,7 @@ verify_dev_channel_update() {
     guest_powershell "$(cat <<'EOF'
 $portableGit = Join-Path (Join-Path (Join-Path $env:LOCALAPPDATA 'OpenClaw\deps') 'portable-git') ''
 $env:PATH = "$portableGit\cmd;$portableGit\mingw64\bin;$portableGit\usr\bin;$env:PATH"
-$gitEntry = Join-Path (Join-Path $env:USERPROFILE 'openclaw') 'openclaw.mjs'
+$gitEntry = Join-Path (Join-Path $env:USERPROFILE 'soloclaw') 'openclaw.mjs'
 if (-not (Test-Path $gitEntry)) {
   throw "git entry missing: $gitEntry"
 }

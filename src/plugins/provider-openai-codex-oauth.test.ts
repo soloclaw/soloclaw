@@ -82,7 +82,7 @@ describe("loginOpenAICodexOAuth", () => {
     expect(result).toEqual(creds);
     expect(mocks.loginOpenAICodex).toHaveBeenCalledOnce();
     expect(mocks.loginOpenAICodex).toHaveBeenCalledWith(
-      expect.objectContaining({ originator: "openclaw" }),
+      expect.objectContaining({ originator: "soloclaw" }),
     );
     expect(spin.stop).toHaveBeenCalledWith("OpenAI OAuth complete");
     expect(runtime.error).not.toHaveBeenCalled();

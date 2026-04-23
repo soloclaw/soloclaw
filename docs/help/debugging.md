@@ -22,7 +22,7 @@ Examples:
 
 ```
 /debug show
-/debug set messages.responsePrefix="[openclaw]"
+/debug set messages.responsePrefix="[soloclaw]"
 /debug unset messages.responsePrefix
 /debug reset
 ```
@@ -130,7 +130,7 @@ soloclaw gateway stop
 
 ## Raw stream logging (OpenClaw)
 
-OpenClaw can log the **raw assistant stream** before any filtering/formatting.
+SoloClaw can log the **raw assistant stream** before any filtering/formatting.
 This is the best way to see whether reasoning is arriving as plain text deltas
 (or as separate thinking blocks).
 

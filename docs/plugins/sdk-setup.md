@@ -31,7 +31,7 @@ your plugin provides:
   "name": "@myorg/openclaw-my-channel",
   "version": "1.0.0",
   "type": "module",
-  "openclaw": {
+  "soloclaw": {
     "extensions": ["./index.ts"],
     "setupEntry": "./setup-entry.ts",
     "channel": {
@@ -50,7 +50,7 @@ your plugin provides:
   "name": "@myorg/openclaw-my-plugin",
   "version": "1.0.0",
   "type": "module",
-  "openclaw": {
+  "soloclaw": {
     "extensions": ["./index.ts"],
     "compat": {
       "pluginApi": ">=2026.3.24-beta.2",
@@ -110,7 +110,7 @@ Example:
 
 ```json
 {
-  "openclaw": {
+  "soloclaw": {
     "channel": {
       "id": "my-channel",
       "label": "My Channel",
@@ -154,7 +154,7 @@ Example:
 | `npmSpec`                    | `string`             | Canonical npm spec for install/update flows.                                     |
 | `localPath`                  | `string`             | Local development or bundled install path.                                       |
 | `defaultChoice`              | `"npm"` \| `"local"` | Preferred install source when both are available.                                |
-| `minHostVersion`             | `string`             | Minimum supported OpenClaw version in the form `>=x.y.z`.                        |
+| `minHostVersion`             | `string`             | Minimum supported SoloClaw version in the form `>=x.y.z`.                        |
 | `allowInvalidConfigRecovery` | `boolean`            | Lets bundled-plugin reinstall flows recover from specific stale-config failures. |
 
 If `minHostVersion` is set, install and manifest-registry loading both enforce
@@ -172,7 +172,7 @@ Channel plugins can opt into deferred loading with:
 
 ```json
 {
-  "openclaw": {
+  "soloclaw": {
     "extensions": ["./index.ts"],
     "setupEntry": "./setup-entry.ts",
     "startup": {
@@ -182,7 +182,7 @@ Channel plugins can opt into deferred loading with:
 }
 ```
 
-When enabled, OpenClaw loads only `setupEntry` during the pre-listen startup
+When enabled, SoloClaw loads only `setupEntry` during the pre-listen startup
 phase, even for already-configured channels. The full entry loads after the
 gateway starts listening.
 
@@ -201,7 +201,7 @@ to `operator.admin`.
 ## Plugin manifest
 
 Every native plugin must ship an `soloclaw.plugin.json` in the package root.
-OpenClaw uses this to validate config without executing plugin code.
+SoloClaw uses this to validate config without executing plugin code.
 
 ```json
 {
@@ -265,7 +265,7 @@ always use `clawhub package publish`.
 ## Setup entry
 
 The `setup-entry.ts` file is a lightweight alternative to `index.ts` that
-OpenClaw loads when it only needs setup surfaces (onboarding, config repair,
+SoloClaw loads when it only needs setup surfaces (onboarding, config repair,
 disabled channel inspection).
 
 ```typescript
@@ -285,7 +285,7 @@ use `defineBundledChannelSetupEntry(...)` from
 `defineSetupPluginEntry(...)`. That bundled contract also supports an optional
 `runtime` export so setup-time runtime wiring can stay lightweight and explicit.
 
-**When OpenClaw uses `setupEntry` instead of the full entry:**
+**When SoloClaw uses `setupEntry` instead of the full entry:**
 
 - The channel is disabled but needs setup/onboarding surfaces
 - The channel is enabled but unconfigured
@@ -386,7 +386,7 @@ For channel-specific config, use the channel config section instead:
 ### Building channel config schemas
 
 Use `buildChannelConfigSchema` from `soloclaw/plugin-sdk/core` to convert a
-Zod schema into the `ChannelConfigSchema` wrapper that OpenClaw validates:
+Zod schema into the `ChannelConfigSchema` wrapper that SoloClaw validates:
 
 ```typescript
 import { z } from "zod";
@@ -500,7 +500,7 @@ copying the same binary/status glue into every channel:
 openclaw plugins install @myorg/openclaw-my-plugin
 ```
 
-OpenClaw tries ClawHub first and falls back to npm automatically. You can also
+SoloClaw tries ClawHub first and falls back to npm automatically. You can also
 force ClawHub explicitly:
 
 ```bash

@@ -1,11 +1,11 @@
 ---
 name: security-triage
-description: Triage GitHub security advisories for OpenClaw with high-confidence close/keep decisions, exact tag and commit verification, trust-model checks, optional hardening notes, and a final reply ready to post and copy to clipboard.
+description: Triage GitHub security advisories for SoloClaw with high-confidence close/keep decisions, exact tag and commit verification, trust-model checks, optional hardening notes, and a final reply ready to post and copy to clipboard.
 ---
 
 # Security Triage
 
-Use when reviewing OpenClaw security advisories, drafts, or GHSA reports.
+Use when reviewing SoloClaw security advisories, drafts, or GHSA reports.
 
 Goal: high-confidence maintainers' triage without over-closing real issues or shipping unnecessary regressions.
 
@@ -25,7 +25,7 @@ Do not close only because `main` is fixed. If latest shipped tag or npm release 
 Before answering:
 
 1. Read `SECURITY.md`.
-2. Read the GHSA body with `gh api /repos/openclaw/openclaw/security-advisories/<GHSA>`.
+2. Read the GHSA body with `gh api /repos/soloclaw/soloclaw/security-advisories/<GHSA>`.
 3. Inspect the exact implicated code paths.
 4. Verify shipped state:
    - `git tag --sort=-creatordate | head`
@@ -91,14 +91,14 @@ Tell the user that the clipboard now contains the proposed response.
 ## Useful Commands
 
 ```bash
-gh api /repos/openclaw/openclaw/security-advisories/<GHSA>
-gh api /repos/openclaw/openclaw/security-advisories --paginate
+gh api /repos/soloclaw/soloclaw/security-advisories/<GHSA>
+gh api /repos/soloclaw/soloclaw/security-advisories --paginate
 git tag --sort=-creatordate | head -n 20
 npm view openclaw version --userconfig "$(mktemp)"
 git tag --contains <commit>
 git show <tag>:<path>
-gh search issues --repo openclaw/openclaw --match title,body,comments -- "<terms>"
-gh search prs --repo openclaw/openclaw --match title,body,comments -- "<terms>"
+gh search issues --repo soloclaw/soloclaw --match title,body,comments -- "<terms>"
+gh search prs --repo soloclaw/soloclaw --match title,body,comments -- "<terms>"
 ```
 
 ## Decision Notes

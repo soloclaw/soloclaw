@@ -274,12 +274,12 @@ describe("bundled plugin postinstall", () => {
         "utf8",
       ),
     ).resolves.toBe(
-      "// Compatibility stub for older OpenClaw updaters. The QA channel implementation is not packaged.\nexport {};\n",
+      "// Compatibility stub for older SoloClaw updaters. The QA channel implementation is not packaged.\nexport {};\n",
     );
     await expect(
       fs.readFile(path.join(packageRoot, "dist", "extensions", "qa-lab", "runtime-api.js"), "utf8"),
     ).resolves.toBe(
-      "// Compatibility stub for older OpenClaw updaters. The QA lab implementation is not packaged.\nexport {};\n",
+      "// Compatibility stub for older SoloClaw updaters. The QA lab implementation is not packaged.\nexport {};\n",
     );
     await expect(
       fs.stat(path.join(packageRoot, "dist", "extensions", "qa-channel", "package.json")),

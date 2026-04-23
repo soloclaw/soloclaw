@@ -1,7 +1,7 @@
 ---
 summary: "Plugin internals: capability model, ownership, contracts, load pipeline, and runtime helpers"
 read_when:
-  - Building or debugging native OpenClaw plugins
+  - Building or debugging native SoloClaw plugins
   - Understanding the plugin capability model or ownership boundaries
   - Working on the plugin load pipeline or registry
   - Implementing provider runtime hooks or channel plugins
@@ -20,12 +20,12 @@ sidebarTitle: "Internals"
   - [SDK Overview](/plugins/sdk-overview) — import map and registration API
 </Info>
 
-This page covers the internal architecture of the OpenClaw plugin system.
+This page covers the internal architecture of the SoloClaw plugin system.
 
 ## Public capability model
 
 Capabilities are the public **native plugin** model inside OpenClaw. Every
-native OpenClaw plugin registers against one or more capability types:
+native SoloClaw plugin registers against one or more capability types:
 
 | Capability             | Registration method                              | Example plugins                      |
 | ---------------------- | ------------------------------------------------ | ------------------------------------ |
@@ -71,7 +71,7 @@ Practical rule:
 
 ### Plugin shapes
 
-OpenClaw classifies every loaded plugin into a shape based on its actual
+SoloClaw classifies every loaded plugin into a shape based on its actual
 registration behavior (not just static metadata):
 
 - **plain-capability** -- registers exactly one capability type (for example a
@@ -121,18 +121,18 @@ signals also appear in `soloclaw status --all` and `soloclaw plugins doctor`.
 OpenClaw's plugin system has four layers:
 
 1. **Manifest + discovery**
-   OpenClaw finds candidate plugins from configured paths, workspace roots,
+   SoloClaw finds candidate plugins from configured paths, workspace roots,
    global extension roots, and bundled extensions. Discovery reads native
    `soloclaw.plugin.json` manifests plus supported bundle manifests first.
 2. **Enablement + validation**
    Core decides whether a discovered plugin is enabled, disabled, blocked, or
    selected for an exclusive slot such as memory.
 3. **Runtime loading**
-   Native OpenClaw plugins are loaded in-process via jiti and register
+   Native SoloClaw plugins are loaded in-process via jiti and register
    capabilities into a central registry. Compatible bundles are normalized into
    registry records without importing runtime code.
 4. **Surface consumption**
-   The rest of OpenClaw reads the registry to expose tools, channels, provider
+   The rest of SoloClaw reads the registry to expose tools, channels, provider
    setup, hooks, HTTP routes, CLI commands, and services.
 
 For plugin CLI specifically, root command discovery is split in two phases:
@@ -149,13 +149,13 @@ The important design boundary:
   without executing plugin code
 - native runtime behavior comes from the plugin module's `register(api)` path
 
-That split lets OpenClaw validate config, explain missing/disabled plugins, and
+That split lets SoloClaw validate config, explain missing/disabled plugins, and
 build UI/schema hints before the full runtime is active.
 
 ### Channel plugins and the shared message tool
 
 Channel plugins do not need to register a separate send/edit/react tool for
-normal chat actions. OpenClaw keeps one shared `message` tool in core, and
+normal chat actions. SoloClaw keeps one shared `message` tool in core, and
 channel plugins own the channel-specific discovery and execution behind it.
 
 The current boundary is:
@@ -231,7 +231,7 @@ See [Load pipeline](#load-pipeline) for the full startup sequence.
 
 ## Capability ownership model
 
-OpenClaw treats a native plugin as the ownership boundary for a **company** or a
+SoloClaw treats a native plugin as the ownership boundary for a **company** or a
 **feature**, not as a grab bag of unrelated integrations.
 
 That means:
@@ -273,7 +273,7 @@ This is the key distinction:
 - **plugin** = ownership boundary
 - **capability** = core contract that multiple plugins can implement or consume
 
-So if OpenClaw adds a new domain such as video, the first question is not
+So if SoloClaw adds a new domain such as video, the first question is not
 "which provider should hardcode video handling?" The first question is "what is
 the core video capability contract?" Once that contract exists, vendor plugins
 can register against it and channel/feature plugins can consume it.
@@ -309,7 +309,7 @@ That same pattern should be preferred for future capabilities.
 
 ### Multi-capability company plugin example
 
-A company plugin should feel cohesive from the outside. If OpenClaw has shared
+A company plugin should feel cohesive from the outside. If SoloClaw has shared
 contracts for models, speech, realtime transcription, realtime voice, media
 understanding, image generation, video generation, web fetch, and web search,
 a vendor can own all of its surfaces in one place:
@@ -376,7 +376,7 @@ What matters is not the exact helper names. The shape matters:
 
 ### Capability example: video understanding
 
-OpenClaw already treats image/audio/video understanding as one shared
+SoloClaw already treats image/audio/video understanding as one shared
 capability. The same ownership model applies there:
 
 1. core defines the media-understanding contract
@@ -417,11 +417,11 @@ There are two layers of enforcement:
    registrations produce plugin diagnostics instead of undefined behavior.
 2. **contract tests**
    Bundled plugins are captured in contract registries during test runs so
-   OpenClaw can assert ownership explicitly. Today this is used for model
+   SoloClaw can assert ownership explicitly. Today this is used for model
    providers, speech providers, web search providers, and bundled registration
    ownership.
 
-The practical effect is that OpenClaw knows, up front, which plugin owns which
+The practical effect is that SoloClaw knows, up front, which plugin owns which
 surface. That lets core and channels compose seamlessly because ownership is
 declared, typed, and testable rather than implicit.
 
@@ -449,7 +449,7 @@ let plugins plug into it.
 
 ## Execution model
 
-Native OpenClaw plugins run **in-process** with the Gateway. They are not
+Native SoloClaw plugins run **in-process** with the Gateway. They are not
 sandboxed. A loaded native plugin has the same process-level trust boundary as
 core code.
 
@@ -458,9 +458,9 @@ Implications:
 - a native plugin can register tools, network handlers, hooks, and services
 - a native plugin bug can crash or destabilize the gateway
 - a malicious native plugin is equivalent to arbitrary code execution inside
-  the OpenClaw process
+  the SoloClaw process
 
-Compatible bundles are safer by default because OpenClaw currently treats them
+Compatible bundles are safer by default because SoloClaw currently treats them
 as metadata/content packs. In current releases, that mostly means bundled
 skills.
 
@@ -481,7 +481,7 @@ Important trust note:
 
 ## Export boundary
 
-OpenClaw exports capabilities, not implementation convenience.
+SoloClaw exports capabilities, not implementation convenience.
 
 Keep capability registration public. Trim non-contract helper exports:
 
@@ -499,7 +499,7 @@ new third-party plugins.
 
 ## Load pipeline
 
-At startup, OpenClaw does roughly this:
+At startup, SoloClaw does roughly this:
 
 1. discover candidate plugin roots
 2. read native or compatible bundle manifests and package metadata
@@ -521,7 +521,7 @@ ownership looks suspicious for non-bundled plugins.
 
 ### Manifest-first behavior
 
-The manifest is the control-plane source of truth. OpenClaw uses it to:
+The manifest is the control-plane source of truth. SoloClaw uses it to:
 
 - identify the plugin
 - discover declared channels/skills/config schema or bundle capabilities
@@ -554,7 +554,7 @@ order.
 
 ### What the loader caches
 
-OpenClaw keeps short in-process caches for:
+SoloClaw keeps short in-process caches for:
 
 - discovery results
 - manifest registry data
@@ -664,7 +664,7 @@ Provider plugins now have two layers:
   `buildReplayPolicy`,
   `sanitizeReplayHistory`, `validateReplayTurns`, `onModelSelected`
 
-OpenClaw still owns the generic agent loop, failover, transcript handling, and
+SoloClaw still owns the generic agent loop, failover, transcript handling, and
 tool policy. These hooks are the extension surface for provider-specific behavior without
 needing a whole custom inference transport.
 
@@ -684,14 +684,14 @@ without loading channel runtime.
 
 ### Hook order and usage
 
-For model/provider plugins, OpenClaw calls hooks in this rough order.
+For model/provider plugins, SoloClaw calls hooks in this rough order.
 The "When to use" column is the quick decision guide.
 
 | #   | Hook                              | What it does                                                                                                   | When to use                                                                                                                                 |
 | --- | --------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1   | `catalog`                         | Publish provider config into `models.providers` during `models.json` generation                                | Provider owns a catalog or base URL defaults                                                                                                |
 | 2   | `applyConfigDefaults`             | Apply provider-owned global config defaults during config materialization                                      | Defaults depend on auth mode, env, or provider model-family semantics                                                                       |
-| --  | _(built-in model lookup)_         | OpenClaw tries the normal registry/catalog path first                                                          | _(not a plugin hook)_                                                                                                                       |
+| --  | _(built-in model lookup)_         | SoloClaw tries the normal registry/catalog path first                                                          | _(not a plugin hook)_                                                                                                                       |
 | 3   | `normalizeModelId`                | Normalize legacy or preview model-id aliases before lookup                                                     | Provider owns alias cleanup before canonical model resolution                                                                               |
 | 4   | `normalizeTransport`              | Normalize provider-family `api` / `baseUrl` before generic model assembly                                      | Provider owns transport cleanup for custom provider ids in the same transport family                                                        |
 | 5   | `normalizeConfig`                 | Normalize `models.providers.<id>` before runtime/provider resolution                                           | Provider needs config cleanup that should live with the plugin; bundled Google-family helpers also backstop supported Google config entries |
@@ -967,7 +967,7 @@ Notes:
 - Use speech providers for vendor-owned synthesis behavior.
 - Legacy Microsoft `edge` input is normalized to the `microsoft` provider id.
 - The preferred ownership model is company-oriented: one vendor plugin can own
-  text, speech, image, and future media providers as OpenClaw adds those
+  text, speech, image, and future media providers as SoloClaw adds those
   capability contracts.
 
 For image/audio/video understanding, plugins register one typed
@@ -1044,7 +1044,7 @@ const result = await api.runtime.subagent.run({
 Notes:
 
 - `provider` and `model` are optional per-run overrides, not persistent session changes.
-- OpenClaw only honors those override fields for trusted callers.
+- SoloClaw only honors those override fields for trusted callers.
 - For plugin-owned fallback runs, operators must opt in with `plugins.entries.<id>.subagent.allowModelOverride: true`.
 - Use `plugins.entries.<id>.subagent.allowedModels` to restrict trusted plugins to specific canonical `provider/model` targets, or `"*"` to allow any target explicitly.
 - Untrusted plugin subagent runs still work, but override requests are rejected instead of silently falling back.
@@ -1060,7 +1060,7 @@ const providers = api.runtime.webSearch.listProviders({
 const result = await api.runtime.webSearch.search({
   config: api.config,
   args: {
-    query: "OpenClaw plugin runtime helpers",
+    query: "SoloClaw plugin runtime helpers",
     count: 5,
   },
 });
@@ -1195,7 +1195,7 @@ authoring plugins:
   generic primitives instead, and repo code should not add new imports of the
   shim.
 - Bundled extension internals remain private. External plugins should use only
-  `soloclaw/plugin-sdk/*` subpaths. OpenClaw core/test code may use the repo
+  `soloclaw/plugin-sdk/*` subpaths. SoloClaw core/test code may use the repo
   public entry points under a plugin package root such as `index.js`, `api.js`,
   `runtime-api.js`, `setup-entry.js`, and narrowly scoped files such as
   `login-qr-api.js`. Never import a plugin package's `src/*` from core or from
@@ -1216,7 +1216,7 @@ authoring plugins:
     `plugin-sdk/provider-stream` helpers for repo-local use.
 - Facade-loaded public entry points prefer the active runtime config snapshot
   when one exists, then fall back to the resolved config file on disk when
-  OpenClaw is not yet serving a runtime snapshot.
+  SoloClaw is not yet serving a runtime snapshot.
 - Generic shared primitives remain the preferred public SDK contract. A small
   reserved compatibility set of bundled channel-branded helper seams still
   exists. Treat those as bundled-maintenance/compatibility seams, not new
@@ -1314,7 +1314,7 @@ plugin implementation.
 Provider plugins can define model catalogs for inference with
 `registerProvider({ catalog: { run(...) { ... } } })`.
 
-`catalog.run(...)` returns the same shape OpenClaw writes into
+`catalog.run(...)` returns the same shape SoloClaw writes into
 `models.providers`:
 
 - `{ provider }` for one provider entry
@@ -1337,7 +1337,7 @@ built-in provider entry with the same provider id.
 Compatibility:
 
 - `discovery` still works as a legacy alias
-- if both `catalog` and `discovery` are registered, OpenClaw uses `catalog`
+- if both `catalog` and `discovery` are registered, SoloClaw uses `catalog`
 
 ## Read-only channel inspection
 
@@ -1378,7 +1378,7 @@ A plugin directory may include a `package.json` with `openclaw.extensions`:
 ```json
 {
   "name": "my-pack",
-  "openclaw": {
+  "soloclaw": {
     "extensions": ["./src/safety.ts", "./src/tools.ts"],
     "setupEntry": "./src/setup-entry.ts"
   }
@@ -1400,7 +1400,7 @@ Security note: `soloclaw plugins install` installs plugin dependencies with
 trees "pure JS/TS" and avoid packages that require `postinstall` builds.
 
 Optional: `openclaw.setupEntry` can point at a lightweight setup-only module.
-When OpenClaw needs setup surfaces for a disabled channel plugin, or
+When SoloClaw needs setup surfaces for a disabled channel plugin, or
 when a channel plugin is enabled but still unconfigured, it loads `setupEntry`
 instead of the full plugin entry. This keeps startup and setup lighter
 when your main plugin entry also wires tools, hooks, or other runtime-only
@@ -1419,7 +1419,7 @@ must register every channel-owned capability that startup depends on, such as:
 - any gateway methods, tools, or services that must exist during that same window
 
 If your full entry still owns any required startup capability, do not enable
-this flag. Keep the plugin on the default behavior and let OpenClaw load the
+this flag. Keep the plugin on the default behavior and let SoloClaw load the
 full entry during startup.
 
 Bundled channels can also publish setup-only contract-surface helpers that core
@@ -1451,7 +1451,7 @@ Example:
 ```json
 {
   "name": "@scope/my-channel",
-  "openclaw": {
+  "soloclaw": {
     "extensions": ["./index.ts"],
     "setupEntry": "./setup-entry.ts",
     "startup": {
@@ -1471,7 +1471,7 @@ Example:
 ```json
 {
   "name": "@soloclaw/nextcloud-talk",
-  "openclaw": {
+  "soloclaw": {
     "extensions": ["./index.ts"],
     "channel": {
       "id": "nextcloud-talk",
@@ -1507,7 +1507,7 @@ Useful `openclaw.channel` fields beyond the minimal example:
 - `forceAccountBinding`: require explicit account binding even when only one account exists
 - `preferSessionLookupForAnnounceTarget`: prefer session lookup when resolving announce targets
 
-OpenClaw can also merge **external channel catalogs** (for example, an MPM
+SoloClaw can also merge **external channel catalogs** (for example, an MPM
 registry export). Drop a JSON file at one of:
 
 - `~/.soloclaw/mpm/plugins.json`
@@ -1516,7 +1516,7 @@ registry export). Drop a JSON file at one of:
 
 Or point `SOLOCLAW_PLUGIN_CATALOG_PATHS` (or `SOLOCLAW_MPM_CATALOG_PATHS`) at
 one or more JSON files (comma/semicolon/`PATH`-delimited). Each file should
-contain `{ "entries": [ { "name": "@scope/pkg", "openclaw": { "channel": {...}, "install": {...} } } ] }`. The parser also accepts `"packages"` or `"plugins"` as legacy aliases for the `"entries"` key.
+contain `{ "entries": [ { "name": "@scope/pkg", "soloclaw": { "channel": {...}, "install": {...} } } ] }`. The parser also accepts `"packages"` or `"plugins"` as legacy aliases for the `"entries"` key.
 
 ## Context engine plugins
 
@@ -1611,7 +1611,7 @@ Recommended sequence:
 5. add contract coverage
    Add tests so ownership and registration shape stay explicit over time.
 
-This is how OpenClaw stays opinionated without becoming hardcoded to one
+This is how SoloClaw stays opinionated without becoming hardcoded to one
 provider's worldview. See the [Capability Cookbook](/tools/capability-cookbook)
 for a concrete file checklist and worked example.
 

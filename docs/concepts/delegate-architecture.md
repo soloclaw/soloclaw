@@ -1,5 +1,5 @@
 ---
-summary: "Delegate architecture: running OpenClaw as a named agent on behalf of an organization"
+summary: "Delegate architecture: running SoloClaw as a named agent on behalf of an organization"
 title: Delegate Architecture
 read_when: "You want an agent with its own identity that acts on behalf of humans in an organization."
 status: active
@@ -7,13 +7,13 @@ status: active
 
 # Delegate Architecture
 
-Goal: run OpenClaw as a **named delegate** — an agent with its own identity that acts "on behalf of" people in an organization. The agent never impersonates a human. It sends, reads, and schedules under its own account with explicit delegation permissions.
+Goal: run SoloClaw as a **named delegate** — an agent with its own identity that acts "on behalf of" people in an organization. The agent never impersonates a human. It sends, reads, and schedules under its own account with explicit delegation permissions.
 
 This extends [Multi-Agent Routing](/concepts/multi-agent) from personal use into organizational deployments.
 
 ## What is a delegate?
 
-A **delegate** is an OpenClaw agent that:
+A **delegate** is an SoloClaw agent that:
 
 - Has its **own identity** (email address, display name, calendar).
 - Acts **on behalf of** one or more humans — never pretends to be them.
@@ -283,7 +283,7 @@ A complete delegate configuration for an organizational assistant that handles e
 The delegate's `AGENTS.md` defines its autonomous authority — what it may do without asking, what requires approval, and what is forbidden. [Cron Jobs](/automation/cron-jobs) drive its daily schedule.
 
 If you grant `sessions_history`, remember it is a bounded, safety-filtered
-recall view. OpenClaw redacts credential/token-like text, truncates long
+recall view. SoloClaw redacts credential/token-like text, truncates long
 content, strips thinking tags / `<relevant-memories>` scaffolding / plain-text
 tool-call XML payloads (including `<tool_call>...</tool_call>`,
 `<function_call>...</function_call>`, `<tool_calls>...</tool_calls>`,

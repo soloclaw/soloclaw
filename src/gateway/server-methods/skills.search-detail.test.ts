@@ -160,7 +160,7 @@ describe("skills.detail handler", () => {
         createdAt: 1700000000,
       },
       owner: {
-        handle: "openclaw",
+        handle: "soloclaw",
         displayName: "OpenClaw",
       },
     };

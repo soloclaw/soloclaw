@@ -6,7 +6,7 @@ import { createBrowserRouteContext } from "./server-context.js";
 export const originalFetch = globalThis.fetch;
 
 export function makeState(
-  profile: "remote" | "openclaw",
+  profile: "remote" | "soloclaw",
 ): BrowserServerState & { profiles: Map<string, { lastTargetId?: string | null }> } {
   return {
     server: null as unknown as BrowserServerState["server"],

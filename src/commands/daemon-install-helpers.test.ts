@@ -398,7 +398,7 @@ describe("buildGatewayInstallPlan — dotenv merge", () => {
         BLOGWATCHER_HOME: "/Users/test/.blogwatcher",
         NODE_OPTIONS: "--require /tmp/evil.js",
         GOPATH: "/Users/test/.local/gopath",
-        SOLOCLAW_SERVICE_MARKER: "openclaw",
+        SOLOCLAW_SERVICE_MARKER: "soloclaw",
       },
     });
 

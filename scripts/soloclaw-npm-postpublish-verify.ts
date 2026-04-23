@@ -164,7 +164,7 @@ export function collectInstalledContextEngineRuntimeErrors(packageRoot: string):
 export function resolveInstalledBinaryPath(prefixDir: string, platform = process.platform): string {
   return platform === "win32"
     ? join(prefixDir, "openclaw.cmd")
-    : join(prefixDir, "bin", "openclaw");
+    : join(prefixDir, "bin", "soloclaw");
 }
 
 function collectExpectedBundledExtensionPackageIds(): ReadonlySet<string> {
@@ -333,7 +333,7 @@ function verifyScenario(version: string, scenario: PublishedInstallScenario): vo
     }
 
     const globalRoot = resolveGlobalRoot(prefixDir, workingDir);
-    const packageRoot = join(globalRoot, "openclaw");
+    const packageRoot = join(globalRoot, "soloclaw");
     const pkg = JSON.parse(
       readFileSync(join(packageRoot, "package.json"), "utf8"),
     ) as InstalledPackageJson;

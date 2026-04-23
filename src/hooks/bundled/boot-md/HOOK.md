@@ -4,7 +4,7 @@ description: "Run BOOT.md on gateway startup"
 homepage: https://docs.soloclaw.ai/automation/hooks#boot-md
 metadata:
   {
-    "openclaw":
+    "soloclaw":
       {
         "emoji": "🚀",
         "events": ["gateway:startup"],

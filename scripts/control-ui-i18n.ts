@@ -513,7 +513,7 @@ function getPiRuntimeDir() {
   return path.join(
     homedir(),
     ".cache",
-    "openclaw",
+    "soloclaw",
     "control-ui-i18n",
     "pi-runtime",
     resolvePiPackageVersion(),

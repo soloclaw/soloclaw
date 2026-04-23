@@ -127,7 +127,7 @@ describe("config io audit helpers", () => {
         pid: 101,
         ppid: 99,
         cwd: "/work",
-        argv: ["node", "openclaw"],
+        argv: ["node", "soloclaw"],
         execArgv: ["--loader"],
       },
     });

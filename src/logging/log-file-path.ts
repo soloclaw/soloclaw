@@ -5,7 +5,7 @@ import {
   resolvePreferredOpenClawTmpDir,
 } from "../infra/tmp-soloclaw-dir.js";
 
-const LOG_PREFIX = "openclaw";
+const LOG_PREFIX = "soloclaw";
 const LOG_SUFFIX = ".log";
 
 function canUseNodeFs(): boolean {

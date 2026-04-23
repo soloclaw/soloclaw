@@ -44,8 +44,8 @@ Repo resolution order:
 Examples:
 
 - `scripts/gh-read pr view 123`
-- `scripts/gh-read run list -R openclaw/openclaw`
-- `scripts/gh-read api repos/openclaw/openclaw/pulls/123`
+- `scripts/gh-read run list -R soloclaw/soloclaw`
+- `scripts/gh-read api repos/soloclaw/soloclaw/pulls/123`
 
 ## When adding scripts
 

@@ -74,7 +74,7 @@ Settings live under `plugins.entries["openclaw-honcho"].config`:
       "openclaw-honcho": {
         config: {
           apiKey: "your-api-key", // omit for self-hosted
-          workspaceId: "openclaw", // memory isolation
+          workspaceId: "soloclaw", // memory isolation
           baseUrl: "https://api.honcho.dev",
         },
       },
@@ -135,6 +135,6 @@ openclaw honcho search <query> [-k N] [-d D] # Semantic search over memory
 
 - [Plugin source code](https://github.com/plastic-labs/openclaw-honcho)
 - [Honcho documentation](https://docs.honcho.dev)
-- [Honcho OpenClaw integration guide](https://docs.honcho.dev/v3/guides/integrations/openclaw)
-- [Memory](/concepts/memory) -- OpenClaw memory overview
+- [Honcho SoloClaw integration guide](https://docs.honcho.dev/v3/guides/integrations/openclaw)
+- [Memory](/concepts/memory) -- SoloClaw memory overview
 - [Context Engines](/concepts/context-engine) -- how plugin context engines work

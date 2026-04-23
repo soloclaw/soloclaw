@@ -200,19 +200,19 @@ describe("lookupContextTokens", () => {
     try {
       for (const scenario of [
         {
-          argv: ["node", "openclaw", "chat"],
+          argv: ["node", "soloclaw", "chat"],
           expectedCalls: 1,
         },
         {
-          argv: ["node", "openclaw", "--profile", "--", "config", "validate"],
+          argv: ["node", "soloclaw", "--profile", "--", "config", "validate"],
           expectedCalls: 0,
         },
         {
-          argv: ["node", "openclaw", "logs", "--limit", "5"],
+          argv: ["node", "soloclaw", "logs", "--limit", "5"],
           expectedCalls: 0,
         },
         {
-          argv: ["node", "openclaw", "status", "--json"],
+          argv: ["node", "soloclaw", "status", "--json"],
           expectedCalls: 0,
         },
         {

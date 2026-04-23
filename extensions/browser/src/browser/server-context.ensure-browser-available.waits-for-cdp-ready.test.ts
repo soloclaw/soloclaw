@@ -20,7 +20,7 @@ function setupEnsureBrowserAvailableHarness() {
 
   const state = makeBrowserServerState();
   const ctx = createBrowserRouteContext({ getState: () => state });
-  const profile = ctx.forProfile("openclaw");
+  const profile = ctx.forProfile("soloclaw");
 
   return { launchOpenClawChrome, stopOpenClawChrome, isChromeCdpReady, profile, state };
 }
@@ -100,7 +100,7 @@ describe("browser server-context ensureBrowserAvailable", () => {
       color: "#00AA00",
     };
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const profile = ctx.forProfile("openclaw");
+    const profile = ctx.forProfile("soloclaw");
     const expectedRemoteHttpTimeoutMs = state.resolved.remoteCdpTimeoutMs;
     const expectedRemoteWsTimeoutMs = state.resolved.remoteCdpHandshakeTimeoutMs;
 
@@ -146,7 +146,7 @@ describe("browser server-context ensureBrowserAvailable", () => {
         cdpIsLoopback: true,
         cdpPort: 9222,
         color: "#00AA00",
-        driver: "openclaw",
+        driver: "soloclaw",
         attachOnly: true,
       },
       resolvedOverrides: {
@@ -189,7 +189,7 @@ describe("browser server-context ensureBrowserAvailable", () => {
         cdpIsLoopback: false,
         cdpPort: 443,
         color: "#00AA00",
-        driver: "openclaw",
+        driver: "soloclaw",
         attachOnly: false,
       },
       resolvedOverrides: {

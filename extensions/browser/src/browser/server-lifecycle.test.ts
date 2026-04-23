@@ -40,7 +40,7 @@ describe("ensureExtensionRelayForProfiles", () => {
 
 describe("stopKnownBrowserProfiles", () => {
   it("stops all known profiles and ignores per-profile failures", async () => {
-    listKnownProfileNamesMock.mockReturnValue(["openclaw", "user"]);
+    listKnownProfileNamesMock.mockReturnValue(["soloclaw", "user"]);
     const stopMap: Record<string, ReturnType<typeof vi.fn>> = {
       openclaw: vi.fn(async () => {}),
       user: vi.fn(async () => {
@@ -75,7 +75,7 @@ describe("stopKnownBrowserProfiles", () => {
     const localRuntime = {
       profile: {
         name: "deleted-local",
-        driver: "openclaw",
+        driver: "soloclaw",
       },
       running: {
         pid: 42,

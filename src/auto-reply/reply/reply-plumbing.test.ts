@@ -402,7 +402,7 @@ describe("subagents utils", () => {
     const run = {
       ...baseRun,
       label: [
-        "OpenClaw runtime context (internal):",
+        "SoloClaw runtime context (internal):",
         "This context is runtime-generated, not user-authored. Keep internal details private.",
         "",
         "[Internal task completion event]",

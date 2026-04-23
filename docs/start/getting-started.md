@@ -1,5 +1,5 @@
 ---
-summary: "Get OpenClaw installed and run your first chat in minutes."
+summary: "Get SoloClaw installed and run your first chat in minutes."
 read_when:
   - First time setup from zero
   - You want the fastest path to a working chat
@@ -31,7 +31,7 @@ Need to install Node? See [Node setup](/install/node).
     <Tabs>
       <Tab title="macOS / Linux">
         ```bash
-        curl -fsSL https://openclaw.ai/install.sh | bash
+        curl -fsSL https://soloclaw.ai/install.sh | bash
         ```
         <img
   src="/assets/install-script.svg"
@@ -41,7 +41,7 @@ Need to install Node? See [Node setup](/install/node).
       </Tab>
       <Tab title="Windows (PowerShell)">
         ```powershell
-        iwr -useb https://openclaw.ai/install.ps1 | iex
+        iwr -useb https://soloclaw.ai/install.ps1 | iex
         ```
       </Tab>
     </Tabs>
@@ -138,7 +138,7 @@ openclaw dashboard
 </Columns>
 
 <Accordion title="Advanced: environment variables">
-  If you run OpenClaw as a service account or want custom paths:
+  If you run SoloClaw as a service account or want custom paths:
 
 - `SOLOCLAW_HOME` — home directory for internal path resolution
 - `SOLOCLAW_STATE_DIR` — override the state directory

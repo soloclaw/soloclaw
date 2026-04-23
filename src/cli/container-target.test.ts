@@ -8,24 +8,24 @@ import {
 describe("parseCliContainerArgs", () => {
   it("extracts a root --container flag before the command", () => {
     expect(
-      parseCliContainerArgs(["node", "openclaw", "--container", "demo", "status", "--deep"]),
+      parseCliContainerArgs(["node", "soloclaw", "--container", "demo", "status", "--deep"]),
     ).toEqual({
       ok: true,
       container: "demo",
-      argv: ["node", "openclaw", "status", "--deep"],
+      argv: ["node", "soloclaw", "status", "--deep"],
     });
   });
 
   it("accepts the equals form", () => {
-    expect(parseCliContainerArgs(["node", "openclaw", "--container=demo", "health"])).toEqual({
+    expect(parseCliContainerArgs(["node", "soloclaw", "--container=demo", "health"])).toEqual({
       ok: true,
       container: "demo",
-      argv: ["node", "openclaw", "health"],
+      argv: ["node", "soloclaw", "health"],
     });
   });
 
   it("rejects a missing container value", () => {
-    expect(parseCliContainerArgs(["node", "openclaw", "--container"])).toEqual({
+    expect(parseCliContainerArgs(["node", "soloclaw", "--container"])).toEqual({
       ok: false,
       error: "--container requires a value",
     });
@@ -33,7 +33,7 @@ describe("parseCliContainerArgs", () => {
 
   it("does not consume an adjacent flag as the container value", () => {
     expect(
-      parseCliContainerArgs(["node", "openclaw", "--container", "--no-color", "status"]),
+      parseCliContainerArgs(["node", "soloclaw", "--container", "--no-color", "status"]),
     ).toEqual({
       ok: false,
       error: "--container requires a value",
@@ -41,20 +41,20 @@ describe("parseCliContainerArgs", () => {
   });
 
   it("leaves argv unchanged when the flag is absent", () => {
-    expect(parseCliContainerArgs(["node", "openclaw", "status"])).toEqual({
+    expect(parseCliContainerArgs(["node", "soloclaw", "status"])).toEqual({
       ok: true,
       container: null,
-      argv: ["node", "openclaw", "status"],
+      argv: ["node", "soloclaw", "status"],
     });
   });
 
   it("extracts --container after the command like other root options", () => {
     expect(
-      parseCliContainerArgs(["node", "openclaw", "status", "--container", "demo", "--deep"]),
+      parseCliContainerArgs(["node", "soloclaw", "status", "--container", "demo", "--deep"]),
     ).toEqual({
       ok: true,
       container: "demo",
-      argv: ["node", "openclaw", "status", "--deep"],
+      argv: ["node", "soloclaw", "status", "--deep"],
     });
   });
 
@@ -62,7 +62,7 @@ describe("parseCliContainerArgs", () => {
     expect(
       parseCliContainerArgs([
         "node",
-        "openclaw",
+        "soloclaw",
         "nodes",
         "run",
         "--",
@@ -77,7 +77,7 @@ describe("parseCliContainerArgs", () => {
       container: null,
       argv: [
         "node",
-        "openclaw",
+        "soloclaw",
         "nodes",
         "run",
         "--",
@@ -94,11 +94,11 @@ describe("parseCliContainerArgs", () => {
 describe("resolveCliContainerTarget", () => {
   it("uses argv first and falls back to SOLOCLAW_CONTAINER", () => {
     expect(
-      resolveCliContainerTarget(["node", "openclaw", "--container", "demo", "status"], {}),
+      resolveCliContainerTarget(["node", "soloclaw", "--container", "demo", "status"], {}),
     ).toBe("demo");
-    expect(resolveCliContainerTarget(["node", "openclaw", "status"], {})).toBeNull();
+    expect(resolveCliContainerTarget(["node", "soloclaw", "status"], {})).toBeNull();
     expect(
-      resolveCliContainerTarget(["node", "openclaw", "status"], {
+      resolveCliContainerTarget(["node", "soloclaw", "status"], {
         SOLOCLAW_CONTAINER: "demo",
       } as NodeJS.ProcessEnv),
     ).toBe("demo");
@@ -107,9 +107,9 @@ describe("resolveCliContainerTarget", () => {
 
 describe("maybeRunCliInContainer", () => {
   it("passes through when no container target is provided", () => {
-    expect(maybeRunCliInContainer(["node", "openclaw", "status"], { env: {} })).toEqual({
+    expect(maybeRunCliInContainer(["node", "soloclaw", "status"], { env: {} })).toEqual({
       handled: false,
-      argv: ["node", "openclaw", "status"],
+      argv: ["node", "soloclaw", "status"],
     });
   });
 
@@ -130,7 +130,7 @@ describe("maybeRunCliInContainer", () => {
       });
 
     expect(
-      maybeRunCliInContainer(["node", "openclaw", "status"], {
+      maybeRunCliInContainer(["node", "soloclaw", "status"], {
         env: { SOLOCLAW_CONTAINER: "demo" } as NodeJS.ProcessEnv,
         spawnSync,
       }),
@@ -150,7 +150,7 @@ describe("maybeRunCliInContainer", () => {
         "--env",
         "SOLOCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
-        "openclaw",
+        "soloclaw",
         "status",
       ],
       {
@@ -178,7 +178,7 @@ describe("maybeRunCliInContainer", () => {
         stdout: "",
       });
 
-    maybeRunCliInContainer(["node", "openclaw", "status"], {
+    maybeRunCliInContainer(["node", "soloclaw", "status"], {
       env: {
         SOLOCLAW_CONTAINER: "demo",
         SOLOCLAW_PROFILE: "work",
@@ -201,7 +201,7 @@ describe("maybeRunCliInContainer", () => {
         "--env",
         "SOLOCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
-        "openclaw",
+        "soloclaw",
         "status",
       ],
       {
@@ -230,7 +230,7 @@ describe("maybeRunCliInContainer", () => {
       });
 
     expect(
-      maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "status"], {
+      maybeRunCliInContainer(["node", "soloclaw", "--container", "demo", "status"], {
         env: {},
         spawnSync,
       }),
@@ -256,7 +256,7 @@ describe("maybeRunCliInContainer", () => {
         "--env",
         "SOLOCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
-        "openclaw",
+        "soloclaw",
         "status",
       ],
       {
@@ -283,8 +283,8 @@ describe("maybeRunCliInContainer", () => {
       });
 
     expect(
-      maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "health"], {
-        env: { USER: "openclaw" } as NodeJS.ProcessEnv,
+      maybeRunCliInContainer(["node", "soloclaw", "--container", "demo", "health"], {
+        env: { USER: "soloclaw" } as NodeJS.ProcessEnv,
         spawnSync,
       }),
     ).toEqual({
@@ -309,12 +309,12 @@ describe("maybeRunCliInContainer", () => {
         "-e",
         "SOLOCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
-        "openclaw",
+        "soloclaw",
         "health",
       ],
       {
         stdio: "inherit",
-        env: { USER: "openclaw", SOLOCLAW_CONTAINER: "" },
+        env: { USER: "soloclaw", SOLOCLAW_CONTAINER: "" },
       },
     );
   });
@@ -340,7 +340,7 @@ describe("maybeRunCliInContainer", () => {
       });
 
     expect(
-      maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "status"], {
+      maybeRunCliInContainer(["node", "soloclaw", "--container", "demo", "status"], {
         env: { USER: "somalley" } as NodeJS.ProcessEnv,
         spawnSync,
       }),
@@ -372,7 +372,7 @@ describe("maybeRunCliInContainer", () => {
         "-e",
         "SOLOCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
-        "openclaw",
+        "soloclaw",
         "status",
       ],
       {
@@ -396,7 +396,7 @@ describe("maybeRunCliInContainer", () => {
       });
 
     expect(() =>
-      maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "status"], {
+      maybeRunCliInContainer(["node", "soloclaw", "--container", "demo", "status"], {
         env: { USER: "somalley" } as NodeJS.ProcessEnv,
         spawnSync,
       }),
@@ -434,7 +434,7 @@ describe("maybeRunCliInContainer", () => {
       });
 
     expect(() =>
-      maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "status"], {
+      maybeRunCliInContainer(["node", "soloclaw", "--container", "demo", "status"], {
         env: { USER: "somalley" } as NodeJS.ProcessEnv,
         spawnSync,
       }),
@@ -459,7 +459,7 @@ describe("maybeRunCliInContainer", () => {
         stdout: "",
       });
 
-    maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "setup"], {
+    maybeRunCliInContainer(["node", "soloclaw", "--container", "demo", "setup"], {
       env: {},
       spawnSync,
       stdinIsTTY: true,
@@ -478,7 +478,7 @@ describe("maybeRunCliInContainer", () => {
         "--env",
         "SOLOCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
-        "openclaw",
+        "soloclaw",
         "setup",
       ],
       {
@@ -505,7 +505,7 @@ describe("maybeRunCliInContainer", () => {
       });
 
     expect(
-      maybeRunCliInContainer(["node", "openclaw", "--container", "flag-demo", "health"], {
+      maybeRunCliInContainer(["node", "soloclaw", "--container", "flag-demo", "health"], {
         env: { SOLOCLAW_CONTAINER: "env-demo" } as NodeJS.ProcessEnv,
         spawnSync,
       }),
@@ -529,7 +529,7 @@ describe("maybeRunCliInContainer", () => {
     });
 
     expect(() =>
-      maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "status"], {
+      maybeRunCliInContainer(["node", "soloclaw", "--container", "demo", "status"], {
         env: {},
         spawnSync,
       }),
@@ -538,12 +538,12 @@ describe("maybeRunCliInContainer", () => {
 
   it("skips recursion when the bypass env is set", () => {
     expect(
-      maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "status"], {
+      maybeRunCliInContainer(["node", "soloclaw", "--container", "demo", "status"], {
         env: { SOLOCLAW_CLI_CONTAINER_BYPASS: "1" } as NodeJS.ProcessEnv,
       }),
     ).toEqual({
       handled: false,
-      argv: ["node", "openclaw", "--container", "demo", "status"],
+      argv: ["node", "soloclaw", "--container", "demo", "status"],
     });
   });
 
@@ -554,7 +554,7 @@ describe("maybeRunCliInContainer", () => {
     });
 
     expect(() =>
-      maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "update"], {
+      maybeRunCliInContainer(["node", "soloclaw", "--container", "demo", "update"], {
         env: {},
         spawnSync,
       }),
@@ -571,7 +571,7 @@ describe("maybeRunCliInContainer", () => {
     });
 
     expect(() =>
-      maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "--no-color", "update"], {
+      maybeRunCliInContainer(["node", "soloclaw", "--container", "demo", "--no-color", "update"], {
         env: {},
         spawnSync,
       }),
@@ -588,7 +588,7 @@ describe("maybeRunCliInContainer", () => {
     });
 
     expect(() =>
-      maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "--update"], {
+      maybeRunCliInContainer(["node", "soloclaw", "--container", "demo", "--update"], {
         env: {},
         spawnSync,
       }),

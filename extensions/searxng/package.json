@@ -2,7 +2,7 @@
   "name": "@soloclaw/searxng-plugin",
   "version": "2026.4.16",
   "private": true,
-  "description": "OpenClaw SearXNG plugin",
+  "description": "SoloClaw SearXNG plugin",
   "type": "module",
   "devDependencies": {
     "@soloclaw/plugin-sdk": "workspace:*",

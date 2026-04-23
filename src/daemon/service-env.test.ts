@@ -287,11 +287,11 @@ describe("buildServiceEnvironment", () => {
     }
     expect(env.SOLOCLAW_GATEWAY_PORT).toBe("18789");
     expect(env.SOLOCLAW_GATEWAY_TOKEN).toBeUndefined();
-    expect(env.SOLOCLAW_SERVICE_MARKER).toBe("openclaw");
+    expect(env.SOLOCLAW_SERVICE_MARKER).toBe("soloclaw");
     expect(env.SOLOCLAW_SERVICE_KIND).toBe("gateway");
     expect(typeof env.SOLOCLAW_SERVICE_VERSION).toBe("string");
     expect(env.SOLOCLAW_SYSTEMD_UNIT).toBe("openclaw-gateway.service");
-    expect(env.SOLOCLAW_WINDOWS_TASK_NAME).toBe("OpenClaw Gateway");
+    expect(env.SOLOCLAW_WINDOWS_TASK_NAME).toBe("SoloClaw Gateway");
     if (process.platform === "darwin") {
       expect(env.SOLOCLAW_LAUNCHD_LABEL).toBe("ai.soloclaw.gateway");
     }
@@ -319,7 +319,7 @@ describe("buildServiceEnvironment", () => {
       port: 18789,
     });
     expect(env.SOLOCLAW_SYSTEMD_UNIT).toBe("openclaw-gateway-work.service");
-    expect(env.SOLOCLAW_WINDOWS_TASK_NAME).toBe("OpenClaw Gateway (work)");
+    expect(env.SOLOCLAW_WINDOWS_TASK_NAME).toBe("SoloClaw Gateway (work)");
     if (process.platform === "darwin") {
       expect(env.SOLOCLAW_LAUNCHD_LABEL).toBe("ai.soloclaw.work");
     }
@@ -356,7 +356,7 @@ describe("buildServiceEnvironment", () => {
     });
 
     expect(env).not.toHaveProperty("PATH");
-    expect(env.SOLOCLAW_WINDOWS_TASK_NAME).toBe("OpenClaw Gateway");
+    expect(env.SOLOCLAW_WINDOWS_TASK_NAME).toBe("SoloClaw Gateway");
   });
 
   it("prepends extra runtime directories to the gateway service PATH", () => {

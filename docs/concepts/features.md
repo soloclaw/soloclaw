@@ -1,7 +1,7 @@
 ---
-summary: "OpenClaw capabilities across channels, routing, media, and UX."
+summary: "SoloClaw capabilities across channels, routing, media, and UX."
 read_when:
-  - You want a full list of what OpenClaw supports
+  - You want a full list of what SoloClaw supports
 title: "Features"
 ---
 

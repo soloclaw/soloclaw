@@ -50,12 +50,12 @@ soloclaw devices clear --yes --pending --json
 ### `soloclaw devices approve [requestId] [--latest]`
 
 Approve a pending device pairing request by exact `requestId`. If `requestId`
-is omitted or `--latest` is passed, OpenClaw only prints the selected pending
+is omitted or `--latest` is passed, SoloClaw only prints the selected pending
 request and exits; rerun approval with the exact request ID after verifying
 the details.
 
 Note: if a device retries pairing with changed auth details (role/scopes/public
-key), OpenClaw supersedes the previous pending entry and issues a new
+key), SoloClaw supersedes the previous pending entry and issues a new
 `requestId`. Run `soloclaw devices list` right before approval to use the
 current ID.
 

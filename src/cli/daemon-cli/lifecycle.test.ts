@@ -161,7 +161,7 @@ describe("runDaemonRestart health checks", () => {
     recoverInstalledLaunchAgent.mockReset();
 
     service.readCommand.mockResolvedValue({
-      programArguments: ["openclaw", "gateway", "--port", "18789"],
+      programArguments: ["soloclaw", "gateway", "--port", "18789"],
       environment: {},
     });
     service.restart.mockResolvedValue({ outcome: "completed" });

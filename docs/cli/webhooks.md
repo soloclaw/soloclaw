@@ -24,7 +24,7 @@ openclaw webhooks gmail run
 
 ### `webhooks gmail setup`
 
-Configure Gmail watch, Pub/Sub, and OpenClaw webhook delivery.
+Configure Gmail watch, Pub/Sub, and SoloClaw webhook delivery.
 
 Required:
 

@@ -244,7 +244,7 @@ export function syncTelegramMenuCommands(params: {
     // Skip sync if the command list hasn't changed since the last successful
     // sync. This prevents hitting Telegram's 429 rate limit when the gateway
     // is restarted several times in quick succession.
-    // See: openclaw/openclaw#32017
+    // See: soloclaw/soloclaw#32017
     const currentHash = hashCommandList(commandsToRegister);
     const cachedHash = readCachedCommandHash(accountId, botIdentity);
     if (cachedHash === currentHash) {

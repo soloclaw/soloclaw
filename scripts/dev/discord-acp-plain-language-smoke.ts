@@ -55,7 +55,7 @@ type DiscordUser = {
 
 const execFileAsync = promisify(execFile);
 
-type DriverMode = "token" | "webhook" | "openclaw";
+type DriverMode = "token" | "webhook" | "soloclaw";
 
 type Args = {
   channelId: string;
@@ -166,7 +166,7 @@ function usage(): string {
     "Usage: bun scripts/dev/discord-acp-plain-language-smoke.ts " +
     "--channel <discord-channel-id> [--token <driver-token> | --driver webhook --bot-token <bot-token> | --driver openclaw] [options]\n\n" +
     "Manual live smoke only (not CI). Sends a plain-language instruction in Discord and verifies:\n" +
-    "1) OpenClaw spawned an ACP thread binding\n" +
+    "1) SoloClaw spawned an ACP thread binding\n" +
     "2) agent replied in that bound thread with the expected ACK token\n\n" +
     "Options:\n" +
     "  --channel <id>               Parent Discord channel id (required)\n" +
@@ -181,7 +181,7 @@ function usage(): string {
     "  --timeout-ms <n>             Total timeout in ms (default: 240000)\n" +
     "  --poll-ms <n>                Poll interval in ms (default: 1500)\n" +
     "  --thread-bindings-path <p>   Override thread-bindings json path\n" +
-    "  --openclaw-bin <path>        OpenClaw CLI binary for driver=openclaw (default: openclaw)\n" +
+    "  --openclaw-bin <path>        SoloClaw CLI binary for driver=openclaw (default: openclaw)\n" +
     "  --json                       Emit JSON output\n" +
     "\n" +
     "Environment fallbacks:\n" +
@@ -208,8 +208,8 @@ function parseArgs(): Args {
   const driverMode: DriverMode =
     normalizedDriverMode === "webhook"
       ? "webhook"
-      : normalizedDriverMode === "openclaw"
-        ? "openclaw"
+      : normalizedDriverMode === "soloclaw"
+        ? "soloclaw"
         : normalizedDriverMode === "token"
           ? "token"
           : "token";
@@ -245,7 +245,7 @@ function parseArgs(): Args {
     process.env.SOLOCLAW_DISCORD_SMOKE_THREAD_BINDINGS_PATH ||
     defaultBindingsPath;
   const openclawBin =
-    resolveArg("--openclaw-bin") || process.env.SOLOCLAW_DISCORD_SMOKE_SOLOCLAW_BIN || "openclaw";
+    resolveArg("--openclaw-bin") || process.env.SOLOCLAW_DISCORD_SMOKE_SOLOCLAW_BIN || "soloclaw";
   const json = hasFlag("--json");
 
   if (!channelId) {
@@ -475,7 +475,7 @@ async function loadParentRecentMessages(params: {
   args: Args;
   readAuthHeader: string;
 }): Promise<DiscordMessage[]> {
-  if (params.args.driverMode === "openclaw") {
+  if (params.args.driverMode === "soloclaw") {
     return await readMessagesWithOpenclaw({
       openclawBin: params.args.soloclawBin,
       target: params.args.channelId,
@@ -727,7 +727,7 @@ async function run(): Promise<SuccessResult | FailureResult> {
     while (Date.now() < deadline && !ackMessage) {
       try {
         const threadMessages =
-          args.driverMode === "openclaw"
+          args.driverMode === "soloclaw"
             ? await readMessagesWithOpenclaw({
                 openclawBin: args.soloclawBin,
                 target: threadId,

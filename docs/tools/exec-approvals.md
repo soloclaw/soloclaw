@@ -48,7 +48,7 @@ Trust model note:
 - Exec approvals reduce accidental execution risk, but are not a per-user auth boundary.
 - Approved node-host runs bind canonical execution context: canonical cwd, exact argv, env
   binding when present, and pinned executable path when applicable.
-- For shell scripts and direct interpreter/runtime file invocations, OpenClaw also tries to bind
+- For shell scripts and direct interpreter/runtime file invocations, SoloClaw also tries to bind
   one concrete local file operand. If that bound file changes after approval but before execution,
   the run is denied instead of executing drifted content.
 - This file binding is intentionally best-effort, not a complete semantic model of every
@@ -105,7 +105,7 @@ Example schema:
 
 If you want host exec to run without approval prompts, you must open **both** policy layers:
 
-- requested exec policy in OpenClaw config (`tools.exec.*`)
+- requested exec policy in SoloClaw config (`tools.exec.*`)
 - host-local approvals policy in `~/.soloclaw/exec-approvals.json`
 
 This is now the default host behavior unless you tighten it explicitly:
@@ -118,7 +118,7 @@ Important distinction:
 
 - `tools.exec.host=auto` chooses where exec runs: sandbox when available, otherwise gateway.
 - YOLO chooses how host exec is approved: `security=full` plus `ask=off`.
-- In YOLO mode, OpenClaw does not add a separate heuristic command-obfuscation approval gate on top of the configured host exec policy.
+- In YOLO mode, SoloClaw does not add a separate heuristic command-obfuscation approval gate on top of the configured host exec policy.
 - `auto` does not make gateway routing a free override from a sandboxed session. A per-call `host=node` request is allowed from `auto`, and `host=gateway` is only allowed from `auto` when no sandbox runtime is active. If you want a stable non-auto default, set `tools.exec.host` or use `/exec host=...` explicitly.
 
 If you want a more conservative setup, tighten either layer back to `allowlist` / `on-miss`
@@ -216,7 +216,7 @@ If a prompt is required but no UI is reachable, fallback decides:
 
 ### Inline interpreter eval hardening (`tools.exec.strictInlineEval`)
 
-When `tools.exec.strictInlineEval=true`, OpenClaw treats inline code-eval forms as approval-only even if the interpreter binary itself is allowlisted.
+When `tools.exec.strictInlineEval=true`, SoloClaw treats inline code-eval forms as approval-only even if the interpreter binary itself is allowlisted.
 
 Examples:
 
@@ -375,7 +375,7 @@ Custom profile example:
 }
 ```
 
-If you explicitly opt `jq` into `safeBins`, OpenClaw still rejects the `env` builtin in safe-bin
+If you explicitly opt `jq` into `safeBins`, SoloClaw still rejects the `env` builtin in safe-bin
 mode so `jq -n env` cannot dump the host process environment without an explicit allowlist path
 or approval prompt.
 
@@ -422,7 +422,7 @@ Approval-backed interpreter/runtime runs are intentionally conservative:
   file snapshot.
 - Common package-manager wrapper forms that still resolve to one direct local file (for example
   `pnpm exec`, `pnpm node`, `npm exec`, `npx`) are unwrapped before binding.
-- If OpenClaw cannot identify exactly one concrete local file for an interpreter/runtime command
+- If SoloClaw cannot identify exactly one concrete local file for an interpreter/runtime command
   (for example package scripts, eval forms, runtime-specific loader chains, or ambiguous multi-file
   forms), approval-backed execution is denied instead of claiming semantic coverage it does not
   have.
@@ -435,7 +435,7 @@ timeout, the request is treated as an approval timeout and surfaced as a denial 
 
 ### Followup delivery behavior
 
-After an approved async exec finishes, OpenClaw sends a followup `agent` turn to the same session.
+After an approved async exec finishes, SoloClaw sends a followup `agent` turn to the same session.
 
 - If a valid external delivery target exists (deliverable channel plus target `to`), followup delivery uses that channel.
 - In webchat-only or internal-session flows with no external target, followup delivery stays session-only (`deliver: false`).
@@ -596,7 +596,7 @@ Shared behavior:
 
 Telegram defaults to approver DMs (`target: "dm"`). You can switch to `channel` or `both` when you
 want approval prompts to appear in the originating Telegram chat/topic as well. For Telegram forum
-topics, OpenClaw preserves the topic for the approval prompt and the post-approval follow-up.
+topics, SoloClaw preserves the topic for the approval prompt and the post-approval follow-up.
 
 See:
 
@@ -632,7 +632,7 @@ Approval-gated execs reuse the approval id as the `runId` in these messages for 
 
 ## Denied approval behavior
 
-When an async exec approval is denied, OpenClaw prevents the agent from reusing
+When an async exec approval is denied, SoloClaw prevents the agent from reusing
 output from any earlier run of the same command in the session. The denial reason
 is passed with explicit guidance that no command output is available, which stops
 the agent from claiming there is new output or repeating the denied command with

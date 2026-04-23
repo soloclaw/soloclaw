@@ -172,7 +172,7 @@ export async function persistAcpTurnTranscript(params: {
     ...params,
     assistant: {
       api: "openai-responses",
-      provider: "openclaw",
+      provider: "soloclaw",
       model: "acp-runtime",
     },
   });

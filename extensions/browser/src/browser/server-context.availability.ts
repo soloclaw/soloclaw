@@ -198,7 +198,7 @@ export function createProfileAvailability({
           return;
         }
       }
-      // Browser control service can restart while a loopback OpenClaw browser is still
+      // Browser control service can restart while a loopback SoloClaw browser is still
       // alive. Give that pre-existing browser one longer probe window before falling
       // back to local executable resolution.
       if (!attachOnly && !remoteCdp && profile.cdpIsLoopback && !profileState.running) {

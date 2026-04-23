@@ -56,7 +56,7 @@ It is intentionally **ephemeral**.
 
 BTW uses the current session as **background context only**.
 
-If the main run is currently active, OpenClaw snapshots the current message
+If the main run is currently active, SoloClaw snapshots the current message
 state and includes the in-flight main prompt as background context, while
 explicitly telling the model:
 

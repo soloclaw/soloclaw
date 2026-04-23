@@ -264,7 +264,7 @@ describe("trigger handling", () => {
 
   it("prepends runtime-loaded daily memory context on bare /new", async () => {
     await withTempHome(async (home) => {
-      const workspaceDir = join(home, "openclaw");
+      const workspaceDir = join(home, "soloclaw");
       const timeZone = "America/Chicago";
       const nowMs = Date.now();
       const todayStamp = formatDateStampForZone(nowMs, timeZone);
@@ -321,7 +321,7 @@ describe("trigger handling", () => {
 
   it("treats normalized /RESET as reset for startupContext.applyOn", async () => {
     await withTempHome(async (home) => {
-      const workspaceDir = join(home, "openclaw");
+      const workspaceDir = join(home, "soloclaw");
       const timeZone = "America/Chicago";
       const nowMs = Date.now();
       const todayStamp = formatDateStampForZone(nowMs, timeZone);

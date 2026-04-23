@@ -20,7 +20,7 @@ describe("syncPluginVersions", () => {
     const rootDir = makeTempDir(tempDirs, "openclaw-sync-plugin-versions-");
 
     writeJson(path.join(rootDir, "package.json"), {
-      name: "openclaw",
+      name: "soloclaw",
       version: "2026.4.1",
     });
     writeJson(path.join(rootDir, "extensions/bluebubbles/package.json"), {

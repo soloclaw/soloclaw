@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { normalizePackageTagInput } from "./package-tag.js";
 
 describe("normalizePackageTagInput", () => {
-  const packageNames = ["openclaw", "@soloclaw/plugin"] as const;
+  const packageNames = ["soloclaw", "@soloclaw/plugin"] as const;
 
   it.each([
     { input: undefined, expected: null },
@@ -10,7 +10,7 @@ describe("normalizePackageTagInput", () => {
     { input: "openclaw@beta", expected: "beta" },
     { input: "@soloclaw/plugin@2026.2.24", expected: "2026.2.24" },
     { input: "openclaw@   ", expected: null },
-    { input: "openclaw", expected: null },
+    { input: "soloclaw", expected: null },
     { input: " @soloclaw/plugin ", expected: null },
     { input: " latest ", expected: "latest" },
     { input: "@other/plugin@beta", expected: "@other/plugin@beta" },

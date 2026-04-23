@@ -146,8 +146,8 @@ describe("maybeCreateDiscordAutoThread autoThreadName", () => {
       createBaseParams({
         baseText: "Need help with deploy rollout",
         combinedBody: "Need help with deploy rollout",
-        channelName: "openclaw",
-        channelDescription: "OpenClaw development coordination and release planning",
+        channelName: "soloclaw",
+        channelDescription: "SoloClaw development coordination and release planning",
         channelConfig: { allowed: true, autoThread: true, autoThreadName: "generated" },
         cfg,
         agentId: "main",
@@ -165,8 +165,8 @@ describe("maybeCreateDiscordAutoThread autoThreadName", () => {
       expect.objectContaining({
         agentId: "main",
         messageText: "Need help with deploy rollout",
-        channelName: "openclaw",
-        channelDescription: "OpenClaw development coordination and release planning",
+        channelName: "soloclaw",
+        channelDescription: "SoloClaw development coordination and release planning",
       }),
     );
     expect(patchMock).toHaveBeenCalledWith(

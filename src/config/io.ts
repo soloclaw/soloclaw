@@ -872,7 +872,7 @@ function warnIfConfigFromFuture(cfg: OpenClawConfig, logger: Pick<typeof console
   }
   if (shouldWarnOnTouchedVersion(VERSION, touched)) {
     logger.warn(
-      `Config was last written by a newer OpenClaw (${touched}); current version is ${VERSION}.`,
+      `Config was last written by a newer SoloClaw (${touched}); current version is ${VERSION}.`,
     );
   }
 }

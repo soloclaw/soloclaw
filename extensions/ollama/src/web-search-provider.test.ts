@@ -133,7 +133,7 @@ describe("ollama web search provider", () => {
           results: [
             {
               title: "OpenClaw",
-              url: "https://openclaw.ai/docs",
+              url: "https://soloclaw.ai/docs",
               content: "Gateway docs and setup details",
             },
           ],
@@ -179,7 +179,7 @@ describe("ollama web search provider", () => {
       query: "soloclaw docs",
       provider: "ollama",
       count: 1,
-      results: [{ url: "https://openclaw.ai/docs" }],
+      results: [{ url: "https://soloclaw.ai/docs" }],
     });
     expect(release).toHaveBeenCalledTimes(1);
   });

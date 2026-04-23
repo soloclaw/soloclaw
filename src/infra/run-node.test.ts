@@ -394,7 +394,7 @@ describe("run-node script", () => {
       expect(exitCode).toBe(0);
       await expect(fs.readFile(outputPath, "utf-8")).resolves.toContain("child stdout\n");
       await expect(fs.readFile(outputPath, "utf-8")).resolves.toContain("child stderr\n");
-      await expect(fs.readFile(outputPath, "utf-8")).resolves.toContain("[openclaw]");
+      await expect(fs.readFile(outputPath, "utf-8")).resolves.toContain("[soloclaw]");
       expect(spawnCalls.at(-1)?.args).toEqual(["soloclaw.mjs", "status"]);
       expect(spawnCalls.at(-1)?.env.SOLOCLAW_RUN_NODE_OUTPUT_LOG).toBe(outputPath);
       expect(spawnCalls.at(-1)?.stdio).toEqual(["inherit", "pipe", "pipe"]);
@@ -752,9 +752,9 @@ describe("run-node script", () => {
       await setupTrackedProject(tmp, {
         files: {
           [EXTENSION_MANIFEST]: '{"id":"demo","configSchema":{"type":"object"}}\n',
-          [EXTENSION_PACKAGE]: '{"name":"demo","openclaw":{"extensions":["./index.ts"]}}\n',
+          [EXTENSION_PACKAGE]: '{"name":"demo","soloclaw":{"extensions":["./index.ts"]}}\n',
           [ROOT_TSDOWN]: "export default {};\n",
-          [DIST_EXTENSION_PACKAGE]: '{"name":"demo","openclaw":{"extensions":["./stale.js"]}}\n',
+          [DIST_EXTENSION_PACKAGE]: '{"name":"demo","soloclaw":{"extensions":["./stale.js"]}}\n',
         },
         oldPaths: [EXTENSION_MANIFEST, ROOT_TSCONFIG, ROOT_PACKAGE, ROOT_TSDOWN],
         buildPaths: [DIST_ENTRY, BUILD_STAMP, DIST_EXTENSION_PACKAGE],

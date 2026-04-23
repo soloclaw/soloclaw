@@ -1,9 +1,9 @@
 ---
-summary: "Schema-accurate configuration examples for common OpenClaw setups"
+summary: "Schema-accurate configuration examples for common SoloClaw setups"
 read_when:
   - Learning how to configure OpenClaw
   - Looking for configuration examples
-  - Setting up OpenClaw for the first time
+  - Setting up SoloClaw for the first time
 title: "Configuration Examples"
 ---
 
@@ -89,7 +89,7 @@ Save to `~/.soloclaw/soloclaw.json` and you can DM the bot from that number.
   // Logging
   logging: {
     level: "info",
-    file: "/tmp/openclaw/openclaw.log",
+    file: "/tmp/soloclaw/soloclaw.log",
     consoleLevel: "info",
     consoleStyle: "pretty",
     redactSensitive: "tools",
@@ -97,7 +97,7 @@ Save to `~/.soloclaw/soloclaw.json` and you can DM the bot from that number.
 
   // Message formatting
   messages: {
-    messagePrefix: "[openclaw]",
+    messagePrefix: "[soloclaw]",
     responsePrefix: ">",
     ackReaction: "👀",
     ackReactionScope: "group-mentions",
@@ -106,7 +106,7 @@ Save to `~/.soloclaw/soloclaw.json` and you can DM the bot from that number.
   // Routing + queue
   routing: {
     groupChat: {
-      mentionPatterns: ["@openclaw", "openclaw"],
+      mentionPatterns: ["@openclaw", "soloclaw"],
       historyLimit: 50,
     },
     queue: {
@@ -222,7 +222,7 @@ Save to `~/.soloclaw/soloclaw.json` and you can DM the bot from that number.
       dm: { enabled: true, allowFrom: ["U123"] },
       slashCommand: {
         enabled: true,
-        name: "openclaw",
+        name: "soloclaw",
         sessionPrefix: "slack:slash",
         ephemeral: true,
       },

@@ -127,7 +127,7 @@ export function createPluginSdkScope(_repoRoot: string): TopologyScope {
     importSpecifier:
       entrypoint === "index" ? "soloclaw/plugin-sdk" : `soloclaw/plugin-sdk/${entrypoint}`,
   }));
-  return buildScopeFromEntrypoints("plugin-sdk", "OpenClaw plugin-sdk public surface", entrypoints);
+  return buildScopeFromEntrypoints("plugin-sdk", "SoloClaw plugin-sdk public surface", entrypoints);
 }
 
 export function createFilesystemPublicSurfaceScope(

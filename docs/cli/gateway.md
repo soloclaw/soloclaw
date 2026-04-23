@@ -1,5 +1,5 @@
 ---
-summary: "OpenClaw Gateway CLI (`soloclaw gateway`) — run, query, and discover gateways"
+summary: "SoloClaw Gateway CLI (`soloclaw gateway`) — run, query, and discover gateways"
 read_when:
   - Running the Gateway from the CLI (dev or servers)
   - Debugging Gateway auth, bind modes, and connectivity

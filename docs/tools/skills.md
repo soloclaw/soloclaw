@@ -8,11 +8,11 @@ title: "Skills"
 
 # Skills (OpenClaw)
 
-OpenClaw uses **[AgentSkills](https://agentskills.io)-compatible** skill folders to teach the agent how to use tools. Each skill is a directory containing a `SKILL.md` with YAML frontmatter and instructions. OpenClaw loads **bundled skills** plus optional local overrides, and filters them at load time based on environment, config, and binary presence.
+SoloClaw uses **[AgentSkills](https://agentskills.io)-compatible** skill folders to teach the agent how to use tools. Each skill is a directory containing a `SKILL.md` with YAML frontmatter and instructions. SoloClaw loads **bundled skills** plus optional local overrides, and filters them at load time based on environment, config, and binary presence.
 
 ## Locations and precedence
 
-OpenClaw loads skills from these sources:
+SoloClaw loads skills from these sources:
 
 1. **Extra skill folders**: configured with `skills.load.extraDirs`
 2. **Bundled skills**: shipped with the install (npm package or OpenClaw.app)
@@ -76,7 +76,7 @@ Rules:
 - A non-empty `agents.list[].skills` list is the final set for that agent; it
   does not merge with defaults.
 
-OpenClaw applies the effective agent skill set across prompt building, skill
+SoloClaw applies the effective agent skill set across prompt building, skill
 slash-command discovery, sandbox sync, and skill snapshots.
 
 ## Plugins + skills
@@ -109,8 +109,8 @@ Common flows:
 
 Native `soloclaw skills install` installs into the active workspace `skills/`
 directory. The separate `clawhub` CLI also installs into `./skills` under your
-current working directory (or falls back to the configured OpenClaw workspace).
-OpenClaw picks that up as `<workspace>/skills` on the next session.
+current working directory (or falls back to the configured SoloClaw workspace).
+SoloClaw picks that up as `<workspace>/skills` on the next session.
 
 ## Security notes
 
@@ -153,7 +153,7 @@ Notes:
 
 ## Gating (load-time filters)
 
-OpenClaw **filters skills at load time** using `metadata` (single-line JSON):
+SoloClaw **filters skills at load time** using `metadata` (single-line JSON):
 
 ```markdown
 ---
@@ -161,7 +161,7 @@ name: image-lab
 description: Generate or edit images via a provider-backed image workflow
 metadata:
   {
-    "openclaw":
+    "soloclaw":
       {
         "requires": { "bins": ["uv"], "env": ["GEMINI_API_KEY"], "config": ["browser.enabled"] },
         "primaryEnv": "GEMINI_API_KEY",
@@ -201,7 +201,7 @@ name: gemini
 description: Use Gemini CLI for coding assistance and Google search lookups.
 metadata:
   {
-    "openclaw":
+    "soloclaw":
       {
         "emoji": "♊️",
         "requires": { "bins": ["gemini"] },
@@ -223,16 +223,16 @@ metadata:
 Notes:
 
 - If multiple installers are listed, the gateway picks a **single** preferred option (brew when available, otherwise node).
-- If all installers are `download`, OpenClaw lists each entry so you can see the available artifacts.
+- If all installers are `download`, SoloClaw lists each entry so you can see the available artifacts.
 - Installer specs can include `os: ["darwin"|"linux"|"win32"]` to filter options by platform.
 - Node installs honor `skills.install.nodeManager` in `soloclaw.json` (default: npm; options: npm/pnpm/yarn/bun).
   This only affects **skill installs**; the Gateway runtime should still be Node
   (Bun is not recommended for WhatsApp/Telegram).
 - Gateway-backed installer selection is preference-driven, not node-only:
-  when install specs mix kinds, OpenClaw prefers Homebrew when
+  when install specs mix kinds, SoloClaw prefers Homebrew when
   `skills.install.preferBrew` is enabled and `brew` exists, then `uv`, then the
   configured node manager, then other fallbacks like `go` or `download`.
-- If every install spec is `download`, OpenClaw surfaces all download options
+- If every install spec is `download`, SoloClaw surfaces all download options
   instead of collapsing to one preferred installer.
 - Go installs: if `go` is missing and `brew` is available, the gateway installs Go via Homebrew first and sets `GOBIN` to Homebrew’s `bin` when possible.
 - Download installs: `url` (required), `archive` (`tar.gz` | `tar.bz2` | `zip`), `extract` (default: auto when archive detected), `stripComponents`, `targetDir` (default: `~/.soloclaw/tools/<skillKey>`).
@@ -268,7 +268,7 @@ Bundled/managed skills can be toggled and supplied with env values:
 
 Note: if the skill name contains hyphens, quote the key (JSON5 allows quoted keys).
 
-If you want stock image generation/editing inside OpenClaw itself, use the core
+If you want stock image generation/editing inside SoloClaw itself, use the core
 `image_generate` tool with `agents.defaults.imageGenerationModel` instead of a
 bundled skill. Skill examples here are for custom or third-party workflows.
 
@@ -303,16 +303,16 @@ When an agent run starts, OpenClaw:
 
 This is **scoped to the agent run**, not a global shell environment.
 
-For the bundled `claude-cli` backend, OpenClaw also materializes the same
+For the bundled `claude-cli` backend, SoloClaw also materializes the same
 eligible snapshot as a temporary Claude Code plugin and passes it with
 `--plugin-dir`. Claude Code can then use its native skill resolver while
-OpenClaw still owns precedence, per-agent allowlists, gating, and
+SoloClaw still owns precedence, per-agent allowlists, gating, and
 `skills.entries.*` env/API key injection. Other CLI backends use the prompt
 catalog only.
 
 ## Session snapshot (performance)
 
-OpenClaw snapshots the eligible skills **when a session starts** and reuses that list for subsequent turns in the same session. Changes to skills or config take effect on the next new session.
+SoloClaw snapshots the eligible skills **when a session starts** and reuses that list for subsequent turns in the same session. Changes to skills or config take effect on the next new session.
 
 Skills can also refresh mid-session when the skills watcher is enabled or when a new eligible remote node appears (see below). Think of this as a **hot reload**: the refreshed list is picked up on the next agent turn.
 
@@ -322,13 +322,13 @@ agent.
 
 ## Remote macOS nodes (Linux gateway)
 
-If the Gateway is running on Linux but a **macOS node** is connected **with `system.run` allowed** (Exec approvals security not set to `deny`), OpenClaw can treat macOS-only skills as eligible when the required binaries are present on that node. The agent should execute those skills via the `exec` tool with `host=node`.
+If the Gateway is running on Linux but a **macOS node** is connected **with `system.run` allowed** (Exec approvals security not set to `deny`), SoloClaw can treat macOS-only skills as eligible when the required binaries are present on that node. The agent should execute those skills via the `exec` tool with `host=node`.
 
 This relies on the node reporting its command support and on a bin probe via `system.run`. If the macOS node goes offline later, the skills remain visible; invocations may fail until the node reconnects.
 
 ## Skills watcher (auto-refresh)
 
-By default, OpenClaw watches skill folders and bumps the skills snapshot when `SKILL.md` files change. Configure this under `skills.load`:
+By default, SoloClaw watches skill folders and bumps the skills snapshot when `SKILL.md` files change. Configure this under `skills.load`:
 
 ```json5
 {
@@ -343,7 +343,7 @@ By default, OpenClaw watches skill folders and bumps the skills snapshot when `S
 
 ## Token impact (skills list)
 
-When skills are eligible, OpenClaw injects a compact XML list of available skills into the system prompt (via `formatSkillsForPrompt` in `pi-coding-agent`). The cost is deterministic:
+When skills are eligible, SoloClaw injects a compact XML list of available skills into the system prompt (via `formatSkillsForPrompt` in `pi-coding-agent`). The cost is deterministic:
 
 - **Base overhead (only when ≥1 skill):** 195 characters.
 - **Per skill:** 97 characters + the length of the XML-escaped `<name>`, `<description>`, and `<location>` values.
@@ -361,7 +361,7 @@ Notes:
 
 ## Managed skills lifecycle
 
-OpenClaw ships a baseline set of skills as **bundled skills** as part of the
+SoloClaw ships a baseline set of skills as **bundled skills** as part of the
 install (npm package or OpenClaw.app). `~/.soloclaw/skills` exists for local
 overrides (for example, pinning/patching a skill without changing the bundled
 copy). Workspace skills are user-owned and override both on name conflicts.

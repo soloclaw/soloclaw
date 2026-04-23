@@ -57,7 +57,7 @@ export type NpmDistTagMirrorAuth = {
   hasAuth: boolean;
   source: "node-auth-token" | "npm-token" | "none";
 };
-const EXPECTED_REPOSITORY_URL = "https://github.com/openclaw/openclaw";
+const EXPECTED_REPOSITORY_URL = "https://github.com/soloclaw/soloclaw";
 const MAX_CALVER_DISTANCE_DAYS = 2;
 const LEGACY_UPDATE_COMPAT_PACKED_PATHS = [
   "dist/extensions/qa-channel/runtime-api.js",
@@ -249,8 +249,8 @@ export function collectReleasePackageMetadataErrors(pkg: PackageJson): string[] 
   );
   const errors: string[] = [];
 
-  if (pkg.name !== "openclaw") {
-    errors.push(`package.json name must be "openclaw"; found "${pkg.name ?? ""}".`);
+  if (pkg.name !== "soloclaw") {
+    errors.push(`package.json name must be "soloclaw"; found "${pkg.name ?? ""}".`);
   }
   if (!pkg.description?.trim()) {
     errors.push("package.json description must be non-empty.");

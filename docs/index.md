@@ -1,11 +1,11 @@
 ---
-summary: "OpenClaw is a multi-channel gateway for AI agents that runs on any OS."
+summary: "SoloClaw is a multi-channel gateway for AI agents that runs on any OS."
 read_when:
-  - Introducing OpenClaw to newcomers
+  - Introducing SoloClaw to newcomers
 title: "OpenClaw"
 ---
 
-# OpenClaw 🦞
+# SoloClaw 🦞
 
 <p align="center">
     <img
@@ -31,7 +31,7 @@ title: "OpenClaw"
 
 <Columns>
   <Card title="Get Started" href="/start/getting-started" icon="rocket">
-    Install OpenClaw and bring up the Gateway in minutes.
+    Install SoloClaw and bring up the Gateway in minutes.
   </Card>
   <Card title="Run Onboarding" href="/start/wizard" icon="sparkles">
     Guided setup with `soloclaw onboard` and pairing flows.
@@ -43,7 +43,7 @@ title: "OpenClaw"
 
 ## What is OpenClaw?
 
-OpenClaw is a **self-hosted gateway** that connects your favorite chat apps and channel surfaces — built-in channels plus bundled or external channel plugins such as Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo, and more — to AI coding agents like Pi. You run a single Gateway process on your own machine (or a server), and it becomes the bridge between your messaging apps and an always-available AI assistant.
+SoloClaw is a **self-hosted gateway** that connects your favorite chat apps and channel surfaces — built-in channels plus bundled or external channel plugins such as Discord, Google Chat, iMessage, Matrix, Microsoft Teams, Signal, Slack, Telegram, WhatsApp, Zalo, and more — to AI coding agents like Pi. You run a single Gateway process on your own machine (or a server), and it becomes the bridge between your messaging apps and an always-available AI assistant.
 
 **Who is it for?** Developers and power users who want a personal AI assistant they can message from anywhere — without giving up control of their data or relying on a hosted service.
 
@@ -135,7 +135,7 @@ Open the browser Control UI after the Gateway starts.
 
 Config lives at `~/.soloclaw/soloclaw.json`.
 
-- If you **do nothing**, OpenClaw uses the bundled Pi binary in RPC mode with per-sender sessions.
+- If you **do nothing**, SoloClaw uses the bundled Pi binary in RPC mode with per-sender sessions.
 - If you want to lock it down, start with `channels.whatsapp.allowFrom` and (for groups) mention rules.
 
 Example:

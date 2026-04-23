@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-# OpenClaw Installer for macOS and Linux
-# Usage: curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash
+# SoloClaw Installer for macOS and Linux
+# Usage: curl -fsSL --proto '=https' --tlsv1.2 https://soloclaw.ai/install.sh | bash
 
 BOLD='\033[1m'
 ACCENT='\033[38;2;255;77;77m'       # coral-bright  #ff4d4d
@@ -236,7 +236,7 @@ print_gum_status() {
 print_installer_banner() {
     if [[ -n "$GUM" ]]; then
         local title tagline hint card
-        title="$("$GUM" style --foreground "#ff4d4d" --bold "🦞 OpenClaw Installer")"
+        title="$("$GUM" style --foreground "#ff4d4d" --bold "🦞 SoloClaw Installer")"
         tagline="$("$GUM" style --foreground "#8892b0" "$TAGLINE")"
         hint="$("$GUM" style --foreground "#5a6480" "modern installer mode")"
         card="$(printf '%s\n%s\n%s' "$title" "$tagline" "$hint")"
@@ -246,7 +246,7 @@ print_installer_banner() {
     fi
 
     echo -e "${ACCENT}${BOLD}"
-    echo "  🦞 OpenClaw Installer"
+    echo "  🦞 SoloClaw Installer"
     echo -e "${NC}${INFO}  ${TAGLINE}${NC}"
     echo ""
 }
@@ -262,7 +262,7 @@ detect_os_or_die() {
     if [[ "$OS" == "unknown" ]]; then
         ui_error "Unsupported operating system"
         echo "This installer supports macOS and Linux (including WSL)."
-        echo "For Windows, use: iwr -useb https://openclaw.ai/install.ps1 | iex"
+        echo "For Windows, use: iwr -useb https://soloclaw.ai/install.ps1 | iex"
         exit 1
     fi
 
@@ -696,7 +696,7 @@ run_npm_global_install() {
         local log_quoted=""
         printf -v cmd_quoted '%q ' "${cmd[@]}"
         printf -v log_quoted '%q' "$log"
-        run_with_spinner "Installing OpenClaw package" bash -c "${cmd_quoted}>${log_quoted} 2>&1"
+        run_with_spinner "Installing SoloClaw package" bash -c "${cmd_quoted}>${log_quoted} 2>&1"
         return $?
     fi
 
@@ -792,7 +792,7 @@ install_openclaw_npm() {
             attempted_build_tool_fix=true
             ui_info "Retrying npm install after build tools setup"
             if run_npm_global_install "$spec" "$log"; then
-                ui_success "OpenClaw npm package installed"
+                ui_success "SoloClaw npm package installed"
                 return 0
             fi
         fi
@@ -812,7 +812,7 @@ install_openclaw_npm() {
             ui_warn "npm left stale directory; cleaning and retrying"
             cleanup_npm_openclaw_paths
             if run_npm_global_install "$spec" "$log"; then
-                ui_success "OpenClaw npm package installed"
+                ui_success "SoloClaw npm package installed"
                 return 0
             fi
             return 1
@@ -822,7 +822,7 @@ install_openclaw_npm() {
             conflict="$(extract_openclaw_conflict_path "$log" || true)"
             if [[ -n "$conflict" ]] && cleanup_openclaw_bin_conflict "$conflict"; then
                 if run_npm_global_install "$spec" "$log"; then
-                    ui_success "OpenClaw npm package installed"
+                    ui_success "SoloClaw npm package installed"
                     return 0
                 fi
                 return 1
@@ -835,7 +835,7 @@ install_openclaw_npm() {
         fi
         return 1
     fi
-    ui_success "OpenClaw npm package installed"
+    ui_success "SoloClaw npm package installed"
     return 0
 }
 
@@ -980,10 +980,10 @@ HELP=0
 
 print_usage() {
     cat <<EOF
-OpenClaw installer (macOS + Linux)
+SoloClaw installer (macOS + Linux)
 
 Usage:
-  curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -- [options]
+  curl -fsSL --proto '=https' --tlsv1.2 https://soloclaw.ai/install.sh | bash -s -- [options]
 
 Options:
   --install-method, --method npm|git   Install via npm (default) or from a git checkout
@@ -1015,11 +1015,11 @@ Environment variables:
   SHARP_IGNORE_GLOBAL_LIBVIPS=0|1    Default: 1 (avoid sharp building against global libvips)
 
 Examples:
-  curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash
-  curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -- --no-onboard
-  curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -- --no-onboard --verify
-  curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -- --version main
-  curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -- --install-method git --no-onboard
+  curl -fsSL --proto '=https' --tlsv1.2 https://soloclaw.ai/install.sh | bash
+  curl -fsSL --proto '=https' --tlsv1.2 https://soloclaw.ai/install.sh | bash -s -- --no-onboard
+  curl -fsSL --proto '=https' --tlsv1.2 https://soloclaw.ai/install.sh | bash -s -- --no-onboard --verify
+  curl -fsSL --proto '=https' --tlsv1.2 https://soloclaw.ai/install.sh | bash -s -- --version main
+  curl -fsSL --proto '=https' --tlsv1.2 https://soloclaw.ai/install.sh | bash -s -- --install-method git --no-onboard
 EOF
 }
 
@@ -1130,7 +1130,7 @@ choose_install_method_interactive() {
 
     if [[ -n "$GUM" ]] && gum_is_tty; then
         local header selection
-        header="Detected OpenClaw checkout in: ${detected_checkout}
+        header="Detected SoloClaw checkout in: ${detected_checkout}
 Choose install method"
         selection="$("$GUM" choose \
             --header "$header" \
@@ -1153,7 +1153,7 @@ Choose install method"
 
     local choice=""
     choice="$(prompt_choice "$(cat <<EOF
-${WARN}→${NC} Detected a OpenClaw source checkout in: ${INFO}${detected_checkout}${NC}
+${WARN}→${NC} Detected a SoloClaw source checkout in: ${INFO}${detected_checkout}${NC}
 Choose install method:
   1) Update this checkout (git) and use it
   2) Install global via npm (migrate away from git)
@@ -1183,7 +1183,7 @@ detect_openclaw_checkout() {
     if [[ ! -f "$dir/pnpm-workspace.yaml" ]]; then
         return 1
     fi
-    if ! grep -q '"name"[[:space:]]*:[[:space:]]*"openclaw"' "$dir/package.json" 2>/dev/null; then
+    if ! grep -q '"name"[[:space:]]*:[[:space:]]*"soloclaw"' "$dir/package.json" 2>/dev/null; then
         return 1
     fi
     echo "$dir"
@@ -1211,7 +1211,7 @@ print_homebrew_admin_fix() {
     echo "  2) Ask an Administrator to grant admin rights, then sign out/in:"
     echo "     sudo dseditgroup -o edit -a ${current_user} -t user admin"
     echo "Then retry:"
-    echo "  curl -fsSL https://openclaw.ai/install.sh | bash"
+    echo "  curl -fsSL https://soloclaw.ai/install.sh | bash"
 }
 
 install_homebrew() {
@@ -1365,7 +1365,7 @@ ensure_default_node_active_shell() {
         echo "  nvm use ${NODE_DEFAULT_MAJOR}"
         echo "  nvm alias default ${NODE_DEFAULT_MAJOR}"
         echo "Then open a new shell and rerun:"
-        echo "  curl -fsSL https://openclaw.ai/install.sh | bash"
+        echo "  curl -fsSL https://soloclaw.ai/install.sh | bash"
     else
         echo "Install/select Node.js ${NODE_DEFAULT_MAJOR} (or Node ${NODE_MIN_VERSION}+ minimum) and ensure it is first on PATH, then rerun installer."
     fi
@@ -1609,10 +1609,10 @@ ensure_openclaw_bin_link() {
     return 0
 }
 
-# Check for existing OpenClaw installation
+# Check for existing SoloClaw installation
 check_existing_openclaw() {
     if [[ -n "$(type -P openclaw 2>/dev/null || true)" ]]; then
-        ui_info "Existing OpenClaw installation detected, upgrading"
+        ui_info "Existing SoloClaw installation detected, upgrading"
         return 0
     fi
     return 1
@@ -1884,12 +1884,12 @@ resolve_openclaw_bin() {
 
 install_openclaw_from_git() {
     local repo_dir="$1"
-    local repo_url="https://github.com/openclaw/openclaw.git"
+    local repo_url="https://github.com/soloclaw/soloclaw.git"
 
     if [[ -d "$repo_dir/.git" ]]; then
-        ui_info "Installing OpenClaw from git checkout: ${repo_dir}"
+        ui_info "Installing SoloClaw from git checkout: ${repo_dir}"
     else
-        ui_info "Installing OpenClaw from GitHub (${repo_url})"
+        ui_info "Installing SoloClaw from GitHub (${repo_url})"
     fi
 
     if ! check_git; then
@@ -1928,7 +1928,7 @@ set -euo pipefail
 exec node "${repo_dir}/dist/entry.js" "\$@"
 EOF
     chmod +x "$HOME/.local/bin/openclaw"
-    ui_success "OpenClaw wrapper installed to \$HOME/.local/bin/openclaw"
+    ui_success "SoloClaw wrapper installed to \$HOME/.local/bin/openclaw"
     ui_info "This checkout uses pnpm — run pnpm install (or corepack pnpm install) for deps"
 }
 
@@ -1974,7 +1974,7 @@ resolve_package_install_spec() {
     local normalized_value=""
     normalized_value="$(to_lowercase_ascii "$value")"
     if [[ "$normalized_value" == "main" ]]; then
-        echo "github:openclaw/openclaw#main"
+        echo "github:soloclaw/soloclaw#main"
         return 0
     fi
     if is_explicit_package_install_spec "$value"; then
@@ -1989,14 +1989,14 @@ resolve_package_install_spec() {
 }
 
 install_openclaw() {
-    local package_name="openclaw"
+    local package_name="soloclaw"
     if [[ "$USE_BETA" == "1" ]]; then
         local beta_version=""
         beta_version="$(resolve_beta_version || true)"
         if [[ -n "$beta_version" ]]; then
             SOLOCLAW_VERSION="$beta_version"
             ui_info "Beta tag detected (${beta_version})"
-            package_name="openclaw"
+            package_name="soloclaw"
         else
             SOLOCLAW_VERSION="latest"
             ui_info "No beta tag found; using latest"
@@ -2012,9 +2012,9 @@ install_openclaw() {
         resolved_version="$(npm view "${package_name}@${SOLOCLAW_VERSION}" version 2>/dev/null || true)"
     fi
     if [[ -n "$resolved_version" ]]; then
-        ui_info "Installing OpenClaw v${resolved_version}"
+        ui_info "Installing SoloClaw v${resolved_version}"
     else
-        ui_info "Installing OpenClaw (${SOLOCLAW_VERSION})"
+        ui_info "Installing SoloClaw (${SOLOCLAW_VERSION})"
     fi
     local install_spec=""
     install_spec="$(resolve_package_install_spec "${package_name}" "${SOLOCLAW_VERSION}")"
@@ -2025,7 +2025,7 @@ install_openclaw() {
         install_openclaw_npm "${install_spec}"
     fi
 
-    if [[ "${SOLOCLAW_VERSION}" == "latest" && "${package_name}" == "openclaw" ]]; then
+    if [[ "${SOLOCLAW_VERSION}" == "latest" && "${package_name}" == "soloclaw" ]]; then
         if ! resolve_openclaw_bin &> /dev/null; then
             ui_warn "npm install openclaw@latest failed; retrying openclaw@next"
             cleanup_npm_openclaw_paths
@@ -2035,7 +2035,7 @@ install_openclaw() {
 
     ensure_openclaw_bin_link || true
 
-    ui_success "OpenClaw installed"
+    ui_success "SoloClaw installed"
 }
 
 # Run doctor for migrations (safe, non-interactive)
@@ -2246,7 +2246,7 @@ verify_installation() {
         return 1
     fi
 
-    run_quiet_step "Checking OpenClaw version" "$claw" --version || return 1
+    run_quiet_step "Checking SoloClaw version" "$claw" --version || return 1
 
     if is_gateway_daemon_loaded "$claw"; then
         run_quiet_step "Checking gateway service" "$claw" gateway status --deep || {
@@ -2278,7 +2278,7 @@ main() {
 
     if [[ -z "$INSTALL_METHOD" && -n "$detected_checkout" ]]; then
         if ! is_promptable; then
-            ui_info "Found OpenClaw checkout but no TTY; defaulting to npm install"
+            ui_info "Found SoloClaw checkout but no TTY; defaulting to npm install"
             INSTALL_METHOD="npm"
         else
             local selected_method=""
@@ -2407,9 +2407,9 @@ main() {
 
     echo ""
     if [[ -n "$installed_version" ]]; then
-        ui_celebrate "🦞 OpenClaw installed successfully (${installed_version})!"
+        ui_celebrate "🦞 SoloClaw installed successfully (${installed_version})!"
     else
-        ui_celebrate "🦞 OpenClaw installed successfully!"
+        ui_celebrate "🦞 SoloClaw installed successfully!"
     fi
     if [[ "$is_upgrade" == "true" ]]; then
         local update_messages=(
@@ -2461,7 +2461,7 @@ main() {
         ui_kv "Checkout" "$final_git_dir"
         ui_kv "Wrapper" "$HOME/.local/bin/openclaw"
         ui_kv "Update command" "soloclaw update --restart"
-        ui_kv "Switch to npm" "curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -- --install-method npm"
+        ui_kv "Switch to npm" "curl -fsSL --proto '=https' --tlsv1.2 https://soloclaw.ai/install.sh | bash -s -- --install-method npm"
     elif [[ "$is_upgrade" == "true" ]]; then
         ui_info "Upgrade complete"
         if [[ -r /dev/tty && -w /dev/tty ]]; then

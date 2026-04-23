@@ -8,7 +8,7 @@ read_when:
 
 # Release Policy
 
-OpenClaw has three public release lanes:
+SoloClaw has three public release lanes:
 
 - stable: tagged releases that publish to npm `beta` by default, or to npm `latest` when explicitly requested
 - beta: prerelease tags that publish to npm `beta`
@@ -26,7 +26,7 @@ OpenClaw has three public release lanes:
 - `latest` means the current promoted stable npm release
 - `beta` means the current beta install target
 - Stable and stable correction releases publish to npm `beta` by default; release operators can target `latest` explicitly, or promote a vetted beta build later
-- Every OpenClaw release ships the npm package and macOS app together
+- Every SoloClaw release ships the npm package and macOS app together
 
 ## Release cadence
 
@@ -42,7 +42,7 @@ OpenClaw has three public release lanes:
   validation step
 - Run `pnpm release:check` before every tagged release
 - Release checks now run in a separate manual workflow:
-  `OpenClaw Release Checks`
+  `SoloClaw Release Checks`
 - Cross-OS install and upgrade runtime validation is dispatched from the
   private caller workflow
   `openclaw/releases-private/.github/workflows/soloclaw-cross-os-release-checks.yml`,
@@ -57,7 +57,7 @@ OpenClaw has three public release lanes:
   40-character `main` commit SHA
 - In commit-SHA mode it only accepts the current `origin/main` HEAD; use a
   release tag for older release commits
-- `OpenClaw NPM Release` validation-only preflight also accepts the current
+- `SoloClaw NPM Release` validation-only preflight also accepts the current
   full 40-character `main` commit SHA without requiring a pushed tag
 - That SHA path is validation-only and cannot be promoted into a real publish
 - In SHA mode the workflow synthesizes `v<package.json version>` only for the
@@ -111,7 +111,7 @@ OpenClaw has three public release lanes:
 
 ## NPM workflow inputs
 
-`OpenClaw NPM Release` accepts these operator-controlled inputs:
+`SoloClaw NPM Release` accepts these operator-controlled inputs:
 
 - `tag`: required release tag such as `v2026.4.2`, `v2026.4.2-1`, or
   `v2026.4.2-beta.1`; when `preflight_only=true`, it may also be the current
@@ -122,7 +122,7 @@ OpenClaw has three public release lanes:
   the prepared tarball from the successful preflight run
 - `npm_dist_tag`: npm target tag for the publish path; defaults to `beta`
 
-`OpenClaw Release Checks` accepts these operator-controlled inputs:
+`SoloClaw Release Checks` accepts these operator-controlled inputs:
 
 - `ref`: existing release tag or the current full 40-character `main` commit
   SHA to validate
@@ -140,17 +140,17 @@ Rules:
 
 When cutting a stable npm release:
 
-1. Run `OpenClaw NPM Release` with `preflight_only=true`
+1. Run `SoloClaw NPM Release` with `preflight_only=true`
    - Before a tag exists, you may use the current full `main` commit SHA for a
      validation-only dry run of the preflight workflow
 2. Choose `npm_dist_tag=beta` for the normal beta-first flow, or `latest` only
    when you intentionally want a direct stable publish
-3. Run `OpenClaw Release Checks` separately with the same tag or the
+3. Run `SoloClaw Release Checks` separately with the same tag or the
    full current `main` commit SHA when you want live prompt cache coverage
    - This is separate on purpose so live coverage stays available without
      recoupling long-running or flaky checks to the publish workflow
 4. Save the successful `preflight_run_id`
-5. Run `OpenClaw NPM Release` again with `preflight_only=false`, the same
+5. Run `SoloClaw NPM Release` again with `preflight_only=false`, the same
    `tag`, the same `npm_dist_tag`, and the saved `preflight_run_id`
 6. If the release landed on `beta`, use the private
    `openclaw/releases-private/.github/workflows/openclaw-npm-dist-tags.yml`
@@ -168,12 +168,12 @@ documented and operator-visible.
 
 ## Public references
 
-- [`.github/workflows/soloclaw-npm-release.yml`](https://github.com/openclaw/openclaw/blob/main/.github/workflows/soloclaw-npm-release.yml)
-- [`.github/workflows/openclaw-release-checks.yml`](https://github.com/openclaw/openclaw/blob/main/.github/workflows/openclaw-release-checks.yml)
-- [`.github/workflows/soloclaw-cross-os-release-checks-reusable.yml`](https://github.com/openclaw/openclaw/blob/main/.github/workflows/soloclaw-cross-os-release-checks-reusable.yml)
-- [`scripts/soloclaw-npm-release-check.ts`](https://github.com/openclaw/openclaw/blob/main/scripts/soloclaw-npm-release-check.ts)
-- [`scripts/package-mac-dist.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/package-mac-dist.sh)
-- [`scripts/make_appcast.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/make_appcast.sh)
+- [`.github/workflows/soloclaw-npm-release.yml`](https://github.com/soloclaw/soloclaw/blob/main/.github/workflows/soloclaw-npm-release.yml)
+- [`.github/workflows/openclaw-release-checks.yml`](https://github.com/soloclaw/soloclaw/blob/main/.github/workflows/openclaw-release-checks.yml)
+- [`.github/workflows/soloclaw-cross-os-release-checks-reusable.yml`](https://github.com/soloclaw/soloclaw/blob/main/.github/workflows/soloclaw-cross-os-release-checks-reusable.yml)
+- [`scripts/soloclaw-npm-release-check.ts`](https://github.com/soloclaw/soloclaw/blob/main/scripts/soloclaw-npm-release-check.ts)
+- [`scripts/package-mac-dist.sh`](https://github.com/soloclaw/soloclaw/blob/main/scripts/package-mac-dist.sh)
+- [`scripts/make_appcast.sh`](https://github.com/soloclaw/soloclaw/blob/main/scripts/make_appcast.sh)
 
 Maintainers use the private release docs in
 [`openclaw/maintainers/release/README.md`](https://github.com/openclaw/maintainers/blob/main/release/README.md)

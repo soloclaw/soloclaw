@@ -3,7 +3,7 @@ name: sherpa-onnx-tts
 description: Local text-to-speech via sherpa-onnx (offline, no cloud)
 metadata:
   {
-    "openclaw":
+    "soloclaw":
       {
         "emoji": "🔉",
         "os": ["darwin", "linux", "win32"],
@@ -72,7 +72,7 @@ Resolve the active state directory first:
 STATE_DIR="${SOLOCLAW_STATE_DIR:-$HOME/.soloclaw}"
 ```
 
-Then write those resolved paths into the active OpenClaw config file (`$SOLOCLAW_CONFIG_PATH`, default `~/.soloclaw/soloclaw.json`):
+Then write those resolved paths into the active SoloClaw config file (`$SOLOCLAW_CONFIG_PATH`, default `~/.soloclaw/soloclaw.json`):
 
 ```json5
 {

@@ -167,10 +167,10 @@ describe("restartGatewayProcessWithFreshPid", () => {
     expect(spawnMock).not.toHaveBeenCalled();
   });
 
-  it("returns supervised when OpenClaw gateway task markers are set on Windows", () => {
+  it("returns supervised when SoloClaw gateway task markers are set on Windows", () => {
     clearSupervisorHints();
     setPlatform("win32");
-    process.env.SOLOCLAW_SERVICE_MARKER = "openclaw";
+    process.env.SOLOCLAW_SERVICE_MARKER = "soloclaw";
     process.env.SOLOCLAW_SERVICE_KIND = "gateway";
     triggerOpenClawRestartMock.mockReturnValue({ ok: true, method: "schtasks" });
     const result = restartGatewayProcessWithFreshPid();
@@ -182,7 +182,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
   it("keeps generic service markers out of non-Windows supervisor detection", () => {
     clearSupervisorHints();
     setPlatform("linux");
-    process.env.SOLOCLAW_SERVICE_MARKER = "openclaw";
+    process.env.SOLOCLAW_SERVICE_MARKER = "soloclaw";
     process.env.SOLOCLAW_SERVICE_KIND = "gateway";
     spawnMock.mockReturnValue({ pid: 4242, unref: vi.fn() });
 
@@ -208,7 +208,7 @@ describe("restartGatewayProcessWithFreshPid", () => {
     setPlatform("win32");
     process.env.SOLOCLAW_TASK_SCRIPT = "C:\\openclaw\\node.cmd";
     process.env.SOLOCLAW_TASK_SCRIPT_NAME = "node.cmd";
-    process.env.SOLOCLAW_SERVICE_MARKER = "openclaw";
+    process.env.SOLOCLAW_SERVICE_MARKER = "soloclaw";
     process.env.SOLOCLAW_SERVICE_KIND = "node";
 
     const result = restartGatewayProcessWithFreshPid();

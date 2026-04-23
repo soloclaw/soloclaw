@@ -138,8 +138,8 @@ describe("collectInstalledContextEngineRuntimeErrors", () => {
 
 describe("normalizeInstalledBinaryVersion", () => {
   it("accepts decorated CLI version output", () => {
-    expect(normalizeInstalledBinaryVersion("OpenClaw 2026.4.8 (9ece252)")).toBe("2026.4.8");
-    expect(normalizeInstalledBinaryVersion("OpenClaw 2026.4.8-beta.1 (9ece252)")).toBe(
+    expect(normalizeInstalledBinaryVersion("SoloClaw 2026.4.8 (9ece252)")).toBe("2026.4.8");
+    expect(normalizeInstalledBinaryVersion("SoloClaw 2026.4.8-beta.1 (9ece252)")).toBe(
       "2026.4.8-beta.1",
     );
   });
@@ -267,7 +267,7 @@ describe("collectInstalledMirroredRootDependencyManifestErrors", () => {
       mkdirSync(join(packageRoot, "dist/extensions/slack"), { recursive: true });
       writeFileSync(
         join(packageRoot, "dist/extensions/slack/package.json"),
-        '{\n  "openclaw": { invalid json\n',
+        '{\n  "soloclaw": { invalid json\n',
         "utf8",
       );
 

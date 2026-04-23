@@ -159,7 +159,7 @@ const VideoGenerateToolSchema = Type.Object({
   filename: Type.Optional(
     Type.String({
       description:
-        "Optional output filename hint. OpenClaw preserves the basename and saves under its managed media directory.",
+        "Optional output filename hint. SoloClaw preserves the basename and saves under its managed media directory.",
     }),
   ),
   size: Type.Optional(
@@ -181,7 +181,7 @@ const VideoGenerateToolSchema = Type.Object({
   durationSeconds: Type.Optional(
     Type.Number({
       description:
-        "Optional target duration in seconds. OpenClaw may round this to the nearest provider-supported duration.",
+        "Optional target duration in seconds. SoloClaw may round this to the nearest provider-supported duration.",
       minimum: 1,
     }),
   ),

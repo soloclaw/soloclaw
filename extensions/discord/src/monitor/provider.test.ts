@@ -575,7 +575,7 @@ describe("monitorDiscordProvider", () => {
     expect(drained[0]?.message).toContain("4014");
   });
 
-  it("passes OpenClaw EventQueue defaults to Carbon Client", async () => {
+  it("passes SoloClaw EventQueue defaults to Carbon Client", async () => {
     await monitorDiscordProvider({
       config: baseConfig(),
       runtime: baseRuntime(),

@@ -23,7 +23,7 @@ describe("transcribeOpenAiCompatibleAudio", () => {
     });
 
     const headers = new Headers(getRequest().init?.headers);
-    expect(headers.get("originator")).toBe("openclaw");
+    expect(headers.get("originator")).toBe("soloclaw");
     expect(headers.get("version")).toBeTruthy();
     expect(headers.get("user-agent")).toMatch(/^openclaw\//);
   });

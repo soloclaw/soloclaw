@@ -52,7 +52,7 @@ export function describeBundledMetadataOnlyChannelCatalogContract(params: {
       fs.mkdirSync(bundledDir, { recursive: true });
       fs.writeFileSync(
         path.join(packageRoot, "package.json"),
-        JSON.stringify({ name: "openclaw" }),
+        JSON.stringify({ name: "soloclaw" }),
         "utf8",
       );
       fs.writeFileSync(

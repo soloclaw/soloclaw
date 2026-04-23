@@ -362,7 +362,7 @@ File rendering hardening:
 
 Resolution order:
 
-1. `browser.executablePath` in OpenClaw config.
+1. `browser.executablePath` in SoloClaw config.
 2. Environment variables:
    - `SOLOCLAW_BROWSER_EXECUTABLE_PATH`
    - `BROWSER_EXECUTABLE_PATH`

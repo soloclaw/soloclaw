@@ -62,12 +62,12 @@ describe("resolveAcpClientSpawnEnv", () => {
   it("sets SOLOCLAW_SHELL marker and preserves existing env values", () => {
     const env = resolveAcpClientSpawnEnv({
       PATH: "/usr/bin",
-      USER: "openclaw",
+      USER: "soloclaw",
     });
 
     expect(env.SOLOCLAW_SHELL).toBe("acp-client");
     expect(env.PATH).toBe("/usr/bin");
-    expect(env.USER).toBe("openclaw");
+    expect(env.USER).toBe("soloclaw");
   });
 
   it("overrides pre-existing SOLOCLAW_SHELL to acp-client", () => {
@@ -125,7 +125,7 @@ describe("resolveAcpClientSpawnEnv", () => {
     expect(env.OPENAI_API_KEY).toBeUndefined();
   });
 
-  it("strips provider auth env vars for the default OpenClaw bridge", () => {
+  it("strips provider auth env vars for the default SoloClaw bridge", () => {
     const stripKeys = new Set(["OPENAI_API_KEY", "GITHUB_TOKEN", "HF_TOKEN"]);
     const env = resolveAcpClientSpawnEnv(
       {
@@ -183,9 +183,9 @@ describe("shouldStripProviderAuthEnvVarsForAcpServer", () => {
     expect(shouldStripProviderAuthEnvVarsForAcpServer()).toBe(true);
     expect(
       shouldStripProviderAuthEnvVarsForAcpServer({
-        serverCommand: "openclaw",
+        serverCommand: "soloclaw",
         serverArgs: ["acp"],
-        defaultServerCommand: "openclaw",
+        defaultServerCommand: "soloclaw",
         defaultServerArgs: ["acp"],
       }),
     ).toBe(true);
@@ -196,7 +196,7 @@ describe("shouldStripProviderAuthEnvVarsForAcpServer", () => {
       shouldStripProviderAuthEnvVarsForAcpServer({
         serverCommand: "custom-acp-server",
         serverArgs: ["serve"],
-        defaultServerCommand: "openclaw",
+        defaultServerCommand: "soloclaw",
         defaultServerArgs: ["acp"],
       }),
     ).toBe(false);
@@ -243,7 +243,7 @@ describe("buildAcpClientStripKeys", () => {
 describe("resolveAcpClientSpawnInvocation", () => {
   it("passes command and args through unchanged", () => {
     const resolved = resolveAcpClientSpawnInvocation(
-      { serverCommand: "openclaw", serverArgs: ["acp", "--verbose"] },
+      { serverCommand: "soloclaw", serverArgs: ["acp", "--verbose"] },
       {
         platform: "darwin",
         env: {},
@@ -251,7 +251,7 @@ describe("resolveAcpClientSpawnInvocation", () => {
       },
     );
     expect(resolved).toEqual({
-      command: "openclaw",
+      command: "soloclaw",
       args: ["acp", "--verbose"],
     });
   });

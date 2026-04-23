@@ -116,7 +116,7 @@ describe("runGatewayUpdate", () => {
 
   async function setupGitCheckout(options?: { packageManager?: string }) {
     await fs.mkdir(path.join(tempDir, ".git"));
-    const pkg: Record<string, string> = { name: "openclaw", version: "1.0.0" };
+    const pkg: Record<string, string> = { name: "soloclaw", version: "1.0.0" };
     if (options?.packageManager) {
       pkg.packageManager = options.packageManager;
     }
@@ -239,7 +239,7 @@ describe("runGatewayUpdate", () => {
     await fs.mkdir(pkgRoot, { recursive: true });
     await fs.writeFile(
       path.join(pkgRoot, "package.json"),
-      JSON.stringify({ name: "openclaw", version }),
+      JSON.stringify({ name: "soloclaw", version }),
       "utf-8",
     );
     await writeBundledRuntimeSidecars(pkgRoot);
@@ -249,7 +249,7 @@ describe("runGatewayUpdate", () => {
   async function writeGlobalPackageVersion(pkgRoot: string, version = "2.0.0") {
     await fs.writeFile(
       path.join(pkgRoot, "package.json"),
-      JSON.stringify({ name: "openclaw", version }),
+      JSON.stringify({ name: "soloclaw", version }),
       "utf-8",
     );
     await writeBundledRuntimeSidecars(pkgRoot);
@@ -266,7 +266,7 @@ describe("runGatewayUpdate", () => {
 
   async function createGlobalPackageFixture(rootDir: string) {
     const nodeModules = path.join(rootDir, "node_modules");
-    const pkgRoot = path.join(nodeModules, "openclaw");
+    const pkgRoot = path.join(nodeModules, "soloclaw");
     await seedGlobalPackageRoot(pkgRoot);
     return { nodeModules, pkgRoot };
   }
@@ -1205,7 +1205,7 @@ describe("runGatewayUpdate", () => {
   it("skips update when no git root", async () => {
     await fs.writeFile(
       path.join(tempDir, "package.json"),
-      JSON.stringify({ name: "openclaw", packageManager: "pnpm@8.0.0" }),
+      JSON.stringify({ name: "soloclaw", packageManager: "pnpm@8.0.0" }),
       "utf-8",
     );
     await fs.writeFile(path.join(tempDir, "pnpm-lock.yaml"), "", "utf-8");
@@ -1229,7 +1229,7 @@ describe("runGatewayUpdate", () => {
     tag?: string;
   }): Promise<{ calls: string[]; result: Awaited<ReturnType<typeof runGatewayUpdate>> }> {
     const nodeModules = path.join(tempDir, "node_modules");
-    const pkgRoot = path.join(nodeModules, "openclaw");
+    const pkgRoot = path.join(nodeModules, "soloclaw");
     await seedGlobalPackageRoot(pkgRoot);
 
     const { calls, runCommand } = createGlobalInstallHarness({
@@ -1239,7 +1239,7 @@ describe("runGatewayUpdate", () => {
       onInstall: async () => {
         await fs.writeFile(
           path.join(pkgRoot, "package.json"),
-          JSON.stringify({ name: "openclaw", version: "2.0.0" }),
+          JSON.stringify({ name: "soloclaw", version: "2.0.0" }),
           "utf-8",
         );
       },
@@ -1321,14 +1321,14 @@ describe("runGatewayUpdate", () => {
   it("updates global npm installs from the GitHub main package spec", async () => {
     const { calls, result } = await runNpmGlobalUpdateCase({
       expectedInstallCommand:
-        "npm i -g github:openclaw/openclaw#main --no-fund --no-audit --loglevel=error",
+        "npm i -g github:soloclaw/soloclaw#main --no-fund --no-audit --loglevel=error",
       tag: "main",
     });
 
     expect(result.status).toBe("ok");
     expect(result.mode).toBe("npm");
     expect(calls).toContain(
-      "npm i -g github:openclaw/openclaw#main --no-fund --no-audit --loglevel=error",
+      "npm i -g github:soloclaw/soloclaw#main --no-fund --no-audit --loglevel=error",
     );
   });
 
@@ -1351,7 +1351,7 @@ describe("runGatewayUpdate", () => {
 
   it("cleans stale npm rename dirs before global update", async () => {
     const nodeModules = path.join(tempDir, "node_modules");
-    const pkgRoot = path.join(nodeModules, "openclaw");
+    const pkgRoot = path.join(nodeModules, "soloclaw");
     const staleDir = path.join(nodeModules, ".soloclaw-stale");
     await fs.mkdir(staleDir, { recursive: true });
     await seedGlobalPackageRoot(pkgRoot);
@@ -1375,7 +1375,7 @@ describe("runGatewayUpdate", () => {
 
   it("retries global npm update with --omit=optional when initial install fails", async () => {
     const nodeModules = path.join(tempDir, "node_modules");
-    const pkgRoot = path.join(nodeModules, "openclaw");
+    const pkgRoot = path.join(nodeModules, "soloclaw");
     await seedGlobalPackageRoot(pkgRoot);
 
     let firstAttempt = true;
@@ -1428,7 +1428,7 @@ describe("runGatewayUpdate", () => {
       onInstall: async () => {
         await fs.writeFile(
           path.join(pkgRoot, "package.json"),
-          JSON.stringify({ name: "openclaw", version: "2.0.0" }),
+          JSON.stringify({ name: "soloclaw", version: "2.0.0" }),
           "utf-8",
         );
         await writeBundledRuntimeSidecars(pkgRoot);

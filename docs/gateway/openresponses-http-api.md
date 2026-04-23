@@ -29,7 +29,7 @@ Operational behavior matches [OpenAI Chat Completions](/gateway/openai-http-api)
 - treat the endpoint as full operator access for the gateway instance
 - for shared-secret auth modes (`token` and `password`), ignore narrower bearer-declared `x-openclaw-scopes` values and restore the normal full operator defaults
 - for trusted identity-bearing HTTP modes (for example trusted proxy auth or `gateway.auth.mode="none"`), honor `x-openclaw-scopes` when present and otherwise fall back to the normal operator default scope set
-- select agents with `model: "openclaw"`, `model: "openclaw/default"`, `model: "openclaw/<agentId>"`, or `x-openclaw-agent-id`
+- select agents with `model: "soloclaw"`, `model: "openclaw/default"`, `model: "openclaw/<agentId>"`, or `x-openclaw-agent-id`
 - use `x-openclaw-model` when you want to override the selected agent's backend model
 - use `x-openclaw-session-key` for explicit session routing
 - use `x-openclaw-message-channel` when you want a non-default synthetic ingress channel context
@@ -88,7 +88,7 @@ Accepted but **currently ignored**:
 
 Supported:
 
-- `previous_response_id`: OpenClaw reuses the earlier response session when the request stays within the same agent/user/requested-session scope.
+- `previous_response_id`: SoloClaw reuses the earlier response session when the request stays within the same agent/user/requested-session scope.
 
 ## Items (input)
 
@@ -292,7 +292,7 @@ Event types currently emitted:
 ## Usage
 
 `usage` is populated when the underlying provider reports token counts.
-OpenClaw normalizes common OpenAI-style aliases before those counters reach
+SoloClaw normalizes common OpenAI-style aliases before those counters reach
 downstream status/session surfaces, including `input_tokens` / `output_tokens`
 and `prompt_tokens` / `completion_tokens`.
 
@@ -320,7 +320,7 @@ curl -sS http://127.0.0.1:18789/v1/responses \
   -H 'Content-Type: application/json' \
   -H 'x-openclaw-agent-id: main' \
   -d '{
-    "model": "openclaw",
+    "model": "soloclaw",
     "input": "hi"
   }'
 ```
@@ -333,7 +333,7 @@ curl -N http://127.0.0.1:18789/v1/responses \
   -H 'Content-Type: application/json' \
   -H 'x-openclaw-agent-id: main' \
   -d '{
-    "model": "openclaw",
+    "model": "soloclaw",
     "stream": true,
     "input": "hi"
   }'

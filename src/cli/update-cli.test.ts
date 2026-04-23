@@ -413,7 +413,7 @@ describe("update-cli", () => {
     vi.spyOn(updateCliShared, "readPackageName").mockImplementation(readPackageName);
     vi.spyOn(updateCliShared, "readPackageVersion").mockImplementation(readPackageVersion);
     vi.spyOn(updateCliShared, "resolveGlobalManager").mockImplementation(resolveGlobalManager);
-    readPackageName.mockResolvedValue("openclaw");
+    readPackageName.mockResolvedValue("soloclaw");
     readPackageVersion.mockResolvedValue("1.0.0");
     resolveGlobalManager.mockResolvedValue("npm");
     serviceLoaded.mockResolvedValue(false);
@@ -588,7 +588,7 @@ describe("update-cli", () => {
       },
       assert: () => {
         const logs = vi.mocked(defaultRuntime.log).mock.calls.map((call) => call[0]);
-        expect(logs.join("\n")).toContain("OpenClaw update status");
+        expect(logs.join("\n")).toContain("SoloClaw update status");
       },
     },
     {
@@ -609,7 +609,7 @@ describe("update-cli", () => {
 
   it("parses update status --json as the subcommand option", async () => {
     const program = new Command();
-    program.name("openclaw");
+    program.name("soloclaw");
     program.enablePositionalOptions();
     let seenJson = false;
     const update = program.command("update").option("--json", "", false);
@@ -620,7 +620,7 @@ describe("update-cli", () => {
         seenJson = Boolean(opts.json);
       });
 
-    await program.parseAsync(["node", "openclaw", "update", "status", "--json"]);
+    await program.parseAsync(["node", "soloclaw", "update", "status", "--json"]);
 
     expect(seenJson).toBe(true);
   });
@@ -759,15 +759,15 @@ describe("update-cli", () => {
         mockPackageInstallStatus(createCaseDir("openclaw-update"));
         await updateCommand({ yes: true, tag: "main" });
       },
-      expectedSpec: "github:openclaw/openclaw#main",
+      expectedSpec: "github:soloclaw/soloclaw#main",
     },
     {
       name: "explicit git package spec",
       run: async () => {
         mockPackageInstallStatus(createCaseDir("openclaw-update"));
-        await updateCommand({ yes: true, tag: "github:openclaw/openclaw#main" });
+        await updateCommand({ yes: true, tag: "github:soloclaw/soloclaw#main" });
       },
-      expectedSpec: "github:openclaw/openclaw#main",
+      expectedSpec: "github:soloclaw/soloclaw#main",
     },
     {
       name: "SOLOCLAW_UPDATE_PACKAGE_SPEC override",
@@ -786,7 +786,7 @@ describe("update-cli", () => {
     "resolves package install specs from tags and env overrides: $name",
     async ({ run, expectedSpec }) => {
       vi.clearAllMocks();
-      readPackageName.mockResolvedValue("openclaw");
+      readPackageName.mockResolvedValue("soloclaw");
       readPackageVersion.mockResolvedValue("1.0.0");
       resolveGlobalManager.mockResolvedValue("npm");
       vi.mocked(resolveOpenClawPackageRoot).mockResolvedValue(process.cwd());
@@ -798,12 +798,12 @@ describe("update-cli", () => {
   it("fails package updates when the installed correction version does not match the requested target", async () => {
     const tempDir = createCaseDir("openclaw-update");
     const nodeModules = path.join(tempDir, "node_modules");
-    const pkgRoot = path.join(nodeModules, "openclaw");
+    const pkgRoot = path.join(nodeModules, "soloclaw");
     mockPackageInstallStatus(tempDir);
     await fs.mkdir(pkgRoot, { recursive: true });
     await fs.writeFile(
       path.join(pkgRoot, "package.json"),
-      JSON.stringify({ name: "openclaw", version: "2026.3.23" }),
+      JSON.stringify({ name: "soloclaw", version: "2026.3.23" }),
       "utf-8",
     );
     for (const relativePath of TEST_BUNDLED_RUNTIME_SIDECAR_PATHS) {
@@ -847,7 +847,7 @@ describe("update-cli", () => {
     const platformSpy = vi.spyOn(process, "platform", "get").mockReturnValue("darwin");
     const brewPrefix = createCaseDir("brew-prefix");
     const brewRoot = path.join(brewPrefix, "lib", "node_modules");
-    const pkgRoot = path.join(brewRoot, "openclaw");
+    const pkgRoot = path.join(brewRoot, "soloclaw");
     const brewNpm = path.join(brewPrefix, "bin", "npm");
     const win32PrefixNpm = path.join(brewPrefix, "npm.cmd");
     const pathNpmRoot = createCaseDir("nvm-root");
@@ -1117,7 +1117,7 @@ describe("update-cli", () => {
     vi.mocked(runGatewayUpdate).mockResolvedValue(
       makeOkUpdateResult({
         mode: "git",
-        root: path.join(tempDir, "..", "openclaw"),
+        root: path.join(tempDir, "..", "soloclaw"),
         after: { version: "2026.4.10" },
       }),
     );
@@ -1490,7 +1490,7 @@ describe("update-cli", () => {
   it("uses ~/openclaw as the default dev checkout directory", async () => {
     const homedirSpy = vi.spyOn(os, "homedir").mockReturnValue("/tmp/oc-home");
     await withEnvAsync({ SOLOCLAW_GIT_DIR: undefined }, async () => {
-      expect(resolveGitInstallDir()).toBe(path.posix.join("/tmp/oc-home", "openclaw"));
+      expect(resolveGitInstallDir()).toBe(path.posix.join("/tmp/oc-home", "soloclaw"));
     });
     homedirSpy.mockRestore();
   });

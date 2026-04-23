@@ -32,7 +32,7 @@ const resolveSecretRefValuesMock = vi.hoisted(() => vi.fn());
 const randomTokenMock = vi.hoisted(() => vi.fn(() => "generated-token"));
 const buildGatewayInstallPlanMock = vi.hoisted(() =>
   vi.fn(async () => ({
-    programArguments: ["openclaw", "gateway", "run"],
+    programArguments: ["soloclaw", "gateway", "run"],
     workingDirectory: "/tmp",
     environment: {},
   })),
@@ -212,7 +212,7 @@ describe("runDaemonInstall", () => {
     resolveSecretRefValuesMock.mockResolvedValue(new Map());
     randomTokenMock.mockReturnValue("generated-token");
     buildGatewayInstallPlanMock.mockResolvedValue({
-      programArguments: ["openclaw", "gateway", "run"],
+      programArguments: ["soloclaw", "gateway", "run"],
       workingDirectory: "/tmp",
       environment: {},
     });
@@ -332,7 +332,7 @@ describe("runDaemonInstall", () => {
       NODE_USE_SYSTEM_CA: undefined,
     });
     service.readCommand.mockResolvedValue({
-      programArguments: ["openclaw", "gateway", "run"],
+      programArguments: ["soloclaw", "gateway", "run"],
       environment: {
         NODE_EXTRA_CA_CERTS: "/etc/ssl/certs/ca-certificates.crt",
       },
@@ -351,7 +351,7 @@ describe("runDaemonInstall", () => {
       NODE_USE_SYSTEM_CA: undefined,
     });
     service.readCommand.mockResolvedValue({
-      programArguments: ["openclaw", "gateway", "run"],
+      programArguments: ["soloclaw", "gateway", "run"],
       environment: {},
     } as never);
 
@@ -387,7 +387,7 @@ describe("runDaemonInstall", () => {
   it("reuses env-backed service secrets during forced reinstall when the current shell is missing them", async () => {
     service.isLoaded.mockResolvedValue(true);
     service.readCommand.mockResolvedValue({
-      programArguments: ["openclaw", "gateway", "run"],
+      programArguments: ["soloclaw", "gateway", "run"],
       environment: {
         OPENAI_API_KEY: "service-openai-key",
       },

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 INSTALL_URL="${SOLOCLAW_INSTALL_URL:-https://openclaw.bot/install.sh}"
-DEFAULT_PACKAGE="openclaw"
+DEFAULT_PACKAGE="soloclaw"
 PACKAGE_NAME="${SOLOCLAW_INSTALL_PACKAGE:-$DEFAULT_PACKAGE}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 

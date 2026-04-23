@@ -450,7 +450,7 @@ describe("deliverOutboundPayloads", () => {
     expect(sendMedia).not.toHaveBeenCalled();
   });
 
-  it("includes OpenClaw tmp root in signal mediaLocalRoots", async () => {
+  it("includes SoloClaw tmp root in signal mediaLocalRoots", async () => {
     const sendSignal = vi.fn().mockResolvedValue({ messageId: "s1", timestamp: 123 });
 
     await deliverOutboundPayloads({
@@ -558,7 +558,7 @@ describe("deliverOutboundPayloads", () => {
     );
   });
 
-  it("includes OpenClaw tmp root in whatsapp mediaLocalRoots", async () => {
+  it("includes SoloClaw tmp root in whatsapp mediaLocalRoots", async () => {
     const sendWhatsApp = vi.fn().mockResolvedValue({ messageId: "w1", toJid: "jid" });
 
     await deliverOutboundPayloads({
@@ -578,7 +578,7 @@ describe("deliverOutboundPayloads", () => {
     );
   });
 
-  it("includes OpenClaw tmp root in imessage mediaLocalRoots", async () => {
+  it("includes SoloClaw tmp root in imessage mediaLocalRoots", async () => {
     const sendIMessage = vi.fn().mockResolvedValue({ messageId: "i1", chatId: "chat-1" });
 
     await deliverOutboundPayloads({

@@ -8,11 +8,11 @@ read_when:
 
 # Pi Integration Architecture
 
-This document describes how OpenClaw integrates with [pi-coding-agent](https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent) and its sibling packages (`pi-ai`, `pi-agent-core`, `pi-tui`) to power its AI agent capabilities.
+This document describes how SoloClaw integrates with [pi-coding-agent](https://github.com/badlogic/pi-mono/tree/main/packages/coding-agent) and its sibling packages (`pi-ai`, `pi-agent-core`, `pi-tui`) to power its AI agent capabilities.
 
 ## Overview
 
-OpenClaw uses the pi SDK to embed an AI coding agent into its messaging gateway architecture. Instead of spawning pi as a subprocess or using RPC mode, OpenClaw directly imports and instantiates pi's `AgentSession` via `createAgentSession()`. This embedded approach provides:
+SoloClaw uses the pi SDK to embed an AI coding agent into its messaging gateway architecture. Instead of spawning pi as a subprocess or using RPC mode, SoloClaw directly imports and instantiates pi's `AgentSession` via `createAgentSession()`. This embedded approach provides:
 
 - Full control over session lifecycle and event handling
 - Custom tool injection (messaging, sandbox, channel-specific actions)
@@ -237,7 +237,7 @@ await session.prompt(effectivePrompt, { images: imageResult.images });
 
 The SDK handles the full agent loop: sending to LLM, executing tool calls, streaming responses.
 
-Image injection is prompt-local: OpenClaw loads image refs from the current prompt and
+Image injection is prompt-local: SoloClaw loads image refs from the current prompt and
 passes them via `images` for that turn only. It does not re-scan older history turns
 to re-inject image payloads.
 
@@ -246,8 +246,8 @@ to re-inject image payloads.
 ### Tool Pipeline
 
 1. **Base Tools**: pi's `codingTools` (read, bash, edit, write)
-2. **Custom Replacements**: OpenClaw replaces bash with `exec`/`process`, customizes read/edit/write for sandbox
-3. **OpenClaw Tools**: messaging, browser, canvas, sessions, cron, gateway, etc.
+2. **Custom Replacements**: SoloClaw replaces bash with `exec`/`process`, customizes read/edit/write for sandbox
+3. **SoloClaw Tools**: messaging, browser, canvas, sessions, cron, gateway, etc.
 4. **Channel Tools**: Discord/Telegram/Slack/WhatsApp-specific action tools
 5. **Policy Filtering**: Tools filtered by profile, provider, agent, group, sandbox policies
 6. **Schema Normalization**: Schemas cleaned for Gemini/OpenAI quirks
@@ -289,7 +289,7 @@ This ensures OpenClaw's policy filtering, sandbox integration, and extended tool
 
 ## System Prompt Construction
 
-The system prompt is built in `buildAgentSystemPrompt()` (`system-prompt.ts`). It assembles a full prompt with sections including Tooling, Tool Call Style, Safety guardrails, OpenClaw CLI reference, Skills, Docs, Workspace, Sandbox, Messaging, Reply Tags, Voice, Silent Replies, Heartbeats, Runtime metadata, plus Memory and Reactions when enabled, and optional context files and extra system prompt content. Sections are trimmed for minimal prompt mode used by subagents.
+The system prompt is built in `buildAgentSystemPrompt()` (`system-prompt.ts`). It assembles a full prompt with sections including Tooling, Tool Call Style, Safety guardrails, SoloClaw CLI reference, Skills, Docs, Workspace, Sandbox, Messaging, Reply Tags, Voice, Silent Replies, Heartbeats, Runtime metadata, plus Memory and Reactions when enabled, and optional context files and extra system prompt content. Sections are trimmed for minimal prompt mode used by subagents.
 
 The prompt is applied after session creation via `applySystemPromptOverrideToSession()`:
 
@@ -308,7 +308,7 @@ Sessions are JSONL files with tree structure (id/parentId linking). Pi's `Sessio
 const sessionManager = SessionManager.open(params.sessionFile);
 ```
 
-OpenClaw wraps this with `guardSessionManager()` for tool result safety.
+SoloClaw wraps this with `guardSessionManager()` for tool result safety.
 
 ### Session Caching
 
@@ -343,7 +343,7 @@ const compactResult = await compactEmbeddedPiSessionDirect({
 
 ### Auth Profiles
 
-OpenClaw maintains an auth profile store with multiple API keys per provider:
+SoloClaw maintains an auth profile store with multiple API keys per provider:
 
 ```typescript
 const authStore = ensureAuthProfileStore(agentDir, { allowKeychainPrompt: false });
@@ -391,7 +391,7 @@ if (fallbackConfigured && isFailoverErrorMessage(errorText)) {
 
 ## Pi Extensions
 
-OpenClaw loads custom pi extensions for specialized behavior:
+SoloClaw loads custom pi extensions for specialized behavior:
 
 ### Compaction Safeguard
 
@@ -516,7 +516,7 @@ if (sandboxRoot) {
 
 ## TUI Integration
 
-OpenClaw also has a local TUI mode that uses pi-tui components directly:
+SoloClaw also has a local TUI mode that uses pi-tui components directly:
 
 ```typescript
 // src/tui/tui.ts
@@ -527,10 +527,10 @@ This provides the interactive terminal experience similar to pi's native mode.
 
 ## Key Differences from Pi CLI
 
-| Aspect          | Pi CLI                  | OpenClaw Embedded                                                                              |
+| Aspect          | Pi CLI                  | SoloClaw Embedded                                                                              |
 | --------------- | ----------------------- | ---------------------------------------------------------------------------------------------- |
 | Invocation      | `pi` command / RPC      | SDK via `createAgentSession()`                                                                 |
-| Tools           | Default coding tools    | Custom OpenClaw tool suite                                                                     |
+| Tools           | Default coding tools    | Custom SoloClaw tool suite                                                                     |
 | System prompt   | AGENTS.md + prompts     | Dynamic per-channel/context                                                                    |
 | Session storage | `~/.pi/agent/sessions/` | `~/.soloclaw/agents/<agentId>/sessions/` (or `$SOLOCLAW_STATE_DIR/agents/<agentId>/sessions/`) |
 | Auth            | Single credential       | Multi-profile with rotation                                                                    |

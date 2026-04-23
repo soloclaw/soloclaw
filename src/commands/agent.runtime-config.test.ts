@@ -73,7 +73,7 @@ function mockConfig(home: string, storePath: string): OpenClawConfig {
       defaults: {
         model: { primary: "anthropic/claude-opus-4-6" },
         models: { "anthropic/claude-opus-4-6": {} },
-        workspace: path.join(home, "openclaw"),
+        workspace: path.join(home, "soloclaw"),
       },
     },
     session: { store: storePath, mainKey: "main" },
@@ -99,7 +99,7 @@ describe("agentCommand runtime config", () => {
           defaults: {
             model: { primary: "anthropic/claude-opus-4-6" },
             models: { "anthropic/claude-opus-4-6": {} },
-            workspace: path.join(home, "openclaw"),
+            workspace: path.join(home, "soloclaw"),
           },
         },
         session: { store, mainKey: "main" },

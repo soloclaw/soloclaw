@@ -128,7 +128,7 @@ async function setupSandboxWorkspace(home: string): Promise<{
   sandboxDir: string;
 }> {
   const cfg = createSandboxMediaStageConfig(home);
-  const workspaceDir = join(home, "openclaw");
+  const workspaceDir = join(home, "soloclaw");
   const sandboxDir = join(home, "sandboxes", "session");
   await fs.mkdir(sandboxDir, { recursive: true });
   sandboxMocks.ensureSandboxWorkspaceForSession.mockResolvedValue({

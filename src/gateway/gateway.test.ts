@@ -107,7 +107,7 @@ async function setupGatewayTempHome(params: { prefix: string; minimalGateway?: b
     delete process.env.SOLOCLAW_TEST_MINIMAL_GATEWAY;
   }
 
-  const workspaceDir = path.join(tempHome, "openclaw");
+  const workspaceDir = path.join(tempHome, "soloclaw");
   await fs.mkdir(workspaceDir, { recursive: true });
   process.env.SOLOCLAW_BUNDLED_PLUGINS_DIR = await createEmptyBundledPluginsDir(tempHome);
   return { envSnapshot, tempHome, workspaceDir };

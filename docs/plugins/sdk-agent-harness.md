@@ -10,7 +10,7 @@ read_when:
 
 # Agent Harness Plugins
 
-An **agent harness** is the low level executor for one prepared OpenClaw agent
+An **agent harness** is the low level executor for one prepared SoloClaw agent
 turn. It is not a model provider, not a channel, and not a tool registry.
 
 Use this surface only for bundled or trusted native plugins. The contract is
@@ -20,7 +20,7 @@ embedded runner.
 ## When to use a harness
 
 Register an agent harness when a model family has its own native session
-runtime and the normal OpenClaw provider transport is the wrong abstraction.
+runtime and the normal SoloClaw provider transport is the wrong abstraction.
 
 Examples:
 
@@ -34,12 +34,12 @@ WebSocket model APIs, build a [provider plugin](/plugins/sdk-provider-plugins).
 
 ## What core still owns
 
-Before a harness is selected, OpenClaw has already resolved:
+Before a harness is selected, SoloClaw has already resolved:
 
 - provider and model
 - runtime auth state
 - thinking level and context budget
-- the OpenClaw transcript/session file
+- the SoloClaw transcript/session file
 - workspace, sandbox, and tool policy
 - channel reply callbacks and streaming callbacks
 - model fallback and live model switching policy
@@ -85,17 +85,17 @@ export default definePluginEntry({
 
 ## Selection policy
 
-OpenClaw chooses a harness after provider/model resolution:
+SoloClaw chooses a harness after provider/model resolution:
 
 1. `SOLOCLAW_AGENT_RUNTIME=<id>` forces a registered harness with that id.
 2. `SOLOCLAW_AGENT_RUNTIME=pi` forces the built-in PI harness.
 3. `SOLOCLAW_AGENT_RUNTIME=auto` asks registered harnesses if they support the
    resolved provider/model.
-4. If no registered harness matches, OpenClaw uses PI unless PI fallback is
+4. If no registered harness matches, SoloClaw uses PI unless PI fallback is
    disabled.
 
 Forced plugin harness failures surface as run failures. In `auto` mode,
-OpenClaw may fall back to PI when the selected plugin harness fails before a
+SoloClaw may fall back to PI when the selected plugin harness fails before a
 turn has produced side effects. Set `SOLOCLAW_AGENT_HARNESS_FALLBACK=none` or
 `embeddedHarness.fallback: "none"` to make that fallback a hard failure instead.
 
@@ -117,11 +117,11 @@ The bundled Codex plugin follows this pattern:
 - harness id: `codex`
 - auth: synthetic provider availability, because the Codex harness owns the
   native Codex login/session
-- app-server request: OpenClaw sends the bare model id to Codex and lets the
+- app-server request: SoloClaw sends the bare model id to Codex and lets the
   harness talk to the native app-server protocol
 
 The Codex plugin is additive. Plain `openai/gpt-*` refs remain OpenAI provider
-refs and continue to use the normal OpenClaw provider path. Select `codex/gpt-*`
+refs and continue to use the normal SoloClaw provider path. Select `codex/gpt-*`
 when you want Codex-managed auth, Codex model discovery, native threads, and
 Codex app-server execution. `/model` can switch among the Codex models returned
 by the Codex app server without requiring OpenAI provider credentials.
@@ -129,9 +129,9 @@ by the Codex app server without requiring OpenAI provider credentials.
 For operator setup, model prefix examples, and Codex-only configs, see
 [Codex Harness](/plugins/codex-harness).
 
-OpenClaw requires Codex app-server `0.118.0` or newer. The Codex plugin checks
+SoloClaw requires Codex app-server `0.118.0` or newer. The Codex plugin checks
 the app-server initialize handshake and blocks older or unversioned servers so
-OpenClaw only runs against the protocol surface it has been tested with.
+SoloClaw only runs against the protocol surface it has been tested with.
 
 ### Native Codex harness mode
 
@@ -140,13 +140,13 @@ agent turns. Enable the bundled `codex` plugin first, and include `codex` in
 `plugins.allow` if your config uses a restrictive allowlist. It is different
 from `openai-codex/*`:
 
-- `openai-codex/*` uses ChatGPT/Codex OAuth through the normal OpenClaw provider
+- `openai-codex/*` uses ChatGPT/Codex OAuth through the normal SoloClaw provider
   path.
 - `codex/*` uses the bundled Codex provider and routes the turn through Codex
   app-server.
 
 When this mode runs, Codex owns the native thread id, resume behavior,
-compaction, and app-server execution. OpenClaw still owns the chat channel,
+compaction, and app-server execution. SoloClaw still owns the chat channel,
 visible transcript mirror, tool policy, approvals, media delivery, and session
 selection. Use `embeddedHarness.runtime: "codex"` with
 `embeddedHarness.fallback: "none"` when you need to prove that the Codex
@@ -154,10 +154,10 @@ app-server path is used and PI fallback is not hiding a broken native harness.
 
 ## Disable PI fallback
 
-By default, OpenClaw runs embedded agents with `agents.defaults.embeddedHarness`
+By default, SoloClaw runs embedded agents with `agents.defaults.embeddedHarness`
 set to `{ runtime: "auto", fallback: "pi" }`. In `auto` mode, registered plugin
 harnesses can claim a provider/model pair. If none match, or if an auto-selected
-plugin harness fails before producing output, OpenClaw falls back to PI.
+plugin harness fails before producing output, SoloClaw falls back to PI.
 
 Set `fallback: "none"` when you need to prove that a plugin harness is the only
 runtime being exercised. This disables automatic PI fallback; it does not block
@@ -180,7 +180,7 @@ For Codex-only embedded runs:
 ```
 
 If you want any registered plugin harness to claim matching models but never
-want OpenClaw to silently fall back to PI, keep `runtime: "auto"` and disable
+want SoloClaw to silently fall back to PI, keep `runtime: "auto"` and disable
 the fallback:
 
 ```json
@@ -242,22 +242,22 @@ image, video, music, TTS, PDF, or other provider-specific model routing.
 ## Native sessions and transcript mirror
 
 A harness may keep a native session id, thread id, or daemon-side resume token.
-Keep that binding explicitly associated with the OpenClaw session, and keep
-mirroring user-visible assistant/tool output into the OpenClaw transcript.
+Keep that binding explicitly associated with the SoloClaw session, and keep
+mirroring user-visible assistant/tool output into the SoloClaw transcript.
 
-The OpenClaw transcript remains the compatibility layer for:
+The SoloClaw transcript remains the compatibility layer for:
 
 - channel-visible session history
 - transcript search and indexing
 - switching back to the built-in PI harness on a later turn
 - generic `/new`, `/reset`, and session deletion behavior
 
-If your harness stores a sidecar binding, implement `reset(...)` so OpenClaw can
-clear it when the owning OpenClaw session is reset.
+If your harness stores a sidecar binding, implement `reset(...)` so SoloClaw can
+clear it when the owning SoloClaw session is reset.
 
 ## Tool and media results
 
-Core constructs the OpenClaw tool list and passes it into the prepared attempt.
+Core constructs the SoloClaw tool list and passes it into the prepared attempt.
 When a harness executes a dynamic tool call, return the tool result back through
 the harness result shape instead of sending channel media yourself.
 

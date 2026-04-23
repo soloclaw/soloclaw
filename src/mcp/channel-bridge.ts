@@ -106,7 +106,7 @@ export class OpenClawChannelBridge {
       token: bootstrap.auth.token,
       password: bootstrap.auth.password,
       clientName: GATEWAY_CLIENT_NAMES.CLI,
-      clientDisplayName: "OpenClaw MCP",
+      clientDisplayName: "SoloClaw MCP",
       clientVersion: VERSION,
       mode: GATEWAY_CLIENT_MODES.CLI,
       scopes: [READ_SCOPE, WRITE_SCOPE, APPROVALS_SCOPE],

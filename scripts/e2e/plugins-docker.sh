@@ -382,7 +382,7 @@ write_fixture_plugin() {
 {
   "name": "@openclaw/$id",
   "version": "$version",
-  "openclaw": { "extensions": ["./index.js"] }
+  "soloclaw": { "extensions": ["./index.js"] }
 }
 JSON
   cat > "$dir/index.js" <<JS
@@ -484,7 +484,7 @@ cat > "$pack_dir/package/package.json" <<'JSON'
 {
   "name": "@openclaw/demo-plugin-tgz",
   "version": "0.0.1",
-  "openclaw": { "extensions": ["./index.js"] }
+  "soloclaw": { "extensions": ["./index.js"] }
 }
 JSON
 cat > "$pack_dir/package/index.js" <<'JS'
@@ -533,7 +533,7 @@ cat > "$dir_plugin/package.json" <<'JSON'
 {
   "name": "@openclaw/demo-plugin-dir",
   "version": "0.0.1",
-  "openclaw": { "extensions": ["./index.js"] }
+  "soloclaw": { "extensions": ["./index.js"] }
 }
 JSON
 cat > "$dir_plugin/index.js" <<'JS'
@@ -582,7 +582,7 @@ cat > "$file_pack_dir/package/package.json" <<'JSON'
 {
   "name": "@openclaw/demo-plugin-file",
   "version": "0.0.1",
-  "openclaw": { "extensions": ["./index.js"] }
+  "soloclaw": { "extensions": ["./index.js"] }
 }
 JSON
 cat > "$file_pack_dir/package/index.js" <<'JS'
@@ -692,7 +692,7 @@ cat > "$slash_install_dir/package.json" <<'JSON'
 {
   "name": "@openclaw/slash-install-plugin",
   "version": "0.0.1",
-  "openclaw": { "extensions": ["./index.js"] }
+  "soloclaw": { "extensions": ["./index.js"] }
 }
 JSON
 cat > "$slash_install_dir/index.js" <<'JS'

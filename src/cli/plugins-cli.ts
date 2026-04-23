@@ -130,7 +130,7 @@ function formatInstallLines(install: PluginInstallRecord | undefined): string[] 
 export function registerPluginsCli(program: Command) {
   const plugins = program
     .command("plugins")
-    .description("Manage OpenClaw plugins and extensions")
+    .description("Manage SoloClaw plugins and extensions")
     .addHelpText(
       "after",
       () =>
@@ -185,7 +185,7 @@ export function registerPluginsCli(program: Command) {
           return {
             Name: plugin.name || plugin.id,
             ID: plugin.name && plugin.name !== plugin.id ? plugin.id : "",
-            Format: plugin.format ?? "openclaw",
+            Format: plugin.format ?? "soloclaw",
             Status:
               plugin.status === "loaded"
                 ? theme.success("loaded")
@@ -354,7 +354,7 @@ export function registerPluginsCli(program: Command) {
       if (inspect.plugin.failedAt) {
         lines.push(`${theme.muted("Failed at:")} ${inspect.plugin.failedAt.toISOString()}`);
       }
-      lines.push(`${theme.muted("Format:")} ${inspect.plugin.format ?? "openclaw"}`);
+      lines.push(`${theme.muted("Format:")} ${inspect.plugin.format ?? "soloclaw"}`);
       if (inspect.plugin.bundleFormat) {
         lines.push(`${theme.muted("Bundle format:")} ${inspect.plugin.bundleFormat}`);
       }

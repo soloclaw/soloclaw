@@ -9,7 +9,7 @@ title: "Session Tools"
 
 # Session Tools
 
-OpenClaw gives agents tools to work across sessions, inspect status, and
+SoloClaw gives agents tools to work across sessions, inspect status, and
 orchestrate sub-agents.
 
 ## Available tools
@@ -69,7 +69,7 @@ the response:
   immediately.
 - **Wait for reply:** set a timeout and get the response inline.
 
-After the target responds, OpenClaw can run a **reply-back loop** where the
+After the target responds, SoloClaw can run a **reply-back loop** where the
 agents alternate messages (up to 5 turns). The target agent can reply
 `REPLY_SKIP` to stop early.
 
@@ -113,7 +113,7 @@ orchestration tools.
 
 After completion, an announce step posts the result to the requester's channel.
 Completion delivery preserves bound thread/topic routing when available, and if
-the completion origin only identifies a channel OpenClaw can still reuse the
+the completion origin only identifies a channel SoloClaw can still reuse the
 requester session's stored route (`lastChannel` / `lastTo`) for direct
 delivery.
 

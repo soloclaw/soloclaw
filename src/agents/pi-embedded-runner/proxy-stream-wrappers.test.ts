@@ -54,7 +54,7 @@ describe("proxy stream wrappers", () => {
     expect(calls).toEqual([
       {
         headers: {
-          "HTTP-Referer": "https://openclaw.ai",
+          "HTTP-Referer": "https://soloclaw.ai",
           "X-OpenRouter-Title": "OpenClaw",
           "X-OpenRouter-Categories": "cli-agent",
           "X-Custom": "1",

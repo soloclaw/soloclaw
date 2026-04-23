@@ -84,7 +84,7 @@ describe("package dist inventory", () => {
         "dist",
         "extensions",
         "node_modules",
-        "openclaw",
+        "soloclaw",
         "plugin-sdk",
       );
       const omittedMap = path.join(packageRoot, "dist", "feature.runtime.js.map");

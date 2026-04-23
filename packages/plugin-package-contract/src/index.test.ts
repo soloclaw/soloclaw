@@ -7,7 +7,7 @@ import {
 } from "./index.js";
 
 describe("@soloclaw/plugin-package-contract", () => {
-  it("normalizes the OpenClaw compatibility block for external plugins", () => {
+  it("normalizes the SoloClaw compatibility block for external plugins", () => {
     expect(
       normalizeExternalPluginCompatibility({
         version: "1.2.3",

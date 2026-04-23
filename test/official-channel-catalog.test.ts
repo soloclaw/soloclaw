@@ -29,7 +29,7 @@ describe("buildOfficialChannelCatalog", () => {
     writeJson(path.join(repoRoot, "extensions", "whatsapp", "package.json"), {
       name: "@soloclaw/whatsapp",
       version: "2026.3.23",
-      description: "OpenClaw WhatsApp channel plugin",
+      description: "SoloClaw WhatsApp channel plugin",
       openclaw: {
         channel: {
           id: "whatsapp",
@@ -73,7 +73,7 @@ describe("buildOfficialChannelCatalog", () => {
         {
           name: "@soloclaw/whatsapp",
           version: "2026.3.23",
-          description: "OpenClaw WhatsApp channel plugin",
+          description: "SoloClaw WhatsApp channel plugin",
           openclaw: {
             channel: {
               id: "whatsapp",

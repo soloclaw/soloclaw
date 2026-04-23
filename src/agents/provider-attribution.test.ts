@@ -12,7 +12,7 @@ import {
 } from "./provider-attribution.js";
 
 describe("provider attribution", () => {
-  it("resolves the canonical OpenClaw product and runtime version", () => {
+  it("resolves the canonical SoloClaw product and runtime version", () => {
     const identity = resolveProviderAttributionIdentity({
       SOLOCLAW_VERSION: "2026.3.99",
     });
@@ -34,11 +34,11 @@ describe("provider attribution", () => {
       verification: "vendor-documented",
       hook: "request-headers",
       docsUrl: "https://openrouter.ai/docs/app-attribution",
-      reviewNote: "Documented app attribution headers. Verified in OpenClaw runtime wrapper.",
+      reviewNote: "Documented app attribution headers. Verified in SoloClaw runtime wrapper.",
       product: "OpenClaw",
       version: "2026.3.22",
       headers: {
-        "HTTP-Referer": "https://openclaw.ai",
+        "HTTP-Referer": "https://soloclaw.ai",
         "X-OpenRouter-Title": "OpenClaw",
         "X-OpenRouter-Categories": "cli-agent",
       },
@@ -51,7 +51,7 @@ describe("provider attribution", () => {
         SOLOCLAW_VERSION: "2026.3.22",
       }),
     ).toEqual({
-      "HTTP-Referer": "https://openclaw.ai",
+      "HTTP-Referer": "https://soloclaw.ai",
       "X-OpenRouter-Title": "OpenClaw",
       "X-OpenRouter-Categories": "cli-agent",
     });
@@ -68,13 +68,13 @@ describe("provider attribution", () => {
       product: "OpenClaw",
       version: "2026.3.22",
       headers: {
-        originator: "openclaw",
+        originator: "soloclaw",
         version: "2026.3.22",
         "User-Agent": "openclaw/2026.3.22",
       },
     });
     expect(resolveProviderAttributionHeaders("openai", { SOLOCLAW_VERSION: "2026.3.22" })).toEqual({
-      originator: "openclaw",
+      originator: "soloclaw",
       version: "2026.3.22",
       "User-Agent": "openclaw/2026.3.22",
     });
@@ -93,7 +93,7 @@ describe("provider attribution", () => {
       product: "OpenClaw",
       version: "2026.3.22",
       headers: {
-        originator: "openclaw",
+        originator: "soloclaw",
         version: "2026.3.22",
         "User-Agent": "openclaw/2026.3.22",
       },

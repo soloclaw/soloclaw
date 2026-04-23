@@ -7,7 +7,7 @@ describe("parseCliProfileArgs", () => {
   it("leaves gateway --dev for subcommands", () => {
     const res = parseCliProfileArgs([
       "node",
-      "openclaw",
+      "soloclaw",
       "gateway",
       "--dev",
       "--allow-unconfigured",
@@ -16,13 +16,13 @@ describe("parseCliProfileArgs", () => {
       throw new Error(res.error);
     }
     expect(res.profile).toBeNull();
-    expect(res.argv).toEqual(["node", "openclaw", "gateway", "--dev", "--allow-unconfigured"]);
+    expect(res.argv).toEqual(["node", "soloclaw", "gateway", "--dev", "--allow-unconfigured"]);
   });
 
   it("leaves gateway --dev for subcommands after leading root options", () => {
     const res = parseCliProfileArgs([
       "node",
-      "openclaw",
+      "soloclaw",
       "--no-color",
       "gateway",
       "--dev",
@@ -34,7 +34,7 @@ describe("parseCliProfileArgs", () => {
     expect(res.profile).toBeNull();
     expect(res.argv).toEqual([
       "node",
-      "openclaw",
+      "soloclaw",
       "--no-color",
       "gateway",
       "--dev",
@@ -43,50 +43,50 @@ describe("parseCliProfileArgs", () => {
   });
 
   it("still accepts global --dev before subcommand", () => {
-    const res = parseCliProfileArgs(["node", "openclaw", "--dev", "gateway"]);
+    const res = parseCliProfileArgs(["node", "soloclaw", "--dev", "gateway"]);
     if (!res.ok) {
       throw new Error(res.error);
     }
     expect(res.profile).toBe("dev");
-    expect(res.argv).toEqual(["node", "openclaw", "gateway"]);
+    expect(res.argv).toEqual(["node", "soloclaw", "gateway"]);
   });
 
   it("parses --profile value and strips it", () => {
-    const res = parseCliProfileArgs(["node", "openclaw", "--profile", "work", "status"]);
+    const res = parseCliProfileArgs(["node", "soloclaw", "--profile", "work", "status"]);
     if (!res.ok) {
       throw new Error(res.error);
     }
     expect(res.profile).toBe("work");
-    expect(res.argv).toEqual(["node", "openclaw", "status"]);
+    expect(res.argv).toEqual(["node", "soloclaw", "status"]);
   });
 
   it("parses interleaved --profile after the command token", () => {
-    const res = parseCliProfileArgs(["node", "openclaw", "status", "--profile", "work", "--deep"]);
+    const res = parseCliProfileArgs(["node", "soloclaw", "status", "--profile", "work", "--deep"]);
     if (!res.ok) {
       throw new Error(res.error);
     }
     expect(res.profile).toBe("work");
-    expect(res.argv).toEqual(["node", "openclaw", "status", "--deep"]);
+    expect(res.argv).toEqual(["node", "soloclaw", "status", "--deep"]);
   });
 
   it("parses interleaved --dev after the command token", () => {
-    const res = parseCliProfileArgs(["node", "openclaw", "status", "--dev"]);
+    const res = parseCliProfileArgs(["node", "soloclaw", "status", "--dev"]);
     if (!res.ok) {
       throw new Error(res.error);
     }
     expect(res.profile).toBe("dev");
-    expect(res.argv).toEqual(["node", "openclaw", "status"]);
+    expect(res.argv).toEqual(["node", "soloclaw", "status"]);
   });
 
   it("rejects missing profile value", () => {
-    const res = parseCliProfileArgs(["node", "openclaw", "--profile"]);
+    const res = parseCliProfileArgs(["node", "soloclaw", "--profile"]);
     expect(res.ok).toBe(false);
   });
 
   it.each([
-    ["--dev first", ["node", "openclaw", "--dev", "--profile", "work", "status"]],
-    ["--profile first", ["node", "openclaw", "--profile", "work", "--dev", "status"]],
-    ["interleaved after command", ["node", "openclaw", "status", "--profile", "work", "--dev"]],
+    ["--dev first", ["node", "soloclaw", "--dev", "--profile", "work", "status"]],
+    ["--profile first", ["node", "soloclaw", "--profile", "work", "--dev", "status"]],
+    ["interleaved after command", ["node", "soloclaw", "status", "--profile", "work", "--dev"]],
   ])("rejects combining --dev with --profile (%s)", (_name, argv) => {
     const res = parseCliProfileArgs(argv);
     expect(res.ok).toBe(false);
@@ -197,7 +197,7 @@ describe("formatCliCommand", () => {
   });
 
   it("handles command with no args after openclaw", () => {
-    expect(formatCliCommand("openclaw", { SOLOCLAW_PROFILE: "test" })).toBe(
+    expect(formatCliCommand("soloclaw", { SOLOCLAW_PROFILE: "test" })).toBe(
       "soloclaw --profile test",
     );
   });

@@ -829,7 +829,7 @@ describe("runMessageAction media behavior", () => {
       },
     );
 
-    it("allows media paths under preferred OpenClaw tmp root", async () => {
+    it("allows media paths under preferred SoloClaw tmp root", async () => {
       const tmpRoot = resolvePreferredOpenClawTmpDir();
       await fs.mkdir(tmpRoot, { recursive: true });
       const sandboxDir = await fs.mkdtemp(path.join(os.tmpdir(), "msg-sandbox-"));

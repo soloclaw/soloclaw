@@ -222,7 +222,7 @@ export async function runCli(argv: string[] = process.argv) {
     installUnhandledRejectionHandler();
 
     process.on("uncaughtException", (error) => {
-      console.error("[openclaw] Uncaught exception:", formatUncaughtError(error));
+      console.error("[soloclaw] Uncaught exception:", formatUncaughtError(error));
       restoreTerminalState("uncaught exception", { resumeStdinIfPaused: false });
       process.exit(1);
     });

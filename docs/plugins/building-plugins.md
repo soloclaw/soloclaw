@@ -1,23 +1,23 @@
 ---
 title: "Building Plugins"
 sidebarTitle: "Getting Started"
-summary: "Create your first OpenClaw plugin in minutes"
+summary: "Create your first SoloClaw plugin in minutes"
 read_when:
-  - You want to create a new OpenClaw plugin
+  - You want to create a new SoloClaw plugin
   - You need a quick-start for plugin development
   - You are adding a new channel, provider, tool, or other capability to OpenClaw
 ---
 
 # Building Plugins
 
-Plugins extend OpenClaw with new capabilities: channels, model providers,
+Plugins extend SoloClaw with new capabilities: channels, model providers,
 speech, realtime transcription, realtime voice, media understanding, image
 generation, video generation, web fetch, web search, agent tools, or any
 combination.
 
-You do not need to add your plugin to the OpenClaw repository. Publish to
+You do not need to add your plugin to the SoloClaw repository. Publish to
 [ClawHub](/tools/clawhub) or npm and users install with
-`soloclaw plugins install <package-name>`. OpenClaw tries ClawHub first and
+`soloclaw plugins install <package-name>`. SoloClaw tries ClawHub first and
 falls back to npm automatically.
 
 ## Prerequisites
@@ -30,7 +30,7 @@ falls back to npm automatically.
 
 <CardGroup cols={3}>
   <Card title="Channel plugin" icon="messages-square" href="/plugins/sdk-channel-plugins">
-    Connect OpenClaw to a messaging platform (Discord, IRC, etc.)
+    Connect SoloClaw to a messaging platform (Discord, IRC, etc.)
   </Card>
   <Card title="Provider plugin" icon="cpu" href="/plugins/sdk-provider-plugins">
     Add a model provider (LLM, proxy, or custom endpoint)
@@ -59,7 +59,7 @@ and provider plugins have dedicated guides linked above.
       "name": "@myorg/openclaw-my-plugin",
       "version": "1.0.0",
       "type": "module",
-      "openclaw": {
+      "soloclaw": {
         "extensions": ["./index.ts"],
         "compat": {
           "pluginApi": ">=2026.3.24-beta.2",
@@ -132,7 +132,7 @@ and provider plugins have dedicated guides linked above.
     openclaw plugins install clawhub:@myorg/openclaw-my-plugin
     ```
 
-    OpenClaw also checks ClawHub before npm for bare package specs like
+    SoloClaw also checks ClawHub before npm for bare package specs like
     `@myorg/openclaw-my-plugin`.
 
     **In-repo plugins:** place under the bundled plugin workspace tree — automatically discovered.
@@ -185,7 +185,7 @@ Hook guard semantics to keep in mind:
 - `message_sending`: `{ cancel: true }` is terminal and stops lower-priority handlers.
 - `message_sending`: `{ cancel: false }` is treated as no decision.
 
-The `/approve` command handles both exec and plugin approvals with bounded fallback: when an exec approval id is not found, OpenClaw retries the same id through plugin approvals. Plugin approval forwarding can be configured independently via `approvals.plugin` in config.
+The `/approve` command handles both exec and plugin approvals with bounded fallback: when an exec approval id is not found, SoloClaw retries the same id through plugin approvals. Plugin approval forwarding can be configured independently via `approvals.plugin` in config.
 
 If custom approval plumbing needs to detect that same bounded fallback case,
 prefer `isApprovalNotFoundError` from `soloclaw/plugin-sdk/error-runtime`
@@ -281,7 +281,7 @@ surfaces, not as the default pattern for new third-party plugins.
 
 ## Beta Release Testing
 
-1. Watch for GitHub release tags on [openclaw/openclaw](https://github.com/openclaw/openclaw/releases) and subscribe via `Watch` > `Releases`. Beta tags look like `v2026.3.N-beta.1`. You can also turn on notifications for the official OpenClaw X account [@openclaw](https://x.com/openclaw) for release announcements.
+1. Watch for GitHub release tags on [soloclaw/soloclaw](https://github.com/soloclaw/soloclaw/releases) and subscribe via `Watch` > `Releases`. Beta tags look like `v2026.3.N-beta.1`. You can also turn on notifications for the official SoloClaw X account [@openclaw](https://x.com/openclaw) for release announcements.
 2. Test your plugin against the beta tag as soon as it appears. The window before stable is typically only a few hours.
 3. Post in your plugin's thread in the `plugin-forum` Discord channel after testing with either `all good` or what broke. If you do not have a thread yet, create one.
 4. If something breaks, open or update an issue titled `Beta blocker: <plugin-name> - <summary>` and apply the `beta-blocker` label. Put the issue link in your thread.

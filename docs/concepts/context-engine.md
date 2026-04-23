@@ -1,7 +1,7 @@
 ---
 summary: "Context engine: pluggable context assembly, compaction, and subagent lifecycle"
 read_when:
-  - You want to understand how OpenClaw assembles model context
+  - You want to understand how SoloClaw assembles model context
   - You are switching between the legacy engine and a plugin engine
   - You are building a context engine plugin
 title: "Context Engine"
@@ -9,11 +9,11 @@ title: "Context Engine"
 
 # Context Engine
 
-A **context engine** controls how OpenClaw builds model context for each run.
+A **context engine** controls how SoloClaw builds model context for each run.
 It decides which messages to include, how to summarize older history, and how
 to manage context across subagent boundaries.
 
-OpenClaw ships with a built-in `legacy` engine. Plugins can register
+SoloClaw ships with a built-in `legacy` engine. Plugins can register
 alternative engines that replace the active context-engine lifecycle.
 
 ## Quick start
@@ -28,7 +28,7 @@ cat ~/.soloclaw/soloclaw.json | jq '.plugins.slots.contextEngine'
 
 ### Installing a context engine plugin
 
-Context engine plugins are installed like any other OpenClaw plugin. Install
+Context engine plugins are installed like any other SoloClaw plugin. Install
 first, then select the engine in the slot:
 
 ```bash
@@ -65,7 +65,7 @@ remove the key entirely — `"legacy"` is the default).
 
 ## How it works
 
-Every time OpenClaw runs a model prompt, the context engine participates at
+Every time SoloClaw runs a model prompt, the context engine participates at
 four lifecycle points:
 
 1. **Ingest** — called when a new message is added to the session. The engine
@@ -80,7 +80,7 @@ four lifecycle points:
 
 ### Subagent lifecycle (optional)
 
-OpenClaw currently calls one subagent lifecycle hook:
+SoloClaw currently calls one subagent lifecycle hook:
 
 - **onSubagentEnded** — clean up when a subagent session completes or is swept.
 
@@ -182,7 +182,7 @@ Required members:
 
 - `messages` — the ordered messages to send to the model.
 - `estimatedTokens` (required, `number`) — the engine's estimate of total
-  tokens in the assembled context. OpenClaw uses this for compaction threshold
+  tokens in the assembled context. SoloClaw uses this for compaction threshold
   decisions and diagnostic reporting.
 - `systemPromptAddition` (optional, `string`) — prepended to the system prompt.
 
@@ -202,7 +202,7 @@ Optional members:
 `ownsCompaction` controls whether Pi's built-in in-attempt auto-compaction stays
 enabled for the run:
 
-- `true` — the engine owns compaction behavior. OpenClaw disables Pi's built-in
+- `true` — the engine owns compaction behavior. SoloClaw disables Pi's built-in
   auto-compaction for that run, and the engine's `compact()` implementation is
   responsible for `/compact`, overflow recovery compaction, and any proactive
   compaction it wants to do in `afterTurn()`.
@@ -210,7 +210,7 @@ enabled for the run:
   execution, but the active engine's `compact()` method is still called for
   `/compact` and overflow recovery.
 
-`ownsCompaction: false` does **not** mean OpenClaw automatically falls back to
+`ownsCompaction: false` does **not** mean SoloClaw automatically falls back to
 the legacy engine's compaction path.
 
 That means there are two valid plugin patterns:
@@ -243,7 +243,7 @@ The slot is exclusive at run time — only one registered context engine is
 resolved for a given run or compaction operation. Other enabled
 `kind: "context-engine"` plugins can still load and run their registration
 code; `plugins.slots.contextEngine` only selects which registered engine id
-OpenClaw resolves when it needs a context engine.
+SoloClaw resolves when it needs a context engine.
 
 ## Relationship to compaction and memory
 

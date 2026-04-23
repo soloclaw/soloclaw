@@ -911,7 +911,7 @@ describe("preflightDiscordMessage", () => {
           ...DEFAULT_PREFLIGHT_CFG,
           messages: {
             groupChat: {
-              mentionPatterns: ["openclaw"],
+              mentionPatterns: ["soloclaw"],
             },
           },
         } as import("soloclaw/plugin-sdk/config-runtime").OpenClawConfig,
@@ -979,7 +979,7 @@ describe("preflightDiscordMessage", () => {
           ...DEFAULT_PREFLIGHT_CFG,
           messages: {
             groupChat: {
-              mentionPatterns: ["openclaw"],
+              mentionPatterns: ["soloclaw"],
             },
           },
         } as import("soloclaw/plugin-sdk/config-runtime").OpenClawConfig,

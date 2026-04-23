@@ -214,7 +214,7 @@ function collectRawSessionText(content: unknown): string | null {
  * `normalizeSessionText` collapses newlines into spaces, stripping is
  * impossible.
  *
- * See: https://github.com/openclaw/openclaw/issues/63921
+ * See: https://github.com/soloclaw/soloclaw/issues/63921
  */
 function stripInboundMetadataForUserRole(text: string, role: "user" | "assistant"): string {
   if (role !== "user") {

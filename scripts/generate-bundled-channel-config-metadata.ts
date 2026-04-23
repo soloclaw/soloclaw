@@ -91,7 +91,7 @@ function resolvePackageChannelMeta(source: BundledPluginSource) {
     source.packageJson &&
     typeof source.packageJson === "object" &&
     !Array.isArray(source.packageJson) &&
-    "openclaw" in source.packageJson
+    "soloclaw" in source.packageJson
       ? (source.packageJson.openclaw as Record<string, unknown> | undefined)
       : undefined;
   const channelMeta =
