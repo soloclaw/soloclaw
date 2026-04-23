@@ -10,11 +10,11 @@ Based on [OpenClaw](https://github.com/openclaw/openclaw).
 
 ## Why SoloClaw
 
-- **Zero friction** — one command to install, no configuration, no maintenance. It just works.
-- **Completely free** — runs entirely on your machine with well-tested open-source models. No API keys, no subscriptions, no cloud dependency.
-- **Self-extending** — need a new capability? Just ask. SoloClaw installs skills on demand from natural language requests.
-- **Continuously learning** — remembers your preferences, learns from conversations, and gets better over time through workspace memory.
-- **Safe by design** — built-in security monitor blocks dangerous commands before they execute. SoloClaw will never delete your files, format your drive, or damage your system — it asks you to run risky commands manually instead.
+- **Just works** — one command to install. No accounts, no configuration, no maintenance.
+- **100% free** — well-tested open-source models run entirely on your machine. No API keys, no subscriptions, no data leaving your computer.
+- **Safe by default** — a built-in security monitor blocks dangerous commands before they execute. SoloClaw never deletes your files or damages your system.
+- **Grows with you** — ask for new capabilities and SoloClaw installs them. It remembers your preferences and gets smarter with every conversation.
+- **Private** — everything stays local. Your conversations, files, and data never touch a cloud server.
 
 ## Install
 
