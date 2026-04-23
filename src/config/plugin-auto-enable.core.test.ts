@@ -99,7 +99,7 @@ describe("applyPluginAutoEnable core", () => {
     const result = applyPluginAutoEnable({
       config: {
         browser: {
-          defaultProfile: "openclaw",
+          defaultProfile: "soloclaw",
         },
         plugins: {
           allow: ["telegram"],

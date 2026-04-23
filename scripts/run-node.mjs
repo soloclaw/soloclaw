@@ -334,7 +334,7 @@ const logRunner = (message, deps) => {
   if (deps.env.SOLOCLAW_RUNNER_LOG === "0") {
     return;
   }
-  const line = `[openclaw] ${message}\n`;
+  const line = `[soloclaw] ${message}\n`;
   deps.stderr.write(line);
   deps.outputTee?.write(line);
 };
@@ -396,7 +396,7 @@ const getInterruptedSpawnExitCode = (res) => {
   return null;
 };
 
-const runOpenClaw = async (deps) => {
+const runSoloClaw = async (deps) => {
   const nodeProcess = deps.spawn(deps.execPath, ["soloclaw.mjs", ...deps.args], {
     cwd: deps.cwd,
     env: deps.env,
@@ -433,7 +433,7 @@ const closeRunNodeOutputTee = async (deps, exitCode) => {
     await deps.outputTee.close();
   } catch (error) {
     deps.stderr.write(
-      `[openclaw] Failed to write output log: ${error?.message ?? "unknown error"}\n`,
+      `[soloclaw] Failed to write output log: ${error?.message ?? "unknown error"}\n`,
     );
     return exitCode === 0 ? 1 : exitCode;
   }

@@ -642,7 +642,7 @@ describe("discord group DM gating", () => {
       resolveGroupDmAllow({
         channels: ["openclaw-dm"],
         channelId: "1",
-        channelName: "OpenClaw DM",
+        channelName: "SoloClaw DM",
         channelSlug: "openclaw-dm",
       }),
     ).toBe(true);

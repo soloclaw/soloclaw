@@ -118,7 +118,7 @@ describe("getReplyFromConfig fast test bootstrap", () => {
       agents: {
         defaults: {
           model: "anthropic/claude-opus-4-6",
-          workspace: path.join(home, "openclaw"),
+          workspace: path.join(home, "soloclaw"),
         },
       },
       channels: { telegram: { allowFrom: ["*"] } },

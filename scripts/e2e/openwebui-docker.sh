@@ -122,7 +122,7 @@ docker run -d \
   --name "$OW_NAME" \
   --network "$NET_NAME" \
   -e ENV=prod \
-  -e WEBUI_NAME="OpenClaw E2E" \
+  -e WEBUI_NAME="SoloClaw E2E" \
   -e WEBUI_SECRET_KEY="openclaw-openwebui-e2e-secret" \
   -e OFFLINE_MODE=True \
   -e ENABLE_VERSION_UPDATE_CHECK=False \
@@ -136,7 +136,7 @@ docker run -d \
   -e RAG_RERANKING_MODEL_AUTO_UPDATE=False \
   -e WEBUI_ADMIN_EMAIL="$ADMIN_EMAIL" \
   -e WEBUI_ADMIN_PASSWORD="$ADMIN_PASSWORD" \
-  -e WEBUI_ADMIN_NAME="OpenClaw E2E" \
+  -e WEBUI_ADMIN_NAME="SoloClaw E2E" \
   -e ENABLE_SIGNUP=False \
   -e DEFAULT_MODELS="openclaw/default" \
   "$OPENWEBUI_IMAGE" >/dev/null
@@ -163,7 +163,7 @@ if [ "$ow_ready" -ne 1 ]; then
   exit 1
 fi
 
-echo "Running Open WebUI -> OpenClaw smoke..."
+echo "Running Open WebUI -> SoloClaw smoke..."
 if ! docker exec \
   -e "OPENWEBUI_BASE_URL=http://$OW_NAME:$WEBUI_PORT" \
   -e "OPENWEBUI_ADMIN_EMAIL=$ADMIN_EMAIL" \

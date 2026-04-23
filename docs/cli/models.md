@@ -29,7 +29,7 @@ When provider usage snapshots are available, the OAuth/API-key status section in
 provider usage windows and quota snapshots.
 Current usage-window providers: Anthropic, GitHub Copilot, Gemini CLI, OpenAI
 Codex, MiniMax, Xiaomi, and z.ai. Usage auth comes from provider-specific hooks
-when available; otherwise OpenClaw falls back to matching OAuth/API-key
+when available; otherwise SoloClaw falls back to matching OAuth/API-key
 credentials from auth profiles, env, or config.
 In `--json` output, `auth.providers` is the env/config/store-aware provider
 overview, while `auth.oauth` is auth-store profile health only.
@@ -44,7 +44,7 @@ Notes:
 
 - `models set <model-or-alias>` accepts `provider/model` or an alias.
 - Model refs are parsed by splitting on the **first** `/`. If the model ID includes `/` (OpenRouter-style), include the provider prefix (example: `openrouter/moonshotai/kimi-k2`).
-- If you omit the provider, OpenClaw resolves the input as an alias first, then
+- If you omit the provider, SoloClaw resolves the input as an alias first, then
   as a unique configured-provider match for that exact model id, and only then
   falls back to the configured default provider with a deprecation warning.
   If that provider no longer exposes the configured default model, OpenClaw
@@ -85,7 +85,7 @@ Probe detail/reason-code cases to expect:
   trying it.
 - `missing_credential`, `invalid_expires`, `expired`, `unresolved_ref`:
   profile is present but not eligible/resolvable.
-- `no_model`: provider auth exists, but OpenClaw could not resolve a probeable
+- `no_model`: provider auth exists, but SoloClaw could not resolve a probeable
   model candidate for that provider.
 
 ## Aliases + fallbacks
@@ -130,5 +130,5 @@ Notes:
   `--profile-id`.
 - `paste-token --expires-in <duration>` stores an absolute token expiry from a
   relative duration such as `365d` or `12h`.
-- Anthropic note: Anthropic staff told us OpenClaw-style Claude CLI usage is allowed again, so OpenClaw treats Claude CLI reuse and `claude -p` usage as sanctioned for this integration unless Anthropic publishes a new policy.
-- Anthropic `setup-token` / `paste-token` remain available as a supported OpenClaw token path, but OpenClaw now prefers Claude CLI reuse and `claude -p` when available.
+- Anthropic note: Anthropic staff told us OpenClaw-style Claude CLI usage is allowed again, so SoloClaw treats Claude CLI reuse and `claude -p` usage as sanctioned for this integration unless Anthropic publishes a new policy.
+- Anthropic `setup-token` / `paste-token` remain available as a supported SoloClaw token path, but SoloClaw now prefers Claude CLI reuse and `claude -p` when available.

@@ -65,7 +65,7 @@ Use this when:
 
 - `curl ... /v1/models` works
 - tiny direct `/v1/chat/completions` calls work
-- OpenClaw model runs fail only on normal agent turns
+- SoloClaw model runs fail only on normal agent turns
 
 ```bash
 curl http://127.0.0.1:1234/v1/models
@@ -78,7 +78,7 @@ openclaw logs --follow
 
 Look for:
 
-- direct tiny calls succeed, but OpenClaw runs fail only on larger prompts
+- direct tiny calls succeed, but SoloClaw runs fail only on larger prompts
 - backend errors about `messages[].content` expecting a string
 - backend crashes that appear only with larger prompt-token counts or full agent
   runtime prompts
@@ -88,8 +88,8 @@ Common signatures:
 - `messages[...].content: invalid type: sequence, expected a string` → backend
   rejects structured Chat Completions content parts. Fix: set
   `models.providers.<provider>.models[].compat.requiresStringContent: true`.
-- direct tiny requests succeed, but OpenClaw agent runs fail with backend/model
-  crashes (for example Gemma on some `inferrs` builds) → OpenClaw transport is
+- direct tiny requests succeed, but SoloClaw agent runs fail with backend/model
+  crashes (for example Gemma on some `inferrs` builds) → SoloClaw transport is
   likely already correct; the backend is failing on the larger agent-runtime
   prompt shape.
 - failures shrink after disabling tools but do not disappear → tool schemas were
@@ -104,7 +104,7 @@ Fix options:
 3. Lower prompt pressure where possible: smaller workspace bootstrap, shorter
    session history, lighter local model, or a backend with stronger long-context
    support.
-4. If tiny direct requests keep passing while OpenClaw agent turns still crash
+4. If tiny direct requests keep passing while SoloClaw agent turns still crash
    inside the backend, treat it as an upstream server/model limitation and file
    a repro there with the accepted payload shape.
 
@@ -251,7 +251,7 @@ Look for:
 
 Common signatures:
 
-- `Gateway start blocked: set gateway.mode=local` or `existing config is missing gateway.mode` → local gateway mode is not enabled, or the config file was clobbered and lost `gateway.mode`. Fix: set `gateway.mode="local"` in your config, or re-run `soloclaw onboard --mode local` / `soloclaw setup` to restamp the expected local-mode config. If you are running OpenClaw via Podman, the default config path is `~/.soloclaw/soloclaw.json`.
+- `Gateway start blocked: set gateway.mode=local` or `existing config is missing gateway.mode` → local gateway mode is not enabled, or the config file was clobbered and lost `gateway.mode`. Fix: set `gateway.mode="local"` in your config, or re-run `soloclaw onboard --mode local` / `soloclaw setup` to restamp the expected local-mode config. If you are running SoloClaw via Podman, the default config path is `~/.soloclaw/soloclaw.json`.
 - `refusing to bind gateway ... without auth` → non-loopback bind without a valid gateway auth path (token/password, or trusted-proxy where configured).
 - `another gateway instance is already listening` / `EADDRINUSE` → port conflict.
 - `Other gateway-like services detected (best effort)` → stale or parallel launchd/systemd/schtasks units exist. Most setups should keep one gateway per machine; if you do need more than one, isolate ports + config/state/workspace. See [/gateway#multiple-gateways-same-host](/gateway#multiple-gateways-same-host).
@@ -344,7 +344,7 @@ Common signatures:
 - `cron: scheduler disabled; jobs will not run automatically` → cron disabled.
 - `cron: timer tick failed` → scheduler tick failed; check file/log/runtime errors.
 - `heartbeat skipped` with `reason=quiet-hours` → outside active hours window.
-- `heartbeat skipped` with `reason=empty-heartbeat-file` → `HEARTBEAT.md` exists but only contains blank lines / markdown headers, so OpenClaw skips the model call.
+- `heartbeat skipped` with `reason=empty-heartbeat-file` → `HEARTBEAT.md` exists but only contains blank lines / markdown headers, so SoloClaw skips the model call.
 - `heartbeat skipped` with `reason=no-tasks-due` → `HEARTBEAT.md` contains a `tasks:` block, but none of the tasks are due on this tick.
 - `heartbeat: unknown accountId` → invalid account id for heartbeat delivery target.
 - `heartbeat skipped` with `reason=dm-blocked` → heartbeat target resolved to a DM-style destination while `agents.defaults.heartbeat.directPolicy` (or per-agent override) is set to `block`.

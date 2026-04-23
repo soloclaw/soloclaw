@@ -179,7 +179,7 @@ describe("gateway lock", () => {
 
     const pending = acquireForTest(env, {
       timeoutMs: 15,
-      readProcessCmdline: () => ["openclaw", "gateway", "run"],
+      readProcessCmdline: () => ["soloclaw", "gateway", "run"],
     });
     await expect(pending).rejects.toBeInstanceOf(GatewayLockError);
 

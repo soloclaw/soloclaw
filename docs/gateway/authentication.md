@@ -12,7 +12,7 @@ title: "Authentication"
 This page covers **model provider** authentication (API keys, OAuth, Claude CLI reuse, and Anthropic setup-token). For **gateway connection** authentication (token, password, trusted-proxy), see [Configuration](/gateway/configuration) and [Trusted Proxy Auth](/gateway/trusted-proxy-auth).
 </Note>
 
-OpenClaw supports OAuth and API keys for model providers. For always-on gateway
+SoloClaw supports OAuth and API keys for model providers. For always-on gateway
 hosts, API keys are usually the most predictable option. Subscription/OAuth
 flows are also supported when they match your provider account model.
 
@@ -27,7 +27,7 @@ For credential eligibility/reason-code rules used by `models status --probe`, se
 If you’re running a long-lived gateway, start with an API key for your chosen
 provider.
 For Anthropic specifically, API key auth is still the most predictable server
-setup, but OpenClaw also supports reusing a local Claude CLI login.
+setup, but SoloClaw also supports reusing a local Claude CLI login.
 
 1. Create an API key in your provider console.
 2. Put it on the **gateway host** (the machine running `soloclaw gateway`).
@@ -61,9 +61,9 @@ See [Help](/help) for details on env inheritance (`env.shellEnv`,
 
 ## Anthropic: Claude CLI and token compatibility
 
-Anthropic setup-token auth is still available in OpenClaw as a supported token
+Anthropic setup-token auth is still available in SoloClaw as a supported token
 path. Anthropic staff has since told us that OpenClaw-style Claude CLI usage is
-allowed again, so OpenClaw treats Claude CLI reuse and `claude -p` usage as
+allowed again, so SoloClaw treats Claude CLI reuse and `claude -p` usage as
 sanctioned for this integration unless Anthropic publishes a new policy. When
 Claude CLI reuse is available on the host, that is now the preferred path.
 
@@ -100,7 +100,7 @@ Notes:
 - Probe rows can come from auth profiles, env credentials, or `models.json`.
 - If explicit `auth.order.<provider>` omits a stored profile, probe reports
   `excluded_by_auth_order` for that profile instead of trying it.
-- If auth exists but OpenClaw cannot resolve a probeable model candidate for
+- If auth exists but SoloClaw cannot resolve a probeable model candidate for
   that provider, probe reports `status: no_model`.
 - Rate-limit cooldowns can be model-scoped. A profile cooling down for one
   model can still be usable for a sibling model on the same provider.
@@ -112,8 +112,8 @@ Optional ops scripts (systemd/Termux) are documented here:
 
 The Anthropic `claude-cli` backend is supported again.
 
-- Anthropic staff told us this OpenClaw integration path is allowed again.
-- OpenClaw therefore treats Claude CLI reuse and `claude -p` usage as sanctioned
+- Anthropic staff told us this SoloClaw integration path is allowed again.
+- SoloClaw therefore treats Claude CLI reuse and `claude -p` usage as sanctioned
   for Anthropic-backed runs unless Anthropic publishes a new policy.
 - Anthropic API keys remain the most predictable choice for long-lived gateway
   hosts and explicit server-side billing control.
@@ -137,7 +137,7 @@ hits a provider rate limit.
   - `<PROVIDER>_API_KEY_*`
 - Google providers also include `GOOGLE_API_KEY` as an additional fallback.
 - The same key list is deduplicated before use.
-- OpenClaw retries with the next key only for rate-limit errors (for example
+- SoloClaw retries with the next key only for rate-limit errors (for example
   `429`, `rate_limit`, `quota`, `resource exhausted`, `Too many concurrent
 requests`, `ThrottlingException`, `concurrency limit reached`, or
   `workers_ai ... quota limit exceeded`).

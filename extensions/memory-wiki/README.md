@@ -30,7 +30,7 @@ Put config under `plugins.entries.memory-wiki.config`:
   obsidian: {
     enabled: true,
     useOfficialCli: true,
-    vaultName: "OpenClaw Wiki",
+    vaultName: "SoloClaw Wiki",
     openAfterWrites: false,
   },
 

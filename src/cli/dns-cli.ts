@@ -252,7 +252,7 @@ export function registerDnsCli(program: Command) {
         defaultRuntime.log("");
         defaultRuntime.log(
           theme.muted(
-            "Note: enable discovery.wideArea.enabled in the active OpenClaw config ($SOLOCLAW_CONFIG_PATH, default ~/.soloclaw/soloclaw.json) on the gateway and restart the gateway so it writes the DNS-SD zone.",
+            "Note: enable discovery.wideArea.enabled in the active SoloClaw config ($SOLOCLAW_CONFIG_PATH, default ~/.soloclaw/soloclaw.json) on the gateway and restart the gateway so it writes the DNS-SD zone.",
           ),
         );
       }

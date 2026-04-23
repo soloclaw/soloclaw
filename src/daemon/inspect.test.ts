@@ -7,7 +7,7 @@ import { detectMarkerLineWithGateway, findExtraGatewayServices } from "./inspect
 // Real content from the openclaw-gateway.service unit file (the canonical gateway unit).
 const GATEWAY_SERVICE_CONTENTS = `\
 [Unit]
-Description=OpenClaw Gateway (v2026.3.8)
+Description=SoloClaw Gateway (v2026.3.8)
 After=network-online.target
 Wants=network-online.target
 
@@ -25,7 +25,7 @@ WantedBy=default.target
 // Real content from the openclaw-test.service unit file (a non-gateway openclaw service).
 const TEST_SERVICE_CONTENTS = `\
 [Unit]
-Description=OpenClaw test service
+Description=SoloClaw test service
 After=default.target
 
 [Service]
@@ -51,7 +51,7 @@ describe("detectMarkerLineWithGateway", () => {
   });
 
   it("returns openclaw for the canonical gateway unit (ExecStart has both openclaw and gateway)", () => {
-    expect(detectMarkerLineWithGateway(GATEWAY_SERVICE_CONTENTS)).toBe("openclaw");
+    expect(detectMarkerLineWithGateway(GATEWAY_SERVICE_CONTENTS)).toBe("soloclaw");
   });
 
   it("returns clawdbot for a clawdbot gateway unit", () => {
@@ -60,7 +60,7 @@ describe("detectMarkerLineWithGateway", () => {
 
   it("handles line continuations — marker and gateway split across physical lines", () => {
     const contents = `[Service]\nExecStart=/usr/bin/node /opt/openclaw/dist/entry.js \\\n  gateway --port 18789\n`;
-    expect(detectMarkerLineWithGateway(contents)).toBe("openclaw");
+    expect(detectMarkerLineWithGateway(contents)).toBe("soloclaw");
   });
 });
 

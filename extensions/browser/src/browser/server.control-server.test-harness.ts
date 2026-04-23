@@ -19,7 +19,7 @@ type HarnessState = {
       cdpPort?: number;
       cdpUrl?: string;
       color: string;
-      driver?: "openclaw" | "existing-session";
+      driver?: "soloclaw" | "existing-session";
       attachOnly?: boolean;
     }
   >;
@@ -35,7 +35,7 @@ const state: HarnessState = {
   reachable: false,
   cfgAttachOnly: false,
   cfgEvaluateEnabled: true,
-  cfgDefaultProfile: "openclaw",
+  cfgDefaultProfile: "soloclaw",
   cfgProfiles: {},
   createTargetId: null,
   prevGatewayPort: undefined,
@@ -77,7 +77,7 @@ export function setBrowserControlServerReachable(reachable: boolean): void {
 
 export function setBrowserControlServerProfiles(
   profiles: HarnessState["cfgProfiles"],
-  defaultProfile = Object.keys(profiles)[0] ?? "openclaw",
+  defaultProfile = Object.keys(profiles)[0] ?? "soloclaw",
 ): void {
   state.cfgProfiles = profiles;
   state.cfgDefaultProfile = defaultProfile;
@@ -514,7 +514,7 @@ export async function resetBrowserControlServerTestContext(): Promise<void> {
   state.reachable = false;
   state.cfgAttachOnly = false;
   state.cfgEvaluateEnabled = true;
-  state.cfgDefaultProfile = "openclaw";
+  state.cfgDefaultProfile = "soloclaw";
   state.cfgProfiles = defaultProfilesForState(state.testPort);
   state.createTargetId = null;
 

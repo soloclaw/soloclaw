@@ -46,12 +46,12 @@ describe("update global helpers", () => {
     envSnapshot = captureEnv(["SOLOCLAW_UPDATE_PACKAGE_SPEC"]);
     process.env.SOLOCLAW_UPDATE_PACKAGE_SPEC = "file:/tmp/openclaw.tgz";
 
-    expect(resolveGlobalInstallSpec({ packageName: "openclaw", tag: "latest" })).toBe(
+    expect(resolveGlobalInstallSpec({ packageName: "soloclaw", tag: "latest" })).toBe(
       "file:/tmp/openclaw.tgz",
     );
     expect(
       resolveGlobalInstallSpec({
-        packageName: "openclaw",
+        packageName: "soloclaw",
         tag: "beta",
         env: { SOLOCLAW_UPDATE_PACKAGE_SPEC: "openclaw@next" },
       }),
@@ -75,23 +75,23 @@ describe("update global helpers", () => {
       path.join(".bun", "install", "global", "node_modules"),
     );
     await expect(resolveGlobalPackageRoot("npm", runCommand, 1000)).resolves.toBe(
-      path.join("/tmp/npm-root", "openclaw"),
+      path.join("/tmp/npm-root", "soloclaw"),
     );
   });
 
   it("maps main and explicit install specs for global installs", () => {
-    expect(resolveGlobalInstallSpec({ packageName: "openclaw", tag: "main" })).toBe(
+    expect(resolveGlobalInstallSpec({ packageName: "soloclaw", tag: "main" })).toBe(
       SOLOCLAW_MAIN_PACKAGE_SPEC,
     );
     expect(
       resolveGlobalInstallSpec({
-        packageName: "openclaw",
-        tag: "github:openclaw/openclaw#feature/my-branch",
+        packageName: "soloclaw",
+        tag: "github:soloclaw/soloclaw#feature/my-branch",
       }),
-    ).toBe("github:openclaw/openclaw#feature/my-branch");
+    ).toBe("github:soloclaw/soloclaw#feature/my-branch");
     expect(
       resolveGlobalInstallSpec({
-        packageName: "openclaw",
+        packageName: "soloclaw",
         tag: "https://example.com/openclaw-main.tgz",
       }),
     ).toBe("https://example.com/openclaw-main.tgz");
@@ -116,7 +116,7 @@ describe("update global helpers", () => {
     expect(isMainPackageTarget(" MAIN ")).toBe(true);
     expect(isMainPackageTarget("beta")).toBe(false);
 
-    expect(isExplicitPackageInstallSpec("github:openclaw/openclaw#main")).toBe(true);
+    expect(isExplicitPackageInstallSpec("github:soloclaw/soloclaw#main")).toBe(true);
     expect(isExplicitPackageInstallSpec("https://example.com/openclaw-main.tgz")).toBe(true);
     expect(isExplicitPackageInstallSpec("file:/tmp/openclaw-main.tgz")).toBe(true);
     expect(isExplicitPackageInstallSpec("beta")).toBe(false);
@@ -124,7 +124,7 @@ describe("update global helpers", () => {
     expect(canResolveRegistryVersionForPackageTarget("latest")).toBe(true);
     expect(canResolveRegistryVersionForPackageTarget("2026.3.22")).toBe(true);
     expect(canResolveRegistryVersionForPackageTarget("main")).toBe(false);
-    expect(canResolveRegistryVersionForPackageTarget("github:openclaw/openclaw#main")).toBe(false);
+    expect(canResolveRegistryVersionForPackageTarget("github:soloclaw/soloclaw#main")).toBe(false);
   });
 
   it("detects install managers from resolved roots and on-disk presence", async () => {
@@ -132,10 +132,10 @@ describe("update global helpers", () => {
       const npmRoot = path.join(base, "npm-root");
       const pnpmRoot = path.join(base, "pnpm-root");
       const bunRoot = path.join(base, ".bun", "install", "global", "node_modules");
-      const pkgRoot = path.join(pnpmRoot, "openclaw");
+      const pkgRoot = path.join(pnpmRoot, "soloclaw");
       await fs.mkdir(pkgRoot, { recursive: true });
-      await fs.mkdir(path.join(npmRoot, "openclaw"), { recursive: true });
-      await fs.mkdir(path.join(bunRoot, "openclaw"), { recursive: true });
+      await fs.mkdir(path.join(npmRoot, "soloclaw"), { recursive: true });
+      await fs.mkdir(path.join(bunRoot, "soloclaw"), { recursive: true });
 
       envSnapshot = captureEnv(["BUN_INSTALL"]);
       process.env.BUN_INSTALL = path.join(base, ".bun");
@@ -155,8 +155,8 @@ describe("update global helpers", () => {
       );
       await expect(detectGlobalInstallManagerByPresence(runCommand, 1000)).resolves.toBe("npm");
 
-      await fs.rm(path.join(npmRoot, "openclaw"), { recursive: true, force: true });
-      await fs.rm(path.join(pnpmRoot, "openclaw"), { recursive: true, force: true });
+      await fs.rm(path.join(npmRoot, "soloclaw"), { recursive: true, force: true });
+      await fs.rm(path.join(pnpmRoot, "soloclaw"), { recursive: true, force: true });
       await expect(detectGlobalInstallManagerByPresence(runCommand, 1000)).resolves.toBe("bun");
     });
   });
@@ -168,7 +168,7 @@ describe("update global helpers", () => {
         const brewPrefix = path.join(base, "opt", "homebrew");
         const brewBin = path.join(brewPrefix, "bin");
         const brewRoot = path.join(brewPrefix, "lib", "node_modules");
-        const pkgRoot = path.join(brewRoot, "openclaw");
+        const pkgRoot = path.join(brewRoot, "soloclaw");
         const pathNpmRoot = path.join(base, "nvm", "lib", "node_modules");
         const brewNpm = path.join(brewBin, "npm");
         await fs.mkdir(pkgRoot, { recursive: true });
@@ -236,7 +236,7 @@ describe("update global helpers", () => {
   it("does not infer npm ownership from path shape alone when the owning npm binary is absent", async () => {
     await withTempDir({ prefix: "openclaw-update-npm-missing-bin-" }, async (base) => {
       const brewRoot = path.join(base, "opt", "homebrew", "lib", "node_modules");
-      const pkgRoot = path.join(brewRoot, "openclaw");
+      const pkgRoot = path.join(brewRoot, "soloclaw");
       const pathNpmRoot = path.join(base, "nvm", "lib", "node_modules");
       await fs.mkdir(pkgRoot, { recursive: true });
 
@@ -271,7 +271,7 @@ describe("update global helpers", () => {
       await withTempDir({ prefix: "openclaw-update-win32-npm-prefix-" }, async (base) => {
         const npmPrefix = path.join(base, "Roaming", "npm");
         const npmRoot = path.join(npmPrefix, "node_modules");
-        const pkgRoot = path.join(npmRoot, "openclaw");
+        const pkgRoot = path.join(npmRoot, "soloclaw");
         const npmCmd = path.join(npmPrefix, "npm.cmd");
         const pathNpmRoot = path.join(base, "nvm", "node_modules");
         await fs.mkdir(pkgRoot, { recursive: true });
@@ -357,17 +357,17 @@ describe("update global helpers", () => {
       await fs.mkdir(path.join(root, ".soloclaw-123"), { recursive: true });
       await fs.mkdir(path.join(root, ".soloclaw-456"), { recursive: true });
       await fs.writeFile(path.join(root, ".soloclaw-file"), "nope", "utf8");
-      await fs.mkdir(path.join(root, "openclaw"), { recursive: true });
+      await fs.mkdir(path.join(root, "soloclaw"), { recursive: true });
 
       await expect(
         cleanupGlobalRenameDirs({
           globalRoot: root,
-          packageName: "openclaw",
+          packageName: "soloclaw",
         }),
       ).resolves.toEqual({
         removed: [".soloclaw-123", ".soloclaw-456"],
       });
-      await expect(fs.stat(path.join(root, "openclaw"))).resolves.toBeDefined();
+      await expect(fs.stat(path.join(root, "soloclaw"))).resolves.toBeDefined();
       await expect(fs.stat(path.join(root, ".soloclaw-file"))).resolves.toBeDefined();
     });
   });
@@ -376,7 +376,7 @@ describe("update global helpers", () => {
     await withTempDir({ prefix: "openclaw-update-global-pkg-" }, async (packageRoot) => {
       await fs.writeFile(
         path.join(packageRoot, "package.json"),
-        JSON.stringify({ name: "openclaw", version: "1.0.0" }),
+        JSON.stringify({ name: "soloclaw", version: "1.0.0" }),
         "utf-8",
       );
       for (const relativePath of NPM_UPDATE_COMPAT_SIDECAR_PATHS) {
@@ -413,7 +413,7 @@ describe("update global helpers", () => {
     await withTempDir({ prefix: "openclaw-update-global-legacy-" }, async (packageRoot) => {
       await fs.writeFile(
         path.join(packageRoot, "package.json"),
-        JSON.stringify({ name: "openclaw", version: "1.0.0" }),
+        JSON.stringify({ name: "soloclaw", version: "1.0.0" }),
         "utf-8",
       );
       for (const relativePath of NPM_UPDATE_COMPAT_SIDECAR_PATHS) {
@@ -443,7 +443,7 @@ describe("update global helpers", () => {
       async (packageRoot) => {
         await fs.writeFile(
           path.join(packageRoot, "package.json"),
-          JSON.stringify({ name: "openclaw", version: "2026.4.15" }),
+          JSON.stringify({ name: "soloclaw", version: "2026.4.15" }),
           "utf-8",
         );
         for (const relativePath of NPM_UPDATE_COMPAT_SIDECAR_PATHS) {
@@ -465,7 +465,7 @@ describe("update global helpers", () => {
       async (packageRoot) => {
         await fs.writeFile(
           path.join(packageRoot, "package.json"),
-          JSON.stringify({ name: "openclaw", version: "2026.4.15" }),
+          JSON.stringify({ name: "soloclaw", version: "2026.4.15" }),
           "utf-8",
         );
         await fs.mkdir(path.join(packageRoot, "dist"), { recursive: true });
@@ -486,7 +486,7 @@ describe("update global helpers", () => {
     await withTempDir({ prefix: "openclaw-update-global-legacy-plugin-" }, async (packageRoot) => {
       await fs.writeFile(
         path.join(packageRoot, "package.json"),
-        JSON.stringify({ name: "openclaw", version: "1.0.0" }),
+        JSON.stringify({ name: "soloclaw", version: "1.0.0" }),
         "utf-8",
       );
       const matrixPackageJson = path.join(
@@ -511,7 +511,7 @@ describe("update global helpers", () => {
       async (packageRoot) => {
         await fs.writeFile(
           path.join(packageRoot, "package.json"),
-          JSON.stringify({ name: "openclaw", version: "2026.4.15" }),
+          JSON.stringify({ name: "soloclaw", version: "2026.4.15" }),
           "utf-8",
         );
         for (const relativePath of NPM_UPDATE_COMPAT_SIDECAR_PATHS) {
@@ -547,7 +547,7 @@ describe("update global helpers", () => {
       async (packageRoot) => {
         await fs.writeFile(
           path.join(packageRoot, "package.json"),
-          JSON.stringify({ name: "openclaw", version: "2026.4.15" }),
+          JSON.stringify({ name: "soloclaw", version: "2026.4.15" }),
           "utf-8",
         );
         for (const relativePath of NPM_UPDATE_COMPAT_SIDECAR_PATHS) {

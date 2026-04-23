@@ -9,7 +9,7 @@ title: "Testing"
 
 # Testing
 
-OpenClaw has three Vitest suites (unit/integration, e2e, live) and a small set of Docker runners.
+SoloClaw has three Vitest suites (unit/integration, e2e, live) and a small set of Docker runners.
 
 This doc is a “how we test” guide:
 
@@ -74,7 +74,7 @@ These commands sit beside the main test suites when you need QA-lab realism:
     testing.
 - `pnpm soloclaw qa matrix`
   - Runs the Matrix live QA lane against a disposable Docker-backed Tuwunel homeserver.
-  - This QA host is repo/dev-only today. Packaged OpenClaw installs do not ship
+  - This QA host is repo/dev-only today. Packaged SoloClaw installs do not ship
     `qa-lab`, so they do not expose `soloclaw qa`.
   - Repo checkouts load the bundled runner directly; no separate plugin install
     step is needed.
@@ -582,7 +582,7 @@ Docker notes:
   - load the bundled `codex` plugin
   - select `SOLOCLAW_AGENT_RUNTIME=codex`
   - send a first gateway agent turn to `codex/gpt-5.4`
-  - send a second turn to the same OpenClaw session and verify the app-server
+  - send a second turn to the same SoloClaw session and verify the app-server
     thread can resume
   - run `/codex status` and `/codex models` through the same gateway command
     path
@@ -650,8 +650,8 @@ Notes:
 - `google-antigravity/...` uses the Antigravity OAuth bridge (Cloud Code Assist-style agent endpoint).
 - `google-gemini-cli/...` uses the local Gemini CLI on your machine (separate auth + tooling quirks).
 - Gemini API vs Gemini CLI:
-  - API: OpenClaw calls Google’s hosted Gemini API over HTTP (API key / profile auth); this is what most users mean by “Gemini”.
-  - CLI: OpenClaw shells out to a local `gemini` binary; it has its own auth and can behave differently (streaming/tool support/version skew).
+  - API: SoloClaw calls Google’s hosted Gemini API over HTTP (API key / profile auth); this is what most users mean by “Gemini”.
+  - CLI: SoloClaw shells out to a local `gemini` binary; it has its own auth and can behave differently (streaming/tool support/version skew).
 
 ## Live: model matrix (what we cover)
 
@@ -880,7 +880,7 @@ real Telegram/Discord/etc. channel workers inside the container.
 `SOLOCLAW_LIVE_GATEWAY_*` as well when you need to narrow or exclude gateway
 live coverage from that Docker lane.
 `test:docker:openwebui` is a higher-level compatibility smoke: it starts an
-OpenClaw gateway container with the OpenAI-compatible HTTP endpoints enabled,
+SoloClaw gateway container with the OpenAI-compatible HTTP endpoints enabled,
 starts a pinned Open WebUI container against that gateway, signs in through
 Open WebUI, verifies `/api/models` exposes `openclaw/default`, then sends a
 real chat request through Open WebUI's `/api/chat/completions` proxy.

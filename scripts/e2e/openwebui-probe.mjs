@@ -66,7 +66,7 @@ const modelIds = models
   .map((entry) => entry?.id ?? entry?.model ?? entry?.name)
   .filter((value) => typeof value === "string");
 const targetModel =
-  modelIds.find((id) => id === "openclaw/default") ?? modelIds.find((id) => id === "openclaw");
+  modelIds.find((id) => id === "openclaw/default") ?? modelIds.find((id) => id === "soloclaw");
 if (!targetModel) {
   throw new Error(`soloclaw model missing from Open WebUI model list: ${JSON.stringify(modelIds)}`);
 }

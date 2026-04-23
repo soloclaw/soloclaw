@@ -1,5 +1,5 @@
 ---
-summary: "Use SOUL.md to give your OpenClaw agent an actual voice instead of generic assistant sludge"
+summary: "Use SOUL.md to give your SoloClaw agent an actual voice instead of generic assistant sludge"
 read_when:
   - You want your agent to sound less generic
   - You are editing SOUL.md
@@ -11,7 +11,7 @@ title: "SOUL.md Personality Guide"
 
 `SOUL.md` is where your agent's voice lives.
 
-OpenClaw injects it on normal sessions, so it has real weight. If your agent
+SoloClaw injects it on normal sessions, so it has real weight. If your agent
 sounds bland, hedgy, or weirdly corporate, this is usually the file to fix.
 
 ## What belongs in SOUL.md
@@ -58,7 +58,7 @@ OpenAI refs:
 
 Paste this into your agent and let it rewrite `SOUL.md`.
 
-Path fixed for OpenClaw workspaces: use `SOUL.md`, not `http://SOUL.md`.
+Path fixed for SoloClaw workspaces: use `SOUL.md`, not `http://SOUL.md`.
 
 ```md
 Read your `SOUL.md`. Now rewrite it with these changes:

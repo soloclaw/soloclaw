@@ -123,7 +123,7 @@ await api.runtime.subagent.deleteSession({
 
 ### `api.runtime.taskFlow`
 
-Bind a Task Flow runtime to an existing OpenClaw session key or trusted tool
+Bind a Task Flow runtime to an existing SoloClaw session key or trusted tool
 context, then create and manage Task Flows without passing an owner on every call.
 
 ```typescript
@@ -152,7 +152,7 @@ const waiting = taskFlow.setWaiting({
 ```
 
 Use `bindSession({ sessionKey, requesterOrigin })` when you already have a
-trusted OpenClaw session key from your own binding layer. Do not bind from raw
+trusted SoloClaw session key from your own binding layer. Do not bind from raw
 user input.
 
 ### `api.runtime.tts`
@@ -243,7 +243,7 @@ const providers = api.runtime.webSearch.listProviders({ config: api.config });
 
 const result = await api.runtime.webSearch.search({
   config: api.config,
-  args: { query: "OpenClaw plugin SDK", count: 5 },
+  args: { query: "SoloClaw plugin SDK", count: 5 },
 });
 ```
 

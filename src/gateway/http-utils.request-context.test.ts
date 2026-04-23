@@ -19,7 +19,7 @@ describe("resolveGatewayRequestContext", () => {
   it("uses normalized x-openclaw-message-channel when enabled", () => {
     const result = resolveGatewayRequestContext({
       req: createReq({ "x-openclaw-message-channel": " Custom-Channel " }),
-      model: "openclaw",
+      model: "soloclaw",
       sessionPrefix: "openai",
       defaultMessageChannel: "webchat",
       useMessageChannelHeader: true,
@@ -31,7 +31,7 @@ describe("resolveGatewayRequestContext", () => {
   it("uses default messageChannel when header support is disabled", () => {
     const result = resolveGatewayRequestContext({
       req: createReq({ "x-openclaw-message-channel": "custom-channel" }),
-      model: "openclaw",
+      model: "soloclaw",
       sessionPrefix: "openresponses",
       defaultMessageChannel: "webchat",
       useMessageChannelHeader: false,
@@ -43,7 +43,7 @@ describe("resolveGatewayRequestContext", () => {
   it("includes session prefix and user in generated session key", () => {
     const result = resolveGatewayRequestContext({
       req: createReq(),
-      model: "openclaw",
+      model: "soloclaw",
       user: "alice",
       sessionPrefix: "openresponses",
       defaultMessageChannel: "webchat",

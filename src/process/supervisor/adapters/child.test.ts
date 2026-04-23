@@ -183,7 +183,7 @@ describe("createChildAdapter", () => {
         usedFallback: false,
       });
       const adapter = await createChildAdapter({
-        argv: ["openclaw", "version"],
+        argv: ["soloclaw", "version"],
         stdinMode: "pipe-closed",
       });
       return { ...stub, adapter };
@@ -203,7 +203,7 @@ describe("createChildAdapter", () => {
   });
 
   it("disables detached mode in service-managed runtime", async () => {
-    process.env.SOLOCLAW_SERVICE_MARKER = "openclaw";
+    process.env.SOLOCLAW_SERVICE_MARKER = "soloclaw";
 
     await createAdapterHarness({ pid: 7777 });
 

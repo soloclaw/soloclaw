@@ -140,7 +140,7 @@ describe("resolveProviderHttpRequestConfig", () => {
     expect(resolved.headers.get("authorization")).toBe("Bearer override");
     expect(resolved.headers.get("x-default")).toBe("1");
     expect(resolved.headers.get("user-agent")).toMatch(/^openclaw\//);
-    expect(resolved.headers.get("originator")).toBe("openclaw");
+    expect(resolved.headers.get("originator")).toBe("soloclaw");
     expect(resolved.headers.get("version")).toBeTruthy();
   });
 

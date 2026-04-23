@@ -64,7 +64,7 @@ function parsePidsFromLsofOutput(stdout: string): number[] {
       if (
         currentPid != null &&
         currentCmd &&
-        normalizeLowercaseStringOrEmpty(currentCmd).includes("openclaw")
+        normalizeLowercaseStringOrEmpty(currentCmd).includes("soloclaw")
       ) {
         pids.push(currentPid);
       }
@@ -78,7 +78,7 @@ function parsePidsFromLsofOutput(stdout: string): number[] {
   if (
     currentPid != null &&
     currentCmd &&
-    normalizeLowercaseStringOrEmpty(currentCmd).includes("openclaw")
+    normalizeLowercaseStringOrEmpty(currentCmd).includes("soloclaw")
   ) {
     pids.push(currentPid);
   }

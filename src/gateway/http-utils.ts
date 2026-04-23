@@ -24,7 +24,7 @@ import { sendGatewayAuthFailure } from "./http-common.js";
 import { ADMIN_SCOPE, CLI_DEFAULT_OPERATOR_SCOPES } from "./method-scopes.js";
 import { loadGatewayModelCatalog } from "./server-model-catalog.js";
 
-export const SOLOCLAW_MODEL_ID = "openclaw";
+export const SOLOCLAW_MODEL_ID = "soloclaw";
 export const SOLOCLAW_DEFAULT_MODEL_ID = "openclaw/default";
 
 export function getHeader(req: IncomingMessage, name: string): string | undefined {

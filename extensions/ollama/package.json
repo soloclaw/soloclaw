@@ -2,7 +2,7 @@
   "name": "@soloclaw/ollama-provider",
   "version": "2026.4.16",
   "private": true,
-  "description": "OpenClaw Ollama provider plugin",
+  "description": "SoloClaw Ollama provider plugin",
   "type": "module",
   "devDependencies": {
     "@soloclaw/plugin-sdk": "workspace:*",

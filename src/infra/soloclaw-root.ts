@@ -2,7 +2,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { openClawRootFs, openClawRootFsSync } from "./soloclaw-root.fs.runtime.js";
 
-const CORE_PACKAGE_NAMES = new Set(["soloclaw", "openclaw"]);
+const CORE_PACKAGE_NAMES = new Set(["soloclaw", "soloclaw"]);
 
 function parsePackageName(raw: string): string | null {
   const parsed = JSON.parse(raw) as { name?: unknown };

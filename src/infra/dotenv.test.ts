@@ -105,7 +105,7 @@ describe("loadDotEnv", () => {
         process.env.SOLOCLAW_STATE_DIR = defaultStateDir;
         await writeEnvFile(path.join(defaultStateDir, ".env"), "FOO=from-global\n");
         await writeEnvFile(
-          path.join(base, ".config", "openclaw", "gateway.env"),
+          path.join(base, ".config", "soloclaw", "gateway.env"),
           ["FOO=from-gateway", "BAR=from-gateway"].join("\n"),
         );
 
@@ -131,7 +131,7 @@ describe("loadDotEnv", () => {
         process.env.FOO = "from-shell";
         await writeEnvFile(path.join(stateDir, ".env"), "FOO=from-global\n");
         await writeEnvFile(
-          path.join(base, ".config", "openclaw", "gateway.env"),
+          path.join(base, ".config", "soloclaw", "gateway.env"),
           "FOO=from-gateway\n",
         );
 
@@ -490,7 +490,7 @@ describe("loadCliDotEnv", () => {
         process.env.SOLOCLAW_STATE_DIR = defaultStateDir;
         await writeEnvFile(path.join(defaultStateDir, ".env"), "FOO=from-global\n");
         await writeEnvFile(
-          path.join(base, ".config", "openclaw", "gateway.env"),
+          path.join(base, ".config", "soloclaw", "gateway.env"),
           "BAR=from-gateway\n",
         );
 
@@ -513,7 +513,7 @@ describe("loadCliDotEnv", () => {
         process.env.HOME = base;
         process.env.SOLOCLAW_STATE_DIR = customStateDir;
         await writeEnvFile(
-          path.join(base, ".config", "openclaw", "gateway.env"),
+          path.join(base, ".config", "soloclaw", "gateway.env"),
           "FOO=from-gateway\n",
         );
 
@@ -686,7 +686,7 @@ describe("workspace .env blocklist completeness", () => {
       await withDotEnvFixture(async ({ cwdDir }) => {
         await writeEnvFile(
           path.join(cwdDir, ".env"),
-          "MY_APP_KEY=user-value\nAPP_GITHUB_REPO=openclaw/openclaw\nDATABASE_URL_CUSTOM=pg://localhost\n",
+          "MY_APP_KEY=user-value\nAPP_GITHUB_REPO=soloclaw/soloclaw\nDATABASE_URL_CUSTOM=pg://localhost\n",
         );
 
         delete process.env.MY_APP_KEY;
@@ -696,7 +696,7 @@ describe("workspace .env blocklist completeness", () => {
         loadWorkspaceDotEnvFile(path.join(cwdDir, ".env"), { quiet: true });
 
         expect(process.env.MY_APP_KEY).toBe("user-value");
-        expect(process.env.APP_GITHUB_REPO).toBe("openclaw/openclaw");
+        expect(process.env.APP_GITHUB_REPO).toBe("soloclaw/soloclaw");
         expect(process.env.DATABASE_URL_CUSTOM).toBe("pg://localhost");
       });
     });

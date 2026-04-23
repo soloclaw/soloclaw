@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One-time host setup for rootless OpenClaw in Podman. Uses the current
+# One-time host setup for rootless SoloClaw in Podman. Uses the current
 # non-root user throughout, builds or pulls the image into that user's Podman
 # store, writes config under ~/.soloclaw by default, and uses the repo-local
 # launch script at ./scripts/run-soloclaw-podman.sh.

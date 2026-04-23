@@ -10,7 +10,7 @@ title: "API Usage and Costs"
 # API usage & costs
 
 This doc lists **features that can invoke API keys** and where their costs show up. It focuses on
-OpenClaw features that can generate provider usage or paid API calls.
+SoloClaw features that can generate provider usage or paid API calls.
 
 ## Where costs show up (chat + CLI)
 
@@ -27,14 +27,14 @@ OpenClaw features that can generate provider usage or paid API calls.
 
 - `/usage full` appends a usage footer to every reply, including **estimated cost** (API-key only).
 - `/usage tokens` shows tokens only; subscription-style OAuth/token and CLI flows hide dollar cost.
-- Gemini CLI note: when the CLI returns JSON output, OpenClaw reads usage from
+- Gemini CLI note: when the CLI returns JSON output, SoloClaw reads usage from
   `stats`, normalizes `stats.cached` into `cacheRead`, and derives input tokens
   from `stats.input_tokens - stats.cached` when needed.
 
 Anthropic note: Anthropic staff told us OpenClaw-style Claude CLI usage is
-allowed again, so OpenClaw treats Claude CLI reuse and `claude -p` usage as
+allowed again, so SoloClaw treats Claude CLI reuse and `claude -p` usage as
 sanctioned for this integration unless Anthropic publishes a new policy.
-Anthropic still does not expose a per-message dollar estimate that OpenClaw can
+Anthropic still does not expose a per-message dollar estimate that SoloClaw can
 show in `/usage full`.
 
 **CLI usage windows (provider quotas)**
@@ -45,19 +45,19 @@ show in `/usage full`.
 - Current usage-window providers: Anthropic, GitHub Copilot, Gemini CLI,
   OpenAI Codex, MiniMax, Xiaomi, and z.ai.
 - MiniMax note: its raw `usage_percent` / `usagePercent` fields mean remaining
-  quota, so OpenClaw inverts them before display. Count-based fields still win
-  when present. If the provider returns `model_remains`, OpenClaw prefers the
+  quota, so SoloClaw inverts them before display. Count-based fields still win
+  when present. If the provider returns `model_remains`, SoloClaw prefers the
   chat-model entry, derives the window label from timestamps when needed, and
   includes the model name in the plan label.
 - Usage auth for those quota windows comes from provider-specific hooks when
-  available; otherwise OpenClaw falls back to matching OAuth/API-key
+  available; otherwise SoloClaw falls back to matching OAuth/API-key
   credentials from auth profiles, env, or config.
 
 See [Token use & costs](/reference/token-use) for details and examples.
 
 ## How keys are discovered
 
-OpenClaw can pick up credentials from:
+SoloClaw can pick up credentials from:
 
 - **Auth profiles** (per-agent, stored in `auth-profiles.json`).
 - **Environment variables** (e.g. `OPENAI_API_KEY`, `BRAVE_API_KEY`, `FIRECRAWL_API_KEY`).
@@ -76,7 +76,7 @@ primary source of usage and cost.
 This also includes subscription-style hosted providers that still bill outside
 OpenClaw's local UI, such as **OpenAI Codex**, **Alibaba Cloud Model Studio
 Coding Plan**, **MiniMax Coding Plan**, **Z.AI / GLM Coding Plan**, and
-Anthropic's OpenClaw Claude-login path with **Extra Usage** enabled.
+Anthropic's SoloClaw Claude-login path with **Extra Usage** enabled.
 
 See [Models](/providers/models) for pricing config and [Token use & costs](/reference/token-use) for display.
 

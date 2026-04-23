@@ -29,7 +29,7 @@ function buildConfig(): TestConfig {
       enabled: true,
       color: "#FF4500",
       headless: true,
-      defaultProfile: "openclaw",
+      defaultProfile: "soloclaw",
       profiles: { ...mockState.cfgProfiles },
     },
   };
@@ -161,7 +161,7 @@ describe("server-context hot-reload profiles", () => {
     const after = resolveBrowserProfileWithHotReload({
       current: state,
       refreshConfigFromDisk: true,
-      name: "openclaw",
+      name: "soloclaw",
     });
     expect(after?.cdpPort).toBe(19999);
     expect(state.resolved.profiles.soloclaw?.cdpPort).toBe(19999);
@@ -191,7 +191,7 @@ describe("server-context hot-reload profiles", () => {
   it("marks existing runtime state for reconcile when profile invariants change", async () => {
     const cfg = loadConfig();
     const resolved = resolveBrowserConfig(cfg.browser, cfg);
-    const openclawProfile = resolveProfile(resolved, "openclaw");
+    const openclawProfile = resolveProfile(resolved, "soloclaw");
     expect(openclawProfile).toBeTruthy();
     const state: BrowserServerState = {
       server: null,
@@ -199,7 +199,7 @@ describe("server-context hot-reload profiles", () => {
       resolved,
       profiles: new Map([
         [
-          "openclaw",
+          "soloclaw",
           {
             profile: openclawProfile!,
             running: { pid: 123 } as never,
@@ -219,7 +219,7 @@ describe("server-context hot-reload profiles", () => {
       mode: "cached",
     });
 
-    const runtime = state.profiles.get("openclaw");
+    const runtime = state.profiles.get("soloclaw");
     expect(runtime).toBeTruthy();
     expect(runtime?.profile.cdpPort).toBe(19999);
     expect(runtime?.lastTargetId).toBeNull();

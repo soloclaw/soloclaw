@@ -2,7 +2,7 @@
   "name": "@soloclaw/browser-plugin",
   "version": "2026.4.16",
   "private": true,
-  "description": "OpenClaw browser tool plugin",
+  "description": "SoloClaw browser tool plugin",
   "type": "module",
   "devDependencies": {
     "@soloclaw/plugin-sdk": "workspace:*",

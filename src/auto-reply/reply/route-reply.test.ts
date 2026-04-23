@@ -224,7 +224,7 @@ describe("routeReply", () => {
 
   it("applies responsePrefix when routing", async () => {
     const cfg = {
-      messages: { responsePrefix: "[openclaw]" },
+      messages: { responsePrefix: "[soloclaw]" },
     } as unknown as OpenClawConfig;
     await routeReply({
       payload: { text: "hi" },
@@ -233,7 +233,7 @@ describe("routeReply", () => {
       cfg,
     });
     expectLastDelivery({
-      payloads: [expect.objectContaining({ text: "[openclaw] hi" })],
+      payloads: [expect.objectContaining({ text: "[soloclaw] hi" })],
     });
   });
 

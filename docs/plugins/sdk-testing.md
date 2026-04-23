@@ -1,7 +1,7 @@
 ---
 title: "Plugin Testing"
 sidebarTitle: "Testing"
-summary: "Testing utilities and patterns for OpenClaw plugins"
+summary: "Testing utilities and patterns for SoloClaw plugins"
 read_when:
   - You are writing tests for a plugin
   - You need test utilities from the plugin SDK
@@ -236,7 +236,7 @@ patterns is recommended.
 
 ## Test configuration
 
-OpenClaw uses Vitest with V8 coverage thresholds. For plugin tests:
+SoloClaw uses Vitest with V8 coverage thresholds. For plugin tests:
 
 ```bash
 # Run all tests

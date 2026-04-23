@@ -12,7 +12,7 @@ API_KEY_ENV=""
 AUTH_CHOICE=""
 AUTH_KEY_FLAG=""
 MODEL_ID=""
-INSTALL_URL="https://openclaw.ai/install.sh"
+INSTALL_URL="https://soloclaw.ai/install.sh"
 HOST_PORT="18425"
 HOST_PORT_EXPLICIT=0
 HOST_IP=""
@@ -30,7 +30,7 @@ SNAPSHOT_ID=""
 SNAPSHOT_STATE=""
 SNAPSHOT_NAME=""
 GUEST_SOLOCLAW_BIN="/opt/homebrew/bin/openclaw"
-GUEST_SOLOCLAW_ENTRY="/opt/homebrew/lib/node_modules/openclaw/openclaw.mjs"
+GUEST_SOLOCLAW_ENTRY="/opt/homebrew/lib/node_modules/soloclaw/soloclaw.mjs"
 GUEST_NODE_BIN="/opt/homebrew/bin/node"
 GUEST_NPM_BIN="/opt/homebrew/bin/npm"
 GUEST_CURRENT_USER=""
@@ -143,7 +143,7 @@ Options:
   --api-key-env <var>        Host env var name for provider API key.
                              Default: OPENAI_API_KEY for openai, ANTHROPIC_API_KEY for anthropic
   --openai-api-key-env <var> Alias for --api-key-env (backward compatible)
-  --install-url <url>        Installer URL for latest release. Default: https://openclaw.ai/install.sh
+  --install-url <url>        Installer URL for latest release. Default: https://soloclaw.ai/install.sh
   --host-port <port>         Host HTTP port for current-main tgz. Default: 18425
   --host-ip <ip>             Override Parallels host IP.
   --latest-version <ver>     Override npm latest version lookup.
@@ -692,7 +692,7 @@ resolve_guest_current_user_home() {
 resolve_guest_git_openclaw_entry() {
   local guest_home
   guest_home="$(resolve_guest_current_user_home)"
-  printf '%s/openclaw/openclaw.mjs\n' "$guest_home"
+  printf '%s/soloclaw/soloclaw.mjs\n' "$guest_home"
 }
 
 guest_current_user_cli() {
@@ -1061,7 +1061,7 @@ repair_legacy_dev_source_checkout_if_needed() {
   ensure_guest_pnpm_for_dev_update
   guest_current_user_exec /bin/rm -rf "$update_root"
   guest_current_user_exec /usr/bin/git clone --depth 1 --branch main \
-    https://github.com/openclaw/openclaw.git "$update_root"
+    https://github.com/soloclaw/soloclaw.git "$update_root"
   guest_current_user_exec_path "$bootstrap_bin:$GUEST_EXEC_PATH" \
     "$bootstrap_bin/pnpm" --dir "$update_root" install
   guest_current_user_exec_path "$bootstrap_bin:$GUEST_EXEC_PATH" \
@@ -1459,7 +1459,7 @@ deadline=\$((SECONDS + 30))
 dashboard_ready=0
 while [ \$SECONDS -lt \$deadline ]; do
   if curl -fsSL --connect-timeout 2 --max-time 5 "\$dashboard_http_url" >/tmp/openclaw-dashboard-smoke.html 2>/dev/null; then
-    if grep -F '<title>OpenClaw Control</title>' /tmp/openclaw-dashboard-smoke.html >/dev/null; then
+    if grep -F '<title>SoloClaw Control</title>' /tmp/openclaw-dashboard-smoke.html >/dev/null; then
       if grep -F '<openclaw-app></openclaw-app>' /tmp/openclaw-dashboard-smoke.html >/dev/null; then
         dashboard_ready=1
         break
@@ -1472,7 +1472,7 @@ done
   echo "dashboard HTML did not become ready at \$dashboard_http_url" >&2
   exit 1
 }
-grep -F '<title>OpenClaw Control</title>' /tmp/openclaw-dashboard-smoke.html >/dev/null
+grep -F '<title>SoloClaw Control</title>' /tmp/openclaw-dashboard-smoke.html >/dev/null
 grep -F '<openclaw-app></openclaw-app>' /tmp/openclaw-dashboard-smoke.html >/dev/null
 echo "dashboard HTML ready at \$dashboard_http_url"
 if [ "\$headless_flag" = "1" ]; then
@@ -1692,7 +1692,7 @@ import re
 import sys
 
 text = pathlib.Path(sys.argv[1]).read_text(errors="replace")
-matches = re.findall(r"OpenClaw [^\r\n]+ \([0-9a-f]{7,}\)", text)
+matches = re.findall(r"SoloClaw [^\r\n]+ \([0-9a-f]{7,}\)", text)
 print(matches[-1] if matches else "")
 PY
 }

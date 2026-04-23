@@ -55,7 +55,7 @@ describe("logging/logger browser-safe import", () => {
 
     expect(resolvePreferredOpenClawTmpDir).not.toHaveBeenCalled();
     expect(module.DEFAULT_LOG_DIR).toBe("/tmp/openclaw");
-    expect(module.DEFAULT_LOG_FILE).toBe("/tmp/openclaw/openclaw.log");
+    expect(module.DEFAULT_LOG_FILE).toBe("/tmp/soloclaw/soloclaw.log");
   });
 
   it("disables file logging when imported in a browser-like environment", async () => {
@@ -63,7 +63,7 @@ describe("logging/logger browser-safe import", () => {
 
     expect(module.getResolvedLoggerSettings()).toMatchObject({
       level: "silent",
-      file: "/tmp/openclaw/openclaw.log",
+      file: "/tmp/soloclaw/soloclaw.log",
     });
     expect(module.isFileLogLevelEnabled("info")).toBe(false);
     expect(() => module.getLogger().info("browser-safe")).not.toThrow();

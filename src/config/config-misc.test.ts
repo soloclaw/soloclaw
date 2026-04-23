@@ -22,11 +22,11 @@ import { WhatsAppConfigSchema } from "./zod-schema.providers-whatsapp.js";
 describe("$schema key in config (#14998)", () => {
   it("accepts config with $schema string", () => {
     const result = OpenClawSchema.safeParse({
-      $schema: "https://openclaw.ai/config.json",
+      $schema: "https://soloclaw.ai/config.json",
     });
     expect(result.success).toBe(true);
     if (result.success) {
-      expect(result.data.$schema).toBe("https://openclaw.ai/config.json");
+      expect(result.data.$schema).toBe("https://soloclaw.ai/config.json");
     }
   });
 
@@ -517,7 +517,7 @@ describe("cron webhook schema", () => {
       textChunkLimit: 1111,
     });
     const messages = {
-      messagePrefix: "[openclaw]",
+      messagePrefix: "[soloclaw]",
       responsePrefix: "🦞",
     };
 

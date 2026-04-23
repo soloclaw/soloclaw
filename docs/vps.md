@@ -1,5 +1,5 @@
 ---
-summary: "Run OpenClaw on a Linux server or cloud VPS — provider picker, architecture, and tuning"
+summary: "Run SoloClaw on a Linux server or cloud VPS — provider picker, architecture, and tuning"
 read_when:
   - You want to run the Gateway on a Linux server or cloud VPS
   - You need a quick map of hosting guides
@@ -10,7 +10,7 @@ sidebarTitle: "Linux Server"
 
 # Linux Server
 
-Run the OpenClaw Gateway on any Linux server or cloud VPS. This page helps you
+Run the SoloClaw Gateway on any Linux server or cloud VPS. This page helps you
 pick a provider, explains how cloud deployments work, and covers generic Linux
 tuning that applies everywhere.
 

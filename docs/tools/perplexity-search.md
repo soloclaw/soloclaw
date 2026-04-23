@@ -8,10 +8,10 @@ title: "Perplexity Search"
 
 # Perplexity Search API
 
-OpenClaw supports Perplexity Search API as a `web_search` provider.
+SoloClaw supports Perplexity Search API as a `web_search` provider.
 It returns structured results with `title`, `url`, and `snippet` fields.
 
-For compatibility, OpenClaw also supports legacy Perplexity Sonar/OpenRouter setups.
+For compatibility, SoloClaw also supports legacy Perplexity Sonar/OpenRouter setups.
 If you use `OPENROUTER_API_KEY`, an `sk-or-...` key in `plugins.entries.perplexity.config.webSearch.apiKey`, or set `plugins.entries.perplexity.config.webSearch.baseUrl` / `model`, the provider switches to the chat-completions path and returns AI-synthesized answers with citations instead of structured Search API results.
 
 ## Getting a Perplexity API key

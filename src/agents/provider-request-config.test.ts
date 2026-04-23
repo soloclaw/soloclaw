@@ -434,7 +434,7 @@ describe("provider request config", () => {
     });
 
     expect(resolved).toMatchObject({
-      originator: "openclaw",
+      originator: "soloclaw",
       version: expect.any(String),
       "User-Agent": expect.stringMatching(/^openclaw\//),
       "X-Custom": "1",
@@ -455,7 +455,7 @@ describe("provider request config", () => {
     });
 
     expect(resolved).toEqual({
-      "HTTP-Referer": "https://openclaw.ai",
+      "HTTP-Referer": "https://soloclaw.ai",
       "X-OpenRouter-Title": "OpenClaw",
       "X-OpenRouter-Categories": "cli-agent",
       "X-Custom": "1",
@@ -527,7 +527,7 @@ describe("provider request config", () => {
     expect(resolved.capabilities.allowsResponsesStore).toBe(true);
     expect(resolved.headers).toMatchObject({
       authorization: "Bearer test-key",
-      originator: "openclaw",
+      originator: "soloclaw",
       version: expect.any(String),
       "User-Agent": expect.stringMatching(/^openclaw\//),
       "X-Custom": "1",

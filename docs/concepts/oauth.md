@@ -1,7 +1,7 @@
 ---
 summary: "OAuth in OpenClaw: token exchange, storage, and multi-account patterns"
 read_when:
-  - You want to understand OpenClaw OAuth end-to-end
+  - You want to understand SoloClaw OAuth end-to-end
   - You hit token invalidation / logout issues
   - You want Claude CLI or OAuth auth flows
   - You want multiple accounts or profile routing
@@ -10,7 +10,7 @@ title: "OAuth"
 
 # OAuth
 
-OpenClaw supports “subscription auth” via OAuth for providers that offer it
+SoloClaw supports “subscription auth” via OAuth for providers that offer it
 (notably **OpenAI Codex (ChatGPT OAuth)**). For Anthropic, the practical split
 is now:
 
@@ -27,7 +27,7 @@ For Anthropic in production, API key auth is the safer recommended path.
 - where tokens are **stored** (and why)
 - how to handle **multiple accounts** (profiles + per-session overrides)
 
-OpenClaw also supports **provider plugins** that ship their own OAuth or API‑key
+SoloClaw also supports **provider plugins** that ship their own OAuth or API‑key
 flows. Run them via:
 
 ```bash
@@ -40,9 +40,9 @@ OAuth providers commonly mint a **new refresh token** during login/refresh flows
 
 Practical symptom:
 
-- you log in via OpenClaw _and_ via Claude Code / Codex CLI → one of them randomly gets “logged out” later
+- you log in via SoloClaw _and_ via Claude Code / Codex CLI → one of them randomly gets “logged out” later
 
-To reduce that, OpenClaw treats `auth-profiles.json` as a **token sink**:
+To reduce that, SoloClaw treats `auth-profiles.json` as a **token sink**:
 
 - the runtime reads credentials from **one place**
 - we can keep multiple profiles and route them deterministically
@@ -71,7 +71,7 @@ For static secret refs and runtime snapshot activation behavior, see [Secrets Ma
 <Warning>
 Anthropic's public Claude Code docs say direct Claude Code use stays within
 Claude subscription limits, and Anthropic staff told us OpenClaw-style Claude
-CLI usage is allowed again. OpenClaw therefore treats Claude CLI reuse and
+CLI usage is allowed again. SoloClaw therefore treats Claude CLI reuse and
 `claude -p` usage as sanctioned for this integration unless Anthropic
 publishes a new policy.
 
@@ -87,11 +87,11 @@ Plan](/providers/qwen), [MiniMax Coding Plan](/providers/minimax),
 and [Z.AI / GLM Coding Plan](/providers/glm).
 </Warning>
 
-OpenClaw also exposes Anthropic setup-token as a supported token-auth path, but it now prefers Claude CLI reuse and `claude -p` when available.
+SoloClaw also exposes Anthropic setup-token as a supported token-auth path, but it now prefers Claude CLI reuse and `claude -p` when available.
 
 ## Anthropic Claude CLI migration
 
-OpenClaw supports Anthropic Claude CLI reuse again. If you already have a local
+SoloClaw supports Anthropic Claude CLI reuse again. If you already have a local
 Claude login on the host, onboarding/configure can reuse it directly.
 
 ## OAuth exchange (how login works)
@@ -103,13 +103,13 @@ OpenClaw’s interactive login flows are implemented in `@mariozechner/pi-ai` an
 Flow shape:
 
 1. start Anthropic setup-token or paste-token from OpenClaw
-2. OpenClaw stores the resulting Anthropic credential in an auth profile
+2. SoloClaw stores the resulting Anthropic credential in an auth profile
 3. model selection stays on `anthropic/...`
 4. existing Anthropic auth profiles remain available for rollback/order control
 
 ### OpenAI Codex (ChatGPT OAuth)
 
-OpenAI Codex OAuth is explicitly supported for use outside the Codex CLI, including OpenClaw workflows.
+OpenAI Codex OAuth is explicitly supported for use outside the Codex CLI, including SoloClaw workflows.
 
 Flow shape (PKCE):
 

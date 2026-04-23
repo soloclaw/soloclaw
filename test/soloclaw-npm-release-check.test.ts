@@ -495,10 +495,10 @@ describe("collectReleasePackageMetadataErrors", () => {
   it("validates the expected npm package metadata", () => {
     expect(
       collectReleasePackageMetadataErrors({
-        name: "openclaw",
+        name: "soloclaw",
         description: "Multi-channel AI gateway with extensible messaging integrations",
         license: "MIT",
-        repository: { url: "git+https://github.com/openclaw/openclaw.git" },
+        repository: { url: "git+https://github.com/soloclaw/soloclaw.git" },
         bin: { openclaw: "soloclaw.mjs" },
         peerDependencies: { "node-llama-cpp": "3.18.1" },
         peerDependenciesMeta: { "node-llama-cpp": { optional: true } },
@@ -509,10 +509,10 @@ describe("collectReleasePackageMetadataErrors", () => {
   it("requires node-llama-cpp to stay an optional peer", () => {
     expect(
       collectReleasePackageMetadataErrors({
-        name: "openclaw",
+        name: "soloclaw",
         description: "Multi-channel AI gateway with extensible messaging integrations",
         license: "MIT",
-        repository: { url: "git+https://github.com/openclaw/openclaw.git" },
+        repository: { url: "git+https://github.com/soloclaw/soloclaw.git" },
         bin: { openclaw: "soloclaw.mjs" },
         peerDependencies: { "node-llama-cpp": "3.18.1" },
       }),

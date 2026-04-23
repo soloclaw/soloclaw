@@ -21,7 +21,7 @@ describe("image-ops temp dir", () => {
     vi.restoreAllMocks();
   });
 
-  it("creates sips temp dirs under the secured OpenClaw tmp root", async () => {
+  it("creates sips temp dirs under the secured SoloClaw tmp root", async () => {
     const secureRoot = resolvePreferredOpenClawTmpDir();
 
     await getImageMetadata(Buffer.from("image"));

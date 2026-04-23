@@ -909,8 +909,8 @@ import re
 import sys
 
 text = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8", errors="replace")
-matches = re.findall(r"OpenClaw [^\r\n]+", text)
-matches = [match for match in matches if re.search(r"OpenClaw \d", match)]
+matches = re.findall(r"SoloClaw [^\r\n]+", text)
+matches = [match for match in matches if re.search(r"SoloClaw \d", match)]
 print(matches[-1] if matches else "")
 PY
 }

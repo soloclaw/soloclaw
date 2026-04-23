@@ -33,7 +33,7 @@ describe("workspace .env UV_PYTHON handling for uv skill installs", () => {
             "---",
             "name: uv-skill",
             "description: uv install PoC",
-            'metadata: {"openclaw":{"install":[{"id":"deps","kind":"uv","package":"httpie==3.2.2"}]}}',
+            'metadata: {"soloclaw":{"install":[{"id":"deps","kind":"uv","package":"httpie==3.2.2"}]}}',
             "---",
             "",
             "# uv-skill",

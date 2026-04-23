@@ -9,7 +9,7 @@ export type PluginTextReplacement = {
 export type PluginTextTransforms = {
   /** Rewrites applied to outbound prompt text before provider/CLI transport. */
   input?: PluginTextReplacement[];
-  /** Rewrites applied to inbound assistant text before OpenClaw consumes it. */
+  /** Rewrites applied to inbound assistant text before SoloClaw consumes it. */
   output?: PluginTextReplacement[];
 };
 
@@ -40,7 +40,7 @@ export type CliBackendPlugin = {
     };
   };
   /**
-   * Whether OpenClaw should inject bundle MCP config for this backend.
+   * Whether SoloClaw should inject bundle MCP config for this backend.
    *
    * Keep this opt-in. Only backends that explicitly consume OpenClaw's bundle
    * MCP bridge should enable it.

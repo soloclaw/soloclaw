@@ -34,14 +34,14 @@ describe("browser server-context loopback direct WebSocket profiles", () => {
     });
 
     global.fetch = withFetchPreconnect(fetchMock);
-    const state = makeState("openclaw");
+    const state = makeState("soloclaw");
     state.resolved.ssrfPolicy = {};
     state.resolved.profiles.soloclaw = {
       cdpUrl: "ws://127.0.0.1:18800/devtools/browser/SESSION?token=abc",
       color: "#FF4500",
     };
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("openclaw");
+    const openclaw = ctx.forProfile("soloclaw");
 
     const opened = await openclaw.openTab("about:blank");
     expect(opened.targetId).toBe("CREATED");
@@ -79,14 +79,14 @@ describe("browser server-context loopback direct WebSocket profiles", () => {
     });
 
     global.fetch = withFetchPreconnect(fetchMock);
-    const state = makeState("openclaw");
+    const state = makeState("soloclaw");
     state.resolved.ssrfPolicy = {};
     state.resolved.profiles.soloclaw = {
       cdpUrl: "ws://127.0.0.1:18800/devtools/browser/SESSION?token=abc",
       color: "#FF4500",
     };
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("openclaw");
+    const openclaw = ctx.forProfile("soloclaw");
 
     await openclaw.focusTab("T1");
     await openclaw.closeTab("T1");
@@ -128,13 +128,13 @@ describe("browser server-context loopback direct WebSocket profiles", () => {
     });
 
     global.fetch = withFetchPreconnect(fetchMock);
-    const state = makeState("openclaw");
+    const state = makeState("soloclaw");
     state.resolved.profiles.soloclaw = {
       cdpUrl: "wss://127.0.0.1:18800/cdp?token=abc",
       color: "#FF4500",
     };
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("openclaw");
+    const openclaw = ctx.forProfile("soloclaw");
 
     const tabs = await openclaw.listTabs();
     expect(tabs.map((tab) => tab.targetId)).toEqual(["T2"]);
@@ -149,14 +149,14 @@ describe("browser server-context loopback direct WebSocket profiles", () => {
     });
 
     global.fetch = withFetchPreconnect(fetchMock);
-    const state = makeState("openclaw");
+    const state = makeState("soloclaw");
     state.resolved.ssrfPolicy = { dangerouslyAllowPrivateNetwork: false };
     state.resolved.profiles.soloclaw = {
       cdpUrl: "ws://10.0.0.42:18800/devtools/browser/SESSION?token=abc",
       color: "#FF4500",
     };
     const ctx = createBrowserRouteContext({ getState: () => state });
-    const openclaw = ctx.forProfile("openclaw");
+    const openclaw = ctx.forProfile("soloclaw");
 
     await expect(openclaw.listTabs()).rejects.toBeInstanceOf(BrowserCdpEndpointBlockedError);
     await expect(openclaw.focusTab("T1")).rejects.toBeInstanceOf(BrowserCdpEndpointBlockedError);

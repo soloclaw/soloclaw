@@ -106,7 +106,7 @@ const MusicGenerateToolSchema = Type.Object({
   filename: Type.Optional(
     Type.String({
       description:
-        "Optional output filename hint. OpenClaw preserves the basename and saves under its managed media directory.",
+        "Optional output filename hint. SoloClaw preserves the basename and saves under its managed media directory.",
     }),
   ),
 });

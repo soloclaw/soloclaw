@@ -1,7 +1,7 @@
 {
   "name": "@soloclaw/diagnostics-otel",
   "version": "2026.4.16",
-  "description": "OpenClaw diagnostics OpenTelemetry exporter",
+  "description": "SoloClaw diagnostics OpenTelemetry exporter",
   "type": "module",
   "dependencies": {
     "@opentelemetry/api": "^1.9.1",

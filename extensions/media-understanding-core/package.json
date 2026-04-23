@@ -2,7 +2,7 @@
   "name": "@soloclaw/media-understanding-core",
   "version": "2026.4.16",
   "private": true,
-  "description": "OpenClaw media understanding runtime package",
+  "description": "SoloClaw media understanding runtime package",
   "type": "module",
   "devDependencies": {
     "@soloclaw/plugin-sdk": "workspace:*",

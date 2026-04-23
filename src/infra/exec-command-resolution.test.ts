@@ -440,7 +440,7 @@ describe("exec-command-resolution", () => {
       resolveAllowlistCandidatePath(
         {
           rawExecutable: String.raw`:\Users\demo\AI\system\openclaw`,
-          executableName: "openclaw",
+          executableName: "soloclaw",
         },
         String.raw`C:\Users\demo\AI\system\openclaw`,
       ),
@@ -449,7 +449,7 @@ describe("exec-command-resolution", () => {
       resolveAllowlistCandidatePath(
         {
           rawExecutable: String.raw`:/Users/demo/AI/system/openclaw`,
-          executableName: "openclaw",
+          executableName: "soloclaw",
         },
         String.raw`C:\Users\demo\AI\system\openclaw`,
       ),

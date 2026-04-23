@@ -856,7 +856,7 @@ describe("gateway agent handler", () => {
       {
         message: [
           "[Mon 2026-04-06 02:42 GMT+1] <<<BEGIN_SOLOCLAW_INTERNAL_CONTEXT>>>",
-          "OpenClaw runtime context (internal):",
+          "SoloClaw runtime context (internal):",
           "This context is runtime-generated, not user-authored. Keep internal details private.",
         ].join("\n"),
         sessionKey: "agent:main:main",

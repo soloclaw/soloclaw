@@ -1,6 +1,6 @@
 ---
 name: acp-router
-description: Route plain-language requests for Pi, Claude Code, Codex, Cursor, Copilot, OpenClaw ACP, OpenCode, Gemini CLI, Qwen, Kiro, Kimi, iFlow, Factory Droid, Kilocode, or ACP harness work into either OpenClaw ACP runtime sessions or direct acpx-driven sessions ("telephone game" flow). For coding-agent thread requests, read this skill first, then use only `sessions_spawn` for thread creation.
+description: Route plain-language requests for Pi, Claude Code, Codex, Cursor, Copilot, SoloClaw ACP, OpenCode, Gemini CLI, Qwen, Kiro, Kimi, iFlow, Factory Droid, Kilocode, or ACP harness work into either SoloClaw ACP runtime sessions or direct acpx-driven sessions ("telephone game" flow). For coding-agent thread requests, read this skill first, then use only `sessions_spawn` for thread creation.
 user-invocable: false
 ---
 
@@ -10,9 +10,9 @@ When user intent is "run this in Pi/Claude Code/Codex/Cursor/Copilot/OpenClaw/Op
 
 ## Intent detection
 
-Trigger this skill when the user asks OpenClaw to:
+Trigger this skill when the user asks SoloClaw to:
 
-- run something in Pi / Claude Code / Codex / Cursor / Copilot / OpenClaw / OpenCode / Gemini / Qwen / Kiro / Kimi / iFlow / Droid / Kilocode
+- run something in Pi / Claude Code / Codex / Cursor / Copilot / SoloClaw / OpenCode / Gemini / Qwen / Kiro / Kimi / iFlow / Droid / Kilocode
 - continue existing harness work
 - relay instructions to an external coding harness
 - keep an external harness conversation in a thread-like conversation
@@ -20,20 +20,20 @@ Trigger this skill when the user asks OpenClaw to:
 Mandatory preflight for coding-agent thread requests:
 
 - Before creating any thread for ACP harness work, read this skill first in the same turn.
-- After reading, follow `OpenClaw ACP runtime path` below; do not use `message(action="thread-create")` for ACP harness thread spawn.
+- After reading, follow `SoloClaw ACP runtime path` below; do not use `message(action="thread-create")` for ACP harness thread spawn.
 
 ## Mode selection
 
 Choose one of these paths:
 
-1. OpenClaw ACP runtime path (default): use `sessions_spawn` / ACP runtime tools.
+1. SoloClaw ACP runtime path (default): use `sessions_spawn` / ACP runtime tools.
 2. Direct `acpx` path (telephone game): use `acpx` CLI through `exec` to drive the harness session directly.
 
 Use direct `acpx` when one of these is true:
 
 - user explicitly asks for direct `acpx` driving
 - ACP runtime/plugin path is unavailable or unhealthy
-- the task is "just relay prompts to harness" and no OpenClaw ACP lifecycle features are needed
+- the task is "just relay prompts to harness" and no SoloClaw ACP lifecycle features are needed
 
 Do not use:
 
@@ -46,7 +46,7 @@ Do not use:
 Use these defaults when user names a harness directly:
 
 - "pi" -> `agentId: "pi"`
-- "openclaw" -> `agentId: "openclaw"`
+- "soloclaw" -> `agentId: "soloclaw"`
 - "claude" or "claude code" -> `agentId: "claude"`
 - "codex" -> `agentId: "codex"`
 - "copilot" or "github copilot" -> `agentId: "copilot"`
@@ -64,7 +64,7 @@ These defaults match current acpx built-in aliases.
 
 If policy rejects the chosen id, report the policy error clearly and ask for the allowed ACP agent id.
 
-## OpenClaw ACP runtime path
+## SoloClaw ACP runtime path
 
 Required behavior:
 

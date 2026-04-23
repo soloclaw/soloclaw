@@ -188,7 +188,7 @@ describe("prepareCliBundleMcpConfig", () => {
       const raw = JSON.parse(await fs.readFile(generatedConfigPath as string, "utf-8")) as {
         mcpServers?: Record<string, { url?: string; headers?: Record<string, string> }>;
       };
-      expect(Object.keys(raw.mcpServers ?? {}).toSorted()).toEqual(["bundleProbe", "openclaw"]);
+      expect(Object.keys(raw.mcpServers ?? {}).toSorted()).toEqual(["bundleProbe", "soloclaw"]);
       expect(raw.mcpServers?.openclaw?.url).toBe("http://127.0.0.1:23119/mcp");
       expect(raw.mcpServers?.openclaw?.headers?.Authorization).toBe("Bearer ${SOLOCLAW_MCP_TOKEN}");
 
@@ -315,7 +315,7 @@ describe("prepareCliBundleMcpConfig", () => {
       mcp?: { allowed?: string[] };
       mcpServers?: Record<string, { url?: string; headers?: Record<string, string> }>;
     };
-    expect(raw.mcp?.allowed).toEqual(["openclaw"]);
+    expect(raw.mcp?.allowed).toEqual(["soloclaw"]);
     expect(raw.mcpServers?.openclaw?.url).toBe("http://127.0.0.1:23119/mcp");
     expect(raw.mcpServers?.openclaw?.headers?.Authorization).toBe("Bearer loopback-token-123");
 

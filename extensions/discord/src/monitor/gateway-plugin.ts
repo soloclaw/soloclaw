@@ -256,7 +256,7 @@ function createGatewayPlugin(params: {
 
     public override connect(resume = false): void {
       // Guard against stale heartbeat timers from the @buape/carbon
-      // firstHeartbeatTimeout race (openclaw/openclaw#65009, #64011, #63387).
+      // firstHeartbeatTimeout race (soloclaw/soloclaw#65009, #64011, #63387).
       // Parent connect() only calls stopHeartbeat() when isConnecting=false.
       // If isConnecting=true it returns early — leaving a stale setInterval
       // that fires with a closed reconnectCallback and crashes the process.

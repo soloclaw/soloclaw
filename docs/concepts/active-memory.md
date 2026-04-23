@@ -243,7 +243,7 @@ session toggles that match the output you want:
 /trace on
 ```
 
-With those enabled, OpenClaw can show:
+With those enabled, SoloClaw can show:
 
 - an active memory status line such as `Active Memory: status=ok elapsed=842ms query=recent summary=34 chars` when `/verbose on`
 - a readable debug summary such as `Active Memory Debug: Lemon pepper wings with blue cheese.` when `/trace on`
@@ -720,7 +720,7 @@ In practice:
 - explicit provider setup is usually **not required** if auto-detection already
   resolves the provider you want and that provider is stable in your deployment
 
-If `memorySearch.provider` is unset, OpenClaw auto-detects the first available
+If `memorySearch.provider` is unset, SoloClaw auto-detects the first available
 embedding provider.
 
 That can be confusing in real deployments:
@@ -744,7 +744,7 @@ In practice:
 
 - if no embedding provider can be resolved, `memory_search` may degrade to
   lexical-only retrieval
-- if an embedding provider is resolved and then fails at runtime, OpenClaw does
+- if an embedding provider is resolved and then fails at runtime, SoloClaw does
   not currently guarantee a lexical fallback for that request
 - if you need deterministic provider selection, pin
   `agents.defaults.memorySearch.provider`

@@ -10,7 +10,7 @@ installRemoteProfileTestLifecycle(deps);
 
 describe("browser remote profile fallback and attachOnly behavior", () => {
   it("uses profile-level attachOnly when global attachOnly is false", async () => {
-    const state = deps.makeState("openclaw");
+    const state = deps.makeState("soloclaw");
     state.resolved.attachOnly = false;
     state.resolved.profiles.soloclaw = {
       cdpPort: 18800,
@@ -24,7 +24,7 @@ describe("browser remote profile fallback and attachOnly behavior", () => {
     const launchMock = vi.mocked(deps.chromeModule.launchOpenClawChrome);
     const ctx = deps.createBrowserRouteContext({ getState: () => state });
 
-    await expect(ctx.forProfile("openclaw").ensureBrowserAvailable()).rejects.toThrow(
+    await expect(ctx.forProfile("soloclaw").ensureBrowserAvailable()).rejects.toThrow(
       /attachOnly is enabled/i,
     );
     expect(reachableMock).toHaveBeenCalled();
@@ -32,7 +32,7 @@ describe("browser remote profile fallback and attachOnly behavior", () => {
   });
 
   it("keeps attachOnly websocket failures off the loopback ownership error path", async () => {
-    const state = deps.makeState("openclaw");
+    const state = deps.makeState("soloclaw");
     state.resolved.attachOnly = false;
     state.resolved.profiles.soloclaw = {
       cdpPort: 18800,
@@ -49,7 +49,7 @@ describe("browser remote profile fallback and attachOnly behavior", () => {
     const launchMock = vi.mocked(deps.chromeModule.launchOpenClawChrome);
     const ctx = deps.createBrowserRouteContext({ getState: () => state });
 
-    await expect(ctx.forProfile("openclaw").ensureBrowserAvailable()).rejects.toThrow(
+    await expect(ctx.forProfile("soloclaw").ensureBrowserAvailable()).rejects.toThrow(
       /attachOnly is enabled and CDP websocket/i,
     );
     expect(httpReachableMock).toHaveBeenCalled();

@@ -2,7 +2,7 @@
   "name": "@soloclaw/telegram",
   "version": "2026.4.16",
   "private": true,
-  "description": "OpenClaw Telegram channel plugin",
+  "description": "SoloClaw Telegram channel plugin",
   "type": "module",
   "dependencies": {
     "@grammyjs/runner": "^2.0.3",
@@ -33,7 +33,7 @@
       "selectionDocsPrefix": "",
       "selectionDocsOmitLabel": true,
       "selectionExtras": [
-        "https://openclaw.ai"
+        "https://soloclaw.ai"
       ],
       "markdownCapable": true,
       "configuredState": {

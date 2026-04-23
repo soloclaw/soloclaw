@@ -1,6 +1,6 @@
 # Canvas Skill
 
-Display HTML content on connected OpenClaw nodes (Mac app, iOS, Android).
+Display HTML content on connected SoloClaw nodes (Mac app, iOS, Android).
 
 ## Overview
 
@@ -57,7 +57,7 @@ This is why localhost URLs don't work - the node receives the Tailscale hostname
 
 ## Configuration
 
-In the active OpenClaw config file (`$SOLOCLAW_CONFIG_PATH`, default `~/.soloclaw/soloclaw.json`):
+In the active SoloClaw config file (`$SOLOCLAW_CONFIG_PATH`, default `~/.soloclaw/soloclaw.json`):
 
 ```json
 {

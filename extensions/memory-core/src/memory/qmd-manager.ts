@@ -139,7 +139,7 @@ function _hasHanScript(value: string): boolean {
 
 function normalizeHanBm25Query(query: string): string {
   const trimmed = query.trim();
-  // Keep Han/CJK BM25 queries intact so OpenClaw search semantics match direct qmd search.
+  // Keep Han/CJK BM25 queries intact so SoloClaw search semantics match direct qmd search.
   return trimmed;
 }
 

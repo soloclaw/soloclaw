@@ -219,7 +219,7 @@ Manual user-unit example when you need a custom install path:
 
 ```ini
 [Unit]
-Description=OpenClaw Gateway
+Description=SoloClaw Gateway
 After=network-online.target
 Wants=network-online.target
 
@@ -247,9 +247,9 @@ soloclaw gateway restart
 soloclaw gateway stop
 ```
 
-Native Windows managed startup uses a Scheduled Task named `OpenClaw Gateway`
-(or `OpenClaw Gateway (<profile>)` for named profiles). If Scheduled Task
-creation is denied, OpenClaw falls back to a per-user Startup-folder launcher
+Native Windows managed startup uses a Scheduled Task named `SoloClaw Gateway`
+(or `SoloClaw Gateway (<profile>)` for named profiles). If Scheduled Task
+creation is denied, SoloClaw falls back to a per-user Startup-folder launcher
 that points at `gateway.cmd` inside the state directory.
 
   </Tab>

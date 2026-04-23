@@ -2,7 +2,7 @@
 
 Stop typing `docker-compose` commands. Just type `clawdock-start`.
 
-Inspired by Simon Willison's [Running OpenClaw in Docker](https://til.simonwillison.net/llms/openclaw-docker).
+Inspired by Simon Willison's [Running SoloClaw in Docker](https://til.simonwillison.net/llms/openclaw-docker).
 
 - [Quickstart](#quickstart)
 - [Available Commands](#available-commands)
@@ -32,7 +32,7 @@ Inspired by Simon Willison's [Running OpenClaw in Docker](https://til.simonwilli
 **Install:**
 
 ```bash
-mkdir -p ~/.clawdock && curl -sL https://raw.githubusercontent.com/openclaw/openclaw/main/scripts/clawdock/clawdock-helpers.sh -o ~/.clawdock/clawdock-helpers.sh
+mkdir -p ~/.clawdock && curl -sL https://raw.githubusercontent.com/soloclaw/soloclaw/main/scripts/clawdock/clawdock-helpers.sh -o ~/.clawdock/clawdock-helpers.sh
 ```
 
 ```bash
@@ -49,7 +49,7 @@ If you previously installed ClawDock from `scripts/shell-helpers/clawdock-helper
 clawdock-help
 ```
 
-On first command, ClawDock auto-detects your OpenClaw directory:
+On first command, ClawDock auto-detects your SoloClaw directory:
 
 - Checks common paths (`~/openclaw`, `~/workspace/openclaw`, etc.)
 - If found, asks you to confirm
@@ -98,7 +98,7 @@ clawdock-approve <request-id>
 | Command                   | Description                                    |
 | ------------------------- | ---------------------------------------------- |
 | `clawdock-shell`          | Interactive shell inside the gateway container |
-| `clawdock-cli <command>`  | Run OpenClaw CLI commands                      |
+| `clawdock-cli <command>`  | Run SoloClaw CLI commands                      |
 | `clawdock-exec <command>` | Execute arbitrary commands in the container    |
 
 ### Web UI & Devices
@@ -129,8 +129,8 @@ clawdock-approve <request-id>
 | ---------------------- | ----------------------------------------- |
 | `clawdock-health`      | Run gateway health check                  |
 | `clawdock-token`       | Display the gateway authentication token  |
-| `clawdock-cd`          | Jump to the OpenClaw project directory    |
-| `clawdock-config`      | Open the OpenClaw config directory        |
+| `clawdock-cd`          | Jump to the SoloClaw project directory    |
+| `clawdock-config`      | Open the SoloClaw config directory        |
 | `clawdock-show-config` | Print config files with redacted values   |
 | `clawdock-workspace`   | Open the workspace directory              |
 | `clawdock-help`        | Show all available commands with examples |
@@ -196,12 +196,12 @@ volumes:
 
 This means:
 
-- `~/.soloclaw/.env` is available inside the container at `/home/node/.soloclaw/.env` — OpenClaw loads it automatically as the global env fallback
+- `~/.soloclaw/.env` is available inside the container at `/home/node/.soloclaw/.env` — SoloClaw loads it automatically as the global env fallback
 - `~/.soloclaw/soloclaw.json` is available at `/home/node/.soloclaw/soloclaw.json` — the gateway watches it and hot-reloads most changes
 - No need to add API keys to `docker-compose.yml` or configure anything inside the container
 - Keys survive `clawdock-update`, `clawdock-rebuild`, and `clawdock-clean` because they live on the host
 
-The project `.env` feeds Docker Compose directly (gateway token, image name, ports). The `~/.soloclaw/.env` feeds the OpenClaw process inside the container.
+The project `.env` feeds Docker Compose directly (gateway token, image name, ports). The `~/.soloclaw/.env` feeds the SoloClaw process inside the container.
 
 ### Example `~/.soloclaw/.env`
 
@@ -225,7 +225,7 @@ SOLOCLAW_IMAGE=openclaw:local
 
 ### Env Precedence
 
-OpenClaw loads env vars in this order (highest wins, never overrides existing):
+SoloClaw loads env vars in this order (highest wins, never overrides existing):
 
 1. **Process environment** — `docker-compose.yml` `environment:` block (gateway token, session keys)
 2. **`.env` in CWD** — project root `.env` (Docker infra vars)
@@ -322,7 +322,7 @@ clawdock-fix-token
 This will:
 
 1. Read the token from your `.env` file
-2. Configure it in the OpenClaw config
+2. Configure it in the SoloClaw config
 3. Restart the gateway
 4. Verify the configuration
 
@@ -338,7 +338,7 @@ docker ps
 
 - Docker and Docker Compose installed
 - Bash or Zsh shell
-- OpenClaw project (run `scripts/docker/setup.sh`)
+- SoloClaw project (run `scripts/docker/setup.sh`)
 
 ## Development
 

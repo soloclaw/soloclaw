@@ -60,7 +60,7 @@ Notes:
 
 - For `attachOnly` and remote CDP profiles, `soloclaw browser stop` closes the
   active control session and clears temporary emulation overrides even when
-  OpenClaw did not launch the browser process itself.
+  SoloClaw did not launch the browser process itself.
 - For local managed profiles, `soloclaw browser stop` stops the spawned browser
   process.
 

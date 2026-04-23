@@ -15,7 +15,7 @@ This guide walks through building a provider plugin that adds a model provider
 API key auth, and dynamic model resolution.
 
 <Info>
-  If you have not built any OpenClaw plugin before, read
+  If you have not built any SoloClaw plugin before, read
   [Getting Started](/plugins/building-plugins) first for the basic package
   structure and manifest setup.
 </Info>
@@ -38,7 +38,7 @@ API key auth, and dynamic model resolution.
       "name": "@myorg/openclaw-acme-ai",
       "version": "1.0.0",
       "type": "module",
-      "openclaw": {
+      "soloclaw": {
         "extensions": ["./index.ts"],
         "providers": ["acme-ai"],
         "compat": {
@@ -89,10 +89,10 @@ API key auth, and dynamic model resolution.
     ```
     </CodeGroup>
 
-    The manifest declares `providerAuthEnvVars` so OpenClaw can detect
+    The manifest declares `providerAuthEnvVars` so SoloClaw can detect
     credentials without loading your plugin runtime. Add `providerAuthAliases`
     when a provider variant should reuse another provider id's auth. `modelSupport`
-    is optional and lets OpenClaw auto-load your provider plugin from shorthand
+    is optional and lets SoloClaw auto-load your provider plugin from shorthand
     model ids like `acme-large` before runtime hooks exist. If you publish the
     provider on ClawHub, those `openclaw.compat` and `openclaw.build` fields
     are required in `package.json`.
@@ -195,7 +195,7 @@ API key auth, and dynamic model resolution.
 
     `input` rewrites the final system prompt and text message content before
     transport. `output` rewrites assistant text deltas and final text before
-    OpenClaw parses its own control markers or channel delivery.
+    SoloClaw parses its own control markers or channel delivery.
 
     For bundled providers that only register one text provider with API-key
     auth plus a single catalog-backed runtime, prefer the narrower
@@ -487,7 +487,7 @@ API key auth, and dynamic model resolution.
     </Tabs>
 
     <Accordion title="All available provider hooks">
-      OpenClaw calls hooks in this order. Most providers only use 2-3:
+      SoloClaw calls hooks in this order. Most providers only use 2-3:
 
       | # | Hook | When to use |
       | --- | --- | --- |
@@ -671,7 +671,7 @@ API key auth, and dynamic model resolution.
     }
     ```
 
-    OpenClaw classifies this as a **hybrid-capability** plugin. This is the
+    SoloClaw classifies this as a **hybrid-capability** plugin. This is the
     recommended pattern for company plugins (one plugin per vendor). See
     [Internals: Capability Ownership](/plugins/architecture#capability-ownership-model).
 

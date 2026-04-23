@@ -8,7 +8,7 @@ title: "Voice Call Plugin"
 
 # Voice Call (plugin)
 
-Voice calls for OpenClaw via a plugin. Supports outbound notifications and
+Voice calls for SoloClaw via a plugin. Supports outbound notifications and
 multi-turn conversations with inbound policies.
 
 Current providers:

@@ -1337,7 +1337,7 @@ describe("buildStatusMessage", () => {
               type: "message",
               message: {
                 role: "assistant",
-                provider: "openclaw",
+                provider: "soloclaw",
                 model: "delivery-mirror",
                 usage: {
                   input: 0,

@@ -1,5 +1,5 @@
 ---
-summary: "Scripted onboarding and agent setup for the OpenClaw CLI"
+summary: "Scripted onboarding and agent setup for the SoloClaw CLI"
 read_when:
   - You are automating onboarding in scripts or CI
   - You need non-interactive examples for specific providers
@@ -192,7 +192,7 @@ soloclaw onboard --non-interactive \
   </Accordion>
 </AccordionGroup>
 
-Anthropic setup-token remains available as a supported onboarding token path, but OpenClaw now prefers Claude CLI reuse when available.
+Anthropic setup-token remains available as a supported onboarding token path, but SoloClaw now prefers Claude CLI reuse when available.
 For production, prefer an Anthropic API key.
 
 ## Add another agent

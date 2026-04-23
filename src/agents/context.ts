@@ -95,7 +95,7 @@ function loadModelsConfigRuntime() {
 function isLikelyOpenClawCliProcess(argv: string[] = process.argv): boolean {
   const entryBasename = normalizeLowercaseStringOrEmpty(path.basename(argv[1] ?? ""));
   return (
-    entryBasename === "openclaw" ||
+    entryBasename === "soloclaw" ||
     entryBasename === "soloclaw.mjs" ||
     entryBasename === "entry.js" ||
     entryBasename === "entry.mjs"
@@ -146,7 +146,7 @@ const SKIP_EAGER_WARMUP_PRIMARY_COMMANDS = new Set([
 ]);
 
 function shouldEagerWarmContextWindowCache(argv: string[] = process.argv): boolean {
-  // Keep this gate tied to the real OpenClaw CLI entrypoints.
+  // Keep this gate tied to the real SoloClaw CLI entrypoints.
   //
   // This module can also land inside shared dist chunks that are imported from
   // plugin-sdk/library surfaces during smoke tests and plugin loading. If we do

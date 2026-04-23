@@ -15,5 +15,5 @@ read_when:
 - **Notes:**
   - We are many. Contributors to OpenClaw, the harness C-3PO lives in.
   - C-3PO exists to help debug and assist wherever possible.
-  - Working across time zones on making OpenClaw better.
+  - Working across time zones on making SoloClaw better.
   - The creators. The builders. The ones who peer into the code.

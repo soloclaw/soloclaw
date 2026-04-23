@@ -8,16 +8,16 @@ import {
 
 describe("gh-read helpers", () => {
   it("finds repo from gh args", () => {
-    expect(parseRepoArg(["pr", "view", "42", "-R", "openclaw/openclaw"])).toBe("openclaw/openclaw");
+    expect(parseRepoArg(["pr", "view", "42", "-R", "soloclaw/soloclaw"])).toBe("soloclaw/soloclaw");
     expect(parseRepoArg(["run", "list", "--repo=openclaw/docs"])).toBe("openclaw/docs");
     expect(parseRepoArg(["pr", "view", "42"])).toBeNull();
   });
 
   it("normalizes repo strings from common git formats", () => {
-    expect(normalizeRepo("openclaw/openclaw")).toBe("openclaw/openclaw");
-    expect(normalizeRepo("github.com/openclaw/openclaw")).toBe("openclaw/openclaw");
-    expect(normalizeRepo("https://github.com/openclaw/openclaw.git")).toBe("openclaw/openclaw");
-    expect(normalizeRepo("git@github.com:openclaw/openclaw.git")).toBe("openclaw/openclaw");
+    expect(normalizeRepo("soloclaw/soloclaw")).toBe("soloclaw/soloclaw");
+    expect(normalizeRepo("github.com/soloclaw/soloclaw")).toBe("soloclaw/soloclaw");
+    expect(normalizeRepo("https://github.com/soloclaw/soloclaw.git")).toBe("soloclaw/soloclaw");
+    expect(normalizeRepo("git@github.com:soloclaw/soloclaw.git")).toBe("soloclaw/soloclaw");
     expect(normalizeRepo("invalid")).toBeNull();
   });
 

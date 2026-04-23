@@ -82,7 +82,7 @@ function isTranscriptOnlyOpenClawAssistantMessage(message: AgentMessage | undefi
   }
   const provider = normalizeOptionalString(message.provider) ?? "";
   const model = normalizeOptionalString(message.model) ?? "";
-  return provider === "openclaw" && (model === "delivery-mirror" || model === "gateway-injected");
+  return provider === "soloclaw" && (model === "delivery-mirror" || model === "gateway-injected");
 }
 
 function resolveAssistantStreamItemId(params: {

@@ -30,7 +30,7 @@ const loadBundledPluginPublicSurfaceModuleSync = vi.hoisted(() =>
           cdpProtocol: "http",
           color: "#FF4500",
           controlPort: 9223,
-          defaultProfile: "openclaw",
+          defaultProfile: "soloclaw",
           enabled: true,
           evaluateEnabled: true,
           extraArgs: [],
@@ -39,8 +39,8 @@ const loadBundledPluginPublicSurfaceModuleSync = vi.hoisted(() =>
           profiles: {
             openclaw: {
               color: "#FF4500",
-              driver: "openclaw",
-              name: "openclaw",
+              driver: "soloclaw",
+              name: "soloclaw",
             },
           },
           remoteCdpHandshakeTimeoutMs: 3000,
@@ -53,8 +53,8 @@ const loadBundledPluginPublicSurfaceModuleSync = vi.hoisted(() =>
           cdpPort: 9222,
           cdpUrl: "http://127.0.0.1:9222",
           color: "#FF4500",
-          driver: "openclaw",
-          name: "openclaw",
+          driver: "soloclaw",
+          name: "soloclaw",
         }),
       };
     }
@@ -183,7 +183,7 @@ describe("plugin activation boundary", () => {
     expect(
       isStaticallyChannelConfigured({}, "irc", {
         IRC_HOST: "irc.example.com",
-        IRC_NICK: "openclaw",
+        IRC_NICK: "soloclaw",
       }),
     ).toBe(true);
     expect(isStaticallyChannelConfigured({}, "whatsapp", {})).toBe(false);
@@ -203,7 +203,7 @@ describe("plugin activation boundary", () => {
     expect(browser.DEFAULT_AI_SNAPSHOT_MAX_CHARS).toBe(80_000);
     expect(browser.DEFAULT_BROWSER_EVALUATE_ENABLED).toBe(true);
     expect(browser.DEFAULT_SOLOCLAW_BROWSER_COLOR).toBe("#FF4500");
-    expect(browser.DEFAULT_SOLOCLAW_BROWSER_PROFILE_NAME).toBe("openclaw");
+    expect(browser.DEFAULT_SOLOCLAW_BROWSER_PROFILE_NAME).toBe("soloclaw");
     expect(browser.DEFAULT_UPLOAD_DIR).toContain("uploads");
     expect(loadBundledPluginPublicSurfaceModuleSync).not.toHaveBeenCalled();
     expect(browser.parseBrowserMajorVersion("Google Chrome 144.0.7534.0")).toBe(144);
@@ -212,9 +212,9 @@ describe("plugin activation boundary", () => {
       password: undefined,
     });
     const resolved = browser.resolveBrowserConfig(undefined, {});
-    expect(browser.resolveProfile(resolved, "openclaw")).toEqual(
+    expect(browser.resolveProfile(resolved, "soloclaw")).toEqual(
       expect.objectContaining({
-        name: "openclaw",
+        name: "soloclaw",
         cdpHost: "127.0.0.1",
       }),
     );

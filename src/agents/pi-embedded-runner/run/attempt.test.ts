@@ -1723,7 +1723,7 @@ describe("wrapStreamFnSanitizeMalformedToolCalls", () => {
         content: [
           {
             type: "text",
-            text: "[openclaw] missing tool result in session history; inserted synthetic error result for transcript repair.",
+            text: "[soloclaw] missing tool result in session history; inserted synthetic error result for transcript repair.",
           },
         ],
         isError: true,

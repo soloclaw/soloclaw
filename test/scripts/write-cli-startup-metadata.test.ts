@@ -37,6 +37,6 @@ describe("write-cli-startup-metadata", () => {
     };
     expect(written.channelOptions).toContain("matrix");
     expect(written.rootHelpText).toContain("Usage:");
-    expect(written.rootHelpText).toContain("openclaw");
+    expect(written.rootHelpText).toContain("soloclaw");
   });
 });

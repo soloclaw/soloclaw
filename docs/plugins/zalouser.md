@@ -8,7 +8,7 @@ title: "Zalo Personal Plugin"
 
 # Zalo Personal (plugin)
 
-Zalo Personal support for OpenClaw via a plugin, using native `zca-js` to automate a normal Zalo user account.
+Zalo Personal support for SoloClaw via a plugin, using native `zca-js` to automate a normal Zalo user account.
 
 > **Warning:** Unofficial automation may lead to account suspension/ban. Use at your own risk.
 

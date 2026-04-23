@@ -105,7 +105,7 @@ describe("resolveUserPath", () => {
 
   it("expands ~/ to home dir", () => {
     expect(resolveUserPath("~/openclaw", {}, () => "/Users/thoffman")).toBe(
-      path.resolve("/Users/thoffman", "openclaw"),
+      path.resolve("/Users/thoffman", "soloclaw"),
     );
   });
 
@@ -117,7 +117,7 @@ describe("resolveUserPath", () => {
     vi.stubEnv("SOLOCLAW_HOME", "/srv/openclaw-home");
     vi.stubEnv("HOME", "/home/other");
 
-    expect(resolveUserPath("~/openclaw")).toBe(path.resolve("/srv/openclaw-home", "openclaw"));
+    expect(resolveUserPath("~/openclaw")).toBe(path.resolve("/srv/openclaw-home", "soloclaw"));
 
     vi.unstubAllEnvs();
   });
@@ -128,7 +128,7 @@ describe("resolveUserPath", () => {
       SOLOCLAW_HOME: "/srv/openclaw-home",
     } as NodeJS.ProcessEnv;
 
-    expect(resolveUserPath("~/openclaw", env)).toBe(path.resolve("/srv/openclaw-home", "openclaw"));
+    expect(resolveUserPath("~/openclaw", env)).toBe(path.resolve("/srv/openclaw-home", "soloclaw"));
   });
 
   it("keeps blank paths blank", () => {

@@ -18,7 +18,7 @@ binary, and can index content beyond your workspace memory files.
 - **Index extra directories** -- project docs, team notes, anything on disk.
 - **Index session transcripts** -- recall earlier conversations.
 - **Fully local** -- runs via Bun + node-llama-cpp, auto-downloads GGUF models.
-- **Automatic fallback** -- if QMD is unavailable, OpenClaw falls back to the
+- **Automatic fallback** -- if QMD is unavailable, SoloClaw falls back to the
   builtin engine seamlessly.
 
 ## Getting started
@@ -40,7 +40,7 @@ binary, and can index content beyond your workspace memory files.
 }
 ```
 
-OpenClaw creates a self-contained QMD home under
+SoloClaw creates a self-contained QMD home under
 `~/.soloclaw/agents/<agentId>/qmd/` and manages the sidecar lifecycle
 automatically -- collections, updates, and embedding runs are handled for you.
 It prefers current QMD collection and MCP query shapes, but still falls back to
@@ -48,7 +48,7 @@ legacy `--mask` collection flags and older MCP tool names when needed.
 
 ## How the sidecar works
 
-- OpenClaw creates collections from your workspace memory files and any
+- SoloClaw creates collections from your workspace memory files and any
   configured `memory.qmd.paths`, then runs `qmd update` + `qmd embed` on boot
   and periodically (default every 5 minutes).
 - The default workspace collection tracks `MEMORY.md` plus the `memory/`
@@ -56,8 +56,8 @@ legacy `--mask` collection flags and older MCP tool names when needed.
   collection.
 - Boot refresh runs in the background so chat startup is not blocked.
 - Searches use the configured `searchMode` (default: `search`; also supports
-  `vsearch` and `query`). If a mode fails, OpenClaw retries with `qmd query`.
-- If QMD fails entirely, OpenClaw falls back to the builtin SQLite engine.
+  `vsearch` and `query`). If a mode fails, SoloClaw retries with `qmd query`.
+- If QMD fails entirely, SoloClaw falls back to the builtin SQLite engine.
 
 <Info>
 The first search may be slow -- QMD auto-downloads GGUF models (~2 GB) for
@@ -67,7 +67,7 @@ reranking and query expansion on the first `qmd query` run.
 ## Model overrides
 
 QMD model environment variables pass through unchanged from the gateway
-process, so you can tune QMD globally without adding new OpenClaw config:
+process, so you can tune QMD globally without adding new SoloClaw config:
 
 ```bash
 export QMD_EMBED_MODEL="hf:Qwen/Qwen3-Embedding-0.6B-GGUF/Qwen3-Embedding-0.6B-Q8_0.gguf"
@@ -133,7 +133,7 @@ By default, QMD search results are surfaced in direct and channel sessions
 }
 ```
 
-When scope denies a search, OpenClaw logs a warning with the derived channel and
+When scope denies a search, SoloClaw logs a warning with the derived channel and
 chat type so empty results are easier to debug.
 
 ## Citations
@@ -161,7 +161,7 @@ runs as a service, create a symlink:
 `sudo ln -s ~/.bun/bin/qmd /usr/local/bin/qmd`.
 
 **First search very slow?** QMD downloads GGUF models on first use. Pre-warm
-with `qmd query "test"` using the same XDG dirs OpenClaw uses.
+with `qmd query "test"` using the same XDG dirs SoloClaw uses.
 
 **Search times out?** Increase `memory.qmd.limits.timeoutMs` (default: 4000ms).
 Set to `120000` for slower hardware.

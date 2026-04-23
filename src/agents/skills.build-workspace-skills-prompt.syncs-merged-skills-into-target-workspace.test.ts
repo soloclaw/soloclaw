@@ -268,7 +268,7 @@ describe("buildWorkspaceSkillsPrompt", () => {
       name: "image-lab",
       description: "Generates images",
       metadata:
-        '{"openclaw":{"requires":{"env":["GEMINI_API_KEY"]},"primaryEnv":"GEMINI_API_KEY"}}',
+        '{"soloclaw":{"requires":{"env":["GEMINI_API_KEY"]},"primaryEnv":"GEMINI_API_KEY"}}',
       body: "# Image Lab\n",
     });
 
@@ -322,7 +322,7 @@ describe("buildWorkspaceSkillsPrompt", () => {
       dir: path.join(sourceWorkspace, "skills", "remote-only"),
       name: "remote-only",
       description: "Sandbox-only bin",
-      metadata: '{"openclaw":{"requires":{"anyBins":["missingbin","sandboxbin"]}}}',
+      metadata: '{"soloclaw":{"requires":{"anyBins":["missingbin","sandboxbin"]}}}',
     });
 
     await withEnv({ HOME: sourceWorkspace, PATH: "" }, () =>

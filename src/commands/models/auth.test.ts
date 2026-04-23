@@ -635,10 +635,10 @@ describe("modelsAuthLoginCommand", () => {
       "Anthropic setup-token auth is supported in OpenClaw.",
     );
     expect(runtime.log).toHaveBeenCalledWith(
-      "OpenClaw prefers Claude CLI reuse when it is available on the host.",
+      "SoloClaw prefers Claude CLI reuse when it is available on the host.",
     );
     expect(runtime.log).toHaveBeenCalledWith(
-      "Anthropic staff told us this OpenClaw path is allowed again.",
+      "Anthropic staff told us this SoloClaw path is allowed again.",
     );
   });
 

@@ -8,7 +8,7 @@ import { getCompletionScript } from "./completion-cli.js";
 
 function createCompletionProgram(): Command {
   const program = new Command();
-  program.name("openclaw");
+  program.name("soloclaw");
   program.description("CLI root");
   program.option("-v, --verbose", "Verbose output");
 
@@ -58,13 +58,13 @@ describe("completion-cli", () => {
           "-fc",
           `
             source ${JSON.stringify(scriptPath)}
-            [[ -z "\${_comps[openclaw]-}" ]] || exit 10
+            [[ -z "\${_comps[soloclaw]-}" ]] || exit 10
             [[ "\${precmd_functions[(r)_openclaw_register_completion]}" = "_openclaw_register_completion" ]] || exit 11
             autoload -Uz compinit
             compinit -C
             _openclaw_register_completion
             [[ -z "\${precmd_functions[(r)_openclaw_register_completion]}" ]] || exit 12
-            [[ "\${_comps[openclaw]-}" = "_openclaw_root_completion" ]]
+            [[ "\${_comps[soloclaw]-}" = "_openclaw_root_completion" ]]
           `,
         ],
         {

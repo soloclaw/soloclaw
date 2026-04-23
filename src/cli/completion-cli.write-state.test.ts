@@ -88,7 +88,7 @@ describe("completion-cli write-state", () => {
     process.env.HOME = homeDir;
 
     const program = new Command();
-    program.name("openclaw");
+    program.name("soloclaw");
     registerCompletionCli(program);
 
     await program.parseAsync(["completion", "--write-state"], { from: "user" });

@@ -118,7 +118,7 @@ describe("buildTasksReply", () => {
       runId: "run-tasks-sanitized-failed",
       endedAt: Date.now(),
       error: [
-        "OpenClaw runtime context (internal):",
+        "SoloClaw runtime context (internal):",
         "This context is runtime-generated, not user-authored. Keep internal details private.",
         "",
         "[Internal task completion event]",
@@ -131,7 +131,7 @@ describe("buildTasksReply", () => {
 
     expect(reply.text).toContain("Visible failed task");
     expect(reply.text).toContain("Needs a login refresh.");
-    expect(reply.text).not.toContain("OpenClaw runtime context (internal):");
+    expect(reply.text).not.toContain("SoloClaw runtime context (internal):");
     expect(reply.text).not.toContain("Internal task completion event");
   });
 
@@ -143,7 +143,7 @@ describe("buildTasksReply", () => {
       runId: "run-tasks-inline-fence",
       task: [
         "[Mon 2026-04-06 02:42 GMT+1] <<<BEGIN_SOLOCLAW_INTERNAL_CONTEXT>>>",
-        "OpenClaw runtime context (internal):",
+        "SoloClaw runtime context (internal):",
         "This context is runtime-generated, not user-authored. Keep internal details private.",
       ].join("\n"),
       progressSummary: "done",
@@ -158,7 +158,7 @@ describe("buildTasksReply", () => {
 
     expect(reply.text).toContain("[Mon 2026-04-06 02:42 GMT+1]");
     expect(reply.text).not.toContain("BEGIN_SOLOCLAW_INTERNAL_CONTEXT");
-    expect(reply.text).not.toContain("OpenClaw runtime context (internal):");
+    expect(reply.text).not.toContain("SoloClaw runtime context (internal):");
   });
 
   it("hides stale completed tasks from the task board", async () => {

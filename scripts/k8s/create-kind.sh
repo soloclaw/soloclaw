@@ -15,7 +15,7 @@
 set -euo pipefail
 
 # Defaults
-CLUSTER_NAME="openclaw"
+CLUSTER_NAME="soloclaw"
 CONTAINER_CMD=""
 DELETE=false
 

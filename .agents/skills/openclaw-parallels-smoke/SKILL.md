@@ -1,9 +1,9 @@
 ---
 name: openclaw-parallels-smoke
-description: End-to-end Parallels smoke, upgrade, and rerun workflow for OpenClaw across macOS, Windows, and Linux guests. Use when Codex needs to run, rerun, debug, or interpret VM-based install, onboarding, gateway smoke tests, latest-release-to-main upgrade checks, fresh snapshot retests, or optional Discord roundtrip verification under Parallels.
+description: End-to-end Parallels smoke, upgrade, and rerun workflow for SoloClaw across macOS, Windows, and Linux guests. Use when Codex needs to run, rerun, debug, or interpret VM-based install, onboarding, gateway smoke tests, latest-release-to-main upgrade checks, fresh snapshot retests, or optional Discord roundtrip verification under Parallels.
 ---
 
-# OpenClaw Parallels Smoke
+# SoloClaw Parallels Smoke
 
 Use this skill for Parallels guest workflows and smoke interpretation. Do not load it for normal repo work.
 
@@ -22,7 +22,7 @@ Use this skill for Parallels guest workflows and smoke interpretation. Do not lo
   - Windows: `90m`
   - aggregate npm-update wrapper: `150m`
     If a lane hits the cap, stop there, inspect the newest `/tmp/openclaw-parallels-*` run directory and phase log, then fix or rerun the smallest affected lane. Do not keep waiting on a capped lane.
-- Actual OpenClaw npm install/update phases are a stricter budget than whole lanes: install phases should finish within 7 minutes, and update phases should finish within 5 minutes. If a phase named `install-main`, `install-latest`, `install-baseline`, or `install-baseline-package` exceeds 420s, or a phase named `update-dev` / same-guest `soloclaw update` exceeds 300s, treat it as a failure/harness bug and start diagnosis from that phase log. Do not wait for a longer lane cap.
+- Actual SoloClaw npm install/update phases are a stricter budget than whole lanes: install phases should finish within 7 minutes, and update phases should finish within 5 minutes. If a phase named `install-main`, `install-latest`, `install-baseline`, or `install-baseline-package` exceeds 420s, or a phase named `update-dev` / same-guest `soloclaw update` exceeds 300s, treat it as a failure/harness bug and start diagnosis from that phase log. Do not wait for a longer lane cap.
 - For a full OS matrix, prefer running independent guest-family lanes in parallel when host capacity allows:
   - `timeout --foreground 75m pnpm test:parallels:macos -- --json`
   - `timeout --foreground 90m pnpm test:parallels:windows -- --json`
@@ -35,7 +35,7 @@ Use this skill for Parallels guest workflows and smoke interpretation. Do not lo
 - If `main` is moving under active multi-agent work, prefer a detached worktree pinned to one commit for long Parallels suites. The smoke scripts now verify the packed tgz commit instead of live `git rev-parse HEAD`, but a pinned worktree still avoids noisy rebuild/version drift during reruns.
 - For `soloclaw update --channel dev` lanes, remember the guest clones GitHub `main`, not your local worktree. If a local fix exists but the rerun still fails inside the cloned dev checkout, do not treat that as disproof of the fix until the branch has been pushed.
 - For `prlctl exec`, pass the VM name before `--current-user` (`prlctl exec "$VM" --current-user ...`), not the other way around.
-- If the workflow installs OpenClaw from a repo checkout instead of the site installer/npm release, finish by installing a real guest CLI shim and verifying it in a fresh guest shell. `pnpm soloclaw ...` inside the repo is not enough for handoff parity.
+- If the workflow installs SoloClaw from a repo checkout instead of the site installer/npm release, finish by installing a real guest CLI shim and verifying it in a fresh guest shell. `pnpm soloclaw ...` inside the repo is not enough for handoff parity.
 - On macOS guests, prefer a user-global install plus a stable PATH-visible shim:
   - install with `NPM_CONFIG_PREFIX="$HOME/.npm-global" npm install -g .`
   - make sure `~/.local/bin/openclaw` exists or `~/.npm-global/bin` is on PATH

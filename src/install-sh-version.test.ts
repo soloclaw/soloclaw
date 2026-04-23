@@ -8,7 +8,7 @@ const tempRoots: string[] = [];
 
 function withFakeCli(versionOutput: string): { root: string; cliPath: string } {
   const root = makeTempDir(tempRoots, "openclaw-install-sh-");
-  const cliPath = path.join(root, "openclaw");
+  const cliPath = path.join(root, "soloclaw");
   const escapedOutput = versionOutput.replace(/'/g, "'\\''");
   fs.writeFileSync(
     cliPath,
@@ -76,9 +76,9 @@ describe("install.sh version resolution", () => {
   it.runIf(process.platform !== "win32")(
     "parses CLI versions and keeps stdin helpers isolated from cwd",
     () => {
-      const decorated = withFakeCli("OpenClaw 2026.3.10 (abcdef0)");
-      const raw = withFakeCli("OpenClaw dev's build");
-      const stdinFixture = withFakeCli("OpenClaw 2026.3.10 (abcdef0)");
+      const decorated = withFakeCli("SoloClaw 2026.3.10 (abcdef0)");
+      const raw = withFakeCli("SoloClaw dev's build");
+      const stdinFixture = withFakeCli("SoloClaw 2026.3.10 (abcdef0)");
 
       const hostileCwd = makeTempDir(tempRoots, "openclaw-install-stdin-");
       const hostileHelper = path.join(
@@ -104,7 +104,7 @@ extract_openclaw_semver() {
           stdinCliPath: stdinFixture.cliPath,
           stdinCwd: hostileCwd,
         }),
-      ).toEqual(["2026.3.10", "OpenClaw dev's build", "2026.3.10"]);
+      ).toEqual(["2026.3.10", "SoloClaw dev's build", "2026.3.10"]);
     },
   );
 });

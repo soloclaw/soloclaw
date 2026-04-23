@@ -1,9 +1,9 @@
 ---
 name: openclaw-release-maintainer
-description: Maintainer workflow for OpenClaw releases, prereleases, changelog release notes, and publish validation. Use when Codex needs to prepare or verify stable or beta release steps, align version naming, assemble release notes, check release auth requirements, or validate publish-time commands and artifacts.
+description: Maintainer workflow for SoloClaw releases, prereleases, changelog release notes, and publish validation. Use when Codex needs to prepare or verify stable or beta release steps, align version naming, assemble release notes, check release auth requirements, or validate publish-time commands and artifacts.
 ---
 
-# OpenClaw Release Maintainer
+# SoloClaw Release Maintainer
 
 Use this skill for release and publish-time workflow. Keep ordinary development changes and GHSA-specific advisory work outside this skill.
 
@@ -37,8 +37,8 @@ Use this skill for release and publish-time workflow. Keep ordinary development 
 - For fallback correction tags like `vYYYY.M.D-N`, the repo version locations still stay at `YYYY.M.D`.
 - “Bump version everywhere” means all version locations above except `appcast.xml`.
 - Release signing and notary credentials live outside the repo in the private maintainer docs.
-- Every OpenClaw release ships the npm package and macOS app together.
-- The production Sparkle feed lives at `https://raw.githubusercontent.com/openclaw/openclaw/main/appcast.xml`, and the canonical published file is `appcast.xml` on `main` in the `openclaw` repo.
+- Every SoloClaw release ships the npm package and macOS app together.
+- The production Sparkle feed lives at `https://raw.githubusercontent.com/soloclaw/soloclaw/main/appcast.xml`, and the canonical published file is `appcast.xml` on `main` in the `openclaw` repo.
 - That shared production Sparkle feed is stable-only. Beta mac releases may
   upload assets to the GitHub prerelease, but they must not replace the shared
   `appcast.xml` unless a separate beta feed exists.
@@ -105,7 +105,7 @@ node --import tsx scripts/soloclaw-npm-postpublish-verify.ts <published-version>
 
 ## Check all relevant release builds
 
-- Always validate the OpenClaw npm release path before creating the tag.
+- Always validate the SoloClaw npm release path before creating the tag.
 - Default release checks:
   - `pnpm check`
   - `pnpm build`
@@ -121,7 +121,7 @@ node --import tsx scripts/soloclaw-npm-postpublish-verify.ts <published-version>
 - Actual npm install/update phases are capped at 5 minutes. If `npm install -g`, installer package install, or `soloclaw update` takes longer than 300s in release e2e, stop treating the run as healthy progress and debug the installer/updater or harness.
 - Serialize host build/package mutations ahead of VM lanes. Finish `pnpm build`, `pnpm ui:build`, `pnpm release:check`, install smoke, and any Docker/package-prep lanes before starting Parallels `npm pack` lanes; otherwise `dist` can disappear during VM pack prep and produce false failures.
 - Include mac release readiness in preflight by running the public validation
-  workflow in `openclaw/openclaw` and the real mac preflight in
+  workflow in `soloclaw/soloclaw` and the real mac preflight in
   `openclaw/releases-private` for every release.
 - Treat the `appcast.xml` update on `main` as part of mac release readiness, not an optional follow-up.
 - The workflows remain tag-based. The agent is responsible for making sure
@@ -138,7 +138,7 @@ node --import tsx scripts/soloclaw-npm-postpublish-verify.ts <published-version>
 
 ## Use the right auth flow
 
-- OpenClaw publish uses GitHub trusted publishing.
+- SoloClaw publish uses GitHub trusted publishing.
 - Stable npm promotion from `beta` to `latest` is an explicit mode on
   `.github/workflows/soloclaw-npm-release.yml`, but it still needs a valid
   `NPM_TOKEN` because `npm dist-tag` management is separate from trusted
@@ -164,7 +164,7 @@ node --import tsx scripts/soloclaw-npm-postpublish-verify.ts <published-version>
   the npm version is already published.
 - Validation-only runs may be dispatched from a branch when you are testing a
   workflow change before merge.
-- `.github/workflows/macos-release.yml` in `openclaw/openclaw` is now a
+- `.github/workflows/macos-release.yml` in `soloclaw/soloclaw` is now a
   public validation-only handoff. It validates the tag/release state and points
   operators to the private repo. It still rebuilds the JS outputs needed for
   release validation, but it does not sign, notarize, or publish macOS
@@ -193,7 +193,7 @@ node --import tsx scripts/soloclaw-npm-postpublish-verify.ts <published-version>
   private mac preflight artifact preparation and real publish artifact
   promotion.
 - Real private mac publish uploads the packaged `.zip`, `.dmg`, and
-  `.dSYM.zip` assets to the existing GitHub release in `openclaw/openclaw`
+  `.dSYM.zip` assets to the existing GitHub release in `soloclaw/soloclaw`
   automatically when `SOLOCLAW_PUBLIC_REPO_RELEASE_TOKEN` is present in the
   private repo `mac-release` environment.
 - For stable releases, the agent must also download the signed
@@ -205,7 +205,7 @@ node --import tsx scripts/soloclaw-npm-postpublish-verify.ts <published-version>
   plan does not yet support required reviewers there, do not assume the
   environment alone is the approval boundary; rely on private repo access and
   CODEOWNERS until those settings can be enabled.
-- Do not use `NPM_TOKEN` or the plugin OTP flow for the OpenClaw package
+- Do not use `NPM_TOKEN` or the plugin OTP flow for the SoloClaw package
   publish path; package publishing uses trusted publishing.
 - Use `NPM_TOKEN` only for explicit npm dist-tag management modes, because npm
   does not support trusted publishing for `npm dist-tag add`.
@@ -255,7 +255,7 @@ node --import tsx scripts/soloclaw-npm-postpublish-verify.ts <published-version>
    and choose the intended `npm_dist_tag` (`beta` default; `latest` only for
    an intentional direct stable publish). Wait for it to pass. Save that run id
    because the real publish requires it to reuse the prepared npm tarball.
-10. Start `.github/workflows/macos-release.yml` in `openclaw/openclaw` and wait
+10. Start `.github/workflows/macos-release.yml` in `soloclaw/soloclaw` and wait
     for the public validation-only run to pass.
 11. Start
     `openclaw/releases-private/.github/workflows/openclaw-macos-validate.yml`
@@ -290,7 +290,7 @@ node --import tsx scripts/soloclaw-npm-postpublish-verify.ts <published-version>
     wait for success.
 19. Verify the successful real private mac run uploaded the `.zip`, `.dmg`,
     and `.dSYM.zip` artifacts to the existing GitHub release in
-    `openclaw/openclaw`.
+    `soloclaw/soloclaw`.
 20. For stable releases, download `macos-appcast-<tag>` from the successful
     private mac run, update `appcast.xml` on `main`, and verify the feed.
 21. For beta releases, publish the mac assets but expect no shared production

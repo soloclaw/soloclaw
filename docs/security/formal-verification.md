@@ -13,7 +13,7 @@ This page tracks OpenClaw’s **formal security models** (TLA+/TLC today; more a
 
 > Note: some older links may refer to the previous project name.
 
-**Goal (north star):** provide a machine-checked argument that OpenClaw enforces its
+**Goal (north star):** provide a machine-checked argument that SoloClaw enforces its
 intended security policy (authorization, session isolation, tool gating, and
 misconfiguration safety), under explicit assumptions.
 
@@ -22,7 +22,7 @@ misconfiguration safety), under explicit assumptions.
 - Each claim has a runnable model-check over a finite state space.
 - Many claims have a paired **negative model** that produces a counterexample trace for a realistic bug class.
 
-**What this is not (yet):** a proof that “OpenClaw is secure in all respects” or that the full TypeScript implementation is correct.
+**What this is not (yet):** a proof that “SoloClaw is secure in all respects” or that the full TypeScript implementation is correct.
 
 ## Where the models live
 

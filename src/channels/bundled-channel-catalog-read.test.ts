@@ -36,7 +36,7 @@ afterEach(() => {
 
 function seedRoot(prefix: string): string {
   const root = makeTempRepoRoot(tempDirs, prefix);
-  writeJsonFile(path.join(root, "package.json"), { name: "openclaw" });
+  writeJsonFile(path.join(root, "package.json"), { name: "soloclaw" });
   vi.spyOn(process, "cwd").mockReturnValue(root);
   return root;
 }

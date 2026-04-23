@@ -1,16 +1,16 @@
 ---
 title: "Default AGENTS.md"
-summary: "Default OpenClaw agent instructions and skills roster for the personal assistant setup"
+summary: "Default SoloClaw agent instructions and skills roster for the personal assistant setup"
 read_when:
-  - Starting a new OpenClaw agent session
+  - Starting a new SoloClaw agent session
   - Enabling or auditing default skills
 ---
 
-# AGENTS.md - OpenClaw Personal Assistant (default)
+# AGENTS.md - SoloClaw Personal Assistant (default)
 
 ## First run (recommended)
 
-OpenClaw uses a dedicated workspace directory for the agent. Default: `~/.soloclaw/workspace` (configurable via `agents.defaults.workspace`).
+SoloClaw uses a dedicated workspace directory for the agent. Default: `~/.soloclaw/workspace` (configurable via `agents.defaults.workspace`).
 
 1. Create the workspace (if it doesn’t already exist):
 
@@ -89,7 +89,7 @@ git commit -m "Add Clawd workspace"
 # Optional: add a private remote + push
 ```
 
-## What OpenClaw Does
+## What SoloClaw Does
 
 - Runs WhatsApp gateway + Pi coding agent so the assistant can read/write chats, fetch context, and run skills via the host Mac.
 - macOS app manages permissions (screen recording, notifications, microphone) and exposes the `openclaw` CLI via its bundled binary.

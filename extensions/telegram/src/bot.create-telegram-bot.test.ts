@@ -822,7 +822,7 @@ describe("createTelegramBot", () => {
 
     await handler({
       message: {
-        chat: { id: -1001234, type: "supergroup", title: "OpenClaw Ops" },
+        chat: { id: -1001234, type: "supergroup", title: "SoloClaw Ops" },
         message_id: 1884,
         date: 1736380800,
         from: { id: 7, is_bot: true, first_name: "OpenClaw", username: "openclaw_bot" },

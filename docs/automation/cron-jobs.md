@@ -40,7 +40,7 @@ soloclaw cron runs --id <job-id>
 - Isolated cron runs also guard against stale acknowledgement replies. If the
   first result is just an interim status update (`on it`, `pulling everything
 together`, and similar hints) and no descendant subagent run is still
-  responsible for the final answer, OpenClaw re-prompts once for the actual
+  responsible for the final answer, SoloClaw re-prompts once for the actual
   result before delivery.
 
 <a id="maintenance"></a>
@@ -72,7 +72,7 @@ Cron expressions are parsed by [croner](https://github.com/Hexagon/croner). When
 0 9 15 * 1
 ```
 
-This fires ~5–6 times per month instead of 0–1 times per month. OpenClaw uses Croner's default OR behavior here. To require both conditions, use Croner's `+` day-of-week modifier (`0 9 15 * +1`) or schedule on one field and guard the other in your job's prompt or command.
+This fires ~5–6 times per month instead of 0–1 times per month. SoloClaw uses Croner's default OR behavior here. To require both conditions, use Croner's `+` day-of-week modifier (`0 9 15 * +1`) or schedule on one field and guard the other in your job's prompt or command.
 
 ## Execution styles
 
@@ -89,7 +89,7 @@ For isolated jobs, runtime teardown now includes best-effort browser cleanup for
 
 When isolated cron runs orchestrate subagents, delivery also prefers the final
 descendant output over stale parent interim text. If descendants are still
-running, OpenClaw suppresses that partial parent update instead of announcing it.
+running, SoloClaw suppresses that partial parent update instead of announcing it.
 
 ### Payload options for isolated jobs
 
@@ -254,9 +254,9 @@ Custom hook names are resolved via `hooks.mappings` in config. Mappings can tran
 
 ## Gmail PubSub integration
 
-Wire Gmail inbox triggers to OpenClaw via Google PubSub.
+Wire Gmail inbox triggers to SoloClaw via Google PubSub.
 
-**Prerequisites**: `gcloud` CLI, `gog` (gogcli), OpenClaw hooks enabled, Tailscale for the public HTTPS endpoint.
+**Prerequisites**: `gcloud` CLI, `gog` (gogcli), SoloClaw hooks enabled, Tailscale for the public HTTPS endpoint.
 
 ### Wizard setup (recommended)
 
@@ -404,7 +404,7 @@ soloclaw doctor
 - Delivery target missing/invalid (`channel`/`to`) means outbound was skipped.
 - Channel auth errors (`unauthorized`, `Forbidden`) mean delivery was blocked by credentials.
 - If the isolated run returns only the silent token (`NO_REPLY` / `no_reply`),
-  OpenClaw suppresses direct outbound delivery and also suppresses the fallback
+  SoloClaw suppresses direct outbound delivery and also suppresses the fallback
   queued summary path, so nothing is posted back to chat.
 - For cron-owned isolated jobs, do not expect the agent to use the message tool
   as a fallback. The runner owns final delivery; `--no-deliver` keeps it

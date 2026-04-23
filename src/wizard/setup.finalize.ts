@@ -597,7 +597,7 @@ export async function finalizeSetupWizard(
   }
 
   await prompter.note(
-    'What now: https://openclaw.ai/showcase ("What People Are Building").',
+    'What now: https://soloclaw.ai/showcase ("What People Are Building").',
     "What now",
   );
 

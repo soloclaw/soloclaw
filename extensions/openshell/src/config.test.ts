@@ -9,7 +9,7 @@ describe("openshell plugin config", () => {
       command: "openshell",
       gateway: undefined,
       gatewayEndpoint: undefined,
-      from: "openclaw",
+      from: "soloclaw",
       policy: undefined,
       providers: [],
       gpu: false,

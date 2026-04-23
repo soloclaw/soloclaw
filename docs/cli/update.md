@@ -8,7 +8,7 @@ title: "update"
 
 # `soloclaw update`
 
-Safely update OpenClaw and switch between stable/beta/dev channels.
+Safely update SoloClaw and switch between stable/beta/dev channels.
 
 If you installed via **npm/pnpm/bun** (global install, no git metadata),
 updates happen via the package-manager flow in [Updating](/install/updating).
@@ -34,7 +34,7 @@ openclaw --update
 
 - `--no-restart`: skip restarting the Gateway service after a successful update.
 - `--channel <stable|beta|dev>`: set the update channel (git + npm; persisted in config).
-- `--tag <dist-tag|version|spec>`: override the package target for this update only. For package installs, `main` maps to `github:openclaw/openclaw#main`.
+- `--tag <dist-tag|version|spec>`: override the package target for this update only. For package installs, `main` maps to `github:soloclaw/soloclaw#main`.
 - `--dry-run`: preview planned update actions (channel/tag/target/restart flow) without writing config, installing, syncing plugins, or restarting.
 - `--json`: print machine-readable `UpdateRunResult` JSON.
 - `--timeout <seconds>`: per-step timeout (default is 1200s).
@@ -69,7 +69,7 @@ Options:
 
 ## What it does
 
-When you switch channels explicitly (`--channel ...`), OpenClaw also keeps the
+When you switch channels explicitly (`--channel ...`), SoloClaw also keeps the
 install method aligned:
 
 - `dev` → ensures a git checkout (default: `~/openclaw`, override with `SOLOCLAW_GIT_DIR`),

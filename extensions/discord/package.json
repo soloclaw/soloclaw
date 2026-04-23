@@ -1,7 +1,7 @@
 {
   "name": "@soloclaw/discord",
   "version": "2026.4.16",
-  "description": "OpenClaw Discord channel plugin",
+  "description": "SoloClaw Discord channel plugin",
   "type": "module",
   "dependencies": {
     "@buape/carbon": "0.15.0",

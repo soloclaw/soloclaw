@@ -111,7 +111,7 @@ export type ProviderRequestCapabilities = ProviderRequestPolicyResolution & {
 };
 
 const SOLOCLAW_ATTRIBUTION_PRODUCT = "OpenClaw";
-const SOLOCLAW_ATTRIBUTION_ORIGINATOR = "openclaw";
+const SOLOCLAW_ATTRIBUTION_ORIGINATOR = "soloclaw";
 
 const LOCAL_ENDPOINT_HOSTS = new Set(["localhost", "127.0.0.1", "::1", "[::1]"]);
 const MOONSHOT_NATIVE_BASE_URLS = new Set([
@@ -345,10 +345,10 @@ function buildOpenRouterAttributionPolicy(
     verification: "vendor-documented",
     hook: "request-headers",
     docsUrl: "https://openrouter.ai/docs/app-attribution",
-    reviewNote: "Documented app attribution headers. Verified in OpenClaw runtime wrapper.",
+    reviewNote: "Documented app attribution headers. Verified in SoloClaw runtime wrapper.",
     ...identity,
     headers: {
-      "HTTP-Referer": "https://openclaw.ai",
+      "HTTP-Referer": "https://soloclaw.ai",
       "X-OpenRouter-Title": identity.product,
       "X-OpenRouter-Categories": "cli-agent",
     },

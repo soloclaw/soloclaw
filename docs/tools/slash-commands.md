@@ -128,7 +128,7 @@ Built-in commands available today:
 - `/debug show|set|unset|reset` manages runtime-only config overrides. Owner-only. Requires `commands.debug: true`.
 - `/usage off|tokens|full|cost` controls the per-response usage footer or prints a local cost summary.
 - `/tts on|off|status|provider|limit|summary|audio|help` controls TTS. See [/tools/tts](/tools/tts).
-- `/restart` restarts OpenClaw when enabled. Default: enabled; set `commands.restart: false` to disable it.
+- `/restart` restarts SoloClaw when enabled. Default: enabled; set `commands.restart: false` to disable it.
 - `/activation mention|always` sets group activation mode.
 - `/send on|off|inherit` sets send policy. Owner-only.
 - `/bash <command>` runs a host shell command. Text-only. Alias: `! <command>`. Requires `commands.bash: true` plus `tools.elevated` allowlists.
@@ -176,7 +176,7 @@ Notes:
 - For full provider usage breakdown, use `soloclaw status --usage`.
 - `/allowlist add|remove` requires `commands.config=true` and honors channel `configWrites`.
 - In multi-account channels, config-targeted `/allowlist --account <id>` and `/config set channels.<provider>.accounts.<id>...` also honor the target account's `configWrites`.
-- `/usage` controls the per-response usage footer; `/usage cost` prints a local cost summary from OpenClaw session logs.
+- `/usage` controls the per-response usage footer; `/usage cost` prints a local cost summary from SoloClaw session logs.
 - `/restart` is enabled by default; set `commands.restart: false` to disable it.
 - `/plugins install <spec>` accepts the same plugin specs as `soloclaw plugins install`: local path/archive, npm package, or `clawhub:<pkg>`.
 - `/plugins enable|disable` updates plugin config and may prompt for a restart.
@@ -191,7 +191,7 @@ Notes:
 - `/reasoning`, `/verbose`, and `/trace` are risky in group settings: they may reveal internal reasoning, tool output, or plugin diagnostics you did not intend to expose. Prefer leaving them off, especially in group chats.
 - `/model` persists the new session model immediately.
 - If the agent is idle, the next run uses it right away.
-- If a run is already active, OpenClaw marks a live switch as pending and only restarts into the new model at a clean retry point.
+- If a run is already active, SoloClaw marks a live switch as pending and only restarts into the new model at a clean retry point.
 - If tool activity or reply output has already started, the pending switch can stay queued until a later retry opportunity or the next user turn.
 - **Fast path:** command-only messages from allowlisted senders are handled immediately (bypass queue + model).
 - **Group mention gating:** command-only messages from allowlisted senders bypass mention requirements.
@@ -224,7 +224,7 @@ of treating `/tools` as a static catalog.
 
 ## Usage surfaces (what shows where)
 
-- **Provider usage/quota** (example: “Claude 80% left”) shows up in `/status` for the current model provider when usage tracking is enabled. OpenClaw normalizes provider windows to `% left`; for MiniMax, remaining-only percent fields are inverted before display, and `model_remains` responses prefer the chat-model entry plus a model-tagged plan label.
+- **Provider usage/quota** (example: “Claude 80% left”) shows up in `/status` for the current model provider when usage tracking is enabled. SoloClaw normalizes provider windows to `% left`; for MiniMax, remaining-only percent fields are inverted before display, and `model_remains` responses prefer the chat-model entry plus a model-tagged plan label.
 - **Token/cache lines** in `/status` can fall back to the latest transcript usage entry when the live session snapshot is sparse. Existing nonzero live values still win, and transcript fallback can also recover the active runtime model label plus a larger prompt-oriented total when stored totals are missing or smaller.
 - **Per-response tokens/cost** is controlled by `/usage off|tokens|full` (appended to normal replies).
 - `/model status` is about **models/auth/endpoints**, not usage.
@@ -259,7 +259,7 @@ Examples:
 
 ```
 /debug show
-/debug set messages.responsePrefix="[openclaw]"
+/debug set messages.responsePrefix="[soloclaw]"
 /debug set channels.whatsapp.allowFrom=["+1555","+4477"]
 /debug unset messages.responsePrefix
 /debug reset
@@ -301,7 +301,7 @@ Examples:
 /config show
 /config show messages.responsePrefix
 /config get messages.responsePrefix
-/config set messages.responsePrefix="[openclaw]"
+/config set messages.responsePrefix="[soloclaw]"
 /config unset messages.responsePrefix
 ```
 
@@ -325,7 +325,7 @@ Examples:
 
 Notes:
 
-- `/mcp` stores config in OpenClaw config, not Pi-owned project settings.
+- `/mcp` stores config in SoloClaw config, not Pi-owned project settings.
 - Runtime adapters decide which transports are actually executable.
 
 ## Plugin updates

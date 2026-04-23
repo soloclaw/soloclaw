@@ -194,7 +194,7 @@ describe("renderSkills", () => {
             },
             owner: {
               displayName: "OpenClaw",
-              handle: "openclaw",
+              handle: "soloclaw",
             },
           },
           onClawHubInstall,
@@ -208,7 +208,7 @@ describe("renderSkills", () => {
     text = normalizeText(container);
     expect(text).toContain("rate limited");
     expect(text).toContain("Installed github");
-    expect(text).toContain("By OpenClaw (@openclaw)");
+    expect(text).toContain("By SoloClaw (@openclaw)");
     expect(text).toContain("Latest: v1.2.3");
     expect(text).toContain("Platforms: macos, linux");
     expect(text).toContain("Added search support");

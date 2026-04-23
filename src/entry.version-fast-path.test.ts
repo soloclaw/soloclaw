@@ -95,7 +95,7 @@ describe("entry root version fast path", () => {
     originalArgv = [...process.argv];
     originalGatewayToken = process.env.SOLOCLAW_GATEWAY_TOKEN;
     delete process.env.SOLOCLAW_GATEWAY_TOKEN;
-    process.argv = ["node", "openclaw", "--version"];
+    process.argv = ["node", "soloclaw", "--version"];
     exitSpy = vi
       .spyOn(process, "exit")
       .mockImplementation(((_code?: number) => undefined) as typeof process.exit);
@@ -116,7 +116,7 @@ describe("entry root version fast path", () => {
 
     await importEntry("commit-tagged");
     await flushEntrySideEffects();
-    expect(logSpy).toHaveBeenCalledWith("OpenClaw 9.9.9-test (abc1234)");
+    expect(logSpy).toHaveBeenCalledWith("SoloClaw 9.9.9-test (abc1234)");
     expect(exitSpy).toHaveBeenCalledWith(0);
 
     logSpy.mockRestore();
@@ -128,7 +128,7 @@ describe("entry root version fast path", () => {
 
     await importEntry("plain-version");
     await flushEntrySideEffects();
-    expect(logSpy).toHaveBeenCalledWith("OpenClaw 9.9.9-test");
+    expect(logSpy).toHaveBeenCalledWith("SoloClaw 9.9.9-test");
     expect(exitSpy).toHaveBeenCalledWith(0);
 
     logSpy.mockRestore();
@@ -140,7 +140,7 @@ describe("entry root version fast path", () => {
 
     await importEntry("container-target");
     await flushEntrySideEffects();
-    expect(runCliMock).toHaveBeenCalledWith(["node", "openclaw", "--version"]);
+    expect(runCliMock).toHaveBeenCalledWith(["node", "soloclaw", "--version"]);
     expect(logSpy).not.toHaveBeenCalled();
     expect(exitSpy).not.toHaveBeenCalled();
 
@@ -154,7 +154,7 @@ describe("entry root version fast path", () => {
 
     await importEntry("gateway-override");
     await flushEntrySideEffects();
-    expect(runCliMock).toHaveBeenCalledWith(["node", "openclaw", "--version"]);
+    expect(runCliMock).toHaveBeenCalledWith(["node", "soloclaw", "--version"]);
     expect(errorSpy).not.toHaveBeenCalled();
     expect(exitSpy).not.toHaveBeenCalled();
 

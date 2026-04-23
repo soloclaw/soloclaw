@@ -9,7 +9,7 @@ title: "QA E2E Automation"
 
 # QA E2E Automation
 
-The private QA stack is meant to exercise OpenClaw in a more realistic,
+The private QA stack is meant to exercise SoloClaw in a more realistic,
 channel-shaped way than a single unit test can.
 
 Current pieces:
@@ -160,7 +160,7 @@ The baseline list should stay broad enough to cover:
 
 `qa suite` has two local provider mock lanes:
 
-- `mock-openai` is the scenario-aware OpenClaw mock. It remains the default
+- `mock-openai` is the scenario-aware SoloClaw mock. It remains the default
   deterministic mock lane for repo-backed QA and parity gates.
 - `aimock` starts an AIMock-backed provider server for experimental protocol,
   fixture, record/replay, and chaos coverage. It is additive and does not

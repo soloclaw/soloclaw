@@ -63,7 +63,7 @@ describe("runCronIsolatedAgentTurn auth profile propagation (#20624)", () => {
         agents: {
           defaults: {
             model: { primary: "openrouter/moonshotai/kimi-k2.5" },
-            workspace: path.join(home, "openclaw"),
+            workspace: path.join(home, "soloclaw"),
           },
         },
       });

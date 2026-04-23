@@ -20,7 +20,7 @@ import { dirname, join, resolve, win32 as pathWin32 } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
-const PUBLISHED_INSTALLER_BASE_URL = "https://openclaw.ai";
+const PUBLISHED_INSTALLER_BASE_URL = "https://soloclaw.ai";
 
 const SUPPORTED_MODES = new Set(["fresh", "upgrade", "both"]);
 const SUPPORTED_SUITES = new Set([
@@ -2448,7 +2448,7 @@ async function runDashboardSmoke(params) {
         const html = await response.text();
         if (
           response.ok &&
-          html.includes("<title>OpenClaw Control</title>") &&
+          html.includes("<title>SoloClaw Control</title>") &&
           html.includes("<openclaw-app></openclaw-app>")
         ) {
           logStream.write(
@@ -2457,7 +2457,7 @@ async function runDashboardSmoke(params) {
           return;
         }
         logStream.write(
-          `${new Date().toISOString()} dashboard-not-ready status=${response.status} title=${html.includes("<title>OpenClaw Control</title>")} app=${html.includes("<openclaw-app></openclaw-app>")}\n`,
+          `${new Date().toISOString()} dashboard-not-ready status=${response.status} title=${html.includes("<title>SoloClaw Control</title>")} app=${html.includes("<openclaw-app></openclaw-app>")}\n`,
         );
       } catch (error) {
         logStream.write(
@@ -2606,8 +2606,8 @@ function verifyInstalledCandidate(installed, build) {
 
 function installedPackageRoot(prefixDir) {
   return process.platform === "win32"
-    ? join(prefixDir, "node_modules", "openclaw")
-    : join(prefixDir, "lib", "node_modules", "openclaw");
+    ? join(prefixDir, "node_modules", "soloclaw")
+    : join(prefixDir, "lib", "node_modules", "soloclaw");
 }
 
 function installedEntryPath(prefixDir) {

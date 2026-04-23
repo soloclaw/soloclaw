@@ -1,6 +1,6 @@
 ---
 title: "Memory Overview"
-summary: "How OpenClaw remembers things across sessions"
+summary: "How SoloClaw remembers things across sessions"
 read_when:
   - You want to understand how memory works
   - You want to know what memory files to write
@@ -8,7 +8,7 @@ read_when:
 
 # Memory Overview
 
-OpenClaw remembers things by writing **plain Markdown files** in your agent's
+SoloClaw remembers things by writing **plain Markdown files** in your agent's
 workspace. The model only "remembers" what gets saved to disk -- there is no
 hidden state.
 
@@ -68,7 +68,7 @@ search** -- combining vector similarity (semantic meaning) with keyword matching
 an API key for any supported provider.
 
 <Info>
-OpenClaw auto-detects your embedding provider from available API keys. If you
+SoloClaw auto-detects your embedding provider from available API keys. If you
 have an OpenAI, Gemini, Voyage, or Mistral key configured, memory search is
 enabled automatically.
 </Info>

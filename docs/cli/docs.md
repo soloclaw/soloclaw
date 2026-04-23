@@ -1,7 +1,7 @@
 ---
 summary: "CLI reference for `soloclaw docs` (search the live docs index)"
 read_when:
-  - You want to search the live OpenClaw docs from the terminal
+  - You want to search the live SoloClaw docs from the terminal
 title: "docs"
 ---
 

@@ -75,17 +75,17 @@ describe("resolveSandboxedMediaSource", () => {
   // Group 1: /tmp paths (the bug fix)
   it.each([
     {
-      name: "absolute paths under preferred OpenClaw tmp root",
+      name: "absolute paths under preferred SoloClaw tmp root",
       media: path.join(openClawTmpDir, "image.png"),
       expected: path.join(openClawTmpDir, "image.png"),
     },
     {
-      name: "file:// URLs pointing to preferred OpenClaw tmp root",
+      name: "file:// URLs pointing to preferred SoloClaw tmp root",
       media: pathToFileURL(path.join(openClawTmpDir, "photo.png")).href,
       expected: path.join(openClawTmpDir, "photo.png"),
     },
     {
-      name: "nested paths under preferred OpenClaw tmp root",
+      name: "nested paths under preferred SoloClaw tmp root",
       media: path.join(openClawTmpDir, "subdir", "deep", "file.png"),
       expected: path.join(openClawTmpDir, "subdir", "deep", "file.png"),
     },
@@ -203,7 +203,7 @@ describe("resolveSandboxedMediaSource", () => {
     });
   });
 
-  it("rejects symlinked OpenClaw tmp paths escaping tmp root", async () => {
+  it("rejects symlinked SoloClaw tmp paths escaping tmp root", async () => {
     if (process.platform === "win32") {
       return;
     }
@@ -245,7 +245,7 @@ describe("resolveSandboxedMediaSource", () => {
     });
   });
 
-  it("rejects hardlinked OpenClaw tmp paths to outside files", async () => {
+  it("rejects hardlinked SoloClaw tmp paths to outside files", async () => {
     if (process.platform === "win32") {
       return;
     }
@@ -262,7 +262,7 @@ describe("resolveSandboxedMediaSource", () => {
     );
   });
 
-  it("rejects symlinked OpenClaw tmp paths to hardlinked outside files", async () => {
+  it("rejects symlinked SoloClaw tmp paths to hardlinked outside files", async () => {
     if (process.platform === "win32") {
       return;
     }

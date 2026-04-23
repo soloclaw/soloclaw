@@ -123,7 +123,7 @@ openclaw approvals set --node <id|name|ip> --stdin <<'EOF'
 EOF
 ```
 
-This changes the **host approvals file** only. To keep the requested OpenClaw policy aligned, also set:
+This changes the **host approvals file** only. To keep the requested SoloClaw policy aligned, also set:
 
 ```bash
 soloclaw config set tools.exec.host gateway

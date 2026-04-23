@@ -166,7 +166,7 @@ describe("buildSessionEntry", () => {
     // to the actual user text. Without stripping, the JSON envelope dominates
     // the corpus entry and the user's real words get truncated by the
     // SESSION_INGESTION_MAX_SNIPPET_CHARS cap downstream.
-    // See: https://github.com/openclaw/openclaw/issues/63921
+    // See: https://github.com/soloclaw/soloclaw/issues/63921
     const envelopedUserText = [
       "Conversation info (untrusted metadata):",
       "```json",

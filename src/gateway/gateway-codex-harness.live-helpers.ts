@@ -37,7 +37,7 @@ export const EXPECTED_CODEX_MODELS_COMMAND_TEXT = [
   "Primary model: `codex/",
   "Registered models: `codex/",
   "Current active model is `codex/",
-  "Current OpenClaw session status reports the active model as:",
+  "Current SoloClaw session status reports the active model as:",
 ] as const;
 
 export function isExpectedCodexModelsCommandText(text: string): boolean {

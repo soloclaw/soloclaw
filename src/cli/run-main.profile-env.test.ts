@@ -142,7 +142,7 @@ describe("runCli profile env bootstrap", () => {
 
   it("applies --profile before dotenv loading", async () => {
     fileState.hasCliDotEnv = true;
-    await runCli(["node", "openclaw", "--profile", "rawdog", "status"]);
+    await runCli(["node", "soloclaw", "--profile", "rawdog", "status"]);
 
     expect(dotenvState.loadDotEnv).toHaveBeenCalledOnce();
     expect(dotenvState.state.profileAtDotenvLoad).toBe("rawdog");
@@ -151,7 +151,7 @@ describe("runCli profile env bootstrap", () => {
 
   it("rejects --container combined with --profile", async () => {
     await expect(
-      runCli(["node", "openclaw", "--container", "demo", "--profile", "rawdog", "status"]),
+      runCli(["node", "soloclaw", "--container", "demo", "--profile", "rawdog", "status"]),
     ).rejects.toThrow("--container cannot be combined with --profile/--dev");
 
     expect(dotenvState.loadDotEnv).not.toHaveBeenCalled();
@@ -160,13 +160,13 @@ describe("runCli profile env bootstrap", () => {
 
   it("rejects --container combined with interleaved --profile", async () => {
     await expect(
-      runCli(["node", "openclaw", "status", "--container", "demo", "--profile", "rawdog"]),
+      runCli(["node", "soloclaw", "status", "--container", "demo", "--profile", "rawdog"]),
     ).rejects.toThrow("--container cannot be combined with --profile/--dev");
   });
 
   it("rejects --container combined with interleaved --dev", async () => {
     await expect(
-      runCli(["node", "openclaw", "status", "--container", "demo", "--dev"]),
+      runCli(["node", "soloclaw", "status", "--container", "demo", "--dev"]),
     ).rejects.toThrow("--container cannot be combined with --profile/--dev");
   });
 
@@ -178,15 +178,15 @@ describe("runCli profile env bootstrap", () => {
       dotenvState.state.containerAtDotenvLoad = process.env.SOLOCLAW_CONTAINER;
     });
 
-    await runCli(["node", "openclaw", "status"]);
+    await runCli(["node", "soloclaw", "status"]);
 
     expect(dotenvState.loadDotEnv).toHaveBeenCalledOnce();
     expect(process.env.SOLOCLAW_CONTAINER).toBe("demo");
     expect(dotenvState.state.containerAtDotenvLoad).toBe("demo");
-    expect(maybeRunCliInContainerMock).toHaveBeenCalledWith(["node", "openclaw", "status"]);
+    expect(maybeRunCliInContainerMock).toHaveBeenCalledWith(["node", "soloclaw", "status"]);
     expect(maybeRunCliInContainerMock).toHaveReturnedWith({
       handled: false,
-      argv: ["node", "openclaw", "status"],
+      argv: ["node", "soloclaw", "status"],
     });
   });
 
@@ -194,7 +194,7 @@ describe("runCli profile env bootstrap", () => {
     process.env.SOLOCLAW_PROFILE = "work";
 
     await expect(
-      runCli(["node", "openclaw", "--container", "demo", "status"]),
+      runCli(["node", "soloclaw", "--container", "demo", "status"]),
     ).resolves.toBeUndefined();
   });
 
@@ -207,7 +207,7 @@ describe("runCli profile env bootstrap", () => {
     process.env[key] = value;
 
     await expect(
-      runCli(["node", "openclaw", "--container", "demo", "status"]),
+      runCli(["node", "soloclaw", "--container", "demo", "status"]),
     ).resolves.toBeUndefined();
   });
 
@@ -215,7 +215,7 @@ describe("runCli profile env bootstrap", () => {
     process.env.SOLOCLAW_STATE_DIR = "/tmp/openclaw-host-state";
 
     await expect(
-      runCli(["node", "openclaw", "--container", "demo", "status"]),
+      runCli(["node", "soloclaw", "--container", "demo", "status"]),
     ).resolves.toBeUndefined();
   });
 
@@ -223,7 +223,7 @@ describe("runCli profile env bootstrap", () => {
     process.env.SOLOCLAW_CONFIG_PATH = "/tmp/openclaw-host-state/soloclaw.json";
 
     await expect(
-      runCli(["node", "openclaw", "--container", "demo", "status"]),
+      runCli(["node", "soloclaw", "--container", "demo", "status"]),
     ).resolves.toBeUndefined();
   });
 });

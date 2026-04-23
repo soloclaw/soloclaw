@@ -6,7 +6,7 @@
 
 Your personal AI — free, safe, and gets smarter over time. No cloud, no API keys, no risk.
 
-Based on [OpenClaw](https://github.com/openclaw/openclaw).
+Based on [OpenClaw](https://github.com/soloclaw/soloclaw).
 
 ## Why SoloClaw
 

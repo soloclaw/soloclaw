@@ -28,7 +28,7 @@ describe("doctor bundled plugin runtime deps", () => {
 
   it("reports missing deps and conflicts", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-doctor-bundled-"));
-    writeJson(path.join(root, "package.json"), { name: "openclaw" });
+    writeJson(path.join(root, "package.json"), { name: "soloclaw" });
 
     writeJson(path.join(root, "dist", "extensions", "alpha", "package.json"), {
       dependencies: {

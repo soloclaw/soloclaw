@@ -1,7 +1,7 @@
 ---
 summary: "Symptom first troubleshooting hub for OpenClaw"
 read_when:
-  - OpenClaw is not working and you need the fastest path to a fix
+  - SoloClaw is not working and you need the fastest path to a fix
   - You want a triage flow before diving into deep runbooks
 title: "General Troubleshooting"
 ---
@@ -50,9 +50,9 @@ agent turns:
 
 1. If the error mentions `messages[].content` expecting a string, set
    `models.providers.<provider>.models[].compat.requiresStringContent: true`.
-2. If the backend still fails only on OpenClaw agent turns, set
+2. If the backend still fails only on SoloClaw agent turns, set
    `models.providers.<provider>.models[].compat.supportsTools: false` and retry.
-3. If tiny direct calls still work but larger OpenClaw prompts crash the
+3. If tiny direct calls still work but larger SoloClaw prompts crash the
    backend, treat the remaining issue as an upstream model/server limitation and
    continue in the deep runbook:
    [/gateway/troubleshooting#local-openai-compatible-backend-passes-direct-probes-but-agent-runs-fail](/gateway/troubleshooting#local-openai-compatible-backend-passes-direct-probes-but-agent-runs-fail)
@@ -60,7 +60,7 @@ agent turns:
 ## Plugin install fails with missing openclaw extensions
 
 If install fails with `package.json missing openclaw.extensions`, the plugin package
-is using an old shape that OpenClaw no longer accepts.
+is using an old shape that SoloClaw no longer accepts.
 
 Fix in the plugin package:
 
@@ -74,7 +74,7 @@ Example:
 {
   "name": "@soloclaw/my-plugin",
   "version": "1.2.3",
-  "openclaw": {
+  "soloclaw": {
     "extensions": ["./dist/index.js"]
   }
 }
@@ -86,7 +86,7 @@ Reference: [Plugin architecture](/plugins/architecture)
 
 ```mermaid
 flowchart TD
-  A[OpenClaw is not working] --> B{What breaks first}
+  A[SoloClaw is not working] --> B{What breaks first}
   B --> C[No replies]
   B --> D[Dashboard or Control UI will not connect]
   B --> E[Gateway will not start or service not running]
