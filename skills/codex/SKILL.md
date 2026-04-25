@@ -9,7 +9,6 @@ metadata:
     "soloclaw":
       {
         "emoji": "🤖",
-        "requires": { "bins": ["codex"] },
         "install":
           [
             {
@@ -57,6 +56,10 @@ Then use:
 - `process action:log`
 - `process action:poll`
 - `process action:submit` when Codex asks for input
+
+## Prerequisites
+
+- The `codex` CLI must be installed on the host. If missing, install with `npm install -g @openai/codex`.
 
 ## Rules
 
