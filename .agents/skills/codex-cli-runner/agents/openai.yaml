@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run Codex CLI"
+  short_description: "Invoke a bounded codex exec task"
+  default_prompt: "Use $codex-cli-runner to run a bounded task through `codex exec`, capture the final response, and report the result."
