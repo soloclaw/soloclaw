@@ -61,12 +61,27 @@ Then use:
 
 - The `codex` CLI must be installed on the host. If missing, install with `npm install -g @openai/codex`.
 
+## PR review workflow
+
+Codex runs sandboxed and cannot access the network. When the user asks to review a PR, pre-fetch everything locally before invoking Codex:
+
+1. Clone or navigate to the repo locally.
+2. Fetch the PR diff and description with `gh`:
+   ```bash
+   gh pr diff <number> > /tmp/pr-<number>.diff
+   gh pr view <number> --json title,body,files > /tmp/pr-<number>.json
+   ```
+3. Run Codex in the repo directory, pointing it at the local files:
+   ```bash
+   bash pty:true workdir:/path/to/repo command:"codex exec --full-auto 'Review this PR. The diff is at /tmp/pr-<number>.diff and metadata at /tmp/pr-<number>.json. Provide a thorough code review.'"
+   ```
+
 ## Rules
 
 - Keep the Codex prompt narrow and explicit.
 - Prefer the current workspace or the repo path the user named.
 - If the current directory is not a git repo and the task is scratch work, create a temp repo with `git init` before running `codex exec`.
-- Use `codex review` instead of `codex exec` when the user explicitly wants a code review.
+- Use `codex review` instead of `codex exec` when the user explicitly wants a code review of the current branch (not a specific PR).
 - Summarize the final Codex result back to the user instead of pasting noisy terminal logs.
 
 ## Safety
