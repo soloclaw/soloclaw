@@ -1,6 +1,7 @@
 ---
 name: codex
 description: "Run Codex CLI for bounded coding, review, or repo analysis tasks from SoloClaw. Usage: /codex <task>"
+homepage: https://github.com/openai/codex
 user-invocable: true
 disable-model-invocation: true
 metadata:
